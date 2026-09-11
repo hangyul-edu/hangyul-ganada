@@ -108,7 +108,7 @@ used for the block; `numbers:copy:check` holds the number-set names.
   idiom of the target language, at the register the bundle uses. Word order is
   the target language's, never the source's.
 * Nothing is left in the source language unless it is the thing being taught
-  (a Korean word, a syllable) or a brand (Hangyul Ganada).
+  (a Korean word, a syllable) or the brand, whose prose form is Hangyul ganada.
 * No two unrelated languages carry the identical string; identical text is
   the signature of an untranslated slot (`quotes-qa`, `locale-content-qa`).
 * Every string a learner can read in Korean has a reading recorded in

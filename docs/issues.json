@@ -277,7 +277,7 @@
    "status": "RESOLVED",
    "summary": "The native launch screen shows the English wordmark in every locale",
    "customerImpact": "A Korean learner opening the Android app sees “Han gyul — Like a slice of tangerine, one letter a day” in English for the moment before the WebView paints, then the Korean artwork replaces it. Two wordmarks in two languages, one launch.",
-   "evidence": "`_wordless` in `scripts/content/build_app_icons.py` paints the type out of the artwork and reconstructs what was under it by radial median, leaving the ground, the wash and the scattered jamo. All ten Android launch bitmaps and the iOS launch image are generated from it, and all eleven test wordless inside the delivered APK. The in-app splash still picks Korean or English from `LocaleContext`, on the same `#FFF1E1` ground, so the handover is one colour and no language.",
+   "evidence": "Corrected in the sixteenth pass (I-226): the pre-Android-12 launch bitmaps are *localized*, not wordless — `drawable/splash.png` is the English artwork and `drawable-ko/splash.png` the Korean, chosen by the device (or per-app) locale — and only the iOS launch image and the Android 12+ system-splash icon are wordless. `_wordless` in `scripts/content/build_app_icons.py` still produces the latter two from the artwork. The in-app splash picks Korean or English from `LocaleContext` on the same `#FFF1E1` ground. A learner whose phone is in English and whose app is in Korean sees the English native frame and then the Korean one; that gap is real and stated.",
    "recommendedFix": "done"
   },
   {
@@ -498,7 +498,8 @@
    "summary": "The quotation slot held a hundred lines, eighty-eight of which the app had written itself",
    "customerImpact": "A learner reading the foot of Home could not tell a sentence Seneca wrote from a sentence a product manager wrote, because both were set the same way in the same slot. Twenty attributed quotations replace them.",
    "evidence": "Twelve of the hundred were quotations. The rest were encouragement written for this app — \"Two words a day is seven hundred a year\", \"Progress is quiet\" — labelled honestly in the data and not on the screen, which is the only place it counts.\n\nThe library is now **20 quotations, each by a named person, each from a work and a place in it a reader can check**: Confucius to Analects II.15 and XV.30, Seneca to letters 7 and 76, Aristotle to Nicomachean Ethics 1103a, and King Sejong to the preface of the Hunminjeongeum — which is the right quotation for this product to carry.\n\n**Proverbs went with the app-authored lines.** A byline reading \"Korean proverb\" is a category where a name should be, and a proverb has no author to verify. 꿈을 크게 가져라 is withdrawn for the same reason: it used to ship deliberately unattributed because its three circulating attributions are all wrong, and under a policy requiring a person, a quotation nobody can be credited with is not one.\n\n**A fresh line on every open**, never the same one twice running, nothing persisted. Pinning it to the calendar day had made decoration into stored state — a key, a date, a migration — for a sentence at the foot of a screen.\n\n`quotes:qa:check` enforces the policy: 16–24 lines, no duplicate sentence in any locale, every byline a person and not a category, every source carrying a work and a date with no hedging words, all 640 renderings present, and nothing written to storage — proved by handing the module a `localStorage` and failing if anything lands in it.",
-   "keepResolved": true
+   "keepResolved": true,
+   "note": "Reversed in part by request in the sixteenth pass (I-221): 꿈을 크게 가져라 is back, shipping as authorship unknown with a localized author-unknown byline — a stated fact rather than an invented name — and the gate that forbade it now requires it in that form."
   },
   {
    "id": "I-48",
@@ -1858,11 +1859,11 @@
    "id": "I-176",
    "area": "Accessibility",
    "severity": "P3",
-   "status": "OPEN",
+   "status": "RESOLVED",
    "summary": "At 200% text the five-tab navigation bar falls below the 44px touch minimum",
    "customerImpact": "A learner who has turned text up to 200% gets navigation tabs 39px wide. The Level Test's own controls are unaffected — options and *I don't know* clear 44px at every viewport tested — so this is app chrome rather than the assessment.",
-   "evidence": "`leveltest:viewport` measures the question screen at 320×568, 360×640, 375×667, 390×844 and the same phone at 150% and 200% text, in English, German, Russian, Tamil and Telugu. No overflow, no clipped option, no overlap, and no control under 44px inside the screen itself. The navigation bar is under it on the five 200% combinations: a 390px phone at 200% lays out as 195 CSS pixels and five tabs cannot each be 44px wide in 195.\n\nReported by the gate rather than failed on, because it is arithmetic rather than a defect the gate can drive out, and because failing on it would make the gate unsatisfiable.",
-   "recommendedFix": "A product decision, not a fix with an obvious shape: fewer tabs, a scrolling tab strip, or a documented floor below which the bar collapses to a menu. Recorded rather than guessed at.",
+   "evidence": "`leveltest:viewport` measures the question screen at 320×568, 360×640, 375×667, 390×844 and the same phone at 150% and 200% text, in English, German, Russian, Tamil and Telugu. No overflow, no clipped option, no overlap, and no control under 44px inside the screen itself. The navigation bar is under it on the five 200% combinations: a 390px phone at 200% lays out as 195 CSS pixels and five tabs cannot each be 44px wide in 195.\n\nReported by the gate rather than failed on, because it is arithmetic rather than a defect the gate can drive out, and because failing on it would make the gate unsatisfiable. Re-measured in the sixteenth pass with the type tokens actually doubled (the earlier measurement scaled the root font size, which no token reads — I-223): at 320 px the five targets are 64×64 px (ko, ar) and 64×67 px (ta, de), above the 44 px minimum, with labels on at most two lines.",
+   "recommendedFix": "Closed on re-measurement; see I-223 for the measurement method.",
    "note": "*I don't know* also falls below the fold on the six enlarged-text combinations and is reached by scrolling. That is the right trade — the alternative is shrinking the Korean, which is the one thing on the screen a learner has to read — and `scroll:audit` owns whether it is reachable.",
    "effort": "M"
   },
@@ -2309,6 +2310,150 @@
    "recommendedFix": "Native review of packages/content-safety/policy/child-safe-content-policy.json per locale and of the 24 copy-pack rows for word_beda; add every term found as a fixture.",
    "note": "Human-only. The same blocker class as I-17 (native review of the packs).",
    "effort": "a reviewer per language"
+  },
+  {
+   "id": "I-214",
+   "area": "Release",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "The tree carried three marketing versions and none of them was the intended 1.0.4",
+   "customerImpact": "A customer quoting the version from the Legal screen (1.0.6), the store (nothing yet uploaded) and an iOS build (1.0.3) would have named three different products. The reported forms `v.1.0.6` and `v1.0.6` came from per-locale \"Version {{version}}\" strings and the drifted number behind them.",
+   "evidence": "`app.identity.json` said 1.0.6 build 24; `project.pbxproj` said MARKETING_VERSION 1.0.3 / CURRENT_PROJECT_VERSION 5; `store/release-notes.md` and the report front matter said 1.0.6; `registered` is false for both stores and every `build-info.json` on record says nothing was uploaded, so no store holds a higher number.",
+   "recommendedFix": "Every site now says 1.0.4 (identity, mobile package, `config/product.ts`, three legal documents, release notes, report front matter, both Xcode configurations); the build number is 25 on both platforms because 24 is the versionCode the delivered artefact used. `displayVersion()` renders `v1.0.4` in one place. `config/product.test.ts` pins the literal and the form; `version:check` pins the same literal and reads two more files. Negative-tested: setting `product.ts` to 1.0.6 fails the gate.",
+   "effort": "done"
+  },
+  {
+   "id": "I-215",
+   "area": "Splash",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "A cold start on Android 12+ showed an orange brand mark the app draws nowhere else, then the approved splash, then the app",
+   "customerImpact": "A customer photographed it and called the orange the old logo. It was `mipmap/splash_icon`, cut from `brand/logo-symbol.png` for the system splash on the argument that it was \"the splash's own mark\"; the approved splash artwork is a wordmark on a soft wash and carries no mark, so the system frame was a second picture in front of the first.",
+   "evidence": "`styles.xml` → `windowSplashScreenAnimatedIcon = @mipmap/splash_icon`; the packaged icon's centre pixel in the delivered 1.0.6 APK reads rgb(255,119,0). `scripts/check-native-splash.py --apk` fails against that APK on exactly this.",
+   "recommendedFix": "The system splash icon is now a feathered cut of the approved artwork's own centre circle, generated from the same file as the launch bitmaps, drawn on the artwork's ground; the activity's first frame completes the picture. `scripts/check-native-splash.py` proves every launch frame is wordless where it must be and mark-free everywhere, on the source resources, the iOS catalogue and the delivered package (`splash:check` in `verify:quick`, `splash:bundle:check` in `verify:release`). Cold start recorded on the API 36 emulator — see §20Z.2.",
+   "effort": "done"
+  },
+  {
+   "id": "I-216",
+   "area": "Today's Words",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "Show answer printed a sentence restating an option and left the options live, so the tap that followed was recorded as a pass",
+   "customerImpact": "정답은 어떤 일이나 행동을 이루다예요 appeared under four still-tappable options; the learner tapped what they had just been told and the word was completed, credited to the day's counter and stepped up the mastery ladder at hint level 3. A learner who pressed through to the reveal on every question finished 10/10 having recalled nothing.",
+   "evidence": "`ChoiceExercise` before this pass: the answer rung was `setLevel(+1)` rendering `review.hint.reveal`; `choose()` then reported `correct: true, hintLevel: 3`; `WordSessionPage.advance` credited it. Reproduced in the unit harness (`answerReveal.test.tsx` fails against the old component).",
+   "recommendedFix": "UNANSWERED → HINT_VIEWED → ANSWER_REVEALED → retry. The reveal is an outcome: the correct option takes the blue `.right` box and the check mark, the others dim, every option is disabled, exactly one result is reported (`correct: false, revealed: true`), the card says the answer was seen and the item comes back, and a Next button moves on. The attempt row records `revealed`; the memory model reads it as not recalled; the daily session puts the word at the back of the retry pass; the review sitting rescues it two exercises on. `BuildExercise` reveals the same way. Tests: 6 component cases, 4 domain cases, a memory-model case, `e2e/answer-reveal.spec.ts` in the real session, and `e2e/hints.spec.ts` updated.",
+   "effort": "done"
+  },
+  {
+   "id": "I-217",
+   "area": "Layout",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "Four gap-fill chips rendered as three and one",
+   "customerImpact": "On a 360 px phone the fourth candidate fell onto its own line under three; the eye reads three choices and something else. Photographed by a customer.",
+   "evidence": "`.optionsChips { display: flex; flex-wrap: wrap }` — wrapping is not a layout. The syllable tray had the same defect (I-131) and was fixed with `optionRows`; the chips were not.",
+   "recommendedFix": "The chips are a grid; `useChoiceColumns` decides four across or two by two from a measurement of the chips themselves at the learner's type size before paint, re-measured on resize; a two-by-two cell may wrap its own text; the grid mirrors in RTL with the same row-major order; phrase options stay a single column and cannot form an orphan row. `e2e/choice-layout.spec.ts` drives a real gap-fill sitting at 320/360/375/390/412/430 px, 1× and 2× text, in Korean, English and Arabic, and asserts the rows are [4] or [2, 2], nothing overflows and every chip is at least 44 px tall.",
+   "effort": "done"
+  },
+  {
+   "id": "I-218",
+   "area": "Today's Words",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "The word-ordering screen did not say what to do, and the last tile could not be taken back",
+   "customerImpact": "A definition, three identical dashed boxes and five tiles; the instruction named the goal (단어를 맞춰 보세요), not the action. And the tray graded itself the instant the last tile landed, so a learner who saw their mistake as their finger lifted had already been marked wrong.",
+   "evidence": "`BuildExercise` before this pass: `useEffect` on `picked.length >= syllableCount` called `onAnswered`; no active slot; no Check.",
+   "recommendedFix": "The instruction says the action (아래 음절을 순서대로 눌러 단어를 완성하세요, 32 languages); the next slot is marked with an accent outline and its number; a tapped tile leaves the tray dashed and faded and appears in the slot; Undo and tapping a filled slot take a tile back, including the last; Check is disabled until every slot is filled and grades once; a polite live region counts slots; every slot and tile has an accessible name. `buildInteraction.test.tsx` walks correct, wrong, undo, repeated syllable, distractor, keyboard and screen-reader paths.",
+   "effort": "done"
+  },
+  {
+   "id": "I-219",
+   "area": "Today's Words",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "The matching grid did not say the first action, named neither column, and graded each pair on the tap",
+   "customerImpact": "단어와 뜻을 짝지어 보세요 named the goal; the caption 한국어 단어를 골라요 was a fragment disconnected from the grid; nothing said which side to tap first; a wrong pair flashed and cleared, giving the answer away by elimination and punishing the first guess.",
+   "evidence": "`MatchExercise` before this pass; the customer's screenshot.",
+   "recommendedFix": "The instruction is the action in order (왼쪽에서 한국어 단어를 먼저 누른 다음, 오른쪽에서 알맞은 뜻을 선택하세요); the columns are headed 한국어 단어 and 뜻; only the Korean column is enabled until a word is held; the meanings then become the marked target and the caption names the held word; a made pair carries the same numbered badge on both tiles and either side takes it apart; Check is disabled until every word is paired and grades all pairs together; the verdict is on the tiles in the same blue and red the choice question uses. `MatchExercise.test.tsx` walks the first-time sequence in taps.",
+   "effort": "done"
+  },
+  {
+   "id": "I-220",
+   "area": "Copy",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "이번 주에 32개를 첫 번에 떠올렸어요 — unidiomatic, and every language misdescribed the metric",
+   "customerImpact": "첫 번에 is not Korean anyone says, and \"on the first try\" was not what the number counted: `weeklyInsights` counts attempts in the last seven days that passed with no hint, and an attempt row carries no first-try flag. Twelve other Korean strings were fragments or odd collocations (복습할 때 as a status label, 오늘 몫은 끝났어요, 세는 말 앞은 띄어쓰기).",
+   "evidence": "`domain/review.ts` `weeklyInsights`; the strings in `docs/UX_COPY_REMEDIATION_LEDGER.md`.",
+   "recommendedFix": "The sentence says what is measured in all 32 languages (이번 주에는 힌트 없이 32개를 맞혔어요 / You got 32 right without a hint this week); the heading is 얼마나 잘 기억하고 있는지; thirteen Korean strings rewritten; every Korean string read and recorded in `docs/copy-audit-ko.json`; `docs/UX_COPY_AUDIT.md`, `docs/UX_COPY_STYLE_GUIDE.md` and the generated `docs/UX_COPY_REMEDIATION_LEDGER.md` (752 rows) record the pass; `copy:remediation:check` fails if a ledger row's new text is not what the bundle carries.",
+   "effort": "done"
+  },
+  {
+   "id": "I-221",
+   "area": "Home",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "Two requested quotations added, in 32 languages, with an honest exception to the attribution policy",
+   "customerImpact": "꿈을 크게 가져라. 깨져도 그 조각이 크다 (작자 미상) and the Carlyle stepping-stone line (Thomas Carlyle) now appear at the foot of Home. The first ships as authorship unknown with a localized \"author unknown\" byline — the fact stated, not a name invented; the second is marked attributed rather than established, because the English line is quoted under Carlyle's name everywhere and has not been located in his works. A Korean original leads and its translation follows; Korean shows the line once.",
+   "evidence": "`quotes.ts` rows `dream-big-pieces` and `carlyle-stepping-stone`; `docs/QUOTE_TRANSLATION_AUDIT.md` — one row per locale per quotation, generated from the runtime strings, the reviewer's judgments and the rendering measurements (768 measurements, 0 findings).",
+   "recommendedFix": "done — the human part is I-222.",
+   "effort": "done"
+  },
+  {
+   "id": "I-222",
+   "area": "Home",
+   "severity": "P2",
+   "status": "OPEN",
+   "summary": "21 quotation translation rows and one attribution need a person",
+   "customerImpact": "Nine Quote 1 rows and twelve Quote 2 rows are grammatically and semantically sound as far as the reviewer can establish and are marked NATIVE-SPEAKER REVIEW REQUIRED for register and idiom (vi, th, ar, bn, fil, hi, kk, ky, mn, ta, te, uz); the Carlyle attribution is conventional, not located in his works.",
+   "evidence": "`docs/QUOTE_TRANSLATION_AUDIT.md` §4 and §5; `docs/quote-translation-audit.json` names what each row needs confirmed.",
+   "recommendedFix": "A native reader per language confirms or corrects the named point; a person with access to Carlyle's works locates the passage or accepts the conventional attribution knowingly. Any change is one edit in `quotes.ts` and one in the judgments file; the tables regenerate.",
+   "note": "Human-only. The same blocker class as I-17 and I-213.",
+   "effort": "a reviewer per language"
+  },
+  {
+   "id": "I-223",
+   "area": "Release engineering",
+   "severity": "P1",
+   "status": "RESOLVED",
+   "summary": "Nine QA scripts and specs claimed 150% and 200% text measurements that measured 100%",
+   "customerImpact": "The report said the Numbers list, the tab bar, the home header, the reachable-actions audit, the section alignment and the legal pages were measured at doubled text. They were not: the emulation set the root font size, every type size in the product is a pixel token and four stylesheets use rem at all, so the body text stayed at 15 px in every \"×2\" case. I-176 (the tab bar below 44 px at 200%) was measured the same way.",
+   "evidence": "`packages/design-tokens/tokens.css` — `--hg-text-body: 15px` and every neighbour in px; `grep -c rem` over `apps/web/src/**/*.css` = 4 files; the nine sites listed in the commit \"the large-text measurements measure large text\".",
+   "recommendedFix": "`scripts/lib/text-scale.mjs` and `e2e/helpers/textScale.ts` double the tokens, which is what a WebView does to every CSS pixel of text; the nine sites use them. Re-run at a real 150% and 200%: `numbers:layout` 45/45, `align:sections` 12/12, `legal:isolation` 16/16, `scroll:audit` 210/210, and 79 spec cases; the tab-bar targets measure 64×64–67 px at 320 px in Tamil, German, Korean and Arabic, so I-176 is closed. Text set as a bare `clamp()` (the Korean glyphs on the tiles) is pinned by design and is stated as not scaled.",
+   "effort": "done"
+  },
+  {
+   "id": "I-224",
+   "area": "Content safety",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "The safety scan read 27 of the quotation library's 1,052 strings and reported zero findings",
+   "customerImpact": "The quotations family pulled string literals out of `quotes.ts` with a regular expression; a backtick in a doc comment opened a template-literal match that swallowed most of the file, so the family reported \"27 items, 0 findings\" over a library it had not read, and tagged every non-Korean line as English.",
+   "evidence": "`docs/child-safe-content-audit.json` before this pass: `quotations.items = 27`; the regex at the old `FAMILY_QUOTES` block; after reading the file properly the German article *die* was flagged through the English mortality list six times.",
+   "recommendedFix": "The family imports the library and scans every original, translation and byline in its own language: 22 items, 1,452 fields, 0 findings. The retired-word tombstones are also enforced at corpus ingestion now (`installBand`), so a band that reaches the app from a stale cache, an old backup or a mirror can never supply a retired word as an answer, a distractor or a search hit (`retiredIngest.test.ts`, negative-tested).",
+   "effort": "done"
+  },
+  {
+   "id": "I-225",
+   "area": "Report",
+   "severity": "P3",
+   "status": "RESOLVED",
+   "summary": "Eleven pages of the previous report render were more than ninety percent blank",
+   "customerImpact": "Pages 6, 8, 25, 42, 49, 61, 71, 82, 127, 233 and 250 of the 281-page PDF held one line or one small table; a reader turning the page took each for a printing fault.",
+   "evidence": "`pdftoppm -r 40` over every page, ink coverage under 2%; `table { page-break-inside: avoid }` in `build-pdf.mjs` pushed any table taller than the room left onto the next page. Also §20S and §20T (the eighth and ninth passes) were placed after §23 Verdict, with §23.1 after them.",
+   "recommendedFix": "Tables break between rows with the header repeating; the two chapters are moved before §20U and §23.1 under §23; the render is measured again in §20Z.",
+   "effort": "done"
+  },
+  {
+   "id": "I-226",
+   "area": "Report",
+   "severity": "P2",
+   "status": "RESOLVED",
+   "summary": "I-26's record said all Android launch bitmaps were wordless; ten of the twenty-two carry the Korean wordmark and twelve the English",
+   "customerImpact": "A reader of this document was told the pre-Android-12 launch bitmap says nothing in any language. It has said *Han gyul* (default) and 한귤 (`drawable-ko`) since the commit \"Stop the launcher icon being the first thing a cold start shows\", by design, following the device locale; the iOS launch image is the wordless one. The capacitor config comment repeated the wordless claim.",
+   "evidence": "`apps/mobile/android/app/src/main/res/drawable*/splash.png` — 22 files, two artworks; `scripts/content/build_app_icons.py` `ANDROID_SPLASH` loop.",
+   "recommendedFix": "I-26's evidence is corrected below; the config comment says what the three frames are; `scripts/check-native-splash.py` tests the iOS image for wordlessness and the Android bitmaps for being the artwork, and states the locale gap (device locale for the native frame, app locale for the web one) rather than hiding it.",
+   "effort": "done"
   }
  ]
 }

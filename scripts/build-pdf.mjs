@@ -216,9 +216,10 @@ pre{background:#F4F6F8;padding:3mm 4mm;border-radius:3px;overflow:hidden;page-br
 pre code{background:none;padding:0;font-size:8.5pt;line-height:1.5;white-space:pre-wrap;word-break:break-word}
 table{border-collapse:collapse;width:100%;margin:0 0 4mm;font-size:8.8pt;page-break-inside:auto}
 /* A table may break between rows, never inside one, and its header row repeats
-   on every page it spans. page-break-inside:avoid on the whole table pushed
-   any table taller than the room left to the next page and left eleven pages of
-   the sixteenth-pass render more than ninety percent blank. */
+   on every page it spans — the rule build-report.mjs already uses, adopted here
+   for the patent documents: page-break-inside:avoid on the whole table pushes
+   any table taller than the room left onto the next page and strands the rest
+   of this one. */
 thead{display:table-header-group}
 tr{page-break-inside:avoid}
 th,td{border:1px solid var(--line);padding:1.8mm 2.2mm;text-align:left;vertical-align:top;word-break:normal;overflow-wrap:break-word}
