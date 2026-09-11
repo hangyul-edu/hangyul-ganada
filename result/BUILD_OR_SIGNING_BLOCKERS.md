@@ -6,11 +6,13 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 11 September 2026 against **v1.0.6, versionCode 24**, compiled
-from a clean checkout of commit `19c25615`. Every item below still stands,
-unchanged: none of them is a build problem and none can be cleared from this
-machine. The Android artefacts were rebuilt at versionCode 24 and signed with
-the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
+Re-checked on 12 September 2026 against **v1.0.4, versionCode 25**, compiled
+from a clean checkout of commit `8130a081`. Every item below still stands
+except §9, which is closed: the Xcode project carries 1.0.4 / 25 in both
+configurations. None of the rest is a build problem and none can be cleared
+from this machine. The Android artefacts were rebuilt at versionCode 25 and
+signed with the existing production identity this cycle — see
+`RELEASE_VALIDATION.md`.
 
 **§10 is still the one to read.** This cycle wrote 24 copy-pack translations
 of one rewritten example (베다: 풀을 베어요) and thirty non-Korean, non-English
@@ -220,34 +222,36 @@ the store material claims otherwise.
 
 ---
 
-## 9. iOS is still at 1.0.3 build 5 · **REQUIRES A MAC**
+## 9. iOS carries 1.0.4 build 25 — the archive still needs a Mac · **REQUIRES A MAC**
 
-**What is missing:** the release version in the Xcode project.
+**What is missing:** the archive and the IPA, not the version.
 
-Android ships this release as 1.0.6, versionCode 24. iOS does not, and its
-`MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.3` and `5`.
+The Xcode project's `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` read
+`1.0.4` and `25` in both the Debug and the Release configuration — the same
+two values Android ships — and `apps/mobile/app.identity.json` declares them,
+so `npm run version:check` reports nothing pending and `npm run
+ios:project:check` records the adopted file. This pass edited exactly those two
+settings in `App.xcodeproj/project.pbxproj` from Linux, by targeted substitution
+of the four lines, and nothing else in the file: `DEVELOPMENT_TEAM`,
+`CODE_SIGN_STYLE`, `PRODUCT_BUNDLE_IDENTIFIER`, `IPHONEOS_DEPLOYMENT_TARGET` and
+the `knownRegions` are byte-for-byte what they were, which the lock file's
+setting-by-setting assertions confirm.
 
-This is deliberate rather than an oversight. Those two are Xcode build settings
-living in `App.xcodeproj/project.pbxproj`, a file that also carries
-`DEVELOPMENT_TEAM`, `CODE_SIGN_STYLE`, `PRODUCT_BUNDLE_IDENTIFIER`,
-`IPHONEOS_DEPLOYMENT_TARGET` and the thirty `knownRegions` that decide which
-languages the App Store lists the app in. Editing it with a text substitution
-from Linux is how a project file loses a setting nobody was looking at, and the
-loss is discovered in App Store Connect weeks later. Nothing in this repository
-writes to it; `npm run ios:project:check` asserts its SHA-256, its Git blob id
-and every one of those settings against a lock file, and it is green.
+**To unblock**, on a Mac with Xcode 26, from commit `8130a081`:
 
-**To unblock**, on a Mac with Xcode, in one commit:
+```bash
+git checkout 8130a081
+npm ci && npm run mobile:sync
+cd apps/mobile/ios/App
+xcodebuild -workspace App.xcworkspace -scheme App -configuration Release \
+  -archivePath build/App.xcarchive archive
+xcodebuild -exportArchive -archivePath build/App.xcarchive \
+  -exportOptionsPlist ExportOptions.plist -exportPath build/ipa
+# then verify: MARKETING_VERSION 1.0.4, CURRENT_PROJECT_VERSION 25, bundle id
+# com.talkhangyul.ganada, the Splash image set, sizes and sha256 of the archive and IPA
+```
 
-1. Open `apps/mobile/ios/App/App.xcodeproj`, select the **App** target, and set
-   **Version** to `1.0.6` and **Build** to `24` for both Debug and Release.
-2. Update `ios.xcode.marketingVersion` to `"1.0.6"` and
-   `ios.xcode.currentProjectVersion` to `24` in `apps/mobile/app.identity.json`.
-3. Run `node scripts/check-ios-project.mjs --adopt` and commit the lock with it.
-
-`npm run version:check` prints this as a pending action on every run until it is
-done. It is reported rather than failed, because failing would mean no Android
-release could be cut without a Mac in the room.
+**IOS BUILD BLOCKED — REQUIRES MACOS/XCODE.** No IPA exists and none is claimed.
 
 ---
 

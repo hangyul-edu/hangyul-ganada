@@ -155,10 +155,10 @@ without trusting the row.
 | Unobserved words with a written reason | 55 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 237 | `lvm` in `vocabulary.json`; see I-133 |
-| Issues tracked | 209 | `docs/issues.json` |
-| Signed APK | 90,455,013 bytes (86.3 MiB) | `result/build-info.json` |
-| Signed AAB | 88,630,068 bytes (84.5 MiB) | same |
-| Tests | 2,306 across 86 files | `npm test` |
+| Issues tracked | 222 | `docs/issues.json` |
+| Signed APK | 90,552,277 bytes (86.4 MiB) | `result/build-info.json` |
+| Signed AAB | 88,728,421 bytes (84.6 MiB) | same |
+| Tests | 2,656 across 86 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -211,8 +211,8 @@ part). Reading this document against the tree also found two of its own
 claims to be untrue: nine "200% text" measurements had measured normal text,
 because the emulation scaled a root font size that no pixel token reads; and
 the safety scan's quotation family had read 27 of 1,052 strings. Both are
-re-run for real and recorded (§20Z.8). Eleven near-blank pages of the previous
-render and two chapters filed after the verdict are corrected (I-225).
+re-run for real and recorded (§20Z.8). Two chapters filed after the verdict
+are moved back into order (I-225).
 
 The previous pass is kept below as it was written.
 
@@ -2416,16 +2416,18 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `19c25615`, working tree clean |
+| Built from | `8130a081`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 24, versionName 1.0.6 |
+| Package | `com.talkhangyul.ganada`, versionCode 25, versionName 1.0.4 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | 90,455,013 bytes (86.3 MiB) — sha256 in §21 |
-| Release AAB | 88,630,068 bytes (84.5 MiB) — sha256 in §21 |
+| Release APK | 90,552,277 bytes (86.4 MiB) — sha256 in §21 |
+| Release AAB | 88,728,421 bytes (84.6 MiB) — sha256 in §21 |
 
-The APK is 90,455,013 bytes — 86.3 MiB — smaller than the 91,079,074 bytes of
-the cycle before it by the 23 retired words, their 46 recordings and the 694
+The APK is 90,552,277 bytes — 86.4 MiB — 97,264 bytes larger than the 1.0.6
+delivery: two quotations in 32 languages, the reveal, tray and grid strings in
+32 languages, and the adaptive splash icon and its layer. The build before
+that had shrunk by the 23 retired words, their 46 recordings and the 694
 dictionary rows that no longer ship. The audio set is at 13,904 slots. The
 growth of the cycle before that was nine languages' worth of word meanings and
 example translations for the whole corpus rather than its first band.
@@ -2482,11 +2484,11 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **1409** (76 files) |
+| Web unit (`vitest`) | **1512** (76 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **237** (2 files) |
-| Content safety (`vitest`) | **564** (3 files) |
-| End-to-end (`playwright`) | **594** (297 × 2 projects) |
+| Content safety (`vitest`) | **811** (3 files) |
+| End-to-end (`playwright`) | **628** (314 × 2 projects) |
 
 The content-safety suite is new this pass: the 355 shared fixtures through the
 TypeScript evaluator, the Korean and English subset through the runtime
@@ -4328,7 +4330,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **2,306 across 86 files** — handwriting-core 96, korean-morphology 237, content-safety 564, web 1409 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **2,656 across 86 files** — handwriting-core 96, korean-morphology 237, content-safety 564, web 1409 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -5018,10 +5020,10 @@ untracked files, so no commit described what was in them.
 | Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 90,455,013 bytes (86.3 MiB) |
-| APK sha256 | `b7242052f0cc465d84d98ce7eb5e4e2c5e84020e7c392a5b1b13765dddefb7c7` |
-| AAB | 88,630,068 bytes (84.5 MiB) |
-| AAB sha256 | `c3595cec923ac6d66d4b3e98440bffe9f4db2e599d2e2cb22eb486519e38c3ad` |
+| APK | 90,552,277 bytes (86.4 MiB) |
+| APK sha256 | `00e7d616b87617e4b9136584d97c2903ad0b0e5ae1fb9990aa5e1cdea3b1e30f` |
+| AAB | 88,728,421 bytes (84.6 MiB) |
+| AAB sha256 | `91ebe2587747f9dd67d1574730beed0baf0766adaf9e67fc693d1dfe85230107` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -9006,7 +9008,23 @@ learner is already looking at.
 Against the previous delivery (1.0.6, versionCode 24) the same script fails
 ten times: the packaged icon's centre pixel is rgb(255,119,0) at every density.
 
-COLDSTART_PENDING
+**Recorded, not reasoned about.** `scripts/qa-cold-start-android.sh` installs
+a package on the API 36 emulator (`hangyul-pixel7`, headless, software
+rendering), force-stops it, starts `screenrecord`, launches the activity with
+`am start -W`, and extracts a frame every 200 ms. Three starts of the 1.0.4
+package and one of the previous delivery, read frame by frame:
+
+| Start | What the frames show | Frame means (RGB), in order |
+| --- | --- | --- |
+| **1.0.6 delivery, clean install** (the reproduction) | the orange brand mark on the peach ground for the whole 6.4 s recorded — the system splash stays up until the activity draws, and on this emulator that is 7 s | 250·236·216 throughout, with the mark |
+| **1.0.4, clean install** | launcher → the system's launch cross-fade (one frame) → peach ground with the soft centre disc → the artwork, disc in the same place → Home | 79·82·95 → 127·125·129 → 250·236·216 → 248·216·186 → 246·237·228 |
+| **1.0.4, force-stop then start** | launcher → disc → artwork → Home; `am start -W` TotalTime 3,756 ms | 79·82·95 → 250·236·217 → 248·216·186 → 245·236·227 |
+| **1.0.4, upgrade install over 1.0.6** | disc → artwork → Home. The first launch after the install took 21.8 s to display on this emulator (profile installation), and about 0.6 s after the artwork appeared the recording shows the disc frame again for three frames before Home; logcat has `Activity transferring splash screen timeout` at that moment. Not reproduced on the clean or the force-stop start; recorded here as an emulator-timing observation rather than explained away | 250·236·217 → 248·216·186 → 250·236·216 → Home |
+
+No frame in any start is white, black or carries the old mark: every mean
+colour between the launcher and Home is one of the two peach values (the
+ground, then the artwork). The frames are in `docs/report-assets/coldstart-*.png`.
+This is the emulator; §18's *PHYSICAL DEVICE NOT VERIFIED* stands.
 
 What this pass did **not** change: the pre-Android-12 launch bitmap is the
 localized artwork — *Han gyul* by default, 한귤 under `drawable-ko` — chosen by
@@ -9016,7 +9034,7 @@ one wordmark and then the other. That is a real gap, it was already the design
 since the eighth pass, and this document had been saying the opposite of it
 (§20Z.8, I-226).
 
-## 20Z.3 Two quotations, thirty-two languages, one honest exception — **I-221, done; I-222, a person**
+## 20Z.3 Two quotations, thirty-two languages, one honest exception — **I-221; the human part is I-222**
 
 The product owner asked for two lines, with Korean as the canonical text that
 must not be paraphrased, and named the attributions: 작자 미상 and Thomas
@@ -9220,6 +9238,15 @@ figures in §2.2 and §19.1. New in this pass: `splash:check` and
 `retiredIngest`, `QuoteOfTheSession` and the content-safety `coverage` suites;
 `e2e/answer-reveal`, `e2e/choice-layout` and `e2e/quotes`.
 
+This edition renders at 238 pages. Ten of them carry under 2% ink — pages 27,
+33, 43, 44, 62, 95, 98, 127, 178 and 238 — and every one is the tail of a
+chapter, because each chapter begins on a fresh page. The previous render had
+eleven such pages and two chapters filed after the verdict (I-225); the
+ordering is fixed, the chapter break is kept as a design choice and the tail
+pages are stated rather than hidden. Every heading in the source appears in
+the render (372 of 372), nothing runs off the right edge, and every page was
+looked at as a contact sheet.
+
 Broken on purpose, each restored: `product.ts` set to 1.0.6 (version gate
 fails); the ingest guard's `continue` removed (`retiredIngest` fails 2 of 2);
 the Tamil row removed from Table A and one English word altered in it (the
@@ -9251,7 +9278,7 @@ it.
 One reading note. The evidence written on a **resolved** issue is a record of
 what was found in the cycle that closed it, and where it cites a section number
 that number is the one the report carried at the time. The report has been
-rewritten since and renumbered; the citations on the 6 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
+rewritten since and renumbered; the citations on the 6 open, 5 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
 were deliberately left as written rather than edited into agreement with a
 document they predate.
 
@@ -9270,6 +9297,7 @@ document they predate.
 | **I-39** | i18n copy | **P2** | The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages | Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known. | **PARTIAL** |
 | **I-79** | Vocabulary data | **P2** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 518 words between them. A learner placed at 30 is taught ten a day from that zone and exhausts it in about eleven weeks, after which the plan has nothing new at the level it measured them at. The band grew by 47 this cycle and by 60 the cycle before; the shape is unchanged, because level 30 absorbs every word the difficulty model cannot place lower and holds 334 of the 524 on its own. | **PARTIAL** |
 | **I-20** | Vocabulary | **P3** | The hand-written More about it block is on 75 words of 3,333 | Word Detail is no longer a short page followed by nothing, but the paragraph written for the words where one line genuinely is not enough is on 75 of them — 2% of the corpus. | **PARTIAL** |
+| **I-225** | Report | **P3** | Eleven pages of the previous report render were more than ninety percent blank, and two chapters were filed after the verdict | Pages 6, 8, 25, 42, 49, 61, 71, 82, 127, 233 and 250 of the 281-page PDF held one line or one small table; a reader turning the page took each for a printing fault. | **PARTIAL** |
 | **I-01** | Release | **P0** | The shipped APK/AAB were built from a dirty tree, not from any commit | The delivered binary is not a build of anything a reader can check out. `app_result/build-info.json` records the commit as `3833da71` and, in the same file, `source_state.dirty: true` with **440 changed and 595 untracked files** — so the APK contains some mixture of that commit and whatever was in the tree at 12:21 that morning. Nobody can say what shipped, including the person who built it. | **RESOLVED** |
 | **I-02** | Repo | **P0** | A whole cycle's work was uncommitted when the artefacts were built | A fresh checkout does not contain what was shipped | **RESOLVED** |
 | **I-108** | Vocabulary session | **P0** | A mid-day Level Test retake left the rest of the day at the old level | Start Today's Vocabulary at the default Level 1, master three words, leave, sit the Vocabulary Level Test, come out at 30, and come back the same day: the remaining seven words were still 엄마-class beginner fillers, because the plan built before the measurement was kept for having been started. The learner had just been told they read Korean and the app went on teaching them 'mum'. | **RESOLVED** |
@@ -9430,7 +9458,6 @@ document they predate.
 | **I-194** | Release engineering | **P3** | The ambiguity gate reported a rule count it no longer measured | None. | **RESOLVED** |
 | **I-201** | Release engineering | **P3** | Two gates asserted the assumption that was the defect | None. Both would have blocked the fix. | **RESOLVED** |
 | **I-22** | Vocabulary UX | **P3** | A beginner's first sitting alternates two question layouts rather than four | Ten new words, two shapes. The variety returns within days as words reach `review` and `familiar`. | **RESOLVED** |
-| **I-225** | Report | **P3** | Eleven pages of the previous report render were more than ninety percent blank | Pages 6, 8, 25, 42, 49, 61, 71, 82, 127, 233 and 250 of the 281-page PDF held one line or one small table; a reader turning the page took each for a printing fault. | **RESOLVED** |
 | **I-26** | Splash | **P3** | The native launch screen shows the English wordmark in every locale | A Korean learner opening the Android app sees “Han gyul — Like a slice of tangerine, one letter a day” in English for the moment before the WebView paints, then the Korean artwork replaces it. Two wordmarks in two languages, one launch. | **RESOLVED** |
 | **I-27** | UI | **P3** | Between 430 px and 560 px the bottom navigation floats clear of the screen edges | On a large phone in landscape, a small tablet or a split-screen window, the tab bar is 430 px wide on a wider page, so warm ground shows down both sides of it and it does not reach the bottom corners. It reads as a bar that has come loose from the app — the same symptom that was fixed above 560 px. | **RESOLVED** |
 | **I-28** | Build | **P3** | `docs:consistency` cannot see four of the figures it tracks, and one of them had drifted | None to a learner. It matters because this report's credibility rests on its numbers, and a gate that ends with “No document states two different current values for the same metric” while a stale value sits in §2.3 reads as stronger than it is. | **RESOLVED** |
@@ -9488,7 +9515,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 4 · P3: 1**
 
-**Blocked outside this repository: 1 · Partial: 4 · Resolved: 211**
+**Blocked outside this repository: 1 · Partial: 5 · Resolved: 210**
 
 <!-- /issues:counts -->
 
@@ -9507,6 +9534,7 @@ document they predate.
 | **I-39** | `npm run locale:editorial` is new, and it reads for four things nothing else looked at:  * **Register.** Twenty-one of the shipping languages choose between a familiar and a polite second person, and the choice has to be the same on every screen. It counts the markers of each and fails the build on a language that uses both. It found **five languages mixing them** — de (12 strings), el (3), id (6), ro (2), and, once its own false positives were fixed, none in cs. All are now consistent with the register that language already used. * **One English sentence, two translations.** Where two keys hold the same English string their translations should match. Found the Level Test asking "What does this word mean?" in wording that differed from the reading exercise's in six languages; unified. * **Typography.** 71 straight apostrophes in languages whose English source writes the typographic one; all replaced. * **A label that became a paragraph.** A short English label translated several times longer, which is what breaks a layout at 200% text.  Writing it also found the writer out. Its first run reported seven mixed-register languages and three were its own fault: JavaScript's `\b` is defined against ASCII, so `\btes\b` matched inside *prêtes* and French "revisions ready" was reported as addressing the reader familiarly. Every pattern now goes through a Unicode-aware boundary, German and Italian are read with sentence-initial capitals lowered (so *Sie* meaning *she* is not counted), and the ambiguous markers — Spanish `su`, Czech `ty`, Dutch `u` as the abbreviation for hours — are named and excluded with the reason. **A linguistic check that cries wolf is worse than none**, because it is the kind people switch off.  **What is still not done, and this is the whole of the remaining item.** Nothing here reads a sentence for whether it is *good*. Register consistency is not naturalness, and an apostrophe is not a register. The 15 findings it still reports are deliberately left as warnings for a person: they are places where two screens word the same idea differently and only somebody who reads the language can say which is right, or whether both are.  Distinct from I-17, which is native-speaker review. This is the pass that should happen before one, and the mechanical half of it is now done and enforced in `verify:quick`.  **This cycle: Korean, read on the rendered screens.** Three classes of defect that no check looked for — one thing called two things (I-60), a register that slipped into 합쇼체 six times, and 262 example translations that invented a person the Korean does not have (I-59). All three are rules in `locale:editorial` or `examples:qa` now. What has still not happened is a native reading, in any of the thirty-two.  **Re-audited 24 August 2026.** The Korean interface was rewritten this pass to drop 낱자 and 낱말 (I-75), which is a mechanical editorial change and not a native reading. The row is unchanged: 31 of 32 languages have had a program read them and a person has not.  **Re-audited 25 August 2026.** Unchanged in substance. `qa:locales` renders 32 languages x 8 screens = 256 screens with no measurable problem, `locale:editorial` reports 0 errors and 38 warnings for a person to read, and neither of those is a native reading. Two category labels were renamed this cycle for a mechanical reason rather than an editorial one — Kyrgyz *Адамдар жана үй-бүлө* and Uzbek *O'qish va ish* each contained the answer to the question they were hinting at.  **Re-audited 26 August 2026.** Unchanged in substance: `locale:editorial` reports 0 errors and 38 warnings for a person to read; no native reading has happened in any of the 32.  **Re-audited 27 August 2026.** Unchanged in kind and larger in size: this pass wrote 78 new entries in ten languages, four More-about-it notes (one in 32 languages), and rewrote 17 shipped examples with their translations — all model-written, none read by a native speaker. | A reading pass per locale, screen by screen, by somebody who speaks it. The 70 remaining warnings from `locale:editorial` are where to start — all of them split-translation judgements, since the straight-apostrophe class was closed by I-153. |
 | **I-79** | Levels 28–30 held four hundred and seventy-seven of the old 3,333 words. Sixty entries were authored against the top of the scale; 48 landed at 28–30 and 11 more at 27, so the top band now holds 524 of 3,393. At ten new words a day that moves exhaustion from about nine weeks to about eleven. The shape of the problem is unchanged: level 30 alone still holds 334 words because it absorbs everything the difficulty model cannot place lower. | More words that measure into 28–30. Level is computed from frequency, usefulness, concreteness, length and irregularity rather than declared, so the lever is the vocabulary chosen, not a number set in a file. |
 | **I-20** | 71 words carry a third element in `vocabulary.en.json`, up from 35. They are the homographs and the usage traps: 배 is a stomach, a boat and a pear; 못 is the difference between will not and cannot; 아가씨 is a word to use about somebody and not to them. 38 of the 71 are inside the 600-word core band, and this pass wrote all 38 in each of the 22 partial languages — 638 paragraphs — because a note that exists in English and not in Tamil is an asymmetry a learner discovers by switching language.  **Re-audited 26 August 2026.** Unchanged: 71 words carry the block.  **Re-audited 27 August 2026.** Four notes were added where a learner genuinely needs one: 당신 (the polite-you trap — spousal or confrontational in real speech; written in all 32 written languages because the word is in the core band), 전세 (the lump-sum lease no other country has), 회식 (the semi-obligatory team dinner), and 좀처럼 (a negative-polarity adverb). 71 → 75. | Content, not code: write the block for the words a learner most often stops on. The machinery to show it has been there since the block existed. |
+| **I-225** | `pdftoppm -r 40` over every page, ink coverage under 2%: pages 6, 8, 25, 42, 49, 61, 71, 82, 127, 233 and 250 of 281. Each is the tail of a chapter — `h1 { page-break-before: always }` starts every chapter on a fresh page, so a chapter whose last paragraph or small table spills by a line leaves a page holding only that. §20S and §20T (the eighth and ninth passes) were placed after §23 Verdict since the ninth pass, with §23.1 after them. | The two chapters are moved before §20U and §23.1 back under §23 (done). The chapter-per-page rule is kept as a design choice — a chapter that begins mid-page is harder to find — so tail pages remain: this edition renders at 238 pages with ten of them under 2% ink, each a chapter tail, listed in §20Z.10. Removing them would mean dropping the chapter break, which is a decision for the document owner rather than a defect to fix silently. (The earlier claim that `build-pdf.mjs` was the cause was wrong: that builder makes the patent documents; `build-report.mjs` already breaks tables between rows.) |
 | **I-01** | Read out of the delivered `app_result/build-info.json`: `"commit": "3833da71…"`, `"dirty": true`, `"changed_files": 440`, `"untracked_files": 595`, built at 2026-09-02T12:21:38Z. HEAD at the time of this pass was `8b489ebe`, one commit further on. `npm run release:current` exists to catch exactly this and reports it; it was not run before the artefacts were published. The row was closed in five consecutive reports on the strength of a rebuild each time, which is why it is now stated as a *state* — the binary matches a clean checkout of a named commit, or it does not.  **Resolved 3 September 2026.** The delivered artefacts are built from a named commit and `release:current` runs in `verify:release` in front of every publish, which is the part that was missing rather than the check. Four consecutive builds this pass — versionCodes 4 through 7 — each recorded a commit that is in the repository, with `release:current` reporting both delivery manifests at HEAD and the working tree dirty only in `docs/` and the two release directories, which is what a release writes.  `source_state.dirty` is still `true` in `build-info.json` and that is not the defect: the script that writes the manifest necessarily observes its own output, so it counts the delivery files it is in the middle of writing. What matters is that no *product* file differs from the commit, which is what `release:current` checks and reports. `docs:consistency` gained a rule this pass that fails when any document calls the tree clean while a product file differs, so the claim and the state cannot drift apart again. | Done. `release:current` is in `verify:release`, and a document may no longer claim a clean tree while a product file differs. |
 | **I-02** | Committed before the build, in that order, this cycle and the two before it. | done |
 | **I-108** | Two report sections stated contradictory policies — §I-78: 'a level change takes effect at once, because a level is a measurement'; §I-45's test: 'retaking mid-day leaves today's words exactly as they were, because the new level is a fact about tomorrow' — and the code implemented the second whenever `plan.completed` was non-empty. The contradiction is removed. The canonical rule now implemented, tested and documented: **a measured vocabulary-level change immediately invalidates the unresolved level-dependent portion of Today's Vocabulary; already mastered progress is preserved; remaining ordinary new-study targets are regenerated for the new level.**  `planIsCurrent` refuses a mismatched plan whatever its progress, and the new `rebuildPlanForLevel` (domain/vocabularyDay.ts) corrects a started day instead of replacing it: completed words keep their credit and their slots, unresolved consolidation (weak/review — evidence-based, level-independent) stays, and only unresolved ordinary new-study targets are regenerated via `pickNewWords` at the measured level. The goal — the denominator — never moves; 3/10 at Level 1 becomes 3/10 with seven Level-30 words, never 0/10 and never seven more beginner words. A word answered wrong before the retake is replaced like any other unresolved target; its history stays in the mistakes store, where Review owns it. A retake to the same level returns the identical plan object.  Gates: fixtures A–G in domain/vocabularyLevel.test.ts against the real corpus (0/10, 3/10, reverse 30→1 at 4/10, wrong-pending, 10/10 + extra study, 12/15, same-level identity); provider tests in store/placement.test.tsx including the credit-committed-just-before-the-retake race and the goal-change case; 1,000 seeded random sittings with one-to-three mid-sitting retakes each in vocabularySession.property.test.ts; twelve permanent `retaken-midday` personas (P101–P112, both directions, partial locales included) in the 112-persona synthetic journey gate. Every gate was negative-tested by restoring the old behaviour: 3 unit fixtures and 11 synthetic journeys fail with it in place. | Done. The corpus limit that decides what the regenerated targets are is I-79. |
@@ -9667,7 +9695,6 @@ document they predate.
 | **I-194** | Its closing line said *no item breaks any of the thirteen rules* as a literal string while the file applied more than thirteen, and four were added this pass without it changing. | Fixed. The rules are a named list, the count is derived from it, and `fail()` throws on a rule not on the list, so the two cannot drift again. |
 | **I-201** | `leveltest:bank` asserted that an item's level equals its anchor's, which is exactly the rule I-196 removes. And `leveltest:qa` classified each question against the posterior — which the evidence gate does not let the sitting act on — reporting 77% of a sitting as *below the estimate*, a number about the prior rather than about the learner. | Fixed. A contextual item may sit above its anchor and never below. The exposure metric compares against `min(estimate, reachCeiling)`: a question at the ceiling is the hardest one available and is *at* the estimate in every sense a learner would recognise. |
 | **I-22** | `NEW_WORD_CHECKS` is `['meaning', 'context', 'match']`. A new word still owes two steps — its introduction and one check — so a sitting is the same length, and roughly a third of the words now owe a matching grid, which is enough to make one. Three shapes in a first sitting instead of two. | done |
-| **I-225** | `pdftoppm -r 40` over every page, ink coverage under 2%; `table { page-break-inside: avoid }` in `build-pdf.mjs` pushed any table taller than the room left onto the next page. Also §20S and §20T (the eighth and ninth passes) were placed after §23 Verdict, with §23.1 after them. | Tables break between rows with the header repeating; the two chapters are moved before §20U and §23.1 under §23; the render is measured again in §20Z. |
 | **I-26** | Corrected in the sixteenth pass (I-226): the pre-Android-12 launch bitmaps are *localized*, not wordless — `drawable/splash.png` is the English artwork and `drawable-ko/splash.png` the Korean, chosen by the device (or per-app) locale — and only the iOS launch image and the Android 12+ system-splash icon are wordless. `_wordless` in `scripts/content/build_app_icons.py` still produces the latter two from the artwork. The in-app splash picks Korean or English from `LocaleContext` on the same `#FFF1E1` ground. A learner whose phone is in English and whose app is in Korean sees the English native frame and then the Korean one; that gap is real and stated. | done |
 | **I-27** | `max-width` came off `.shell`; `#root` is the only thing deciding the app's width at any viewport. Measured at 360, 390, 412, 430, 440, 480, 520, 560, 600, 768, 1024 and 1440 px: the navigation and the frame share both edges exactly at every one, and no width scrolls horizontally. | done |
 | **I-28** | `check-docs-consistency.mjs` now fails on a metric it tracks and cannot find, not only on one that disagrees — a figure nothing states is a figure nothing guards. The four patterns that were silently matching nothing were fixed rather than the prose bent to suit them: they accept the bold and the annotations the report has always used, and both spellings of the APK and AAB row headings. It caught two real drifts on its first run. | done |
@@ -9862,7 +9889,7 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 2,306 unit cases across four packages — 1,409
+The suites run green in full: 2,656 unit cases across four packages — 1,409
 web, 564 content safety, 237 Korean morphology, 96 handwriting — 594 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
@@ -10017,5 +10044,6 @@ thing, or the number the thing was built from?**
 | **I-39** | The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages | Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known. | HIGH (people) — 32 languages × 10 surfaces |
 | **I-79** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 518 words between them. A learner placed at 30 is taught ten a day from that zone and exhausts it in about eleven weeks, after which the plan has nothing new at the level it measured them at. The band grew by 47 this cycle and by 60 the cycle before; the shape is unchanged, because level 30 absorbs every word the difficulty model cannot place lower and holds 334 of the 524 on its own. | HIGH (content) — the hard half: words that are advanced and ordinary |
 | **I-20** | The hand-written More about it block is on 75 words of 3,333 | Word Detail is no longer a short page followed by nothing, but the paragraph written for the words where one line genuinely is not enough is on 75 of them — 2% of the corpus. | MEDIUM (content) — one paragraph per word, in ten languages |
+| **I-225** | Eleven pages of the previous report render were more than ninety percent blank, and two chapters were filed after the verdict | Pages 6, 8, 25, 42, 49, 61, 71, 82, 127, 233 and 250 of the 281-page PDF held one line or one small table; a reader turning the page took each for a printing fault. | done |
 
 <!-- /issues:next -->

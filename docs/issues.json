@@ -2437,12 +2437,13 @@
    "id": "I-225",
    "area": "Report",
    "severity": "P3",
-   "status": "RESOLVED",
-   "summary": "Eleven pages of the previous report render were more than ninety percent blank",
+   "status": "PARTIAL",
+   "summary": "Eleven pages of the previous report render were more than ninety percent blank, and two chapters were filed after the verdict",
    "customerImpact": "Pages 6, 8, 25, 42, 49, 61, 71, 82, 127, 233 and 250 of the 281-page PDF held one line or one small table; a reader turning the page took each for a printing fault.",
-   "evidence": "`pdftoppm -r 40` over every page, ink coverage under 2%; `table { page-break-inside: avoid }` in `build-pdf.mjs` pushed any table taller than the room left onto the next page. Also §20S and §20T (the eighth and ninth passes) were placed after §23 Verdict, with §23.1 after them.",
-   "recommendedFix": "Tables break between rows with the header repeating; the two chapters are moved before §20U and §23.1 under §23; the render is measured again in §20Z.",
-   "effort": "done"
+   "evidence": "`pdftoppm -r 40` over every page, ink coverage under 2%: pages 6, 8, 25, 42, 49, 61, 71, 82, 127, 233 and 250 of 281. Each is the tail of a chapter — `h1 { page-break-before: always }` starts every chapter on a fresh page, so a chapter whose last paragraph or small table spills by a line leaves a page holding only that. §20S and §20T (the eighth and ninth passes) were placed after §23 Verdict since the ninth pass, with §23.1 after them.",
+   "recommendedFix": "The two chapters are moved before §20U and §23.1 back under §23 (done). The chapter-per-page rule is kept as a design choice — a chapter that begins mid-page is harder to find — so tail pages remain: this edition renders at 238 pages with ten of them under 2% ink, each a chapter tail, listed in §20Z.10. Removing them would mean dropping the chapter break, which is a decision for the document owner rather than a defect to fix silently. (The earlier claim that `build-pdf.mjs` was the cause was wrong: that builder makes the patent documents; `build-report.mjs` already breaks tables between rows.)",
+   "effort": "done",
+   "note": "Partial by choice: the ordering is fixed, the tail pages are a stated design consequence."
   },
   {
    "id": "I-226",

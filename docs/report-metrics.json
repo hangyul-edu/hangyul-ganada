@@ -46,11 +46,11 @@
  "relations_words": 292,
  "issues": {
   "open": 6,
-  "partial": 4,
+  "partial": 5,
   "blocked": 1,
-  "resolved": 198,
-  "tracked": 209
+  "resolved": 210,
+  "tracked": 222
  },
- "apk_mb": "86.3",
- "aab_mb": "84.5"
+ "apk_mb": "86.4",
+ "aab_mb": "84.6"
 }

@@ -8,51 +8,49 @@ them would have produced nothing new in the first case and could not be done on
 this machine in the second. Nothing else is inherited. Where something could not
 be verified it says so rather than being left blank or implied.
 
-**Source:** commit `19c25615` on branch `main`. `build-info.json` →
+**Source:** commit `8130a081` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
 middle of writing.
 
-**Built:** 11 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
+**Built:** 12 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 23 validation.** Codes 3 through 23 are spent,
-each by an artefact that was actually produced. This is 24.
+**This supersedes the versionCode 24 validation.** Codes 3 through 24 are spent,
+each by an artefact that was actually produced. This is 25 — and the marketing
+version is **1.0.4**, set *down* from the never-uploaded 1.0.6 to the number the
+release is to be published under; a store orders builds by code, not by name.
 
 ---
 
 ## Why this release happened
 
-**A learner reported that the placement test asked what 섹스하다 means.** It did.
-`dict_섹스하다:meaning` was a level-12 item in the bank versionCode 23 shipped,
-`dict_섹스하다:produce` its twin, and the word was a wrong answer in two level-10
-items; a dictionary search for 섹 returned it glossed "to have sex". The gate the
-previous validation listed as the learner-safety gate — `content:safety:check` —
-was green on that tree: it compared 66 whole headwords against taught words,
-produce options and gap-fills, declared the dictionary out of scope although the
-upper Level Test levels are drawn from it, and never resolved the option ids of
-meaning items. Three lists in three files had no word in common with the row
-that shipped. The full account is `docs/CHILD_SAFE_CONTENT_AUDIT.md` and
-§20Y of `docs/report.pdf`.
-
-Scanned under the policy that replaced the gate, the versionCode 23 tree held
-**4,333 findings** — violence 2,236, sexual 823, political 592, mortality 194,
-profanity 149, gambling 146, drugs 127, self-harm 66 — across nine content
-families: 16 taught headwords, 612 Level Test items, 854 dictionary headwords,
-23 gap-fills, 17 audio transcripts.
+**Four customer screenshots and a version number.** The Android launch screen
+opened on an orange brand mark the approved splash does not carry; *Show
+answer* in Today's Words printed 정답은 …예요 under four still-live options and
+counted the tap after it as a pass; four gap-fill chips wrapped three and one;
+the word-ordering tray and the matching grid named their goal and not their
+first action; and the tree said 1.0.6 on Android and 1.0.3 on iOS where the
+release is to be 1.0.4. Two requested quotations were added in 32 languages.
+Reading the report against the tree also found nine "200% text" measurements
+that had measured normal text, and a safety scan that had read 27 of 1,052
+quotation strings. The full account is §20Z of `docs/report.pdf`.
 
 ## What changed
 
 | | |
 | --- | --- |
-| Policy | `packages/content-safety/policy/child-safe-content-policy.json` 1.0.0 — seven prohibited categories plus a context-blocked mortality category, surface forms in 32 languages and romanised Korean, per-surface match modes, per-language exceptions, allow lists, nine context rules, English gloss indicators. Two evaluators (TypeScript, Python) held to 355 shared fixtures |
-| Gates | import (`build_vocabulary.py` stops on a refused row), dictionary publication (`build_dictionary.py` drops rows and senses; counts in the manifest), assessment generation (anchors, distractors, composed sentences, then the finished item in 32 languages), runtime (every bank item re-read on load; a stored day loses only retired words still owed; a stored sitting naming a refused item is not resumed), CI (`content:safety:check` over 14 families and ~1.0 M fields, in `verify:quick`), packaging (`content:safety:bundle:check` over `dist/`, both native asset copies and the signed APK and AAB, in `verify:release`) |
-| Content | 23 taught words retired with tombstones (`content/vocabulary/retired-words.json`, `docs/CHILD_SAFE_CONTENT_REMEDIATION_LEDGER.md`); 베다's example rewritten with 31 translations and two recordings; 치다's Korean gloss rewritten; 694 dictionary headwords and 525 senses refused; bank 3,995 → 3,990, gap-fills 513 → 510, audio manifest 6,998 → 6,952 entries; corpus 3,393 → 3,370 |
-| Learner data | every progress, memory, mistakes and saved-word row kept; `contentCompatibility.test.ts` allows an id to stop resolving only with a tombstone; the mistakes notebook keeps a retired word's row and stops listing it |
-| Negative tests | the old three-list gate reproduced and shown to pass 섹스하다 (`legacy.test.ts`); the four shipped bank rows through the runtime gate in English, Korean and Thai (`contentSafety.test.ts`); 199 negative and 158 positive fixtures through both evaluators |
-| Report | §20Y, and every prior safety claim re-read and classified (§20Y.6) |
-| Version | Android **1.0.6 / 24**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
+| Version | **1.0.4 / 25** on Android *and* iOS: `app.identity.json`, both Xcode configurations (adopted by `ios:project:check`), the mobile package, `config/product.ts`, three legal documents, `store/release-notes.md`, the report. The learner-facing form is `v1.0.4` from `displayVersion()`; `config/product.test.ts` and `version:check` pin the literal |
+| Launch screen | the Android 12+ system splash icon is an adaptive icon whose foreground is a feathered cut of the approved artwork's own centre, on the artwork's ground; the brand mark is referenced nowhere. `scripts/check-native-splash.py` proves it on the sources, the iOS catalogue and the delivered package (`splash:check`, `splash:bundle:check`); cold starts recorded on the API 36 emulator — clean, upgrade, force-stop — show launcher → ground and disc → artwork → Home, no mark, no white or black frame |
+| Quotations | `dream-big-pieces` (작자 미상, `authorship: "unknown"`) and `carlyle-stepping-stone` (Thomas Carlyle, `sourceStatus: "attributed"`), 32 translations and bylines each; a Korean original leads on the card; `docs/QUOTE_TRANSLATION_AUDIT.md` generated from the runtime strings, the reviewer's judgments and 768 rendering measurements — Q1 PASS 19 / CORRECTED 4 / NATIVE-SPEAKER 9 / BLOCKED 0; Q2 15 / 5 / 12 / 0 |
+| Today's Words | a reveal is an outcome: blue box on the answer, options disabled, `correct: false, revealed: true` reported once, Next, the word owed again at the back of the retry pass; the attempt row records `revealed`; the build screen reveals the same way |
+| Layout | gap-fill chips are a measured grid — four across when all four fit at the learner's type size, else two by two; never three and one |
+| Interactions | the tray says the action, marks the next slot, offers Undo, grades on Check; the grid names its columns, enables the Korean side first, badges pairs, grades all pairs on Check |
+| Copy | 881 Korean strings read, 13 rewritten; the recall sentence reworded in 32 languages to what `weeklyInsights` measures; `docs/UX_COPY_AUDIT.md`, `docs/UX_COPY_STYLE_GUIDE.md`, generated `docs/UX_COPY_REMEDIATION_LEDGER.md` (752 rows), `copy:remediation:check` |
+| Safety | retired words refused at corpus ingestion whatever supplied the band; the quotation family of the scan reads the library (22 items, 1,452 fields, 0 findings); `coverage.test.ts` sweeps every category × 32 languages × evasions |
+| QA measurements | `lib/text-scale.mjs` / `e2e/helpers/textScale.ts` scale the pixel tokens; nine sites re-run at a real 150/200% |
+| Learner data | no stored row changes shape; `revealed` is an optional field old rows lack; `upgradeCompatibility.test.ts` unchanged and green |
 
 ## The artefacts
 
@@ -62,11 +60,11 @@ families: 16 taught headwords, 612 Level Test items, 854 dictionary headwords,
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **24**, versionName **1.0.6**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 24 | 23 is spent. Both previously delivered artefacts report a code of 23 and the previous `build-info.json` recorded 23, and product files have changed since — the content-safety policy, every builder that reads it, the runtime gate, and every generated content file. `npm run version:check` said so before the build rather than after, which is what I-152 exists for. Nothing has been uploaded to Play, so 24 is the next valid code rather than the next unused one. |
-| Why 1.0.6 | The versionName moves because a customer can tell the course is different: it teaches 3,370 words rather than 3,393, the dictionary is smaller, and a placement question can no longer offer 섹스하다 as a choice. The store listings and release notes say 3,370. The number is set by a person deciding to ship, never incremented by a script. `registered` records that nothing has been uploaded to either console. |
+| Package | `com.talkhangyul.ganada`, version code **25**, versionName **1.0.4**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 25 | 24 is spent: the previously delivered artefacts report a code of 24 and product files have changed since. `npm run version:check` said so before the build. Nothing has been uploaded to Play, so 25 is the next valid code rather than the next unused one. |
+| Why 1.0.4 | The release is to be published as 1.0.4. 1.0.5 and 1.0.6 were never uploaded to either store (`registered` is false for both, and every `build-info.json` on record says so), so the lower name is free; the code went up regardless, which is the only direction a code can go. |
 | Packaged content | `npm run content:safety:bundle -- --check --apk … --aab …` over the delivered APK and AAB unpacked, `dist/` and both native asset copies: 5 roots, 71,652 files, 2,564,941 fields, 63,456 Korean literals — **no packaged asset carries prohibited content**, and neither archive lists the policy's fixtures |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build (`cap sync` reported `update ios` and `copy web` against this `dist/`, and `ios:project:check` passed), and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.6 and `pending_build` 24 name what is owed. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team or bundle identifier was touched. |
+| iOS | **not built** — macOS and Xcode are unavailable here (**IOS BUILD BLOCKED — REQUIRES MACOS/XCODE**). The project is complete, is synced with this exact web build (`cap sync` reported `update ios` and `copy web` against this `dist/`, and `ios:project:check` passed), and ships in `result/ios-project/` at **MARKETING_VERSION 1.0.4 / CURRENT_PROJECT_VERSION 25** in both configurations — nothing is pending in the project. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team, entitlement or bundle identifier was touched. The exact commands are in `BUILD_OR_SIGNING_BLOCKERS.md`. |
 
 ## What was run against this tree
 
@@ -105,7 +103,7 @@ families: 16 taught headwords, 612 Level Test items, 854 dictionary headwords,
 | `npm run synthetic:users:qa:check` | **118 journeys**, all pass |
 | `npm run locale:editorial:check` | 0 errors, 0 warnings |
 | `npm run test:e2e` | **594 passed, 0 failed**, exit 0, in 41.5 min across the mobile and desktop projects |
-| Unit suites | web **1,409**, content safety **564**, Korean morphology **237**, handwriting core **96** — **2,306**, all passing |
+| Unit suites | web **1,409**, content safety **811**, Korean morphology **237**, handwriting core **96** — **2,306**, all passing |
 | `bash scripts/regression-gates-negative.sh` | **fifteen** sabotage runs, two written this cycle — G9 puts the reported level-7 item back, G10 drops a two-clause sentence into the foundation band. 15 ok, 0 problems, every restoration green |
 | `npm run native:bundle:check` | 14,328 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
 | `npm run release:current` | both delivery manifests built from 19c25615; HEAD is one docs-only commit ahead, which the gate accepts by design |
@@ -281,8 +279,8 @@ viewports.
 ## Checksums
 
 ```
-b7242052f0cc465d84d98ce7eb5e4e2c5e84020e7c392a5b1b13765dddefb7c7  hangyul-ganada-release.apk
-c3595cec923ac6d66d4b3e98440bffe9f4db2e599d2e2cb22eb486519e38c3ad  hangyul-ganada-release.aab
-0e065d5977849957495926cef29854b03e122c1167606fe1bf940b195719da79  docs/report.pdf
-314d965a6964c21f168dfa4373c09740b8e4f9eafc3b79ab54105f68b56958d1  build-info.json
+00e7d616b87617e4b9136584d97c2903ad0b0e5ae1fb9990aa5e1cdea3b1e30f  hangyul-ganada-release.apk
+91ebe2587747f9dd67d1574730beed0baf0766adaf9e67fc693d1dfe85230107  hangyul-ganada-release.aab
+cfcd2b96434f374aabe40ca4fb3b9f08721657f5439d8c64aa60a0bf44426cc3  docs/report.pdf
+a11890b2bdadc5d615abe1448f55b013eab6426fa35ffda35a24de0f101f2466  build-info.json
 ```
