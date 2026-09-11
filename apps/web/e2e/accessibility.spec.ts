@@ -196,7 +196,7 @@ for (const scheme of ['light', 'dark'] as const) {
      * read "the grid never appeared", which is true and unhelpful.
      */
     for (let step = 0; step < 60; step += 1) {
-      const grid = page.getByRole('group', { name: /Match each word/i });
+      const grid = page.getByTestId('match-exercise');
       if (await grid.count()) break;
       /*
         Enabled, and matched on the *whole* label.
@@ -215,28 +215,32 @@ for (const scheme of ['light', 'dark'] as const) {
         .filter({ hasText: CONTINUE })
         .first();
       /*
-        Inside a `role="group"`, which is where every *answer* lives.
-        
-        This used to take any visible enabled button with text on it, and a
-        build question has a second row of buttons that are not answers: a
-        filled slot is a button whose job is to *put the syllable back*, and it
-        precedes the tray in the DOM. So the walk placed a syllable, then took
-        it out again, then placed it, for the whole of its budget — which
-        photographs as a build question with empty slots and reports itself as
-        "the matching grid never appeared".
-        
-        The options of a choice question and the tray of a build question are
-        both groups; the slots row is not.
+        The build screen grades on Check now, and Check is disabled until every
+        slot is filled: tap free tiles until it is enabled, then press it. The
+        filled slots are buttons that *take a syllable back*, so they are never
+        tapped here; nor are the tiles, except through this path.
       */
-      const options = page
-        .locator('[role="group"] button:visible:not([disabled])')
+      const check = page.getByTestId('build-check');
+      const next = page.locator('[data-testid="revealed-next"]').first();
+      const choice = page
+        .locator(
+          '[role="group"] button:visible:not([disabled]):not([data-testid="build-tile"]):not([data-testid="build-slot"])',
+        )
         .filter({ hasText: /^(?!Show a hint|Save|Skip|Can't use audio).+/ });
-      if (await forward.count()) await forward.click();
-      else if (await options.count()) await options.first().click();
+      if (await next.count()) await next.click();
+      else if (await forward.count()) await forward.click();
+      else if (await check.count()) {
+        for (let taps = 0; taps < 6 && (await check.isDisabled()); taps += 1) {
+          await page.locator('[data-testid="build-tile"][data-state="available"]').first().click();
+          await page.waitForTimeout(60);
+        }
+        await check.click();
+      } else if (await choice.count()) await choice.first().click();
       else break;
       await page.waitForTimeout(150);
     }
-    await expect(page.getByRole('group', { name: /Match each word/i })).toBeVisible();
+    await expect(page.getByTestId('match-exercise')).toBeVisible();
+    await expect(page.getByRole('group', { name: /Korean word on the left/i })).toBeVisible();
 
     const results = await scan(page);
     expect(results.violations, `\n  ${describeViolations(results)}`).toEqual([]);
