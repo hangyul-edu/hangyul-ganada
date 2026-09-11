@@ -101,7 +101,7 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Version** | **1.0.5**, Android versionCode **23** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.3 / `CURRENT_PROJECT_VERSION` 5, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
+| **Version** | **1.0.6**, Android versionCode **24** — read from the delivered APK with `aapt2 dump badging`. iOS is deliberately behind at `MARKETING_VERSION` 1.0.3 / `CURRENT_PROJECT_VERSION` 5, because that project file is Xcode-managed and is not edited from this machine; `app.identity.json` records the pending action and `version:check` prints it |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -112,18 +112,18 @@ without trusting the row.
 
 | Metric | Value | Where it comes from |
 | --- | --- | --- |
-| Words shipping | 3,393 | `vocabulary.json` `words.length` |
+| Words shipping | 3,370 | `vocabulary.json` `words.length` |
 | Categories | 18 | `vocabulary.json` `categories` |
-| Study sets | 687 (five words each) | per category, ⌈words ÷ 5⌉ summed |
+| Study sets | 682 (five words each) | per category, ⌈words ÷ 5⌉ summed |
 | Characters taught | 73 | `characters.ts` `ALL_CHARACTERS` |
 | Hangul letters taught | 40 | `characters.ts` `ALL_LETTERS` |
 | Curriculum units | 12 | `characters.ts` `CURRICULUM_UNITS` |
 | Lessons | 15 | `characters.ts` `LETTER_LESSONS` |
-| Pronunciation notes | 804 | words carrying a `say` field in `vocabulary.json` |
-| Of those, shown as a note on a card | 635 | `pronunciation.note_for`; liaison is taught once in the lesson instead |
+| Pronunciation notes | 799 | words carrying a `say` field in `vocabulary.json` |
+| Of those, shown as a note on a card | 633 | `pronunciation.note_for`; liaison is taught once in the lesson instead |
 | Sound-change patterns taught | 6 | `vocabulary.json` `sound_patterns` |
 | Patterns a word card may note | 5 | `vocabulary.json` `noted_patterns` |
-| Dictionary headwords | 30,334 | `public/dictionary/manifest.json` |
+| Dictionary headwords | 29,711 | `public/dictionary/manifest.json` |
 | Dictionary senses | 39,628 | same |
 | Dictionary examples | 3,679 | same |
 | Interface languages | 32 | `src/locales/*/settings.json` |
@@ -140,25 +140,25 @@ without trusting the row.
 | Vocabulary packs at 600 words | 12 | `locale:content:qa` |
 | Unwritten vocabulary rows | 0 | every one of the 32 content packs holds all 3,393 |
 | Long *More about it* definitions | 75 | third element in `vocabulary.en.json` |
-| Level-test items, English | 3,995 | `public/level-test/manifest.json` |
-| Level-test contextual items | 473 | the bank, `kind === "context"`; 625 before this pass, of which 22 are now hand-written — see §20X |
-| Level-test reach, every non-English language | 1,972 items each | `manifest.json` `reach` |
+| Level-test items, English | 3,990 | `public/level-test/manifest.json` |
+| Level-test contextual items | 470 | the bank, `kind === "context"`; 625 before this pass, of which 22 are now hand-written — see §20X |
+| Level-test reach, every non-English language | 1,951 items each | `manifest.json` `reach` |
 | Level-test distinct words asked about | 2,166 | `leveltest:bank:check` |
 | Level-test items at levels 1–10, from the curated corpus | 100% | `leveltest:bank:check`; see I-162 |
-| Audio clips | 13,876 | distinct files in `public/audio/manifest.json` |
-| Audio voice slots | 13,996 | the same manifest, two voices per entry |
+| Audio clips | 13,784 | distinct files in `public/audio/manifest.json` |
+| Audio voice slots | 13,904 | the same manifest, two voices per entry |
 | Vocabulary levels populated | 30 of 30 | distinct `level` in the corpus |
-| Words at levels 28–30 | 524 | the corpus, by level |
+| Words at levels 28–30 | 518 | the corpus, by level |
 | Level anchors held | 162 | `level-anchors.json` |
 | Example sentences refused by review | 37 | `content/vocabulary/curation` |
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
 | Unobserved words with a written reason | 55 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 26 | `level-overrides.json` |
 | Levels held to an editorial band | 237 | `lvm` in `vocabulary.json`; see I-133 |
-| Issues tracked | 205 | `docs/issues.json` |
-| Signed APK | 91,051,318 bytes (86.8 MiB) | `result/build-info.json` |
-| Signed AAB | 89,208,020 bytes (85.1 MiB) | same |
-| Tests | 1,731 across 78 files | `npm test` |
+| Issues tracked | 209 | `docs/issues.json` |
+| Signed APK | 90,455,013 bytes (86.3 MiB) | `result/build-info.json` |
+| Signed AAB | 88,630,068 bytes (84.5 MiB) | same |
+| Tests | 2,306 across 86 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
 
@@ -167,7 +167,7 @@ without trusting the row.
 "Hangul letters taught" is the 40 a learner would name.
 
 **The pronunciation-note row keeps its two definitions.** 804 words carry a
-recorded spoken form because some rule changes them; 635 of those get a *note
+recorded spoken form because some rule changes them; 633 of those get a *note
 on the card*, because liaison applies to so many words that a note for it
 would stop meaning "look at this one" and is taught once in the sound-change
 lesson instead. `docs:consistency:check` holds the first figure to the corpus.
@@ -344,7 +344,7 @@ right thing to ask, dictionary anchors stay and are filtered: 40 whose rank
 belongs to an inflected form of another word, plus one-syllable headwords and
 truncated grammar-page glosses. **The side effect is the best evidence the change
 was right**: removing 176 English-only anchors from the beginner band raised every
-other language's askable bank from 1,014 items to 1,972, because a taught word has
+other language's askable bank from 1,014 items to 1,951 because a taught word has
 a meaning in all thirty-two packs and a dictionary anchor has one only in English.
 
 **Fifteen questions offered the same answer twice, in languages nothing read them
@@ -585,7 +585,7 @@ Fourteen formal and academic nouns, twelve modern adult-life words (대출,
 전세, 야근, 회식, 맞벌이), twenty-four advanced verbs, ten adjectives, six
 adverbs and twelve common 사자성어 — all authored by hand with meanings in the
 eight pack languages plus Thai and Vietnamese, recordings in both voices, and
-every gate run. 69 of the 78 land at levels 28–30, which now hold 524 words
+every gate run. 69 of the 78 land at levels 28–30, which now hold 518 words
 (from 417) — about seven weeks of new material for a learner placed at 30.
 I-79 stays open, and it is again honestly smaller than it was. The
 conjugation-display ledger was re-read after the batch, exactly as its footer
@@ -782,7 +782,7 @@ from this machine:**
 A standalone paid application, web and Android from one codebase. Twelve
 curriculum units, fifteen lessons, forty letters, 33 syllable blocks, 3,393
 words. Everything a learner needs is in the binary: the curriculum, the fonts,
-the stroke data and 13,876 pronunciation clips in two voices.
+the stroke data and 13,784 pronunciation clips in two voices.
 
 ## 4.2 The intended journey — **VERIFIED**
 
@@ -1204,7 +1204,7 @@ it was green, its calibration figures were good, and the sentence was right.
 
 ## 10.1 What it is — **VERIFIED**
 
-An adaptive placement test over 30 levels and a **3,995-item** bank, 473 of them
+An adaptive placement test over 30 levels and a **3,990-item** bank, 470 of them
 contextual, in three kinds: Korean shown / meaning chosen, meaning shown / Korean
 chosen, and a word blanked out of a real sentence. A sitting is **20 to 30
 questions** in a single eight-minute budget, and the sitting is now written to
@@ -1554,7 +1554,7 @@ Korean included — has been read by a qualified native speaker. See §11.3 and 
 ## 10.8 Per-language reach — **every language reaches the top, and with twice the density**
 
 Every ceiling is 30, and that was already true. What changed is density, which is
-what the adaptive walk spends: every non-English language now has **1,972**
+what the adaptive walk spends: every non-English language now has **1,951**
 askable items where it had 1,014. The cause is the floor in §10.3 — the beginner
 band is now entirely taught-corpus words, and a taught word has a meaning in every
 one of the thirty-two packs, where a dictionary anchor has one only in English.
@@ -2027,7 +2027,7 @@ implementation and names the store that still holds rows (I-128).
 
 # 14. Audio
 
-**13,876 distinct files over 13,996 voice slots, 66.7 MB**, two Korean neural
+**13,784 distinct files over 13,904 voice slots, 66.7 MB**, two Korean neural
 voices at 0.82× rate, recounted from `public/audio/manifest.json` this cycle.
 `audio:qa` decodes a 600-clip sample and checks the rest for existence, manifest
 agreement and duplication: 0 errors, 0 warnings, durations 240 ms to 2,880 ms,
@@ -2390,18 +2390,19 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `fe2aa05a`, working tree clean |
+| Built from | `3ac29bca`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 23, versionName 1.0.5 |
+| Package | `com.talkhangyul.ganada`, versionCode 24, versionName 1.0.6 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | 91,051,318 bytes (86.8 MiB) — sha256 in §21 |
-| Release AAB | 89,208,020 bytes (85.1 MiB) — sha256 in §21 |
+| Release APK | 90,455,013 bytes (86.3 MiB) — sha256 in §21 |
+| Release AAB | 88,630,068 bytes (84.5 MiB) — sha256 in §21 |
 
-The APK is 91,079,074 bytes — 86.9 MiB — and the growth over the cycle before it is the
-product: nine languages' worth of word meanings and example translations for
-the whole corpus rather than its first band. No recordings were added — the
-audio set is at 13,996 slots after the Numbers clips — so the growth is text.
+The APK is 90,455,013 bytes — 86.3 MiB — smaller than the 91,079,074 bytes of
+the cycle before it by the 23 retired words, their 46 recordings and the 694
+dictionary rows that no longer ship. The audio set is at 13,904 slots. The
+growth of the cycle before that was nine languages' worth of word meanings and
+example translations for the whole corpus rather than its first band.
 
 The paragraph the previous cycle wrote about its own growth is kept below,
 because the shape of the answer has not changed: the corpus
@@ -2455,10 +2456,10 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 
 | Suite | Cases |
 | --- | --- |
-| Web unit (`vitest`) | **1398** (70 files) |
+| Web unit (`vitest`) | **1409** (76 files) |
 | Handwriting core (`vitest`) | **96** (5 files) |
 | Korean morphology (`vitest`) | **237** (2 files) |
-| Content safety (`vitest`) | **599** (4 files) |
+| Content safety (`vitest`) | **564** (3 files) |
 | End-to-end (`playwright`) | **594** (297 × 2 projects) |
 
 The content-safety suite is new this pass: the 355 shared fixtures through the
@@ -4301,7 +4302,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **1,731 across 78 files** — handwriting-core 96, korean-morphology 237, web 1398 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **2,306 across 86 files** — handwriting-core 96, korean-morphology 237, content-safety 564, web 1409 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -4991,10 +4992,10 @@ untracked files, so no commit described what was in them.
 | Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 91,051,318 bytes (86.8 MiB) |
-| APK sha256 | `90021cd58c0755fd7df770115dc033051aa9676d68cd43de3d053d30089e8394` |
-| AAB | 89,208,020 bytes (85.1 MiB) |
-| AAB sha256 | `be049ad7395c7043b1d6d65cbfcd77ba189d8d8a9d75e717381e8409dd4b628b` |
+| APK | 90,455,013 bytes (86.3 MiB) |
+| APK sha256 | `3037bcf007627c45e82ae04ca557f6e8cded14746a0f254e36bce1e92313a03b` |
+| AAB | 88,630,068 bytes (84.5 MiB) |
+| AAB sha256 | `c3595cec923ac6d66d4b3e98440bffe9f4db2e599d2e2cb22eb486519e38c3ad` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -8504,7 +8505,7 @@ it.
 One reading note. The evidence written on a **resolved** issue is a record of
 what was found in the cycle that closed it, and where it cites a section number
 that number is the one the report carried at the time. The report has been
-rewritten since and renumbered; the citations on the 5 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
+rewritten since and renumbered; the citations on the 6 open, 4 partial and 1 blocked issues were brought forward to this numbering, and the resolved ones
 were deliberately left as written rather than edited into agreement with a
 document they predate.
 
@@ -8513,7 +8514,7 @@ document they predate.
 | ID | Area | Sev | Issue | Customer impact | Status |
 | --- | --- | --- | --- | --- | --- |
 | **I-04** | Vocabulary | **P1** | 3,333 of a stated 10,000 words | Buyers compare corpus size | **OPEN** |
-| **I-13** | Relations | **P2** | 294 of 3,333 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
+| **I-13** | Relations | **P2** | 292 of 3,370 words carry any verified lexical relation | Synonym and antonym sections rarely appear | **OPEN** |
 | **I-17** | i18n copy | **P2** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | **OPEN** |
 | **I-213** | Content safety | **P2** | The policy's surface lists in thirty locales and the 24 new translations of 풀을 베어요 have not been reviewed by native speakers | A prohibited term absent from a locale's list is not found by the scan in that locale; a clumsy translation of one example sentence is shown on one card. | **OPEN** |
 | **I-176** | Accessibility | **P3** | At 200% text the five-tab navigation bar falls below the 44px touch minimum | A learner who has turned text up to 200% gets navigation tabs 39px wide. The Level Test's own controls are unaffected — options and *I don't know* clear 44px at every viewport tested — so this is app chrome rather than the assessment. | **OPEN** |
@@ -8521,7 +8522,7 @@ document they predate.
 | **I-03** | Product | **P1** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | **BLOCKED** — The value is not in this repository and must not be guessed. |
 | **I-126** | Vocabulary levels | **P2** | The difficulty model called a word abstract for having an opposite | Eighteen first-semester words sat at levels 7 to 14: 모르다 — the 46th commonest word in the corpus — at 7, 닫다 at 13, 싸다 at 14, 가깝다 멀다 길다 빠르다 at 12 or 13, 맛있다 at 10. Eighteen have been moved by hand; the model that put them there has not changed, so the next batch of antonym pairs will land in the same place. | **PARTIAL** |
 | **I-39** | i18n copy | **P2** | The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages | Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known. | **PARTIAL** |
-| **I-79** | Vocabulary data | **P2** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 524 words between them. A learner placed at 30 is taught ten a day from that zone and exhausts it in about eleven weeks, after which the plan has nothing new at the level it measured them at. The band grew by 47 this cycle and by 60 the cycle before; the shape is unchanged, because level 30 absorbs every word the difficulty model cannot place lower and holds 334 of the 524 on its own. | **PARTIAL** |
+| **I-79** | Vocabulary data | **P2** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 518 words between them. A learner placed at 30 is taught ten a day from that zone and exhausts it in about eleven weeks, after which the plan has nothing new at the level it measured them at. The band grew by 47 this cycle and by 60 the cycle before; the shape is unchanged, because level 30 absorbs every word the difficulty model cannot place lower and holds 334 of the 524 on its own. | **PARTIAL** |
 | **I-20** | Vocabulary | **P3** | The hand-written More about it block is on 75 words of 3,333 | Word Detail is no longer a short page followed by nothing, but the paragraph written for the words where one line genuinely is not enough is on 75 of them — 2% of the corpus. | **PARTIAL** |
 | **I-01** | Release | **P0** | The shipped APK/AAB were built from a dirty tree, not from any commit | The delivered binary is not a build of anything a reader can check out. `app_result/build-info.json` records the commit as `3833da71` and, in the same file, `source_state.dirty: true` with **440 changed and 595 untracked files** — so the APK contains some mixture of that commit and whatever was in the tree at 12:21 that morning. Nobody can say what shipped, including the person who built it. | **RESOLVED** |
 | **I-02** | Repo | **P0** | A whole cycle's work was uncommitted when the artefacts were built | A fresh checkout does not contain what was shipped | **RESOLVED** |
@@ -9084,8 +9085,8 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 1,731 unit cases across three packages — 1,398
-web, 237 Korean morphology, 96 handwriting — 594 end-to-end, 143 rendered
+The suites run green in full: 2,306 unit cases across four packages — 1,409
+web, 564 content safety, 237 Korean morphology, 96 handwriting — 594 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
 against a face the app does not draw, and the conjugation panel against a
@@ -9617,7 +9618,7 @@ thing, or the number the thing was built from?**
 | ID | What | Why it matters | Effort |
 | --- | --- | --- | --- |
 | **I-04** | 3,333 of a stated 10,000 words | Buyers compare corpus size | HIGH (content) |
-| **I-13** | 294 of 3,333 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
+| **I-13** | 292 of 3,370 words carry any verified lexical relation | Synonym and antonym sections rarely appear | NONE unless a conservative source appears |
 | **I-17** | No locale has been reviewed by a native speaker, across 32 interfaces | Unknown awkwardness in thirty-one languages, and in Korean | HIGH (people, not engineering) |
 | **I-213** | The policy's surface lists in thirty locales and the 24 new translations of 풀을 베어요 have not been reviewed by native speakers | A prohibited term absent from a locale's list is not found by the scan in that locale; a clumsy translation of one example sentence is shown on one card. | a reviewer per language |
 | **I-176** | At 200% text the five-tab navigation bar falls below the 44px touch minimum | A learner who has turned text up to 200% gets navigation tabs 39px wide. The Level Test's own controls are unaffected — options and *I don't know* clear 44px at every viewport tested — so this is app chrome rather than the assessment. | M |
@@ -9625,7 +9626,7 @@ thing, or the number the thing was built from?**
 | **I-03** | The Hangyul hand-off is built but has no destination | A learner who finishes the alphabet finishes the product and stops. The card and the My Learning row render nothing rather than leading nowhere. | LOW — one environment variable, once the value exists |
 | **I-126** | The difficulty model called a word abstract for having an opposite | Eighteen first-semester words sat at levels 7 to 14: 모르다 — the 46th commonest word in the corpus — at 7, 닫다 at 13, 싸다 at 14, 가깝다 멀다 길다 빠르다 at 12 or 13, 맛있다 at 10. Eighteen have been moved by hand; the model that put them there has not changed, so the next batch of antonym pairs will land in the same place. | DONE for the rule; the anchors need a spoken-frequency source |
 | **I-39** | The rendered interface has had a mechanical editorial pass, not a native reading, in 31 of 32 languages | Better than it was and still unmeasured where it matters. Seventy-eight real defects were found and fixed — five German screens addressed the learner as *Sie* in a product that says *du* everywhere else, and Italian, French, Turkish, Dutch and Filipino wrote the ASCII apostrophe on pages whose other sentences use the typographic one. Whether the *prose* reads naturally in Tamil or Kazakh is still not known. | HIGH (people) — 32 languages × 10 surfaces |
-| **I-79** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 524 words between them. A learner placed at 30 is taught ten a day from that zone and exhausts it in about eleven weeks, after which the plan has nothing new at the level it measured them at. The band grew by 47 this cycle and by 60 the cycle before; the shape is unchanged, because level 30 absorbs every word the difficulty model cannot place lower and holds 334 of the 524 on its own. | HIGH (content) — the hard half: words that are advanced and ordinary |
+| **I-79** | A learner at the top of the scale runs out of new words in about five weeks | Levels 28–30 hold 518 words between them. A learner placed at 30 is taught ten a day from that zone and exhausts it in about eleven weeks, after which the plan has nothing new at the level it measured them at. The band grew by 47 this cycle and by 60 the cycle before; the shape is unchanged, because level 30 absorbs every word the difficulty model cannot place lower and holds 334 of the 524 on its own. | HIGH (content) — the hard half: words that are advanced and ordinary |
 | **I-20** | The hand-written More about it block is on 75 words of 3,333 | Word Detail is no longer a short page followed by nothing, but the paragraph written for the words where one line genuinely is not enough is on 75 of them — 2% of the corpus. | MEDIUM (content) — one paragraph per word, in ten languages |
 
 <!-- /issues:next -->

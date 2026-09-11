@@ -8,128 +8,51 @@ them would have produced nothing new in the first case and could not be done on
 this machine in the second. Nothing else is inherited. Where something could not
 be verified it says so rather than being left blank or implied.
 
-**Source:** commit `fe2aa05a` on branch `main`. `build-info.json` →
+**Source:** commit `3ac29bca` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
 middle of writing.
 
-**Built:** 10 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
+**Built:** 11 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 22 validation.** Codes 3 through 22 are spent,
-each by an artefact that was actually produced. This is 23.
+**This supersedes the versionCode 23 validation.** Codes 3 through 23 are spent,
+each by an artefact that was actually produced. This is 24.
 
 ---
 
 ## Why this release happened
 
-**A reader photographed a question whose three wrong answers were nonsense.**
+**A learner reported that the placement test asked what 섹스하다 means.** It did.
+`dict_섹스하다:meaning` was a level-12 item in the bank versionCode 23 shipped,
+`dict_섹스하다:produce` its twin, and the word was a wrong answer in two level-10
+items; a dictionary search for 섹 returned it glossed "to have sex". The gate the
+previous validation listed as the learner-safety gate — `content:safety:check` —
+was green on that tree: it compared 66 whole headwords against taught words,
+produce options and gap-fills, declared the dictionary out of scope although the
+upper Level Test levels are drawn from it, and never resolved the option ids of
+meaning items. Three lists in three files had no word in common with the row
+that shipped. The full account is `docs/CHILD_SAFE_CONTENT_AUDIT.md` and
+§20Y of `docs/report.pdf`.
 
-```
-창문으로 아침 ____이 들어와요.
-목적 · 비빔밥 · 빛 · 환경
-```
-
-A purpose, a bibimbap and an environment do not come in through a window, so
-the item is answerable by elimination without knowing 빛. Every gate over that
-bank was green and every gate was right to be: the item has exactly one
-defensible answer, which is the only thing any of them asked. A four-option
-question fails in two directions and only one of them had a gate.
-
-It was not a bad draw. The builder forbade a distractor from the answer's own
-subject area — which made *unrelated to the sentence* the qualifying condition.
-All 625 contextual items in the shipped bank had every distractor from a
-different category than the answer. The rule was inverted for nouns, five frame
-classes are now refused outright, 48 items were read and refused by hand, and
-22 beginner items are written by hand and validated against the same rules. The
-categories the new rule depends on were themselves corrected: 292 words had
-taken theirs from a regex match inside a longer word. `docs/report.pdf` §20X is
-the full account.
-
-The previous release's reason is kept below, because the artefact it describes
-is the one this supersedes.
-
-### From the versionCode 22 release
-
-**The level test asked a beginner questions they could not read.** Three
-separate testers reported it. One, who had recently finished learning Hangul,
-was shown this as **question four**:
-
-```
-  물을 안 줘서 화분의 꽃이 ____.        도왔어요 · 떠났어요 · 배웠어요 · 죽었어요
-```
-
-Two clauses, a negation, a causal connective, an inference about plants, and
-화분 — a level-28 word. The item was recorded as level 7. A second tester, who
-answered three word questions correctly, met a level-8 sentence at question
-four. A third, who *declined* a level-4 word, was shown level 6 next.
-
-Three independent causes, and none of them is in the estimator.
-
-**Difficulty was a fact about the answer.** A contextual item took its level from
-the word removed from it and from nothing else — 629 of 629 in the shipped bank.
-`지갑에 ____이 있어요` was level 1 because 돈 is a level-1 word; 지갑 is a level-9
-word and the frame was never measured. 61 items, 10% of the contextual bank,
-contained a word ranked above the item's own level; the worst gap was 21 levels.
-`scripts/content/sentence_demand.py` now reads the frame and returns what it
-asks for — the hardest ordinary word in it, twelve grammatical constructions
-each with the level a learner can be expected to have met it at, and the eojeol
-count — and the item takes the highest of those and the answer's own level, so
-the model can only raise. **68 items moved, every one upward.** The foundation
-band now holds three sentences instead of the reach of the whole bank.
-
-**Nothing bounded where the sitting aimed.** The bracket's upper bound is 30
-until something is missed, so after three correct answers its midpoint is 18;
-the posterior's prior is centred at 15 and deliberately weak, so for the first
-several questions it believes roughly 15 about everybody. `MAX_STEP_UP` was the
-only restraint, and a step bound limits how fast a sitting climbs without
-saying whether the learner gave any reason to climb. Difficulty now moves in
-**bands**, and a band opens on three correct answers inside it across two
-distinct question kinds — three correct `meaning` answers is recognition of
-three words, and the band above holds sentences. A miss costs one unit of that
-evidence rather than all of it, opens a two-question confirmation window capped
-a level below what was missed, and never takes the band away.
-
-**The second question was always a sentence.** `planKinds` cycled `meaning,
-context, produce, context`, so index 1 was contextual for every learner who ever
-sat the test — a reading task before anything was known about whether the
-learner could read one. The first five questions are now word questions and the
-first sentence is question six, in all sixteen simulated profiles and in the
-running app.
-
-**What it cost, stated rather than hidden.** Within ±3 levels over 6,000
-simulated sittings: **90.2% → 86.9%**; mean absolute error 1.64 → 1.80. A
-sitting now spends its first ten to twelve questions climbing through bands a
-strong learner would previously have skipped in four, and a thirty-question
-ceiling leaves less evidence at the top. The gate's accuracy floor moved from
-90% to 85% with the reasoning written at the constant. A test that measures an
-advanced learner half a level better by asking a beginner questions they cannot
-read is not the better test.
-
-**And a fourth leak, found by replaying the policy rather than reasoning about
-it.** The ceiling was applied to the selector's target, the bounded step and the
-warm-up ladder — and not to the screen's own pool fallback, which searches
-neighbouring levels when a kind is thin. Band 1 holds three contextual items, so
-the fallback fired on the first sentence of nearly every beginner sitting and
-served a band-2 one. `leveltest:policy` now replays six beginner profiles across
-eight seeds through the real selector, the real fallback and the real draw.
+Scanned under the policy that replaced the gate, the versionCode 23 tree held
+**4,333 findings** — violence 2,236, sexual 823, political 592, mortality 194,
+profanity 149, gambling 146, drugs 127, self-harm 66 — across nine content
+families: 16 taught headwords, 612 Level Test items, 854 dictionary headwords,
+23 gap-fills, 17 audio transcripts.
 
 ## What changed
 
 | | |
 | --- | --- |
-| Item difficulty | A contextual item's level is now `max(answer level, hardest word in the frame, grammar floor, eojeol floor)` — `scripts/content/sentence_demand.py`, recorded on every item as `demand` so a reader of the bank can see why it sits where it does. 68 of 625 items moved, all upward; largest move +21 |
-| Foundation band | Three sentences at levels 1–3, all one clause, present or past polite, three eojeol or fewer. `leveltest:policy` fails the build on a connective, negation, nominaliser, relative clause, honorific or formal ending anywhere in band 1, or on a frame longer than four eojeol |
-| Selection | Six bands with an earned ceiling. A band opens on `PROMOTE_CORRECT` correct answers inside it across `PROMOTE_KINDS` distinct kinds; a miss costs one unit of evidence, opens a two-question confirmation window capped `CONFIRM_DROP` below the missed level, and does not take the band away. `reachCeiling` is applied in four places, including the screen's pool fallback |
-| Opening | The first `OPENING_ITEMS` = 5 questions are word questions; the warm-up ladder is clamped by the same ceiling and ends at the first miss. The composition over the whole sitting is unchanged — twelve contextual, nine of each other kind — reordered, not reduced |
-| Exposure metric | `leveltest:qa` classified each question against a posterior the evidence gate does not let the sitting act on, and reported 77% of a sitting as *below the estimate*. It now compares against `min(estimate, reachCeiling)` |
-| New gate | `leveltest:policy` — re-derives every contextual level from the item's own recorded demand, forbids six constructions in the foundation band, and replays 6 beginner profiles × 8 seeds through the real selector asserting nothing above the ceiling and no sentence in the opening |
-| Negative tests | Two more, 13 in all: G9 restores `물을 안 줘서 화분의 꽃이 ____.` to level 7, G10 drops a two-clause sentence into band 1. Both are caught |
-| New documents | `docs/LEVEL_TEST_DIFFICULTY_AUDIT.md`, `docs/LEVEL_TEST_ADAPTIVE_POLICY.md`, `docs/LEVEL_TEST_CONTENT_REVIEW.md` and `docs/LEVEL_TEST_SIMULATION_RESULTS.md` — the last three generated, with `:check` forms in `verify:quick` |
-| Ambiguity | One more reviewed pair, 25 in all: `____ 한글을 써요` took both 매일 and 조금 |
-| Report | §20W, and a figure taken from the built app at 390×844 showing the six questions that open a sitting |
-| Version | Android **1.0.5 / 22**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
+| Policy | `packages/content-safety/policy/child-safe-content-policy.json` 1.0.0 — seven prohibited categories plus a context-blocked mortality category, surface forms in 32 languages and romanised Korean, per-surface match modes, per-language exceptions, allow lists, nine context rules, English gloss indicators. Two evaluators (TypeScript, Python) held to 355 shared fixtures |
+| Gates | import (`build_vocabulary.py` stops on a refused row), dictionary publication (`build_dictionary.py` drops rows and senses; counts in the manifest), assessment generation (anchors, distractors, composed sentences, then the finished item in 32 languages), runtime (every bank item re-read on load; a stored day loses only retired words still owed; a stored sitting naming a refused item is not resumed), CI (`content:safety:check` over 14 families and ~1.0 M fields, in `verify:quick`), packaging (`content:safety:bundle:check` over `dist/`, both native asset copies and the signed APK and AAB, in `verify:release`) |
+| Content | 23 taught words retired with tombstones (`content/vocabulary/retired-words.json`, `docs/CHILD_SAFE_CONTENT_REMEDIATION_LEDGER.md`); 베다's example rewritten with 31 translations and two recordings; 치다's Korean gloss rewritten; 694 dictionary headwords and 525 senses refused; bank 3,995 → 3,990, gap-fills 513 → 510, audio manifest 6,998 → 6,952 entries; corpus 3,393 → 3,370 |
+| Learner data | every progress, memory, mistakes and saved-word row kept; `contentCompatibility.test.ts` allows an id to stop resolving only with a tombstone; the mistakes notebook keeps a retired word's row and stops listing it |
+| Negative tests | the old three-list gate reproduced and shown to pass 섹스하다 (`legacy.test.ts`); the four shipped bank rows through the runtime gate in English, Korean and Thai (`contentSafety.test.ts`); 199 negative and 158 positive fixtures through both evaluators |
+| Report | §20Y, and every prior safety claim re-read and classified (§20Y.6) |
+| Version | Android **1.0.6 / 24**. iOS deliberately left at 1.0.3 / 5 — see `BUILD_OR_SIGNING_BLOCKERS.md` |
 
 ## The artefacts
 
@@ -139,21 +62,25 @@ eight seeds through the real selector, the real fallback and the real draw.
 | `hangyul-ganada-release.aab` | signed; same |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **23**, versionName **1.0.5**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 23 | 22 is spent. Both previously delivered artefacts report a code of 22 and the previous `build-info.json` recorded 22, and product files have changed since — the Level Test's distractor rule was inverted for nouns, the vocabulary classifier's category rules were corrected, two frame guards that had never executed were repaired, and three example sentences were rewritten with their recordings. `npm run version:check` said so before the build rather than after, which is what I-152 exists for. Nothing has been uploaded to Play, so 23 is the next valid code rather than the next unused one. |
-| Why still 1.0.5 | The versionName does not move. This release changes which wrong answers the Level Test offers and corrects the drawer 134 words are filed under; it teaches the same 3,393 words, and three of their sentences changed. There is nothing a customer reading the listing would need told beyond "the questions are better". The number is set by a person deciding to ship, never incremented by a script. `registered` records that nothing has been uploaded to either console. |
-| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build (`cap sync` reported `update ios` and `copy web` against this `dist/`, and `ios:project:check` passed), and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.5 and `pending_build` 23 name what is owed. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team or bundle identifier was touched. |
+| Package | `com.talkhangyul.ganada`, version code **24**, versionName **1.0.6**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
+| Why 24 | 23 is spent. Both previously delivered artefacts report a code of 23 and the previous `build-info.json` recorded 23, and product files have changed since — the content-safety policy, every builder that reads it, the runtime gate, and every generated content file. `npm run version:check` said so before the build rather than after, which is what I-152 exists for. Nothing has been uploaded to Play, so 24 is the next valid code rather than the next unused one. |
+| Why 1.0.6 | The versionName moves because a customer can tell the course is different: it teaches 3,370 words rather than 3,393, the dictionary is smaller, and a placement question can no longer offer 섹스하다 as a choice. The store listings and release notes say 3,370. The number is set by a person deciding to ship, never incremented by a script. `registered` records that nothing has been uploaded to either console. |
+| Packaged content | `npm run content:safety:bundle -- --check --apk … --aab …` over the delivered APK and AAB unpacked, `dist/` and both native asset copies: 5 roots, 71,652 files, 2,564,941 fields, 63,456 Korean literals — **no packaged asset carries prohibited content**, and neither archive lists the policy's fixtures |
+| iOS | **not built** — macOS and Xcode are unavailable here. The project is complete, is synced with this exact web build (`cap sync` reported `update ios` and `copy web` against this `dist/`, and `ios:project:check` passed), and ships in `result/ios-project/`, at version 1.0.3 build 5, which is what `build-info.json` reports for it; `pending_version` 1.0.6 and `pending_build` 24 name what is owed. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team or bundle identifier was touched. |
 
 ## What was run against this tree
 
 | Suite / gate | Result |
 | --- | --- |
 | `npm run verify:release` | green from end to end on the delivered tree, including `verify:quick` |
+| `npm run content:safety:check` | Python evaluator self-test 355/355 fixtures agreeing with the TypeScript evaluator, then the whole inventory: **14 families, 32 locales, 392,477 items, 1,001,715 fields — 0 findings**; the same scanner over the versionCode 23 tree reports 4,333 |
+| `npm run content:safety:bundle:check` | `dist/`, both native asset copies and the signed APK and AAB unpacked — 5 roots, 2,564,941 fields, 0 findings, fixtures absent from every archive |
+| `npm run policy:runtime:check` | `runtime-policy.json` and `retired-word-ids.json` current against the full policy |
 | `npm run locale:content:check` | **32 complete · 0 partial · 0 with no vocabulary content yet**; 12,800 simulated questions across 32 languages, all askable, 0 refused for want of a meaning |
 | `npm run locale:practice:check` | 32 locales × 7 levels × 14 days through the real planner and question builder — **0 findings**, from 217 before this cycle. New this refresh and in `verify:release` |
 | `npm run vocabulary:translation:check` | 30 languages compared; every pair that shares a sentence is one English shares too, or is in the ledger with a reason |
 | `npm run translation:semantics:check` | 103,323 rows across 31 locales — **0 findings** |
-| `npm run romanization:qa:check` | 3,393 headwords, 41 rule fixtures, 3,424 word recordings matched to headwords in both voices |
+| `npm run romanization:qa:check` | 3,370 headwords, 41 rule fixtures, 3,424 word recordings matched to headwords in both voices |
 | `npm run audio:qa` | 13,996 clips, 68.5 MB, 600 decoded — 0 errors, 0 warnings |
 | `npm run content:coverage:check` | every applicable row at 100%, and every one of the 55 unobserved words carries a written reason |
 | `npm run mobile:icons:check` | 59 files, Android from `application_logo_android.png` at 512px, iOS from `application_logo_iphone.png` at 1024px, **neither drawn from the other's artwork** |
@@ -178,7 +105,7 @@ eight seeds through the real selector, the real fallback and the real draw.
 | `npm run synthetic:users:qa:check` | **118 journeys**, all pass |
 | `npm run locale:editorial:check` | 0 errors, 0 warnings |
 | `npm run test:e2e` | **594 passed, 0 failed**, exit 0, in 46.6 min across the mobile and desktop projects. Three cases in `journey.spec.ts` were corrected first — see below |
-| Unit suites | web **1,393**, Korean morphology **237**, handwriting core **96** — **1,726**, all passing |
+| Unit suites | web **1,409**, content safety **564**, Korean morphology **237**, handwriting core **96** — **2,306**, all passing |
 | `bash scripts/regression-gates-negative.sh` | **fifteen** sabotage runs, two written this cycle — G9 puts the reported level-7 item back, G10 drops a two-clause sentence into the foundation band. 15 ok, 0 problems, every restoration green |
 | `npm run native:bundle:check` | 14,152 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
 | `npm run release:current` | both delivery manifests at HEAD |
@@ -353,8 +280,8 @@ viewports.
 ## Checksums
 
 ```
-90021cd58c0755fd7df770115dc033051aa9676d68cd43de3d053d30089e8394  hangyul-ganada-release.apk
-be049ad7395c7043b1d6d65cbfcd77ba189d8d8a9d75e717381e8409dd4b628b  hangyul-ganada-release.aab
-d839130e18fe2a026d1e4682fdacc10e267b7ba13b4d0822c461d90217bca13f  docs/report.pdf
-9b5a479ce26db7f977438972dca02965c9e1b2a37bbb19eb14ce86fdf2940f02  build-info.json
+3037bcf007627c45e82ae04ca557f6e8cded14746a0f254e36bce1e92313a03b  hangyul-ganada-release.apk
+c3595cec923ac6d66d4b3e98440bffe9f4db2e599d2e2cb22eb486519e38c3ad  hangyul-ganada-release.aab
+01acf354bef2b613fa9a6a45c8380b3bc6315693bbba706e930ea838819aea96  docs/report.pdf
+22776787783fc28316b286f9823798e82f38811f3ae107b79b684cd95bc60a8f  build-info.json
 ```

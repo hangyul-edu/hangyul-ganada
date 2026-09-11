@@ -6,16 +6,17 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 10 September 2026 against **v1.0.5, versionCode 23**, compiled
-from a clean checkout of commit `fe2aa05a`. Every item below still stands,
+Re-checked on 11 September 2026 against **v1.0.6, versionCode 24**, compiled
+from a clean checkout of commit `3ac29bca`. Every item below still stands,
 unchanged: none of them is a build problem and none can be cleared from this
-machine. The Android artefacts were rebuilt at versionCode 23 and signed with
+machine. The Android artefacts were rebuilt at versionCode 24 and signed with
 the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
 
-**§10 is still the one to read.** This cycle wrote no new locale strings — the
-change is which Korean sentence a learner is asked at which point, not what any
-pack says — so the unread text is the same unread text it was, and §10 is
-unchanged rather than improved. The device walk was **not** re-run for this
+**§10 is still the one to read.** This cycle wrote 24 copy-pack translations
+of one rewritten example (베다: 풀을 베어요) and thirty non-Korean, non-English
+surface lists in the child-safe content policy, none of them read by a native
+speaker — so §10 has more unread text than it had, and the policy lists are
+marked EXTERNAL_REVIEW in `docs/CHILD_SAFE_CONTENT_POLICY.md` §7. The device walk was **not** re-run for this
 build: `RELEASE_VALIDATION.md` carries the one from build 16 under a heading
 that says so.
 
@@ -223,7 +224,7 @@ the store material claims otherwise.
 
 **What is missing:** the release version in the Xcode project.
 
-Android ships this release as 1.0.5, versionCode 23. iOS does not, and its
+Android ships this release as 1.0.6, versionCode 24. iOS does not, and its
 `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` are still `1.0.3` and `5`.
 
 This is deliberate rather than an oversight. Those two are Xcode build settings
@@ -239,9 +240,9 @@ and every one of those settings against a lock file, and it is green.
 **To unblock**, on a Mac with Xcode, in one commit:
 
 1. Open `apps/mobile/ios/App/App.xcodeproj`, select the **App** target, and set
-   **Version** to `1.0.5` and **Build** to `23` for both Debug and Release.
-2. Update `ios.xcode.marketingVersion` to `"1.0.5"` and
-   `ios.xcode.currentProjectVersion` to `22` in `apps/mobile/app.identity.json`.
+   **Version** to `1.0.6` and **Build** to `24` for both Debug and Release.
+2. Update `ios.xcode.marketingVersion` to `"1.0.6"` and
+   `ios.xcode.currentProjectVersion` to `24` in `apps/mobile/app.identity.json`.
 3. Run `node scripts/check-ios-project.mjs --adopt` and commit the lock with it.
 
 `npm run version:check` prints this as a pending action on every run until it is
@@ -276,7 +277,7 @@ the same pair of eyes twice. The other thirty-one languages have had no reading
 at all.
 
 **To unblock:** one reviewer per language. The unit is no longer a screen of
-interface strings — it is 3,393 word cards, and the honest estimate of the work
+interface strings — it is 3,370 word cards, and the honest estimate of the work
 is a reviewer-month per language rather than a reviewer-afternoon. Nothing in
 this report claims a native review happened.
 
