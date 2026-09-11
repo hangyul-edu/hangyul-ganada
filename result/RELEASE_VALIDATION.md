@@ -8,7 +8,7 @@ them would have produced nothing new in the first case and could not be done on
 this machine in the second. Nothing else is inherited. Where something could not
 be verified it says so rather than being left blank or implied.
 
-**Source:** commit `3ac29bca` on branch `main`. `build-info.json` →
+**Source:** commit `19c25615` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -280,8 +280,8 @@ viewports.
 ## Checksums
 
 ```
-3037bcf007627c45e82ae04ca557f6e8cded14746a0f254e36bce1e92313a03b  hangyul-ganada-release.apk
+b7242052f0cc465d84d98ce7eb5e4e2c5e84020e7c392a5b1b13765dddefb7c7  hangyul-ganada-release.apk
 c3595cec923ac6d66d4b3e98440bffe9f4db2e599d2e2cb22eb486519e38c3ad  hangyul-ganada-release.aab
-01acf354bef2b613fa9a6a45c8380b3bc6315693bbba706e930ea838819aea96  docs/report.pdf
-22776787783fc28316b286f9823798e82f38811f3ae107b79b684cd95bc60a8f  build-info.json
+0e065d5977849957495926cef29854b03e122c1167606fe1bf940b195719da79  docs/report.pdf
+314d965a6964c21f168dfa4373c09740b8e4f9eafc3b79ab54105f68b56958d1  build-info.json
 ```

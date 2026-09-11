@@ -2390,7 +2390,7 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `3ac29bca`, working tree clean |
+| Built from | `19c25615`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 24, versionName 1.0.6 |
 | SDK | min 24, target 36 |
@@ -4993,7 +4993,7 @@ untracked files, so no commit described what was in them.
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
 | APK | 90,455,013 bytes (86.3 MiB) |
-| APK sha256 | `3037bcf007627c45e82ae04ca557f6e8cded14746a0f254e36bce1e92313a03b` |
+| APK sha256 | `b7242052f0cc465d84d98ce7eb5e4e2c5e84020e7c392a5b1b13765dddefb7c7` |
 | AAB | 88,630,068 bytes (84.5 MiB) |
 | AAB sha256 | `c3595cec923ac6d66d4b3e98440bffe9f4db2e599d2e2cb22eb486519e38c3ad` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
