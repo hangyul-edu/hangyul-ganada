@@ -78,7 +78,7 @@
   },
   "memory": {
     "title": "Cum merge memoria",
-    "firstTry": "Săptămâna aceasta ți-ai amintit {{count, number}} lucruri din prima.",
+    "firstTry": "Săptămâna aceasta ai răspuns corect de {{count, number}} ori fără indiciu.",
     "strongestSkill": "Săptămâna aceasta te descurci cel mai bine la {{skill}}.",
     "confusionImproving": "{{a}} și {{b}} se deosebesc tot mai ușor.",
     "skill": {

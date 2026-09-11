@@ -78,7 +78,6 @@
       "inSentence": "So wird es benutzt: {{sentence}}"
     },
     "buildTray": "Silben",
-    "buildRemove": "{{syllable}} zurücknehmen",
     "markCorrect": "Richtige Antwort",
     "markWrong": "Deine Antwort, falsch",
     "buildSlots": "{{total}} Felder",

@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "Hoe je geheugen het doet",
-    "firstTry": "Je herinnerde je deze week {{count, number}} dingen meteen.",
+    "firstTry": "Deze week had je {{count, number}} keer goed zonder hint.",
     "strongestSkill": "{{skill}} is deze week je sterkste kant.",
     "confusionImproving": "{{a}} en {{b}} worden makkelijker uit elkaar te houden.",
     "skill": {

@@ -168,7 +168,6 @@
       "inSentence": "Уживається так: {{sentence}}"
     },
     "buildTray": "Склади",
-    "buildRemove": "Повернути {{syllable}}",
     "markCorrect": "Правильна відповідь",
     "markWrong": "Ваша відповідь, неправильна",
     "buildSlots": "Комірок: {{total}}",

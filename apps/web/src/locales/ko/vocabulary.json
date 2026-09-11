@@ -5,7 +5,7 @@
     "start": "학습 시작",
     "resume": "이어 학습하기",
     "resumeBlurb": "하던 곳부터 이어서 해요.",
-    "doneBlurb": "오늘 몫은 끝났어요.",
+    "doneBlurb": "오늘 분량은 다 했어요.",
     "completeTitle": "오늘 단어 목표를 완료했어요.",
     "more": "더 학습하기",
     "allDone": "오늘 할 것은 다 끝났어요.",
@@ -115,7 +115,7 @@
     "order": {
       "recent": "최근순",
       "alphabetical": "가나다순",
-      "needed": "약한 것부터"
+      "needed": "복습이 필요한 순"
     },
     "count_other": "{{count}}개",
     "remove": "빼기",

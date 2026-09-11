@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "Eslab qolish qanday ketyapti",
-    "firstTry": "Bu hafta {{count, number}} narsani birinchi urinishdayoq esladingiz.",
+    "firstTry": "Bu hafta siz maslahatsiz {{count, number}} marta to‘g‘ri javob berdingiz.",
     "strongestSkill": "Bu hafta eng yaxshi ketayotgani — {{skill}}.",
     "confusionImproving": "{{a}} va {{b}} ni ajratish osonlashib boryapti.",
     "skill": {

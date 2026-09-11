@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "Hatırlaman nasıl gidiyor",
-    "firstTry": "Bu hafta {{count, number}} şeyi ilk denemede hatırladın.",
+    "firstTry": "Bu hafta ipucu almadan {{count, number}} soruyu doğru cevapladın.",
     "strongestSkill": "Bu hafta en güçlü olduğun alan {{skill}}.",
     "confusionImproving": "{{a}} ile {{b}} arasındaki farkı ayırmak kolaylaşıyor.",
     "skill": {

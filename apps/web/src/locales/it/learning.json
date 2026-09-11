@@ -167,7 +167,6 @@
       "inSentence": "Si usa così: {{sentence}}"
     },
     "buildTray": "Sillabe",
-    "buildRemove": "Rimetti a posto {{syllable}}",
     "markCorrect": "Risposta corretta",
     "markWrong": "La tua risposta, errata",
     "buildSlots": "{{total}} caselle",

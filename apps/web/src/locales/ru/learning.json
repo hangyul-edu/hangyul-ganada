@@ -168,7 +168,6 @@
       "inSentence": "Используется так: {{sentence}}"
     },
     "buildTray": "Слоги",
-    "buildRemove": "Вернуть {{syllable}}",
     "markCorrect": "Правильный ответ",
     "markWrong": "Ваш ответ, неверный",
     "buildSlots": "Ячеек: {{total}}",

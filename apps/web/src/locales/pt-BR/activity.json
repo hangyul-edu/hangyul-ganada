@@ -78,7 +78,7 @@
   },
   "memory": {
     "title": "Como está a sua memória",
-    "firstTry": "Esta semana você lembrou {{count, number}} coisas de primeira.",
+    "firstTry": "Nesta semana você acertou {{count, number}} sem dica.",
     "strongestSkill": "Esta semana {{skill}} é o que está indo melhor.",
     "confusionImproving": "Você está distinguindo {{a}} e {{b}} cada vez melhor.",
     "skill": {

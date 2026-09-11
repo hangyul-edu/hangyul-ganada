@@ -84,7 +84,7 @@
   },
   "memory": {
     "title": "Jak idzie zapamiętywanie",
-    "firstTry": "W tym tygodniu {{count, number}} rzeczy przypomniałeś sobie za pierwszym razem.",
+    "firstTry": "W tym tygodniu bez podpowiedzi odpowiedziałeś poprawnie {{count, number}} razy.",
     "strongestSkill": "W tym tygodniu najlepiej idzie ci {{skill}}.",
     "confusionImproving": "{{a}} i {{b}} coraz łatwiej ci odróżnić.",
     "skill": {

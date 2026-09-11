@@ -167,7 +167,6 @@
       "inSentence": "Se folosește așa: {{sentence}}"
     },
     "buildTray": "Silabe",
-    "buildRemove": "Ia înapoi {{syllable}}",
     "markCorrect": "Răspuns corect",
     "markWrong": "Răspunsul tău, incorect",
     "buildSlots": "{{total}} căsuțe",

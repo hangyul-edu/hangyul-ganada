@@ -166,7 +166,6 @@
       "inSentence": "Így használják: {{sentence}}"
     },
     "buildTray": "Szótagok",
-    "buildRemove": "Vedd vissza: {{syllable}}",
     "markCorrect": "Helyes válasz",
     "markWrong": "A te válaszod, helytelen",
     "buildSlots": "{{total}} mező",

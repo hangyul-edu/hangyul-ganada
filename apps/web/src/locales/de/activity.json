@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "Wie gut du dich erinnerst",
-    "firstTry": "Diese Woche sind dir {{count, number}} Dinge sofort wieder eingefallen.",
+    "firstTry": "Diese Woche hast du {{count, number}} ohne Hinweis richtig beantwortet.",
     "strongestSkill": "Diese Woche klappt {{skill}} bei dir am besten.",
     "confusionImproving": "{{a}} und {{b}} kannst du immer besser auseinanderhalten.",
     "skill": {

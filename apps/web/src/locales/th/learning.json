@@ -166,7 +166,6 @@
       "inSentence": "ใช้แบบนี้: {{sentence}}"
     },
     "buildTray": "พยางค์",
-    "buildRemove": "เอา {{syllable}} ออก",
     "markCorrect": "คำตอบที่ถูก",
     "markWrong": "คำตอบของคุณ ผิด",
     "buildSlots": "ช่องว่าง {{total}} ช่อง",

@@ -165,7 +165,6 @@
       "inSentence": "Dipakai begini: {{sentence}}"
     },
     "buildTray": "Suku kata",
-    "buildRemove": "Ambil kembali {{syllable}}",
     "markCorrect": "Jawaban benar",
     "markWrong": "Jawabanmu, salah",
     "buildSlots": "{{total}} kotak",

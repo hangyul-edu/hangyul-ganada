@@ -166,7 +166,6 @@
       "inSentence": "Så här används det: {{sentence}}"
     },
     "buildTray": "Stavelser",
-    "buildRemove": "Ta tillbaka {{syllable}}",
     "markCorrect": "Rätt svar",
     "markWrong": "Ditt svar, fel",
     "buildSlots": "{{total}} rutor",

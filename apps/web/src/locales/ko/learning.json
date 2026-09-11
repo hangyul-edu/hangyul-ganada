@@ -78,7 +78,6 @@
       "inSentence": "이렇게 써요: {{sentence}}"
     },
     "buildTray": "음절",
-    "buildRemove": "{{syllable}} 빼기",
     "markCorrect": "정답",
     "markWrong": "내가 고른 답, 틀렸어요",
     "buildSlots": "빈칸 {{total}}개",

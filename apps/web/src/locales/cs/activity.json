@@ -84,7 +84,7 @@
   },
   "memory": {
     "title": "Jak jde zapamatování",
-    "firstTry": "Tenhle týden jste si {{count, number}} věcí vybavili napoprvé.",
+    "firstTry": "Tento týden jste bez nápovědy odpověděli správně {{count, number}}krát.",
     "strongestSkill": "Tenhle týden vám nejvíc jde {{skill}}.",
     "confusionImproving": "{{a}} a {{b}} se vám rozlišují čím dál líp.",
     "skill": {

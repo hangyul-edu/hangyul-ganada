@@ -66,7 +66,7 @@
   },
   "memory": {
     "title": "记得怎么样",
-    "firstTry": "这周你有 {{count, number}} 个是一次就想起来的。",
+    "firstTry": "本周你在没有提示的情况下答对了{{count, number}}题。",
     "strongestSkill": "这周你最拿手的是{{skill}}。",
     "confusionImproving": "{{a}} 和 {{b}} 越来越分得清了。",
     "skill": {

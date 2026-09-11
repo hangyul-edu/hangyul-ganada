@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "How your recall is going",
-    "firstTry": "You remembered {{count, number}} things on the first try this week.",
+    "firstTry": "You got {{count, number}} right without a hint this week.",
     "strongestSkill": "{{skill}} is your strongest practice this week.",
     "confusionImproving": "{{a}} and {{b}} are getting easier to tell apart.",
     "skill": {

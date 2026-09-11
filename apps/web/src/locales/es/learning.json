@@ -79,7 +79,6 @@
       "inSentence": "Se usa así: {{sentence}}"
     },
     "buildTray": "Sílabas",
-    "buildRemove": "Quitar {{syllable}}",
     "markCorrect": "Respuesta correcta",
     "markWrong": "Tu respuesta, incorrecta",
     "buildSlots": "{{total}} casillas",

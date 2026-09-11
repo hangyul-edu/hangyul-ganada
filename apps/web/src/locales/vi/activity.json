@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "Khả năng ghi nhớ của bạn",
-    "firstTry": "Tuần này bạn nhớ đúng ngay lần đầu {{count, number}} mục.",
+    "firstTry": "Tuần này bạn đã trả lời đúng {{count, number}} câu mà không cần gợi ý.",
     "strongestSkill": "Tuần này bạn làm tốt nhất ở phần {{skill}}.",
     "confusionImproving": "Bạn đang phân biệt {{a}} và {{b}} dễ hơn rồi.",
     "skill": {

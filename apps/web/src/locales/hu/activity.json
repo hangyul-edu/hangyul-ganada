@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "Hogy megy a felidézés",
-    "firstTry": "Ezen a héten {{count, number}} dolgot idéztél fel elsőre.",
+    "firstTry": "Ezen a héten {{count, number}} alkalommal válaszoltál jól segítség nélkül.",
     "strongestSkill": "Ezen a héten a(z) {{skill}} megy a legjobban.",
     "confusionImproving": "{{a}} és {{b}} egyre könnyebben elkülöníthető.",
     "skill": {

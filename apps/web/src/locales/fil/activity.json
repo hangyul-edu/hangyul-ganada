@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "Kumusta ang pag-alala mo",
-    "firstTry": "Ngayong linggo, {{count, number}} bagay ang naalala mo sa unang subok.",
+    "firstTry": "Ngayong linggo, {{count, number}} ang nasagot mo nang tama nang walang hint.",
     "strongestSkill": "Ang {{skill}} ang pinakamalakas mo ngayong linggo.",
     "confusionImproving": "Mas madali nang pagkaibahin ang {{a}} at {{b}}.",
     "skill": {

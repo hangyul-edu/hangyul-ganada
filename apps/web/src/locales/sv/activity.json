@@ -72,7 +72,7 @@
   },
   "memory": {
     "title": "Så går minnet",
-    "firstTry": "Du kom ihåg {{count, number}} saker på första försöket den här veckan.",
+    "firstTry": "Den här veckan svarade du rätt {{count, number}} gånger utan ledtråd.",
     "strongestSkill": "{{skill}} är det du är starkast på den här veckan.",
     "confusionImproving": "{{a}} och {{b}} blir lättare att skilja åt.",
     "skill": {

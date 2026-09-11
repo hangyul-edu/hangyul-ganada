@@ -166,7 +166,6 @@
       "inSentence": "Ganito ito ginagamit: {{sentence}}"
     },
     "buildTray": "Mga pantig",
-    "buildRemove": "Bawiin ang {{syllable}}",
     "markCorrect": "Tamang sagot",
     "markWrong": "Ang sagot mo, mali",
     "buildSlots": "{{total}} puwang",

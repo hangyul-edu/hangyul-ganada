@@ -166,7 +166,6 @@
       "inSentence": "Χρησιμοποιείται έτσι: {{sentence}}"
     },
     "buildTray": "Συλλαβές",
-    "buildRemove": "Πάρε πίσω το {{syllable}}",
     "markCorrect": "Σωστή απάντηση",
     "markWrong": "Η απάντησή σου, λανθασμένη",
     "buildSlots": "{{total}} θέσεις",

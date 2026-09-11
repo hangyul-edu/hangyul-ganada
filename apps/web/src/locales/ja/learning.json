@@ -78,7 +78,6 @@
       "inSentence": "こんなふうに使います: {{sentence}}"
     },
     "buildTray": "文字",
-    "buildRemove": "{{syllable}} を戻す",
     "markCorrect": "正解",
     "markWrong": "あなたの答え、不正解",
     "buildSlots": "空欄{{total}}個",

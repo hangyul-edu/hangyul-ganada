@@ -96,7 +96,7 @@
   },
   "memory": {
     "title": "كيف يسير تذكّرك",
-    "firstTry": "تذكّرت {{count, number}} من الأشياء من أول محاولة هذا الأسبوع.",
+    "firstTry": "هذا الأسبوع أجبت عن {{count, number}} إجابة صحيحة دون تلميح.",
     "strongestSkill": "{{skill}} أقوى ما تتمرّن عليه هذا الأسبوع.",
     "confusionImproving": "{{a}} و{{b}} صارا أسهل في التمييز.",
     "skill": {

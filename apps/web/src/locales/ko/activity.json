@@ -62,11 +62,11 @@
     "same": "지난주와 같은 시간이에요.",
     "moreThanLast": "지난주보다 {{minutes, number}}분 더 했어요.",
     "lessThanLast": "지난주보다 {{minutes, number}}분 적어요.",
-    "quiet": "이번 주는 아직이네요. 시간은 남았어요."
+    "quiet": "이번 주에는 아직 기록이 없어요. 아직 시간은 있어요."
   },
   "memory": {
-    "title": "얼마나 잘 떠오르는지",
-    "firstTry": "이번 주에 {{count, number}}개를 첫 번에 떠올렸어요.",
+    "title": "얼마나 잘 기억하고 있는지",
+    "firstTry": "이번 주에는 힌트 없이 {{count, number}}개를 맞혔어요.",
     "strongestSkill": "이번 주에는 {{skill, iga}} 가장 잘 되고 있어요.",
     "confusionImproving": "{{a, gwawa}} {{b, eulreul}} 점점 잘 구별하고 있어요.",
     "skill": {

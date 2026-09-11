@@ -166,7 +166,6 @@
       "inSentence": "It’s used like this: {{sentence}}"
     },
     "buildTray": "Syllables",
-    "buildRemove": "Take {{syllable}} back",
     "markCorrect": "Correct answer",
     "markWrong": "Your answer, incorrect",
     "buildSlots": "{{total}} slots",

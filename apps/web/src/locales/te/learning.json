@@ -166,7 +166,6 @@
       "inSentence": "ఇలా వాడతారు: {{sentence}}"
     },
     "buildTray": "అక్షరాలు",
-    "buildRemove": "{{syllable}} వెనక్కి తీసుకో",
     "markCorrect": "సరైన సమాధానం",
     "markWrong": "మీ సమాధానం, తప్పు",
     "buildSlots": "{{total}} గడులు",

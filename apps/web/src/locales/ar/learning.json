@@ -170,7 +170,6 @@
       "inSentence": "تُستعمل هكذا: {{sentence}}"
     },
     "buildTray": "المقاطع",
-    "buildRemove": "أعِد {{syllable}}",
     "markCorrect": "الإجابة الصحيحة",
     "markWrong": "إجابتك، غير صحيحة",
     "buildSlots": "{{total}} خانات",

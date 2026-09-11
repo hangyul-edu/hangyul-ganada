@@ -166,7 +166,6 @@
       "inSentence": "Ингэж хэрэглэдэг: {{sentence}}"
     },
     "buildTray": "Үеүүд",
-    "buildRemove": "{{syllable}} үеийг буцааж авах",
     "markCorrect": "Зөв хариулт",
     "markWrong": "Чиний хариулт, буруу",
     "buildSlots": "{{total}} нүд",

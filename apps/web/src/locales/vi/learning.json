@@ -166,7 +166,6 @@
       "inSentence": "Người ta dùng thế này: {{sentence}}"
     },
     "buildTray": "Các chữ",
-    "buildRemove": "Lấy lại {{syllable}}",
     "markCorrect": "Đáp án đúng",
     "markWrong": "Câu trả lời của bạn, sai",
     "buildSlots": "{{total}} ô",

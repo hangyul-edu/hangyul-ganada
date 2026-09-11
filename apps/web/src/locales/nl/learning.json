@@ -166,7 +166,6 @@
       "inSentence": "Zo wordt het gebruikt: {{sentence}}"
     },
     "buildTray": "Lettergrepen",
-    "buildRemove": "Haal {{syllable}} terug",
     "markCorrect": "Juist antwoord",
     "markWrong": "Jouw antwoord, onjuist",
     "buildSlots": "{{total}} vakjes",
