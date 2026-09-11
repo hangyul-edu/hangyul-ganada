@@ -20,7 +20,7 @@ case "$MODE" in
 esac
 "$ADB" shell am force-stop "$PKG"
 sleep 1
-"$ADB" shell "screenrecord --time-limit 22 --bit-rate 6000000 /sdcard/coldstart-$MODE.mp4" &
+"$ADB" shell "screenrecord --time-limit ${LIMIT:-22} --bit-rate 6000000 /sdcard/coldstart-$MODE.mp4" &
 REC=$!
 sleep 1.2
 "$ADB" shell am start -W -n "$PKG/.MainActivity" > "$OUT/am-start-$MODE.txt"
