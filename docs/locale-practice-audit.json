@@ -69,8 +69,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 39,
-    "context": 3,
+    "build": 38,
+    "context": 4,
     "match": 14
    },
    "dominant": "meaning",
@@ -85,8 +85,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 37,
-    "context": 5,
+    "build": 38,
+    "context": 4,
     "match": 14
    },
    "dominant": "meaning",
@@ -149,9 +149,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 62,
-    "build": 34,
+    "build": 35,
     "match": 14,
-    "context": 2
+    "context": 1
    },
    "dominant": "meaning",
    "dominantShare": 0.554,
@@ -161,22 +161,6 @@
   {
    "locale": "ko",
    "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 38,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ko",
-   "level": 15,
    "asked": 112,
    "kinds": {
     "intro": 140,
@@ -192,14 +176,30 @@
   },
   {
    "locale": "ko",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 39,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ko",
    "level": 20,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 38,
+    "build": 37,
     "match": 14,
-    "context": 4
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -213,9 +213,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 34,
+    "build": 33,
     "match": 14,
-    "context": 8
+    "context": 9
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -261,8 +261,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 59,
-    "context": 2,
-    "build": 37,
+    "context": 3,
+    "build": 36,
     "match": 14
    },
    "dominant": "meaning",
@@ -277,9 +277,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 59,
-    "build": 38,
-    "match": 14,
-    "context": 1
+    "build": 39,
+    "match": 14
    },
    "dominant": "meaning",
    "dominantShare": 0.527,
@@ -309,8 +308,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "context": 7,
-    "build": 34,
+    "context": 5,
+    "build": 36,
     "match": 14
    },
    "dominant": "meaning",
@@ -341,8 +340,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 31,
-    "context": 11,
+    "build": 30,
+    "context": 12,
     "match": 14
    },
    "dominant": "meaning",
@@ -373,9 +372,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 61,
-    "build": 35,
+    "build": 34,
     "match": 14,
-    "context": 2
+    "context": 3
    },
    "dominant": "meaning",
    "dominantShare": 0.545,
@@ -404,13 +403,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "context": 6,
+    "meaning": 59,
+    "context": 5,
     "build": 34,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.527,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -421,8 +420,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "context": 4,
-    "build": 38,
+    "context": 5,
+    "build": 37,
     "match": 14
    },
    "dominant": "meaning",
@@ -437,9 +436,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 32,
+    "build": 31,
     "match": 14,
-    "context": 9
+    "context": 10
    },
    "dominant": "meaning",
    "dominantShare": 0.509,
@@ -453,8 +452,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 29,
-    "context": 13,
+    "build": 30,
+    "context": 12,
     "match": 14
    },
    "dominant": "meaning",
@@ -484,13 +483,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 62,
-    "build": 33,
+    "meaning": 63,
+    "build": 32,
     "context": 3,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.554,
+   "dominantShare": 0.563,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -501,9 +500,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 61,
-    "build": 34,
+    "build": 32,
     "match": 14,
-    "context": 3
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.545,
@@ -532,13 +531,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "context": 9,
+    "meaning": 57,
+    "context": 10,
     "build": 31,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -549,8 +548,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 38,
-    "context": 4,
+    "build": 37,
+    "context": 5,
     "match": 14
    },
    "dominant": "meaning",
@@ -565,9 +564,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 33,
+    "build": 32,
     "match": 14,
-    "context": 9
+    "context": 10
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -612,13 +611,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 56,
-    "build": 40,
+    "meaning": 57,
+    "build": 39,
     "context": 2,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.5,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -629,9 +628,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 35,
+    "build": 36,
     "match": 14,
-    "context": 7
+    "context": 6
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -645,9 +644,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 59,
-    "build": 33,
+    "build": 32,
     "match": 14,
-    "context": 6
+    "context": 7
    },
    "dominant": "meaning",
    "dominantShare": 0.527,
@@ -692,13 +691,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 60,
-    "build": 30,
+    "meaning": 61,
+    "build": 29,
     "match": 14,
     "context": 8
    },
    "dominant": "meaning",
-   "dominantShare": 0.536,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -724,13 +723,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 38,
+    "meaning": 60,
+    "build": 36,
     "match": 14,
     "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -757,9 +756,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 35,
+    "build": 36,
     "match": 14,
-    "context": 6
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.509,
@@ -836,13 +835,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 59,
-    "build": 37,
+    "meaning": 60,
+    "build": 36,
     "match": 14,
     "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.527,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -948,13 +947,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 59,
+    "meaning": 60,
     "context": 4,
-    "build": 35,
+    "build": 34,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.527,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -965,8 +964,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 39,
-    "context": 3,
+    "build": 38,
+    "context": 4,
     "match": 14
    },
    "dominant": "meaning",
@@ -981,9 +980,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 35,
+    "build": 34,
     "match": 14,
-    "context": 7
+    "context": 8
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -1013,8 +1012,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 33,
-    "context": 9,
+    "build": 31,
+    "context": 11,
     "match": 14
    },
    "dominant": "meaning",
@@ -1044,13 +1043,12 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 64,
-    "build": 33,
-    "match": 14,
-    "context": 1
+    "meaning": 63,
+    "build": 35,
+    "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.571,
+   "dominantShare": 0.563,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -1061,9 +1059,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 59,
-    "build": 36,
+    "build": 35,
     "match": 14,
-    "context": 3
+    "context": 4
    },
    "dominant": "meaning",
    "dominantShare": 0.527,
@@ -1156,13 +1154,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 62,
+    "meaning": 61,
     "context": 1,
-    "build": 35,
+    "build": 36,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.554,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -1172,13 +1170,12 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 39,
-    "match": 14,
-    "context": 1
+    "meaning": 57,
+    "build": 41,
+    "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -1189,9 +1186,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 37,
+    "build": 38,
     "match": 14,
-    "context": 5
+    "context": 4
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -1204,13 +1201,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 56,
+    "meaning": 57,
     "build": 35,
-    "context": 7,
-    "match": 14
+    "match": 14,
+    "context": 6
    },
    "dominant": "meaning",
-   "dominantShare": 0.5,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -1285,8 +1282,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 62,
-    "build": 34,
-    "context": 2,
+    "build": 33,
+    "context": 3,
     "match": 14
    },
    "dominant": "meaning",
@@ -1461,9 +1458,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 29,
+    "build": 30,
     "match": 14,
-    "context": 13
+    "context": 12
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -1541,9 +1538,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 35,
+    "build": 36,
     "match": 14,
-    "context": 6
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.509,
@@ -1557,9 +1554,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 35,
+    "build": 34,
     "match": 14,
-    "context": 7
+    "context": 8
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -1621,8 +1618,7 @@
    "kinds": {
     "intro": 140,
     "meaning": 59,
-    "build": 38,
-    "context": 1,
+    "build": 39,
     "match": 14
    },
    "dominant": "meaning",
@@ -1637,8 +1633,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 37,
-    "context": 5,
+    "build": 36,
+    "context": 6,
     "match": 14
    },
    "dominant": "meaning",
@@ -1700,13 +1696,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 64,
-    "build": 29,
+    "meaning": 65,
+    "build": 28,
     "match": 14,
     "context": 5
    },
    "dominant": "meaning",
-   "dominantShare": 0.571,
+   "dominantShare": 0.58,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -1732,13 +1728,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 60,
-    "build": 35,
+    "meaning": 61,
+    "build": 34,
     "match": 14,
     "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.536,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -1749,9 +1745,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 58,
-    "build": 36,
+    "build": 35,
     "match": 14,
-    "context": 4
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.518,
@@ -1861,9 +1857,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 38,
+    "build": 37,
     "match": 14,
-    "context": 4
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -1909,8 +1905,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "context": 14,
-    "build": 28,
+    "context": 13,
+    "build": 29,
     "match": 14
    },
    "dominant": "meaning",
@@ -1971,13 +1967,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
-    "build": 35,
-    "context": 6,
+    "meaning": 58,
+    "build": 33,
+    "context": 7,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.518,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2067,13 +2063,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "context": 5,
+    "meaning": 59,
+    "context": 4,
     "build": 35,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.527,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2084,9 +2080,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 58,
-    "build": 33,
+    "build": 31,
     "match": 14,
-    "context": 7
+    "context": 9
    },
    "dominant": "meaning",
    "dominantShare": 0.518,
@@ -2099,13 +2095,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 56,
+    "meaning": 57,
     "build": 36,
     "match": 14,
-    "context": 6
+    "context": 5
    },
    "dominant": "meaning",
-   "dominantShare": 0.5,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2116,8 +2112,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 32,
-    "context": 10,
+    "build": 31,
+    "context": 11,
     "match": 14
    },
    "dominant": "meaning",
@@ -2132,8 +2128,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "context": 10,
-    "build": 32,
+    "context": 11,
+    "build": 31,
     "match": 14
    },
    "dominant": "meaning",
@@ -2163,12 +2159,12 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 61,
-    "build": 37,
+    "meaning": 62,
+    "build": 36,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.545,
+   "dominantShare": 0.554,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2178,13 +2174,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 59,
-    "build": 36,
+    "meaning": 60,
+    "build": 35,
     "match": 14,
     "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.527,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2194,13 +2190,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
+    "meaning": 56,
     "context": 4,
-    "build": 37,
+    "build": 38,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.5,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2210,13 +2206,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 36,
+    "meaning": 57,
+    "build": 37,
     "match": 14,
     "context": 4
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2243,8 +2239,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 31,
-    "context": 11,
+    "build": 32,
+    "context": 10,
     "match": 14
    },
    "dominant": "meaning",
@@ -2274,13 +2270,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 62,
-    "build": 34,
+    "meaning": 63,
+    "build": 32,
     "match": 14,
-    "context": 2
+    "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.554,
+   "dominantShare": 0.563,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2323,9 +2319,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 36,
+    "build": 35,
     "match": 14,
-    "context": 6
+    "context": 7
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -2387,9 +2383,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 61,
-    "build": 34,
+    "build": 35,
     "match": 14,
-    "context": 3
+    "context": 2
    },
    "dominant": "meaning",
    "dominantShare": 0.545,
@@ -2402,13 +2398,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 37,
+    "meaning": 60,
+    "build": 35,
     "match": 14,
     "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2419,9 +2415,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 58,
-    "build": 35,
+    "build": 34,
     "match": 14,
-    "context": 5
+    "context": 6
    },
    "dominant": "meaning",
    "dominantShare": 0.518,
@@ -2434,13 +2430,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 59,
-    "build": 33,
+    "meaning": 58,
+    "build": 34,
     "match": 14,
     "context": 6
    },
    "dominant": "meaning",
-   "dominantShare": 0.527,
+   "dominantShare": 0.518,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2531,9 +2527,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 58,
-    "build": 34,
+    "build": 33,
     "match": 14,
-    "context": 6
+    "context": 7
    },
    "dominant": "meaning",
    "dominantShare": 0.518,
@@ -2579,9 +2575,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 30,
+    "build": 29,
     "match": 14,
-    "context": 12
+    "context": 13
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -2627,8 +2623,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 59,
-    "context": 3,
-    "build": 36,
+    "context": 4,
+    "build": 35,
     "match": 14
    },
    "dominant": "meaning",
@@ -2643,9 +2639,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 38,
+    "build": 36,
     "match": 14,
-    "context": 4
+    "context": 6
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -2659,9 +2655,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 39,
+    "build": 38,
     "match": 14,
-    "context": 3
+    "context": 4
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -2722,13 +2718,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 64,
-    "build": 33,
+    "meaning": 63,
+    "build": 34,
     "match": 14,
     "context": 1
    },
    "dominant": "meaning",
-   "dominantShare": 0.571,
+   "dominantShare": 0.563,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2738,13 +2734,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 38,
+    "meaning": 57,
+    "build": 39,
     "match": 14,
     "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2803,9 +2799,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "context": 12,
+    "context": 11,
     "match": 14,
-    "build": 30
+    "build": 31
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -2883,8 +2879,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 33,
-    "context": 8,
+    "build": 34,
+    "context": 7,
     "match": 14
    },
    "dominant": "meaning",
@@ -2915,8 +2911,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 30,
-    "context": 12,
+    "build": 33,
+    "context": 9,
     "match": 14
    },
    "dominant": "meaning",
@@ -2947,9 +2943,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 64,
-    "build": 32,
+    "build": 31,
     "match": 14,
-    "context": 2
+    "context": 3
    },
    "dominant": "meaning",
    "dominantShare": 0.571,
@@ -3090,13 +3086,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 33,
+    "meaning": 57,
+    "build": 34,
     "match": 14,
     "context": 7
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3170,13 +3166,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 63,
-    "build": 34,
+    "meaning": 62,
+    "build": 35,
     "match": 14,
     "context": 1
    },
    "dominant": "meaning",
-   "dominantShare": 0.563,
+   "dominantShare": 0.554,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3186,13 +3182,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 62,
-    "build": 34,
+    "meaning": 60,
+    "build": 36,
     "match": 14,
     "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.554,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3203,8 +3199,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 58,
-    "build": 31,
-    "context": 9,
+    "build": 30,
+    "context": 10,
     "match": 14
    },
    "dominant": "meaning",
@@ -3314,13 +3310,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
-    "build": 37,
+    "meaning": 56,
+    "build": 38,
     "match": 14,
     "context": 4
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.5,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3330,13 +3326,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
-    "build": 34,
+    "meaning": 56,
+    "build": 36,
     "match": 14,
-    "context": 7
+    "context": 6
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.5,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3409,13 +3405,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
-    "build": 39,
+    "meaning": 58,
+    "build": 38,
     "match": 14,
     "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.518,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3505,13 +3501,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 63,
-    "build": 32,
+    "meaning": 62,
+    "build": 33,
     "match": 14,
     "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.563,
+   "dominantShare": 0.554,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3537,13 +3533,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 30,
-    "context": 10,
+    "meaning": 57,
+    "build": 32,
+    "context": 9,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3553,13 +3549,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 59,
-    "build": 31,
+    "meaning": 58,
+    "build": 33,
     "match": 14,
-    "context": 8
+    "context": 7
    },
    "dominant": "meaning",
-   "dominantShare": 0.527,
+   "dominantShare": 0.518,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },

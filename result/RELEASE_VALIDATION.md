@@ -72,16 +72,16 @@ families: 16 taught headwords, 612 Level Test items, 854 dictionary headwords,
 
 | Suite / gate | Result |
 | --- | --- |
-| `npm run verify:release` | green from end to end on the delivered tree, including `verify:quick` |
+| `npm run verify:release` | green from end to end on the delivered tree, including `verify:quick` — exit 0, 16:33 → 18:13 KST on 11 September 2026, run against 3a48f639 (the artefacts' commit plus the docs commit that describes them) |
 | `npm run content:safety:check` | Python evaluator self-test 355/355 fixtures agreeing with the TypeScript evaluator, then the whole inventory: **14 families, 32 locales, 392,477 items, 1,001,715 fields — 0 findings**; the same scanner over the versionCode 23 tree reports 4,333 |
-| `npm run content:safety:bundle:check` | `dist/`, both native asset copies and the signed APK and AAB unpacked — 5 roots, 2,564,941 fields, 0 findings, fixtures absent from every archive |
+| `npm run content:safety:bundle:check` | in the release run: `dist/` and both native asset copies — 3 roots, 42,992 files, 1,538,965 fields, 38,074 Korean literals, 0 findings. By hand, with `--apk`/`--aab` on the delivered packages: 5 roots, 71,652 files, 2,564,941 fields, 0 findings, fixtures absent from every archive |
 | `npm run policy:runtime:check` | `runtime-policy.json` and `retired-word-ids.json` current against the full policy |
 | `npm run locale:content:check` | **32 complete · 0 partial · 0 with no vocabulary content yet**; 12,800 simulated questions across 32 languages, all askable, 0 refused for want of a meaning |
 | `npm run locale:practice:check` | 32 locales × 7 levels × 14 days through the real planner and question builder — **0 findings**, from 217 before this cycle. New this refresh and in `verify:release` |
 | `npm run vocabulary:translation:check` | 30 languages compared; every pair that shares a sentence is one English shares too, or is in the ledger with a reason |
-| `npm run translation:semantics:check` | 103,323 rows across 31 locales — **0 findings** |
-| `npm run romanization:qa:check` | 3,370 headwords, 41 rule fixtures, 3,424 word recordings matched to headwords in both voices |
-| `npm run audio:qa` | 13,996 clips, 68.5 MB, 600 decoded — 0 errors, 0 warnings |
+| `npm run translation:semantics:check` | 104,470 rows across 31 locales — **0 findings** |
+| `npm run romanization:qa:check` | 3,370 headwords, 41 rule fixtures, 3,405 word recordings matched to headwords in both voices |
+| `npm run audio:qa` | 13,904 clips, 68.1 MB, 600 decoded — 0 errors, 0 warnings |
 | `npm run content:coverage:check` | every applicable row at 100%, and every one of the 55 unobserved words carries a written reason |
 | `npm run mobile:icons:check` | 59 files, Android from `application_logo_android.png` at 512px, iOS from `application_logo_iphone.png` at 1024px, **neither drawn from the other's artwork** |
 | `npm run numbers:domain:check` | **2,100 questions, 7,811 options**, 3,072 strings across 32 languages, 0 findings |
@@ -92,23 +92,23 @@ families: 16 taught headwords, 612 Level Test items, 854 dictionary headwords,
 | `npm run numbers:layout:check` | 45/45 cases, 3,600 elements: 7 sizes · 100/150/200% text · light and dark · 32 languages, with the twentieth row on the list |
 | `npm run scroll:audit:check` | 26 route/states, 210 measurements, including an answered *ordinal* question at seven phone sizes, at 150% and 200% text, and in dark |
 | `npm run copy:generated:check` | 608 exercises built, 19,456 rendered prompts across 32 languages; **0** compose a sentence under the answer result |
-| `npm run answerability:check` | **1,026,458 generated questions** — every one has exactly one option that answers it |
+| `npm run answerability:check` | **1,003,880 generated questions** (32 languages × 3,370 words × 6 modes × 3 attempts) — every one has exactly one option that answers it |
 | `npm run strokes:corners:check` | 73 taught characters, 510 stroke ends, 86 joints, 82 corner terminals — 0 findings |
 | `npm run glyph:structure:check` | 86 junctions probed, weakest **100.0%** |
 | `npm run glyphshape:qa:check` | mean **99.6%** explained against the reference face, floor 93% |
-| `npm run vocabulary:level:qa:check` | every level valid, populated and harder than the one below; 235 words held to their editorial band |
-| `npm run docs:consistency:check` | 65 figures across 6 documents |
+| `npm run vocabulary:level:qa:check` | every level valid, populated and harder than the one below; 161 anchors hold; 237 words held to their editorial band. The first release run failed here — 협박하다, retired under the policy, was still an anchor — and the anchor was removed (19c25615) before the artefacts were rebuilt |
+| `npm run docs:consistency:check` | 84 figures across 6 documents |
 | `npm run leveltest:qa:check` | 6,000 simulated sittings — **86.9%** within ±3 levels, MAE **1.80**, floor 85%; 0 questions above the earned ceiling |
 | `npm run leveltest:policy:check` | every contextual level re-derived from the item's own demand; band 1 free of six constructions; 6 beginner profiles × 8 seeds replayed through the real selector — 0 ceiling breaches, 0 sentences in the opening |
-| `npm run leveltest:bank:check` | 625 contextual items, none below its anchor |
+| `npm run leveltest:bank:check` | 3,990 items, 2,135 distinct words, 30 levels; dictionary headwords never asked below level 11 |
 | `npm run leveltest:simulations:check` / `leveltest:content:check` | both generated documents current against the shipped bank |
 | `npm run synthetic:users:qa:check` | **118 journeys**, all pass |
 | `npm run locale:editorial:check` | 0 errors, 0 warnings |
-| `npm run test:e2e` | **594 passed, 0 failed**, exit 0, in 46.6 min across the mobile and desktop projects. Three cases in `journey.spec.ts` were corrected first — see below |
+| `npm run test:e2e` | **594 passed, 0 failed**, exit 0, in 41.5 min across the mobile and desktop projects |
 | Unit suites | web **1,409**, content safety **564**, Korean morphology **237**, handwriting core **96** — **2,306**, all passing |
 | `bash scripts/regression-gates-negative.sh` | **fifteen** sabotage runs, two written this cycle — G9 puts the reported level-7 item back, G10 drops a two-clause sentence into the foundation band. 15 ok, 0 problems, every restoration green |
-| `npm run native:bundle:check` | 14,152 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
-| `npm run release:current` | both delivery manifests at HEAD |
+| `npm run native:bundle:check` | 14,328 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
+| `npm run release:current` | both delivery manifests built from 19c25615; HEAD is one docs-only commit ahead, which the gate accepts by design |
 
 Five gates were negative-tested this refresh by restoring the behaviour they
 exist to catch. Every restoration is undone by regenerating from source, never
@@ -137,10 +137,11 @@ same sequencing trap that cost sixty word recordings this cycle: source →
 loader reads the second, not the first. Re-split, the same truncation produces
 the nineteen findings above.
 
-## Two cases in the release suite were wrong, in opposite directions
+## Two cases in the release suite were wrong, in opposite directions — carried forward from versionCode 23
 
-The e2e run is reported above as 594 passed. It did not start there, and what it
-took to get there is the part worth recording.
+The e2e run is reported above as 594 passed, as it was for versionCode 23. The
+suite did not start there in that cycle, and what it took to get there is the
+part worth keeping.
 
 **One case had been failing in the release run and passing alone for four
 sessions**, written off as a flake each time — `an interrupted lesson resumes at
