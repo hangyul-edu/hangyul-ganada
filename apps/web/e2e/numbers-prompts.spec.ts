@@ -11,6 +11,7 @@ import {
 } from '../src/features/numbers/exercises';
 import { copy } from './helpers/copy';
 import { openApp } from './helpers/launch';
+import { emulateTextScale } from './helpers/textScale';
 
 /**
  * The instruction over a Numbers question says what the question wants.
@@ -374,9 +375,7 @@ test.describe('the ordinal lesson, in a browser', () => {
 
   test('keeps the four ordinal options on one 320-wide screen, at 200% text', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 568 });
-    await page.addInitScript(() => {
-      document.documentElement.style.fontSize = '32px';
-    });
+    await emulateTextScale(page, 2);
     const exercises = await intoPractice(page, ORDINALS, 'num-lesson-ordinals');
     const body = page.getByTestId('numbers-phase-practice');
     const exercise = exercises[0]!;
@@ -452,9 +451,7 @@ test.describe('the question fits the phone', () => {
      * scrolling, which is fine, but it has to exist and be clickable.
      */
     await page.setViewportSize({ width: 320, height: 568 });
-    await page.addInitScript(() => {
-      document.documentElement.style.fontSize = '22px';
-    });
+    await emulateTextScale(page, 22 / 16);
     const exercises = await intoPractice(page, PITFALLS, 'num-lesson-pitfalls');
     const body = page.getByTestId('numbers-phase-practice');
     const exercise = exercises[0]!;

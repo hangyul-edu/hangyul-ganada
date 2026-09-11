@@ -68,6 +68,7 @@ import { chromium } from 'playwright';
 
 import { NUMBER_LESSONS } from '../apps/web/src/data/numbers.ts';
 import { ensurePreview } from './lib/preview.mjs';
+import { textScaleCss } from './lib/text-scale.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CHECK = process.argv.includes('--check');
@@ -332,11 +333,15 @@ for (const test of CASES) {
   });
   const page = await context.newPage();
   await page.addInitScript(
-    ([locale, scale]) => {
+    ([locale, css]) => {
       localStorage.setItem('hangyul_ganada:locale', locale);
-      if (scale !== 1) document.documentElement.style.fontSize = `${16 * scale}px`;
+      if (css) {
+        const style = document.createElement('style');
+        style.textContent = css;
+        (document.head ?? document.documentElement).appendChild(style);
+      }
     },
-    [test.locale, test.scale],
+    [test.locale, textScaleCss(test.scale)],
   );
 
   const where = `${test.name} ×${test.scale} ${test.locale} ${test.scheme}`;

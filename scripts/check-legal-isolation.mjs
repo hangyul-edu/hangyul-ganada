@@ -34,6 +34,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { chromium } from 'playwright';
 
 import { ensurePreview } from './lib/preview.mjs';
+import { textScaleCss } from './lib/text-scale.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const WEB = join(here, '..', 'apps/web/src');
@@ -92,11 +93,12 @@ for (const profile of PROFILES) {
   });
   const page = await context.newPage();
   if (profile.text !== 1) {
-    await page.addInitScript((factor) => {
-      document.addEventListener('DOMContentLoaded', () => {
-        document.documentElement.style.fontSize = `${16 * factor}px`;
-      });
-    }, profile.text);
+    // The type tokens are pixels; the root font size moves nothing. See lib/text-scale.mjs.
+    await page.addInitScript((css) => {
+        const style = document.createElement('style');
+        style.textContent = css;
+        (document.head ?? document.documentElement).appendChild(style);
+      }, textScaleCss(profile.text));
   }
 
   for (const target of PAGES) {

@@ -51,6 +51,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 import { ensurePreview } from './lib/preview.mjs';
+import { textScaleCss } from './lib/text-scale.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
@@ -273,9 +274,12 @@ for (const route of ROUTES) {
     });
     const page = await context.newPage();
     if (variant.scale !== 1) {
-      await page.addInitScript((factor) => {
-        document.documentElement.style.fontSize = `${16 * factor}px`;
-      }, variant.scale);
+      // The type tokens are pixels; the root font size moves nothing. See lib/text-scale.mjs.
+      await page.addInitScript((css) => {
+        const style = document.createElement('style');
+        style.textContent = css;
+        (document.head ?? document.documentElement).appendChild(style);
+      }, textScaleCss(variant.scale));
     }
     const where = `${route.path} @ ${variant.size.name}${variant.scale === 1 ? '' : ` ×${variant.scale}`}${variant.scheme === 'dark' ? ' dark' : ''}`;
     try {

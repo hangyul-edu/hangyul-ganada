@@ -214,7 +214,13 @@ li{margin:0 0 1.2mm}
 code{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:9pt;background:#F4F6F8;padding:0.4mm 1.2mm;border-radius:2px}
 pre{background:#F4F6F8;padding:3mm 4mm;border-radius:3px;overflow:hidden;page-break-inside:avoid;border-left:3px solid var(--line)}
 pre code{background:none;padding:0;font-size:8.5pt;line-height:1.5;white-space:pre-wrap;word-break:break-word}
-table{border-collapse:collapse;width:100%;margin:0 0 4mm;font-size:8.8pt;page-break-inside:avoid}
+table{border-collapse:collapse;width:100%;margin:0 0 4mm;font-size:8.8pt;page-break-inside:auto}
+/* A table may break between rows, never inside one, and its header row repeats
+   on every page it spans. page-break-inside:avoid on the whole table pushed
+   any table taller than the room left to the next page and left eleven pages of
+   the sixteenth-pass render more than ninety percent blank. */
+thead{display:table-header-group}
+tr{page-break-inside:avoid}
 th,td{border:1px solid var(--line);padding:1.8mm 2.2mm;text-align:left;vertical-align:top;word-break:normal;overflow-wrap:break-word}
 /*
   break-word, not anywhere. Both wrap a word that does not fit; only "anywhere"

@@ -1,5 +1,7 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
 
+import { emulateTextScale } from './helpers/textScale';
+
 /**
  * The regression fixture for a bug a physical phone found and this suite did not.
  *
@@ -302,13 +304,10 @@ test.describe('system-bar bounds', () => {
 
   test('enlarged system text does not push the action into the bar', async ({ page }) => {
     await withSystemInset(page, THREE_BUTTON);
-    // What Android's Font size slider does to a WebView: the root font size
-    // grows and every rem-based size grows with it.
-    await page.addInitScript(() => {
-      document.addEventListener('DOMContentLoaded', () => {
-        document.documentElement.style.fontSize = '20px';
-      });
-    });
+    // What Android's Font size slider does to a WebView: every CSS pixel of
+    // text grows. The product's sizes are pixel tokens, so the tokens are
+    // scaled — see helpers/textScale.ts for why the root font size is not it.
+    await emulateTextScale(page, 20 / 16);
     await openFirstConsonant(page);
     await expectClearOfSystemBars(
       page,

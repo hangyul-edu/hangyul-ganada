@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { waitForLaunch } from './helpers/launch';
+import { emulateTextScale } from './helpers/textScale';
 
 /**
  * The Home header: a logo, a streak, a level — and no back control.
@@ -57,11 +58,7 @@ test.describe('the Home header', () => {
         test(`${size.name}, text ×${scale}, ${scheme}`, async ({ page }) => {
           await page.setViewportSize({ width: size.width, height: size.height });
           await page.emulateMedia({ colorScheme: scheme });
-          if (scale !== 1) {
-            await page.addInitScript((factor) => {
-              document.documentElement.style.fontSize = `${16 * factor}px`;
-            }, scale);
-          }
+          await emulateTextScale(page, scale);
           await page.goto('/');
           await waitForLaunch(page);
           await page.waitForTimeout(400);
