@@ -15,6 +15,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { clozeFor } from './cloze';
+import retiredLedger from '../../../../content/vocabulary/retired-words.json';
 import permanentIds from '../../../../content/vocabulary/word-ids.json';
 import { VOCABULARY, getWord } from './vocabulary';
 
@@ -47,8 +48,18 @@ describe('a content change and a learner who already has progress', () => {
      * exists to refuse.
      */
     const neverShipped = new Set(['word_buditda', 'word_sukda', 'word_aigu']);
+    /*
+     * And one more way an id may stop resolving, which is the only honest
+     * one: the word was retired under the child-safe content policy, and a
+     * tombstone in `retired-words.json` says so, with the reason. The
+     * progress row, the saved-word entry and the review schedule are kept on
+     * the device; what changes is that the plan and the review no longer
+     * schedule the word — see `domain/contentSafety.ts`. An id that stops
+     * resolving without a tombstone is still the defect this test refuses.
+     */
+    const retired = new Set(Object.keys((retiredLedger as { words: Record<string, unknown> }).words));
     const missing = Object.entries(PERMANENT)
-      .filter(([, id]) => typeof id === 'string' && !neverShipped.has(id) && !getWord(id))
+      .filter(([, id]) => typeof id === 'string' && !neverShipped.has(id) && !retired.has(id) && !getWord(id))
       .map(([word, id]) => `${word}/${id}`);
     expect(missing).toEqual([]);
   });
