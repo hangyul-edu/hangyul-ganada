@@ -7,7 +7,7 @@ credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
 Re-checked on 12 September 2026 against **v1.0.4, versionCode 25**, compiled
-from a clean checkout of commit `8130a081`. Every item below still stands
+from a clean checkout of commit `420a8e57`. Every item below still stands
 except §9, which is closed: the Xcode project carries 1.0.4 / 25 in both
 configurations. None of the rest is a build problem and none can be cleared
 from this machine. The Android artefacts were rebuilt at versionCode 25 and
@@ -237,10 +237,10 @@ of the four lines, and nothing else in the file: `DEVELOPMENT_TEAM`,
 the `knownRegions` are byte-for-byte what they were, which the lock file's
 setting-by-setting assertions confirm.
 
-**To unblock**, on a Mac with Xcode 26, from commit `8130a081`:
+**To unblock**, on a Mac with Xcode 26, from commit `420a8e57`:
 
 ```bash
-git checkout 8130a081
+git checkout 420a8e57
 npm ci && npm run mobile:sync
 cd apps/mobile/ios/App
 xcodebuild -workspace App.xcworkspace -scheme App -configuration Release \

@@ -8,7 +8,7 @@ them would have produced nothing new in the first case and could not be done on
 this machine in the second. Nothing else is inherited. Where something could not
 be verified it says so rather than being left blank or implied.
 
-**Source:** commit `8130a081` on branch `main`. `build-info.json` →
+**Source:** commit `420a8e57` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
@@ -70,43 +70,16 @@ quotation strings. The full account is §20Z of `docs/report.pdf`.
 
 | Suite / gate | Result |
 | --- | --- |
-| `npm run verify:release` | green from end to end on the delivered tree, including `verify:quick` — exit 0, 16:33 → 18:13 KST on 11 September 2026, run against 3a48f639 (the artefacts' commit plus the docs commit that describes them) |
-| `npm run content:safety:check` | Python evaluator self-test 355/355 fixtures agreeing with the TypeScript evaluator, then the whole inventory: **14 families, 32 locales, 392,477 items, 1,001,715 fields — 0 findings**; the same scanner over the versionCode 23 tree reports 4,333 |
-| `npm run content:safety:bundle:check` | in the release run: `dist/` and both native asset copies — 3 roots, 42,992 files, 1,538,965 fields, 38,074 Korean literals, 0 findings. By hand, with `--apk`/`--aab` on the delivered packages: 5 roots, 71,652 files, 2,564,941 fields, 0 findings, fixtures absent from every archive |
-| `npm run policy:runtime:check` | `runtime-policy.json` and `retired-word-ids.json` current against the full policy |
-| `npm run locale:content:check` | **32 complete · 0 partial · 0 with no vocabulary content yet**; 12,800 simulated questions across 32 languages, all askable, 0 refused for want of a meaning |
-| `npm run locale:practice:check` | 32 locales × 7 levels × 14 days through the real planner and question builder — **0 findings**, from 217 before this cycle. New this refresh and in `verify:release` |
-| `npm run vocabulary:translation:check` | 30 languages compared; every pair that shares a sentence is one English shares too, or is in the ledger with a reason |
-| `npm run translation:semantics:check` | 104,470 rows across 31 locales — **0 findings** |
-| `npm run romanization:qa:check` | 3,370 headwords, 41 rule fixtures, 3,405 word recordings matched to headwords in both voices |
-| `npm run audio:qa` | 13,904 clips, 68.1 MB, 600 decoded — 0 errors, 0 warnings |
-| `npm run content:coverage:check` | every applicable row at 100%, and every one of the 55 unobserved words carries a written reason |
-| `npm run mobile:icons:check` | 59 files, Android from `application_logo_android.png` at 512px, iOS from `application_logo_iphone.png` at 1024px, **neither drawn from the other's artwork** |
-| `npm run numbers:domain:check` | **2,100 questions, 7,811 options**, 3,072 strings across 32 languages, 0 findings |
-| `npm run numbers:qa:check` | 6 modules · **20 lessons** · **112 items** · 9 exercise kinds · 0 problems, in twenty sections including the three written this cycle |
-| `npm run numbers:copy:check` | 8,032 learner-facing strings across 32 languages — 0 findings |
-| `npm run numbers:ledger:check` | **299 distinct questions**, every one read at its current wording; 39 corrected or noted because of a reading, 29 of them this cycle |
-| `bash scripts/numbers-qa-negative.sh` | **fifteen** sabotage runs, each restoring one defect and asserting the gate fires — five of them written this cycle for §18–§20 — then restoring and confirming green. 16 ok, 0 problems |
-| `npm run numbers:layout:check` | 45/45 cases, 3,600 elements: 7 sizes · 100/150/200% text · light and dark · 32 languages, with the twentieth row on the list |
-| `npm run scroll:audit:check` | 26 route/states, 210 measurements, including an answered *ordinal* question at seven phone sizes, at 150% and 200% text, and in dark |
-| `npm run copy:generated:check` | 608 exercises built, 19,456 rendered prompts across 32 languages; **0** compose a sentence under the answer result |
-| `npm run answerability:check` | **1,003,880 generated questions** (32 languages × 3,370 words × 6 modes × 3 attempts) — every one has exactly one option that answers it |
-| `npm run strokes:corners:check` | 73 taught characters, 510 stroke ends, 86 joints, 82 corner terminals — 0 findings |
-| `npm run glyph:structure:check` | 86 junctions probed, weakest **100.0%** |
-| `npm run glyphshape:qa:check` | mean **99.6%** explained against the reference face, floor 93% |
-| `npm run vocabulary:level:qa:check` | every level valid, populated and harder than the one below; 161 anchors hold; 237 words held to their editorial band. The first release run failed here — 협박하다, retired under the policy, was still an anchor — and the anchor was removed (19c25615) before the artefacts were rebuilt |
-| `npm run docs:consistency:check` | 84 figures across 6 documents |
-| `npm run leveltest:qa:check` | 6,000 simulated sittings — **86.9%** within ±3 levels, MAE **1.80**, floor 85%; 0 questions above the earned ceiling |
-| `npm run leveltest:policy:check` | every contextual level re-derived from the item's own demand; band 1 free of six constructions; 6 beginner profiles × 8 seeds replayed through the real selector — 0 ceiling breaches, 0 sentences in the opening |
-| `npm run leveltest:bank:check` | 3,990 items, 2,135 distinct words, 30 levels; dictionary headwords never asked below level 11 |
-| `npm run leveltest:simulations:check` / `leveltest:content:check` | both generated documents current against the shipped bank |
-| `npm run synthetic:users:qa:check` | **118 journeys**, all pass |
-| `npm run locale:editorial:check` | 0 errors, 0 warnings |
-| `npm run test:e2e` | **594 passed, 0 failed**, exit 0, in 41.5 min across the mobile and desktop projects |
-| Unit suites | web **1,409**, content safety **811**, Korean morphology **237**, handwriting core **96** — **2,306**, all passing |
-| `bash scripts/regression-gates-negative.sh` | **fifteen** sabotage runs, two written this cycle — G9 puts the reported level-7 item back, G10 drops a two-clause sentence into the foundation band. 15 ok, 0 problems, every restoration green |
-| `npm run native:bundle:check` | 14,328 files compared inside the APK — 0 missing, 0 different, 4 of 4 web-only files pruned |
-| `npm run release:current` | both delivery manifests built from 19c25615; HEAD is one docs-only commit ahead, which the gate accepts by design |
+| `npm run verify:quick` | green from end to end on the delivered tree — exit 0, 12 September 2026: name, route policy, identity, version, iOS project, **splash**, native locales, content freshness, runtime policy, content safety, i18n, locale content and ledger, copy audit / ledger / **remediation** / generated / fresh, editorial, letters, strokes (×5), glyph shape and structure, letter faces, hints, conjugation (×2), level test (×10), content audit, question and ambiguity ledgers, daily vocabulary and plan (×3), numbers (×4), quotes qa and **quotes audit**, stroke fixtures, vocabulary (×6), tokens, lint, typecheck, unit tests, build, bundle budget, routing, share |
+| `npm run verify:release`, the rest | run gate by gate on this tree after the single chained run was stopped by the machine for memory — every one exit 0: scroll audit (210 measurements, at a *real* 150/200% text), section alignment, legal isolation, dictionary qa / coverage / morphology / perf, content qa, **content safety** (14 families, 32 locales, 393,502 items, 1,003,188 fields, 0 findings; quotations now 22 items / 1,452 fields), korean education, examples, word detail, audio qa and pronunciation, content coverage, issues, vocabulary level and recommendation, locale practice, patent evidence, docs consistency, strokes measure, **quotes render** (768 measurements, 0 findings) |
+| `npm run test:e2e` | **628 passed, 0 failed**, exit 0, 42.9 min across the mobile and desktop projects, on the delivered commit. Two earlier full runs found four, then one, walker cases that did not know the redesigned tray grades on Check and the grid by its test id; the walkers were fixed and the artefacts rebuilt from that commit before this run |
+| Unit suites | web **1,512**, content safety **811**, Korean morphology **237**, handwriting core **96** — **2,656**, all passing |
+| `npm run native:bundle:check` | the app inside the package is the app that was built — 0 missing, 0 different, web-only files pruned |
+| `npm run splash:bundle:check` | the delivered APK packages the adaptive `splash_icon` and five wordless, mark-free layers; no brand mark under any resource name; **fails against the 1.0.6 delivery with 10 findings** |
+| `npm run content:safety:bundle:check` | no packaged asset carries prohibited content |
+| `npm run release:current` | both delivery manifests built from `420a8e57`; the working tree dirty only in docs and the release directories |
+| Cold start | recorded on the API 36 emulator — see the section below and §20Z.2 of the report |
+| Negative runs this cycle | `product.ts` set to 1.0.6 → `version:check` exit 1; the retired-word ingest guard removed → `retiredIngest.test.ts` 2 of 2 fail; a Tamil row removed from Table A / one English word altered in it → the audit-consistency test fails each; `check-native-splash.py --apk` against the 1.0.6 delivery → 10 findings |
 
 Five gates were negative-tested this refresh by restoring the behaviour they
 exist to catch. Every restoration is undone by regenerating from source, never
@@ -190,7 +163,26 @@ catalogue's one universal slot is 1024×1024 RGB with no alpha, which is what Ap
 Store Connect requires; `Contents.json` is unchanged, as are every Xcode-managed
 signing, team, bundle-identifier and provisioning value.
 
-## On a device — carried forward from build 16, not re-run for 22
+## Cold start on the emulator — this build
+
+Recorded, not reasoned about: `scripts/qa-cold-start-android.sh` installs the
+package on the API 36 emulator (`hangyul-pixel7`, headless, software
+rendering), force-stops it, starts `screenrecord`, launches the activity with
+`am start -W`, and extracts a frame every 200 ms. Three starts of **this
+build** and one of the 1.0.6 delivery for the reproduction:
+
+| Start | Frames, in order | Frame means (RGB) |
+| --- | --- | --- |
+| 1.0.6 delivery, clean install | the orange brand mark on the peach ground for the whole recording | 250·236·216 with the mark |
+| 1.0.4, clean install | launcher → the system's launch cross-fade (one frame) → peach ground with the soft disc → the artwork → Home | 79·82·95 → 127·125·129 → 250·236·216 → 248·216·186 → 246·237·228 |
+| 1.0.4, force-stop then start | launcher → disc → artwork → Home; `am start -W` TotalTime 3,756 ms | 79·82·95 → 250·236·217 → 248·216·186 → 245·236·227 |
+| 1.0.4, upgrade install over 1.0.6 | disc → artwork → Home; first launch after the install took 21.8 s to display on this emulator, and about 0.6 s after the artwork appeared the disc frame recurs for three frames before Home, with `Activity transferring splash screen timeout` in logcat at that moment — not reproduced on the clean or force-stop start | 250·236·217 → 248·216·186 → 250·236·216 → Home |
+
+No frame is white, black, or carries the old mark. The frames are in
+`docs/report-assets/coldstart-*.png`; §20Z.2 of the report reads them. The
+emulator was shut down afterwards. Nothing else in the walk below was re-run.
+
+## On a device — carried forward from build 16, not re-run for 25
 
 **Read the version line below before the rest of this section.** The walk
 recorded here was driven against **versionCode 16 / 1.0.3**, which is what its
@@ -247,9 +239,9 @@ viewports.
 ## Not claimed
 
 * **No native-speaker review** of the thirty-one non-Korean bundles, or of
-  Korean. This cycle wrote no new locale strings, so the unread text is the same
-  unread text it was — which is not an improvement, only an absence of a new
-  debt. Every rule in `sentence_demand.py` and in `leveltest:policy` is
+  Korean. This cycle wrote 752 ledger rows of interface strings and 128
+  quotation strings across the languages, read only by their author; 21
+  quotation rows are marked for a native speaker (I-222). Every rule in `sentence_demand.py` and in `leveltest:policy` is
   structural, and structural is a proxy for a judgement no gate here makes:
   **nothing in this repository reads Korean.** See
   `BUILD_OR_SIGNING_BLOCKERS.md` §10 and issue I-17.
@@ -266,8 +258,10 @@ viewports.
 * **No review by anybody who needs the accessibility route.** The sound-free run
   and the per-question escape exist, are gated, and were walked in a browser.
 * **No iOS build.** No `.ipa` exists and none was approximated.
-* **iOS is not at 1.0.3.** Its version is set in Xcode, on a Mac, by the person
-  who archives the build; §9 of the blockers document says exactly how.
+* **iOS carries 1.0.4 / 25 and has no archive.** The two build settings were
+  moved from here, by targeted substitution of four lines, and the lock file
+  proves every other protected setting unchanged; the archive is a Mac's to
+  make (§9 of the blockers document).
 * **The icons were reviewed as renders, not on a home screen.** The masks above
   are drawn by a script, not by a launcher.
 * **No clip was listened to.** The twelve new recordings were checked
@@ -279,8 +273,8 @@ viewports.
 ## Checksums
 
 ```
-00e7d616b87617e4b9136584d97c2903ad0b0e5ae1fb9990aa5e1cdea3b1e30f  hangyul-ganada-release.apk
+a68a367942841b2f22e029a888f15da23aba347a3059bb9d34a40a53d477de4c  hangyul-ganada-release.apk
 91ebe2587747f9dd67d1574730beed0baf0766adaf9e67fc693d1dfe85230107  hangyul-ganada-release.aab
-cfcd2b96434f374aabe40ca4fb3b9f08721657f5439d8c64aa60a0bf44426cc3  docs/report.pdf
-a11890b2bdadc5d615abe1448f55b013eab6426fa35ffda35a24de0f101f2466  build-info.json
+2934ef6d63b6d7c8a6f35a48a00c5a6998b6b79bafb099db979052219a167c31  docs/report.pdf
+92f103b7321818d2a05a595af4c7a4a6449fff1366f10b4e20e10775b48d5727  build-info.json
 ```

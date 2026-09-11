@@ -2416,7 +2416,7 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `8130a081`, working tree clean |
+| Built from | `420a8e57`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
 | Package | `com.talkhangyul.ganada`, versionCode 25, versionName 1.0.4 |
 | SDK | min 24, target 36 |
@@ -2490,8 +2490,20 @@ invented, and the hand-off stays hidden rather than pointing at a guess.
 | Content safety (`vitest`) | **811** (3 files) |
 | End-to-end (`playwright`) | **628** (314 × 2 projects) |
 
-The content-safety suite is new this pass: the 355 shared fixtures through the
-TypeScript evaluator, the Korean and English subset through the runtime
+This pass grew the web suite by 103 — the answer-reveal state machine (6), the
+word-ordering interaction (9), the matching grid rewritten around the
+first-time sequence (13), the two quotations through the real component in
+every locale plus the audit-table consistency (70), the retired-word ingest
+guard (2), the version pin (3) — and the content-safety suite by 247, a sweep
+of every prohibited category across all 32 languages and every Korean surface
+through the evasions the normaliser is meant to see through. The end-to-end
+suite gained the reveal, the chip layout and the quotation specs (17 × 2).
+Three end-to-end walks that drove a session by tapping any grouped button did
+not know the redesigned tray grades on Check; they were taught it, and the
+final run on the delivered commit is **628 of 628** (§20Z.10).
+
+The content-safety suite of the previous pass: the 355 shared fixtures through
+the TypeScript evaluator, the Korean and English subset through the runtime
 evaluator the app ships, and the old three-list gate reproduced and shown to
 pass 섹스하다 (§20Y.4). The Python port runs the same fixtures as the first
 step of `content:safety:check`.
@@ -4330,7 +4342,7 @@ which is the only method that would have.
 
 | | |
 | --- | --- |
-| Unit and integration tests | **2,656 across 86 files** — handwriting-core 96, korean-morphology 237, content-safety 564, web 1409 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
+| Unit and integration tests | **2,656 across 86 files** — handwriting-core 96, korean-morphology 237, content-safety 811, web 1,512 (71 of them the Numbers journeys, negative tests, migration fixtures, exercise-engine tests of §20K and the question-type cases of §20P) |
 | Typecheck, lint, production build | clean |
 | Gates run | every step of `verify:quick` and `verify:release` except the last, all passing — including the two content gates that were blocked earlier in the pass |
 | Gates pending | 1 — `release:current`, red on an uncommitted tree by design (§20J.11) |
@@ -5021,7 +5033,7 @@ untracked files, so no commit described what was in them.
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
 | APK | 90,552,277 bytes (86.4 MiB) |
-| APK sha256 | `00e7d616b87617e4b9136584d97c2903ad0b0e5ae1fb9990aa5e1cdea3b1e30f` |
+| APK sha256 | `a68a367942841b2f22e029a888f15da23aba347a3059bb9d34a40a53d477de4c` |
 | AAB | 88,728,421 bytes (84.6 MiB) |
 | AAB sha256 | `91ebe2587747f9dd67d1574730beed0baf0766adaf9e67fc693d1dfe85230107` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
@@ -9889,8 +9901,8 @@ were not merely retained this pass — they were re-proven from the current
 tree at larger scale (10,000 randomized sittings, 118 synthetic journeys,
 30,000 recommendation events) and then each of the nine major safety gates
 was deliberately broken and shown to fail before being believed (§20H.2).
-The suites run green in full: 2,656 unit cases across four packages — 1,409
-web, 564 content safety, 237 Korean morphology, 96 handwriting — 594 end-to-end, 143 rendered
+The suites run green in full: 2,656 unit cases across four packages — 1,512
+web, 811 content safety, 237 Korean morphology, 96 handwriting — 628 end-to-end, 143 rendered
 screens, 256 locale screens, 199 reachable-action measurements, and the 118
 journeys. The letters are checked
 against a face the app does not draw, and the conjugation panel against a
