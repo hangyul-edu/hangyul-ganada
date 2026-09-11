@@ -33,7 +33,7 @@ export const PRODUCT = {
    */
   name: 'Hangyul Ganada',
   /** Shown in Settings. Matches the root package version. */
-  version: '1.0.6',
+  version: '1.0.4',
   localizedName: {
     en: 'Hangyul Ganada',
     ko: '한귤 가나다',
@@ -102,6 +102,20 @@ export const SUPPORT_EMAIL: string | null =
 /** The version a learner would quote in a support message. */
 export function appVersion(): string {
   return PRODUCT.version;
+}
+
+/**
+ * The version as a learner reads it on screen: `v1.0.4`.
+ *
+ * One spelling, produced in one place. It was rendered through a per-locale
+ * "Version {{version}}" string, which put the bare number on the Legal and
+ * Privacy screens and a different word in front of it in each language; the
+ * release requirement is the conventional `v` form everywhere a learner can
+ * see it, with no dot after the `v` and never any number but the one in
+ * `PRODUCT.version`. `product.test.ts` pins the exact string.
+ */
+export function displayVersion(): string {
+  return `v${PRODUCT.version}`;
 }
 
 /**

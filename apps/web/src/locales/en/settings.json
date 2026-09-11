@@ -45,7 +45,6 @@
     "crosshair": "Centre mark"
   },
   "about": {
-    "version": "Version {{version}}",
     "reset": "Reset learning progress"
   },
   "reset": {

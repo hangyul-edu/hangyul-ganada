@@ -47,7 +47,6 @@
     "crosshair": "Semnul din centru"
   },
   "about": {
-    "version": "Versiunea {{version}}",
     "reset": "Resetează progresul"
   },
   "reset": {

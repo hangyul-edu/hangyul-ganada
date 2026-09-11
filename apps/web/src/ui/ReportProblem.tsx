@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { SUPPORT_EMAIL, appVersion } from '../config/product';
+import { SUPPORT_EMAIL, displayVersion } from '../config/product';
 import { useLocale } from '../i18n';
 import { Modal } from './Modal';
 import styles from './ReportProblem.module.css';
@@ -53,7 +53,7 @@ export function ReportProblem({
     const body = [
       `${t('common:report.field.item')}: ${korean} (${itemId})`,
       `${t('common:report.field.category')}: ${t(`common:report.category.${category}`)}`,
-      `${t('common:report.field.version')}: ${appVersion()}`,
+      `${t('common:report.field.version')}: ${displayVersion()}`,
       `${t('common:report.field.language')}: ${locale}`,
       '',
       t('common:report.writeHere'),

@@ -1,4 +1,4 @@
-# Release notes — 1.0.6
+# Release notes — 1.0.4
 
 Both stores show this to customers. It is the first release, so it says what the
 app is rather than what changed — nothing has been published under any earlier

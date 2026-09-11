@@ -45,7 +45,6 @@
     "crosshair": "Σημάδι κέντρου"
   },
   "about": {
-    "version": "Έκδοση {{version}}",
     "reset": "Μηδένισε την πρόοδο"
   },
   "reset": {

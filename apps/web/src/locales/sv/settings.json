@@ -45,7 +45,6 @@
     "crosshair": "Mittmarkering"
   },
   "about": {
-    "version": "Version {{version}}",
     "reset": "Nollställ dina framsteg"
   },
   "reset": {

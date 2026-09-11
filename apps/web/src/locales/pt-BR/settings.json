@@ -47,8 +47,7 @@
     "crosshair": "Marca central"
   },
   "about": {
-    "reset": "Redefinir o progresso",
-    "version": "Versão {{version}}"
+    "reset": "Redefinir o progresso"
   },
   "reset": {
     "title": "Redefinir todo o seu progresso?",

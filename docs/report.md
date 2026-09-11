@@ -3,7 +3,7 @@ title: Hangyul ganada
 title_ko: 한귤 가나다
 subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, then practical vocabulary — running entirely on the learner's own device.
 document: Product Truth Report
-version: 1.0.6
+version: 1.0.4
 date: 11 September 2026
 describes: The fifteenth pass, and it began with a report from production: a learner sitting the Vocabulary Level Test could be asked what 섹스하다 means. It was true — a level-12 question, its produce twin, and a distractor in two level-10 items, in the bank this document had certified — and the gate written for learner safety was green, because it compared 66 whole headwords against taught words and produce options while the dictionary that supplies the upper levels was declared out of scope and the option ids of meaning items were never resolved. The fix is a policy, not a word: one versioned child-safe content policy in seven categories with surface forms in 32 languages, two evaluators held to 355 shared fixtures, and seven gates that read it — import, dictionary publication, assessment generation, the finished item in every language, the runtime on every bank load, CI over 14 families and a million fields, and the packaged APK and AAB. The shipped commit scanned under it held 4,333 findings; 23 taught words were retired with tombstones, 694 dictionary headwords and 525 senses refused, one injury-centred example rewritten with its recordings, and everything downstream regenerated to 0. A learner keeps every progress row. Artefacts rebuilt at 1.0.6, versionCode 24.
 mark: report-assets/mark.png

@@ -45,7 +45,6 @@
     "crosshair": "Middelpunt"
   },
   "about": {
-    "version": "Versie {{version}}",
     "reset": "Leervoortgang wissen"
   },
   "reset": {

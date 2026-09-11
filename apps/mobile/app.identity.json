@@ -8,10 +8,10 @@
     "googlePlay": false,
     "appStoreConnect": false
   },
-  "_version_comment": "1.0.6. Moved up from 1.0.5 because this release changes what a learner reads: twenty-three taught words were retired under the child-safe content policy (docs/CHILD_SAFE_CONTENT_POLICY.md) — 살인, 무기, 총알, 미사일, 전쟁, 죽이다, 취하다, 벌거벗다 and fifteen more — one example sentence was rewritten with its thirty-one translations and two new recordings, the searchable dictionary lost 694 headwords and 525 senses the policy refuses, and the Level Test bank, the daily gap-fills and the audio manifest were regenerated from the corrected corpus. What a customer would notice: the course teaches 3,370 words rather than 3,393, and a placement question can no longer offer 섹스하다 as a choice, which one did. Nothing has been uploaded to either console — see `registered` — so no listing has to be explained.",
-  "version": "1.0.6",
-  "_buildNumber_comment": "24, because 23 is spent. The delivered APK and AAB both report versionCode 23 and product files have changed since: the content-safety policy, the builders that read it, the runtime gate that revalidates a bank on load, and every generated content file. A code that has been used by a set of bytes is not reused for different bytes; `scripts/check-version-consistency.mjs` said so before this build rather than after, which is what I-152 exists for.",
-  "buildNumber": 24,
+  "_version_comment": "1.0.4 — the marketing version the release is published under. The tree carried 1.0.6 for one cycle (bumped from 1.0.5 for the child-safe content retirements) but nothing was ever uploaded under 1.0.5 or 1.0.6 — `registered` below is false for both stores and every build-info.json on record says so — so the number is free to be set to the intended one. A marketing version is a string the stores compare only against what they have already accepted, and they have accepted nothing. The build number is a different matter: see `_buildNumber_comment`. `scripts/check-version-consistency.mjs` holds every other copy to this value and `apps/web/src/config/product.test.ts` pins the literal 1.0.4 so a stray 1.0.6 cannot come back through any file.",
+  "version": "1.0.4",
+  "_buildNumber_comment": "25, because 24 is spent. The delivered APK and AAB in result/ report versionCode 24 and product files change in this release (the launch screen, the quotation library, the daily-words answer reveal, the choice layouts, the copy). A code that has been used by a set of bytes is not reused for different bytes, and a marketing version going *down* from 1.0.6 to 1.0.4 changes nothing about that: Play orders builds by versionCode alone, so 1.0.4 at code 25 supersedes 1.0.6 at code 24. Never decrease this.",
+  "buildNumber": 25,
   "android": {
     "_comment": "targetSdk 36 because Google Play requires Android 16 for new apps and updates from 31 August 2026. minSdk 24 is Capacitor 8's floor and covers ~99% of active devices.",
     "targetSdk": 36,
@@ -20,10 +20,10 @@
   },
   "ios": {
     "xcode": {
-      "_comment": "What `App.xcodeproj/project.pbxproj` currently carries, written down here so that a check can tell a *deliberate lag* from a *drift*. The Xcode project is maintained on a Mac, by hand, through the Xcode UI: MARKETING_VERSION and CURRENT_PROJECT_VERSION are build settings Xcode owns, and editing them from Linux with a text substitution is how a project file loses a setting it was never asked about. So this release moves Android to 1.0.6 build 24 and leaves iOS where its maintainer left it. `scripts/check-version-consistency.mjs` asserts the project file matches these two values exactly — any other change to it fails — and prints the pending action while they are behind `version` and `buildNumber`.",
-      "marketingVersion": "1.0.3",
-      "currentProjectVersion": 5,
-      "pending": "iOS is behind: set MARKETING_VERSION to 1.0.6 and CURRENT_PROJECT_VERSION to 24 in Xcode (App target, both configurations), then update the two values above in the same commit. The project file is not edited from here — see the comment above."
+      "_comment": "What `App.xcodeproj/project.pbxproj` carries, written down here so that a check can tell a *deliberate lag* from a *drift*. For this release the two settings were moved in step with Android — MARKETING_VERSION 1.0.3 → 1.0.4 and CURRENT_PROJECT_VERSION 5 → 25, in both build configurations and touching nothing else in the project file — because the release requirement is one marketing version everywhere, and the store build number must stay ahead of every number ever used on either platform. `scripts/check-version-consistency.mjs` asserts the project file matches these two values exactly. The project file is otherwise Xcode-managed and no other setting in it is edited from Linux.",
+      "marketingVersion": "1.0.4",
+      "currentProjectVersion": 25,
+      "pending": "None. iOS carries the same marketing version and build number as Android; the archive itself still has to be produced on macOS with Xcode — see docs/DEPLOYMENT.md."
     },
     "_comment": "15.0 to match IPHONEOS_DEPLOYMENT_TARGET in the Xcode project — the two disagreeing is how a build succeeds and then crashes on a device the store said it supported. Capacitor 8's own floor is 14; 15 is chosen because it is what the project is configured for and covers every device Apple still updates. Apple requires builds made with the iOS 26 SDK from 28 April 2026; that is the SDK you build *with*, not the version you deploy *to*.",
     "deploymentTarget": "15.0"

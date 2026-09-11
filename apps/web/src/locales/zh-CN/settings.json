@@ -43,8 +43,7 @@
     "crosshair": "中心标记"
   },
   "about": {
-    "reset": "重置学习进度",
-    "version": "版本 {{version}}"
+    "reset": "重置学习进度"
   },
   "reset": {
     "title": "要重置全部学习进度吗？",

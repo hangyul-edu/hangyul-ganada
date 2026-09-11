@@ -21,12 +21,15 @@ and the PWA manifest are given.
 read it once the two platform sources arrived, so it sat carrying the previous
 artwork through a logo change; it is deleted rather than regenerated.
 
-`brand/logo-symbol.png` — the orange on its own — is the **brand mark**. It is
-the app talking about itself *inside* itself: the splash screen the app draws
-while it boots, and the favicon a browser tab shows next to a page title. A tab
-favicon is 16 px, and at 16 px a hand holding an orange is a smudge, so the tab
-keeps the mark. These are separate concerns and they stay separate: changing the
-app icon must not silently change what a browser tab looks like.
+`brand/logo-symbol.png` — the orange on its own — is the **brand mark**, and
+the only thing built from it now is the favicon a browser tab shows next to a
+page title. A tab favicon is 16 px, and at 16 px a hand holding an orange is a
+smudge, so the tab keeps the mark. It used to be the Android 12+ system splash
+icon as well, which put a mark on the launch screen that the approved splash
+artwork does not carry; the system splash icon is now cut from the artwork
+itself — see `SPLASH_CENTRE_FRACTION`. These are separate concerns and they stay
+separate: changing the app icon must not silently change what a browser tab
+looks like.
 
 ## The three icon shapes, and why they are not the same file
 
@@ -193,13 +196,30 @@ ANDROID_ADAPTIVE_FRACTION = 0.51
 #: is the measured limit for the current artwork; this sits one step under.
 MASKABLE_SAFE_FRACTION = 0.69
 
-#: How much of the Android 12+ system splash canvas `logo-symbol.png` occupies.
+#: The Android 12+ system splash icon is cut from the splash artwork itself.
 #:
-#: This is the *mark*, not the app icon — see the module docstring on why the
-#: splash keeps the mark — so it is measured against its own silhouette. The
-#: mark is wider than the icon artwork and overflows the 66/108 circle at the
-#: launcher's fraction, which `_assert_inside_safe_zone` catches.
-SPLASH_ICON_FRACTION = 0.49
+#: It used to be `logo-symbol.png` — the flat orange with ㄱㄴㄷ on it — drawn at
+#: 0.49 of the canvas. That mark is in neither the launcher icon (the mascot)
+#: nor the splash artwork (a wordmark on a wash), so a cold start on Android 12
+#: and newer showed a learner three things: an orange nothing else in the app
+#: draws, then the *Han gyul* artwork, then the app. A customer photographed
+#: exactly that and called the orange the old logo, which is what it is.
+#:
+#: The approved splash has no mark. Its centre is a soft peach circle on the
+#: warm ground, and that circle is what the system frame now shows: a square
+#: cut from the wordless artwork around its centre, `SPLASH_CENTRE_FRACTION` of
+#: the artwork's width across, its edge feathered to transparent so it sits on
+#: `splashBackground` without a seam. The system draws it, the activity's first
+#: frame draws the whole artwork on the same ground with the same circle in the
+#: same place, and the wordmark and jamo appear *on* the frame the learner is
+#: already looking at. One splash, and every pixel of it from the approved file.
+SPLASH_CENTRE_FRACTION = 0.78
+
+#: Where the feather starts and ends, as fractions of the cut's half-width.
+#: Inside `SPLASH_FEATHER[0]` the cut is opaque; at `SPLASH_FEATHER[1]` it is
+#: fully transparent. The band between them is the artwork's own next ring
+#: fading into the ground colour, which is what makes the seam invisible.
+SPLASH_FEATHER = (0.86, 1.0)
 
 #: Luminance below which a pixel is a *feature* rather than the body, when the
 #: monochrome layer is flattened.
@@ -550,6 +570,81 @@ def _centred(mark: Image.Image, size: tuple[int, int], fraction: float,
     return canvas
 
 
+def _splash_centre(art: Image.Image) -> Image.Image:
+    """The splash artwork's own centre, as a feathered square cut.
+
+    `art` is the wordless artwork. The cut is `SPLASH_CENTRE_FRACTION` of its
+    width on each side, centred on the canvas centre — which is where the
+    artwork's radial wash is centred, and where Android centres the system
+    splash icon. Alpha is 1 inside `SPLASH_FEATHER[0]` of the half-width and
+    falls to 0 at `SPLASH_FEATHER[1]`, radially, so the outer band is the
+    artwork's own colour dissolving into whatever it is drawn on.
+    """
+    width, height = art.size
+    side = int(round(width * SPLASH_CENTRE_FRACTION))
+    left = (width - side) // 2
+    top = (height - side) // 2
+    cut = art.crop((left, top, left + side, top + side)).convert("RGBA")
+
+    rows, cols = numpy.mgrid[0:side, 0:side]
+    half = side / 2.0
+    radius = numpy.sqrt((rows - half + 0.5) ** 2 + (cols - half + 0.5) ** 2) / half
+
+    # The artwork scatters small white dots across the wash, and one falls
+    # inside the cut. The system icon is a fixed 240–288 dp while the artwork
+    # scales with the screen, so a dot in the icon and the same dot in the
+    # artwork land a few pixels apart and *hop* at the handover. The wash under
+    # it is a function of radius alone, so the dot is repainted with the median
+    # of its own ring — the same repair `_wordless` makes under the type.
+    pixels = numpy.asarray(cut, dtype=numpy.uint8).copy()
+    rgb = pixels[:, :, :3].astype(numpy.int32)
+    dots = rgb.min(axis=2) > 240
+    if dots.any():
+        dots = numpy.asarray(
+            Image.fromarray((dots * 255).astype(numpy.uint8)).filter(ImageFilter.MaxFilter(7))
+        ) > 0
+        ring_index = (radius * half).astype(numpy.int32)
+        for channel in range(3):
+            values = rgb[:, :, channel]
+            for ring in numpy.unique(ring_index[dots]):
+                on_ring = ring_index == ring
+                clean = on_ring & ~dots
+                fill = numpy.median(values[clean]) if clean.any() else numpy.median(values[~dots])
+                pixels[:, :, channel][on_ring & dots] = int(round(float(fill)))
+    cut = Image.fromarray(pixels, "RGBA")
+    inner, outer = SPLASH_FEATHER
+    alpha = numpy.clip((outer - radius) / (outer - inner), 0.0, 1.0)
+    # A smooth step rather than a straight ramp: a linear feather still prints a
+    # visible ring where its slope changes.
+    alpha = alpha * alpha * (3 - 2 * alpha)
+    pixels = numpy.asarray(cut, dtype=numpy.uint8).copy()
+    pixels[:, :, 3] = (alpha * 255).round().astype(numpy.uint8)
+    return Image.fromarray(pixels, "RGBA")
+
+
+def _assert_splash_icon_is_wordless(icon: Image.Image) -> None:
+    """The system splash icon must carry no type and no jamo.
+
+    Nothing running that early knows the learner's language, so the frame the
+    system draws must not say anything. The wordmark is the brand's saturated
+    orange and the tagline is near-black; the decorative jamo are brown, yellow
+    and muted orange. All of them are far darker or far more saturated than the
+    wash, so a saturation test over the visible pixels finds any of them.
+    """
+    pixels = numpy.asarray(icon.convert("RGBA"), dtype=numpy.int32)
+    visible = pixels[:, :, 3] > 32
+    rgb = pixels[:, :, :3][visible]
+    if rgb.size == 0:
+        raise SystemExit("splash icon: the cut is entirely transparent")
+    spread = rgb.max(axis=1) - rgb.min(axis=1)
+    dark = rgb.min(axis=1) < 150
+    if int((spread > 110).sum()) > 0 or int(dark.sum()) > 0:
+        raise SystemExit(
+            "splash icon: the centre cut carries ink (a wordmark, a tagline or a "
+            "jamo). Reduce SPLASH_CENTRE_FRACTION or re-check _wordless."
+        )
+
+
 def _png(image: Image.Image) -> bytes:
     buffer = io.BytesIO()
     image.save(buffer, "PNG", optimize=True)
@@ -738,29 +833,30 @@ def build() -> dict[Path, bytes]:
     # --- Android 12+ system splash icon --------------------------------------
     #
     # Android 12 and newer always draw a system splash and an app cannot opt
-    # out. Left unset, `windowSplashScreenAnimatedIcon` falls back to the
-    # **launcher icon**, so a cold start read as three screens: the mandarin
-    # tile, then the app's own splash with the jamo mark, then the app. Two
-    # different marks in a row is what makes it read as two splashes.
+    # out: a background colour and an icon, before any of the app's code runs.
+    # Left unset, `windowSplashScreenAnimatedIcon` falls back to the launcher
+    # icon; set to the brand mark, it showed a mark the splash itself does not
+    # carry. Either way the learner saw a picture, then a different picture.
     #
-    # Supplying the splash's *own* mark makes the system frame the first frame
-    # of the configured splash rather than a picture of the launcher. The ground
-    # colour already matches, so what a learner sees is the ground, the mark,
-    # then the wordmark resolving on top of it — one splash.
+    # So the icon is the splash. `_splash_centre` cuts the approved artwork's
+    # own centre circle out of the wordless rendering and feathers its edge, and
+    # the theme draws it on the artwork's ground colour. What the system shows
+    # is therefore the first frame of the artwork — ground and centre — and the
+    # activity's first frame completes it. See `SPLASH_CENTRE_FRACTION`.
     #
-    # Drawn on the adaptive-icon canvas because the system masks and scales this
-    # the same way it does a launcher icon: 108/48 of the nominal size, artwork
-    # inside the safe circle, transparent outside it.
-    # `SPLASH_ICON_FRACTION` is its own number rather than a multiple of the
-    # launcher's: this draws `logo-symbol.png`, which is a different shape from
-    # the app icon, so its limit moves when the mark changes and not when the
-    # app icon does. It used to be `ADAPTIVE_SAFE_FRACTION * 0.94`, which tied
-    # the splash to a constant about other artwork.
+    # Drawn edge to edge on the adaptive canvas rather than inside the 66/108
+    # safe circle: the system places a plain bitmap unmasked, and the feather is
+    # its own edge. The only hard requirement is that nothing here is *ink* —
+    # `_assert_splash_icon_is_wordless` proves the cut carries no wordmark and no
+    # jamo, so it can never say anything in any language.
+    splash_art = _wordless(Image.open(SPLASH_SOURCE))
+    centre = _splash_centre(splash_art)
+    _assert_splash_icon_is_wordless(centre)
     for density, size in ANDROID_DENSITIES.items():
         canvas = round(size * 108 / 48)
-        splash_icon = _centred(mark, (canvas, canvas), SPLASH_ICON_FRACTION, None)
-        _assert_inside_safe_zone(splash_icon, 66 / 108, "splash screen icon")
-        files[ANDROID_RES / f"mipmap-{density}" / "splash_icon.png"] = _png(splash_icon)
+        files[ANDROID_RES / f"mipmap-{density}" / "splash_icon.png"] = _png(
+            centre.resize((canvas, canvas), Image.LANCZOS)
+        )
 
     # --- Android legacy splash, localized ------------------------------------
     #
@@ -794,7 +890,6 @@ def build() -> dict[Path, bytes]:
             files[ANDROID_RES / name / "splash.png"] = _png(
                 _launch_bitmap(art, size, SPLASH_GROUND)
             )
-    splash_art = _wordless(Image.open(SPLASH_SOURCE))
 
     # --- iOS -----------------------------------------------------------------
     #

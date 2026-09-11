@@ -118,7 +118,40 @@ const VERSION_SITES = [
     what: 'the privacy policy header',
     pattern: /\*\*Hangyul ganada\*\* · version ([0-9.]+)/,
   },
+  /*
+   * The two files a customer or a reviewer reads *first*, which were the two
+   * this gate did not read. The release notes said 1.0.0 for three bumps and
+   * the report's front matter said 1.0.6 under a tree that had been set back
+   * to 1.0.4 — each the one place a wrong number would be quoted from.
+   */
+  {
+    rel: 'store/release-notes.md',
+    what: 'the release notes heading',
+    pattern: /^# Release notes — ([0-9.]+)/m,
+  },
+  {
+    rel: 'docs/report.md',
+    what: 'the report front matter',
+    pattern: /^version: ([0-9.]+)$/m,
+  },
 ];
+
+/*
+ * The number itself, not only its agreement.
+ *
+ * Every site above is held to `app.identity.json`, so a tree in which every
+ * copy had moved to the same wrong number would pass. The product's own unit
+ * test (`apps/web/src/config/product.test.ts`) pins the literal, and this pins
+ * the same literal here so the gate cannot go green on a wrong-but-consistent
+ * tree without somebody editing both. Update both in the release commit.
+ */
+const RELEASE_VERSION = '1.0.4';
+if (VERSION !== RELEASE_VERSION) {
+  fail('app.identity.json', `version is "${VERSION}"; this release is ${RELEASE_VERSION}`);
+}
+/* The `v` form a learner reads. `v.1.0.4` and `v1.0.6` are the two shapes that were reported. */
+const display = /displayVersion[\s\S]*?return `v\$\{PRODUCT\.version\}`/.test(read('apps/web/src/config/product.ts'));
+if (!display) fail('config/product.ts', 'displayVersion() no longer renders `v` + PRODUCT.version');
 
 for (const site of VERSION_SITES) {
   const text = read(site.rel);
@@ -291,7 +324,8 @@ console.log(`  build number          ${BUILD}`);
 console.log(
   '  files checked         app.identity.json · mobile package.json · config/product.ts ·\n' +
     '                        project.pbxproj (×2 configurations) · build.gradle ·\n' +
-    '                        support.md · licences.md · privacy-policy.md',
+    '                        support.md · licences.md · privacy-policy.md ·\n' +
+    '                        release-notes.md · report.md front matter',
 );
 if (XCODE) {
   console.log(`  iOS (Xcode-managed)   ${XCODE.marketingVersion} build ${XCODE.currentProjectVersion}`);

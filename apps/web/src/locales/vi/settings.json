@@ -45,7 +45,6 @@
     "crosshair": "Dấu tâm ô"
   },
   "about": {
-    "version": "Phiên bản {{version}}",
     "reset": "Xóa toàn bộ tiến độ học"
   },
   "reset": {

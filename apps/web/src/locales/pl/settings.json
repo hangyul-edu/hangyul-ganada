@@ -49,7 +49,6 @@
     "crosshair": "Znacznik środka"
   },
   "about": {
-    "version": "Wersja {{version}}",
     "reset": "Wyzeruj postęp nauki"
   },
   "reset": {

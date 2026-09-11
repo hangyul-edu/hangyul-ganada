@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { PRODUCT, productName } from '../config/product';
+import { displayVersion, productName } from '../config/product';
 import { PRACTICE_FONTS } from '../data/fonts';
 import { RELATION_SOURCE } from '../data/relations';
 import { CONTENT_SOURCES } from '../data/vocabulary';
@@ -132,7 +132,7 @@ export function LegalPage() {
         </section>
 
         <p className={styles.version}>
-          {productName(locale)} · {t('settings:about.version', { version: PRODUCT.version })}
+          {productName(locale)} · {displayVersion()}
         </p>
       </div>
     </div>

@@ -49,7 +49,6 @@
     "crosshair": "Značka středu"
   },
   "about": {
-    "version": "Verze {{version}}",
     "reset": "Vynulovat postup"
   },
   "reset": {

@@ -99,17 +99,20 @@ const config: CapacitorConfig = {
        * written out three times because neither Gradle nor a Capacitor config
        * can import from the web workspace.
        *
-       * The bitmap carries **no words in any language**, and that is the point.
-       * Nothing running this early can know the learner's interface language —
-       * it lives in the app's own storage and only the WebView can read it —
-       * and the device locale is a different question that would be wrong for
-       * anyone who has ever changed the setting. For one release this shipped
-       * the English artwork and the cost was a Korean learner reading *Han
-       * gyul* in English and then watching it be replaced. `_wordless` in
-       * `scripts/content/build_app_icons.py` now paints the type out of the
-       * artwork and leaves the ground, the wash and the jamo, so the native
-       * screen says nothing and `ui/LaunchSplash` says it in the right
-       * language a frame or two later, on the same colour.
+       * Three frames, one ground, one artwork. On Android 12 and newer the
+       * system draws its own frame first — this colour, with
+       * `mipmap/splash_icon` on it, which is a feathered cut of the artwork's
+       * own centre circle rather than any mark (an orange brand mark sat
+       * there for one release and a customer photographed it as an "old logo"
+       * in front of the real splash). Then the activity's first frame draws
+       * `drawable/splash`, localized by resource qualifier — `drawable-ko` is
+       * the Korean artwork, the default is the English — and `ui/LaunchSplash`
+       * draws the same artwork in the *app's* language a frame later. A
+       * learner whose phone is in English and whose app is in Korean sees the
+       * English native frame and then the Korean one; that gap is real and is
+       * recorded in the report rather than hidden. `scripts/check-native-splash.py`
+       * proves every frame is wordless where it must be and mark-free
+       * everywhere.
        */
       backgroundColor: '#FFF1E1',
       androidScaleType: 'CENTER_CROP',

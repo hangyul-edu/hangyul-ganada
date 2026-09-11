@@ -45,7 +45,6 @@
     "crosshair": "Középjel"
   },
   "about": {
-    "version": "{{version}} verzió",
     "reset": "Haladás nullázása"
   },
   "reset": {

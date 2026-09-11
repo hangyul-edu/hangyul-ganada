@@ -45,8 +45,7 @@
     "crosshair": "Mittelmarke"
   },
   "about": {
-    "reset": "Lernfortschritt zurücksetzen",
-    "version": "Version {{version}}"
+    "reset": "Lernfortschritt zurücksetzen"
   },
   "reset": {
     "title": "Den gesamten Lernfortschritt zurücksetzen?",

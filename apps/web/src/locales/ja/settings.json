@@ -43,8 +43,7 @@
     "crosshair": "中心の印"
   },
   "about": {
-    "reset": "学習の記録をリセット",
-    "version": "バージョン {{version}}"
+    "reset": "学習の記録をリセット"
   },
   "reset": {
     "title": "学習の記録をすべてリセットしますか？",

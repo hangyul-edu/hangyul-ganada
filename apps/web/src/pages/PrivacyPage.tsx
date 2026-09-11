@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { PRODUCT, productName } from '../config/product';
+import { displayVersion, productName } from '../config/product';
 import { useLocale } from '../i18n';
 import { AppHeader } from '../ui/AppHeader';
 import { Card } from '../ui/Card';
@@ -83,7 +83,7 @@ export function PrivacyPage() {
         ))}
 
         <p className={styles.version}>
-          {productName(locale)} · {t('settings:about.version', { version: PRODUCT.version })}
+          {productName(locale)} · {displayVersion()}
         </p>
       </div>
     </div>

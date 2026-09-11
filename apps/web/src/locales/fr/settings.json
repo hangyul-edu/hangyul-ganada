@@ -47,8 +47,7 @@
     "crosshair": "Repère central"
   },
   "about": {
-    "reset": "Réinitialiser la progression",
-    "version": "Version {{version}}"
+    "reset": "Réinitialiser la progression"
   },
   "reset": {
     "title": "Réinitialiser toute votre progression ?",

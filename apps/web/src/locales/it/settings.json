@@ -47,7 +47,6 @@
     "crosshair": "Segno al centro"
   },
   "about": {
-    "version": "Versione {{version}}",
     "reset": "Azzera i progressi"
   },
   "reset": {

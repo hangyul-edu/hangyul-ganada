@@ -49,7 +49,6 @@
     "crosshair": "Отметка центра"
   },
   "about": {
-    "version": "Версия {{version}}",
     "reset": "Сбросить прогресс"
   },
   "reset": {
