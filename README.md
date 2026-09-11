@@ -321,7 +321,9 @@ Run from the repository root unless noted.
 | `npm run docs:report` | Build `docs/report.pdf` from `docs/report.md` |
 | `npm run examples:qa` | Example-sentence teaching quality — a release blocker |
 | `npm run korean:education:qa` | Every check that reads the Korean, run as one gate — and it prints, every time, that a green run does **not** prove native naturalness |
-| `npm run content:safety:qa` | What a learner can be shown, checked on the *composed* sentence rather than on the word |
+| `npm run content:safety:qa` | The child-safe content policy over every learner-facing surface — 14 content families, 32 locales, the composed sentence as well as the word. `:check` fails the build on any finding; see `docs/CHILD_SAFE_CONTENT_POLICY.md` |
+| `npm run content:safety:bundle` | The same policy read out of `dist/`, the native asset copies and (with `--apk`/`--aab`) the signed packages |
+| `npm run policy:runtime` | Rebuild the runtime subset of the policy the app ships |
 | `npm run examples:stereotypes` | Who does what in the corpus, counted by domain and by gendered marker. A report to read, not a gate |
 | `npm run mobile:walk` | The photographed screens, re-read on the Android emulator (needs `ANDROID_HOME` and the debug build installed) |
 | `npm run review:benchmark` | The adaptive review scheduler against the fixed-interval one it replaced |

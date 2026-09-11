@@ -17,6 +17,8 @@ recording ships inside the app.
 |:---|:---|
 | `docs/ARCHITECTURE.md` | System architecture |
 | `docs/CLAUDE_ENVIRONMENT_STABILITY.md` | **Why long sessions were dying, and the WSL/host settings that fix it. Read before touching `.wslconfig`, memory or build concurrency.** |
+| `docs/CHILD_SAFE_CONTENT_POLICY.md`, `docs/CHILD_SAFE_CONTENT_AUDIT.md`, `docs/CHILD_SAFE_CONTENT_REMEDIATION_LEDGER.md` | **The child-safe content policy every learner-facing string is held to, the audit that produced it, and every item it retired. Read before adding or importing content; the policy lives in `packages/content-safety`.** |
+| `docs/CONTENT_GENERATION_AND_REVIEW_PIPELINE.md` | How a content item is built, validated (child-safety stage included) and published; the rebuild order |
 | `docs/AUDIO.md` | Pronunciation corpus and audio pipeline |
 | `docs/HANDWRITING_EVALUATION.md` | Stroke/handwriting scoring |
 | `docs/VOCABULARY_DATA.md`, `docs/VOCABULARY_LEVEL_CALIBRATION.md` | Vocabulary dataset and levelling |
@@ -27,7 +29,7 @@ recording ships inside the app.
 ## Layout
 
 npm workspaces: `apps/web`, `apps/mobile`, `apps/common_assets`, and
-`packages/{design-tokens,handwriting-core,korean-morphology,shared-types}`.
+`packages/{content-safety,design-tokens,handwriting-core,korean-morphology,shared-types}`.
 Node >= 20.
 
 ## Commands

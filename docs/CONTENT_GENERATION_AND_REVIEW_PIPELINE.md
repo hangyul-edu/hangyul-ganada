@@ -1,24 +1,35 @@
 # How learner-facing content is made, checked and approved
 
-*Written 10 September 2026. It describes the lifecycle a Korean item passes
-through before a learner can see it, and names the file that holds each stage.*
+*Written 10 September 2026; the child-safety stage added 11 September 2026. It
+describes the lifecycle a Korean item passes through before a learner can see
+it, and names the file that holds each stage.*
 
 ---
 
 ## 1. The shape of the pipeline
 
 ```
-   editorial source            content/vocabulary/entries/*.jsonl   (3,393 taught words)
+   editorial source            content/vocabulary/entries/*.jsonl   (3,370 taught words)
         │                      content/vocabulary/copy/*.json       (24 locale packs)
+        │                      content/vocabulary/retired-words.json (23 tombstones)
         │
         ▼  structural validation      build_vocabulary.py — schema, headword length,
         │                             part-of-speech override, gloss shape, sense id
         │
+        ▼  child-safety validation    build_vocabulary.py → refuse_unsafe_rows, the
+        │                             one policy (packages/content-safety); a row that
+        │                             fails stops the build with the row named
+        │
         ▼  deterministic language     korean-morphology (one conjugator), particle
         │  checks                     allomorphs, safety frames, noun classes
         │
-        ▼  generation                 build_level_test.py  → ranked anchors
+        ▼  generation                 build_level_test.py  → ranked anchors (policy on
+        │                             headword, gloss and example; retired words out)
         │                             build_level_test.mjs → the item bank + cloze.json
+        │                             (policy on every distractor and every composed
+        │                             sentence, then on the finished item in 32 languages)
+        │                             build_dictionary.py  → the searchable dictionary
+        │                             (policy on headword, every sense, every example)
         │                             content/vocabulary/context-items.json →
         │                             hand-written items, validated by the same rules
         │
@@ -29,10 +40,17 @@ through before a learner can see it, and names the file that holds each stage.*
         ▼  localisation validation    i18n / locale:content / copy:fresh /
         │                             translation:semantics / leveltest:locale
         │
-        ▼  approved                   the gates in verify:quick pass
+        ▼  approved                   the gates in verify:quick pass — including
+        │                             content:safety:check over every family and locale
         │
-        ▼  publishable                public/level-test, public/corpus, the APK
+        ▼  publishable                public/level-test, public/corpus, the APK —
+                                      read again by content:safety:bundle:check, and
+                                      once more on the device by the runtime gate
 ```
+
+The lifecycle is `DRAFT → STRUCTURALLY_VALID → CHILD_SAFETY_VALID →
+LANGUAGE_VALID → REVIEWED → PUBLISHABLE`; nothing that fails the child-safety
+stage reaches the next one. The policy itself is `docs/CHILD_SAFE_CONTENT_POLICY.md`.
 
 **Generated output is never the source of truth.** `apps/web/public/level-test/`
 and `apps/web/src/data/generated/` are build products; a correction made there
@@ -122,6 +140,26 @@ prove the code it was written about ran.
 See §1 of `CONTENT_QUALITY_STANDARD.md`. **Fixed** by
 `scripts/level-test-distractor-qa.mjs`, added to `verify:quick`.
 
+### 2.5 Three word lists, none of which held the word that shipped
+
+Found 11 September 2026: `dict_섹스하다` was a level-12 Level Test question and
+a distractor in two more, and `npm run content:safety:check` was green. The
+safety layer was three lists in three files — a whole-headword list in
+`learner-safety.json` (it had 섹스; the headword was 섹스하다), a substring list
+in `build_level_test.py` (it never had 섹스), and an English gloss test (it
+looked for "sexual"; the gloss was "to have sex") — and the gate that read the
+first list never resolved the option ids of `meaning` items, so a dictionary
+anchor used as a distractor was invisible to it. The dictionary, the pool the
+upper levels are drawn from, had been declared out of scope.
+
+**Fixed** at the structure, not the word. One versioned policy
+(`packages/content-safety/policy/child-safe-content-policy.json`) with two
+evaluators held to the same 355 fixtures; every builder, the runtime and the
+release scan read it; the dictionary is a learner-facing surface like every
+other; a finished item is read in every language before it is written. The
+old gate is reproduced in `packages/content-safety/src/legacy.test.ts` and
+shown to pass the row. Full account: `docs/CHILD_SAFE_CONTENT_AUDIT.md`.
+
 ---
 
 ## 3. The review stage
@@ -185,7 +223,19 @@ hand-edit to a generated file from surviving.
 
 ---
 
-## 6. Rebuild order
+## 6. Retiring a word
+
+A word that the policy refuses is **retired, never deleted**: set `k: 0` on
+its pack row with the reason, add a tombstone to
+`content/vocabulary/retired-words.json` (id, word, policy category, reason,
+date, previous example, replacement or `null`), remove its rows from the 24
+copy packs, and rebuild. The id stays in `word-ids.json`;
+`contentCompatibility.test.ts` allows an id to stop resolving only with a
+tombstone. On a device, the plan repair drops the word from what is still
+owed, the review builder stops asking it, the mistakes notebook stops listing
+it, and every progress row is kept.
+
+## 7. Rebuild order
 
 Changing an example sentence touches thirty-one translations and two
 recordings. The order is not optional:
@@ -194,13 +244,15 @@ recordings. The order is not optional:
    inline translations** (`en ja zh es fr de pt`);
 2. edit all twenty-four `content/vocabulary/copy/<locale>.json` rows —
    `copy:fresh:check` fails if step 1 happens without step 2;
-3. `content:vocabulary` → `content:corpus` → `content:leveltest` →
-   `content:dictionary`;
+3. `content:vocabulary` (the child-safety gate runs here) → `content:corpus`
+   → `content:dictionary` → `content:leveltest`;
 4. `npm run copy:fresh`;
 5. `npx tsx scripts/export-speech-plan.mjs`, then
    `python3 scripts/content/generate_audio.py` — the recorder needs the network
    and makes only the missing clips;
-6. `npm run curriculum:build`.
+6. `npm run curriculum:build`, `npm run vocabulary:relations`;
+7. `npm run policy:runtime` if the policy changed, then
+   `npm run content:safety:qa` to rewrite `docs/child-safe-content-audit.json`.
 
 `content:corpus` is the one people forget. Anything that loads content the way
 the app does reads `public/corpus/*.json`, not the generated pack.
