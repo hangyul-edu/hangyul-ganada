@@ -390,17 +390,33 @@ const FAMILY_NUMBERS = 'numbers';
 
 const FAMILY_QUOTES = 'quotations';
 {
-  const source = readFileSync(join(ROOT, 'apps', 'web', 'src', 'data', 'quotes.ts'), 'utf8');
-  const literals = source.match(/(['"`])((?:\\.|(?!\1)[^\\])*)\1/g) ?? [];
-  let n = 0;
-  for (const raw of literals) {
-    const text = raw.slice(1, -1);
-    if (text.length < 8) continue;
-    n += 1;
-    const lang = /[가-힣]/.test(text) ? 'ko' : 'en';
-    scan(FAMILY_QUOTES, lang, { text, lang, role: 'sentence', field: 'literal' }, {}, 'quotes.ts');
+  /*
+   * The library itself, through its own module, one surface per translation
+   * in that translation's language.
+   *
+   * This used to pull string literals out of `quotes.ts` with a regular
+   * expression and tag each as English unless it held Hangul. Two things were
+   * wrong with that, and together they made the scan hollow: a backtick inside
+   * a doc comment opened a template-literal match that swallowed everything
+   * up to the next backtick, so the scan saw 27 strings of 1,052 and reported
+   * zero findings over a library it had not read; and a German line tagged as
+   * English put *die* — the article — through the English mortality list.
+   * Reading the data structure gives every row's language and every field's
+   * role, which is what the evaluator needs to be right.
+   */
+  const { LEARNING_QUOTES } = await import('../apps/web/src/data/quotes.ts');
+  for (const quote of LEARNING_QUOTES) {
+    bump(FAMILY_QUOTES, quote.originalLanguage === 'la' || quote.originalLanguage === 'zh' ? 'en' : quote.originalLanguage, 'items');
+    const originalLang = { la: 'en', zh: 'zh-CN', el: 'el' }[quote.originalLanguage] ?? quote.originalLanguage;
+    scan(FAMILY_QUOTES, originalLang, { text: quote.originalText, lang: originalLang, role: 'sentence', field: 'originalText' }, {}, `quotes.ts:${quote.id}`);
+    for (const [lang, text] of Object.entries(quote.translations)) {
+      scan(FAMILY_QUOTES, lang, { text, lang, role: 'sentence', field: `translations.${lang}` }, {}, `quotes.ts:${quote.id}`);
+    }
+    for (const [lang, text] of Object.entries(quote.author ?? {})) {
+      scan(FAMILY_QUOTES, lang, { text, lang, role: 'note', field: `author.${lang}` }, {}, `quotes.ts:${quote.id}`);
+    }
+    scan(FAMILY_QUOTES, 'en', { text: quote.source, lang: 'en', role: 'note', field: 'source' }, {}, `quotes.ts:${quote.id}`);
   }
-  bump(FAMILY_QUOTES, 'ko', 'items', n);
 }
 
 const FAMILY_CURRICULUM = 'curriculum';

@@ -5,8 +5,30 @@ import type {
   VocabularyWord,
 } from '@hangyul-ganada/shared-types';
 
+import retiredIds from '@hangyul-ganada/content-safety/retired-ids';
+
 import { corpusReady, corpusTotal, onCorpus, type CorpusRow, type CorpusTables } from './corpus';
 import { toSyllables } from './jamo';
+
+/**
+ * Words retired under the child-safe content policy, refused at the door.
+ *
+ * The published corpus no longer carries them — `content:safety:check` proves
+ * that at build time and `content:safety:bundle:check` inside the delivered
+ * package — so on a current install this set matches nothing. It is here for
+ * the install that is *not* current: a band file a browser cached before the
+ * retirement, a backup restored from an older app, a band served by a stale
+ * mirror. Whatever supplies the rows, a retired id never becomes a
+ * `VocabularyWord`, so it can never be an answer, a distractor, a gap-fill
+ * candidate, a matching tile or a search result. The plan-level repair
+ * (`repairPlanForRetiredWords`) keeps a learner's earned progress; this keeps
+ * the word off the screen. Imported as the JSON rather than through
+ * `domain/contentSafety` because that module reads `getWord` from here.
+ */
+const RETIRED_WORD_IDS: ReadonlySet<string> = new Set((retiredIds as { ids: string[] }).ids);
+
+/** Retired ids seen and refused since load — for tests and the runtime report. */
+export const REFUSED_AT_INGEST: string[] = [];
 
 /**
  * The vocabulary curriculum.
@@ -583,6 +605,11 @@ function installBand(band: { words: CorpusRow[] }): void {
   const category = new Map<string, VocabularyWord[]>();
 
   for (const raw of band.words) {
+    const id = (raw as { id?: unknown }).id;
+    if (typeof id === 'string' && RETIRED_WORD_IDS.has(id)) {
+      REFUSED_AT_INGEST.push(id);
+      continue;
+    }
     const word = toWord(raw as unknown as GeneratedWord);
     VOCABULARY.push(word);
     BY_ID.set(word.id, word);

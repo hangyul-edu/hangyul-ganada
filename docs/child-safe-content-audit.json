@@ -37,8 +37,8 @@
   ],
   "totals": {
     "families": 14,
-    "items": 392477,
-    "fields": 1001715,
+    "items": 392472,
+    "fields": 1003588,
     "composedSentences": 3920,
     "findings": 0,
     "blocked": 0,
@@ -787,167 +787,167 @@
     },
     "ui-copy": {
       "items": 352,
-      "fields": 28705,
+      "fields": 29153,
       "findings": 0,
       "byLocale": {
         "ar": {
           "items": 11,
-          "fields": 976,
+          "fields": 990,
           "findings": 0
         },
         "bn": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "cs": {
           "items": 11,
-          "fields": 932,
+          "fields": 946,
           "findings": 0
         },
         "de": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "el": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "en": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "es": {
           "items": 11,
-          "fields": 910,
+          "fields": 924,
           "findings": 0
         },
         "fil": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "fr": {
           "items": 11,
-          "fields": 910,
+          "fields": 924,
           "findings": 0
         },
         "hi": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "hu": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "id": {
           "items": 11,
-          "fields": 866,
+          "fields": 880,
           "findings": 0
         },
         "it": {
           "items": 11,
-          "fields": 910,
+          "fields": 924,
           "findings": 0
         },
         "ja": {
           "items": 11,
-          "fields": 867,
+          "fields": 881,
           "findings": 0
         },
         "kk": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "ko": {
           "items": 11,
-          "fields": 867,
+          "fields": 881,
           "findings": 0
         },
         "ky": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "mn": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "nl": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "pl": {
           "items": 11,
-          "fields": 932,
+          "fields": 946,
           "findings": 0
         },
         "pt-BR": {
           "items": 11,
-          "fields": 910,
+          "fields": 924,
           "findings": 0
         },
         "ro": {
           "items": 11,
-          "fields": 910,
+          "fields": 924,
           "findings": 0
         },
         "ru": {
           "items": 11,
-          "fields": 932,
+          "fields": 946,
           "findings": 0
         },
         "sv": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "ta": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "te": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "th": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "tr": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "uk": {
           "items": 11,
-          "fields": 932,
+          "fields": 946,
           "findings": 0
         },
         "uz": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "vi": {
           "items": 11,
-          "fields": 888,
+          "fields": 902,
           "findings": 0
         },
         "zh-CN": {
           "items": 11,
-          "fields": 867,
+          "fields": 881,
           "findings": 0
         }
       }
@@ -965,18 +965,173 @@
       }
     },
     "quotations": {
-      "items": 27,
-      "fields": 27,
+      "items": 22,
+      "fields": 1452,
       "findings": 0,
       "byLocale": {
+        "de": {
+          "items": 2,
+          "fields": 46,
+          "findings": 0
+        },
         "en": {
-          "items": 0,
-          "fields": 24,
+          "items": 14,
+          "fields": 75,
           "findings": 0
         },
         "ko": {
-          "items": 27,
-          "fields": 3,
+          "items": 3,
+          "fields": 47,
+          "findings": 0
+        },
+        "ja": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "zh-CN": {
+          "items": 0,
+          "fields": 49,
+          "findings": 0
+        },
+        "es": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "fr": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "pt-BR": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "vi": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "th": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "ar": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "bn": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "cs": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "el": {
+          "items": 1,
+          "fields": 45,
+          "findings": 0
+        },
+        "fil": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "hi": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "hu": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "id": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "it": {
+          "items": 1,
+          "fields": 45,
+          "findings": 0
+        },
+        "kk": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "ky": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "mn": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "nl": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "pl": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "ro": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "ru": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "sv": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "ta": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "te": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "tr": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "uk": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "uz": {
+          "items": 0,
+          "fields": 44,
+          "findings": 0
+        },
+        "grc": {
+          "items": 1,
+          "fields": 1,
           "findings": 0
         }
       }
@@ -1033,193 +1188,193 @@
   "locales": {
     "ar": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22551,
+      "fieldsScanned": 22609,
       "findings": 0,
       "findingsByCategory": {}
     },
     "bn": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "cs": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22507,
+      "fieldsScanned": 22565,
       "findings": 0,
       "findingsByCategory": {}
     },
     "de": {
-      "itemsScanned": 10127,
-      "fieldsScanned": 29203,
+      "itemsScanned": 10129,
+      "fieldsScanned": 29263,
       "findings": 0,
       "findingsByCategory": {}
     },
     "el": {
-      "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "itemsScanned": 10128,
+      "fieldsScanned": 22522,
       "findings": 0,
       "findingsByCategory": {}
     },
     "en": {
-      "itemsScanned": 23296,
-      "fieldsScanned": 118342,
+      "itemsScanned": 23310,
+      "fieldsScanned": 118407,
       "findings": 0,
       "findingsByCategory": {}
     },
     "es": {
       "itemsScanned": 10127,
-      "fieldsScanned": 29225,
+      "fieldsScanned": 29283,
       "findings": 0,
       "findingsByCategory": {}
     },
     "fil": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "fr": {
       "itemsScanned": 10127,
-      "fieldsScanned": 29225,
+      "fieldsScanned": 29283,
       "findings": 0,
       "findingsByCategory": {}
     },
     "hi": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "hu": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "id": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22441,
+      "fieldsScanned": 22499,
       "findings": 0,
       "findingsByCategory": {}
     },
     "it": {
-      "itemsScanned": 10127,
-      "fieldsScanned": 22485,
+      "itemsScanned": 10128,
+      "fieldsScanned": 22544,
       "findings": 0,
       "findingsByCategory": {}
     },
     "ja": {
       "itemsScanned": 10127,
-      "fieldsScanned": 29182,
+      "fieldsScanned": 29240,
       "findings": 0,
       "findingsByCategory": {}
     },
     "kk": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "ko": {
-      "itemsScanned": 65371,
-      "fieldsScanned": 168733,
+      "itemsScanned": 65347,
+      "fieldsScanned": 168791,
       "findings": 0,
       "findingsByCategory": {}
     },
     "ky": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "mn": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "nl": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "pl": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22507,
+      "fieldsScanned": 22565,
       "findings": 0,
       "findingsByCategory": {}
     },
     "pt-BR": {
       "itemsScanned": 10127,
-      "fieldsScanned": 29225,
+      "fieldsScanned": 29283,
       "findings": 0,
       "findingsByCategory": {}
     },
     "ro": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22485,
+      "fieldsScanned": 22543,
       "findings": 0,
       "findingsByCategory": {}
     },
     "ru": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22507,
+      "fieldsScanned": 22565,
       "findings": 0,
       "findingsByCategory": {}
     },
     "sv": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "ta": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "te": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "th": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "tr": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "uk": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22507,
+      "fieldsScanned": 22565,
       "findings": 0,
       "findingsByCategory": {}
     },
     "uz": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "vi": {
       "itemsScanned": 10127,
-      "fieldsScanned": 22463,
+      "fieldsScanned": 22521,
       "findings": 0,
       "findingsByCategory": {}
     },
     "zh-CN": {
       "itemsScanned": 10127,
-      "fieldsScanned": 29182,
+      "fieldsScanned": 29245,
       "findings": 0,
       "findingsByCategory": {}
     }
