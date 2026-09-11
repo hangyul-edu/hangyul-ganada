@@ -149,7 +149,7 @@ without trusting the row.
 | Audio voice slots | 13,904 | the same manifest, two voices per entry |
 | Vocabulary levels populated | 30 of 30 | distinct `level` in the corpus |
 | Words at levels 28–30 | 518 | the corpus, by level |
-| Level anchors held | 162 | `level-anchors.json` |
+| Level anchors held | 161 | `level-anchors.json` |
 | Example sentences refused by review | 37 | `content/vocabulary/curation` |
 | Dictionary sentences refused by review | 138 | `content/vocabulary/example-blocklist.json` |
 | Unobserved words with a written reason | 55 | `content/vocabulary/unobserved.json` |
@@ -3087,7 +3087,7 @@ Every gate was green throughout.
 
 The replacement is in `docs/VOCABULARY_LEVEL_CALIBRATION.md`: four weighted
 components over 23 named signals, fixed absolute score boundaries rather than
-quantiles, 162 anchors and 6 written overrides. What it is worth, from
+quantiles, 161 anchors and 6 written overrides. What it is worth, from
 `docs/VOCABULARY_LEVEL_RECOMMENDATION_QA.md` and 30,000 simulated events:
 
 | | before | after |

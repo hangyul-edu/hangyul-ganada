@@ -18,21 +18,21 @@ record the persona definition; they do not alter a domain simulation.
 - locales covered: 32 of 32
 - levels covered: 30 of 30
 - total simulated study days: 1,223
-- questions answered: 29,313
-- wrong-answer retries asked: 5,245
-- mid-session reloads exercised: 805
+- questions answered: 29,337
+- wrong-answer retries asked: 5,249
+- mid-session reloads exercised: 816
 - mid-day level retakes exercised: 18
 
 ## Synthetic educational outcome
 
 | Proxy | Value |
 | --- | --- |
-| Unique words introduced | 7,924 |
-| Unique words mastered (answered correctly) | 7,903 |
-| Words missed at least once | 2,728 |
+| Unique words introduced | 7,922 |
+| Unique words mastered (answered correctly) | 7,901 |
+| Words missed at least once | 2,737 |
 | Retry recovery | 100% |
-| Later-review retention | 73% |
-| Words met on two or more days | 3,471 |
+| Later-review retention | 72% |
+| Words met on two or more days | 3,495 |
 | Words marked learned without a correct answer | 0 |
 | Teaching-zone violations | 0 |
 | Beginner words offered to level ≥ 25 learners | 0 |
@@ -48,31 +48,31 @@ record the persona definition; they do not alter a domain simulation.
 | P003 | el | 9 | skipped | returning | 15 | 7 | 0.57 | native/360 | 67 | 67 | 26 | 26 | 0 | PASS |
 | P004 | nl | 5 | taken | new | 10 | 7 | 0.75 | web/430 | 37 | 37 | 12 | 12 | 0 | PASS |
 | P005 | cs | 30 | taken | new | 20 | 7 | 0.85 | web/390 | 77 | 77 | 19 | 19 | 0 | PASS |
-| P006 | uz | 10 | taken | returning | 5 | 30 | 0.71 | native/430 | 90 | 90 | 25 | 25 | 26 | PASS |
+| P006 | uz | 10 | taken | returning | 5 | 30 | 0.71 | native/430 | 91 | 91 | 25 | 25 | 26 | PASS |
 | P007 | id | 30 | taken | new | 10 | 14 | 0.75 | native/360 | 80 | 80 | 28 | 28 | 0 | PASS |
 | P008 | zh-CN | 4 | taken | returning | 10 | 3 | 0.72 | web/desktop | 22 | 22 | 8 | 8 | 0 | PASS |
 | P009 | zh-CN | 10 | taken | returning | 15 | 7 | 0.9 | web/320 | 69 | 69 | 10 | 10 | 7 | PASS |
 | P010 | ro | 12 | taken | new | 10 | 7 | 0.91 | web/412 | 43 | 43 | 6 | 6 | 0 | PASS |
-| P011 | hi | 15 | taken | new | 10 | 30 | 0.91 | native/430 | 231 | 231 | 48 | 48 | 0 | PASS |
+| P011 | hi | 15 | taken | new | 10 | 30 | 0.91 | native/430 | 228 | 228 | 47 | 47 | 0 | PASS |
 | P012 | en | 28 | taken | new | 10 | 1 | 0.69 | native/430 | 15 | 15 | 6 | 6 | 1 | PASS |
 | P013 | hu | 30 | taken | returning | 10 | 14 | 0.73 | web/320 | 76 | 76 | 26 | 26 | 0 | PASS |
 | P014 | de | 2 | taken | new | 15 | 7 | 0.95 | web/412 | 79 | 79 | 8 | 8 | 6 | PASS |
 | P015 | pt-BR | 10 | taken | new | 10 | 3 | 0.61 | web/430 | 20 | 20 | 8 | 8 | 0 | PASS |
-| P016 | mn | 5 | taken | new | 5 | 30 | 0.94 | native/430 | 92 | 92 | 9 | 9 | 29 | PASS |
-| P017 | hu | 1→1 | retaken | returning | 10 | 30 | 0.9 | web/desktop | 117 | 117 | 39 | 39 | 29 | PASS |
+| P016 | mn | 5 | taken | new | 5 | 30 | 0.94 | native/430 | 92 | 92 | 12 | 12 | 26 | PASS |
+| P017 | hu | 1→1 | retaken | returning | 10 | 30 | 0.9 | web/desktop | 117 | 117 | 39 | 39 | 30 | PASS |
 | P018 | uk | 3 | taken | new | 5 | 7 | 0.64 | web/desktop | 36 | 36 | 14 | 14 | 0 | PASS |
 | P019 | es | 3 | skipped | new | 5 | 14 | 0.88 | web/320 | 77 | 77 | 18 | 18 | 11 | PASS |
-| P020 | fil | 20→18 | retaken | new | 10 | 30 | 0.88 | web/desktop | 159 | 159 | 39 | 39 | 29 | PASS |
+| P020 | fil | 20→18 | retaken | new | 10 | 30 | 0.88 | web/desktop | 159 | 159 | 42 | 42 | 28 | PASS |
 | P021 | sv | 6 | taken | new | 10 | 14 | 0.68 | web/320 | 75 | 75 | 33 | 33 | 0 | PASS |
-| P022 | fr | 26→24 | retaken | new | 15 | 30 | 0.64 | native/320 | 253 | 253 | 110 | 110 | 28 | PASS |
-| P023 | en | 25 | taken | returning | 10 | 30 | 0.91 | web/360 | 221 | 221 | 46 | 46 | 27 | PASS |
+| P022 | fr | 26→24 | retaken | new | 15 | 30 | 0.64 | native/320 | 253 | 253 | 118 | 118 | 29 | PASS |
+| P023 | en | 25 | taken | returning | 10 | 30 | 0.91 | web/360 | 222 | 222 | 41 | 41 | 28 | PASS |
 | P024 | pl | 2 | skipped | returning | 10 | 3 | 0.84 | web/412 | 23 | 23 | 2 | 2 | 3 | PASS |
 | P025 | zh-CN | 1 | taken | returning | 20 | 14 | 0.87 | web/430 | 112 | 112 | 35 | 35 | 0 | PASS |
 | P026 | kk | 10 | taken | returning | 10 | 1 | 0.77 | web/320 | 15 | 15 | 4 | 4 | 1 | PASS |
 | P027 | bn | 30 | taken | new | 10 | 3 | 0.58 | web/430 | 21 | 21 | 5 | 5 | 3 | PASS |
-| P028 | es | 20 | taken | new | 15 | 30 | 0.72 | web/desktop | 234 | 234 | 83 | 83 | 0 | PASS |
-| P029 | ko | 30 | taken | returning | 10 | 30 | 0.72 | web/360 | 242 | 242 | 88 | 88 | 0 | PASS |
-| P030 | th | 25 | taken | returning | 20 | 30 | 0.58 | native/390 | 233 | 233 | 116 | 116 | 0 | PASS |
+| P028 | es | 20 | taken | new | 15 | 30 | 0.72 | web/desktop | 232 | 232 | 88 | 88 | 0 | PASS |
+| P029 | ko | 30 | taken | returning | 10 | 30 | 0.72 | web/360 | 242 | 242 | 86 | 86 | 0 | PASS |
+| P030 | th | 25 | taken | returning | 20 | 30 | 0.58 | native/390 | 232 | 232 | 117 | 117 | 0 | PASS |
 | P031 | en | 22 | taken | new | 10 | 1 | 0.78 | web/360 | 15 | 15 | 1 | 1 | 0 | PASS |
 | P032 | ar | 30 | taken | new | 20 | 1 | 0.84 | native/390 | 20 | 20 | 3 | 3 | 1 | PASS |
 | P033 | tr | 30 | taken | new | 5 | 1 | 0.87 | native/412 | 5 | 5 | 0 | 0 | 1 | PASS |
@@ -85,10 +85,10 @@ record the persona definition; they do not alter a domain simulation.
 | P040 | ta | 13 | taken | new | 5 | 7 | 0.87 | native/390 | 24 | 24 | 5 | 5 | 0 | PASS |
 | P041 | th | 10 | taken | new | 15 | 14 | 0.63 | web/desktop | 111 | 111 | 46 | 46 | 13 | PASS |
 | P042 | zh-CN | 18 | taken | returning | 10 | 3 | 0.79 | web/desktop | 23 | 23 | 4 | 4 | 3 | PASS |
-| P043 | fr | 29 | taken | new | 10 | 30 | 0.63 | native/390 | 148 | 148 | 64 | 64 | 27 | PASS |
+| P043 | fr | 29 | taken | new | 10 | 30 | 0.63 | native/390 | 147 | 147 | 64 | 64 | 27 | PASS |
 | P044 | es | 1→1 | retaken | returning | 15 | 7 | 0.6 | native/430 | 75 | 75 | 35 | 35 | 7 | PASS |
 | P045 | vi | 10 | taken | returning | 5 | 30 | 0.72 | native/desktop | 84 | 84 | 31 | 31 | 29 | PASS |
-| P046 | te | 23 | taken | returning | 20 | 30 | 0.58 | native/320 | 230 | 230 | 128 | 128 | 0 | PASS |
+| P046 | te | 23 | taken | returning | 20 | 30 | 0.58 | native/320 | 231 | 231 | 126 | 126 | 0 | PASS |
 | P047 | te | 3 | taken | new | 5 | 1 | 0.56 | native/320 | 5 | 5 | 2 | 2 | 0 | PASS |
 | P048 | ta | 1 | taken | returning | 10 | 1 | 0.9 | native/430 | 10 | 10 | 1 | 1 | 0 | PASS |
 | P049 | de | 5 | taken | new | 20 | 1 | 0.89 | web/430 | 20 | 20 | 1 | 1 | 1 | PASS |
@@ -101,31 +101,31 @@ record the persona definition; they do not alter a domain simulation.
 | P056 | ko | 20 | taken | returning | 10 | 3 | 0.85 | native/desktop | 15 | 15 | 1 | 1 | 2 | PASS |
 | P057 | pt-BR | 15 | taken | new | 10 | 7 | 0.91 | web/390 | 69 | 69 | 10 | 10 | 0 | PASS |
 | P058 | pt-BR | 1 | skipped | new | 10 | 14 | 0.84 | web/desktop | 78 | 78 | 25 | 25 | 0 | PASS |
-| P059 | ja | 19→15 | retaken | new | 10 | 14 | 0.6 | web/320 | 114 | 114 | 51 | 51 | 12 | PASS |
+| P059 | ja | 19→15 | retaken | new | 10 | 14 | 0.6 | web/320 | 114 | 114 | 50 | 50 | 13 | PASS |
 | P060 | hi | 25 | taken | new | 20 | 1 | 0.58 | native/320 | 20 | 20 | 9 | 9 | 1 | PASS |
 | P061 | vi | 15 | taken | returning | 15 | 7 | 0.92 | native/360 | 61 | 61 | 11 | 11 | 6 | PASS |
 | P062 | th | 25 | taken | returning | 10 | 7 | 0.91 | web/desktop | 44 | 44 | 2 | 2 | 0 | PASS |
 | P063 | en | 17→22 | retaken | returning | 5 | 7 | 0.79 | native/390 | 43 | 43 | 14 | 14 | 5 | PASS |
-| P064 | ro | 3 | taken | returning | 10 | 7 | 0.69 | web/430 | 41 | 41 | 18 | 18 | 6 | PASS |
+| P064 | ro | 3 | taken | returning | 10 | 7 | 0.69 | web/430 | 41 | 41 | 16 | 16 | 6 | PASS |
 | P065 | cs | 29 | taken | new | 20 | 3 | 0.77 | native/desktop | 28 | 28 | 10 | 10 | 2 | PASS |
 | P066 | ta | 3 | taken | new | 5 | 3 | 0.56 | native/390 | 12 | 12 | 4 | 4 | 0 | PASS |
-| P067 | tr | 15 | taken | new | 5 | 30 | 0.63 | web/390 | 92 | 92 | 33 | 33 | 0 | PASS |
+| P067 | tr | 15 | taken | new | 5 | 30 | 0.63 | web/390 | 93 | 93 | 34 | 34 | 0 | PASS |
 | P068 | th | 8 | taken | returning | 10 | 3 | 0.66 | native/desktop | 21 | 21 | 6 | 6 | 2 | PASS |
 | P069 | vi | 20 | taken | new | 10 | 7 | 0.71 | native/360 | 64 | 64 | 19 | 19 | 7 | PASS |
-| P070 | ky | 7 | taken | new | 10 | 7 | 0.78 | native/320 | 44 | 44 | 11 | 11 | 6 | PASS |
+| P070 | ky | 7 | taken | new | 10 | 7 | 0.78 | native/320 | 44 | 44 | 11 | 11 | 5 | PASS |
 | P071 | uk | 30→30 | retaken | returning | 5 | 14 | 0.77 | web/desktop | 77 | 77 | 21 | 21 | 0 | PASS |
 | P072 | kk | 30 | taken | new | 10 | 1 | 0.57 | web/360 | 15 | 15 | 5 | 5 | 1 | PASS |
 | P073 | tr | 30 | taken | returning | 5 | 7 | 0.62 | web/320 | 24 | 24 | 10 | 10 | 6 | PASS |
 | P074 | en | 3 | taken | new | 20 | 30 | 0.95 | web/430 | 213 | 213 | 36 | 36 | 0 | PASS |
-| P075 | bn | 15 | taken | new | 10 | 30 | 0.75 | native/360 | 155 | 155 | 62 | 62 | 0 | PASS |
+| P075 | bn | 15 | taken | new | 10 | 30 | 0.75 | native/360 | 154 | 154 | 62 | 62 | 0 | PASS |
 | P076 | pl | 25 | taken | returning | 10 | 7 | 0.59 | web/desktop | 44 | 44 | 16 | 16 | 5 | PASS |
 | P077 | el | 1 | taken | new | 10 | 14 | 0.74 | native/desktop | 72 | 72 | 22 | 22 | 11 | PASS |
 | P078 | pt-BR | 3 | taken | returning | 5 | 7 | 0.56 | web/430 | 41 | 41 | 19 | 19 | 0 | PASS |
 | P079 | hi | 15 | taken | new | 10 | 1 | 0.87 | native/390 | 10 | 10 | 1 | 1 | 0 | PASS |
 | P080 | fr | 28 | taken | returning | 5 | 3 | 0.67 | native/360 | 15 | 15 | 5 | 5 | 0 | PASS |
 | P081 | uz | 1 | taken | returning | 20 | 14 | 0.62 | web/430 | 108 | 108 | 64 | 64 | 0 | PASS |
-| P082 | th | 15 | taken | returning | 10 | 7 | 0.71 | native/desktop | 61 | 61 | 18 | 18 | 0 | PASS |
-| P083 | ja | 14 | taken | returning | 20 | 30 | 0.73 | native/390 | 244 | 244 | 117 | 117 | 0 | PASS |
+| P082 | th | 15 | taken | returning | 10 | 7 | 0.71 | native/desktop | 61 | 61 | 19 | 19 | 0 | PASS |
+| P083 | ja | 14 | taken | returning | 20 | 30 | 0.73 | native/390 | 247 | 247 | 127 | 127 | 0 | PASS |
 | P084 | fr | 5 | skipped | returning | 10 | 3 | 0.6 | web/430 | 15 | 15 | 10 | 10 | 0 | PASS |
 | P085 | ru | 3 | skipped | returning | 5 | 7 | 0.73 | web/390 | 23 | 23 | 7 | 7 | 7 | PASS |
 | P086 | ko | 3 | taken | new | 15 | 14 | 0.65 | web/412 | 122 | 122 | 53 | 53 | 0 | PASS |
@@ -135,7 +135,7 @@ record the persona definition; they do not alter a domain simulation.
 | P090 | vi | 2 | skipped | returning | 10 | 14 | 0.7 | web/430 | 76 | 76 | 33 | 33 | 14 | PASS |
 | P091 | ru | 5 | taken | returning | 5 | 3 | 0.81 | web/320 | 11 | 11 | 2 | 2 | 3 | PASS |
 | P092 | sv | 5 | taken | new | 20 | 3 | 0.7 | web/desktop | 33 | 33 | 11 | 11 | 0 | PASS |
-| P093 | zh-CN | 24 | taken | returning | 10 | 30 | 0.65 | native/desktop | 149 | 149 | 66 | 66 | 0 | PASS |
+| P093 | zh-CN | 24 | taken | returning | 10 | 30 | 0.65 | native/desktop | 148 | 148 | 57 | 57 | 0 | PASS |
 | P094 | vi | 20 | taken | new | 15 | 3 | 0.58 | web/360 | 31 | 31 | 18 | 18 | 3 | PASS |
 | P095 | it | 5 | taken | new | 10 | 14 | 0.63 | web/412 | 76 | 76 | 34 | 34 | 12 | PASS |
 | P096 | ja | 10 | taken | returning | 10 | 1 | 0.91 | native/412 | 15 | 15 | 1 | 1 | 1 | PASS |
@@ -149,10 +149,10 @@ record the persona definition; they do not alter a domain simulation.
 | P104 | hi | 1→30 | retaken-midday | new | 10 | 3 | 0.8 | native/360 | 29 | 25 | 5 | 4 | 0 | PASS |
 | P105 | es | 5→20 | retaken-midday | returning | 10 | 5 | 0.75 | web/390 | 32 | 32 | 9 | 9 | 0 | PASS |
 | P106 | fr | 20→10 | retaken-midday | returning | 10 | 5 | 0.8 | native/430 | 31 | 31 | 8 | 8 | 0 | PASS |
-| P107 | de | 10→25 | retaken-midday | returning | 15 | 5 | 0.7 | native/390 | 50 | 50 | 15 | 15 | 0 | PASS |
+| P107 | de | 10→25 | retaken-midday | returning | 15 | 5 | 0.7 | native/390 | 50 | 50 | 14 | 14 | 0 | PASS |
 | P108 | pt-BR | 25→3 | retaken-midday | returning | 10 | 3 | 0.85 | web/320 | 28 | 25 | 2 | 2 | 0 | PASS |
 | P109 | zh-CN | 2→28 | retaken-midday | new | 5 | 3 | 0.9 | native/390 | 15 | 13 | 0 | 0 | 0 | PASS |
-| P110 | vi | 28→2 | retaken-midday | returning | 10 | 3 | 0.8 | native/412 | 36 | 35 | 7 | 7 | 0 | PASS |
+| P110 | vi | 28→2 | retaken-midday | returning | 10 | 3 | 0.8 | native/412 | 36 | 35 | 8 | 8 | 0 | PASS |
 | P111 | ru | 15→30 | retaken-midday | returning | 10 | 5 | 0.75 | web/390 | 33 | 33 | 5 | 5 | 0 | PASS |
 | P112 | ar | 30→15 | retaken-midday | returning | 10 | 3 | 0.8 | native/360 | 24 | 23 | 6 | 6 | 0 | PASS |
 | P113 | en | 1→30 | retaken-midday | new | 10 | 3 | 0.85 | web/390 | 27 | 25 | 2 | 2 | 0 | PASS |
@@ -160,7 +160,7 @@ record the persona definition; they do not alter a domain simulation.
 | P115 | ko | 30→1 | retaken-midday | returning | 10 | 3 | 0.8 | web/390 | 27 | 26 | 3 | 3 | 0 | PASS |
 | P116 | es | 5→20 | retaken-during-extra | new | 10 | 3 | 0.9 | web/390 | 39 | 37 | 3 | 3 | 0 | PASS |
 | P117 | hi | 1→30 | retaken-during-extra | new | 10 | 3 | 0.8 | web/390 | 38 | 36 | 5 | 5 | 0 | PASS |
-| P118 | de | 10→30 | retaken-midday | returning | 10 | 5 | 0.75 | web/390 | 35 | 34 | 8 | 8 | 0 | PASS |
+| P118 | de | 10→30 | retaken-midday | returning | 10 | 5 | 0.75 | web/390 | 35 | 34 | 7 | 7 | 0 | PASS |
 
 ## Defects found
 

@@ -46,6 +46,16 @@ the loop — see §5.
 | `word_inyeom` | 이념 | 30 | society · noun | political | 이념보다 사람이 먼저예요. | Ideology; political ideologies are excluded, retired under the political rule. |
 | `word_salsinseongin` | 살신성인 | 30 | society · noun | mortality | 살신성인의 정신을 기려요. | Giving one's life; a death-centred idiom retired under the mortality rule. |
 
+Ledgers that named a retired word: 협박하다 was one of the 162 level anchors in
+`content/vocabulary/level-anchors.json`; `vocabulary:level:qa:check` reports an
+anchor that is not taught, so the anchor was removed (161 remain, advanced
+band 30 → 29). The banned answer pairs (`answer-conflicts.json`,
+`ambiguity-review.json`: 사격, 협박하다), the noun classes (바보, 좀비, 강도),
+the frame guard (`learner-safety.json`: 죽이다) and the unobserved-word reasons
+(살신성인) are left in place: each is a record of a reading that was done, none
+of them puts a word into the course, and their gates pass with a word that is
+no longer taught.
+
 ## 2. Items rewritten (2)
 
 | Item | Field | Was | Now | Why |

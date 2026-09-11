@@ -109,9 +109,9 @@ at build time by `scripts/content/build_vocabulary.py`.
 
 ### 2.3 The corrections
 
-**Anchors** — 162 words in five bands, in `level-anchors.json`, each asserting a
+**Anchors** — 161 words in five bands, in `level-anchors.json`, each asserting a
 range the model must land in. Foundation 1–8 (50 words), early 1–16 (46),
-middle 6–26 (24), advanced 22–30 (30), expert 27–30 (12). All 162 hold. An
+middle 6–26 (24), advanced 22–30 (29), expert 27–30 (12). All 161 hold — 협박하다 left the advanced band when it was retired under the child-safe content policy. An
 anchor that stops holding fails `vocabulary:level:qa`; it is not a target the
 weights are tuned against one word at a time, it is a claim that the shape of
 the scale is still right.
@@ -145,7 +145,7 @@ looked untidy.
   levels populated      30/30
   smallest level        51 words
   largest level         204 words
-  anchors held          162
+  anchors held          161
   levels set by hand    6
 ```
 

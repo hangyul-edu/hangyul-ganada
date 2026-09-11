@@ -23,7 +23,7 @@
  * | **Every level is populated** | enough words to build a day from, not one |
  * | **Difficulty rises** | the median score of level N+1 is above level N's |
  * | **The editorial ceiling holds** | a word marked *needed first* is not above the starter band |
- * | **The anchors hold** | 162 words a person placed, still where they were put |
+ * | **The anchors hold** | 161 words a person placed, still where they were put |
  * | **No contamination** | no beginner word at the top, no idiom at the bottom |
  *
  * ## What it cannot tell you
