@@ -1065,11 +1065,32 @@ test('a wrong answer writes itself into the notebook', async ({ page }) => {
      * better than not. An anchored `/^(Next|Finish)$/` matched neither of the
      * build screens and the walk stood in front of a finished question.
      */
-    const next = page.getByRole('button', { name: CONTINUE });
-    for (let press = 0; press < 5 && !(await next.count()); press += 1) {
-      const remaining = page.getByRole('group').locator('button:not([disabled])');
-      if (!(await remaining.count())) break;
-      await remaining.first().click({ timeout: 2000 }).catch(() => {});
+    const next = page.getByRole('button', { name: CONTINUE }).or(page.getByTestId('match-next'));
+    /*
+     * The tray grades on Check now, and Check is disabled until every slot is
+     * filled; the grid grades on its own Check once every word is paired. So
+     * a screen that offers no way on yet is finished the way its screen wants,
+     * never by tapping whatever grouped button is enabled — a filled slot is a
+     * button that takes a syllable *back*.
+     */
+    const check = page.getByTestId('build-check');
+    if (await check.count()) {
+      for (let taps = 0; taps < 6 && (await check.isDisabled()); taps += 1) {
+        await page.locator('[data-testid="build-tile"][data-state="available"]').first().click();
+        await page.waitForTimeout(60);
+      }
+      await check.click();
+    }
+    const grid = page.locator('[data-testid="match-exercise"][data-state="open"]');
+    if (await grid.count()) {
+      for (let pairs = 0; pairs < 6; pairs += 1) {
+        const word = grid.locator('[data-testid="match-word"][data-state="available"]').first();
+        if (!(await word.count())) break;
+        await word.click();
+        await grid.locator('[data-testid="match-meaning"][data-state="target"]').first().click();
+        await page.waitForTimeout(60);
+      }
+      await page.getByTestId('match-check').click();
     }
     await expect(next.first()).toBeVisible();
     if (await page.locator('button[class*="wrong"]').count()) missed += 1;
