@@ -11,6 +11,8 @@ import { SessionSize } from '../features/review/SessionSize';
 import { defaultSessionSize } from '../features/review/sessionSizes';
 import { useLocale } from '../i18n';
 import { useLearner } from '../store/LearnerContext';
+import { isRetiredWordId } from '../domain/contentSafety';
+
 import { AppHeader } from '../ui/AppHeader';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
@@ -69,8 +71,17 @@ export function MistakesPage() {
   const [filter, setFilter] = useState<Filter>('word');
   const [size, setSize] = useState<number | null>(null);
 
+  /*
+    A word retired under the content policy is not shown here, and is not
+    deleted either. The row stays in the notebook store — it is the learner's
+    history — but a page that listed it would be a page that showed the word,
+    and the reason it was retired is that nobody should be shown it.
+  */
   const shown = useMemo(
-    () => (filter === 'all' ? mistakes : mistakes.filter((row) => row.kind === filter)),
+    () =>
+      mistakes.filter(
+        (row) => (filter === 'all' || row.kind === filter) && !(row.kind === 'word' && isRetiredWordId(row.itemKey)),
+      ),
     [mistakes, filter],
   );
 

@@ -44,6 +44,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+import child_safety  # noqa: E402
 import curation  # noqa: E402
 import difficulty  # noqa: E402
 import level as leveller  # noqa: E402
@@ -342,6 +343,7 @@ def main() -> int:
     kept = {word: entry for word, entry in entries.items() if entry.keep}
     if not kept:
         raise SystemExit("the editorial pack is empty — nothing to build")
+    refuse_unsafe_rows(kept)
 
     pages = load_wikitext()
     by_word: dict[str, list[Entry]] = defaultdict(list)
@@ -848,6 +850,51 @@ def main() -> int:
         share = by_category[cid] / max(1, len(records)) * 100
         print(f"    {cid:16} {by_category[cid]:5}  {share:4.1f}%")
     return 0
+
+
+def refuse_unsafe_rows(kept: dict[str, "pack.Entry"]) -> None:
+    """The authoring and import gate.
+
+    Every kept pack row is read through the child-safe policy — the headword,
+    the Korean example, every inline meaning and every inline translation — and
+    a row the policy refuses stops the build with the row named. The generated
+    pack therefore cannot carry what the policy forbids, whichever author or
+    importer wrote it; a retired word is `k: 0` with the reason on the row and
+    a tombstone in `retired-words.json`, never merely deleted.
+
+    A CONTEXT_BLOCK finding (death vocabulary) on a card that nobody has named
+    in the policy's allow lists is also a stop: the card is either allowlisted
+    by a person, with the sentence read, or retired.
+    """
+    refused: list[str] = []
+    for word, entry in kept.items():
+        surfaces = [{"text": word, "lang": "ko", "role": "headword", "field": "w"}]
+        if entry.example:
+            surfaces.append({"text": entry.example, "lang": "ko", "role": "sentence", "field": "ex"})
+        if entry.english:
+            surfaces.append({"text": entry.english, "lang": "en", "role": "gloss", "field": "en"})
+        for locale, meaning in (entry.meanings or {}).items():
+            lang = {"zh": "zh-CN", "pt": "pt-BR"}.get(locale, locale)
+            if meaning:
+                surfaces.append({"text": meaning, "lang": lang, "role": "gloss", "field": f"m.{locale}"})
+        for locale, translation in (entry.translations or {}).items():
+            lang = {"zh": "zh-CN", "pt": "pt-BR"}.get(locale, locale)
+            if translation:
+                surfaces.append({"text": translation, "lang": lang, "role": "sentence", "field": f"t.{locale}"})
+        for locale, definition in (entry.definitions or {}).items():
+            lang = {"zh": "zh-CN", "pt": "pt-BR"}.get(locale, locale)
+            if definition:
+                surfaces.append({"text": definition, "lang": lang, "role": "note", "field": f"d.{locale}"})
+        verdict, findings = child_safety.evaluate_item(surfaces, headword=word)
+        if verdict != "ok":
+            detail = "; ".join(f"{f.field}: {f.category} {f.term!r}" for f in findings[:4])
+            refused.append(f"  {word}: {verdict} — {detail}")
+    if refused:
+        raise SystemExit(
+            f"{len(refused)} pack row(s) fail the child-safe content policy "
+            f"{child_safety.policy_version()} — retire each with k:0 and a tombstone, "
+            "or allowlist the card in the policy after reading it:\n" + "\n".join(refused)
+        )
 
 
 def git_tracked(path: Path) -> bool:  # pragma: no cover - diagnostics only

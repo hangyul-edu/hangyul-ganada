@@ -55,6 +55,7 @@ import {
   rebuildPlanForLevel,
   type DailyPlan,
 } from '../domain/vocabularyDay';
+import { repairPlanForRetiredWords } from '../domain/contentSafety';
 import { vocabularyByPriority } from '../data/vocabulary';
 import { nextLesson, lessonProgress } from '../domain/progress';
 import { learningStreak, recordActivity, recordStudyTime as recordStudyTime_ } from '../domain/activity';
@@ -1130,7 +1131,10 @@ export function LearnerProvider({
       stored.completed.length === 0 &&
       stored.goal !== state.settings.daily_word_goal;
     if (planIsCurrent(stored, now, planningLevel) && !goalChangedBeforeStart) {
-      return stored;
+      // A word retired from the curriculum since the plan was written is
+      // dropped from what is still owed; what was earned stands. Identity is
+      // returned when nothing changed, so this costs no write.
+      return repairPlanForRetiredWords(stored);
     }
     // Before the store has answered, an empty plan for the goal the learner
     // has — so the card reads `0 / 10` for the moment it takes rather than
@@ -1164,7 +1168,7 @@ export function LearnerProvider({
       !goalChangedBeforeStart &&
       stored.completed.length > 0
     ) {
-      const rebuilt = rebuildPlanForLevel(stored, request);
+      const rebuilt = rebuildPlanForLevel(repairPlanForRetiredWords(stored), request);
       // The new level's words may live in a corpus band that has not arrived
       // yet. A rebuild that came up short while the corpus is still loading
       // waits — the stored plan stands for the moment it takes — rather than

@@ -75,6 +75,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+import child_safety  # noqa: E402
 from hangul import decompose, is_hangul_word, is_syllable  # noqa: E402
 from pronunciation import spoken_form  # noqa: E402
 from hangul import revised_romanization  # noqa: E402
@@ -302,9 +303,11 @@ BLOCKED_EXAMPLES = frozenset(
 )
 
 
-def readable(example) -> bool:
+def readable(example, word: str = "") -> bool:
     """Is this sentence one a learner may be shown?"""
-    return example.korean.strip() not in BLOCKED_EXAMPLES
+    if example.korean.strip() in BLOCKED_EXAMPLES:
+        return False
+    return child_safe_example(word, example)
 
 
 def usable(entry: Entry):
@@ -325,6 +328,42 @@ def usable(entry: Entry):
         if DANGLING_REFERENCE.match(sense.gloss.strip()):
             continue
         yield sense
+
+
+#: Why a dictionary row is refused, counted for the manifest.
+#:
+#: The dictionary used to be declared out of the safety layer's scope — "a
+#: learner who searches for a word has asked for it". That was wrong twice
+#: over. A search for 섹 autocompletes to 섹스하다 whether or not anybody asked,
+#: and the Level Test draws its upper-level anchors from this very index, which
+#: is the path by which 섹스하다 reached a level-12 question. So the dictionary
+#: is a learner-facing surface like any other and the same policy applies:
+#: HARD_BLOCK rows are not written. CONTEXT_BLOCK (death vocabulary) stays —
+#: a dictionary may define 사망, and the assessment builder refuses it on its
+#: own, at random surfaces.
+def child_safe_headword(word: str) -> list[str]:
+    """Why the headword itself is refused, or an empty list."""
+    findings = child_safety.evaluate_surface(word, "ko", "headword", word)
+    return sorted({f"{f.category}:{f.term}" for f in findings if f.severity == "HARD_BLOCK"})
+
+
+def child_safe_sense(word: str, gloss: str) -> bool:
+    """Whether a sense's gloss may be published under this headword."""
+    return child_safety.verdict_of(child_safety.evaluate_surface(gloss, "en", "gloss", word)) != "blocked"
+
+
+def child_safe_example(word: str, example) -> bool:
+    """Whether one of Wiktionary's example sentences may be published.
+
+    Read on its own, so that one unsafe sentence removes that sentence and not
+    the entry: 보다 is *to see*, and the entry's fourth example — a sentence about
+    killing oneself — is Wiktionary's choice, not the word's meaning.
+    """
+    surfaces = [{"text": example.korean, "lang": "ko", "role": "sentence", "field": "example"}]
+    if example.translation:
+        surfaces.append({"text": example.translation, "lang": "en", "role": "sentence", "field": "example.en"})
+    verdict, _ = child_safety.evaluate_item(surfaces, headword=word)
+    return verdict != "blocked"
 
 
 def build() -> dict[str, object]:
@@ -365,7 +404,13 @@ def build() -> dict[str, object]:
     # Suffixed in headword order, so the assignment is stable between builds and
     # a rebuild does not silently repoint an id somebody wrote down.
     bases: set[str] = set()
+    refused_by_policy: list[tuple[str, list[str]]] = []
+    dropped_senses: list[tuple[str, str]] = []
     for word, entries in sorted(by_word.items()):
+        refused_headword = child_safe_headword(word)
+        if refused_headword:
+            refused_by_policy.append((word, refused_headword))
+            continue
         romanization = revised_romanization(word, spoken_form(word))
         base = f"dict_{re.sub(r'[^a-z0-9]', '', romanization) or 'x'}"
         if base in bases:
@@ -388,10 +433,16 @@ def build() -> dict[str, object]:
         for entry in entries:
             for sense in usable(entry):
                 gloss, labels = sense.gloss.strip(), sense.labels
+                # The policy, on the gloss as it would be published. A sense
+                # that fails is dropped; an entry with no sense left is not
+                # written, and is counted below.
+                if not child_safe_sense(word, gloss):
+                    dropped_senses.append((word, gloss))
+                    continue
                 duplicate = by_gloss.get(gloss.casefold())
                 if duplicate is not None:
                     for example in sense.examples:
-                        if not readable(example):
+                        if not readable(example, word):
                             continue
                         row = {"korean": example.korean, "translation": example.translation}
                         if row not in duplicate["examples"] and len(duplicate["examples"]) < 4:
@@ -425,12 +476,14 @@ def build() -> dict[str, object]:
                         "examples": [
                             {"korean": example.korean, "translation": example.translation}
                             for example in sense.examples
-                            if readable(example)
+                            if readable(example, word)
                         ][:4],
                     }
                 )
                 by_gloss[gloss.casefold()] = senses[-1]
         if not senses:
+            if any(w == word for w, _ in dropped_senses):
+                refused_by_policy.append((word, ["gloss"]))
             continue
         records.append(
             {
@@ -561,8 +614,26 @@ def build() -> dict[str, object]:
             for name, rows in sorted(chunks.items())
         },
         "source": SOURCE,
+        # What the child-safe policy kept out, so the count is a published
+        # fact rather than a diff somebody has to run. The words themselves are
+        # not listed: a manifest is shipped, and a list of refused words is
+        # exactly the thing the refusal exists to keep out of the package.
+        "childSafety": {
+            "policyVersion": child_safety.policy_version(),
+            "refusedHeadwords": len(refused_by_policy),
+            "refusedByCategory": _count_categories(refused_by_policy),
+            "droppedSenses": len(dropped_senses),
+        },
     }
     return hashed
+
+
+def _count_categories(refused: list[tuple[str, list[str]]]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for _, why in refused:
+        for reason in {r.split(":")[0] for r in why}:
+            counts[reason] = counts.get(reason, 0) + 1
+    return dict(sorted(counts.items()))
 
 
 def main() -> int:

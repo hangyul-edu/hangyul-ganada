@@ -66,6 +66,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+import child_safety  # noqa: E402
 import frequency  # noqa: E402
 from hangul import is_syllable  # noqa: E402
 from sentence_demand import context_level  # noqa: E402
@@ -206,63 +207,27 @@ _BROKEN_GLOSS = re.compile(
 _ASKABLE = {"noun", "verb", "adjective", "adverb"}
 
 
-#: Words a placement test must not put in front of a learner.
-#:
-#: The dictionary layer is 26,675 Wiktionary headwords and nothing curated it
-#: for a learning product: it contains the vocabulary of sexual violence, of
-#: slurs and of graphic injury, all of it perfectly good lexicography and none
-#: of it something a person should meet while finding out how much Korean they
-#: know. A word was already reaching learners — a question about 손을 ____ was
-#: offering 강간했어요 as one of its three wrong answers.
-#:
-#: Deliberately *not* a general profanity filter over the app. The dictionary
-#: still contains these words and search still finds them, which is what a
-#: dictionary is for. This list governs what the *test* may ask about or offer
-#: as a distractor, which is a different question.
-#:
-#: Ordinary words that name difficult things stay: 죽다, 병, 싸우다, 사고,
-#: 살인 and 강도 are all in the teaching corpus with neutral examples, and a
-#: language course that could not say "an accident happened" would be a worse
-#: one.
-_UNSUITABLE = (
-    # Sexual content and sexual violence.
-    "강간", "성폭", "성추행", "추행", "겁탈", "윤간", "성희롱", "매춘", "매음", "창녀",
-    "포르노", "음란", "외설", "성교", "정사", "자위", "애무", "정액", "음경", "음부",
-    "성기", "항문", "변태", "색정", "호색", "기생충"[:0] or "매독", "임질",
-    # Slurs and profanity.
-    "씨발", "새끼", "병신", "지랄", "존나", "개년", "썅", "쌍놈", "잡놈", "화냥",
-    "짱깨", "쪽발", "깜둥", "튀기", "불구자", "벙어리", "귀머거리", "장님", "절름발",
-    # Graphic violence, execution and self-harm.
-    "학살", "참수", "고문", "처형", "총살", "교수형", "사형", "자살", "자해", "시체",
-    "사체", "시신", "도살", "학대", "구타", "폭행", "인신매매", "노예",
-    # Drugs.
-    "마약", "헤로인", "코카인", "필로폰", "대마초", "아편", "각성제", "환각",
-    # Bodily waste.
-    "대변", "소변", "배설", "오줌", "똥",
-)
-
-
 #: The reviewed exclusion layer, read from content rather than repeated here.
 #:
-#: `_UNSUITABLE` above matches substrings, which is right for morphological
-#: families — 성폭행 and 성폭력 share 성폭 — and wrong for anything short: 년
-#: would take 작년 and 청소년 with it. So the reviewed file is matched against the
-#: whole headword, and it is the tier that caught 보지.
+#: 보지 is the reason `notStandalone` and the policy exist side by side. The
+#: taught pack had already refused it, with the reason written on the entry.
+#: The dictionary half of the anchor pool had not: there it sits at level 4
+#: glossed "preservation", a real but obscure Sino-Korean noun, and neither a
+#: substring list nor an English gloss test had anything to say about it. It
+#: reached the Level Test as an answer choice.
 #:
-#: 보지 is the reason both exist. The taught pack had already refused it, with the
-#: reason written on the entry. The dictionary half of the anchor pool had not:
-#: there it sits at level 4 glossed "preservation", a real but obscure
-#: Sino-Korean noun, and neither the substring list nor the English gloss test
-#: had anything to say about it. It reached the Level Test as an answer choice.
+#: The substring list that used to live here (`_UNSUITABLE`) and the
+#: whole-headword list in `learner-safety.json` are both gone. 섹스하다 walked
+#: between them — the list had 섹스, the headword was 섹스하다, and the gloss
+#: test looked for "sexual" in "to have sex" — and reached the test as a
+#: level-12 question. Every anchor is now read through the child-safe content
+#: policy (`packages/content-safety`, ported in `child_safety.py`): the Korean
+#: headword as an assessment option, the English gloss as a gloss, the example
+#: as a sentence. An assessment surface is a *random* surface, so CONTEXT_BLOCK
+#: (death vocabulary) is refused here as well, unless the policy names the card.
 _SAFETY = json.loads(
     (ROOT / "content" / "vocabulary" / "learner-safety.json").read_text(encoding="utf-8")
 )
-_EXCLUDED = {
-    term
-    for name, terms in _SAFETY["excluded"].items()
-    if name != "_comment"
-    for term in terms
-}
 _NOT_STANDALONE = {
     term
     for name, terms in _SAFETY["notStandalone"].items()
@@ -275,22 +240,17 @@ _NOT_STANDALONE = {
 _GRAMMATICAL_FORM = set(_SAFETY["notStandalone"].get("grammaticalForm", []))
 
 
-def unsuitable(headword: str, gloss: str) -> bool:
-    """Whether a word is one the test must not show. See `_UNSUITABLE`."""
-    if headword in _EXCLUDED:
-        return True
-    if any(term in headword for term in _UNSUITABLE):
-        return True
-    lowered = gloss.lower()
-    return any(
-        term in lowered
-        for term in (
-            "rape", "sexual", "genital", "obscene", "prostitut", "porn", "masturbat",
-            "slur", "vulgar", "profan", "derogatory", "offensive", "swear word",
-            "excrement", "faeces", "feces", "urine", "narcotic", "heroin", "cocaine",
-            "execute by", "behead", "massacre", "torture", "suicide", "corpse",
-        )
-    )
+def unsuitable(headword: str, gloss: str, example: str = "") -> bool:
+    """Whether a word is one the test must not show. See the note above."""
+    surfaces = [
+        {"text": headword, "lang": "ko", "role": "option", "field": "headword"},
+        {"text": gloss, "lang": "en", "role": "gloss", "field": "gloss"},
+    ]
+    if example:
+        surfaces.append({"text": example, "lang": "ko", "role": "sentence", "field": "example"})
+    verdict, _ = child_safety.evaluate_item(surfaces, headword=headword, random=True)
+    return verdict != "ok"
+
 
 def usable_anchor(headword: str, gloss: str, pos: str) -> bool:
     """Whether a dictionary entry can carry a question.
@@ -420,6 +380,21 @@ def _dilute(rank: int, senses: int) -> int:
     return int(round(rank * (senses ** 0.5)))
 
 
+#: Words retired from the taught corpus under the child-safe policy.
+#:
+#: A retired word keeps its dictionary row where that row is allowed (좀비 is
+#: glossed *zombie*, which the policy does not refuse on its own), and it must
+#: still not come back as an assessment anchor by the dictionary route: the
+#: reason it left the corpus was a reason about a beginner meeting it at
+#: random, and the test is exactly that surface.
+_RETIRED = {
+    row["word"]
+    for row in json.loads(
+        (ROOT / "content" / "vocabulary" / "retired-words.json").read_text(encoding="utf-8")
+    )["words"].values()
+}
+
+
 def dictionary_anchors(taught: set[str]) -> list[dict]:
     """Entries from the dictionary layer that can carry a question.
 
@@ -448,7 +423,7 @@ def dictionary_anchors(taught: set[str]) -> list[dict]:
     seen: set[str] = set()
     for headword, _romanization, gloss, _chunk, _freq in index["rows"]:
         pos = part_of_speech.get(headword, "")
-        if headword in taught or headword in seen:
+        if headword in taught or headword in seen or headword in _RETIRED:
             continue
         if not usable_dictionary_anchor(headword, gloss, pos):
             continue
@@ -483,7 +458,7 @@ def build() -> dict:
         # The corpus is curated and the filter still applies to it, because a
         # rule that only guards the untrusted half is a rule somebody has to
         # remember to extend when the halves change.
-        if unsuitable(word["word"], gloss):
+        if unsuitable(word["word"], gloss, word.get("example") or ""):
             continue
         rows.append(
             {

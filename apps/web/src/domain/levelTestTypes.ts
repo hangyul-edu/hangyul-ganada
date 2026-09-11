@@ -36,6 +36,16 @@ export interface LevelTestItem {
   answerId?: string;
   /** The anchors whose meanings are the four choices. `meaning` only. */
   optionIds?: string[];
+  /**
+   * The dictionary form the answer was conjugated from. `context` only.
+   *
+   * Carried by the builder for its ambiguity gate, and read by the runtime
+   * content-safety gate: a conjugated option is judged as the word it came
+   * from, not as the string on the button — see `guardLevelTestItems`.
+   */
+  lemma?: string;
+  /** The anchors the three wrong options were conjugated from. `context` only. */
+  distractorIds?: string[];
 }
 
 /** One option, and the language its text is actually in. */

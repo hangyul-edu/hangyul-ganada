@@ -1,3 +1,4 @@
+import { guardLevelTestItems } from '../domain/contentSafety';
 import type {
   LevelTestItem,
   RenderedItem,
@@ -165,10 +166,25 @@ export function loadLevelTestBank(locale: string): Promise<LevelTestBank> {
       for (const [id, text] of Object.entries(table.meanings)) meanings.set(id, text);
     }
 
+    /*
+      The runtime content-safety gate, before anything is indexed.
+
+      The bank was validated when it was built, and this build's bank is the
+      one the manifest names. Neither fact is about the file a device
+      actually holds: a native app ships its bank, a cached one can outlive a
+      policy, and `dict_섹스하다:meaning` sat in a shipped bank for a release.
+      So every item is read through the runtime policy here, and an item it
+      refuses is not asked — see `guardLevelTestItems`.
+    */
+    const guarded = await guardLevelTestItems(raw.items, meanings, locale);
+    if (guarded.refused.length > 0 && import.meta.env?.DEV) {
+      console.warn(`level test: ${guarded.refused.length} item(s) refused by the content policy`, guarded.refused);
+    }
+
     const byLevel = new Map<number, LevelTestItem[]>();
     const byLevelKind = new Map<string, LevelTestItem[]>();
     const askable: LevelTestItem[] = [];
-    for (const item of raw.items) {
+    for (const item of guarded.items) {
       // Resolvability is decided once, here, so no later code has to remember.
       if (!resolveItem(item, meanings, locale)) continue;
       askable.push(item);

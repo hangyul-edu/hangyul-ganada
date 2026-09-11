@@ -86,8 +86,9 @@ const GATES = [
   {
     id: 'safety',
     script: 'content:safety:check',
-    proves: 'no word list entry and no composed sentence is unsafe for a beginner',
-    blind: 'harm carried by connotation rather than by a class rule',
+    proves:
+      'no learner-facing string in any of 14 content families and 32 locales, and no composed sentence, fails the child-safe content policy',
+    blind: 'a prohibited term absent from every policy list, and harm carried by connotation rather than by a rule',
   },
   {
     id: 'examples',

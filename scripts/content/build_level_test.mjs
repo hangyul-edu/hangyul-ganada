@@ -41,6 +41,8 @@
  */
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs';
+
+import { evaluateSurface, isBlocked, POLICY_VERSION, verdictOf } from '../../packages/content-safety/src/index.ts';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -157,12 +159,15 @@ const NOT_STANDALONE = new Set(
  * is *shut up*. An inflected form can be a word the corpus never contains, so
  * checking the headword — which is what every other guard here does — cannot
  * see it. This checks the surface actually printed.
+ *
+ * The list is no longer a list. `excluded` in `learner-safety.json` held
+ * 섹스 and compared whole headwords, so 섹스하다 walked past it into a
+ * level-12 question. Every surface is now read through the child-safe content
+ * policy (`packages/content-safety`), as an *option* — which is a random
+ * surface, so CONTEXT_BLOCK words (사망, 무덤) are refused here too — and the
+ * same evaluator reads the finished items again before they are written.
  */
-const EXCLUDED = new Set(
-  Object.entries(SAFETY.excluded)
-    .filter(([name]) => name !== '_comment')
-    .flatMap(([, terms]) => terms),
-);
+const excluded = (surface) => isBlocked(surface, 'ko', 'option', { random: true });
 /** Conjugated surfaces of every predicate a frame rule names. */
 const FRAME_RULES = SAFETY.frames.rules.map((rule) => ({
   forbid: rule.forbidObject,
@@ -178,6 +183,9 @@ const FRAME_RULES = SAFETY.frames.rules.map((rule) => ({
 
 /** Whether putting `surface` in this sentence's blank composes something unsafe. */
 function unsafeInFrame(blanked, surface) {
+  // The composed sentence itself, through the policy: 넘어진 아이를 괴롭혔어요
+  // is two innocent words and one sentence a beginner must not be shown.
+  if (isBlocked(blanked.replace('____', surface), 'ko', 'sentence', { random: true })) return true;
   const kinds = NOUN_CLASSES[surface];
   if (!kinds) return false;
   const at = blanked.indexOf('____');
@@ -1094,8 +1102,8 @@ for (const anchor of anchors) {
       surface = other.word;
     }
     if (surface === anchor.surface || choices.some((c) => c.surface === surface)) continue;
-    // Never, in any slot, inflected or not — see `EXCLUDED`.
-    if (EXCLUDED.has(surface)) {
+    // Never, in any slot, inflected or not — see `excluded`.
+    if (excluded(surface)) {
       rejected.excludedTerm = (rejected.excludedTerm ?? 0) + 1;
       continue;
     }
@@ -1275,7 +1283,7 @@ for (const entry of curatedFile.items) {
     if (Math.abs((other.level ?? 0) - (answer.level ?? 0)) > SPREAD * 3) {
       fail(`${other.word} is level ${other.level} against ${answer.level}`);
     }
-    if (EXCLUDED.has(other.surface) || NOT_STANDALONE.has(other.surface)) {
+    if (excluded(other.surface) || NOT_STANDALONE.has(other.surface)) {
       fail(`${other.surface} may not stand alone in a slot`);
     }
     if (prompt.includes(other.surface)) fail(`${other.surface} is already in the sentence`);
@@ -1464,6 +1472,57 @@ for (const anchor of anchors) {
   meanings.en[anchor.id] = anchor.gloss;
 }
 
+/*
+  The publication gate: every finished item, every string a learner can see.
+
+  Everything above chose words and composed sentences one guard at a time.
+  This reads the result the way the screen will show it — the Korean prompt,
+  the Korean answer and options, and the meaning of every option in every
+  language that has one — and refuses the item if any of it fails the policy.
+  It is deliberately redundant with the guards above: a guard is a promise
+  about one path, and this is a check on the thing shipped.
+*/
+const refusedByPolicy = [];
+const headwordOf = new Map(anchors.map((anchor) => [anchor.id, anchor.word]));
+const publishable = kept.filter((item) => {
+  const random = { random: true };
+  const own = { random: true, headword: headwordOf.get(item.id.split(':')[0]) };
+  const findings = [];
+  if (item.prompt) {
+    findings.push(...evaluateSurface({ text: item.prompt, lang: 'ko', role: item.kind === 'meaning' ? 'headword' : 'sentence', field: 'prompt' }, own));
+  }
+  if (item.answer) findings.push(...evaluateSurface({ text: item.answer, lang: 'ko', role: 'option', field: 'answer' }, own));
+  // An option is its own word: 무덤 as a choice is judged as the card 무덤. A
+  // contextual option is a conjugated surface (죽었어요), so it is judged as
+  // the lemma it was conjugated from — the item's own, or one of its
+  // distractors' — and passes if it passes as any of them.
+  const lemmas = [item.lemma, ...(item.distractorIds ?? []).map((id) => headwordOf.get(id))].filter(Boolean);
+  for (const option of item.options ?? []) {
+    const candidates = [option, ...lemmas];
+    const attempts = candidates.map((headword) =>
+      evaluateSurface({ text: option, lang: 'ko', role: 'option', field: 'option' }, { random: true, headword }),
+    );
+    const passing = attempts.find((list) => verdictOf(list, random) === 'ok');
+    if (!passing) findings.push(...attempts[0]);
+  }
+  // A meaning belongs to the word it defines, so the policy's allow lists
+  // apply by that word: 죽다's "to die" is allowed because the card is named,
+  // and a dictionary anchor glossed "the deceased" is not.
+  const ids = [...(item.optionIds ?? []), ...(item.promptId ? [item.promptId] : [])];
+  for (const id of ids) {
+    const facts = { random: true, headword: headwordOf.get(id) };
+    for (const [locale, table] of Object.entries(meanings)) {
+      const text = table[id];
+      if (text) findings.push(...evaluateSurface({ text, lang: locale, role: 'option', field: `meaning:${locale}` }, facts));
+    }
+  }
+  if (verdictOf(findings, random) === 'ok') return true;
+  refusedByPolicy.push({ id: item.id, findings: findings.slice(0, 3).map((f) => `${f.lang}:${f.category}:${f.term}`) });
+  return false;
+});
+kept.length = 0;
+kept.push(...publishable);
+
 const perLevel = {};
 const perKind = {};
 for (const item of kept) {
@@ -1480,6 +1539,7 @@ const bank = {
   options: OPTIONS,
   items: kept,
   perLevel,
+  childSafety: { policyVersion: POLICY_VERSION, refusedItems: refusedByPolicy.length },
 };
 
 const rendered = `${JSON.stringify(bank)}\n`;
@@ -1639,6 +1699,10 @@ for (let level = 1; level <= LEVELS; level += 1) {
   if ((perLevel[level] ?? 0) < 30) thin.push(level);
 }
 if (thin.length) console.log(`\n  levels with fewer than 30 items: ${thin.join(', ')}`);
+console.log(
+  `\n  child-safe content policy ${POLICY_VERSION}: ${refusedByPolicy.length} finished item(s) refused at publication` +
+    (refusedByPolicy.length ? ` — ${refusedByPolicy.slice(0, 60).map((r) => `${r.id} (${r.findings.join(', ')})`).join('; ')}` : ''),
+);
 
 console.log('\n  how far each language can ask, and with how many items:\n');
 const ordered = [...locales].sort((a, b) => reach[b].ceiling - reach[a].ceiling || a.localeCompare(b));

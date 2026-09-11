@@ -219,6 +219,22 @@ export default defineConfig({
            * alphabet is genuinely required before the home screen paints, and
            * the corpus is not.
            */
+          /*
+           * The child-safe content policy and its evaluator, apart from the
+           * app: fetched when the Level Test loads its bank and nowhere
+           * else, and measured on its own so a policy that grows shows up as
+           * its own number in the budget.
+           */
+          if (id.includes('packages/content-safety')) return 'content-safety';
+          /*
+           * The conjugator, apart from the app for the same reason: its verb
+           * class tables name every taught verb, including the ones whose
+           * request form is not a favour (죽이다, 협박하다), and the
+           * packaged-artefact content scan reads a chunk's Korean as learner
+           * text. This chunk is code and tables, never copy, and the scan
+           * exempts it by name.
+           */
+          if (id.includes('packages/korean-morphology')) return 'korean-morphology';
           if (id.includes('src/data/generated/vocabulary')) return 'word-corpus';
           if (id.includes('src/data/generated')) return 'curriculum-data';
           if (id.includes('node_modules/react') || id.includes('node_modules/scheduler')) {
