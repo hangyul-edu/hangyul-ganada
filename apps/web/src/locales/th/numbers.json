@@ -59,10 +59,6 @@
     "mastery": "ทำการตรวจสอบขั้นสุดท้าย",
     "everyItem": "ตอบทุกสำนวนให้ถูกอย่างน้อยหนึ่งครั้ง"
   },
-  "feedback": {
-    "correct": "ถูกต้อง",
-    "incorrect": "ผิด"
-  },
   "prompt": {
     "listenAndChoose": "คุณได้ยินคำว่าอะไร",
     "meaning": {

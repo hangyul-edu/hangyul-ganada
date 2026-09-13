@@ -93,7 +93,8 @@
     "matchPaired": "已将{{word}}与{{meaning}}配对。再次点按可更改。",
     "matchAllPaired": "全部配对完成。请按“检查”。",
     "matchCheck": "检查",
-    "matchPairLabel": "第{{n}}对"
+    "matchPairLabel": "第{{n}}对",
+    "matchRight": "{{total}}组中答对{{right}}组。"
   },
   "units": {
     "badge": "第 {{index, number}} 单元",
@@ -230,7 +231,12 @@
     "body": "你已经能读韩文了。口语和 TOPIK 备考可以在 Hangyul 继续。",
     "cta": "去 Hangyul 继续",
     "rowTitle": "去 Hangyul 继续",
-    "rowBody": "准备好了就练口语和 TOPIK"
+    "rowBody": "准备好了就练口语和 TOPIK",
+    "inProduct": {
+      "title": "你已经能读韩文了",
+      "body": "接下来学单词：每天十个，符合你的水平，每个都有例句和录音。",
+      "cta": "开始今天的单词"
+    }
   },
   "practice": {
     "sizeLabel": "题数",

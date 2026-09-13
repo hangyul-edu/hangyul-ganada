@@ -59,10 +59,6 @@
     "mastery": "Abschlusskontrolle machen",
     "everyItem": "Jeden Ausdruck mindestens einmal richtig haben"
   },
-  "feedback": {
-    "correct": "Richtig",
-    "incorrect": "Falsch"
-  },
   "prompt": {
     "listenAndChoose": "Was hast du gehört?",
     "meaning": {

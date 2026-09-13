@@ -209,7 +209,16 @@ export function LanguagePage() {
           </section>
         )}
 
-        <p className={styles.coverage}>{t('settings:language.coverageNote')}</p>
+        {/*
+          Only while there is a row for it to explain. Every one of the 32
+          packs has been complete since the fourteenth pass, so no row carries
+          the "word meanings in English" mark any more — and a footnote about
+          rows that say so, under a list where none does, was a stale claim in
+          thirty-two languages. It returns the day a language ships partial.
+        */}
+        {available.some((entry) => !WORD_COPY_LOCALES.includes(entry.code)) && (
+          <p className={styles.coverage}>{t('settings:language.coverageNote')}</p>
+        )}
       </div>
     </div>
   );

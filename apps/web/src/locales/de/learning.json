@@ -93,7 +93,8 @@
     "matchPaired": "{{word}} mit {{meaning}} verbunden. Zum Ändern eines von beiden antippen.",
     "matchAllPaired": "Alles verbunden. Tippe auf Prüfen.",
     "matchCheck": "Prüfen",
-    "matchPairLabel": "Paar {{n}}"
+    "matchPairLabel": "Paar {{n}}",
+    "matchRight": "{{right}} von {{total}} Paaren richtig."
   },
   "units": {
     "badge": "Einheit {{index, number}}",
@@ -232,7 +233,12 @@
     "body": "Sie können Hangul jetzt lesen. Sprechen und TOPIK-Vorbereitung gehen in Hangyul weiter.",
     "cta": "In Hangyul weitermachen",
     "rowTitle": "In Hangyul weitermachen",
-    "rowBody": "Sprechen und TOPIK, wenn du so weit bist"
+    "rowBody": "Sprechen und TOPIK, wenn du so weit bist",
+    "inProduct": {
+      "title": "Du kannst jetzt Hangul lesen",
+      "body": "Als Nächstes kommen Wörter: zehn am Tag auf deinem Niveau, jedes mit Satz und Aufnahme.",
+      "cta": "Die Wörter von heute starten"
+    }
   },
   "practice": {
     "sizeLabel": "Wie viele",

@@ -757,7 +757,7 @@ function ExerciseRun({
             */}
             <FeedbackState
               status={answer.correct ? 'correct' : 'incorrect'}
-              headline={t(answer.correct ? 'numbers:feedback.correct' : 'numbers:feedback.incorrect')}
+              headline={t(answer.correct ? 'common:verdict.correct' : 'common:verdict.incorrect')}
             />
             <Button onClick={advance}>{t('numbers:action.continue')}</Button>
           </>

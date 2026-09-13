@@ -59,10 +59,6 @@
     "mastery": "Қорытынды тексеруді өту",
     "everyItem": "Әр тіркесті кемінде бір рет дұрыс табу"
   },
-  "feedback": {
-    "correct": "Дұрыс",
-    "incorrect": "Қате"
-  },
   "prompt": {
     "listenAndChoose": "Не естідіңіз?",
     "meaning": {

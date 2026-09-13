@@ -59,10 +59,6 @@
     "mastery": "Rozwiązać sprawdzian końcowy",
     "everyItem": "Trafić każde wyrażenie przynajmniej raz"
   },
-  "feedback": {
-    "correct": "Poprawnie",
-    "incorrect": "Źle"
-  },
   "prompt": {
     "listenAndChoose": "Co słyszysz?",
     "meaning": {

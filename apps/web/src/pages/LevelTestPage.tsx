@@ -460,6 +460,7 @@ export function LevelTestPage() {
    */
   useEffect(() => {
     if (!sitting || done) return undefined;
+    setNow(Date.now());
     const tick = window.setInterval(() => setNow(Date.now()), 1000);
     return () => window.clearInterval(tick);
   }, [sitting, done]);
@@ -655,7 +656,16 @@ export function LevelTestPage() {
     );
   }
 
-  const remaining = sitting === null ? TIME_LIMIT_MS : Math.max(0, sitting.deadline - now);
+  /*
+   * Clamped to the budget. `now` is read when the screen mounts and ticks only
+   * while a sitting exists, so at the first render after *Start* it is as
+   * stale as the learner's time on the intro — and `deadline - now` was
+   * printing 8:01, or 11:00 after three minutes of reading the intro, for one
+   * second before snapping to 7:59. A clock cannot show more than the test
+   * gives.
+   */
+  const remaining =
+    sitting === null ? TIME_LIMIT_MS : Math.min(TIME_LIMIT_MS, Math.max(0, sitting.deadline - now));
   const clock = `${Math.floor(remaining / 60000)}:${String(Math.floor((remaining % 60000) / 1000)).padStart(2, '0')}`;
 
   if (!bank || !current) {

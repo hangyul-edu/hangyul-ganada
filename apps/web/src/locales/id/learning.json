@@ -180,7 +180,8 @@
     "matchPaired": "{{word}} dipasangkan dengan {{meaning}}. Ketuk salah satunya untuk mengubah.",
     "matchAllPaired": "Semua sudah dipasangkan. Tekan Periksa.",
     "matchCheck": "Periksa",
-    "matchPairLabel": "Pasangan {{n}}"
+    "matchPairLabel": "Pasangan {{n}}",
+    "matchRight": "{{right}} dari {{total}} pasangan benar."
   },
   "sounds": {
     "title": "Ketika bunyi bertemu",
@@ -229,7 +230,12 @@
     "body": "Kamu sudah bisa membaca Hangul. Latihan berbicara dan TOPIK berlanjut di Hangyul.",
     "cta": "Lanjut di Hangyul",
     "rowTitle": "Lanjut di Hangyul",
-    "rowBody": "Berbicara dan TOPIK, kalau kamu sudah siap"
+    "rowBody": "Berbicara dan TOPIK, kalau kamu sudah siap",
+    "inProduct": {
+      "title": "Kamu sudah bisa membaca Hangul",
+      "body": "Berikutnya, kosakata: sepuluh sehari sesuai levelmu, masing-masing dengan kalimat dan rekaman.",
+      "cta": "Mulai kata hari ini"
+    }
   },
   "practice": {
     "sizeLabel": "Berapa soal",

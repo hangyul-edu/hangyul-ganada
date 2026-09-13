@@ -1,5 +1,6 @@
 {
   "notFound": {
+    "title": "Pagina nu a fost găsită",
     "page": "N-am găsit pagina aceea.",
     "lesson": "N-am găsit lecția aceea.",
     "wordLesson": "N-am găsit setul acela de cuvinte."

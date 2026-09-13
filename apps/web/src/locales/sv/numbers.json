@@ -59,10 +59,6 @@
     "mastery": "Gör slutkontrollen",
     "everyItem": "Få varje uttryck rätt minst en gång"
   },
-  "feedback": {
-    "correct": "Rätt",
-    "incorrect": "Fel"
-  },
   "prompt": {
     "listenAndChoose": "Vad hörde du?",
     "meaning": {

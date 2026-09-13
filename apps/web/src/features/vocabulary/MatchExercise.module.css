@@ -218,3 +218,14 @@
     transition: none;
   }
 }
+
+/* The verdict colours every other question uses; see ChoiceExercise. */
+.helpRight {
+  color: var(--hg-positive-text);
+  font-weight: var(--hg-weight-semibold);
+}
+
+.helpWrong {
+  color: var(--hg-negative-text);
+  font-weight: var(--hg-weight-semibold);
+}

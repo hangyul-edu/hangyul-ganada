@@ -181,7 +181,8 @@
     "matchPaired": "{{word}} párosítva: {{meaning}}. Érintsd meg bármelyiket a módosításhoz.",
     "matchAllPaired": "Minden párosítva. Nyomd meg az Ellenőrzést.",
     "matchCheck": "Ellenőrzés",
-    "matchPairLabel": "{{n}}. pár"
+    "matchPairLabel": "{{n}}. pár",
+    "matchRight": "{{total}} párból {{right}} helyes."
   },
   "sounds": {
     "title": "Amikor a hangok találkoznak",
@@ -232,7 +233,12 @@
     "body": "A hangult már olvasod. A beszéd és a TOPIK-felkészülés a Hangyulban folytatódik.",
     "cta": "Folytasd a Hangyulban",
     "rowTitle": "Folytasd a Hangyulban",
-    "rowBody": "Beszéd és TOPIK, amikor készen állsz"
+    "rowBody": "Beszéd és TOPIK, amikor készen állsz",
+    "inProduct": {
+      "title": "Már tudsz hangult olvasni",
+      "body": "Következnek a szavak: napi tíz a te szinteden, mindegyik mondattal és felvétellel.",
+      "cta": "A mai szavak indítása"
+    }
   },
   "practice": {
     "sizeLabel": "Hány kérdés",

@@ -182,7 +182,8 @@
     "matchPaired": "{{word}} abbinata a {{meaning}}. Tocca una delle due per cambiare.",
     "matchAllPaired": "Tutto abbinato. Premi Verifica.",
     "matchCheck": "Verifica",
-    "matchPairLabel": "Coppia {{n}}"
+    "matchPairLabel": "Coppia {{n}}",
+    "matchRight": "{{right}} coppie su {{total}} giuste."
   },
   "sounds": {
     "title": "Quando i suoni si incontrano",
@@ -235,7 +236,12 @@
     "body": "Adesso sai leggere l’hangul. Il parlato e la preparazione al TOPIK proseguono su Hangyul.",
     "cta": "Continua su Hangyul",
     "rowTitle": "Continua su Hangyul",
-    "rowBody": "Parlato e TOPIK, quando te la senti"
+    "rowBody": "Parlato e TOPIK, quando te la senti",
+    "inProduct": {
+      "title": "Ora sai leggere l'hangul",
+      "body": "Adesso le parole: dieci al giorno al tuo livello, ognuna con una frase e una registrazione.",
+      "cta": "Inizia le parole di oggi"
+    }
   },
   "practice": {
     "sizeLabel": "Quante",

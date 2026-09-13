@@ -59,10 +59,6 @@
     "mastery": "仕上げチェックを受ける",
     "everyItem": "すべての表現を一度は正解する"
   },
-  "feedback": {
-    "correct": "正解",
-    "incorrect": "不正解"
-  },
   "prompt": {
     "listenAndChoose": "何と聞こえましたか？",
     "meaning": {

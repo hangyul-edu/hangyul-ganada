@@ -15,9 +15,15 @@ import styles from './NotFoundPage.module.css';
  */
 export function NotFoundBody({ messageKey }: { messageKey: string }) {
   const { t } = useTranslation(['errors', 'common']);
+  /*
+   * The header used to be given `title=""`, which rendered an `<h1>` with no
+   * name — the one heading on the screen, and it said nothing to a screen
+   * reader or to the tab strip. The title names the state; the sentence under
+   * the mascot still names what was not found.
+   */
   return (
     <div className={styles.page}>
-      <AppHeader title="" />
+      <AppHeader title={t('errors:notFound.title')} />
       <div className={styles.body}>
         <HangyulMascot mood="sad" size={88} />
         <p className={styles.title}>{t(`errors:${messageKey}`)}</p>

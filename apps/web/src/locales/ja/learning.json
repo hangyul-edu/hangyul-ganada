@@ -93,7 +93,8 @@
     "matchPaired": "{{word}}と{{meaning}}を組にしました。変えるにはもう一度タップ。",
     "matchAllPaired": "すべて組にしました。「確認」を押してください。",
     "matchCheck": "確認",
-    "matchPairLabel": "組{{n}}"
+    "matchPairLabel": "組{{n}}",
+    "matchRight": "{{total}}組中{{right}}組正解。"
   },
   "units": {
     "badge": "ユニット {{index, number}}",
@@ -230,7 +231,12 @@
     "body": "ハングルが読めるようになりました。会話とTOPIK対策はHangyulで続けられます。",
     "cta": "Hangyulで続ける",
     "rowTitle": "Hangyulで続ける",
-    "rowBody": "準備ができたら会話とTOPIKへ"
+    "rowBody": "準備ができたら会話とTOPIKへ",
+    "inProduct": {
+      "title": "ハングルが読めるようになりました",
+      "body": "次は単語です。自分のレベルに合った単語を一日十語ずつ、例文と音声つきで学びます。",
+      "cta": "今日の単語を始める"
+    }
   },
   "practice": {
     "sizeLabel": "問題数",

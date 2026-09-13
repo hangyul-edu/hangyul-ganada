@@ -5,11 +5,18 @@
   width: 100%;
 }
 
+/*
+ * `flex: none` kept the label on one line whatever its length, and at 200%
+ * text *Progress through the Hangul alphabet* ran off the right of the My
+ * Learning card. The label may shrink and wrap; the track keeps what is left.
+ */
 .barLabel {
-  flex: none;
+  flex: 0 1 auto;
+  min-width: 0;
   font-size: var(--hg-text-caption);
   font-weight: var(--hg-weight-semibold);
   color: var(--hg-text-tertiary);
+  overflow-wrap: anywhere;
 }
 
 .track {

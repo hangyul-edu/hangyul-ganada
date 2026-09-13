@@ -59,10 +59,6 @@
     "mastery": "Пройти итоговую проверку",
     "everyItem": "Угадать каждое выражение хотя бы раз"
   },
-  "feedback": {
-    "correct": "Верно",
-    "incorrect": "Неверно"
-  },
   "prompt": {
     "listenAndChoose": "Что вы услышали?",
     "meaning": {

@@ -229,7 +229,20 @@ test('a faithful trace passes and an obvious scribble fails', async ({ page }) =
   await expect(firstBox(page)).toHaveClass(/incorrect/);
 
   await page.getByRole('button', { name: 'Try again' }).click();
-  await page.getByRole('button', { name: 'Clear' }).click();
+
+  /*
+    Try again hands back an empty box.
+
+    It used to keep the rejected scribble on the canvas, and this spec pressed
+    Clear for the learner — which is precisely the step a beginner does not
+    know to take. Written over the old ink, a faithful ㅏ was graded Incorrect a
+    second time, because the grader sees both attempts as one drawing. So the
+    assertion is on the box: nothing written, Clear disabled, and the next
+    trace passes on its own.
+  */
+  await expect(page.getByRole('button', { name: 'Clear' })).toBeDisabled();
+  await expect(page.getByText('Nothing written yet.')).toBeVisible();
+  await expect(firstBox(page)).not.toHaveClass(/incorrect/);
 
   await traceReferenceGlyph(page, firstBox(page));
   await page.getByRole('button', { name: 'Check' }).click();

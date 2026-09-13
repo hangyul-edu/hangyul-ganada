@@ -94,7 +94,8 @@
     "matchPaired": "{{word}} combinada com {{meaning}}. Toque em qualquer uma para mudar.",
     "matchAllPaired": "Tudo combinado. Toque em Verificar.",
     "matchCheck": "Verificar",
-    "matchPairLabel": "Par {{n}}"
+    "matchPairLabel": "Par {{n}}",
+    "matchRight": "{{right}} de {{total}} pares certos."
   },
   "units": {
     "badge": "Unidade {{index, number}}",
@@ -235,7 +236,12 @@
     "body": "Você já lê hangul. A prática de conversação e o TOPIK continuam no Hangyul.",
     "cta": "Continuar no Hangyul",
     "rowTitle": "Continuar no Hangyul",
-    "rowBody": "Conversação e TOPIK, quando quiser"
+    "rowBody": "Conversação e TOPIK, quando quiser",
+    "inProduct": {
+      "title": "Você já sabe ler hangul",
+      "body": "Agora, palavras: dez por dia no seu nível, cada uma com uma frase e uma gravação.",
+      "cta": "Começar as palavras de hoje"
+    }
   },
   "practice": {
     "sizeLabel": "Quantas",

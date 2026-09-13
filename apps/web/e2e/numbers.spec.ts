@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 
 import { NUMBER_LESSONS, getNumberLesson, numberLessonItems } from '../src/data/numbers';
 import { passMark } from '../src/domain/numbersProgress';
@@ -245,7 +246,9 @@ test.describe('the Numbers course', () => {
       const wrongIndex = (first.answer + 1) % first.options.length;
       await body.getByRole('group').getByRole('button', { name: optionText(first, wrongIndex), exact: true }).click();
       const status = body.getByRole('status');
-      await expect(status).toContainText(en('feedback.incorrect'));
+      // The same two words every other verdict in the product uses — the
+      // Numbers course had its own pair ("Not right") until the v1.0.5 pass.
+      await expect(status).toContainText(copy('common', 'verdict.incorrect'));
       /*
         And nothing else about *which* answer was right.
 
@@ -295,7 +298,12 @@ test.describe('the Numbers course', () => {
     await openApp(page, `/letters/numbers/${FIRST.id}`);
     const body = await page.locator('body').innerText();
     expect(body).not.toContain('조금 달라요');
-    expect(en('feedback.incorrect')).not.toBe('조금 달라요');
+    // The Numbers course has no verdict strings of its own any more (v1.0.5):
+    // it renders `common:verdict.*` like every other exercise, so the soft
+    // verdict has no key it could come back under.
+    expect(copy('common', 'verdict.incorrect')).not.toBe('조금 달라요');
+    const koNumbers = JSON.parse(readFileSync(new URL('../src/locales/ko/numbers.json', import.meta.url), 'utf8')) as Record<string, unknown>;
+    expect(koNumbers).not.toHaveProperty('feedback');
   });
 
   test('N-e2e-5b · a correct answer says 맞았어요 and nothing a learner already knows', async ({ page }) => {
@@ -321,7 +329,7 @@ test.describe('the Numbers course', () => {
     await body.getByRole('group').getByRole('button', { name: optionText(first, first.answer), exact: true }).click();
 
     const status = body.getByRole('status');
-    await expect(status).toContainText(en('feedback.correct'));
+    await expect(status).toContainText(copy('common', 'verdict.correct'));
     /*
      * No body at all — not an empty one. The verdict's own headline is a <p>,
      * so the count that matters is one: the headline and nothing under it.

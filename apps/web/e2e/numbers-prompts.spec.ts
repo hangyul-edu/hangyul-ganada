@@ -11,7 +11,7 @@ import {
 } from '../src/features/numbers/exercises';
 import { copy } from './helpers/copy';
 import { openApp } from './helpers/launch';
-import { emulateTextScale } from './helpers/textScale';
+import { emulateTextScale, textScaleFactor } from './helpers/textScale';
 
 /**
  * The instruction over a Numbers question says what the question wants.
@@ -138,7 +138,7 @@ test.describe('a listening question can be answered without the clip', () => {
     // Same options, same answer, same scoring.
     const answer = optionLabel(exercise!, exercise!.answer);
     await body.getByRole('group').getByRole('button', { name: answer, exact: true }).click();
-    await expect(body.getByRole('status')).toContainText(en('feedback.correct'));
+    await expect(body.getByRole('status')).toContainText(copy('common', 'verdict.correct'));
   });
 
   test('the button is not offered on a question that is not a clip', async ({ page }) => {
@@ -169,7 +169,7 @@ test.describe('the instruction matches the question', () => {
      */
     const answer = optionLabel(exercise!, exercise!.answer);
     await body.getByRole('group').getByRole('button', { name: answer, exact: true }).click();
-    await expect(body.getByRole('status')).toContainText(en('feedback.correct'));
+    await expect(body.getByRole('status')).toContainText(copy('common', 'verdict.correct'));
   });
 
   test('an explanation question asks for the correct explanation, over the contrast pair', async ({ page }) => {
@@ -198,7 +198,7 @@ test.describe('the instruction matches the question', () => {
       .getByRole('button', { name: answer, exact: true })
       .click();
     await expect(page.getByTestId('numbers-phase-practice').getByRole('status')).toContainText(
-      en('feedback.correct'),
+      copy('common', 'verdict.correct'),
     );
   });
 
@@ -282,7 +282,7 @@ test.describe('the ordinal lesson, in a browser', () => {
     const answer = exercise!.options[exercise!.answer]!.text;
     expect(['한 번째', '이 번째', '세번째', '넷 번째']).toContain(answer);
     await body.getByRole('group').getByRole('button', { name: answer, exact: true }).click();
-    await expect(body.getByRole('status')).toContainText(en('feedback.correct'));
+    await expect(body.getByRole('status')).toContainText(copy('common', 'verdict.correct'));
   });
 
   test('heads the position question with 몇 번째 rather than the counting one', async ({ page }) => {
@@ -377,6 +377,7 @@ test.describe('the ordinal lesson, in a browser', () => {
     await page.setViewportSize({ width: 320, height: 568 });
     await emulateTextScale(page, 2);
     const exercises = await intoPractice(page, ORDINALS, 'num-lesson-ordinals');
+    expect(await textScaleFactor(page), 'the page renders at 200%').toBeCloseTo(2, 1);
     const body = page.getByTestId('numbers-phase-practice');
     const exercise = exercises[0]!;
     const options = body.getByRole('group').getByRole('button');
@@ -453,6 +454,7 @@ test.describe('the question fits the phone', () => {
     await page.setViewportSize({ width: 320, height: 568 });
     await emulateTextScale(page, 22 / 16);
     const exercises = await intoPractice(page, PITFALLS, 'num-lesson-pitfalls');
+    expect(await textScaleFactor(page), 'the page renders at 137.5%').toBeCloseTo(22 / 16, 1);
     const body = page.getByTestId('numbers-phase-practice');
     const exercise = exercises[0]!;
     const options = body.getByRole('group').getByRole('button');

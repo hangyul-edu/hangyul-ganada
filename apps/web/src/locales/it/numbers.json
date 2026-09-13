@@ -59,10 +59,6 @@
     "mastery": "Fare la verifica finale",
     "everyItem": "Indovinare ogni espressione almeno una volta"
   },
-  "feedback": {
-    "correct": "Corretto",
-    "incorrect": "Sbagliato"
-  },
   "prompt": {
     "listenAndChoose": "Che cosa hai sentito?",
     "meaning": {

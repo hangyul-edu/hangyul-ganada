@@ -50,7 +50,21 @@
 }
 
 .label {
-  font-size: var(--hg-text-micro);
+  /*
+   * Capped rather than scaled without limit. The micro token doubles to 22 px
+   * at 200% text, and in a fifth of a 320 px screen that broke every label
+   * inside the word — *Lette / rs*, *Revie / w* — which is worse to read than
+   * a smaller label. A flat 16 px cap still broke *Learnin / g* at 320–390 px
+   * once the 200% measurement was made for real (v1.0.5), so the cap is also
+   * proportional to the width: 3.6vw is 11.5 px at 320, 14 px at 390 and
+   * 15.5 px at 430 — never below the normal 11 px, never above 16 — and it
+   * is the widest cap at which every English and Korean label stays a whole
+   * word at every supported width, measured across all 32 languages
+   * (tab-bar.spec asserts it). Languages whose single word for *Review* is
+   * wider than a fifth of a 320 px screen at 11 px hyphenate at normal size
+   * too; that is `hyphens: auto` below, not this cap.
+   */
+  font-size: min(var(--hg-text-micro), 16px, 3.6vw);
   font-weight: var(--hg-weight-semibold);
   line-height: 1.2;
   /* Five equal columns, and the longest label decides the bar's height. Text

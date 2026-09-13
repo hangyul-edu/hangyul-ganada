@@ -59,10 +59,6 @@
     "mastery": "Yakuniy tekshiruvni topshirish",
     "everyItem": "Har bir iborani kamida bir marta to‘g‘ri topish"
   },
-  "feedback": {
-    "correct": "To‘g‘ri",
-    "incorrect": "Noto‘g‘ri"
-  },
   "prompt": {
     "listenAndChoose": "Nimani eshitdingiz?",
     "meaning": {

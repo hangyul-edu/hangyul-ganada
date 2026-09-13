@@ -181,7 +181,8 @@
     "matchPaired": "Ipinares ang {{word}} sa {{meaning}}. I-tap ang alinman para baguhin.",
     "matchAllPaired": "Naipares na ang lahat. Pindutin ang Suriin.",
     "matchCheck": "Suriin",
-    "matchPairLabel": "Pares {{n}}"
+    "matchPairLabel": "Pares {{n}}",
+    "matchRight": "{{right}} sa {{total}} pares ang tama."
   },
   "sounds": {
     "title": "Kapag nagtagpo ang mga tunog",
@@ -232,7 +233,12 @@
     "body": "Nakakabasa ka na ng Hangul. Sa Hangyul nagpapatuloy ang pagsasalita at pag-eensayo para sa TOPIK.",
     "cta": "Magpatuloy sa Hangyul",
     "rowTitle": "Magpatuloy sa Hangyul",
-    "rowBody": "Pagsasalita at TOPIK, kapag handa ka na"
+    "rowBody": "Pagsasalita at TOPIK, kapag handa ka na",
+    "inProduct": {
+      "title": "Marunong ka nang magbasa ng Hangul",
+      "body": "Susunod, mga salita: sampu bawat araw sa antas mo, bawat isa may pangungusap at recording.",
+      "cta": "Simulan ang mga salita ngayon"
+    }
   },
   "practice": {
     "sizeLabel": "Ilang tanong",

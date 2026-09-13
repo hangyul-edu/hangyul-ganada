@@ -1,5 +1,6 @@
 {
   "notFound": {
+    "title": "Page not found",
     "page": "We couldn't find that page.",
     "lesson": "We couldn't find that lesson.",
     "wordLesson": "We couldn't find that word set."

@@ -181,7 +181,8 @@
     "matchPaired": "{{word}} gekoppeld aan {{meaning}}. Tik op een van beide om te wijzigen.",
     "matchAllPaired": "Alles gekoppeld. Druk op Controleren.",
     "matchCheck": "Controleren",
-    "matchPairLabel": "Paar {{n}}"
+    "matchPairLabel": "Paar {{n}}",
+    "matchRight": "{{right}} van {{total}} paren goed."
   },
   "sounds": {
     "title": "Als klanken elkaar raken",
@@ -232,7 +233,12 @@
     "body": "Je kunt nu Hangul lezen. Spreken en TOPIK-oefening gaan verder in Hangyul.",
     "cta": "Verder in Hangyul",
     "rowTitle": "Verder in Hangyul",
-    "rowBody": "Spreken en TOPIK, wanneer je zover bent"
+    "rowBody": "Spreken en TOPIK, wanneer je zover bent",
+    "inProduct": {
+      "title": "Je kunt nu Hangul lezen",
+      "body": "Nu de woorden: tien per dag op jouw niveau, elk met een zin en een opname.",
+      "cta": "Begin de woorden van vandaag"
+    }
   },
   "practice": {
     "sizeLabel": "Hoeveel",

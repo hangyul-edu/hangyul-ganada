@@ -93,7 +93,8 @@
     "matchPaired": "{{word}} – {{meaning}} 짝을 지었어요. 바꾸려면 다시 누르세요.",
     "matchAllPaired": "모두 짝지었어요. 확인을 누르세요.",
     "matchCheck": "확인",
-    "matchPairLabel": "짝 {{n}}"
+    "matchPairLabel": "짝 {{n}}",
+    "matchRight": "{{total}}쌍 중 {{right}}쌍을 맞혔어요."
   },
   "units": {
     "badge": "{{index, number}}단원",
@@ -230,7 +231,12 @@
     "body": "이제 한글을 읽을 수 있어요. 말하기와 TOPIK 준비는 한귤에서 이어져요.",
     "cta": "한귤에서 계속하기",
     "rowTitle": "한귤에서 계속하기",
-    "rowBody": "준비되면 말하기와 TOPIK으로"
+    "rowBody": "준비되면 말하기와 TOPIK으로",
+    "inProduct": {
+      "title": "이제 한글을 읽을 수 있어요",
+      "body": "다음은 단어예요. 내 수준에 맞는 단어를 하루 열 개씩, 예문과 발음과 함께 배워요.",
+      "cta": "오늘의 단어 시작하기"
+    }
   },
   "practice": {
     "sizeLabel": "문항 수",

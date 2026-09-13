@@ -59,10 +59,6 @@
     "mastery": "Projít závěrečnou kontrolou",
     "everyItem": "Trefit každý výraz aspoň jednou"
   },
-  "feedback": {
-    "correct": "Správně",
-    "incorrect": "Špatně"
-  },
   "prompt": {
     "listenAndChoose": "Co jste slyšeli?",
     "meaning": {

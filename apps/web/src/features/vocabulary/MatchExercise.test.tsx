@@ -20,7 +20,13 @@ import type { MatchPair } from './dailyQuestions';
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, values?: Record<string, unknown>) =>
-      values?.word ? `${key}:${String(values.word)}` : values?.n ? `${key}:${String(values.n)}` : key,
+      values?.word
+        ? `${key}:${String(values.word)}`
+        : values?.n
+          ? `${key}:${String(values.n)}`
+          : values?.right !== undefined
+            ? `${key}:${String(values.right)}/${String(values.total)}`
+            : key,
   }),
 }));
 
@@ -174,6 +180,26 @@ describe('the matching grid — what the session is told', () => {
     expect(button('물')).toHaveAttribute('data-state', 'wrong');
     expect(button('집')).toHaveAttribute('data-state', 'right');
     expect(button('rice')).toHaveAttribute('data-state', 'wrong');
+  });
+
+  it('says the verdict in words after Check — every pair right is the shared Correct.', () => {
+    grid();
+    pairAll();
+    check();
+    // The live caption is not blank after Check: a screen reader hears the
+    // verdict, and a sighted learner reads the same two words every other
+    // question uses rather than only a colour and a tick.
+    expect(screen.getByTestId('match-status')).toHaveTextContent('common:verdict.correct');
+  });
+
+  it('says how many pairs held when some were wrong', () => {
+    grid();
+    pair('물', 'rice');
+    pair('밥', 'water');
+    pair('집', 'house');
+    pair('돈', 'money');
+    check();
+    expect(screen.getByTestId('match-status')).toHaveTextContent('learning:review.matchRight:2/4');
   });
 
   it('a corrected pair counts as known — the grade is the final pairing, not the history', () => {

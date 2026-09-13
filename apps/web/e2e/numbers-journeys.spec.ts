@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 
 import { NUMBER_LESSONS, getNumberLesson, numberLessonItems } from '../src/data/numbers';
 import { practiceExercises } from '../src/features/numbers/exercises';
+import { copy } from './helpers/copy';
 import { openApp } from './helpers/launch';
 
 /**
@@ -109,7 +110,7 @@ test.describe('what a beginner can do afterwards', () => {
             : answer.text;
         await body.getByRole('group').getByRole('button', { name: label, exact: true }).click();
       }
-      await expect(body.getByRole('status')).toContainText(en('feedback.correct'));
+      await expect(body.getByRole('status')).toContainText(copy('common', 'verdict.correct'));
     });
   }
 

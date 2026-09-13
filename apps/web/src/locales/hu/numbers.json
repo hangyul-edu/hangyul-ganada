@@ -59,10 +59,6 @@
     "mastery": "Elvégezni a záró ellenőrzést",
     "everyItem": "Minden kifejezést eltalálni legalább egyszer"
   },
-  "feedback": {
-    "correct": "Helyes",
-    "incorrect": "Nem jó"
-  },
   "prompt": {
     "listenAndChoose": "Mit hallottál?",
     "meaning": {

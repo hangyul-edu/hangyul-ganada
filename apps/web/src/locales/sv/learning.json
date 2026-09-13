@@ -181,7 +181,8 @@
     "matchPaired": "{{word}} parat med {{meaning}}. Tryck på någon av dem för att ändra.",
     "matchAllPaired": "Allt är parat. Tryck på Kontrollera.",
     "matchCheck": "Kontrollera",
-    "matchPairLabel": "Par {{n}}"
+    "matchPairLabel": "Par {{n}}",
+    "matchRight": "{{right}} av {{total}} par rätt."
   },
   "sounds": {
     "title": "När ljud möts",
@@ -232,7 +233,12 @@
     "body": "Du kan läsa hangul nu. Tal och TOPIK-träning fortsätter i Hangyul.",
     "cta": "Fortsätt i Hangyul",
     "rowTitle": "Fortsätt i Hangyul",
-    "rowBody": "Tal och TOPIK, när du är redo"
+    "rowBody": "Tal och TOPIK, när du är redo",
+    "inProduct": {
+      "title": "Nu kan du läsa hangul",
+      "body": "Härnäst ord: tio om dagen på din nivå, vart och ett med en mening och en inspelning.",
+      "cta": "Börja dagens ord"
+    }
   },
   "practice": {
     "sizeLabel": "Hur många",

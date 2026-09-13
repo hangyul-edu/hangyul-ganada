@@ -182,7 +182,8 @@
     "matchPaired": "{{word}} asociat cu {{meaning}}. Atinge oricare pentru a schimba.",
     "matchAllPaired": "Totul e asociat. Apasă Verifică.",
     "matchCheck": "Verifică",
-    "matchPairLabel": "Perechea {{n}}"
+    "matchPairLabel": "Perechea {{n}}",
+    "matchRight": "{{right}} din {{total}} perechi corecte."
   },
   "sounds": {
     "title": "Când sunetele se întâlnesc",
@@ -235,7 +236,12 @@
     "body": "Acum poți citi hangul. Vorbitul și pregătirea pentru TOPIK continuă în Hangyul.",
     "cta": "Continuă în Hangyul",
     "rowTitle": "Continuă în Hangyul",
-    "rowBody": "Vorbit și TOPIK, când te simți pregătit"
+    "rowBody": "Vorbit și TOPIK, când te simți pregătit",
+    "inProduct": {
+      "title": "Acum poți citi hangul",
+      "body": "Urmează cuvintele: zece pe zi la nivelul tău, fiecare cu o propoziție și o înregistrare.",
+      "cta": "Începe cuvintele de azi"
+    }
   },
   "practice": {
     "sizeLabel": "Câte întrebări",

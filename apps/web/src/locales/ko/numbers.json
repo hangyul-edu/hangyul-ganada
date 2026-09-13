@@ -59,10 +59,6 @@
     "mastery": "마무리 확인 풀기",
     "everyItem": "모든 표현을 한 번 이상 맞히기"
   },
-  "feedback": {
-    "correct": "맞았어요",
-    "incorrect": "틀렸어요"
-  },
   "prompt": {
     "listenAndChoose": "무엇이라고 들렸나요?",
     "meaning": {

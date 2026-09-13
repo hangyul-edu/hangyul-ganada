@@ -75,7 +75,7 @@ interface Props {
  * coprime offsets so no word lands opposite its own meaning.
  */
 export function MatchExercise({ pairs, fontFamily, isLast, onAnswered, onContinue }: Props) {
-  const { t } = useTranslation(['learning', 'vocabulary']);
+  const { t } = useTranslation(['learning', 'vocabulary', 'common']);
   const startedAt = useMemo(() => Date.now(), []);
 
   /*
@@ -150,8 +150,20 @@ export function MatchExercise({ pairs, fontFamily, isLast, onAnswered, onContinu
   };
 
   const selectedWord = selected ? pairs.find((p) => p.wordId === selected) : undefined;
+  /*
+   * The verdict, in words.
+
+   * After Check the caption used to go blank: the tiles took their blue and
+   * red and each carried a hidden 정답 / 틀렸어요, but the one live region on
+   * the screen said nothing, so a screen reader heard the Check press and
+   * then silence, and a sighted learner got colour and a tick where every
+   * other question in the product says *Correct.* or *Incorrect.* All right
+   * is the shared two words; anything less says how many of the pairs held.
+   */
   const status = done
-    ? ''
+    ? graded.size === pairs.length
+      ? t('common:verdict.correct')
+      : t('learning:review.matchRight', { right: graded.size, total: pairs.length })
     : selected !== null
       ? t('learning:review.matchPickMeaning', { word: selectedWord?.korean ?? '' })
       : allPaired
@@ -292,7 +304,11 @@ export function MatchExercise({ pairs, fontFamily, isLast, onAnswered, onContinu
         to tap first, which word is held, and when Check is ready. Polite, so
         a screen reader hears it after the tile it announced.
       */}
-      <p className={styles.help} aria-live="polite" data-testid="match-status">
+      <p
+        className={`${styles.help} ${done ? (graded.size === pairs.length ? styles.helpRight : styles.helpWrong) : ''}`}
+        aria-live="polite"
+        data-testid="match-status"
+      >
         {status}
       </p>
 

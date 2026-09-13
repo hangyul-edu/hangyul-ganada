@@ -1,5 +1,6 @@
 {
   "notFound": {
+    "title": "Page introuvable",
     "page": "Nous n’avons pas trouvé cette page.",
     "lesson": "Nous n’avons pas trouvé cette leçon.",
     "wordLesson": "Nous n’avons pas trouvé cette série de mots."

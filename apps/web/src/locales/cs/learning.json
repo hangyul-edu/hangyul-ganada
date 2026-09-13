@@ -183,7 +183,8 @@
     "matchPaired": "{{word}} spárováno s {{meaning}}. Klepnutím na jedno z nich to změníte.",
     "matchAllPaired": "Vše spárováno. Stiskněte Zkontrolovat.",
     "matchCheck": "Zkontrolovat",
-    "matchPairLabel": "Dvojice {{n}}"
+    "matchPairLabel": "Dvojice {{n}}",
+    "matchRight": "{{right}} z {{total}} dvojic správně."
   },
   "sounds": {
     "title": "Když se zvuky potkají",
@@ -238,7 +239,12 @@
     "body": "Hangul už čtete. Mluvení a příprava na TOPIK pokračují v Hangyul.",
     "cta": "Pokračovat v Hangyul",
     "rowTitle": "Pokračovat v Hangyul",
-    "rowBody": "Mluvení a TOPIK, až budete chtít"
+    "rowBody": "Mluvení a TOPIK, až budete chtít",
+    "inProduct": {
+      "title": "Umíte číst hangul",
+      "body": "Teď slova: deset denně na vaší úrovni, každé s větou a nahrávkou.",
+      "cta": "Začít dnešní slova"
+    }
   },
   "practice": {
     "sizeLabel": "Kolik otázek",

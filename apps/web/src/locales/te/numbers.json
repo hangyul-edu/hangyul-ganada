@@ -59,10 +59,6 @@
     "mastery": "చివరి తనిఖీ చేయడం",
     "everyItem": "ప్రతి పదబంధాన్ని కనీసం ఒకసారి సరిగా చెప్పడం"
   },
-  "feedback": {
-    "correct": "సరైనది",
-    "incorrect": "తప్పు"
-  },
   "prompt": {
     "listenAndChoose": "ఏం విన్నారు?",
     "meaning": {

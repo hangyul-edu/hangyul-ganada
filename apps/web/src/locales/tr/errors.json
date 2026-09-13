@@ -1,5 +1,6 @@
 {
   "notFound": {
+    "title": "Sayfa bulunamadı",
     "page": "O sayfayı bulamadık.",
     "lesson": "O dersi bulamadık.",
     "wordLesson": "O kelime setini bulamadık."

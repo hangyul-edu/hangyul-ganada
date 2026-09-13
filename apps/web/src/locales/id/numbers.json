@@ -59,10 +59,6 @@
     "mastery": "Mengerjakan pemeriksaan akhir",
     "everyItem": "Menjawab setiap ungkapan dengan benar minimal sekali"
   },
-  "feedback": {
-    "correct": "Benar",
-    "incorrect": "Salah"
-  },
   "prompt": {
     "listenAndChoose": "Apa yang kamu dengar?",
     "meaning": {

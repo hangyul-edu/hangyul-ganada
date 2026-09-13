@@ -59,10 +59,6 @@
     "mastery": "Gawin ang huling pagsusuri",
     "everyItem": "Tamaan ang bawat pahayag nang isang beses man lang"
   },
-  "feedback": {
-    "correct": "Tama",
-    "incorrect": "Mali"
-  },
   "prompt": {
     "listenAndChoose": "Ano ang narinig mo?",
     "meaning": {

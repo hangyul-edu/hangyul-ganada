@@ -183,7 +183,8 @@
     "matchPaired": "Połączono {{word}} z {{meaning}}. Dotknij dowolnego, aby zmienić.",
     "matchAllPaired": "Wszystko połączone. Naciśnij Sprawdź.",
     "matchCheck": "Sprawdź",
-    "matchPairLabel": "Para {{n}}"
+    "matchPairLabel": "Para {{n}}",
+    "matchRight": "{{right}} z {{total}} par poprawnie."
   },
   "sounds": {
     "title": "Kiedy dźwięki się spotykają",
@@ -238,7 +239,12 @@
     "body": "Umiesz już czytać hangeul. Mówienie i przygotowanie do TOPIK-u toczą się dalej w Hangyul.",
     "cta": "Kontynuuj w Hangyul",
     "rowTitle": "Kontynuuj w Hangyul",
-    "rowBody": "Mówienie i TOPIK, kiedy poczujesz się gotów"
+    "rowBody": "Mówienie i TOPIK, kiedy poczujesz się gotów",
+    "inProduct": {
+      "title": "Umiesz już czytać hangul",
+      "body": "Teraz słowa: dziesięć dziennie na twoim poziomie, każde ze zdaniem i nagraniem.",
+      "cta": "Zacznij dzisiejsze słowa"
+    }
   },
   "practice": {
     "sizeLabel": "Ile pytań",

@@ -181,7 +181,8 @@
     "matchPaired": "{{word}} ile {{meaning}} eşleştirildi. Değiştirmek için birine dokun.",
     "matchAllPaired": "Hepsi eşleştirildi. Kontrol Et’e bas.",
     "matchCheck": "Kontrol Et",
-    "matchPairLabel": "{{n}}. çift"
+    "matchPairLabel": "{{n}}. çift",
+    "matchRight": "{{total}} çiftten {{right}} tanesi doğru."
   },
   "sounds": {
     "title": "Sesler karşılaşınca",
@@ -232,7 +233,12 @@
     "body": "Artık Hangıl okuyabiliyorsun. Konuşma ve TOPIK çalışması Hangyul’da devam ediyor.",
     "cta": "Hangyul’da devam et",
     "rowTitle": "Hangyul’da devam et",
-    "rowBody": "Hazır olduğunda konuşma ve TOPIK"
+    "rowBody": "Hazır olduğunda konuşma ve TOPIK",
+    "inProduct": {
+      "title": "Artık Hangıl okuyabiliyorsun",
+      "body": "Sırada kelimeler var: seviyene göre günde on kelime, her biri bir cümle ve kayıtla.",
+      "cta": "Bugünün kelimelerine başla"
+    }
   },
   "practice": {
     "sizeLabel": "Kaç soru",

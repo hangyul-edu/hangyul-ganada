@@ -59,10 +59,6 @@
     "mastery": "Take the final check",
     "everyItem": "Get every expression right at least once"
   },
-  "feedback": {
-    "correct": "Correct",
-    "incorrect": "Not right"
-  },
   "prompt": {
     "listenAndChoose": "What did you hear?",
     "meaning": {

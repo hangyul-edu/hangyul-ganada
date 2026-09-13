@@ -59,10 +59,6 @@
     "mastery": "आख़िरी जाँच देना",
     "everyItem": "हर अभिव्यक्ति कम से कम एक बार सही करना"
   },
-  "feedback": {
-    "correct": "सही",
-    "incorrect": "गलत"
-  },
   "prompt": {
     "listenAndChoose": "आपने क्या सुना?",
     "meaning": {

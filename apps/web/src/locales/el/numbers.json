@@ -59,10 +59,6 @@
     "mastery": "Να δώσεις τον τελικό έλεγχο",
     "everyItem": "Να βρεις κάθε έκφραση τουλάχιστον μία φορά"
   },
-  "feedback": {
-    "correct": "Σωστό",
-    "incorrect": "Λάθος"
-  },
   "prompt": {
     "listenAndChoose": "Τι άκουσες;",
     "meaning": {

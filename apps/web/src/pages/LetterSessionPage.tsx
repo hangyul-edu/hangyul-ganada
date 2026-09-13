@@ -283,8 +283,24 @@ export function LetterSessionPage() {
     [current, recordAttempt, font.id, recognitionRequired],
   );
 
-  /** Fix the attempt that is already on the canvas. */
+  /*
+   * A fresh box, not the rejected ink.
+   *
+   * This used to keep the attempt on the canvas — "fix what is there" — and
+   * that is not what a beginner does with a *Try again* button. They write the
+   * letter again, over the ink that was just marked wrong, press Check, and are
+   * told Incorrect a second time for a letter that was right: the grader sees
+   * both attempts as one drawing. The only way out was to notice Clear, which
+   * nothing pointed at. The end-to-end spec that walks this screen had been
+   * pressing Clear itself after Try again, which is how the trap stayed green.
+   *
+   * So Try again clears the box. The remount is by key, which is how every
+   * other fresh box on this screen is produced; Undo and Clear stay for the
+   * learner who wants to fix a single stroke *before* checking.
+   */
+  const [attempt, setAttempt] = useState(0);
   const retry = () => {
+    setAttempt((n) => n + 1);
     setStepState((prev) => ({ ...prev, status: 'idle', result: null }));
   };
 
@@ -432,7 +448,7 @@ export function LetterSessionPage() {
             </header>
 
             <PracticeCanvasCard
-              key={`${current.character}-${stepState.step}`}
+              key={`${current.character}-${stepState.step}-${attempt}`}
               character={current.character}
               /*
                 `font_family`, not `textFamily` — the mask the evaluator grades

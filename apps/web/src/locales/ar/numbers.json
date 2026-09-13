@@ -59,10 +59,6 @@
     "mastery": "أداء الفحص الأخير",
     "everyItem": "إصابة كل تعبير مرة واحدة على الأقل"
   },
-  "feedback": {
-    "correct": "صحيح",
-    "incorrect": "إجابة خاطئة"
-  },
   "prompt": {
     "listenAndChoose": "ماذا سمعت؟",
     "meaning": {

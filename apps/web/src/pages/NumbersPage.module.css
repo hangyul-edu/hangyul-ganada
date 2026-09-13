@@ -53,7 +53,9 @@
   margin: 0;
   color: var(--hg-text-secondary);
   font-size: var(--hg-text-caption);
-  white-space: nowrap;
+  /* On its own line under the title, so it may wrap; `nowrap` pushed "0 von
+     20 Lektionen abgeschlossen" 47 px past a 390 px screen at 200% text. */
+  text-wrap: pretty;
 }
 
 .unit {
@@ -192,15 +194,20 @@
  */
 .moduleHead {
   display: flex;
+  /* The count sits at the end of the title's line while the title has room
+     for its longest word; at 200% text in German it does not, and the count
+     drops to a line of its own rather than squeezing the title into a
+     column narrower than "Sinokoreanische". */
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--hg-space-3);
+  gap: var(--hg-space-1) var(--hg-space-3);
   padding: 0 var(--numbers-rail);
 }
 
 .moduleText {
   display: flex;
-  flex: 1;
+  flex: 1 1 60%;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
@@ -221,6 +228,8 @@
   font-size: var(--hg-text-title);
   font-weight: var(--hg-weight-semibold);
   text-wrap: balance;
+  /* A word wider than the column breaks rather than pushing the page sideways. */
+  overflow-wrap: anywhere;
 }
 
 .moduleIndex {
@@ -247,6 +256,9 @@
 .moduleCount {
   padding-top: 3px;
   white-space: nowrap;
+  /* Ends on the right-hand rule whether it shares the title's line or, at
+     200% text, takes the next one. */
+  margin-inline-start: auto;
 }
 
 /*

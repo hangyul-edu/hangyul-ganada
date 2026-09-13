@@ -59,10 +59,6 @@
     "mastery": "Làm phần kiểm tra cuối",
     "everyItem": "Trả lời đúng mỗi cách nói ít nhất một lần"
   },
-  "feedback": {
-    "correct": "Đúng rồi",
-    "incorrect": "Chưa đúng"
-  },
   "prompt": {
     "listenAndChoose": "Bạn nghe được gì?",
     "meaning": {

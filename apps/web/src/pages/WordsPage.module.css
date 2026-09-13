@@ -287,8 +287,18 @@
   color: var(--hg-text-tertiary);
 }
 
+/*
+ * The row shows the focus, because the input inside it is told not to.
+ *
+ * A border going from grey to orange at 1.5 px was the only sign the search
+ * had keyboard focus — every other control gets the 2 px ring `:focus-visible`
+ * draws in global.css. The ring belongs on the pill the learner sees as the
+ * control, so it is drawn here, on the same terms.
+ */
 .searchRow:focus-within {
   border-color: var(--hg-border-selected);
+  outline: 2px solid var(--hg-primary);
+  outline-offset: 2px;
 }
 
 .search {
@@ -349,13 +359,30 @@
 
 /* --- all categories --- */
 
+/*
+ * Two columns where two fit, one where they do not.
+ *
+ * `repeat(2, 1fr)` is two columns whatever the cards need, and a card's
+ * minimum width is its longest word: at 200% text *Essentials* and *Family*
+ * are wider than half of a 320 px screen, so the second column ran off the
+ * right edge and the grid was clipped mid-word — in Tamil at normal text too.
+ * `minmax(0, 1fr)` lets the tracks shrink below the content and `auto-fit`
+ * with a floor gives the grid one column when a card would otherwise be cut.
+ */
 .categoryGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* In em, so the floor grows with the text: two columns at normal size on a
+     320 px screen, one column at 200%. */
+  font-size: var(--hg-text-body-sm);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9em), 1fr));
   gap: var(--hg-space-3);
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.categoryGrid > li {
+  min-width: 0;
 }
 
 .categoryCard {
@@ -379,6 +406,7 @@
   font-weight: var(--hg-weight-bold);
   color: var(--hg-text);
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .categoryCardSample {
@@ -503,14 +531,25 @@
   white-space: nowrap;
 }
 
+/*
+ * Two lines, not one with an ellipsis.
+ *
+ * The meaning was `white-space: nowrap` and cut with an ellipsis, so a row in
+ * Food & Drink read "bibimbap, rice mixed with vege…" — at every width, because
+ * the list has a fixed reading measure — and a learner browsing a topic met
+ * the word's meaning as a fragment. A row is 44 px tall already; a second line
+ * costs nothing, and the third is the one that is genuinely surplus in a list.
+ */
 .resultMeaning {
   flex: 1;
   min-width: 0;
   font: var(--hg-text-body-sm);
   color: var(--hg-text-secondary);
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
 }
 
 /* --- Today ------------------------------------------------------------------

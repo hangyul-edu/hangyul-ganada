@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import { HANGYUL_URL } from '../../config/product';
 import { Card } from '../../ui/Card';
@@ -28,14 +29,39 @@ import styles from './NextStepCard.module.css';
  *   button because there is nothing to dismiss.
  * * It is worded as the next thing to learn, not as an offer.
  *
- * ## It disappears entirely when there is nowhere to send anyone
+ * ## When there is nowhere to send anyone, it points inside this app
  *
- * `HANGYUL_URL` is unset in a plain checkout, and then this renders `null`
- * rather than a card whose link goes nowhere. See the note on that constant.
+ * `HANGYUL_URL` is unset in a plain checkout and in the web build. The My
+ * Learning row then renders `null` rather than a link that goes nowhere; the
+ * earned card at the end of the alphabet still renders, naming Today's Words
+ * as the next step, because the alphabet has to end somewhere. See the note
+ * on that constant.
  */
 export function NextStepCard({ variant }: { variant: 'earned' | 'row' }) {
   const { t } = useTranslation('learning');
-  if (!HANGYUL_URL) return null;
+  if (!HANGYUL_URL) {
+    /*
+     * No destination, so no hand-off — but the alphabet still ends somewhere.
+     *
+     * A learner who has just finished the fortieth letter used to be shown the
+     * completed units and the two side rows, and nothing that said what to do
+     * next. The onward product is a business fact this repository does not
+     * hold (I-03) and nothing here guesses at it; what the product *does* hold
+     * is the rest of itself. So the earned card names the next thing inside
+     * this app — Today's Words, which is what the alphabet was for — and the
+     * My Learning row stays absent, because that screen already lists it.
+     */
+    if (variant !== 'earned') return null;
+    return (
+      <Card padding="md" className={styles.card} data-testid="next-step-in-product">
+        <h2 className={styles.title}>{t('nextStep.inProduct.title')}</h2>
+        <p className={styles.body}>{t('nextStep.inProduct.body')}</p>
+        <Link to="/words" className={styles.cta}>
+          {t('nextStep.inProduct.cta')}
+        </Link>
+      </Card>
+    );
+  }
 
   if (variant === 'row') {
     return (

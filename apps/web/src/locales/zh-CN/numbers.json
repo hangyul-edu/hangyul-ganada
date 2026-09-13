@@ -59,10 +59,6 @@
     "mastery": "做收尾检查",
     "everyItem": "每个表达至少答对一次"
   },
-  "feedback": {
-    "correct": "正确",
-    "incorrect": "答错了"
-  },
   "prompt": {
     "listenAndChoose": "你听到了什么？",
     "meaning": {

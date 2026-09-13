@@ -59,10 +59,6 @@
     "mastery": "Эцсийн шалгалтыг өгөх",
     "everyItem": "Илэрхийлэл бүрийг наад зах нь нэг удаа зөв таах"
   },
-  "feedback": {
-    "correct": "Зөв",
-    "incorrect": "Буруу"
-  },
   "prompt": {
     "listenAndChoose": "Юу сонссон бэ?",
     "meaning": {

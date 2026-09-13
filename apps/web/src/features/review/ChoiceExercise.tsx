@@ -277,8 +277,22 @@ export function ChoiceExercise({
         ) : asked.sentence ? (
           <p className={styles.sentence} lang="ko" dir="ltr" style={{ fontFamily }}>
             {asked.sentence.before}
-            <span className={styles.blank} aria-label={t('learning:review.blank')}>
-              {' '.repeat(Math.max(2, asked.sentence.target.length * 2))}
+            {/*
+              The gap, said as well as drawn.
+
+              This was `<span aria-label="blank">` — and an `aria-label` on a
+              plain span is ignored by screen readers (and by the accessibility
+              tree Playwright reads), so the sentence was announced as
+              저는 공부를 . with nothing where the word goes. The word for the
+              gap is visually hidden text *inside* the drawn blank, so it is
+              read at the position it is drawn; the padding spaces are hidden
+              from readers because they are the drawing, not the content.
+            */}
+            <span className={styles.blank}>
+              <span aria-hidden="true">
+                {' '.repeat(Math.max(2, asked.sentence.target.length * 2))}
+              </span>
+              <span className="hg-sr-only">{t('learning:review.blank')}</span>
             </span>
             {asked.sentence.after}
           </p>

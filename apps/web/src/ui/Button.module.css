@@ -23,6 +23,17 @@
 
 .fullWidth {
   width: 100%;
+  /*
+   * A full-width button is as wide as its column and no wider, so a label
+   * that does not fit on one line takes two — "Got it — let's start" at 200%
+   * text on a 320 px screen is 315 px of label in a 280 px column, and with
+   * the base `nowrap` it widened the page to 355 px and pushed the lesson
+   * header's counter off the right edge (v1.0.5, screens:audit 320-200%).
+   * Inline buttons keep `nowrap`: they size to their label.
+   */
+  max-width: 100%;
+  white-space: normal;
+  text-wrap: balance;
 }
 
 .label {

@@ -181,7 +181,8 @@
     "matchPaired": "Paired {{word}} with {{meaning}}. Tap either to change it.",
     "matchAllPaired": "All paired. Press Check.",
     "matchCheck": "Check",
-    "matchPairLabel": "Pair {{n}}"
+    "matchPairLabel": "Pair {{n}}",
+    "matchRight": "{{right}} of {{total}} pairs right."
   },
   "sounds": {
     "title": "When sounds meet",
@@ -232,7 +233,12 @@
     "body": "You can read Hangul now. Speaking and TOPIK practice continue in Hangyul.",
     "cta": "Continue in Hangyul",
     "rowTitle": "Continue in Hangyul",
-    "rowBody": "Speaking and TOPIK, when you are ready"
+    "rowBody": "Speaking and TOPIK, when you are ready",
+    "inProduct": {
+      "title": "You can read Hangul now",
+      "body": "Next, learn words: ten a day at your level, each with a sentence and a recording.",
+      "cta": "Start today's words"
+    }
   },
   "practice": {
     "sizeLabel": "How many",

@@ -59,10 +59,6 @@
     "mastery": "শেষ যাচাই দেওয়া",
     "everyItem": "প্রতিটি প্রকাশভঙ্গি অন্তত একবার ঠিক করা"
   },
-  "feedback": {
-    "correct": "সঠিক",
-    "incorrect": "ভুল হয়েছে"
-  },
   "prompt": {
     "listenAndChoose": "কী শুনলেন?",
     "meaning": {

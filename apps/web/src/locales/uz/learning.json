@@ -181,7 +181,8 @@
     "matchPaired": "{{word}} {{meaning}} bilan juftlandi. O‘zgartirish uchun birini bosing.",
     "matchAllPaired": "Hammasi juftlandi. «Tekshirish» tugmasini bosing.",
     "matchCheck": "Tekshirish",
-    "matchPairLabel": "{{n}}-juft"
+    "matchPairLabel": "{{n}}-juft",
+    "matchRight": "{{total}} juftdan {{right}} tasi to‘g‘ri."
   },
   "sounds": {
     "title": "Tovushlar uchrashganda",
@@ -232,7 +233,12 @@
     "body": "Endi hangulni o‘qiysiz. Gapirish va TOPIK mashqlari Hangyul’da davom etadi.",
     "cta": "Hangyul’da davom eting",
     "rowTitle": "Hangyul’da davom eting",
-    "rowBody": "Gapirish va TOPIK — tayyor bo‘lganingizda"
+    "rowBody": "Gapirish va TOPIK — tayyor bo‘lganingizda",
+    "inProduct": {
+      "title": "Endi hangulni o'qiy olasiz",
+      "body": "Keyingisi — so'zlar: darajangizga mos kuniga o'nta, har biri gap va yozuv bilan.",
+      "cta": "Bugungi so'zlarni boshlash"
+    }
   },
   "practice": {
     "sizeLabel": "Nechta savol",

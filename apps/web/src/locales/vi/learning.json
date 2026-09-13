@@ -181,7 +181,8 @@
     "matchPaired": "Đã ghép {{word}} với {{meaning}}. Chạm vào một trong hai để đổi.",
     "matchAllPaired": "Đã ghép xong tất cả. Nhấn Kiểm tra.",
     "matchCheck": "Kiểm tra",
-    "matchPairLabel": "Cặp {{n}}"
+    "matchPairLabel": "Cặp {{n}}",
+    "matchRight": "Đúng {{right}} trên {{total}} cặp."
   },
   "sounds": {
     "title": "Khi các âm gặp nhau",
@@ -232,7 +233,12 @@
     "body": "Bạn đọc được Hangul rồi. Phần luyện nói và ôn TOPIK tiếp tục ở Hangyul.",
     "cta": "Học tiếp ở Hangyul",
     "rowTitle": "Học tiếp ở Hangyul",
-    "rowBody": "Luyện nói và TOPIK, khi nào bạn sẵn sàng"
+    "rowBody": "Luyện nói và TOPIK, khi nào bạn sẵn sàng",
+    "inProduct": {
+      "title": "Giờ bạn đã đọc được Hangul",
+      "body": "Tiếp theo là từ vựng: mười từ mỗi ngày đúng trình độ, mỗi từ có câu ví dụ và bản ghi âm.",
+      "cta": "Bắt đầu từ vựng hôm nay"
+    }
   },
   "practice": {
     "sizeLabel": "Bao nhiêu câu",

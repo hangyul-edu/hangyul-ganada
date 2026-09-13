@@ -59,10 +59,6 @@
     "mastery": "Dă verificarea finală",
     "everyItem": "Nimerește fiecare expresie măcar o dată"
   },
-  "feedback": {
-    "correct": "Corect",
-    "incorrect": "Greșit"
-  },
   "prompt": {
     "listenAndChoose": "Ce ai auzit?",
     "meaning": {

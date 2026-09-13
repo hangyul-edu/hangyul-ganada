@@ -59,10 +59,6 @@
     "mastery": "Fazer a checagem final",
     "everyItem": "Acertar cada expressão pelo menos uma vez"
   },
-  "feedback": {
-    "correct": "Correto",
-    "incorrect": "Errado"
-  },
   "prompt": {
     "listenAndChoose": "O que você ouviu?",
     "meaning": {

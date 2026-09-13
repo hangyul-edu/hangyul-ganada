@@ -1,5 +1,6 @@
 {
   "notFound": {
+    "title": "Az oldal nem található",
     "page": "Nem találtuk azt az oldalt.",
     "lesson": "Nem találtuk azt a leckét.",
     "wordLesson": "Nem találtuk azt a szócsomagot."

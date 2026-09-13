@@ -187,7 +187,8 @@ test('the verdict panel is as wide as the thing it is a verdict about', async ({
   expect(rejected.width / rejected.inner, 'the incorrect panel is narrower than its column').toBeGreaterThan(0.9);
 
   await page.getByRole('button', { name: /Write it again|Try again/ }).click();
-  await page.getByRole('button', { name: 'Clear' }).click();
+  // Try again hands back an empty box; nothing to clear. See journey.spec.ts.
+  await expect(page.getByRole('button', { name: 'Clear' })).toBeDisabled();
   await traceReferenceGlyph(page, box(page));
   await page.getByRole('button', { name: 'Check' }).click();
   const accepted = await measure();

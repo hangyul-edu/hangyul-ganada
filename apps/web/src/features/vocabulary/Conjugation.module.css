@@ -30,10 +30,17 @@
   margin: 0;
 }
 
+/*
+ * `flex-wrap`: at 200% text on a 320 px screen an 8.5 em label plus 갈 거예요
+ * is wider than the card, and the value used to run out of it. Wrapping puts
+ * the form under its label instead, which is the layout a narrow dictionary
+ * uses anyway.
+ */
 .row {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: var(--hg-space-3);
+  gap: var(--hg-space-1) var(--hg-space-3);
 }
 
 .label {
@@ -50,6 +57,8 @@
 
 .value {
   margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
   /* Target content: never mirrored, whatever the interface direction. */
   direction: ltr;
   font-size: var(--hg-text-body);
