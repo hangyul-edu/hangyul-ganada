@@ -1,6 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { waitForLaunch } from './helpers/launch';
+import { textScaleCss } from './helpers/textScale';
 
 /**
  * Waits for the dialog's entrance to finish before anything is measured.
@@ -76,17 +77,27 @@ test.describe('the confirmation dialog', () => {
     await page.setViewportSize({ width: 360, height: 780 });
     await page.goto('/me');
     await waitForLaunch(page);
-    await page.addStyleTag({
-      content:
-        'html { -webkit-text-size-adjust: 200% !important; text-size-adjust: 200% !important; }',
-    });
+    // The token scaler: `text-size-adjust` is a no-op in a desktop context
+    // (see accessibility.spec.ts, "text at 200%"), and this test had been
+    // measuring the dialog at normal size under that name.
+    await page.addStyleTag({ content: textScaleCss(2) });
     await page.getByRole('button', { name: /Reset learning progress/i }).click();
     await settled(page);
 
     const cancel = await page.getByTestId('reset-cancel').boundingBox();
     const confirm = await page.getByTestId('reset-confirm').boundingBox();
     expect(Math.abs(cancel!.width - confirm!.width)).toBeLessThan(1.5);
-    expect(Math.abs(cancel!.y - confirm!.y)).toBeLessThan(1.5);
+    // ConfirmDialog.module.css: side by side while both labels fit, one per
+    // line when they do not — and at doubled text they do not, so the two
+    // answers stack, Cancel above Reset, each as wide as the row. The earlier
+    // assertion of one row was written when "doubled" measured normal text.
+    const sameRow = Math.abs(cancel!.y - confirm!.y) < 1.5;
+    const stacked = cancel!.y + cancel!.height <= confirm!.y + 0.5 && Math.abs(cancel!.x - confirm!.x) < 1.5;
+    expect(sameRow || stacked, 'the two answers are neither on one row nor stacked').toBe(true);
+    expect(confirm!.height).toBeGreaterThanOrEqual(44);
+    const dialog = await page.getByRole('dialog').boundingBox();
+    expect(confirm!.y + confirm!.height).toBeLessThanOrEqual(dialog!.y + dialog!.height + 0.5);
+    expect(confirm!.y + confirm!.height).toBeLessThanOrEqual(780);
 
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth,

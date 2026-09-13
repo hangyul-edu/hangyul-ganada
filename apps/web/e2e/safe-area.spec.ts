@@ -1,6 +1,6 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
 
-import { emulateTextScale } from './helpers/textScale';
+import { emulateTextScale, textScaleFactor } from './helpers/textScale';
 
 /**
  * The regression fixture for a bug a physical phone found and this suite did not.
@@ -309,6 +309,7 @@ test.describe('system-bar bounds', () => {
     // scaled — see helpers/textScale.ts for why the root font size is not it.
     await emulateTextScale(page, 20 / 16);
     await openFirstConsonant(page);
+    expect(await textScaleFactor(page), 'the page renders at 125%').toBeCloseTo(20 / 16, 1);
     await expectClearOfSystemBars(
       page,
       page.getByRole('button', { name: /Trace it|Write it/ }),

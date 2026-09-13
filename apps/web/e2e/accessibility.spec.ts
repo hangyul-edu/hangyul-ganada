@@ -3,6 +3,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 import { waitForLaunch, openTodaysWords } from './helpers/launch';
 import { CONTINUE } from './helpers/copy';
+import { textScaleCss } from './helpers/textScale';
 
 /**
  * The accessibility audit, run against the app rather than asserted about it.
@@ -538,29 +539,81 @@ test.describe('text at 200%', () => {
       await page.goto(screen.path);
       await waitForLaunch(page);
       /*
-        `text-size-adjust`, not `font-size` on the root.
+        The token scaler, and a proof that it took.
 
-        This test was first written as `html { font-size: 200% }`, which moves
-        `rem`-based type and nothing else — and this product's type scale is in
-        **px**. So it scaled nothing, passed on all nine screens, and reported a
-        result it had not earned. The honest emulation of the mechanism that
-        actually reaches the app is text zoom: Android's accessibility font
-        scale arrives at a WebView as `textZoom`, which multiplies rendered text
-        whatever unit it was authored in, and `-webkit-text-size-adjust` is the
-        nearest thing desktop Chromium offers.
+        This test has now been wrong twice. It was first `html { font-size:
+        200% }`, which moves `rem` type and nothing else in a product whose
+        type scale is in px. It was then rewritten as `-webkit-text-size-adjust:
+        200%`, on the argument that text zoom is what a WebView applies — and
+        desktop Chromium honours that property only for a context created with
+        `isMobile: true`, which neither Playwright project here is. Measured in
+        the v1.0.5 pass: 15 px before, 15 px after, on both projects. So for a
+        second time this test had passed on every screen while doubling nothing.
+
+        `textScaleCss(2)` doubles the pixel tokens themselves (see
+        helpers/textScale.ts and I-223), and the assertion under it is the one
+        that would have caught both earlier versions: a paragraph's computed
+        size has to have actually changed before anything else is measured.
       */
-      await page.addStyleTag({
-        content:
-          'html { -webkit-text-size-adjust: 200% !important; text-size-adjust: 200% !important; }',
+      const before = await page.evaluate(() => {
+        const p = document.querySelector('main p, main h1, main h2');
+        return p ? Number.parseFloat(getComputedStyle(p).fontSize) : 0;
       });
+      await page.addStyleTag({ content: textScaleCss(2) });
       // One frame for layout to settle before anything is measured.
       await page.waitForTimeout(150);
+      const after = await page.evaluate(() => {
+        const p = document.querySelector('main p, main h1, main h2');
+        return p ? Number.parseFloat(getComputedStyle(p).fontSize) : 0;
+      });
+      expect(after, `${screen.name}: the text did not actually double (${before}px → ${after}px)`).toBeGreaterThanOrEqual(before * 1.9);
 
       const overflow = await page.evaluate(() => {
         const doc = document.documentElement;
         return doc.scrollWidth - doc.clientWidth;
       });
       expect(overflow, `${screen.name} scrolls sideways by ${overflow}px at 200% text`).toBeLessThanOrEqual(1);
+
+      /*
+        Content pushed past the right edge of the screen.
+
+        The document does not scroll sideways here because the app shell is
+        its own scroll container and clips what escapes it — so the check
+        above passes while a card runs off the screen. This is what the
+        category grid on Words did at 200% (and in Tamil at 320 px): the
+        second column began on screen and ended sixty pixels past it, cut
+        mid-word. Any visible element whose box ends beyond the viewport is a
+        failure, except inside a row that scrolls on purpose.
+      */
+      const escaped = await page.evaluate(() => {
+        const vw = document.documentElement.clientWidth;
+        const bad: string[] = [];
+        for (const el of document.querySelectorAll<HTMLElement>('main *, nav *')) {
+          const style = getComputedStyle(el);
+          if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') continue;
+          if (el.closest('[aria-hidden="true"]')) continue;
+          const scroller = el.parentElement?.closest<HTMLElement>('*');
+          let ancestor: HTMLElement | null = scroller;
+          let inScrollRow = false;
+          while (ancestor) {
+            const a = getComputedStyle(ancestor);
+            if ((a.overflowX === 'auto' || a.overflowX === 'scroll') && ancestor.scrollWidth > ancestor.clientWidth) {
+              inScrollRow = true;
+              break;
+            }
+            ancestor = ancestor.parentElement;
+          }
+          if (inScrollRow) continue;
+          const r = el.getBoundingClientRect();
+          if (r.width === 0 || r.height === 0) continue;
+          if (r.right > vw + 1 || r.left < -1) {
+            bad.push(`${el.tagName.toLowerCase()}.${el.className}: ${Math.round(r.left)}–${Math.round(r.right)} in ${vw}px — "${(el.textContent ?? '').trim().slice(0, 30)}"`);
+            if (bad.length >= 5) break;
+          }
+        }
+        return bad;
+      });
+      expect(escaped, `${screen.name} pushes content off screen at 200%:\n${escaped.join('\n')}`).toEqual([]);
 
       /*
         Text cut off by an ancestor that cannot be scrolled to reveal it.

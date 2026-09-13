@@ -20,7 +20,19 @@
  *
  * `textScaleCss(2)` returns a stylesheet that multiplies every `--hg-text-*`
  * size token by two. Inject it with `page.addStyleTag({ content })` after
- * load, or via `addInitScript` for the first frame.
+ * load, or with `page.addInitScript(injectTextScale, css)` for the first
+ * frame.
+ *
+ * ## Why the init script waits for the document
+ *
+ * An init script runs before the document has an element, so
+ * `(document.head ?? document.documentElement).appendChild(style)` — the form
+ * five scripts and four specs used after the first correction — throws on a
+ * null and the throw is swallowed. Measured on 13 September 2026: body text
+ * 15 px under a "×2" run, in every one of those sites. `injectTextScale`
+ * appends the sheet at `DOMContentLoaded` instead, after the token sheet it
+ * has to outrank, and `textScaleFactor()` reads back what actually applied so
+ * a caller can refuse to measure an unscaled page.
  */
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -44,4 +56,32 @@ export function textScaleCss(scale) {
   if (scale === 1) return '';
   const lines = [...textSizeTokens()].map(([name, px]) => `  ${name}: ${Math.round(px * scale * 100) / 100}px;`);
   return `:root {\n${lines.join('\n')}\n}\n`;
+}
+
+/**
+ * The init-script half: `page.addInitScript(injectTextScale, textScaleCss(2))`.
+ * Serialised by Playwright, so it must not close over anything.
+ */
+export function injectTextScale(css) {
+  if (!css) return;
+  const inject = () => {
+    const style = document.createElement('style');
+    style.id = 'qa-text-scale';
+    style.textContent = css;
+    document.head.appendChild(style);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
+  else inject();
+}
+
+/**
+ * What scale the page is really rendering at: the body token as applied,
+ * divided by its base. 1 on an unscaled page, 2 under `textScaleCss(2)`.
+ */
+export async function textScaleFactor(page) {
+  const base = textSizeTokens().get('--hg-text-body');
+  const applied = await page.evaluate(() =>
+    Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hg-text-body')),
+  );
+  return applied / base;
 }

@@ -51,7 +51,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 import { ensurePreview } from './lib/preview.mjs';
-import { textScaleCss } from './lib/text-scale.mjs';
+import { injectTextScale, textScaleCss, textScaleFactor } from './lib/text-scale.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
@@ -275,16 +275,17 @@ for (const route of ROUTES) {
     const page = await context.newPage();
     if (variant.scale !== 1) {
       // The type tokens are pixels; the root font size moves nothing. See lib/text-scale.mjs.
-      await page.addInitScript((css) => {
-        const style = document.createElement('style');
-        style.textContent = css;
-        (document.head ?? document.documentElement).appendChild(style);
-      }, textScaleCss(variant.scale));
+      await page.addInitScript(injectTextScale, textScaleCss(variant.scale));
     }
     const where = `${route.path} @ ${variant.size.name}${variant.scale === 1 ? '' : ` ×${variant.scale}`}${variant.scheme === 'dark' ? ' dark' : ''}`;
     try {
       await page.goto(`${baseUrl}${route.address}`, { waitUntil: 'networkidle' });
       await page.waitForTimeout(1400); // past the splash and the lazy chunk
+      // Refuse to measure an unscaled page under a scaled variant's name.
+      const factor = await textScaleFactor(page);
+      if (Math.abs(factor - variant.scale) > 0.05) {
+        throw new Error(`text is at ×${factor.toFixed(2)}, not the ×${variant.scale} this variant claims`);
+      }
       await enter(page, route.steps);
 
       const before = await page.evaluate(`(${MEASURE})()`);

@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { waitForLaunch } from './helpers/launch';
-import { emulateTextScale } from './helpers/textScale';
+import { emulateTextScale, textScaleFactor } from './helpers/textScale';
 
 /**
  * The Home header: a logo, a streak, a level — and no back control.
@@ -62,6 +62,7 @@ test.describe('the Home header', () => {
           await page.goto('/');
           await waitForLaunch(page);
           await page.waitForTimeout(400);
+          expect(await textScaleFactor(page), 'the page renders at the scale the case names').toBeCloseTo(scale, 1);
 
           const seen = await measure(page);
 

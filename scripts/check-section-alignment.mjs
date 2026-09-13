@@ -34,7 +34,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 import { ensurePreview } from './lib/preview.mjs';
-import { textScaleCss } from './lib/text-scale.mjs';
+import { injectTextScale, textScaleCss, textScaleFactor } from './lib/text-scale.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CHECK = process.argv.includes('--check');
@@ -99,23 +99,21 @@ for (const test of CASES) {
     reducedMotion: 'reduce',
   });
   const page = await context.newPage();
-  await page.addInitScript(
-    ([locale, css]) => {
-      localStorage.setItem('hangyul_ganada:locale', locale);
-      if (css) {
-        const style = document.createElement('style');
-        style.textContent = css;
-        (document.head ?? document.documentElement).appendChild(style);
-      }
-    },
-    [test.locale, textScaleCss(test.scale)],
-  );
+  await page.addInitScript((locale) => {
+    localStorage.setItem('hangyul_ganada:locale', locale);
+  }, test.locale);
+  await page.addInitScript(injectTextScale, textScaleCss(test.scale));
 
   for (const path of PAGES) {
     const where = `${path} @ ${test.width}px ×${test.scale} ${test.locale}`;
     try {
       await page.goto(`${baseUrl}${path}`, { waitUntil: 'networkidle' });
       await page.waitForTimeout(1200);
+      // Refuse to measure an unscaled page under a scaled test's name.
+      const factor = await textScaleFactor(page);
+      if (Math.abs(factor - test.scale) > 0.05) {
+        throw new Error(`text is at ×${factor.toFixed(2)}, not the ×${test.scale} this test claims`);
+      }
       const { groups } = await page.evaluate(`(${MEASURE})()`);
       for (const group of groups) {
         groupsSeen += 1;

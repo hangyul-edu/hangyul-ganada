@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
 import { openApp } from './helpers/launch';
-import { emulateTextScale } from './helpers/textScale';
+import { emulateTextScale, textScaleFactor } from './helpers/textScale';
 
 /**
  * The bottom tab bar does not move, and the document does not scroll.
@@ -53,6 +53,39 @@ type Reading = {
   viewport: { width: number; height: number };
   blankBelowNav: number | null;
 };
+
+/**
+ * Every word of every tab label on one line.
+ *
+ * A label may wrap between words — *My* over *Learning* — but never inside
+ * one: *Learnin / g* at 200% text is what a flat 16 px cap had left at 390 px,
+ * and `screens:audit` cannot see it because nothing escapes the viewport. A
+ * word split across lines has more than one client rectangle. This runs in
+ * English, the spec's language; the other thirty-one are measured by the
+ * same rule in the v1.0.5 evidence, and the ones whose single word for
+ * *Review* is wider than a fifth of 320 px hyphenate at normal size.
+ */
+async function brokenWords(page: Page): Promise<string[]> {
+  return page.evaluate(() => {
+    const broken: string[] = [];
+    for (const label of document.querySelectorAll('nav a span:not(.hg-sr-only)')) {
+      const node = label.firstChild;
+      if (!node || node.nodeType !== Node.TEXT_NODE) continue;
+      const text = node.textContent ?? '';
+      // A hyphen already in the word (pag-aaral) is a break the language wrote.
+      const re = /[^\s\u2010-]+/g;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(text))) {
+        const range = document.createRange();
+        range.setStart(node, m.index);
+        range.setEnd(node, m.index + m[0].length);
+        const lines = new Set([...range.getClientRects()].filter((r) => r.width > 0).map((r) => Math.round(r.top)));
+        if (lines.size > 1) broken.push(m[0]);
+      }
+    }
+    return broken;
+  });
+}
 
 async function measure(page: Page): Promise<Reading> {
   return page.evaluate(() => {
@@ -111,8 +144,10 @@ test.describe('the bottom tab bar', () => {
           await openApp(page, '/me');
           await page.waitForTimeout(400);
 
+          expect(await textScaleFactor(page), 'the page renders at the scale the case names').toBeCloseTo(scale, 1);
           const before = await measure(page);
           expect(before.nav, 'My Learning draws a tab bar').not.toBeNull();
+          expect(await brokenWords(page), 'a tab label broke inside a word').toEqual([]);
 
           await scrollToEnd(page);
           const after = await measure(page);

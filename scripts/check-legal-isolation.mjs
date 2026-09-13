@@ -34,7 +34,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { chromium } from 'playwright';
 
 import { ensurePreview } from './lib/preview.mjs';
-import { textScaleCss } from './lib/text-scale.mjs';
+import { injectTextScale, textScaleCss, textScaleFactor } from './lib/text-scale.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const WEB = join(here, '..', 'apps/web/src');
@@ -94,17 +94,19 @@ for (const profile of PROFILES) {
   const page = await context.newPage();
   if (profile.text !== 1) {
     // The type tokens are pixels; the root font size moves nothing. See lib/text-scale.mjs.
-    await page.addInitScript((css) => {
-        const style = document.createElement('style');
-        style.textContent = css;
-        (document.head ?? document.documentElement).appendChild(style);
-      }, textScaleCss(profile.text));
+    await page.addInitScript(injectTextScale, textScaleCss(profile.text));
   }
 
   for (const target of PAGES) {
     await page.goto(`${baseUrl}${target.path}`, { waitUntil: 'networkidle' });
     await page.waitForTimeout(1400);
     const where = `${target.name} at ${profile.name}`;
+    // Refuse to measure an unscaled page under a scaled profile's name.
+    const factor = await textScaleFactor(page);
+    if (Math.abs(factor - profile.text) > 0.05) {
+      fail(`${where}: text is at ×${factor.toFixed(2)}, not the ×${profile.text} this profile claims`);
+      continue;
+    }
     measured += 1;
 
     const seen = await page.evaluate(() => {

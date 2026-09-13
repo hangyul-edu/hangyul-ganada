@@ -68,7 +68,7 @@ import { chromium } from 'playwright';
 
 import { NUMBER_LESSONS } from '../apps/web/src/data/numbers.ts';
 import { ensurePreview } from './lib/preview.mjs';
-import { textScaleCss } from './lib/text-scale.mjs';
+import { injectTextScale, textScaleCss, textScaleFactor } from './lib/text-scale.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const CHECK = process.argv.includes('--check');
@@ -332,17 +332,10 @@ for (const test of CASES) {
     colorScheme: test.scheme,
   });
   const page = await context.newPage();
-  await page.addInitScript(
-    ([locale, css]) => {
-      localStorage.setItem('hangyul_ganada:locale', locale);
-      if (css) {
-        const style = document.createElement('style');
-        style.textContent = css;
-        (document.head ?? document.documentElement).appendChild(style);
-      }
-    },
-    [test.locale, textScaleCss(test.scale)],
-  );
+  await page.addInitScript((locale) => {
+    localStorage.setItem('hangyul_ganada:locale', locale);
+  }, test.locale);
+  await page.addInitScript(injectTextScale, textScaleCss(test.scale));
 
   const where = `${test.name} ×${test.scale} ${test.locale} ${test.scheme}`;
   try {
@@ -352,6 +345,11 @@ for (const test of CASES) {
     await page.reload({ waitUntil: 'networkidle' });
     await page.waitForTimeout(1300);
     await page.waitForSelector('[data-testid^="numbers-lesson-"]', { timeout: 10_000 });
+    // Refuse to measure an unscaled page under a scaled test's name.
+    const factor = await textScaleFactor(page);
+    if (Math.abs(factor - test.scale) > 0.05) {
+      throw new Error(`text is at ×${factor.toFixed(2)}, not the ×${test.scale} this test claims`);
+    }
 
     const m = await page.evaluate(`(${MEASURE})()`);
     cases += 1;

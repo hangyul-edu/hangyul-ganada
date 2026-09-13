@@ -45,6 +45,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 import { ensurePreview } from './lib/preview.mjs';
+import { textScaleCss } from './lib/text-scale.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const LOCALES_DIR = join(ROOT, 'apps/web/src/locales');
@@ -187,15 +188,19 @@ for (const dialog of DIALOGS) {
     });
     const page = await context.newPage();
     await page.addInitScript(
-      ({ code, factor }) => {
+      ({ code, css }) => {
         window.localStorage.setItem('hangyul_ganada:locale', code);
-        if (factor !== 1) {
+        // The token scaler, not the root font size — see lib/text-scale.mjs
+        // and I-223. The root font size moved nothing in a px-token product.
+        if (css) {
           document.addEventListener('DOMContentLoaded', () => {
-            document.documentElement.style.fontSize = `${16 * factor}px`;
+            const style = document.createElement('style');
+            style.textContent = css;
+            document.head.appendChild(style);
           });
         }
       },
-      { code: locale, factor: device.zoom },
+      { code: locale, css: textScaleCss(device.zoom) },
     );
 
     let reached = true;
@@ -340,15 +345,17 @@ for (const device of DEVICES) {
   });
   const page = await context.newPage();
   await page.addInitScript(
-    ({ code, factor }) => {
+    ({ code, css }) => {
       window.localStorage.setItem('hangyul_ganada:locale', code);
-      if (factor !== 1) {
+      if (css) {
         document.addEventListener('DOMContentLoaded', () => {
-          document.documentElement.style.fontSize = `${16 * factor}px`;
+          const style = document.createElement('style');
+          style.textContent = css;
+          document.head.appendChild(style);
         });
       }
     },
-    { code: worstAnywhere.locale, factor: device.zoom },
+    { code: worstAnywhere.locale, css: textScaleCss(device.zoom) },
   );
   await page.goto(`${baseUrl}/words/today`, { waitUntil: 'networkidle' });
   await page.getByTestId('placement-skip').waitFor({ state: 'visible', timeout: 8000 }).catch(() => {});

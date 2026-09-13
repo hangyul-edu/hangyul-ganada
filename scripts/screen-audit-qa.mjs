@@ -55,6 +55,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 import { ensurePreview } from './lib/preview.mjs';
+import { textScaleCss } from './lib/text-scale.mjs';
 /*
   The e2e suite's own tracer, imported rather than reimplemented.
 
@@ -215,6 +216,13 @@ const DEVICES = [
   { name: '430', width: 430, height: 932, scheme: 'light', zoom: 1 },
   { name: '390-dark', width: 390, height: 844, scheme: 'dark', zoom: 1 },
   { name: '390-200%', width: 390, height: 844, scheme: 'light', zoom: 2 },
+  /*
+   * The narrowest width with the largest text is where things actually broke
+   * once the 200% profile measured doubled text: the words category grid, the
+   * progress label, the tab labels and the conjugation rows at 320 px (v1.0.5,
+   * W-010). The 390 profile alone had passed that stylesheet.
+   */
+  { name: '320-200%', width: 320, height: 568, scheme: 'light', zoom: 2 },
 ];
 
 /** See `e2e/accessibility.spec.ts` for why these two are allowed, and disclosed. */
@@ -241,27 +249,34 @@ for (const device of DEVICES) {
   );
 
   /*
-   * 200% text as a *text* zoom, not a page zoom.
+   * 200% text as a *text* zoom, not a page zoom — and as a token override.
    *
    * `deviceScaleFactor` and browser zoom scale the viewport with the text, so
    * everything stays in proportion and nothing is learned. What WCAG 1.4.4 asks
-   * about is text growing inside a layout that does not, which is what doubling
-   * the root font size does — every `rem` follows and every `px` stays put,
-   * exactly as it would for a learner who has set a larger system size.
+   * about is text growing inside a layout that does not. This used to double
+   * the root font size, which moves `rem` type and nothing else, and every
+   * type size in this product is a pixel token — so the "390-200%" profile
+   * measured normal text and passed 143 renders it had not earned (the same
+   * defect I-223 closed in nine other sites; this one was missed). The token
+   * scaler is what a WebView's font scale does to every CSS pixel of text.
+   * A guard below fails the profile if the text did not actually grow.
    */
   if (device.zoom !== 1) {
-    await page.addInitScript((factor) => {
+    await page.addInitScript((css) => {
       document.addEventListener('DOMContentLoaded', () => {
-        document.documentElement.style.fontSize = `${16 * factor}px`;
+        const style = document.createElement('style');
+        style.id = 'qa-text-scale';
+        style.textContent = css;
+        document.head.appendChild(style);
       });
-    }, device.zoom);
+    }, textScaleCss(device.zoom));
   }
 
   /*
     The routes on every profile, the states on the ones that decide layout:
     the narrowest width, the modal one, the doubled text and the dark palette.
   */
-  const STATE_PROFILES = new Set(['320', '390', '390-dark', '390-200%']);
+  const STATE_PROFILES = new Set(['320', '390', '390-dark', '390-200%', '320-200%']);
   const here = [
     ...SCREENS,
     ...(STATE_PROFILES.has(device.name) ? STATES : []),
@@ -315,6 +330,47 @@ for (const device of DEVICES) {
           kind: 'sideways',
           detail: `${document.documentElement.scrollWidth}px in a ${window.innerWidth}px window`,
         });
+      }
+
+      /*
+       * Content pushed past the right edge of the screen.
+       *
+       * The document does not scroll sideways, because the app shell is its
+       * own scroll container and clips what escapes it — so the check above
+       * is green while a card runs off the screen. That is what the category
+       * grid on Words did at 200% text (and in Tamil at 320 px): the second
+       * column began on screen and ended sixty pixels past it, cut mid-word.
+       * Any visible element whose box ends beyond the viewport is a finding,
+       * unless it sits in a row that scrolls on purpose.
+       */
+      {
+        const vw = document.documentElement.clientWidth;
+        let reported = 0;
+        for (const element of document.querySelectorAll('main *, nav *')) {
+          if (reported >= 5) break;
+          if (!visible(element)) continue;
+          if (element.closest('[aria-hidden="true"]')) continue;
+          let ancestor = element.parentElement;
+          let inScrollRow = false;
+          while (ancestor) {
+            const a = getComputedStyle(ancestor);
+            if ((a.overflowX === 'auto' || a.overflowX === 'scroll') && ancestor.scrollWidth > ancestor.clientWidth) {
+              inScrollRow = true;
+              break;
+            }
+            ancestor = ancestor.parentElement;
+          }
+          if (inScrollRow) continue;
+          const r = element.getBoundingClientRect();
+          if (r.width === 0 || r.height === 0) continue;
+          if (r.right > vw + 1 || r.left < -1) {
+            reported += 1;
+            problems.push({
+              kind: 'escaped',
+              detail: `${element.tagName.toLowerCase()} ${Math.round(r.left)}–${Math.round(r.right)} in ${vw}px — ${(element.textContent ?? '').trim().slice(0, 30)}`,
+            });
+          }
+        }
       }
 
       const interactive = [...document.querySelectorAll('button, a[href], [role="button"], input, select')]
@@ -683,7 +739,7 @@ if (!CHECK) {
 }
 
 const renders = DEVICES.reduce(
-  (total, device) => total + SCREENS.length + (['320', '390', '390-dark', '390-200%'].includes(device.name) ? STATES.length : 0),
+  (total, device) => total + SCREENS.length + (['320', '390', '390-dark', '390-200%', '320-200%'].includes(device.name) ? STATES.length : 0),
   0,
 );
 console.log(

@@ -30,12 +30,35 @@ export function textScaleCss(scale: number): string {
 }
 
 /** Applies the scale from the first frame: an init script that injects the override. */
+/**
+ * Applied from an init script, which runs before the document has a `<head>`
+ * — or an element at all. The earlier form appended to
+ * `document.head ?? document.documentElement` at that moment, threw on null,
+ * and the throw was swallowed: four specs measured normal text under "×2"
+ * until 13 September 2026. The sheet is appended at `DOMContentLoaded`, after
+ * the token sheet it has to outrank, and `textScaleFactor` reads back what
+ * applied so a spec can refuse to measure an unscaled page.
+ */
 export async function emulateTextScale(page: Page, scale: number): Promise<void> {
   if (scale === 1) return;
   await page.addInitScript((css: string) => {
-    const style = document.createElement('style');
-    style.id = 'qa-text-scale';
-    style.textContent = css;
-    (document.head ?? document.documentElement).appendChild(style);
+    const inject = () => {
+      const style = document.createElement('style');
+      style.id = 'qa-text-scale';
+      style.textContent = css;
+      document.head.appendChild(style);
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
+    else inject();
   }, textScaleCss(scale));
+}
+
+/** The scale the page is really rendering at: the body token as applied over its base. */
+export async function textScaleFactor(page: Page): Promise<number> {
+  const css = readFileSync(TOKENS, 'utf8');
+  const base = Number(/--hg-text-body:\s*(\d+(?:\.\d+)?)px/.exec(css)?.[1]);
+  const applied = await page.evaluate(() =>
+    Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hg-text-body')),
+  );
+  return applied / base;
 }

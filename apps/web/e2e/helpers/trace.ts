@@ -17,6 +17,11 @@ export async function traceReferenceGlyph(page: Page, box: Locator): Promise<voi
   const runs = await inkRuns(box);
   if (runs.length === 0) throw new Error('reference glyph has no ink — is the font loaded?');
 
+  // A pointer moved past the bottom of the viewport draws nothing, and at
+  // 320×568 with doubled text the box's lower half starts there: the trace
+  // then stopped where the screen did and a faithful glyph was refused. A
+  // learner scrolls the box into view before writing; so does this.
+  await box.scrollIntoViewIfNeeded();
   const rect = await box.locator('canvas').first().boundingBox();
   if (!rect) throw new Error('writing box is not visible');
 
@@ -36,6 +41,7 @@ export async function traceReferenceGlyph(page: Page, box: Locator): Promise<voi
 
 /** Draws a scribble that is unmistakably not the target character. */
 export async function drawScribble(page: Page, box: Locator): Promise<void> {
+  await box.scrollIntoViewIfNeeded();
   const rect = await box.locator('canvas').first().boundingBox();
   if (!rect) throw new Error('writing box is not visible');
 
