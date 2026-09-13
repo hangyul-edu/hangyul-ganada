@@ -57,6 +57,21 @@
  * report prints the pending action. It is a line for a person to act on, not a
  * failure: failing would mean no Android release could ever be cut without a
  * Mac in the room.
+ *
+ * ## The web release, and why it may lead the native one
+ *
+ * A web-only release changes `apps/web/dist` and nothing a store sees. The
+ * number a learner reads on the Legal and Privacy screens has to move with it,
+ * and the native number has to stay exactly what the delivered APK, AAB and
+ * Xcode project carry — a versionName edited without a build is the drift
+ * this gate was written to catch. So the web has its own pinned literal
+ * (`WEB_RELEASE_VERSION`, held by `config/product.ts` and the web release
+ * notes) and the native sites keep theirs (`RELEASE_VERSION`, held by
+ * `app.identity.json` and everything that follows it). The relationship is
+ * checked in one direction: the web may be *ahead* of the native deliveries,
+ * never behind them, and while they differ the pending native release is
+ * printed as a line for the person with the store consoles — exactly the
+ * arrangement this file already used for an iOS project lagging Android.
  */
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
@@ -98,11 +113,11 @@ const VERSION_SITES = [
     what: 'the mobile workspace package',
     pattern: /"version":\s*"([^"]+)"/,
   },
-  {
-    rel: 'apps/web/src/config/product.ts',
-    what: 'the version shown in Settings',
-    pattern: /version:\s*'([^']+)'/,
-  },
+  /*
+   * `apps/web/src/config/product.ts` is not in this list any more: it holds the
+   * *web* release, checked above against `WEB_RELEASE_VERSION` and against
+   * this number's ordering rather than its equality.
+   */
   {
     rel: 'docs/legal/support.md',
     what: 'the support document header',
@@ -131,10 +146,11 @@ const VERSION_SITES = [
   },
   {
     rel: 'docs/report.md',
-    what: 'the report front matter',
+    what: 'the report front matter (the delivered native version)',
     pattern: /^version: ([0-9.]+)$/m,
   },
 ];
+
 
 /*
  * The number itself, not only its agreement.
@@ -147,10 +163,66 @@ const VERSION_SITES = [
  */
 const RELEASE_VERSION = '1.0.4';
 if (VERSION !== RELEASE_VERSION) {
-  fail('app.identity.json', `version is "${VERSION}"; this release is ${RELEASE_VERSION}`);
+  fail('app.identity.json', `version is "${VERSION}"; the native release is ${RELEASE_VERSION}`);
+}
+
+/*
+ * The web product's own release number — see the header.
+ *
+ * Pinned here and in `apps/web/src/config/product.test.ts`, for the same
+ * reason the native literal is pinned twice. It is held to `config/product.ts`
+ * (what a learner reads) and to the web release notes (what a reviewer reads),
+ * and it must not be *behind* the native number: a web build that reported an
+ * older version than the binary built from the same tree would be the drift
+ * this gate exists to catch, arriving from the other side.
+ */
+const WEB_RELEASE_VERSION = '1.0.5';
+const productSource = read('apps/web/src/config/product.ts');
+const WEB_VERSION = /version:\s*'([^']+)'/.exec(productSource)?.[1]?.trim();
+if (WEB_VERSION === undefined) {
+  fail('config/product.ts', 'no version found — the version shown in Settings is no longer stated');
+} else if (WEB_VERSION !== WEB_RELEASE_VERSION) {
+  fail('config/product.ts', `version is "${WEB_VERSION}"; the web release is ${WEB_RELEASE_VERSION}`);
+}
+const compareVersions = (a, b) => {
+  const [x, y] = [a, b].map((v) => v.split('.').map(Number));
+  for (let i = 0; i < 3; i += 1) if (x[i] !== y[i]) return x[i] - y[i];
+  return 0;
+};
+if (WEB_VERSION && compareVersions(WEB_VERSION, VERSION) < 0) {
+  fail(
+    'config/product.ts',
+    `the web reports ${WEB_VERSION}, behind the native release ${VERSION} — the web may lead the ` +
+      'native deliveries, never lag them',
+  );
+}
+{
+  const notes = 'docs/WEB_RELEASE_NOTES_v' + WEB_RELEASE_VERSION + '.md';
+  if (!existsSync(join(root, notes))) {
+    fail(notes, 'the web release notes for this version do not exist');
+  } else {
+    const heading = /^# Web release notes — ([0-9.]+)/m.exec(read(notes))?.[1];
+    if (heading !== WEB_RELEASE_VERSION) {
+      fail(notes, `the heading says "${heading ?? 'nothing'}", not "${WEB_RELEASE_VERSION}"`);
+    }
+  }
+}
+/*
+ * The report's front matter names both numbers, so the PDF cover can say which
+ * product each figure in it is about. `version:` stays the delivered native
+ * artefact (docs:consistency holds it to `result/build-info.json`);
+ * `web_version:` is the web product the pass tested.
+ */
+{
+  const webStated = /^web_version: ([0-9.]+)$/m.exec(read('docs/report.md'))?.[1];
+  if (webStated === undefined) {
+    fail('docs/report.md', 'the front matter no longer states web_version');
+  } else if (webStated !== WEB_RELEASE_VERSION) {
+    fail('docs/report.md', `the front matter says web_version ${webStated}, not ${WEB_RELEASE_VERSION}`);
+  }
 }
 /* The `v` form a learner reads. `v.1.0.4` and `v1.0.6` are the two shapes that were reported. */
-const display = /displayVersion[\s\S]*?return `v\$\{PRODUCT\.version\}`/.test(read('apps/web/src/config/product.ts'));
+const display = /displayVersion[\s\S]*?return `v\$\{PRODUCT\.version\}`/.test(productSource);
 if (!display) fail('config/product.ts', 'displayVersion() no longer renders `v` + PRODUCT.version');
 
 for (const site of VERSION_SITES) {
@@ -244,6 +316,7 @@ if (!/versionCode\s+identity\.buildNumber/.test(gradle)) {
  * that the number about to be uploaded has not already been spent, because a
  * build number is the one value a store will not let you reuse.
  */
+let staleDelivery = null;
 const BUILD_INFO = 'result/build-info.json';
 if (existsSync(join(root, BUILD_INFO))) {
   const built = readJson(BUILD_INFO);
@@ -278,12 +351,21 @@ if (existsSync(join(root, BUILD_INFO))) {
         `buildNumber ${BUILD} is behind the delivered artefact's versionCode ${builtCode}`,
       );
     } else if (builtCode === BUILD && deliveryIsStale(built.commit)) {
-      fail(
-        BUILD_INFO,
+      /*
+       * While the web leads the native deliveries, this is not a finding about
+       * *this* tree — it is the definition of that state: the artefacts were
+       * built before the web moved on, and the next native build has to take a
+       * new number. It is said in the pending line, where the person who will
+       * cut that build reads it. The moment `app.identity.json` is moved up to
+       * the web's number without the build number following, the two are equal
+       * again and this fails exactly as it always did.
+       */
+      const message =
         `buildNumber ${BUILD} is the versionCode the delivered artefact already used, and a ` +
-          `product file has changed since ${String(built.commit).slice(0, 8)} — a rebuild would ` +
-          `reuse the code for different bytes, which Play refuses`,
-      );
+        `product file has changed since ${String(built.commit).slice(0, 8)} — a rebuild would ` +
+        `reuse the code for different bytes, which Play refuses`;
+      if (WEB_VERSION && compareVersions(WEB_VERSION, VERSION) > 0) staleDelivery = message;
+      else fail(BUILD_INFO, message);
     }
   }
 }
@@ -318,22 +400,38 @@ function deliveryIsStale(commit) {
   return [...since, ...uncommitted].some(isProduct);
 }
 
-console.log('Release version — one number, every file that states one\n');
-console.log(`  version               ${VERSION}`);
+const webPending =
+  WEB_VERSION && compareVersions(WEB_VERSION, VERSION) > 0
+    ? `the web is at ${WEB_VERSION}; the Android and iOS deliveries are at ${VERSION} build ${BUILD}. ` +
+      `A native release at ${WEB_VERSION} needs app.identity.json moved to it with a build number ` +
+      `above ${BUILD}, then a build — neither is done from a web-only pass.`
+    : null;
+
+console.log('Release version — one number per product, every file that states one\n');
+console.log(`  web version           ${WEB_VERSION ?? '(missing)'}   config/product.ts · web release notes · report web_version`);
+console.log(`  native version        ${VERSION}   app.identity.json and everything that follows it`);
 console.log(`  build number          ${BUILD}`);
 console.log(
   '  files checked         app.identity.json · mobile package.json · config/product.ts ·\n' +
     '                        project.pbxproj (×2 configurations) · build.gradle ·\n' +
     '                        support.md · licences.md · privacy-policy.md ·\n' +
-    '                        release-notes.md · report.md front matter',
+    '                        release-notes.md · report.md front matter · WEB_RELEASE_NOTES',
 );
+if (webPending) {
+  console.log(`\n  pending, for a person with the store consoles:\n    ${webPending}`);
+  if (staleDelivery) console.log(`    ${staleDelivery}.`);
+}
 if (XCODE) {
   console.log(`  iOS (Xcode-managed)   ${XCODE.marketingVersion} build ${XCODE.currentProjectVersion}`);
 }
 if (iosPending) console.log(`\n  pending, for a person with Xcode:\n    ${iosPending}`);
 
 if (findings.length === 0) {
-  console.log('\n  every file agrees; the number in Settings is the number in both stores.');
+  console.log(
+    webPending
+      ? '\n  every file agrees with its own product; the number in Settings is the web release, and the native deliveries are named above.'
+      : '\n  every file agrees; the number in Settings is the number in both stores.',
+  );
 } else {
   console.log(`\n${findings.length} finding(s):`);
   for (const f of findings) console.log(`  ${f.where.padEnd(46)} ${f.detail}`);

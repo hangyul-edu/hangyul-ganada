@@ -348,7 +348,8 @@ const html = `<!doctype html>
     <p class="sub">${meta.subtitle ?? ''}</p>
     <dl>
       <dt>Document</dt><dd>${meta.document ?? 'Product &amp; Architecture Report'}</dd>
-      <dt>Application version</dt><dd>${meta.version ?? ''}</dd>
+      <dt>Web product</dt><dd>${meta.web_version ? `v${meta.web_version}` : meta.version ?? ''}</dd>
+      <dt>Native deliveries</dt><dd>${meta.version ?? ''}${meta.native_status ? ` — ${meta.native_status}` : ''}</dd>
       <dt>Report generated</dt><dd>${meta.date ?? ''}</dd>
       <dt>Describes</dt><dd>${meta.describes ?? ''}</dd>
     </dl>
@@ -379,7 +380,7 @@ await page.pdf({
   displayHeaderFooter: true,
   headerTemplate: `<div style="font-family: sans-serif; font-size: 7pt; color: #778088;
       width: 100%; padding: 0 16mm; display: flex; justify-content: space-between;">
-      <span>${meta.title ?? ''} — ${meta.document ?? ''}</span><span>${meta.version ?? ''}</span></div>`,
+      <span>${meta.title ?? ''} — ${meta.document ?? ''}</span><span>${meta.web_version ? `web v${meta.web_version} · native ${meta.version ?? ''}` : meta.version ?? ''}</span></div>`,
   footerTemplate: `<div style="font-family: sans-serif; font-size: 7pt; color: #778088;
       width: 100%; padding: 0 16mm; text-align: center;">
       <span class="pageNumber"></span> / <span class="totalPages"></span></div>`,

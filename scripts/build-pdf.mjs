@@ -55,6 +55,20 @@ const VERSION = JSON.parse(
 ).version;
 
 /**
+ * And the web product's own number, from the file the learner's screen reads.
+ *
+ * The two are allowed to differ — a web-only release moves `config/product.ts`
+ * and nothing native — and a cover that printed one of them as "the" version
+ * would be wrong about the other. When they differ the cover names both.
+ */
+const WEB_VERSION =
+  /version:\s*'([^']+)'/.exec(
+    readFileSync(join(ROOT, 'apps/web/src/config/product.ts'), 'utf8'),
+  )?.[1] ?? VERSION;
+const COVER_VERSION =
+  WEB_VERSION === VERSION ? `v${VERSION}` : `web v${WEB_VERSION} · native deliveries v${VERSION}`;
+
+/**
  * The variable Pretendard, embedded.
  *
  * The same file the app loads, so the PDF and the product agree about what a
@@ -245,7 +259,7 @@ strong{font-weight:600}
 <div class="cover">
   <h1>${title}</h1>
   <p class="sub">${subtitle}</p>
-  <div class="meta">Hangyul ganada · 한귤 가나다 — v${VERSION} · ${today}</div>
+  <div class="meta">Hangyul ganada · 한귤 가나다 — ${COVER_VERSION} · ${today}</div>
   <div class="conf">CONFIDENTIAL · 대외비</div>
 </div>
 ${toc}

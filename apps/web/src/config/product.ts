@@ -32,8 +32,19 @@ export const PRODUCT = {
    * label in `apps/mobile/app.identity.json`.
    */
   name: 'Hangyul Ganada',
-  /** Shown in Settings. Matches the root package version. */
-  version: '1.0.4',
+  /**
+   * The web product's release number, shown to a learner as `v1.0.5`.
+   *
+   * This is the **web** release. The native deliveries carry their own number
+   * in `apps/mobile/app.identity.json` (1.0.4 at build 25, the last artefacts
+   * built), and the two are allowed to differ in exactly one direction: the
+   * web may lead, never lag. `scripts/check-version-consistency.mjs` pins both
+   * literals, holds every native site to the native one, and prints the
+   * pending native release as a line for a person with the store consoles —
+   * the same arrangement it already used for an iOS project lagging Android.
+   * A web-only pass moves this value and nothing native.
+   */
+  version: '1.0.5',
   localizedName: {
     en: 'Hangyul Ganada',
     ko: '한귤 가나다',
@@ -105,7 +116,7 @@ export function appVersion(): string {
 }
 
 /**
- * The version as a learner reads it on screen: `v1.0.4`.
+ * The version as a learner reads it on screen: `v1.0.5`.
  *
  * One spelling, produced in one place. It was rendered through a per-locale
  * "Version {{version}}" string, which put the bare number on the Legal and
