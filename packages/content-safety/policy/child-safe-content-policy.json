@@ -48,6 +48,10 @@
   "th": "substring",
   "*": "token"
  },
+ "latinScript": [
+  "cs", "de", "en", "es", "fil", "fr", "hu", "id", "it", "nl", "pl", "pt-BR", "ro", "sv", "tr", "uz", "vi"
+ ],
+ "latinScript_comment": "The interface languages written in the Latin alphabet. A Latin-letter word inside a field of any other language (Korean, Japanese, Arabic, Hindi…) is foreign there, and is read against the English lists as well as its own; in these languages every word is Latin, and only the language's own lists apply — German 'die' is an article, not the English verb.",
  "koreanParticles": [
   "이",
   "가",
@@ -113,6 +117,10 @@
    "category": "sexual",
    "severity": "HARD_BLOCK",
    "surfaces": {
+    "*": [
+     "porn",
+     "porno"
+    ],
     "ko": [
      "섹스",
      "쎅스",
@@ -1691,6 +1699,18 @@
    "category": "profanity",
    "severity": "HARD_BLOCK",
    "surfaces": {
+    "*": [
+     "fuck",
+     "fucking",
+     "fucker",
+     "fuckers",
+     "motherfucker",
+     "shit",
+     "bullshit",
+     "bitch",
+     "asshole",
+     "wtf"
+    ],
     "ko": [
      "ㅂㅅ",
      "ㅅㄲ",

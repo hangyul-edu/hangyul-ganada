@@ -79,6 +79,7 @@ class Policy:
     particles: str
     allow_exact: set[str]
     allow_headwords: set[str]
+    latin_script: frozenset[str] = frozenset()
     concepts: list["Compiled"] = field(default_factory=list)
     context_rules: list[tuple[dict, re.Pattern]] = field(default_factory=list)
     gloss: dict[str, tuple[list[tuple[str, re.Pattern]], re.Pattern | None]] = field(default_factory=dict)
@@ -164,11 +165,63 @@ def _compact(text: str) -> str:
     return " ".join(out)
 
 
+_CHOSEONG = "ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ"
+_JUNGSEONG = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ"
+_JONGSEONG = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ"
+_JAMO_RUN = re.compile("[\u3131-\u3163]{2,}")
+_LATIN = re.compile("[a-z]")
+
+
+def _compose_jamo(text: str) -> str:
+    """ㅅㅔㄱㅅㅡ → 섹스 — exactly `composeJamo()` in normalize.ts."""
+
+    def compose(m: re.Match) -> str:
+        chars = list(m.group(0))
+        out = ""
+        i = 0
+        while i < len(chars):
+            l = _CHOSEONG.find(chars[i])
+            v = _JUNGSEONG.find(chars[i + 1]) if i + 1 < len(chars) else -1
+            if l < 0 or v < 0:
+                out += chars[i]
+                i += 1
+                continue
+            t = 0
+            if i + 2 < len(chars):
+                candidate = _JONGSEONG.find(chars[i + 2])
+                nxt = _JUNGSEONG.find(chars[i + 3]) if i + 3 < len(chars) else -1
+                if candidate > 0 and nxt < 0:
+                    t = candidate
+            out += chr(0xAC00 + (l * 21 + v) * 28 + t)
+            i += 3 if t > 0 else 2
+        return out
+
+    return _JAMO_RUN.sub(compose, text)
+
+
+_OPEN_SYLLABLE_INITIAL = re.compile("([\uac00-\ud7a3])([\u1100-\u1112])(?![\u1161-\u1175])")
+
+
+def _close_syllables(text: str) -> str:
+    """세ᄀ스 → 섹스 — exactly `closeSyllables()` in normalize.ts."""
+
+    def close(m: re.Match) -> str:
+        code = ord(m.group(1)) - 0xAC00
+        if code % 28 != 0:
+            return m.group(0)
+        t = _JONGSEONG.find(_CHOSEONG[ord(m.group(2)) - 0x1100])
+        if t <= 0:
+            return m.group(0)
+        return chr(0xAC00 + code + t)
+
+    return _OPEN_SYLLABLE_INITIAL.sub(close, text)
+
+
 def normalize(text: str, leet: dict[str, str] | None = None) -> tuple[str, str, str]:
     """`(norm, compact, flat)` — exactly `normalize()` in normalize.ts."""
     leet = leet if leet is not None else policy().leet
-    out = unicodedata.normalize("NFKC", text)
-    out = _INVISIBLE.sub("", out)
+    out = _compose_jamo(_INVISIBLE.sub("", text))
+    out = _close_syllables(unicodedata.normalize("NFKC", out))
     out = out.lower()
     out = " ".join(out.split())
     out = " ".join(_deobfuscate(tok, leet) for tok in out.split(" "))
@@ -215,6 +268,7 @@ def policy() -> Policy:
         particles=particles,
         allow_exact={normalize(s, leet)[0] for s in raw["allow"]["exact"]},
         allow_headwords={normalize(s, leet)[0] for s in raw["allow"]["headwords"]},
+        latin_script=frozenset(raw.get("latinScript") or ()),
     )
     for concept in raw["concepts"]:
         exceptions: dict[str, tuple[re.Pattern, re.Pattern, re.Pattern]] = {}
@@ -351,7 +405,14 @@ def evaluate_surface(
     is_head = role in ("headword", "option")
     head_norm = normalize(headword)[0] if headword else None
     findings: list[Finding] = []
-    langs = (lang, "*")
+    # Latin letters in a field whose language is not written in the Latin
+    # alphabet are read against the English lists as well: a Korean sentence
+    # that contains "sex" is not caught by the Korean list, and the product's
+    # fallback language is the one a stray Latin word is most likely to be in.
+    # A German or Spanish field is all Latin letters and reads only its own
+    # lists ("die" is an article there). `evaluate.ts` does the same.
+    foreign_latin = lang not in pol.latin_script and _LATIN.search(norm)
+    langs = (lang, "*", "en") if foreign_latin else (lang, "*")
     romanization_only = role == "romanization"
     for entry in pol.concepts:
         concept = entry.concept

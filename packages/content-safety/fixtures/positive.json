@@ -1,187 +1,1425 @@
 {
   "_comment": "Strings the policy must NOT refuse — the false positives a substring filter would produce. Each names the prohibited term it resembles. Both evaluators must return `ok` for every row.",
   "cases": [
-    {"id": "seonggong", "text": "성공하다", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "성 (sexual)"},
-    {"id": "seonggong-sentence", "text": "이번 실험에 성공했어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "seonggyeok", "text": "성격", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "seonggyeok-sentence", "text": "성격이 아주 밝아요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "seongin", "text": "성인 요금은 만 원이에요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "seongbyeol-gloss", "text": "sex (gender)", "lang": "en", "role": "gloss", "headword": "성별", "expect": "ok"},
-    {"id": "seonggyoyuk", "text": "성교육", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "성교"},
-    {"id": "yak", "text": "약", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "마약"},
-    {"id": "yakguk", "text": "약국", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "yak-sentence", "text": "약을 먹어요", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "yak-sentence-2", "text": "감기약을 사러 약국에 갔어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "yak-gloss", "text": "medicine, a drug (medical)", "lang": "en", "role": "gloss", "headword": "약", "expect": "ok"},
-    {"id": "juk-porridge", "text": "죽", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "죽다"},
-    {"id": "juk-porridge-sentence", "text": "죽을 쑤어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "juksun", "text": "죽순", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "gajuk", "text": "가죽 가방이 비싸요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "jukda-flower", "text": "물을 안 줘서 화분의 꽃이 죽었어요.", "lang": "ko", "role": "sentence", "headword": "죽다", "expect": "ok", "resembles": "죽다 on a named daily-life card"},
-    {"id": "jukda-idiom", "text": "배고파 죽겠어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "chong-total", "text": "총", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "총 (gun)"},
-    {"id": "chong-total-sentence", "text": "총 세 개예요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "chong-total-sentence-2", "text": "총 몇 명이 왔어요?", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "chongjang", "text": "총장님이 오셨어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "chonggak", "text": "총각", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "dowajuseyo", "text": "도와주세요", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "byeongwon", "text": "병원에 가요", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "apayo", "text": "아파요", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "police", "text": "경찰을 불러 주세요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "knife-kitchen", "text": "칼로 사과를 깎았어요.", "lang": "ko", "role": "sentence", "headword": "칼", "expect": "ok", "resembles": "칼 (weapon)"},
-    {"id": "knife-gloss", "text": "a knife", "lang": "en", "role": "gloss", "headword": "칼", "expect": "ok"},
-    {"id": "country-1", "text": "한국", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "country-2", "text": "일본에 갔어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "country-3", "text": "북한", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "country-4", "text": "미국 친구가 있어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "city-1", "text": "서울에 살아요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "city-2", "text": "Tokyo", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "civic-1", "text": "정치에 관심이 많아요.", "lang": "ko", "role": "sentence", "headword": "정치", "expect": "ok"},
-    {"id": "civic-2", "text": "대통령이 말했어요.", "lang": "ko", "role": "sentence", "headword": "대통령", "expect": "ok"},
-    {"id": "civic-3", "text": "오늘 투표했어요.", "lang": "ko", "role": "sentence", "headword": "투표하다", "expect": "ok"},
-    {"id": "civic-4", "text": "선거", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "civic-5", "text": "국회의원", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "civic-6", "text": "politics", "lang": "en", "role": "gloss", "headword": "정치", "expect": "ok"},
-    {"id": "civic-7", "text": "president of a country", "lang": "en", "role": "gloss", "headword": "대통령", "expect": "ok"},
-    {"id": "civic-8", "text": "I'm in favour of that opinion.", "lang": "en", "role": "sentence", "expect": "ok"},
-    {"id": "ssipda-chew", "text": "천천히 씹어요.", "lang": "ko", "role": "sentence", "headword": "씹다", "expect": "ok", "resembles": "씹"},
-    {"id": "ssipda-headword", "text": "씹다", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "boji-maseyo", "text": "보지 마세요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "보지"},
-    {"id": "boji-doantayo", "text": "텔레비전을 보지 않아요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "jaji-maseyo", "text": "늦게 자지 마세요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "자지"},
-    {"id": "saekki-kitten", "text": "고양이 새끼가 귀여워요.", "lang": "ko", "role": "sentence", "headword": "새끼", "expect": "ok", "resembles": "새끼 (insult)"},
-    {"id": "nyeon-years", "text": "이 년 동안 배웠어요.", "lang": "ko", "role": "sentence", "headword": "년", "expect": "ok", "resembles": "년 (insult)"},
-    {"id": "nyeon-headword", "text": "년", "lang": "ko", "role": "headword", "expect": "ok", "note": "taught as the counter; refused only as a bare option (negative fixtures)"},
-    {"id": "jaknyeon", "text": "작년에 한국에 왔어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "cheongsonyeon", "text": "청소년", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "jasik-children", "text": "자식 사랑은 끝이 없어요.", "lang": "ko", "role": "sentence", "headword": "자식", "expect": "ok"},
-    {"id": "ppongnamu", "text": "뽕나무", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "뽕"},
-    {"id": "daemado", "text": "대마도에 갔어요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "대마"},
-    {"id": "sibaljeom", "text": "시발점", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "시발"},
-    {"id": "sibalyeok", "text": "이 역이 시발역이에요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "sip-ten", "text": "십", "lang": "ko", "role": "option", "expect": "ok", "resembles": "씹"},
-    {"id": "sipil", "text": "십일", "lang": "ko", "role": "option", "expect": "ok"},
-    {"id": "gisaeng", "text": "기생", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "jil-quality", "text": "질", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "sajeong", "text": "사정", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "sajeong-sentence", "text": "사정이 있어서 못 갔어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "noreunjawi", "text": "노른자위", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "자위"},
-    {"id": "jeonseonggi", "text": "전성기", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "성기"},
-    {"id": "hwakseonggi", "text": "확성기", "lang": "ko", "role": "headword", "expect": "ok"},
-    {"id": "gaeburalpul", "text": "개불알풀", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "불알"},
-    {"id": "geolle-mop", "text": "걸레로 바닥을 닦아요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "걸레 (slur)"},
-    {"id": "sseuregi", "text": "쓰레기를 버려요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "sseuregi-headword", "text": "쓰레기", "lang": "ko", "role": "option", "expect": "ok"},
-    {"id": "dakchida", "text": "마감이 닥쳤어요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "닥쳐"},
-    {"id": "kkeojida", "text": "불이 꺼졌어요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "꺼져"},
-    {"id": "sul-negative", "text": "술을 안 마셔요.", "lang": "ko", "role": "sentence", "headword": "술", "expect": "ok"},
-    {"id": "dambae-negative", "text": "여기서 담배를 피우지 마세요.", "lang": "ko", "role": "sentence", "headword": "피우다", "expect": "ok"},
-    {"id": "dambae-harmful", "text": "담배는 몸에 해로워요.", "lang": "ko", "role": "sentence", "headword": "해롭다", "expect": "ok"},
-    {"id": "chwimi", "text": "제 취미는 사진 찍기예요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "취하다"},
-    {"id": "chwisohada", "text": "예약을 취소했어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "emotion-sad", "text": "슬퍼요", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "emotion-angry", "text": "화가 나요", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "emotion-dislike", "text": "저는 추운 날이 싫어요.", "lang": "ko", "role": "sentence", "headword": "싫다", "expect": "ok"},
-    {"id": "emotion-scared", "text": "귀신 이야기가 무서워요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "emotion-lonely", "text": "외로워요", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "emotion-en", "text": "I feel sad and lonely today.", "lang": "en", "role": "sentence", "expect": "ok"},
-    {"id": "hurt", "text": "넘어져서 다쳤어요.", "lang": "ko", "role": "sentence", "headword": "다치다", "expect": "ok"},
-    {"id": "wound", "text": "상처가 아파요.", "lang": "ko", "role": "sentence", "headword": "상처", "expect": "ok"},
-    {"id": "wound-gloss", "text": "a wound", "lang": "en", "role": "gloss", "headword": "상처", "expect": "ok"},
-    {"id": "blood-nosebleed", "text": "손가락에서 피가 나요.", "lang": "ko", "role": "sentence", "headword": "피", "expect": "ok"},
-    {"id": "blood-gloss", "text": "blood", "lang": "en", "role": "gloss", "headword": "피", "expect": "ok"},
-    {"id": "funeral", "text": "내일 장례식에 가요.", "lang": "ko", "role": "sentence", "headword": "장례식", "expect": "ok"},
-    {"id": "soldier", "text": "군인이 서 있어요.", "lang": "ko", "role": "sentence", "headword": "군인", "expect": "ok"},
-    {"id": "soldier-gloss", "text": "soldier", "lang": "en", "role": "gloss", "headword": "군인", "expect": "ok"},
-    {"id": "thief", "text": "물건을 훔치면 안 돼요.", "lang": "ko", "role": "sentence", "headword": "훔치다", "expect": "ok"},
-    {"id": "crime-prevent", "text": "범죄를 막아요.", "lang": "ko", "role": "sentence", "headword": "범죄", "expect": "ok"},
-    {"id": "quarrel", "text": "동생과 자주 싸워요.", "lang": "ko", "role": "sentence", "headword": "싸우다", "expect": "ok"},
-    {"id": "quarrel-gloss", "text": "to quarrel, to fight", "lang": "en", "role": "gloss", "headword": "싸우다", "expect": "ok"},
-    {"id": "explosion-gas", "text": "가스가 폭발했어요.", "lang": "ko", "role": "sentence", "headword": "폭발하다", "expect": "ok"},
-    {"id": "storm", "text": "폭풍이 지나갔어요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "폭"},
-    {"id": "kiss-forehead", "text": "이마에 키스했어요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "pregnancy", "text": "언니가 임신 중이에요.", "lang": "ko", "role": "sentence", "headword": "임신", "expect": "ok"},
-    {"id": "love", "text": "가족을 사랑해요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "partner", "text": "애인이 있어요?", "lang": "ko", "role": "sentence", "headword": "애인", "expect": "ok"},
-    {"id": "coffee", "text": "커피를 마셔요.", "lang": "ko", "role": "sentence", "expect": "ok", "resembles": "피"},
-    {"id": "bee", "text": "꽃 위에 벌이 앉았어요.", "lang": "ko", "role": "sentence", "headword": "벌", "expect": "ok", "resembles": "벌 (punish)"},
-    {"id": "sentence-ipda", "text": "입을 크게 벌리세요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "game-not-bet", "text": "친구와 보드게임을 해요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "naegi-suffix", "text": "서울내기", "lang": "ko", "role": "headword", "expect": "ok", "resembles": "내기"},
-    {"id": "ideal-sentence", "text": "내기 어려운 문제예요.", "lang": "ko", "role": "sentence", "expect": "ok"},
-    {"id": "en-assess", "text": "to assess the situation", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "ass"},
-    {"id": "en-class", "text": "The class starts at nine.", "lang": "en", "role": "sentence", "expect": "ok"},
-    {"id": "en-cocktail", "text": "cocktail", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "cock"},
-    {"id": "en-cockroach", "text": "cockroach", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-basement", "text": "the basement", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "semen"},
-    {"id": "en-direction", "text": "direction", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "erection"},
-    {"id": "en-studied", "text": "I studied Korean.", "lang": "en", "role": "sentence", "expect": "ok", "resembles": "died"},
-    {"id": "en-studying", "text": "I am studying.", "lang": "en", "role": "sentence", "expect": "ok", "resembles": "dying"},
-    {"id": "en-deadline", "text": "The deadline is tomorrow.", "lang": "en", "role": "sentence", "expect": "ok", "resembles": "dead"},
-    {"id": "en-plant-died", "text": "The flower in the pot died because it was not watered.", "lang": "en", "role": "sentence", "headword": "죽다", "expect": "ok"},
-    {"id": "en-killer-whale", "text": "killer whale", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "killer"},
-    {"id": "en-idiom-kill-two-birds", "text": "kill two birds with one stone", "lang": "en", "role": "gloss", "headword": "일석이조", "expect": "ok"},
-    {"id": "en-warm", "text": "It is warm today.", "lang": "en", "role": "sentence", "expect": "ok", "resembles": "war"},
-    {"id": "en-warning", "text": "a warning", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-award", "text": "an award", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-high-school", "text": "high school", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "high"},
-    {"id": "en-pot", "text": "a pot", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "pot (cannabis)"},
-    {"id": "en-weed", "text": "to pull weeds", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-shoot-photo", "text": "to shoot a photo", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-bet-idiom", "text": "I bet you are tired.", "lang": "en", "role": "sentence", "expect": "ok", "resembles": "bet"},
-    {"id": "en-time-slot", "text": "a time slot", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-lottery-charity", "text": "a charity lottery", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-protestant", "text": "Protestant", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "protest"},
-    {"id": "en-trumpet", "text": "trumpet", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "trump"},
-    {"id": "en-computing", "text": "computing", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "putin"},
-    {"id": "en-ambassador", "text": "ambassador", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "assad"},
-    {"id": "en-history", "text": "history", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "tory"},
-    {"id": "en-regimen", "text": "a daily regimen", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "regime"},
-    {"id": "en-couple", "text": "a couple", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "coup"},
-    {"id": "en-japan", "text": "Japan", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "jap"},
-    {"id": "en-pakistan", "text": "Pakistan", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "paki"},
-    {"id": "en-suspicious", "text": "suspicious", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "spic"},
-    {"id": "en-hello", "text": "hello", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "hell"},
-    {"id": "en-analysis", "text": "analysis", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "anal"},
-    {"id": "en-sexagenarian", "text": "sexagenarian", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-condominium", "text": "condominium", "lang": "en", "role": "gloss", "expect": "ok", "resembles": "condom"},
-    {"id": "en-passenger", "text": "passenger", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-drunk-participle", "text": "I have drunk the tea.", "lang": "en", "role": "sentence", "expect": "ok", "resembles": "drunk"},
-    {"id": "en-morphine-medical", "text": "morphine (medical)", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-army-gloss", "text": "army", "lang": "en", "role": "gloss", "headword": "군대", "expect": "ok"},
-    {"id": "en-navy-blue", "text": "navy blue", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-fight-cold", "text": "to fight a cold", "lang": "en", "role": "gloss", "expect": "ok"},
-    {"id": "en-injured-knee", "text": "I injured my knee playing football.", "lang": "en", "role": "sentence", "expect": "ok"},
-    {"id": "en-victim", "text": "a victim", "lang": "en", "role": "gloss", "headword": "피해자", "expect": "ok"},
-    {"id": "en-prison", "text": "a prison", "lang": "en", "role": "gloss", "headword": "감옥", "expect": "ok"},
-    {"id": "de-schuss-tor", "text": "ein Tor schießen", "lang": "de", "role": "sentence", "expect": "ok"},
-    {"id": "de-kriegen", "text": "Ich kriege es.", "lang": "de", "role": "sentence", "expect": "ok", "resembles": "krieg"},
-    {"id": "fr-mise-en", "text": "mise en place", "lang": "fr", "role": "sentence", "expect": "ok", "resembles": "mise"},
-    {"id": "fr-concours", "text": "un concours", "lang": "fr", "role": "gloss", "expect": "ok", "resembles": "con"},
-    {"id": "es-podemos", "text": "Podemos ir mañana.", "lang": "es", "role": "sentence", "expect": "ok", "resembles": "Podemos (party)"},
-    {"id": "es-coger-bus", "text": "coger el autobús", "lang": "es", "role": "sentence", "expect": "ok"},
-    {"id": "pt-cuidado", "text": "Cuidado!", "lang": "pt-BR", "role": "sentence", "expect": "ok", "resembles": "cu"},
-    {"id": "pt-lula-food", "text": "lula frita", "lang": "pt-BR", "role": "gloss", "expect": "ok", "resembles": "Lula"},
-    {"id": "it-melone", "text": "un melone", "lang": "it", "role": "gloss", "expect": "ok", "resembles": "Meloni"},
-    {"id": "ru-chlen-semyi", "text": "член семьи", "lang": "ru", "role": "gloss", "expect": "ok", "resembles": "член"},
-    {"id": "ru-rezhim-dnya", "text": "режим дня", "lang": "ru", "role": "gloss", "expect": "ok", "resembles": "режим"},
-    {"id": "ja-seikaku", "text": "性格", "lang": "ja", "role": "gloss", "expect": "ok", "resembles": "性"},
-    {"id": "ja-josei", "text": "女性", "lang": "ja", "role": "gloss", "expect": "ok"},
-    {"id": "ja-kutabireta-not", "text": "疲れて死にそう", "lang": "ja", "role": "sentence", "expect": "ok", "note": "idiomatic exhaustion; the self-harm surfaces are 死にたい/自殺, not 死にそう"},
-    {"id": "zh-xingge", "text": "性格", "lang": "zh-CN", "role": "gloss", "expect": "ok", "resembles": "性"},
-    {"id": "zh-caozuo", "text": "操作", "lang": "zh-CN", "role": "gloss", "expect": "ok", "resembles": "操"},
-    {"id": "zh-tired-to-death", "text": "累死了", "lang": "zh-CN", "role": "sentence", "expect": "ok"},
-    {"id": "zh-xuanchuan", "text": "宣传单", "lang": "zh-CN", "role": "gloss", "expect": "ok", "resembles": "宣传"},
-    {"id": "th-sea-sick", "text": "เมารถ", "lang": "th", "role": "gloss", "expect": "ok", "resembles": "เมา"},
-    {"id": "vi-say-me", "text": "say mê", "lang": "vi", "role": "gloss", "expect": "ok", "resembles": "say"},
-    {"id": "id-bandara", "text": "bandara", "lang": "id", "role": "gloss", "expect": "ok", "resembles": "bandar"},
-    {"id": "hi-aap", "text": "आप कैसे हैं?", "lang": "hi", "role": "sentence", "expect": "ok", "resembles": "आप (party)"},
-    {"id": "tr-ozel", "text": "özel ders", "lang": "tr", "role": "gloss", "expect": "ok", "resembles": "Özel"},
-    {"id": "ar-abdullah", "text": "عبد الله", "lang": "ar", "role": "gloss", "expect": "ok", "resembles": "عبد"},
-    {"id": "jamo-list", "text": "ㅁ ㅂ ㅅ ㅇ", "lang": "ko", "role": "ui", "expect": "ok", "resembles": "ㅂㅅ"},
-    {"id": "romanization-saekki", "text": "saekki", "lang": "en", "role": "romanization", "expect": "ok", "note": "the romanisation of a taught word (young animal)"},
-    {"id": "ui-string", "text": "레벨 테스트를 시작해요", "lang": "ko", "role": "ui", "expect": "ok"},
-    {"id": "numbers-total", "text": "총 10문제 중 8문제를 맞혔어요", "lang": "ko", "role": "ui", "expect": "ok"},
-    {"id": "hint-safe", "text": "힌트: 병원에서 일하는 사람이에요.", "lang": "ko", "role": "note", "expect": "ok"}
+    {
+      "id": "seonggong",
+      "text": "성공하다",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "성 (sexual)"
+    },
+    {
+      "id": "seonggong-sentence",
+      "text": "이번 실험에 성공했어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "seonggyeok",
+      "text": "성격",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "seonggyeok-sentence",
+      "text": "성격이 아주 밝아요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "seongin",
+      "text": "성인 요금은 만 원이에요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "seongbyeol-gloss",
+      "text": "sex (gender)",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "성별",
+      "expect": "ok"
+    },
+    {
+      "id": "seonggyoyuk",
+      "text": "성교육",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "성교"
+    },
+    {
+      "id": "yak",
+      "text": "약",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "마약"
+    },
+    {
+      "id": "yakguk",
+      "text": "약국",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "yak-sentence",
+      "text": "약을 먹어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "yak-sentence-2",
+      "text": "감기약을 사러 약국에 갔어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "yak-gloss",
+      "text": "medicine, a drug (medical)",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "약",
+      "expect": "ok"
+    },
+    {
+      "id": "juk-porridge",
+      "text": "죽",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "죽다"
+    },
+    {
+      "id": "juk-porridge-sentence",
+      "text": "죽을 쑤어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "juksun",
+      "text": "죽순",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "gajuk",
+      "text": "가죽 가방이 비싸요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "jukda-flower",
+      "text": "물을 안 줘서 화분의 꽃이 죽었어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "죽다",
+      "expect": "ok",
+      "resembles": "죽다 on a named daily-life card"
+    },
+    {
+      "id": "jukda-idiom",
+      "text": "배고파 죽겠어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "chong-total",
+      "text": "총",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "총 (gun)"
+    },
+    {
+      "id": "chong-total-sentence",
+      "text": "총 세 개예요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "chong-total-sentence-2",
+      "text": "총 몇 명이 왔어요?",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "chongjang",
+      "text": "총장님이 오셨어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "chonggak",
+      "text": "총각",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "dowajuseyo",
+      "text": "도와주세요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "byeongwon",
+      "text": "병원에 가요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "apayo",
+      "text": "아파요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "police",
+      "text": "경찰을 불러 주세요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "knife-kitchen",
+      "text": "칼로 사과를 깎았어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "칼",
+      "expect": "ok",
+      "resembles": "칼 (weapon)"
+    },
+    {
+      "id": "knife-gloss",
+      "text": "a knife",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "칼",
+      "expect": "ok"
+    },
+    {
+      "id": "country-1",
+      "text": "한국",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "country-2",
+      "text": "일본에 갔어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "country-3",
+      "text": "북한",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "country-4",
+      "text": "미국 친구가 있어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "city-1",
+      "text": "서울에 살아요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "city-2",
+      "text": "Tokyo",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "civic-1",
+      "text": "정치에 관심이 많아요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "정치",
+      "expect": "ok"
+    },
+    {
+      "id": "civic-2",
+      "text": "대통령이 말했어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "대통령",
+      "expect": "ok"
+    },
+    {
+      "id": "civic-3",
+      "text": "오늘 투표했어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "투표하다",
+      "expect": "ok"
+    },
+    {
+      "id": "civic-4",
+      "text": "선거",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "civic-5",
+      "text": "국회의원",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "civic-6",
+      "text": "politics",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "정치",
+      "expect": "ok"
+    },
+    {
+      "id": "civic-7",
+      "text": "president of a country",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "대통령",
+      "expect": "ok"
+    },
+    {
+      "id": "civic-8",
+      "text": "I'm in favour of that opinion.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "ssipda-chew",
+      "text": "천천히 씹어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "씹다",
+      "expect": "ok",
+      "resembles": "씹"
+    },
+    {
+      "id": "ssipda-headword",
+      "text": "씹다",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "boji-maseyo",
+      "text": "보지 마세요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "보지"
+    },
+    {
+      "id": "boji-doantayo",
+      "text": "텔레비전을 보지 않아요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "jaji-maseyo",
+      "text": "늦게 자지 마세요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "자지"
+    },
+    {
+      "id": "saekki-kitten",
+      "text": "고양이 새끼가 귀여워요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "새끼",
+      "expect": "ok",
+      "resembles": "새끼 (insult)"
+    },
+    {
+      "id": "nyeon-years",
+      "text": "이 년 동안 배웠어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "년",
+      "expect": "ok",
+      "resembles": "년 (insult)"
+    },
+    {
+      "id": "nyeon-headword",
+      "text": "년",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "note": "taught as the counter; refused only as a bare option (negative fixtures)"
+    },
+    {
+      "id": "jaknyeon",
+      "text": "작년에 한국에 왔어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "cheongsonyeon",
+      "text": "청소년",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "jasik-children",
+      "text": "자식 사랑은 끝이 없어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "자식",
+      "expect": "ok"
+    },
+    {
+      "id": "ppongnamu",
+      "text": "뽕나무",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "뽕"
+    },
+    {
+      "id": "daemado",
+      "text": "대마도에 갔어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "대마"
+    },
+    {
+      "id": "sibaljeom",
+      "text": "시발점",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "시발"
+    },
+    {
+      "id": "sibalyeok",
+      "text": "이 역이 시발역이에요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "sip-ten",
+      "text": "십",
+      "lang": "ko",
+      "role": "option",
+      "expect": "ok",
+      "resembles": "씹"
+    },
+    {
+      "id": "sipil",
+      "text": "십일",
+      "lang": "ko",
+      "role": "option",
+      "expect": "ok"
+    },
+    {
+      "id": "gisaeng",
+      "text": "기생",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "jil-quality",
+      "text": "질",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "sajeong",
+      "text": "사정",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "sajeong-sentence",
+      "text": "사정이 있어서 못 갔어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "noreunjawi",
+      "text": "노른자위",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "자위"
+    },
+    {
+      "id": "jeonseonggi",
+      "text": "전성기",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "성기"
+    },
+    {
+      "id": "hwakseonggi",
+      "text": "확성기",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok"
+    },
+    {
+      "id": "gaeburalpul",
+      "text": "개불알풀",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "불알"
+    },
+    {
+      "id": "geolle-mop",
+      "text": "걸레로 바닥을 닦아요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "걸레 (slur)"
+    },
+    {
+      "id": "sseuregi",
+      "text": "쓰레기를 버려요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "sseuregi-headword",
+      "text": "쓰레기",
+      "lang": "ko",
+      "role": "option",
+      "expect": "ok"
+    },
+    {
+      "id": "dakchida",
+      "text": "마감이 닥쳤어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "닥쳐"
+    },
+    {
+      "id": "kkeojida",
+      "text": "불이 꺼졌어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "꺼져"
+    },
+    {
+      "id": "sul-negative",
+      "text": "술을 안 마셔요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "술",
+      "expect": "ok"
+    },
+    {
+      "id": "dambae-negative",
+      "text": "여기서 담배를 피우지 마세요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "피우다",
+      "expect": "ok"
+    },
+    {
+      "id": "dambae-harmful",
+      "text": "담배는 몸에 해로워요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "해롭다",
+      "expect": "ok"
+    },
+    {
+      "id": "chwimi",
+      "text": "제 취미는 사진 찍기예요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "취하다"
+    },
+    {
+      "id": "chwisohada",
+      "text": "예약을 취소했어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "emotion-sad",
+      "text": "슬퍼요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "emotion-angry",
+      "text": "화가 나요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "emotion-dislike",
+      "text": "저는 추운 날이 싫어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "싫다",
+      "expect": "ok"
+    },
+    {
+      "id": "emotion-scared",
+      "text": "귀신 이야기가 무서워요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "emotion-lonely",
+      "text": "외로워요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "emotion-en",
+      "text": "I feel sad and lonely today.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "hurt",
+      "text": "넘어져서 다쳤어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "다치다",
+      "expect": "ok"
+    },
+    {
+      "id": "wound",
+      "text": "상처가 아파요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "상처",
+      "expect": "ok"
+    },
+    {
+      "id": "wound-gloss",
+      "text": "a wound",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "상처",
+      "expect": "ok"
+    },
+    {
+      "id": "blood-nosebleed",
+      "text": "손가락에서 피가 나요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "피",
+      "expect": "ok"
+    },
+    {
+      "id": "blood-gloss",
+      "text": "blood",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "피",
+      "expect": "ok"
+    },
+    {
+      "id": "funeral",
+      "text": "내일 장례식에 가요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "장례식",
+      "expect": "ok"
+    },
+    {
+      "id": "soldier",
+      "text": "군인이 서 있어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "군인",
+      "expect": "ok"
+    },
+    {
+      "id": "soldier-gloss",
+      "text": "soldier",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "군인",
+      "expect": "ok"
+    },
+    {
+      "id": "thief",
+      "text": "물건을 훔치면 안 돼요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "훔치다",
+      "expect": "ok"
+    },
+    {
+      "id": "crime-prevent",
+      "text": "범죄를 막아요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "범죄",
+      "expect": "ok"
+    },
+    {
+      "id": "quarrel",
+      "text": "동생과 자주 싸워요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "싸우다",
+      "expect": "ok"
+    },
+    {
+      "id": "quarrel-gloss",
+      "text": "to quarrel, to fight",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "싸우다",
+      "expect": "ok"
+    },
+    {
+      "id": "explosion-gas",
+      "text": "가스가 폭발했어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "폭발하다",
+      "expect": "ok"
+    },
+    {
+      "id": "storm",
+      "text": "폭풍이 지나갔어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "폭"
+    },
+    {
+      "id": "kiss-forehead",
+      "text": "이마에 키스했어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "pregnancy",
+      "text": "언니가 임신 중이에요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "임신",
+      "expect": "ok"
+    },
+    {
+      "id": "love",
+      "text": "가족을 사랑해요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "partner",
+      "text": "애인이 있어요?",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "애인",
+      "expect": "ok"
+    },
+    {
+      "id": "coffee",
+      "text": "커피를 마셔요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "피"
+    },
+    {
+      "id": "bee",
+      "text": "꽃 위에 벌이 앉았어요.",
+      "lang": "ko",
+      "role": "sentence",
+      "headword": "벌",
+      "expect": "ok",
+      "resembles": "벌 (punish)"
+    },
+    {
+      "id": "sentence-ipda",
+      "text": "입을 크게 벌리세요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "game-not-bet",
+      "text": "친구와 보드게임을 해요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "naegi-suffix",
+      "text": "서울내기",
+      "lang": "ko",
+      "role": "headword",
+      "expect": "ok",
+      "resembles": "내기"
+    },
+    {
+      "id": "ideal-sentence",
+      "text": "내기 어려운 문제예요.",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "en-assess",
+      "text": "to assess the situation",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "ass"
+    },
+    {
+      "id": "en-class",
+      "text": "The class starts at nine.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "en-cocktail",
+      "text": "cocktail",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "cock"
+    },
+    {
+      "id": "en-cockroach",
+      "text": "cockroach",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-basement",
+      "text": "the basement",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "semen"
+    },
+    {
+      "id": "en-direction",
+      "text": "direction",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "erection"
+    },
+    {
+      "id": "en-studied",
+      "text": "I studied Korean.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "died"
+    },
+    {
+      "id": "en-studying",
+      "text": "I am studying.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "dying"
+    },
+    {
+      "id": "en-deadline",
+      "text": "The deadline is tomorrow.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "dead"
+    },
+    {
+      "id": "en-plant-died",
+      "text": "The flower in the pot died because it was not watered.",
+      "lang": "en",
+      "role": "sentence",
+      "headword": "죽다",
+      "expect": "ok"
+    },
+    {
+      "id": "en-killer-whale",
+      "text": "killer whale",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "killer"
+    },
+    {
+      "id": "en-idiom-kill-two-birds",
+      "text": "kill two birds with one stone",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "일석이조",
+      "expect": "ok"
+    },
+    {
+      "id": "en-warm",
+      "text": "It is warm today.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "war"
+    },
+    {
+      "id": "en-warning",
+      "text": "a warning",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-award",
+      "text": "an award",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-high-school",
+      "text": "high school",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "high"
+    },
+    {
+      "id": "en-pot",
+      "text": "a pot",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "pot (cannabis)"
+    },
+    {
+      "id": "en-weed",
+      "text": "to pull weeds",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-shoot-photo",
+      "text": "to shoot a photo",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-bet-idiom",
+      "text": "I bet you are tired.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "bet"
+    },
+    {
+      "id": "en-time-slot",
+      "text": "a time slot",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-lottery-charity",
+      "text": "a charity lottery",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-protestant",
+      "text": "Protestant",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "protest"
+    },
+    {
+      "id": "en-trumpet",
+      "text": "trumpet",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "trump"
+    },
+    {
+      "id": "en-computing",
+      "text": "computing",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "putin"
+    },
+    {
+      "id": "en-ambassador",
+      "text": "ambassador",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "assad"
+    },
+    {
+      "id": "en-history",
+      "text": "history",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "tory"
+    },
+    {
+      "id": "en-regimen",
+      "text": "a daily regimen",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "regime"
+    },
+    {
+      "id": "en-couple",
+      "text": "a couple",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "coup"
+    },
+    {
+      "id": "en-japan",
+      "text": "Japan",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "jap"
+    },
+    {
+      "id": "en-pakistan",
+      "text": "Pakistan",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "paki"
+    },
+    {
+      "id": "en-suspicious",
+      "text": "suspicious",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "spic"
+    },
+    {
+      "id": "en-hello",
+      "text": "hello",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "hell"
+    },
+    {
+      "id": "en-analysis",
+      "text": "analysis",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "anal"
+    },
+    {
+      "id": "en-sexagenarian",
+      "text": "sexagenarian",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-condominium",
+      "text": "condominium",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "condom"
+    },
+    {
+      "id": "en-passenger",
+      "text": "passenger",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-drunk-participle",
+      "text": "I have drunk the tea.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "drunk"
+    },
+    {
+      "id": "en-morphine-medical",
+      "text": "morphine (medical)",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-army-gloss",
+      "text": "army",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "군대",
+      "expect": "ok"
+    },
+    {
+      "id": "en-navy-blue",
+      "text": "navy blue",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-fight-cold",
+      "text": "to fight a cold",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "en-injured-knee",
+      "text": "I injured my knee playing football.",
+      "lang": "en",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "en-victim",
+      "text": "a victim",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "피해자",
+      "expect": "ok"
+    },
+    {
+      "id": "en-prison",
+      "text": "a prison",
+      "lang": "en",
+      "role": "gloss",
+      "headword": "감옥",
+      "expect": "ok"
+    },
+    {
+      "id": "de-schuss-tor",
+      "text": "ein Tor schießen",
+      "lang": "de",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "de-kriegen",
+      "text": "Ich kriege es.",
+      "lang": "de",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "krieg"
+    },
+    {
+      "id": "fr-mise-en",
+      "text": "mise en place",
+      "lang": "fr",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "mise"
+    },
+    {
+      "id": "fr-concours",
+      "text": "un concours",
+      "lang": "fr",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "con"
+    },
+    {
+      "id": "es-podemos",
+      "text": "Podemos ir mañana.",
+      "lang": "es",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "Podemos (party)"
+    },
+    {
+      "id": "es-coger-bus",
+      "text": "coger el autobús",
+      "lang": "es",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "pt-cuidado",
+      "text": "Cuidado!",
+      "lang": "pt-BR",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "cu"
+    },
+    {
+      "id": "pt-lula-food",
+      "text": "lula frita",
+      "lang": "pt-BR",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "Lula"
+    },
+    {
+      "id": "it-melone",
+      "text": "un melone",
+      "lang": "it",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "Meloni"
+    },
+    {
+      "id": "ru-chlen-semyi",
+      "text": "член семьи",
+      "lang": "ru",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "член"
+    },
+    {
+      "id": "ru-rezhim-dnya",
+      "text": "режим дня",
+      "lang": "ru",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "режим"
+    },
+    {
+      "id": "ja-seikaku",
+      "text": "性格",
+      "lang": "ja",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "性"
+    },
+    {
+      "id": "ja-josei",
+      "text": "女性",
+      "lang": "ja",
+      "role": "gloss",
+      "expect": "ok"
+    },
+    {
+      "id": "ja-kutabireta-not",
+      "text": "疲れて死にそう",
+      "lang": "ja",
+      "role": "sentence",
+      "expect": "ok",
+      "note": "idiomatic exhaustion; the self-harm surfaces are 死にたい/自殺, not 死にそう"
+    },
+    {
+      "id": "zh-xingge",
+      "text": "性格",
+      "lang": "zh-CN",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "性"
+    },
+    {
+      "id": "zh-caozuo",
+      "text": "操作",
+      "lang": "zh-CN",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "操"
+    },
+    {
+      "id": "zh-tired-to-death",
+      "text": "累死了",
+      "lang": "zh-CN",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "zh-xuanchuan",
+      "text": "宣传单",
+      "lang": "zh-CN",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "宣传"
+    },
+    {
+      "id": "th-sea-sick",
+      "text": "เมารถ",
+      "lang": "th",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "เมา"
+    },
+    {
+      "id": "vi-say-me",
+      "text": "say mê",
+      "lang": "vi",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "say"
+    },
+    {
+      "id": "id-bandara",
+      "text": "bandara",
+      "lang": "id",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "bandar"
+    },
+    {
+      "id": "hi-aap",
+      "text": "आप कैसे हैं?",
+      "lang": "hi",
+      "role": "sentence",
+      "expect": "ok",
+      "resembles": "आप (party)"
+    },
+    {
+      "id": "tr-ozel",
+      "text": "özel ders",
+      "lang": "tr",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "Özel"
+    },
+    {
+      "id": "ar-abdullah",
+      "text": "عبد الله",
+      "lang": "ar",
+      "role": "gloss",
+      "expect": "ok",
+      "resembles": "عبد"
+    },
+    {
+      "id": "jamo-list",
+      "text": "ㅁ ㅂ ㅅ ㅇ",
+      "lang": "ko",
+      "role": "ui",
+      "expect": "ok",
+      "resembles": "ㅂㅅ"
+    },
+    {
+      "id": "romanization-saekki",
+      "text": "saekki",
+      "lang": "en",
+      "role": "romanization",
+      "expect": "ok",
+      "note": "the romanisation of a taught word (young animal)"
+    },
+    {
+      "id": "ui-string",
+      "text": "레벨 테스트를 시작해요",
+      "lang": "ko",
+      "role": "ui",
+      "expect": "ok"
+    },
+    {
+      "id": "numbers-total",
+      "text": "총 10문제 중 8문제를 맞혔어요",
+      "lang": "ko",
+      "role": "ui",
+      "expect": "ok"
+    },
+    {
+      "id": "hint-safe",
+      "text": "힌트: 병원에서 일하는 사람이에요.",
+      "lang": "ko",
+      "role": "note",
+      "expect": "ok"
+    },
+    {
+      "id": "jamo-lesson-list",
+      "text": "ㄱ ㄴ ㄷ ㄹ ㅁ",
+      "lang": "ko",
+      "role": "ui",
+      "expect": "ok",
+      "note": "a lesson lists consonants one per token; nothing composes"
+    },
+    {
+      "id": "jamo-vowels-run",
+      "text": "ㅏㅓㅗㅜㅡㅣ",
+      "lang": "ko",
+      "role": "ui",
+      "expect": "ok",
+      "note": "a run of vowels with no initial does not compose"
+    },
+    {
+      "id": "latin-in-korean-innocent",
+      "text": "저는 coffee를 좋아해요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "latin-essex",
+      "text": "Essex에 살아요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok",
+      "note": "the English list matches whole words; sex inside Essex is not one"
+    }
   ]
 }

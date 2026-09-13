@@ -424,11 +424,21 @@ const FAMILY_CURRICULUM = 'curriculum';
   const curriculum = read('content/curriculum.json');
   // The curriculum export carries every locale's copy flattened together; the
   // locale packs above are its sources and are scanned as their own language.
-  // Here only the Korean is read, as Korean.
+  // Here every string that carries Hangul is read — a `translations.<lang>`
+  // string as that language (a German note that quotes 네 is German, and its
+  // "die" is an article), everything else as Korean.
   const curriculumWords = Array.isArray(curriculum.words) ? curriculum.words : [];
   walkStrings(curriculum, (text, path) => {
     if (path.startsWith('_comment') || path.startsWith('fonts')) return;
     if (!/[가-힣]/.test(text)) return;
+    const translated = /\.translations\.([A-Za-z-]+)\./.exec(path);
+    if (translated && translated[1] !== 'ko') {
+      const lang = translated[1];
+      const m = /^words\[(\d+)\]/.exec(path);
+      const facts = m ? { headword: curriculumWords[Number(m[1])]?.word } : {};
+      scan(FAMILY_CURRICULUM, lang, { text, lang, role: 'note', field: path }, facts, 'curriculum.json');
+      return;
+    }
     // A word's own strings are judged as that word, as everywhere else; a
     // lesson subtitle is the list of its words, and each is judged as itself.
     const m = /^words\[(\d+)\]/.exec(path);

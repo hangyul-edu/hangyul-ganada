@@ -78,6 +78,9 @@ export interface Policy {
   severities: Severity[];
   categories: Record<Category, string>;
   languageDefaults: Record<string, MatchMode>;
+  /** The interface languages written in the Latin alphabet; see `latinScript_comment`. */
+  latinScript: string[];
+  latinScript_comment?: string;
   koreanParticles: string[];
   leet: Record<string, string>;
   concepts: Concept[];

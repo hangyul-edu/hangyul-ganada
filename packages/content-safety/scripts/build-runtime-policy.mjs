@@ -39,6 +39,7 @@ const runtime = {
   severities: full.severities,
   categories: full.categories,
   languageDefaults: full.languageDefaults,
+  latinScript: full.latinScript,
   koreanParticles: full.koreanParticles,
   leet: full.leet,
   concepts: full.concepts.map((concept) => ({

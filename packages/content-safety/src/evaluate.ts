@@ -111,6 +111,8 @@ interface CompiledPolicy {
   globalAllowExact: Set<string>;
   globalAllowHeadwords: Set<string>;
   particleAlternation: string;
+  /** The languages written in the Latin alphabet — a Latin word is not foreign there. */
+  latinScript: Set<string>;
 }
 
 /**
@@ -230,7 +232,16 @@ function compile(policy: Policy): CompiledPolicy {
       except: except.length ? new RegExp(except.map(escapeRegExp).join('|'), 'g') : null,
     });
   }
-  return { policy, concepts: out, contextRules, glossTerms, globalAllowExact, globalAllowHeadwords, particleAlternation };
+  return {
+    policy,
+    concepts: out,
+    contextRules,
+    glossTerms,
+    globalAllowExact,
+    globalAllowHeadwords,
+    particleAlternation,
+    latinScript: new Set(policy.latinScript ?? []),
+  };
 }
 
 function excerptOf(text: string): string {
@@ -298,7 +309,7 @@ export function evaluateSurface(surface: Surface, facts: ItemFacts = {}): Findin
 }
 
 function evaluateWith(compiledPolicy: CompiledPolicy, surface: Surface, facts: ItemFacts): Finding[] {
-  const { globalAllowExact, globalAllowHeadwords, particleAlternation, contextRules } = compiledPolicy;
+  const { globalAllowExact, globalAllowHeadwords, particleAlternation, contextRules, latinScript } = compiledPolicy;
   const { norm, compact, flat } = normalize(surface.text);
   if (!norm) return [];
   const findings: Finding[] = [];
@@ -312,7 +323,14 @@ function evaluateWith(compiledPolicy: CompiledPolicy, surface: Surface, facts: I
   if (surface.role === 'headword' && globalAllowHeadwords.has(norm)) return [];
   const headwordNorm = facts.headword ? normalize(facts.headword).norm : null;
 
-  const langs = [surface.lang, '*'];
+  // Latin letters in a field whose language is not written in the Latin
+  // alphabet are read against the English lists as well: a Korean sentence
+  // that contains "sex" is not caught by the Korean list, and the product's
+  // fallback language is the one a stray Latin word is most likely to be in.
+  // A German or Spanish field is all Latin letters and reads only its own
+  // lists ("die" is an article there). `child_safety.py` does the same.
+  const foreignLatin = !latinScript.has(surface.lang) && /[a-z]/.test(norm);
+  const langs = foreignLatin ? [surface.lang, '*', 'en'] : [surface.lang, '*'];
   // A romanisation is Latin letters standing for Korean, not English: 군 is
   // romanised `gun` and is not a firearm. Only the romanised forms apply.
   const romanizationOnly = surface.role === 'romanization';

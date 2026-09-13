@@ -65,6 +65,66 @@ function joinSpelledOut(text: string): string {
   return text.replace(/(?:^|(?<=\s))((?:[a-z]\s){2,}[a-z])(?=\s|$)/g, (run) => run.replace(/\s/g, ''));
 }
 
+/**
+ * Compose a run of compatibility jamo into syllables: ㅅㅔㄱㅅㅡ → 섹스.
+ *
+ * Korean can be "spelled out" letter by letter with the compatibility block
+ * (U+3131–U+3163), which is how a term is hidden from a syllable-level match.
+ * A run is composed only where it reads as syllables — an initial, a medial,
+ * an optional final — and a run that does not (ㅂㅅ, or a lesson's ㄱㄴㄷ) is
+ * left exactly as it was, so the profanity abbreviations the policy names as
+ * jamo still match as jamo.
+ */
+const CHOSEONG = 'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
+const JUNGSEONG = 'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ';
+const JONGSEONG = ' ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ';
+function composeJamo(text: string): string {
+  return text.replace(/[\u3131-\u3163]{2,}/g, (run) => {
+    let out = '';
+    let i = 0;
+    const chars = [...run];
+    while (i < chars.length) {
+      const l = CHOSEONG.indexOf(chars[i]!);
+      const v = i + 1 < chars.length ? JUNGSEONG.indexOf(chars[i + 1]!) : -1;
+      if (l < 0 || v < 0) {
+        out += chars[i];
+        i += 1;
+        continue;
+      }
+      let t = 0;
+      // A final is taken only if the letter after it is not a medial: ㅅㅔㄱㅅㅡ
+      // reads 섹스, not 세 + ㄱㅅ.
+      if (i + 2 < chars.length) {
+        const candidate = JONGSEONG.indexOf(chars[i + 2]!);
+        const next = i + 3 < chars.length ? JUNGSEONG.indexOf(chars[i + 3]!) : -1;
+        if (candidate > 0 && next < 0) t = candidate;
+      }
+      out += String.fromCharCode(0xac00 + (l * 21 + v) * 28 + t);
+      i += t > 0 ? 3 : 2;
+    }
+    return out;
+  });
+}
+
+/**
+ * A conjoining initial left after a syllable with no final becomes that
+ * syllable's final: 세ᄀ스 → 섹스. NFKC leaves it there when the text arrived
+ * as conjoining jamo (or as 세ㄱ스, an open syllable with its final spelled
+ * out), because a letter from the initials block never composes as a final.
+ * An initial with no final form (ㄸ ㅃ ㅉ), or one that is followed by a
+ * medial, is left alone.
+ */
+const CONJOINING_CHOSEONG = 0x1100;
+function closeSyllables(text: string): string {
+  return text.replace(/([\uac00-\ud7a3])([\u1100-\u1112])(?![\u1161-\u1175])/g, (whole, syllable: string, initial: string) => {
+    const code = syllable.charCodeAt(0) - 0xac00;
+    if (code % 28 !== 0) return whole;
+    const t = JONGSEONG.indexOf(CHOSEONG[initial.charCodeAt(0) - CONJOINING_CHOSEONG]!);
+    if (t <= 0) return whole;
+    return String.fromCharCode(0xac00 + code + t);
+  });
+}
+
 export interface Normalized {
   /** Case-folded, invisible characters removed, whitespace collapsed, tokens de-obfuscated. */
   norm: string;
@@ -79,7 +139,12 @@ export interface Normalized {
 }
 
 export function normalize(input: string): Normalized {
-  let text = input.normalize('NFKC').replace(INVISIBLE, '');
+  // Invisible characters go first so a zero-width joiner cannot split a
+  // spelled-out run; the run is composed before NFKC, which would otherwise
+  // turn the compatibility letters into conjoining jamo and compose only the
+  // initial and medial (세ᄀ스), leaving the final loose.
+  let text = composeJamo(input.replace(INVISIBLE, ''));
+  text = closeSyllables(text.normalize('NFKC'));
   text = text.toLowerCase();
   text = text.replace(/\s+/g, ' ').trim();
   text = text

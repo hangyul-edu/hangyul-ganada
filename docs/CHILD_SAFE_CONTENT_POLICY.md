@@ -62,12 +62,28 @@ gloss; `allow.exact` and `allow.headwords` are the global safe list.
 ## 4. The evaluation pipeline
 
 ```
-Unicode NFKC → zero-width/control removal → case folding → whitespace collapse
-→ token de-obfuscation (leet, masks: f*ck, s.e.x, s e x) → compact form
-(punctuation removed, single-syllable Hangul runs joined, word spaces kept)
-→ lexeme matching in the surface's mode → context rules → gloss indicators
-→ allow lists
+zero-width/control removal → spelled-out jamo composed (ㅅㅔㄱㅅㅡ → 섹스)
+→ Unicode NFKC → a loose initial after an open syllable closed (세ㄱ스 → 섹스)
+→ case folding → whitespace collapse → token de-obfuscation (leet, masks:
+f*ck, s.e.x, s e x) → compact form (punctuation removed, single-syllable
+Hangul runs joined, word spaces kept) → lexeme matching in the surface's mode,
+plus the English lists when Latin letters stand in a language that is not
+written in the Latin alphabet → context rules → gloss indicators → allow lists
 ```
+
+A run of compatibility jamo is composed only where it reads as syllables — an
+initial, a medial, an optional final — so a lesson's `ㄱ ㄴ ㄷ` and the `ㅂㅅ`
+abbreviations the policy names as jamo stay as they are. The invisible
+characters go first so a zero-width joiner cannot split a spelled-out run, and
+the composition runs before NFKC because NFKC turns the compatibility letters
+into conjoining jamo and composes only the initial and medial, leaving the
+final loose. `latinScript` in the policy names the seventeen interface
+languages written in the Latin alphabet; a Latin word in any other language's
+field (우리 sex 하자, a `casino` option in Korean) is foreign there and is read
+against the English lists as well, while a German field reads only German —
+its `die` is an article. A handful of internationally borrowed English terms
+(`fuck`, `shit`, `porn`, …) sit in the language-independent `*` lists and are
+refused in every language.
 
 Match modes: `substring` on the compact form (unambiguous multi-syllable
 Korean lexemes — this catches 섹스하다, 섹 스, 섹.스, 섹스를 from the one entry
@@ -99,9 +115,14 @@ variant is a deterministic rule with a fixture.
 
 The app carries `packages/content-safety/policy/runtime-policy.json`: the
 full policy minus the thirty-one locales that are validated at publication and
-never generated on the device. Korean and romanised forms, the context rules
-and the allow lists are complete; it fits, with the evaluator, inside the
-24 kB route-chunk budget. A dictionary anchor
+never generated on the device. Korean and romanised forms, the
+language-independent `*` lists, the context rules and the allow lists are
+complete; it fits, with the evaluator, inside the 24 kB route-chunk budget.
+The English lists are not carried (they would put the chunk past that
+budget), so a Latin word hidden in a Korean field is the publication gate's
+to refuse — every Korean string the app reads has been through it, and the
+fixtures that need the English lists say so (`lists: ["en"]`) and are held
+against the full policy only. A dictionary anchor
 names its headword in its id, so an assessment item is refused from the Korean
 in every interface language.
 
