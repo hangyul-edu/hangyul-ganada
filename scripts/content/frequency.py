@@ -31,6 +31,7 @@ usually a rarer word — rather than pretending the evidence exists.
 
 from __future__ import annotations
 
+import json
 import math
 import sys
 from dataclasses import dataclass
@@ -38,7 +39,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from conjugate import derived_forms, stem_of, surface_forms, written_forms  # noqa: E402
+from conjugate import FREQUENCY_CLASSES, SUFFIX_CLASS, frequency_forms  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 CACHE = ROOT / "content-cache"
@@ -67,19 +68,13 @@ NOUN_SUFFIXES = (
     "요", "예요", "이에요", "입니다", "이다", "들", "님",
 )
 
-#: Only endings that cannot follow a bare noun.
-#:
-#: 는, 도, 만, 요 and 야 are all real verb endings, and all of them are also
-#: case particles. Keeping them would credit 우리는 and 우리가 — the pronoun
-#: 'we' — to 우리다, the rare verb 'to steep'. The cost of leaving them out is
-#: a small undercount on every verb, which is the same undercount for all of
-#: them and therefore does not move the ranking.
-VERB_SUFFIXES = (
-    "", "다", "고", "지", "게", "서", "면", "죠", "지만", "는데", "은데",
-    "니까", "으니까", "아서", "어서", "아요", "어요", "았어", "었어", "았다", "었다",
-    "습니다", "ㅂ니다", "자", "려고", "러", "던", "세요", "십니다", "십시오",
-    "겠다", "겠어", "네요", "잖아", "더라",
-)
+#: The verb endings the fold strips, by class, live in `conjugate.SUFFIX_CLASS`.
+#: 는, 도, 만, 요 and 야 are not among them: all are real verb endings and all
+#: are also case particles, and keeping them would credit 우리는 and 우리가 —
+#: the pronoun 'we' — to 우리다, the rare verb 'to steep'. The cost of leaving
+#: them out is a small undercount on every verb, which is the same undercount
+#: for all of them and therefore does not move the ranking.
+VERB_SUFFIXES = ("", *SUFFIX_CLASS)
 
 _MAX_SUFFIX = max(len(s) for s in NOUN_SUFFIXES + VERB_SUFFIXES)
 
@@ -113,6 +108,23 @@ UNOBSERVED = "unobserved"
 
 #: Every band the app may see, in order, so the UI can map them to labels.
 ALL_BANDS = tuple(name for _, name in BANDS) + (UNOBSERVED,)
+
+
+def _korean_lemmas() -> frozenset[str]:
+    """Every Korean lemma Wiktionary knows, as a set of titles.
+
+    A whole-token form that is itself a dictionary word is not counted for an
+    inflected headword: 한 is the adnominal of 하다 and also *one*; 간 is 가다's
+    and also *liver*; 건 is 걸다's and also *thing*. The recogniser may accept
+    them in a sentence; a counter cannot tell which word a corpus meant. The
+    list is external to this repository's own choices, which is the point.
+    """
+    path = CACHE / "Category_Korean_lemmas.json"
+    if not path.exists():
+        return frozenset()
+    data = json.loads(path.read_text(encoding="utf-8"))
+    titles = data if isinstance(data, list) else data.get("titles", [])
+    return frozenset(t for t in titles if isinstance(t, str))
 
 
 def _load(path: Path) -> tuple[dict[str, int], int]:
@@ -164,20 +176,24 @@ def _fold(
     return folded
 
 
-def _reachable_by_fold(token: str, forms: "dict[str, None] | set[str]") -> bool:
-    """Would the suffix fold already have credited this token to this word?
+def _fold_by_class(counts: dict[str, int], claimed: frozenset[str]) -> dict[str, dict[str, int]]:
+    """The verb fold, once per ending class — see `conjugate.FREQUENCY_CLASSES`.
 
-    Only if stripping one of the verb endings off it leaves a form the word
-    actually has. 먹어요 minus 어요 is 먹, so the fold has it and adding it here
-    would count it twice; 감사합니다 minus 다 is 감사합니, which is not a form of
-    anything, so the fold silently dropped it and it belongs here.
+    A base is only credited with the endings its shape can take: 걸 before a
+    vowel belongs to 걷다 and 걸다 both, 걸 before 고 to 걸다 alone, and one
+    table for all endings could not say which was which.
     """
-    for suffix in VERB_SUFFIXES:
-        if suffix and token.endswith(suffix):
-            base = token[: -len(suffix)]
-            if base and base in forms:
-                return True
-    return False
+    tables: dict[str, dict[str, int]] = {cls: {} for cls in FREQUENCY_CLASSES}
+    for token, count in counts.items():
+        if token in claimed:
+            continue
+        for suffix, cls in SUFFIX_CLASS.items():
+            if token.endswith(suffix):
+                form = token[: -len(suffix)]
+                if form:
+                    table = tables[cls]
+                    table[form] = table.get(form, 0) + count
+    return tables
 
 
 def measure(words: list[str], inflecting: frozenset[str] = frozenset()) -> dict[str, Reading]:
@@ -185,50 +201,111 @@ def measure(words: list[str], inflecting: frozenset[str] = frozenset()) -> dict[
 
     `inflecting` names the words that are verbs or adjectives, so their stems
     are matched against verb endings rather than against case particles.
+
+    ## Forms two headwords can produce
+
+    걷다 (walk) is ㄷ-irregular and conjugates to 걸어; 걸다 (hang, call) has
+    the stem 걸 and conjugates to 걸어 as well. 듣다 gives 들어 and so does
+    들다. 살다 drops its ㄹ before 세요 and 니까, so its ㄹ-less stem 사 is also
+    the whole stem of 사다; 가다's future 갈 is the stem of 갈다 (grind); 잘 is
+    the future of 자다 and the stem of 잘다. Every one of those strings used to
+    be credited in full to *each* word that could produce it, which is how
+    걸다 came to rank 21st in Korean, 갈다 28th, 들다 66th and 잘다 83rd —
+    words a beginner does not need, ranked beside 하다. The recogniser's
+    generosity was the cause: 잇다 was handed 있어요 because 이 + ㅆ is 있, and
+    살다 was handed 사고 and 사요 because its ㄹ-less stem is spelled 사.
+
+    So counting has its own form model, `conjugate.frequency_forms`: a stem is
+    paired with the classes of ending its shape takes, the corpus is folded
+    once per class, and a whole token that is itself a dictionary lemma (한,
+    간, 건, 잔) is not counted for anybody. What is *still* shared — 걸 before a
+    vowel, 사 before 세요 — is read in two passes: everything only one headword
+    can produce is counted first, then each shared string's count is divided
+    among its owners in proportion to that unambiguous evidence. Dropping
+    shared strings outright was tried and ranked 있다 118th and 사다 2,454th,
+    which is the same defect facing the other way. Nothing is invented and
+    nothing is counted twice: a shared count is conserved across its owners.
     """
     claimed = frozenset(words)
+    lemmas = _korean_lemmas()
     rates: dict[str, list[float]] = {word: [] for word in words}
     seen_in: dict[str, list[str]] = {word: [] for word in words}
+
+    # Every (base, class) and every whole token an inflecting headword can put
+    # in a corpus, and who owns each.
+    bases_of: dict[str, dict[str, frozenset[str]]] = {}
+    tokens_of: dict[str, list[str]] = {}
+    base_owners: dict[tuple[str, str], set[str]] = {}
+    token_owners: dict[str, set[str]] = {}
+    for word in words:
+        if word not in inflecting:
+            continue
+        bases, tokens = frequency_forms(word, lemmas=lemmas, claimed=claimed)
+        bases_of[word] = bases
+        tokens_of[word] = tokens
+        for base, classes in bases.items():
+            for cls in classes:
+                base_owners.setdefault((base, cls), set()).add(word)
+        for token in tokens:
+            token_owners.setdefault(token, set()).add(word)
+
+    def token_shared_with(token: str, word: str) -> set[str]:
+        # 사니까 is a whole token of 살다 and, stripped of 니까, the stem of 사다
+        # in a class 사다 takes — the fold has credited it there already.
+        owners = set(token_owners.get(token, ())) - {word}
+        for suffix, cls in SUFFIX_CLASS.items():
+            if token.endswith(suffix):
+                base = token[: -len(suffix)]
+                if base:
+                    owners |= base_owners.get((base, cls), set()) - {word}
+        return owners
 
     for name, filename in CORPORA:
         counts, total = _load(CACHE / filename)
         by_noun = _fold(counts, NOUN_SUFFIXES, claimed, bare=True)
-        by_verb = _fold(counts, VERB_SUFFIXES, claimed, bare=False)
+        by_class = _fold_by_class(counts, claimed)
         per_million = 1_000_000 / max(1, total)
+
+        # Pass one: what each word alone can explain.
+        alone: dict[str, int] = {}
+        shared: dict[tuple[str, str], tuple[int, frozenset[str]]] = {}
         for word in words:
-            if word in inflecting:
-                # The dictionary form 먹다 never appears in a subtitle; the
-                # conjugated forms are the only evidence there is.
-                forms = dict.fromkeys(f for f in surface_forms(word) if f != word)
-                table = by_verb
-            else:
-                forms = dict.fromkeys([word])
-                table = by_noun
-            hits = sum(table.get(form, 0) for form in forms)
-            if word in inflecting:
-                # Tokens the fold structurally cannot produce: 감사합니다,
-                # where the ㅂ is inside 합, and 감사해요, where nothing
-                # strippable sits on the end. `_reachable_by_fold` drops any
-                # form the fold already credited, so nothing is counted twice.
-                hits += sum(
-                    counts.get(form, 0)
-                    for form in written_forms(word)
-                    if form not in claimed and not _reachable_by_fold(form, forms)
-                )
-            if word in inflecting and stem_of(word) not in claimed:
-                # Whole-token forms, matched exactly. See conjugate.derived_forms
-                # for why these cannot go through the suffix fold.
-                #
-                # Skipped when the stem is itself a headword noun: 말다 has the
-                # stem 말, and 말 is the noun 'words', so 말을 and 말은 are the
-                # noun carrying an object or topic marker far more often than
-                # they are the verb. Giving those to 말다 would rank a marginal
-                # auxiliary alongside 하다.
-                hits += sum(
-                    counts.get(form, 0)
-                    for form in derived_forms(word)
-                    if form not in claimed
-                )
+            if word not in inflecting:
+                alone[word] = by_noun.get(word, 0)
+                continue
+            hits = 0
+            for base, classes in bases_of[word].items():
+                for cls in classes:
+                    count = by_class[cls].get(base, 0)
+                    if not count:
+                        continue
+                    owners = base_owners[(base, cls)]
+                    if len(owners) == 1:
+                        hits += count
+                    else:
+                        shared[(cls, base)] = (count, frozenset(owners))
+            for token in tokens_of[word]:
+                count = counts.get(token, 0)
+                if not count:
+                    continue
+                others = token_shared_with(token, word)
+                if not others:
+                    hits += count
+                else:
+                    shared[("token", token)] = (count, frozenset(others | {word}))
+            alone[word] = hits
+
+        # Pass two: shared strings, divided by the evidence each owner has alone.
+        share: dict[str, float] = {word: 0.0 for word in words}
+        for (_kind, _form), (count, owners) in shared.items():
+            weights = {owner: float(alone.get(owner, 0)) for owner in owners}
+            total_weight = sum(weights.values())
+            for owner in owners:
+                fraction = weights[owner] / total_weight if total_weight > 0 else 1 / len(owners)
+                share[owner] += count * fraction
+
+        for word in words:
+            hits = alone[word] + share[word]
             if hits:
                 rates[word].append(hits * per_million)
                 seen_in[word].append(name)
@@ -261,3 +338,76 @@ def score(reading: Reading, total_observed: int) -> float:
     if not reading.observed or reading.rank is None:
         return 0.0
     return max(0.0, 1.0 - math.log(reading.rank) / math.log(total_observed + 1))
+
+
+# --- Self-test -----------------------------------------------------------------
+
+
+def _counted_by(word: str, lemmas: frozenset[str], claimed: frozenset[str]) -> tuple[set[str], set[str]]:
+    """Every token `word` would be credited with, and the subset it shares.
+
+    Enumerates the fold classes symbolically: a base with class C is credited
+    with base + every C suffix, and so on. Whole tokens are their own entry.
+    """
+    bases, tokens = frequency_forms(word, lemmas=lemmas, claimed=claimed)
+    strings: set[str] = set(tokens)
+    for base, classes in bases.items():
+        for suffix, cls in SUFFIX_CLASS.items():
+            if cls in classes:
+                strings.add(base + suffix)
+    return strings, set()
+
+
+def self_test() -> int:
+    """Hold `frequency_forms` to `content/vocabulary/frequency-fixtures.json`."""
+    import pack  # noqa: E402  (sibling module)
+
+    fixtures = json.loads(
+        (ROOT / "content" / "vocabulary" / "frequency-fixtures.json").read_text(encoding="utf-8")
+    )["cases"]
+    entries = pack.load()
+    claimed = frozenset(word for word, entry in entries.items() if entry.keep)
+    inflecting = frozenset(
+        word
+        for word, entry in entries.items()
+        if entry.keep and word.endswith("다") and (entry.part_of_speech or "") in ("verb", "adjective", "")
+    )
+    lemmas = _korean_lemmas()
+    if not lemmas:
+        print("frequency self-test: no lemma list in content-cache — run fetch_dictionary.py first")
+        return 1
+
+    counted: dict[str, set[str]] = {}
+    for word in inflecting:
+        counted[word], _ = _counted_by(word, lemmas, claimed)
+
+    failures = 0
+    total = 0
+    for case in fixtures:
+        word = case["word"]
+        mine = counted.get(word, set())
+        others = {w for w, strings in counted.items() if w != word}
+        for token in case.get("must_count", []):
+            total += 1
+            if token not in mine:
+                failures += 1
+                print(f"  FAIL {word}: {token} is not counted")
+        for token in case.get("must_not_count", []):
+            total += 1
+            if token in mine:
+                failures += 1
+                print(f"  FAIL {word}: {token} is counted")
+        for token in case.get("shared", []):
+            total += 1
+            owners = [w for w in others if token in counted[w]]
+            if token not in mine or not owners:
+                failures += 1
+                print(f"  FAIL {word}: {token} should be shared with another headword (owners: {owners})")
+    print(f"frequency self-test: {total - failures}/{total} fixture assertions hold ({len(fixtures)} words)")
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    if "--self-test" in sys.argv:
+        sys.exit(self_test())
+    print("usage: frequency.py --self-test")

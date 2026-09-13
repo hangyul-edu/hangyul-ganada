@@ -1347,16 +1347,20 @@ for (const entry of curatedFile.items) {
     /*
      * Written for this question rather than taken from the card.
      *
-     * The runtime plays `word.audio.example` under a gap-fill, because until
-     * now the gap-fill *was* the card's sentence. A curated item is a different
-     * sentence, so that clip would be a recording of something other than what
-     * is on the screen — an audio/transcript mismatch, which is a defect in its
-     * own right. The renderer therefore plays nothing for these, and the
-     * limitation is written down in docs/CONTENT_REMEDIATION_LEDGER.md C-008
-     * rather than hidden: recording them needs the speech plan to learn about a
-     * second source of Korean sentences.
+     * The runtime used to play `word.audio.example` under every gap-fill,
+     * because the gap-fill *was* the card's sentence. A curated item is a
+     * different sentence, so that clip would be a recording of something
+     * other than what is on the screen. Each curated sentence now carries its
+     * own clip id, derived from its text exactly as the card examples derive
+     * theirs; `scripts/export-speech-plan.mjs` reads these entries as a second
+     * source of Korean sentences, so the audio build records them, and the
+     * runtime plays the clip only when the manifest actually holds it. Until
+     * then it plays nothing rather than the wrong thing (C-008).
      */
     curated: true,
+    audioId: `ex_${[...(entry.before + answer.surface + entry.after)]
+      .map((ch) => ch.codePointAt(0).toString(16))
+      .join('')}`,
     options: [
       { id: answer.id, surface: answer.surface },
       ...chosen.map((other) => ({ id: other.id, surface: other.surface })),
@@ -1365,8 +1369,9 @@ for (const entry of curatedFile.items) {
   items.push({
     id: `${answer.id}:context`,
     kind: 'context',
-    level: answer.context_level ?? answer.level,
-    demand: answer.context_demand ?? null,
+    // Levelled by the curated sentence, not the card's — see build_level_test.py.
+    level: answer.curated_context_level ?? answer.context_level ?? answer.level,
+    demand: answer.curated_context_demand ?? answer.context_demand ?? null,
     prompt,
     answer: answer.surface,
     options: surfaces.slice().sort(),

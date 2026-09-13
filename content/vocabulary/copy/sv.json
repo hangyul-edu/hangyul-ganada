@@ -65,7 +65,8 @@
     ],
     "word_gae": [
       "hund",
-      "Hunden springer."
+      "Hunden springer.",
+      "En hund – och, stavat likadant, räkneordet för saker: 사과 두 개, två äpplen; 세 개 주세요, tre tack. Räkneordet tar de inhemska talen (하나, 둘, 셋 blir 한, 두, 세 framför det). Räkneordet möter du mycket oftare än djuret."
     ],
     "word_mun": [
       "dörr",
@@ -102,7 +103,8 @@
     ],
     "word_meori": [
       "huvud",
-      "Jag har ont i huvudet."
+      "Jag har ont i huvudet.",
+      "Huvudet – och även håret på det: 머리를 잘랐어요 betyder jag klippte mig, och 머리를 감아요 är att tvätta håret, inte huvudet. 머리가 아파요 är huvudvärk; 머리가 좋아요 betyder smart. När du behöver just håret är 머리카락 ordet för hårstråna."
     ],
     "word_ip": [
       "mun",
@@ -264,7 +266,8 @@
     ],
     "word_bap": [
       "mat",
-      "Jag äter."
+      "Jag äter.",
+      "Kokt ris och, i vidare mening, vilken måltid som helst: 밥 먹었어요? (har du ätit?) är en vardaglig hälsning, och 밥 먹으러 가요 betyder låt oss gå och äta, vad det än är. Okokt ris är 쌀, och plantan på fältet 벼. 식사 är det mer formella ordet för en måltid."
     ],
     "word_eomma": [
       "mamma",
@@ -459,7 +462,8 @@
     ],
     "word_alda": [
       "att veta",
-      "Jag vet namnet."
+      "Jag vet namnet.",
+      "Ett verb med stam på ㄹ: ㄹ faller bort före ㄴ, ㅂ och ㅅ, alltså 압니다 (formellt), 아세요? (vet ni?) och 아는 사람 (en bekant), men 알아요, 알고 och 알면 behåller det. 알겠어요 betyder «uppfattat, okej» – en fras du kommer att höra hela tiden. Motsatsen, 모르다, är oregelbunden på 르: 몰라요."
     ],
     "word_yak": [
       "medicin",
@@ -471,7 +475,8 @@
     ],
     "word_jal": [
       "bra",
-      "Sov du gott?"
+      "Sov du gott?",
+      "«Bra», och mycket mer: 잘 먹었습니다 (tack för maten, ordagrant «jag åt bra»), 잘 잤어요? (sov du gott?), 잘 가요 (hej då till den som går), 잘 모르겠어요 (jag är inte säker). Med 하다 blir det 잘하다, vara bra på något: 한국어를 잘해요. Motsatsen är 못, dåligt eller inte kunna."
     ],
     "word_anida": [
       "att inte vara något",
@@ -496,7 +501,8 @@
     ],
     "word_ttae": [
       "stunden när något händer",
-      "När jag var liten bodde jag på landet."
+      "När jag var liten bodde jag på landet.",
+      "En tidpunkt, i betydelsen «när»: 어릴 때 (när jag var liten), 밥 먹을 때 (när man äter), 그때 (då), 방학 때 (under lovet). Det följer direkt på ett substantiv eller ett verb med -ㄹ/을: 갈 때, när man går; 먹을 때, när man äter. För en tidslängd eller ett klockslag används 시간 och 시."
     ],
     "word_il": [
       "arbete",
@@ -659,7 +665,8 @@
     ],
     "word_geotda": [
       "att gå till fots",
-      "Jag går i parken."
+      "Jag går i parken.",
+      "Ett oregelbundet ㄷ-verb som 듣다: 걸어요 och 걸었어요 före vokal, 걷고 och 걷습니다 före konsonant. 걸어요 är också formen av 걸다 (hänga upp, ringa): 전화를 걸어요 är att ringa och 공원을 걸어요 att promenera i parken; objektet avgör. Lägg märke till substantivet 걸음, ett steg."
     ],
     "word_gangaji": [
       "valp",
@@ -865,7 +872,8 @@
     ],
     "word_neomu": [
       "för, alltför",
-      "De här kläderna är för stora."
+      "De här kläderna är för stora.",
+      "Ursprungligen «för, alltför» – 너무 커요, den är för stor – och i vardagligt tal även bara «väldigt»: 너무 좋아요, jag älskar det; 너무 맛있어요, jättegott. Båda är naturliga. För ett neutralt «mycket», särskilt i skrift, är 아주 och 정말 säkrare."
     ],
     "word_yong": [
       "en drake",
@@ -873,7 +881,8 @@
     ],
     "word_geureota": [
       "att vara så",
-      "Ja, så är det."
+      "Ja, så är det.",
+      "Ett oregelbundet ㅎ-adjektiv: ㅎ faller bort före en vokal och vokalen ändras, vilket ger 그래요 (just det, jag förstår) och 그랬어요; det faller också bort före ㄴ: 그런 사람, en sådan person. 그렇고 och 그렇지만 behåller det. 이렇다 (så här), 저렇다 (så där borta) och 어떻다 (hur) bildar en familj med det: 이래요, 저래요, 어때요. Adverbet 그렇게 betyder så, på det sättet."
     ],
     "word_hotel": [
       "hotell",
@@ -897,7 +906,8 @@
     ],
     "word_maeum": [
       "hjärta, sinne",
-      "De har ett varmt hjärta."
+      "De har ett varmt hjärta.",
+      "Hjärta och sinne på en gång – känslor, avsikter, det inre, inte organet (det är 심장). Tre uttryck bär det mesta av användningen: 마음에 들어요 (jag gillar det, ordagrant «det går in i mitt hjärta»), 마음이 아파요 (det gör ont, känslomässigt) och 마음대로 (som du vill). 마음이 따뜻하다 betyder varmhjärtad."
     ],
     "word_jadongcha": [
       "bil",
@@ -961,7 +971,8 @@
     ],
     "word_sipda": [
       "att vilja",
-      "Jag vill åka till Korea."
+      "Jag vill åka till Korea.",
+      "Vilja (göra) – men står aldrig ensamt. Det fästs vid ett verb med 고: 가고 싶어요 (jag vill gå), 먹고 싶어요 (jag vill äta). Även när man vill ha en sak använder koreanskan ett verb: 커피를 마시고 싶어요, jag vill (dricka) kaffe. Om en tredje person blir det 싶어하다: 동생이 가고 싶어해요, min lillebror vill gå."
     ],
     "word_nyuseu": [
       "nyheterna",
@@ -1190,7 +1201,8 @@
     ],
     "word_ajik": [
       "ännu, ännu inte",
-      "De har inte kommit ännu."
+      "De har inte kommit ännu.",
+      "Fortfarande, eller inte än: med en negation betyder det inte än – 아직 안 왔어요, de har inte kommit än; 아직 몰라요, jag vet inte än – och med ett jakande verb fortfarande: 아직 자요, sover fortfarande. Dess motpart är 벌써 (redan, tidigare än väntat); 이미 är «redan» i neutral bemärkelse."
     ],
     "word_gyedan": [
       "trappa",
@@ -1222,7 +1234,8 @@
     ],
     "word_beolsseo": [
       "redan",
-      "Allting är redan över."
+      "Allting är redan över.",
+      "Redan, med en antydan av förvåning: tidigare än du väntade dig. 벌써 다 끝났어요? – är det redan slut? 벌써 열두 시예요, klockan är redan tolv. Utan förvåning använder koreanskan 이미: 이미 알고 있었어요, jag visste redan. Motsatsen är 아직, fortfarande eller inte än."
     ],
     "word_dangsin": [
       "ni, artigt",
@@ -1475,7 +1488,8 @@
     ],
     "word_johahada": [
       "att tycka om",
-      "Jag tycker om kaffe."
+      "Jag tycker om kaffe.",
+      "«Tycka om» är ett verb på koreanska och 좋다 (vara bra) ett adjektiv, så partikeln ändras: 커피를 좋아해요 (jag tycker om kaffe) men 커피가 좋아요 (kaffe är gott, jag gillar det). Nybörjare blandar ihop dem; 를 hör bara till 좋아하다. 싫어하다 (ogilla) bildar par med 싫다 på exakt samma sätt."
     ],
     "word_jimseung": [
       "ett vilddjur",
@@ -1507,7 +1521,8 @@
     ],
     "word_gomapda": [
       "att vara tacksam",
-      "Tack för hjälpen."
+      "Tack för hjälpen.",
+      "Tack, i den varmare av de två vardagsformerna: 고마워요 till vänner och nära bekanta, 고맙습니다 mer formellt. 감사합니다 betyder samma sak och är det säkrare valet med främlingar, personal och äldre. Båda är oregelbundna på ㅂ i artig form: 고마워요, inte 고맙어요."
     ],
     "word_gyesan": [
       "uträkning",
@@ -1841,7 +1856,8 @@
     ],
     "word_deutda": [
       "att lyssna, att höra",
-      "Jag lyssnar på musik."
+      "Jag lyssnar på musik.",
+      "Ett oregelbundet ㄷ-verb: före en vokal blir ㄷ till ㄹ, alltså 들어요 och 들었어요, men 듣고 och 듣습니다 behåller ㄷ. Därför ser 들어요 ut som verbet 들다 (hålla, lyfta); sammanhanget skiljer dem åt. 묻다 (fråga) och 걷다 (gå) ändras på samma sätt."
     ],
     "word_subak": [
       "vattenmelon",
@@ -2045,7 +2061,8 @@
     ],
     "word_sal": [
       "levnadsår",
-      "Jag är tjugo år gammal."
+      "Jag är tjugo år gammal.",
+      "Levnadsår, räknade med inhemska tal: 스무 살 (tjugo), 서른 살 (trettio), 몇 살이에요? (hur gammal är du?). Lägg märke till de ändrade formerna framför – 한 살, 두 살, 세 살, 스무 살. Stavat likadant är 살 också kött eller hud (살이 쪘어요, jag har gått upp i vikt); talet framför avgör vilket."
     ],
     "word_anae": [
       "hustru",
@@ -2074,7 +2091,8 @@
     ],
     "word_dareuda": [
       "att vara olik",
-      "Färgerna är olika."
+      "Färgerna är olika.",
+      "Ett oregelbundet 르-adjektiv: före 아/어 dubbleras ㄹ i 르 på stavelsen före, alltså 달라요 och 달랐어요, medan 다르고 och 다릅니다 är regelbundna. 빠르다 (snabb), 모르다 (inte veta) och 부르다 (ropa) ändras likadant: 빨라요, 몰라요, 불러요. Det något skiljer sig från tar 와/과 eller 하고: 저와 달라요."
     ],
     "word_geunyang": [
       "bara, utan särskild orsak",
@@ -2374,7 +2392,8 @@
     ],
     "word_myeong": [
       "en person",
-      "Det är fem elever."
+      "Det är fem elever.",
+      "Räkneordet för personer, med inhemska tal: 학생 다섯 명 (fem elever), 두 명이요 (två, tack – vid restaurangdörren). 몇 명이에요? frågar hur många personer. 분 är det artiga räkneordet för samma sak (손님 두 분), och 사람 kan också räkna informellt: 두 사람."
     ],
     "word_eonni": [
       "en kvinnas storasyster",
@@ -2451,7 +2470,8 @@
     ],
     "word_ppareuda": [
       "vara snabb",
-      "Tåget är snabbt."
+      "Tåget är snabbt.",
+      "Ett oregelbundet 르-adjektiv som 다르다: 빨라요 och 빨랐어요 före 아/어, men 빠르고, 빠릅니다 och 빠른 기차 (ett snabbt tåg) är regelbundna. Adverbet är 빨리, snabbt: 빨리 오세요, kom snabbt; 빨리빨리 är det kända koreanska ordet för att skynda sig. Motsatsen är 느리다."
     ],
     "word_gakkapda": [
       "vara nära",
@@ -2896,7 +2916,8 @@
     ],
     "word_joesonghada": [
       "beklaga",
-      "Förlåt att jag är sen."
+      "Förlåt att jag är sen.",
+      "Den mer formella av de två sätten att be om ursäkt: 죄송합니다 till främlingar, kunder, lärare och äldre; 미안해요 eller 미안합니다 till vänner och jämlikar. 미안해요 till någon man bör vara formell mot låter för avslappnat, och 죄송해요 till en nära vän låter stelt – registret är hela poängen med valet."
     ],
     "word_silsu": [
       "misstag",
@@ -3105,7 +3126,8 @@
     ],
     "word_chupda": [
       "vara kall",
-      "Det är kallt i dag."
+      "Det är kallt i dag.",
+      "Ett oregelbundet ㅂ-adjektiv: före en vokal blir ㅂ till 우, alltså 추워요, 추웠어요 och 추운 날 (en kall dag), medan 춥고 och 춥습니다 behåller ㅂ. 덥다 (varm), 어렵다 (svår), 쉽다 (lätt) och 가깝다 (nära) fungerar likadant. Det gäller vädret eller luften; en kall dryck är 차갑다."
     ],
     "word_mogyoil": [
       "torsdag",
@@ -3980,7 +4002,8 @@
     ],
     "word_deopda": [
       "vara varm",
-      "Sommaren är varm."
+      "Sommaren är varm.",
+      "Ett oregelbundet ㅂ-adjektiv, motsatsen till 춥다: 더워요, 더웠어요, 더운 날 före vokal; 덥고 och 덥습니다 före konsonant. Det beskriver vädret, ett rum eller hur man känner sig: 저는 더워요, jag är varm. Det som är hett att ta på, som mat eller vatten, är 뜨겁다."
     ],
     "word_akka": [
       "nyss",
@@ -4253,7 +4276,8 @@
     ],
     "word_mari": [
       "räkneord för djur",
-      "Jag har två katter."
+      "Jag har två katter.",
+      "Räkneordet för djur – alla djur, från fisk till elefant: 고양이 두 마리 (två katter), 새 한 마리 (en fågel), med inhemska tal framför. Människor räknas med 명, saker med 개; 마리 om en person är ett skämt eller en förolämpning, beroende på sällskapet."
     ],
     "word_julda": [
       "minska",

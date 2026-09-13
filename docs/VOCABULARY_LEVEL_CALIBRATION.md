@@ -83,6 +83,37 @@ form the fold already credited so nothing is counted twice. The effect:
 | 고맙다 | 6 | 4 |
 | 축하하다 | 11 | 8 |
 
+**And the reader had been generous in the other direction too — v1.0.5.** The
+recogniser that `appears_in` uses returns every string that *could* be a word,
+which is right for finding a headword in a sentence and wrong for counting it.
+Read as a counter it handed 잇다 the token 있어요 (its ㅅ-dropped stem 이 plus
+ㅆ), 살다 every 사고 and 사요 (its ㄹ-dropped stem is spelled 사), 걸다 every
+걸어요 that was 걷다's, 갈다 every 갈게요 that was 가다's future, and 긋다 every
+그게 — so 잇다 ranked **1st** in Korean, 긋다 4th, 걸다 21st and 갈다 28th, and
+the overrides that held 잇다 and 잘다 down were compensating for the reader.
+Meanwhile the ㄹ-drop forms 긴, 먼, 힘든, 사는 and 아는 — how those words
+appear before a noun, most of the time for an adjective — never ended in a
+strippable suffix and were counted for nobody, which is the class I-126 named.
+
+Counting now has its own form model, `conjugate.frequency_forms`: a stem is
+paired with the classes of ending its shape takes (vowel-initial; consonant-
+initial; the ㄴ/ㅅ-initial ones an ㄹ-stem drops its ㄹ before; the 으-initial
+ones only a consonant stem takes), the corpus is folded once per class, whole
+tokens that are themselves dictionary lemmas (한, 간, 건, 잔) are refused, and a
+string two headwords still share (걸 before a vowel, 사 before 세요) is divided
+between them in proportion to what each owns alone. Held to
+`content/vocabulary/frequency-fixtures.json` by `npm run frequency:check`, which
+fails 32 of its 84 assertions against the old model. The effect on the whole
+corpus: 411 of 3,370 words moved level, 173 harder and 238 easier, most by one;
+the large moves are the inflations coming out (긋다 3→25, 걸다 5→14, 갈다 7→15,
+얼다 8→20) and the ㄹ-stems coming up (힘들다 rank 427→240, 만들다 171→94, 길다
+893→568, 멀다 804→601). 있다 stays 1st and 하다 2nd. The 잇다 and 잘다 overrides
+are retired; the eighteen first-semester anchors stay, because with the reader
+corrected the model still says 7 for 길다 (5 after the usefulness ceiling)
+against the anchor's 3 — a subtitle corpus does not rank first-semester
+adjectives where a syllabus puts them, and no spoken-Korean frequency source
+exists in this repository to close that gap with.
+
 **Being longer is a cost; being analysable is a discount.** 손가락 is 손 plus
 가락, and a learner who has 손 is most of the way there. The linguistic
 component charges for syllable count and then refunds a quarter of the whole

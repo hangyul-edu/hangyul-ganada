@@ -302,7 +302,24 @@ def derived_forms(word: str) -> list[str]:
     if tail is None:
         return []
     forms: list[str] = []
-    if tail[2]:  # consonant-final stem
+    if tail[2] and FINALS[tail[2]] == "ㄹ":
+        # An ㄹ-final stem drops its ㄹ before ㄴ, ㅂ and ㅅ, and the ending
+        # fuses into the syllable: 길 + ㄴ → 긴, 살 + 는 → 사는, 알 + ㅂ니다 →
+        # 압니다, 멀 + 세요 → 머세요. None of these end in a strippable ending
+        # that leaves a form the word has — 긴 minus nothing is 긴 — so the
+        # suffix fold never reached them, and 긴, 먼, 힘든, 사는 and 아는, which
+        # are how these words appear in front of a noun (most of the time, for
+        # an adjective), were counted for nobody. 길다 ranked below 800 and
+        # landed at level 12 on that evidence; I-126.
+        dropped = compose(tail[0], tail[1], 0)
+        head = stem[:-1] + dropped
+        forms.append(stem[:-1] + compose(tail[0], tail[1], FINALS.index("ㄴ")))  # 긴, 먼, 산
+        forms.append(head + "는")  # 사는, 아는, 만드는
+        forms.append(stem[:-1] + compose(tail[0], tail[1], FINALS.index("ㅂ")) + "니다")  # 깁니다
+        forms += [head + "세요", head + "신", head + "셨어요", head + "니까"]
+        # The future adnominal is the stem itself (길 거예요) and is a bare
+        # token, which the fold refuses on purpose; it is not claimed here.
+    elif tail[2]:  # consonant-final stem
         # 많 + 은 → 많은, 같 + 은 → 같은. 없-final stems take 는 instead:
         # 없은 is not Korean, 없는 is.
         forms.append(stem + ("는" if FINALS[tail[2]] == "ㅄ" else "은"))
@@ -330,3 +347,217 @@ def appears_in(word: str, sentence: str) -> str | None:
         if form in sentence:
             return form
     return None
+
+
+# --- Forms for counting, as opposed to forms for recognising --------------------
+#
+# `surface_forms` is a recogniser: it returns every string that *could* be this
+# word so that `appears_in` never misses a headword in a sentence, and it is
+# right to be generous. Read as a counter it is wrong in both directions. It
+# returns the irregular alternants as if they were finished forms — 잇다 gives 이,
+# and 이 + ㅆ gives 있, so 있어요 counted for 잇다; 살다 gives 사, so 사고 and
+# 사요 counted for 살다 — and it omits the ㄹ-drop forms 긴, 사는 and 삽니다 that
+# never end in anything strippable. Frequency is a claim about how often a
+# learner will meet the word, so it gets its own, narrower model here.
+#
+# A stem is paired with the classes of ending it can take *in that shape*:
+#
+#   V  vowel-initial endings  — 아요 어요 아서 어서 았어 었어 았다 었다 (and 아/어)
+#   C  consonant-initial ones that never change the stem — 고 지 게 면 죠 지만 …
+#   N  ㄴ/ㅅ-initial ones an ㄹ-final stem drops its ㄹ before — 니까 세요 네요 는데
+#   E  으-initial ones only a consonant-final stem takes — 으니까 은데 습니다
+#
+# 걷다 walks as 걷 {C N E} and 걸 {V}; 걸다 hangs as 걸 {V C N}. The one string
+# they share is 걸 before a vowel, which is the honest extent of the ambiguity.
+# `frequency.measure` folds the corpus once per class and divides the shared
+# strings between their owners in proportion to what each owns alone.
+
+FREQUENCY_CLASSES = ("V", "C", "N", "E")
+
+#: Which class each fold suffix belongs to. "" is not a suffix: the fold never
+#: credits a bare token to a verb (a bare 우리 is the pronoun, not 우리다).
+SUFFIX_CLASS: dict[str, str] = {
+    **dict.fromkeys(("아", "어", "아요", "어요", "아서", "어서", "았어", "었어", "았다", "었다"), "V"),
+    **dict.fromkeys(("다", "고", "지", "게", "서", "면", "죠", "지만", "자", "려고", "러", "던", "겠다", "겠어", "잖아", "더라"), "C"),
+    **dict.fromkeys(("니까", "세요", "십니다", "십시오", "네요", "는데"), "N"),
+    **dict.fromkeys(("으니까", "은데", "습니다"), "E"),
+}
+
+
+def _ae_finished(stem: str) -> list[str]:
+    """The finished 아/어 forms of a stem — never the bare alternant.
+
+    `infinitive_forms` returns the alternant stems (걸 for 걷다, 이 for 잇다,
+    사 for 살다) beside the finished forms because a recogniser wants both. A
+    finished form is one a speaker can end a clause on: the contraction (봐,
+    써, 몰라, 해, 추워, 그래) or the stem plus 아/어 (먹어, 살아). When the
+    contraction collapses onto the stem itself — 가 + 아 → 가, 서 + 어 → 서 —
+    the stem *is* the finished form, and 가요, 갔어요 and 사요 are built on it.
+    """
+    if not stem:
+        return []
+    alternants = set(_alternants(stem))
+    forms = [f for f in infinitive_forms(stem) if f != stem and f not in alternants]
+    tail = decompose(stem[-1])
+    if (
+        stem not in IRREGULAR
+        and tail is not None
+        and tail[2] == 0
+        and VOWELS[tail[1]] in ("ㅏ", "ㅓ")
+    ):
+        forms.append(stem)
+    return list(dict.fromkeys(forms))
+
+
+def _alternants(stem: str) -> list[str]:
+    """The stem as it stands before a vowel (or before ㄴ/ㅅ, for ㄹ), if it changes."""
+    if not stem or stem in IRREGULAR:
+        return []
+    head, last = stem[:-1], stem[-1]
+    parts = decompose(last)
+    if parts is None:
+        return []
+    initial, medial, final = parts
+    if final == 0:
+        return []
+    consonant = FINALS[final]
+    if consonant == "ㄷ":
+        return [head + compose(initial, medial, FINALS.index("ㄹ"))]
+    if consonant == "ㅂ":
+        return [head + compose(initial, medial, 0) + "우"]
+    if consonant == "ㅎ" and stem in H_IRREGULAR:
+        return [head + compose(initial, medial, 0)]
+    if consonant == "ㅅ":
+        return [head + compose(initial, medial, 0)]
+    if consonant == "ㄹ":
+        return [head + compose(initial, medial, 0)]
+    return []
+
+
+def frequency_forms(
+    word: str, *, lemmas: frozenset[str] = frozenset(), claimed: frozenset[str] = frozenset()
+) -> tuple[dict[str, frozenset[str]], list[str]]:
+    """What to count for `word`: fold bases with their ending classes, and whole tokens.
+
+    Returns `({base: classes}, tokens)`. A base is looked up in the corpus
+    folded by each of its classes; a token is matched exactly. Nothing here is
+    for recognising a word in a sentence — see `surface_forms` for that.
+
+    `lemmas` is every Korean lemma the dictionary knows and `claimed` every
+    headword this corpus teaches; both are used to refuse strings the language
+    does not disambiguate:
+
+    * a stem that is itself a headword noun takes no ㄴ/는 or honorific forms —
+      우린 and 우리는 are the pronoun, not 우리다 (to steep); 말은 is 말 (words),
+      not 말다;
+    * an ㄹ-dropped alternant that is a dictionary word of its own takes no
+      forms — 걸다 drops to 거, and 겁니다, 거니까 and 거는 are 것 (thing)
+      contracted, not "I hang"; 살다 drops to 사, which is also 사다's stem;
+    * a one-syllable ㄴ-adnominal that is a dictionary word is not counted —
+      한 (하다) is *one*, 간 (가다) is *liver*, 건 (걸다) is *thing*, 산 is a
+      mountain. 긴, 먼, 큰 and 힘든 are nobody else's and are counted.
+    """
+    stem = _stem_of(word)
+    if stem is None:
+        return {}, []
+    bases: dict[str, set[str]] = {}
+    tokens: list[str] = []
+    stem_is_word = stem in claimed
+
+    def add(base: str, *classes: str) -> None:
+        if base:
+            bases.setdefault(base, set()).update(classes)
+
+    def adnominal(token: str, *, stem_guard: bool = True) -> None:
+        # The fused ㄴ form, guarded: one syllable that is a word of its own is
+        # somebody else's far more often than it is this verb's.
+        if (stem_guard and stem_is_word) or token in claimed:
+            return
+        if len(token) == 1 and token in lemmas:
+            return
+        tokens.append(token)
+
+    head, last = stem[:-1], stem[-1]
+    parts = decompose(last)
+    consonant = FINALS[parts[2]] if parts and parts[2] else ""
+    vowel_final = stem in IRREGULAR or consonant == "" or (stem.endswith("하") and len(stem) > 1) or (
+        stem.endswith("시") and len(stem) > 1
+    )
+
+    if vowel_final:
+        # A vowel-final stem takes everything as it stands: 가고, 가니까, 가면.
+        # The 아/어 form is a contraction (가, 봐, 해, 써, 몰라) and takes 서/도
+        # and the past; the 으-forms do not exist.
+        add(stem, "C")
+        if not stem_is_word:
+            add(stem, "N")
+        if stem in ("있", "없"):
+            add(stem, "V", "E")  # 있어요, 있습니다
+        if stem in ("이", "아니"):
+            add(stem, "V")  # 이어서, 아니어서 — the copula before a vowel
+    elif consonant == "ㄹ":
+        add(stem, "V", "C")  # 살아요, 살고, 살면
+        for alt in _alternants(stem):
+            # An alternant that is a taught word (나 for 날다 — 나는 is the
+            # pronoun) or a dictionary word of its own (거 for 걸다, which
+            # makes 겁니다 and 거니까 the contraction of 것) takes nothing —
+            # unless it is the stem of another taught verb (사 for 살다 is
+            # 사다's stem): then both own 사는 and 사세요, and
+            # `frequency.measure` divides them by the evidence each has alone.
+            if alt in claimed or (alt in lemmas and (alt + "다") not in claimed):
+                continue
+            add(alt, "N")  # 힘드세요, 힘드니까, 힘드네요, 힘드는데
+            tokens.append(alt + "는")  # 사는, 힘드는, 만드는
+            tokens.append(stem[:-1] + compose(parts[0], parts[1], FINALS.index("ㅂ")) + "니다")
+            tokens += [alt + "세요", alt + "신", alt + "셨어요"]
+        # 긴, 먼, 힘든 — the adnominal, guarded by the token alone: 길 is also a
+        # noun (road), and 긴 is nobody's but 길다's.
+        adnominal(stem[:-1] + compose(parts[0], parts[1], FINALS.index("ㄴ")), stem_guard=False)
+    elif consonant in ("ㄷ", "ㅂ", "ㅅ"):
+        # Regular or irregular is a fact the spelling does not give: 닫다 and
+        # 받다 keep their ㄷ (닫아요), 걷다 and 듣다 lose it (걸어요); 입다 and
+        # 잡다 keep their ㅂ (입어요), 춥다 loses it (추워요); 웃다 and 씻다 keep
+        # their ㅅ (웃어요), 짓다 loses it (지어요). So the stem takes every
+        # class, and the irregular alternant takes the vowel class beside it.
+        # Neither reading invents a token the other class of verb could have
+        # produced — 춥어요 and 닫어요 are not Korean and occur nowhere.
+        add(stem, "V", "C", "N", "E")  # 닫아요·걷고, 입어요·춥고, 웃어요·짓고
+        for alt in _alternants(stem):
+            add(alt, "V")  # 걸어요, 지어요 (추워 is a contracted whole token)
+    elif consonant == "ㅎ" and stem in H_IRREGULAR:
+        add(stem, "C", "E")  # 그렇고, 그렇습니다
+        # 그래 (the vowel form) and 그런 (the adnominal) are tokens.
+    else:
+        add(stem, "V", "C", "N", "E")  # 먹어요, 먹고, 먹네요, 먹습니다
+
+    # Finished 아/어 forms: as fold bases for 서/도-type endings, and as whole
+    # tokens with 요 and the past.
+    for form in _ae_finished(stem):
+        if form != stem:
+            add(form, "C")
+            tokens.append(form)
+        tokens.append(form + "요")
+        tail = decompose(form[-1])
+        if tail is not None and tail[2] == 0:
+            past = form[:-1] + compose(tail[0], tail[1], FINALS.index("ㅆ"))
+            tokens += [past + "어요", past + "습니다", past + "다", past + "고", past + "지"]
+    if stem.endswith("하") and len(stem) > 1:
+        tokens += [stem[:-1] + "했어요", stem[:-1] + "했다", stem[:-1] + "합니다"]
+
+    # Whole-token forms no fold can reach: the fused ㅂ니다, the adnominals, the
+    # 으-honorifics.
+    if vowel_final and parts is not None and parts[2] == 0 and not stem_is_word:
+        tokens.append(head + compose(parts[0], parts[1], FINALS.index("ㅂ")) + "니다")  # 갑니다
+        tokens.append(stem + "는")  # 가는
+        adnominal(head + compose(parts[0], parts[1], FINALS.index("ㄴ")))  # 큰; 간 refused
+    elif consonant and consonant != "ㄹ":
+        # 는 after a consonant is only ever the verb: a noun takes 은 there, so
+        # 입는 is 입다 (wear) even though 입 is also a noun (mouth). 은 and 을
+        # are the noun's, and stay guarded.
+        if not (consonant == "ㅎ" and stem in H_IRREGULAR):
+            tokens.append(stem + "는")  # 먹는, 걷는, 없는, 입는
+        if not stem_is_word:
+            tokens += [t for t in derived_forms(word) if not (len(t) == 1 and t in lemmas)]
+
+    frozen = {base: frozenset(classes) for base, classes in bases.items()}
+    return frozen, [t for t in dict.fromkeys(tokens) if t != word and t not in claimed]

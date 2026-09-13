@@ -80,6 +80,25 @@ for (const word of vocabulary.VOCABULARY) {
 }
 
 /*
+ * The second source of Korean sentences: the hand-written gap-fills.
+ *
+ * A curated item in `content/vocabulary/context-items.json` is a sentence
+ * written for the question rather than lifted from the card, so the card's
+ * recording is not a recording of it. The builder stamps each with an `ex_`
+ * id derived from its own text (the same rule as the card examples), and this
+ * is where those ids meet the audio build. Read from the generated file
+ * rather than the source so the sentence recorded is exactly the sentence the
+ * runtime assembles — `before + surface + after`.
+ */
+const { readFileSync } = await import('node:fs');
+const cloze = JSON.parse(
+  readFileSync(join(root, 'apps/web/src/data/generated/cloze.json'), 'utf8'),
+).words;
+for (const gap of Object.values(cloze)) {
+  if (gap.curated && gap.audioId) add(gap.audioId, gap.before + gap.target + gap.after, 'sentence');
+}
+
+/*
  * The Numbers curriculum: every item's Korean, and every worked example.
  *
  * Ids follow the same codepoint rule as words and sentences, so 일 as a Sino

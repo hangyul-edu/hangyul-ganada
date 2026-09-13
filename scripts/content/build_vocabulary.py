@@ -337,6 +337,11 @@ def surface_in(word: str, sentence: str) -> str | None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="Fail if the output would change")
+    parser.add_argument(
+        "--show-overrides",
+        action="store_true",
+        help="print each level override beside the level the model would give without it",
+    )
     args = parser.parse_args()
 
     entries = pack.load()
@@ -496,6 +501,18 @@ def main() -> int:
             f"  {len(redundant_overrides)} override(s) the model now agrees with: "
             + ", ".join(sorted(redundant_overrides))
         )
+    if args.show_overrides:
+        # What every hand-set level is holding against, so a content pass can
+        # see which overrides are still deciding anything — the question I-126
+        # kept having to answer by instrumenting this file.
+        print("  overrides against the model (word: override / modelled / ceilinged):")
+        for word in sorted(overrides, key=lambda w: (overrides[w] is None, w)):
+            held = overrides[word]
+            if word not in modelled_levels:
+                continue
+            modelled = modelled_levels[word]
+            ceilinged = leveller.apply_ceiling(modelled, kept[word].usefulness)
+            print(f"    {word}: {held if held is not None else 'keep'} / {modelled} / {ceilinged}")
 
     # The ledger first: every id it already hands out is spoken for, so a word
     # new to this build allocates around them rather than through them.

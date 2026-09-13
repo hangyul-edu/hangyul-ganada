@@ -130,12 +130,15 @@ describe('generated questions', () => {
         /*
          * The gap-fill is the card's own sentence — except for the hand-written
          * beginner items, which exist because a level-2 card sentence cannot
-         * constrain a blank. Those carry their own sentence and, deliberately,
-         * no audio: the card's clip is a recording of the *other* sentence, and
-         * playing it under this one would be an audio/transcript mismatch.
+         * constrain a blank. Those carry their own sentence and, since v1.0.5,
+         * their own recording: the clip id is derived from *this* sentence,
+         * never the card's, so what plays is what is on the screen
+         * (curatedClozeAudio.test.ts holds the derivation).
          */
-        if (clozeFor(word!.id)?.curated) {
-          expect(exercise.sentence?.audioId).toBeUndefined();
+        const gap = clozeFor(word!.id);
+        if (gap?.curated) {
+          expect(exercise.sentence?.audioId).toBe(gap.audioId);
+          expect(exercise.sentence?.audioId).not.toBe(word!.audio.example);
         } else {
           expect(written).toBe(word!.example);
         }

@@ -20,13 +20,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 67,
-    "build": 29,
+    "meaning": 64,
+    "build": 31,
     "match": 14,
-    "context": 2
+    "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.598,
+   "dominantShare": 0.571,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -37,9 +37,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 59,
-    "build": 36,
+    "build": 35,
     "match": 14,
-    "context": 3
+    "context": 4
    },
    "dominant": "meaning",
    "dominantShare": 0.527,
@@ -52,13 +52,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 38,
+    "meaning": 61,
+    "build": 36,
     "match": 14,
-    "context": 2
+    "context": 1
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -100,13 +100,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
-    "build": 36,
+    "meaning": 56,
+    "build": 31,
     "match": 14,
-    "context": 5
+    "context": 11
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.5,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -117,9 +117,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "context": 8,
-    "build": 34,
-    "match": 14
+    "build": 38,
+    "match": 14,
+    "context": 4
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -132,13 +132,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 69,
-    "build": 26,
+    "meaning": 70,
+    "build": 24,
     "match": 14,
-    "context": 3
+    "context": 4
    },
    "dominant": "meaning",
-   "dominantShare": 0.616,
+   "dominantShare": 0.625,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -148,13 +148,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 62,
+    "meaning": 61,
     "build": 35,
     "match": 14,
-    "context": 1
+    "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.554,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -164,13 +164,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 56,
-    "build": 40,
+    "meaning": 57,
+    "build": 38,
     "match": 14,
-    "context": 2
+    "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.5,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -213,9 +213,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 33,
+    "build": 31,
     "match": 14,
-    "context": 9
+    "context": 11
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -229,9 +229,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 28,
+    "build": 29,
     "match": 14,
-    "context": 14
+    "context": 13
    },
    "dominant": "meaning",
    "dominantShare": 0.5,
@@ -245,8 +245,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 65,
-    "context": 5,
-    "build": 28,
+    "context": 3,
+    "build": 30,
     "match": 14
    },
    "dominant": "meaning",
@@ -260,13 +260,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 59,
-    "context": 3,
-    "build": 36,
-    "match": 14
+    "meaning": 60,
+    "build": 34,
+    "match": 14,
+    "context": 4
    },
    "dominant": "meaning",
-   "dominantShare": 0.527,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -276,12 +276,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 59,
-    "build": 39,
-    "match": 14
+    "meaning": 61,
+    "build": 35,
+    "match": 14,
+    "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.527,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -308,8 +309,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "context": 5,
-    "build": 36,
+    "context": 6,
+    "build": 35,
     "match": 14
    },
    "dominant": "meaning",
@@ -323,13 +324,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 56,
-    "build": 37,
+    "meaning": 57,
+    "build": 31,
     "match": 14,
-    "context": 5
+    "context": 10
    },
    "dominant": "meaning",
-   "dominantShare": 0.5,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -356,8 +357,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 62,
-    "context": 6,
-    "build": 30,
+    "context": 9,
+    "build": 27,
     "match": 14
    },
    "dominant": "meaning",
@@ -371,13 +372,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 61,
-    "build": 34,
+    "meaning": 60,
+    "build": 30,
     "match": 14,
-    "context": 3
+    "context": 8
    },
    "dominant": "meaning",
-   "dominantShare": 0.545,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -387,13 +388,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 63,
-    "build": 33,
+    "meaning": 60,
+    "build": 32,
     "match": 14,
-    "context": 2
+    "context": 6
    },
    "dominant": "meaning",
-   "dominantShare": 0.563,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -403,10 +404,330 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 59,
-    "context": 5,
-    "build": 34,
+    "meaning": 57,
+    "context": 8,
+    "build": 33,
     "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "zh-CN",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "context": 7,
+    "build": 31,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "zh-CN",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 33,
+    "context": 7,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "zh-CN",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 30,
+    "context": 11,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "es",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 65,
+    "context": 6,
+    "build": 27,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.58,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "es",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 33,
+    "context": 3,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "es",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "context": 5,
+    "build": 31,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "es",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 34,
+    "match": 14,
+    "context": 7
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "es",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 30,
+    "context": 10,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "es",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 35,
+    "match": 14,
+    "context": 7
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "es",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 34,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fr",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 66,
+    "build": 24,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.589,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fr",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 37,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fr",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 39,
+    "match": 14,
+    "context": 2
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fr",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 34,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fr",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 35,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fr",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 33,
+    "context": 9,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fr",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 30,
+    "context": 12,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "de",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "build": 30,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "de",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 37,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "de",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 34,
+    "match": 14,
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.527,
@@ -414,31 +735,15 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "zh-CN",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "context": 5,
-    "build": 37,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "zh-CN",
-   "level": 25,
+   "locale": "de",
+   "level": 15,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 31,
+    "build": 37,
     "match": 14,
-    "context": 10
+    "context": 4
    },
    "dominant": "meaning",
    "dominantShare": 0.509,
@@ -446,72 +751,40 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "zh-CN",
+   "locale": "de",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 35,
+    "context": 6,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "de",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "context": 13,
+    "build": 28,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "de",
    "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 30,
-    "context": 12,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "es",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 62,
-    "build": 30,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.554,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "es",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 63,
-    "build": 32,
-    "context": 3,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.563,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "es",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 32,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "es",
-   "level": 15,
    "asked": 112,
    "kinds": {
     "intro": 140,
@@ -526,71 +799,23 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "es",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "context": 10,
-    "build": 31,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "es",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 37,
-    "context": 5,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "es",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 32,
-    "match": 14,
-    "context": 10
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fr",
+   "locale": "pt-BR",
    "level": 1,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 62,
+    "meaning": 67,
     "build": 28,
-    "match": 14,
-    "context": 8
+    "context": 3,
+    "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.554,
+   "dominantShare": 0.598,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "fr",
+   "locale": "pt-BR",
    "level": 5,
    "asked": 112,
    "kinds": {
@@ -606,8 +831,1720 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "fr",
+   "locale": "pt-BR",
    "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 37,
+    "match": 14,
+    "context": 2
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pt-BR",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 34,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pt-BR",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "context": 6,
+    "build": 36,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pt-BR",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "context": 11,
+    "build": 29,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pt-BR",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "context": 12,
+    "build": 30,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ar",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 67,
+    "context": 4,
+    "match": 14,
+    "build": 27
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.598,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ar",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 63,
+    "build": 33,
+    "match": 14,
+    "context": 2
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.563,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ar",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 36,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ar",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 36,
+    "context": 5,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ar",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 32,
+    "match": 14,
+    "context": 10
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ar",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 33,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ar",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 30,
+    "context": 12,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "bn",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 66,
+    "build": 24,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.589,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "bn",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 61,
+    "build": 33,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "bn",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "build": 33,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "bn",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 34,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "bn",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 35,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "bn",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 30,
+    "context": 12,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "bn",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 28,
+    "match": 14,
+    "context": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "cs",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 69,
+    "match": 14,
+    "build": 26,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.616,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "cs",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "context": 6,
+    "build": 32,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "cs",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 36,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "cs",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 37,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "cs",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 37,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "cs",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "context": 12,
+    "build": 30,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "cs",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 30,
+    "context": 12,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "el",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 68,
+    "context": 7,
+    "build": 23,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.607,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "el",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 61,
+    "build": 32,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "el",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 33,
+    "context": 3,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "el",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 36,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "el",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 34,
+    "match": 14,
+    "context": 7
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "el",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 36,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "el",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 34,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fil",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 65,
+    "build": 30,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.58,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fil",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 34,
+    "match": 14,
+    "context": 2
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fil",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 61,
+    "build": 36,
+    "match": 14,
+    "context": 1
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fil",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 36,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fil",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 38,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fil",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 31,
+    "match": 14,
+    "context": 9
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "fil",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 25,
+    "match": 14,
+    "context": 17
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hi",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 64,
+    "build": 27,
+    "match": 14,
+    "context": 7
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.571,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hi",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 26,
+    "context": 10,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hi",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 61,
+    "build": 36,
+    "match": 14,
+    "context": 1
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hi",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 35,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hi",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 36,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hi",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 34,
+    "match": 14,
+    "context": 7
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hi",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 29,
+    "match": 14,
+    "context": 13
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hu",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 65,
+    "build": 27,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.58,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hu",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 61,
+    "build": 34,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hu",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "build": 36,
+    "match": 14,
+    "context": 2
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hu",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 36,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hu",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "context": 6,
+    "build": 35,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hu",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 38,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "hu",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 29,
+    "context": 13,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "id",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 31,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "id",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 33,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "id",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 36,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "id",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 37,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "id",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 34,
+    "context": 8,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "id",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 32,
+    "context": 9,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "id",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "context": 16,
+    "build": 26,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "it",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 65,
+    "build": 26,
+    "match": 14,
+    "context": 7
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.58,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "it",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 61,
+    "build": 31,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "it",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 33,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "it",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 36,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "it",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 34,
+    "context": 8,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "it",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 38,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "it",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "context": 15,
+    "build": 27,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "kk",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 65,
+    "build": 31,
+    "context": 2,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.58,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "kk",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "build": 32,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "kk",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 35,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "kk",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 38,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "kk",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 35,
+    "context": 6,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "kk",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 36,
+    "context": 5,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "kk",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 29,
+    "context": 13,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ky",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 67,
+    "build": 27,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.598,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ky",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "build": 32,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ky",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "context": 5,
+    "build": 34,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ky",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 32,
+    "match": 14,
+    "context": 10
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ky",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 33,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ky",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 32,
+    "match": 14,
+    "context": 10
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ky",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "context": 10,
+    "build": 32,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "mn",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 66,
+    "build": 29,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.589,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "mn",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 35,
+    "match": 14,
+    "context": 1
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "mn",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 61,
+    "build": 33,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "mn",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "context": 4,
+    "build": 37,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "mn",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 39,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "mn",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "context": 9,
+    "build": 33,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "mn",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 32,
+    "context": 10,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "nl",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 65,
+    "build": 29,
+    "context": 4,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.58,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "nl",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 63,
+    "build": 29,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.563,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "nl",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 34,
+    "context": 5,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "nl",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 38,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "nl",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 37,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "nl",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 38,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "nl",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 34,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pl",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 64,
+    "build": 30,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.571,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pl",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 63,
+    "build": 29,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.563,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pl",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "build": 37,
+    "match": 14,
+    "context": 1
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pl",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 36,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pl",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 33,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pl",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "context": 7,
+    "build": 35,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "pl",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 31,
+    "match": 14,
+    "context": 11
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ro",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 65,
+    "build": 28,
+    "context": 5,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.58,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ro",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "context": 6,
+    "build": 32,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ro",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "context": 4,
+    "build": 35,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ro",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 37,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ro",
+   "level": 20,
    "asked": 112,
    "kinds": {
     "intro": 140,
@@ -622,1625 +2559,14 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "fr",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fr",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 32,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fr",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "context": 6,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fr",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 32,
-    "context": 10,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "de",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 29,
-    "match": 14,
-    "context": 8
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "de",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 36,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "de",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 36,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "de",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 36,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "de",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 36,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "de",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "context": 9,
-    "build": 32,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "de",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 35,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pt-BR",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 64,
-    "build": 30,
-    "context": 4,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.571,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pt-BR",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 62,
-    "build": 34,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.554,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pt-BR",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 36,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pt-BR",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 35,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pt-BR",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "context": 4,
-    "build": 38,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pt-BR",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "context": 9,
-    "build": 31,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pt-BR",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "context": 11,
-    "build": 31,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ar",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 67,
-    "build": 27,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.598,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ar",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 36,
-    "match": 14,
-    "context": 1
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ar",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "context": 4,
-    "build": 34,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ar",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 38,
-    "context": 4,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ar",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 34,
-    "match": 14,
-    "context": 8
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ar",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 34,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ar",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 31,
-    "context": 11,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "bn",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 64,
-    "build": 32,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.571,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "bn",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 63,
-    "build": 35,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.563,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "bn",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 35,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "bn",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 32,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "bn",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 35,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "bn",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 35,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "bn",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 29,
-    "match": 14,
-    "context": 13
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "cs",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 65,
-    "build": 30,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.58,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "cs",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "context": 1,
-    "build": 36,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "cs",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 41,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "cs",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 38,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "cs",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 35,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "cs",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 31,
-    "context": 10,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "cs",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 32,
-    "context": 10,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "el",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 69,
-    "build": 23,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.616,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "el",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 33,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "el",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 62,
-    "build": 33,
-    "context": 3,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.554,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "el",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 35,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "el",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "build": 33,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "el",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "el",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 32,
-    "context": 10,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fil",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 68,
-    "build": 23,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.607,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fil",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 62,
-    "build": 34,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.554,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fil",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 36,
-    "context": 3,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fil",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 36,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fil",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 35,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fil",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 33,
-    "match": 14,
-    "context": 9
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "fil",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 30,
-    "match": 14,
-    "context": 12
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hi",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 64,
-    "build": 29,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.571,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hi",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 33,
-    "context": 4,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hi",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 37,
-    "match": 14,
-    "context": 1
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hi",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 36,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hi",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 36,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hi",
+   "locale": "ro",
    "level": 25,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 56,
     "build": 34,
-    "match": 14,
-    "context": 8
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hi",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 30,
-    "match": 14,
-    "context": 12
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hu",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 66,
-    "build": 29,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.589,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hu",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 35,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hu",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 39,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hu",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "context": 6,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hu",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "context": 6,
-    "build": 35,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hu",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 38,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "hu",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 28,
-    "context": 14,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "id",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 65,
-    "build": 28,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.58,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "id",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 62,
-    "build": 34,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.554,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "id",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 34,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "id",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "build": 35,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "id",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 35,
-    "context": 7,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "id",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 32,
-    "context": 9,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "id",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "context": 13,
-    "build": 29,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "it",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 65,
-    "build": 27,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.58,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "it",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 34,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "it",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 36,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "it",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 37,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "it",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 35,
-    "context": 7,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "it",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "it",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "context": 13,
-    "build": 29,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "kk",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 68,
-    "build": 30,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.607,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "kk",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 32,
-    "context": 6,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "kk",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 35,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "kk",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "build": 33,
-    "context": 7,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "kk",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 39,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "kk",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 35,
-    "context": 6,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "kk",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "context": 12,
-    "build": 30,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ky",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 67,
-    "build": 26,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.598,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ky",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 36,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ky",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "context": 4,
-    "build": 35,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ky",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "build": 31,
-    "match": 14,
-    "context": 9
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ky",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 36,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ky",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 31,
-    "context": 11,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ky",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "context": 11,
-    "build": 31,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "mn",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 68,
-    "build": 26,
-    "context": 4,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.607,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "mn",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 62,
-    "build": 36,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.554,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "mn",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 35,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "mn",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "context": 4,
-    "build": 38,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "mn",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 37,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "mn",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
     "context": 8,
-    "build": 33,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "mn",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 32,
-    "context": 10,
     "match": 14
    },
    "dominant": "meaning",
@@ -2249,439 +2575,7 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "nl",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 69,
-    "build": 27,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.616,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "nl",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 63,
-    "build": 32,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.563,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "nl",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "build": 39,
-    "match": 14,
-    "context": 1
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "nl",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 38,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "nl",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 35,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "nl",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 32,
-    "match": 14,
-    "context": 9
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "nl",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 34,
-    "match": 14,
-    "context": 8
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pl",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 65,
-    "build": 26,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.58,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pl",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 61,
-    "build": 35,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.545,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pl",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 35,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pl",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "build": 34,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pl",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "build": 34,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pl",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 34,
-    "match": 14,
-    "context": 8
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "pl",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 28,
-    "match": 14,
-    "context": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
    "locale": "ro",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 69,
-    "build": 23,
-    "context": 6,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.616,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ro",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "context": 4,
-    "build": 34,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ro",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 34,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ro",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 58,
-    "build": 33,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.518,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ro",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ro",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 37,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ro",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 29,
-    "match": 14,
-    "context": 13
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ru",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 66,
-    "context": 3,
-    "match": 14,
-    "build": 29
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.589,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ru",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 62,
-    "build": 34,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.554,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ru",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "context": 4,
-    "build": 35,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ru",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ru",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 38,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ru",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 32,
-    "context": 10,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ru",
    "level": 30,
    "asked": 112,
    "kinds": {
@@ -2697,18 +2591,130 @@
    "introducedWithoutMeaning": 0
   },
   {
+   "locale": "ru",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 67,
+    "context": 5,
+    "match": 14,
+    "build": 26
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.598,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ru",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 62,
+    "build": 33,
+    "match": 14,
+    "context": 3
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ru",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 61,
+    "context": 4,
+    "build": 33,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ru",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 40,
+    "match": 14,
+    "context": 2
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ru",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 40,
+    "match": 14,
+    "context": 2
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ru",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 29,
+    "context": 12,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "ru",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 26,
+    "context": 16,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
    "locale": "sv",
    "level": 1,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 68,
-    "build": 26,
-    "context": 4,
+    "meaning": 67,
+    "build": 25,
+    "context": 6,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.607,
+   "dominantShare": 0.598,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2718,13 +2724,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 63,
-    "build": 34,
+    "meaning": 64,
+    "build": 30,
     "match": 14,
-    "context": 1
+    "context": 4
    },
    "dominant": "meaning",
-   "dominantShare": 0.563,
+   "dominantShare": 0.571,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2734,19 +2740,35 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
-    "build": 39,
+    "meaning": 59,
+    "build": 36,
     "match": 14,
-    "context": 2
+    "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.527,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
    "locale": "sv",
    "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 36,
+    "match": 14,
+    "context": 6
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "sv",
+   "level": 20,
    "asked": 112,
    "kinds": {
     "intro": 140,
@@ -2762,29 +2784,13 @@
   },
   {
    "locale": "sv",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 33,
-    "context": 9,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "sv",
    "level": 25,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 38,
-    "context": 4,
+    "build": 34,
+    "context": 8,
     "match": 14
    },
    "dominant": "meaning",
@@ -2814,13 +2820,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 61,
-    "build": 34,
+    "meaning": 64,
+    "build": 30,
     "match": 14,
-    "context": 3
+    "context": 4
    },
    "dominant": "meaning",
-   "dominantShare": 0.545,
+   "dominantShare": 0.571,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2830,13 +2836,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 66,
-    "build": 31,
+    "meaning": 64,
+    "build": 29,
     "match": 14,
-    "context": 1
+    "context": 5
    },
    "dominant": "meaning",
-   "dominantShare": 0.589,
+   "dominantShare": 0.571,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2846,13 +2852,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
+    "meaning": 58,
     "build": 37,
-    "context": 4,
+    "context": 3,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.518,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -2863,9 +2869,9 @@
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 35,
+    "build": 31,
     "match": 14,
-    "context": 6
+    "context": 10
    },
    "dominant": "meaning",
    "dominantShare": 0.509,
@@ -2894,118 +2900,6 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 56,
-    "context": 5,
-    "build": 37,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "ta",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 33,
-    "context": 9,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "te",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 70,
-    "build": 26,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.625,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "te",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 64,
-    "build": 31,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.571,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "te",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 59,
-    "build": 36,
-    "match": 14,
-    "context": 3
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.527,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "te",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 39,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "te",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "te",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
     "meaning": 57,
     "build": 32,
     "match": 14,
@@ -3017,63 +2911,79 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "te",
+   "locale": "ta",
    "level": 30,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 57,
-    "build": 29,
-    "context": 12,
+    "meaning": 56,
+    "build": 31,
+    "context": 11,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.509,
+   "dominantShare": 0.5,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "th",
+   "locale": "te",
    "level": 1,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 67,
-    "build": 25,
+    "meaning": 68,
+    "build": 24,
     "match": 14,
     "context": 6
    },
    "dominant": "meaning",
-   "dominantShare": 0.598,
+   "dominantShare": 0.607,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "th",
+   "locale": "te",
    "level": 5,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 60,
-    "build": 35,
+    "meaning": 65,
+    "build": 30,
     "match": 14,
     "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.536,
+   "dominantShare": 0.58,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "th",
+   "locale": "te",
    "level": 10,
    "asked": 112,
    "kinds": {
     "intro": 140,
+    "meaning": 61,
+    "build": 33,
+    "context": 4,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.545,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "te",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
     "meaning": 58,
-    "build": 34,
-    "match": 14,
-    "context": 6
+    "build": 37,
+    "context": 3,
+    "match": 14
    },
    "dominant": "meaning",
    "dominantShare": 0.518,
@@ -3081,31 +2991,15 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "th",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 34,
-    "match": 14,
-    "context": 7
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "th",
+   "locale": "te",
    "level": 20,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 30,
+    "build": 36,
     "match": 14,
-    "context": 11
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.509,
@@ -3113,7 +3007,7 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "th",
+   "locale": "te",
    "level": 25,
    "asked": 112,
    "kinds": {
@@ -3129,31 +3023,31 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "th",
+   "locale": "te",
    "level": 30,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 56,
-    "build": 35,
-    "match": 14,
-    "context": 7
+    "meaning": 57,
+    "build": 30,
+    "context": 11,
+    "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.5,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "tr",
+   "locale": "th",
    "level": 1,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 63,
-    "build": 27,
-    "context": 8,
-    "match": 14
+    "build": 26,
+    "match": 14,
+    "context": 9
    },
    "dominant": "meaning",
    "dominantShare": 0.563,
@@ -3161,47 +3055,79 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "tr",
+   "locale": "th",
    "level": 5,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 62,
-    "build": 35,
+    "meaning": 61,
+    "build": 32,
     "match": 14,
-    "context": 1
+    "context": 5
    },
    "dominant": "meaning",
-   "dominantShare": 0.554,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "tr",
+   "locale": "th",
    "level": 10,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 60,
-    "build": 36,
+    "meaning": 61,
+    "build": 30,
     "match": 14,
-    "context": 2
+    "context": 7
    },
    "dominant": "meaning",
-   "dominantShare": 0.536,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "tr",
+   "locale": "th",
    "level": 15,
    "asked": 112,
    "kinds": {
     "intro": 140,
+    "meaning": 57,
+    "build": 36,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "th",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 32,
+    "match": 14,
+    "context": 10
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "th",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
     "meaning": 58,
-    "build": 30,
-    "context": 10,
-    "match": 14
+    "build": 32,
+    "match": 14,
+    "context": 8
    },
    "dominant": "meaning",
    "dominantShare": 0.518,
@@ -3209,46 +3135,14 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "tr",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 35,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "tr",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 57,
-    "build": 33,
-    "match": 14,
-    "context": 8
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.509,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "tr",
+   "locale": "th",
    "level": 30,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "context": 9,
-    "build": 33,
+    "context": 8,
+    "build": 34,
     "match": 14
    },
    "dominant": "meaning",
@@ -3257,125 +3151,14 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "uk",
-   "level": 1,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 66,
-    "build": 30,
-    "match": 14,
-    "context": 2
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.589,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "uk",
-   "level": 5,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 62,
-    "build": 31,
-    "match": 14,
-    "context": 5
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.554,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "uk",
-   "level": 10,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 60,
-    "build": 35,
-    "context": 3,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.536,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "uk",
-   "level": 15,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 38,
-    "match": 14,
-    "context": 4
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "uk",
-   "level": 20,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 36,
-    "match": 14,
-    "context": 6
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "uk",
-   "level": 25,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 31,
-    "match": 14,
-    "context": 11
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "uk",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 28,
-    "context": 14,
-    "match": 14
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "uz",
+   "locale": "tr",
    "level": 1,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 64,
-    "build": 34,
+    "build": 28,
+    "context": 6,
     "match": 14
    },
    "dominant": "meaning",
@@ -3384,46 +3167,46 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "uz",
+   "locale": "tr",
    "level": 5,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 60,
-    "build": 37,
+    "meaning": 62,
+    "build": 33,
     "match": 14,
-    "context": 1
+    "context": 3
    },
    "dominant": "meaning",
-   "dominantShare": 0.536,
+   "dominantShare": 0.554,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "uz",
+   "locale": "tr",
    "level": 10,
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 38,
+    "meaning": 61,
+    "build": 35,
     "match": 14,
     "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.545,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "uz",
+   "locale": "tr",
    "level": 15,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 58,
-    "build": 37,
-    "context": 3,
+    "build": 33,
+    "context": 7,
     "match": 14
    },
    "dominant": "meaning",
@@ -3432,15 +3215,15 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "uz",
+   "locale": "tr",
    "level": 20,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 36,
-    "context": 5,
-    "match": 14
+    "build": 35,
+    "match": 14,
+    "context": 6
    },
    "dominant": "meaning",
    "dominantShare": 0.509,
@@ -3448,14 +3231,30 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "uz",
+   "locale": "tr",
    "level": 25,
    "asked": 112,
    "kinds": {
     "intro": 140,
+    "meaning": 57,
+    "build": 31,
+    "match": 14,
+    "context": 10
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "tr",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
     "meaning": 56,
-    "build": 32,
-    "context": 10,
+    "context": 8,
+    "build": 34,
     "match": 14
    },
    "dominant": "meaning",
@@ -3464,23 +3263,7 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "uz",
-   "level": 30,
-   "asked": 112,
-   "kinds": {
-    "intro": 140,
-    "meaning": 56,
-    "build": 30,
-    "match": 14,
-    "context": 12
-   },
-   "dominant": "meaning",
-   "dominantShare": 0.5,
-   "introduced": 140,
-   "introducedWithoutMeaning": 0
-  },
-  {
-   "locale": "vi",
+   "locale": "uk",
    "level": 1,
    "asked": 112,
    "kinds": {
@@ -3496,18 +3279,242 @@
    "introducedWithoutMeaning": 0
   },
   {
-   "locale": "vi",
+   "locale": "uk",
    "level": 5,
    "asked": 112,
    "kinds": {
     "intro": 140,
     "meaning": 62,
-    "build": 33,
+    "build": 31,
     "match": 14,
-    "context": 3
+    "context": 5
    },
    "dominant": "meaning",
    "dominantShare": 0.554,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uk",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 59,
+    "build": 33,
+    "context": 6,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.527,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uk",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 36,
+    "match": 14,
+    "context": 5
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uk",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 36,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uk",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 34,
+    "match": 14,
+    "context": 8
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uk",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 29,
+    "context": 13,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uz",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 63,
+    "context": 7,
+    "build": 28,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.563,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uz",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 63,
+    "build": 33,
+    "match": 14,
+    "context": 2
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.563,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uz",
+   "level": 10,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 37,
+    "context": 3,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uz",
+   "level": 15,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 58,
+    "build": 36,
+    "context": 4,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.518,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uz",
+   "level": 20,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 57,
+    "build": 37,
+    "context": 4,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.509,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uz",
+   "level": 25,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 27,
+    "context": 15,
+    "match": 14
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "uz",
+   "level": 30,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 56,
+    "build": 29,
+    "match": 14,
+    "context": 13
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.5,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "vi",
+   "level": 1,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 64,
+    "build": 27,
+    "match": 14,
+    "context": 7
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.571,
+   "introduced": 140,
+   "introducedWithoutMeaning": 0
+  },
+  {
+   "locale": "vi",
+   "level": 5,
+   "asked": 112,
+   "kinds": {
+    "intro": 140,
+    "meaning": 60,
+    "build": 34,
+    "match": 14,
+    "context": 4
+   },
+   "dominant": "meaning",
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3517,13 +3524,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 39,
+    "meaning": 60,
+    "build": 36,
     "match": 14,
-    "context": 1
+    "context": 2
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.536,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3534,8 +3541,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 57,
-    "build": 32,
-    "context": 9,
+    "context": 6,
+    "build": 35,
     "match": 14
    },
    "dominant": "meaning",
@@ -3549,13 +3556,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 58,
-    "build": 33,
+    "meaning": 57,
+    "build": 35,
     "match": 14,
-    "context": 7
+    "context": 6
    },
    "dominant": "meaning",
-   "dominantShare": 0.518,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3565,13 +3572,13 @@
    "asked": 112,
    "kinds": {
     "intro": 140,
-    "meaning": 56,
-    "build": 33,
-    "context": 9,
+    "meaning": 57,
+    "build": 34,
+    "context": 7,
     "match": 14
    },
    "dominant": "meaning",
-   "dominantShare": 0.5,
+   "dominantShare": 0.509,
    "introduced": 140,
    "introducedWithoutMeaning": 0
   },
@@ -3582,8 +3589,8 @@
    "kinds": {
     "intro": 140,
     "meaning": 56,
-    "build": 28,
-    "context": 14,
+    "build": 30,
+    "context": 12,
     "match": 14
    },
    "dominant": "meaning",

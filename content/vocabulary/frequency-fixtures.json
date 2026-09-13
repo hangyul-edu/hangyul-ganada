@@ -1,0 +1,264 @@
+{
+  "_comment": [
+    "What the frequency reader may and may not count for an inflected headword.",
+    "Every row is a class of error the reader has actually made (I-126, and the",
+    "v1.0.5 pass that closed it): the ㄹ-drop forms it never reached, the",
+    "irregular alternants it treated as finished forms, the whole tokens that",
+    "are somebody else's word, and the strings two headwords genuinely share.",
+    "`python3 scripts/content/frequency.py --self-test` holds `frequency_forms`",
+    "to it against the shipped headword list and the Wiktionary lemma list;",
+    "`counts` rows are checked against the real corpus when it is present."
+  ],
+  "cases": [
+    {
+      "word": "길다",
+      "why": "ㄹ-drop adnominal: how a long thing is described, and 길 is also a noun (road)",
+      "must_count": [
+        "긴",
+        "길어요",
+        "길었어요",
+        "깁니다"
+      ],
+      "must_not_count": [
+        "길은",
+        "기"
+      ]
+    },
+    {
+      "word": "멀다",
+      "why": "ㄹ-drop adnominal with no competing noun",
+      "must_count": [
+        "먼",
+        "멀어요"
+      ],
+      "must_not_count": [
+        "멀은"
+      ]
+    },
+    {
+      "word": "힘들다",
+      "why": "the commonest ㄹ-stem adjective; its ㄹ-drop forms carry most of its use",
+      "must_count": [
+        "힘든",
+        "힘들어요",
+        "힘듭니다",
+        "힘드세요"
+      ],
+      "must_not_count": []
+    },
+    {
+      "word": "만들다",
+      "must_count": [
+        "만든",
+        "만드는",
+        "만듭니다",
+        "만들어요"
+      ],
+      "must_not_count": [
+        "만들은"
+      ]
+    },
+    {
+      "word": "잇다",
+      "why": "ㅅ-irregular: the alternant 이 + ㅆ is not 있 — 있어요 belongs to 있다, and ranked 잇다 first in Korean",
+      "must_count": [
+        "잇고",
+        "이어요"
+      ],
+      "must_not_count": [
+        "있어요",
+        "있습니다",
+        "이",
+        "입니다"
+      ]
+    },
+    {
+      "word": "걸다",
+      "why": "its ㄹ-drop alternant 거 is 것 contracted: 겁니다 and 거니까 are 'it is the thing'",
+      "must_count": [
+        "걸고",
+        "걸어요"
+      ],
+      "must_not_count": [
+        "겁니다",
+        "거니까",
+        "거는",
+        "건"
+      ]
+    },
+    {
+      "word": "우리다",
+      "why": "its stem is the pronoun 우리: 우린 and 우리는 are 'we'",
+      "must_count": [
+        "우려요"
+      ],
+      "must_not_count": [
+        "우린",
+        "우리는",
+        "우리니까"
+      ]
+    },
+    {
+      "word": "날다",
+      "why": "its ㄹ-drop alternant 나 is the pronoun: 나는 is 'I'",
+      "must_count": [
+        "날아요",
+        "날고"
+      ],
+      "must_not_count": [
+        "나는",
+        "나니까",
+        "난"
+      ]
+    },
+    {
+      "word": "하다",
+      "why": "the ㄴ-adnominal 한 is 'one'; the 아/어 form 해 is the Sun",
+      "must_count": [
+        "해요",
+        "했어요",
+        "합니다",
+        "하는"
+      ],
+      "must_not_count": [
+        "한",
+        "해"
+      ]
+    },
+    {
+      "word": "가다",
+      "why": "간 is 'liver' and a lemma; 갈 is 갈다's stem; 가요 is the taught noun (a song) and is nobody's verb form",
+      "must_count": [
+        "가서",
+        "갔어요",
+        "갑니다",
+        "가는"
+      ],
+      "must_not_count": [
+        "간",
+        "가요"
+      ]
+    },
+    {
+      "word": "긋다",
+      "why": "ㅅ-irregular alternant 그 must not fold 그게 (that thing) onto this verb — it ranked 4th",
+      "must_count": [
+        "긋고"
+      ],
+      "must_not_count": [
+        "그게",
+        "그"
+      ]
+    },
+    {
+      "word": "크다",
+      "why": "a two-syllable adnominal that is nobody else's is counted",
+      "must_count": [
+        "큰",
+        "커요",
+        "컸어요"
+      ],
+      "must_not_count": []
+    },
+    {
+      "word": "작다",
+      "must_count": [
+        "작은",
+        "작아요",
+        "작습니다"
+      ],
+      "must_not_count": []
+    },
+    {
+      "word": "먹다",
+      "must_count": [
+        "먹는",
+        "먹어요",
+        "먹었어요",
+        "먹습니다",
+        "먹은"
+      ],
+      "must_not_count": []
+    },
+    {
+      "word": "걷다",
+      "why": "ㄷ-irregular: 걸 before a vowel is shared with 걸다 and divided, 걷 before a consonant is its own",
+      "must_count": [
+        "걷고",
+        "걷는",
+        "걷습니다"
+      ],
+      "shared": [
+        "걸어요"
+      ],
+      "must_not_count": []
+    },
+    {
+      "word": "살다",
+      "why": "사 before 세요 is shared with 사다 and divided; 산 is a mountain",
+      "must_count": [
+        "살아요",
+        "살고"
+      ],
+      "shared": [
+        "사세요",
+        "사는"
+      ],
+      "must_not_count": [
+        "산",
+        "샀어요",
+        "사고"
+      ]
+    },
+    {
+      "word": "사다",
+      "must_count": [
+        "사요",
+        "샀어요",
+        "사고"
+      ],
+      "shared": [
+        "사세요",
+        "사는"
+      ],
+      "must_not_count": [
+        "살아요",
+        "살고",
+        "산"
+      ]
+    },
+    {
+      "word": "닫다",
+      "why": "a regular ㄷ stem keeps its ㄷ before a vowel: the spelling cannot say which class a ㄷ-final stem is in, so both readings count",
+      "must_count": [
+        "닫아요",
+        "닫았어요",
+        "닫고",
+        "닫습니다"
+      ],
+      "must_not_count": []
+    },
+    {
+      "word": "입다",
+      "why": "a regular ㅂ stem: 입어요 is the word, 이워요 is not",
+      "must_count": [
+        "입어요",
+        "입었어요",
+        "입고",
+        "입는"
+      ],
+      "must_not_count": []
+    },
+    {
+      "word": "웃다",
+      "why": "a regular ㅅ stem: 웃어요 is the word, 우어요 is not",
+      "must_count": [
+        "웃어요",
+        "웃었어요",
+        "웃고",
+        "웃는"
+      ],
+      "must_not_count": []
+    }
+  ]
+}

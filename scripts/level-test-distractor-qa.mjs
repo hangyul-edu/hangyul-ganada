@@ -187,7 +187,9 @@ function check(item, { source }) {
   const options = item.options ?? [];
   const isNoun = anchor ? anchor.pos === 'noun' : item.pos === 'noun';
 
-  if (refused.has(anchorId)) out.push(['reviewedOut', `${anchorId} carries ctx: 0 — read and refused`]);
+  // `ctx: 0` refuses the *card* sentence as a gap-fill. A curated item is a
+  // sentence written for the question, read on its own terms.
+  if (refused.has(anchorId) && !item.curated) out.push(['reviewedOut', `${anchorId} carries ctx: 0 — read and refused`]);
 
   const seen = new Map();
   for (const option of options) {
@@ -251,6 +253,7 @@ for (const [id, entry] of Object.entries(cloze)) {
       options: entry.options.map((option) => option.surface),
       distractorIds: entry.options.map((option) => option.id).filter((optionId) => optionId !== id),
       form: entry.form,
+      curated: entry.curated === true,
     },
     { source: 'cloze' },
   );

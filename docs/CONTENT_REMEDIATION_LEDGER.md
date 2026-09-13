@@ -249,13 +249,22 @@ failures and the build printed each one — `고기 does not take 을`,
 
 Levels 1–5 recover to 36.
 
-**Known limitation, stated rather than hidden.** Curated items carry **no
-sentence audio**. The clip the renderer plays under a gap-fill is
-`word.audio.example` — the *card's* sentence — and a curated item is a different
-sentence, so playing it would be an audio/transcript mismatch. `cloze.json`
-marks these `curated: true` and `exercises.ts` omits the audio rather than
-playing the wrong recording. Recording them needs `export-speech-plan.mjs` to
-learn about a second source of Korean sentences.
+**Known limitation, stated rather than hidden — and closed in v1.0.5.** Curated
+items carried **no sentence audio** through 1.0.4. The clip the renderer plays
+under a gap-fill was `word.audio.example` — the *card's* sentence — and a
+curated item is a different sentence, so playing it would have been an
+audio/transcript mismatch; `exercises.ts` omitted the audio rather than play
+the wrong recording.
+
+**v1.0.5.** The builder now stamps every curated item with an `audioId` derived
+from its own sentence text (`ex_` plus the codepoints, the same rule as the
+card examples); `export-speech-plan.mjs` reads `cloze.json` as a second source
+of Korean sentences; the audio build recorded all of them in both voices with
+the shipped provider; and `exercises.ts` plays the curated clip only when the
+manifest holds it (`curatedClozeAudio.test.ts`). Seventeen more beginner items
+were written the same way — levels 1–5 now hold 52 gap-fills, 6–10 hold 20 —
+and two whose first draft matched the card sentence exactly were reworded so
+the question is not the card again.
 
 ---
 

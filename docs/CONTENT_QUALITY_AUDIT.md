@@ -6,19 +6,19 @@ edit this file by hand.*
 
 ## 1. What was audited
 
-**8,223 rows**, one per reachable Korean item.
+**8,264 rows**, one per reachable Korean item.
 
 | Resolution | Rows |
 |:---|---:|
-| `PASS` | 8,166 |
+| `PASS` | 8,207 |
 | `REMOVE` | 54 |
 | `REWRITE` | 3 |
 
 | Family | Rows |
 |:---|---:|
-| level test | 4,044 |
+| level test | 4,064 |
 | word card example sentence | 3,370 |
-| daily vocabulary / review gap-fill | 510 |
+| daily vocabulary / review gap-fill | 531 |
 | numbers | 299 |
 
 ## 2. Inventory of every source a learner can receive Korean from
@@ -26,12 +26,12 @@ edit this file by hand.*
 | Content family | Source of truth | Generated output | Items | Question types | Levels | Locales | Runtime consumer | Validation | Human review |
 |:---|:---|:---|---:|:---|:---|:---|:---|:---|:---|
 | Word card example sentences | content/vocabulary/entries/*.jsonl | apps/web/public/corpus/band-*.json | 3370 | example | 1–30 | 32 | word cards, Today’s Vocabulary, Review | gated | read 2026-09-10 |
-| Level test — meaning | content-cache/level-test-anchors.json | public/level-test/bank-d508e043.json | 1760 | meaning | 1–30 | 32 | Vocabulary Level Test | gated | gates only |
-| Level test — produce | content-cache/level-test-anchors.json | public/level-test/bank-d508e043.json | 1760 | produce | 1–30 | 32 | Vocabulary Level Test | gated | gates only |
-| Level test — context | content/vocabulary/entries/*.jsonl | public/level-test/bank-d508e043.json | 470 | gap-fill | 3–30 | 32 | Vocabulary Level Test | gated | every item read 2026-09-10 |
-| Daily / review gap-fills | content/vocabulary/entries/*.jsonl | src/data/generated/cloze.json | 510 | gap-fill | 3–30 | 32 | Today’s Vocabulary, Review | gated | same items as above |
+| Level test — meaning | content-cache/level-test-anchors.json | public/level-test/bank-26b2364e.json | 1763 | meaning | 1–30 | 32 | Vocabulary Level Test | gated | gates only |
+| Level test — produce | content-cache/level-test-anchors.json | public/level-test/bank-26b2364e.json | 1763 | produce | 1–30 | 32 | Vocabulary Level Test | gated | gates only |
+| Level test — context | content/vocabulary/entries/*.jsonl | public/level-test/bank-26b2364e.json | 484 | gap-fill | 3–30 | 32 | Vocabulary Level Test | gated | every item read 2026-09-10 |
+| Daily / review gap-fills | content/vocabulary/entries/*.jsonl | src/data/generated/cloze.json | 531 | gap-fill | 3–30 | 32 | Today’s Vocabulary, Review | gated | same items as above |
 | Refused contextual items | ctx: 0 in content/vocabulary/entries/*.jsonl | — (not shipped) | 54 | gap-fill | 3–30 | — | none | refused | read and refused |
-| Hand-written contextual items | content/vocabulary/context-items.json | public/level-test/bank-d508e043.json | 22 | gap-fill | 1–5 | 32 | Vocabulary Level Test, Today’s Vocabulary, Review | validated by the builder against the generated items’ own rules | authored and read 2026-09-10 |
+| Hand-written contextual items | content/vocabulary/context-items.json | public/level-test/bank-26b2364e.json | 39 | gap-fill | 1–5 | 32 | Vocabulary Level Test, Today’s Vocabulary, Review | validated by the builder against the generated items’ own rules | authored and read 2026-09-10 |
 | Negative fixtures | content/vocabulary/context-negative-fixtures.json | — (not shipped) | 8 | gap-fill | 5–15 | — | the gate only | must fail | authored 2026-09-10 |
 | Numbers questions | apps/web/src/data/numbers.ts | the bundle | 299 | 9 kinds | modules 1–6 | 32 | Numbers course | gated | ledger |
 | Dictionary senses | content-cache (Wiktionary) | public/dictionary/* | 38746 | reference | n/a | en only | Search | gated | never scheduled; not taught |

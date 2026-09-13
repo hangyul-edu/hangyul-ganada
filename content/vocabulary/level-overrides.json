@@ -15,7 +15,9 @@
     "",
     "September 2026: eighteen rows added at once, which is unusual and is why they are described together. All eighteen are words with editorial usefulness 1 — the highest — and a frequency rank inside the commonest 1,200, sitting at levels 7 to 14. They share one cause: `_concreteness` in scripts/content/level.py returns a fixed weight for any tag whose template is in ABSTRACT_TEMPLATES and never looks at the parts, so every `cmp:` antonym pair and every `seq:` before-and-after pair is scored unpicturable. 길다, 짧다, 멀다, 가깝다, 열다 and 닫다 are among the most picturable words in the language.",
     "",
-    "They are moved here rather than by changing the weight, because changing it re-levels the whole corpus and would have to be re-anchored and re-read; that is the right fix and it is a piece of work, not a nudge. The model defect is recorded as an open issue so this is a decision on the record and not a workaround nobody can find."
+    "They are moved here rather than by changing the weight, because changing it re-levels the whole corpus and would have to be re-anchored and re-read; that is the right fix and it is a piece of work, not a nudge. The model defect is recorded as an open issue so this is a decision on the record and not a workaround nobody can find.",
+    "",
+    "September 2026, v1.0.5: three rows retired. 잇다 and 잘다 were held down because the frequency reader folded 있어요 and 잘게 onto them (rank 1 and rank 83); the reader's form model was rewritten (scripts/content/conjugate.py `frequency_forms`, scripts/content/frequency.py) and now reads them at ranks 1,601 and 2,204, so the model's own levels stand. 싸다 was reported by the build as an override the model already agreed with. The eighteen first-semester anchors stay: with the ㄹ-drop forms counted, 길다 moved from rank 893 to 568 and the model says 7 (5 after the usefulness ceiling) against the anchor's 3, so the remaining gap is editorial — a subtitle corpus does not rank first-semester adjectives where a syllabus puts them — and there is no spoken-Korean frequency source in this repository to close it with."
   ],
   "words": {
     "그들": {
@@ -25,14 +27,6 @@
     "저": {
       "keep": true,
       "why": "Flagged literary because Wiktionary's first pronoun sense for this spelling is the distal demonstrative, not the humble first person this app teaches. The taught sense is the most ordinary word in polite Korean and level 1 is right."
-    },
-    "잇다": {
-      "level": 18,
-      "why": "The frequency matcher gives it rank 1, which is wrong: it folds every token ending in a verb suffix that begins 이- or 잇- onto this stem. 잇다 is an ordinary but not common verb and the other three components put it here."
-    },
-    "잘다": {
-      "level": 27,
-      "why": "Rank 296 for the same reason — 잘 is a very frequent adverb and tokens like 잘게 and 잘지 fold onto this stem. 잘다 itself is uncommon and mostly written."
     },
     "크다": {
       "level": 4,
@@ -102,10 +96,6 @@
       "level": 3,
       "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month. 좋다 is level 1."
     },
-    "싸다": {
-      "level": 5,
-      "why": "The model scores this abstract because its semantic tag is a `cmp:` antonym pair, and `_concreteness` returns a template's fixed weight without ever consulting the parts — so a word is called unpicturable for having an opposite. Having an opposite says nothing about whether you can see it: this is first-semester vocabulary in every Korean course and a learner meets it in the first month."
-    },
     "맛있다": {
       "level": 3,
       "why": "The build's own docstring names this word as the failure the difficulty split was written to fix — it was at level 10 under the single-number model and it is at level 10 again. 밥, 음식 and 먹다 are all level 3, and 맛있어요 is what a learner says about them."
@@ -121,6 +111,10 @@
     "착하다": {
       "level": 6,
       "why": "Rank 1076, usefulness 1. Not first-month, but 12 is where the model puts words a learner meets in their second year."
+    },
+    "싫다": {
+      "level": 6,
+      "why": "The 78th commonest word in the corpora and the other half of 좋다, which is level 1: 좋아요/싫어요 is a first-month pair in every syllabus, and the model's 7 comes from the usefulness mark of 2 (no ceiling) plus a frequency cost that is already 0.54 at rank 78. Set to 6 in the v1.0.5 pass, when the corrected frequency reader left level 6 at 39 words — one under the 40 a daily plan needs — and this was the word most clearly sitting a level too high beside it. Not a quota: a quota would have picked whichever word was nearest the boundary, and 열쇠 and 카메라 were nearer."
     }
   }
 }

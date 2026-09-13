@@ -57,6 +57,15 @@ export interface Cloze {
    * sentence: for a curated item it does not, so nothing is played.
    */
   curated?: boolean;
+  /**
+   * The clip of *this* sentence, where one has been recorded.
+   *
+   * Stamped by the builder on curated items, derived from the sentence text
+   * the way a card example's is. The renderer plays it only if the manifest
+   * holds it — `PronunciationProvider.has` — so a sentence added before the
+   * next audio build is asked without sound rather than with the wrong sound.
+   */
+  audioId?: string;
 }
 
 const WORDS = (raw as { words: Record<string, Cloze> }).words;

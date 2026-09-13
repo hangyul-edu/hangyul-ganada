@@ -161,11 +161,11 @@
       "before": "",
       "after": "을 보고 머리를 빗었어요.",
       "options": [
-        "word_bang",
+        "word_sugeon",
         "word_chitsol",
         "word_hwajangsil"
       ],
-      "why": "One combs one's hair in front of a mirror; a room, a toothbrush and a bathroom are not looked into."
+      "why": "One combs one's hair in front of a mirror; a towel, a toothbrush and a bathroom are not looked into. 방 stood here until the v1.0.5 frequency correction moved it to level 1, seven levels from 거울; 수건 (9) keeps the spread inside the rule and all four still take 을."
     },
     {
       "answer": "word_mun",
@@ -243,6 +243,193 @@
         "word_eunhaeng"
       ],
       "why": "내다 of money. A market, a convenience store and a bank are places — one does not hand a shop a bank."
+    },
+    {
+      "answer": "word_keopi",
+      "before": "아침에 ",
+      "after": "를 마셨어요.",
+      "options": [
+        "word_sagwa",
+        "word_gogi",
+        "word_gimchi"
+      ],
+      "why": "마시다 takes a liquid, and the three others are eaten. 우유 and 주스 are kept out of the options because they can be drunk too. All four are vowel-final, so 를 gives nothing away."
+    },
+    {
+      "answer": "word_jip",
+      "before": "밤에 ",
+      "after": "에서 잠을 자요.",
+      "options": [
+        "word_mun",
+        "word_ot",
+        "word_chaeksang"
+      ],
+      "why": "One sleeps at home. 방 is left out because 방에서 잠을 자요 is also true; a door, clothes and a desk are not slept in."
+    },
+    {
+      "answer": "word_changmun",
+      "before": "더운 방에서 ",
+      "after": "을 열었어요.",
+      "options": [
+        "word_chaeksang",
+        "word_byeok",
+        "word_chitsol"
+      ],
+      "why": "열다 takes a window here. 문 and 가방 open too and are kept out; a desk, a wall and a toothbrush do not open."
+    },
+    {
+      "answer": "word_uija",
+      "before": "",
+      "after": "에 앉아서 책을 읽었어요.",
+      "options": [
+        "word_moja",
+        "word_sigye",
+        "word_baji"
+      ],
+      "why": "앉다 needs somewhere to sit. 침대 is kept out because one can sit on a bed; a hat, a clock and trousers are not sat on."
+    },
+    {
+      "answer": "word_chimdae",
+      "before": "동생이 ",
+      "after": "에 누워서 잠을 자요.",
+      "options": [
+        "word_moja",
+        "word_sigye",
+        "word_binu"
+      ],
+      "why": "눕다 needs somewhere to lie down. A hat, a clock and a bar of soap are not lain on; 의자 is kept out to be safe."
+    },
+    {
+      "answer": "word_naengjanggo",
+      "before": "",
+      "after": "에 우유를 넣었어요.",
+      "options": [
+        "word_sigye",
+        "word_binu",
+        "word_chima"
+      ],
+      "why": "Milk goes into the fridge. 가방 is kept out because things go into bags; a clock, soap and a skirt hold no milk."
+    },
+    {
+      "answer": "word_sae",
+      "before": "",
+      "after": "가 하늘을 날아요.",
+      "options": [
+        "word_gae",
+        "word_goyangi",
+        "word_namu"
+      ],
+      "why": "Only the bird flies. A dog, a cat and a tree stay on the ground."
+    },
+    {
+      "answer": "word_kkot",
+      "before": "봄에 ",
+      "after": "이 피었어요.",
+      "options": [
+        "word_san",
+        "word_dal",
+        "word_byeol"
+      ],
+      "why": "피다 in this sense is blooming, and a mountain, the moon and a star do not bloom."
+    },
+    {
+      "answer": "word_bi",
+      "before": "",
+      "after": "가 와서 우산을 썼어요.",
+      "options": [
+        "word_hae",
+        "word_namu",
+        "word_bada"
+      ],
+      "why": "An umbrella is opened for rain. The sun, a tree and the sea do not 오다."
+    },
+    {
+      "answer": "word_bada",
+      "before": "",
+      "after": "에서 물고기를 잡았어요.",
+      "options": [
+        "word_namu",
+        "word_hae",
+        "word_nalssi"
+      ],
+      "why": "Fish are caught in the sea. A tree, the sun and the weather hold none; 강 is kept out because rivers have fish too. Two earlier frames were refused by the rules: 수영을 했어요 tripped the 하다 rule on 나무하다, and 배를 타고 ____에 나갔어요 is a destination frame."
+    },
+    {
+      "answer": "word_san",
+      "before": "주말에 ",
+      "after": "에서 나무를 많이 봤어요.",
+      "options": [
+        "word_dal",
+        "word_byeol",
+        "word_baram"
+      ],
+      "why": "Trees stand on a mountain. The moon, a star and the wind have none."
+    },
+    {
+      "answer": "word_geurim",
+      "before": "연필로 ",
+      "after": "을 그렸어요.",
+      "options": [
+        "word_chaek",
+        "word_sajin",
+        "word_eumak"
+      ],
+      "why": "그리다 is drawing. A book is written, a photograph taken, music played."
+    },
+    {
+      "answer": "word_gongwon",
+      "before": "",
+      "after": "에서 산책을 했어요.",
+      "options": [
+        "word_yakguk",
+        "word_jeongnyujang",
+        "word_hotel"
+      ],
+      "why": "산책 is a walk in a park. 마을 and 길 are kept out because one can walk there too; a pharmacy, a bus stop and a hotel are not strolled around."
+    },
+    {
+      "answer": "word_yakguk",
+      "before": "아파서 ",
+      "after": "에서 약을 샀어요.",
+      "options": [
+        "word_gongwon",
+        "word_jeongnyujang",
+        "word_hotel"
+      ],
+      "why": "Medicine is bought at a pharmacy and nowhere else among the four."
+    },
+    {
+      "answer": "word_kadeu",
+      "before": "",
+      "after": "로 돈을 냈어요.",
+      "options": [
+        "word_moja",
+        "word_sigye",
+        "word_binu"
+      ],
+      "why": "내다 of money by card. A hat, a clock and a bar of soap pay for nothing; 돈 itself is in the sentence."
+    },
+    {
+      "answer": "word_binu",
+      "before": "",
+      "after": "로 얼굴을 씻어요.",
+      "options": [
+        "word_moja",
+        "word_sigye",
+        "word_kadeu"
+      ],
+      "why": "A face is washed with soap; the others are the same drawer and wash nothing. The card's own sentence is 비누로 손을 씻어요, so this one changes the object."
+    },
+    {
+      "answer": "word_chitsol",
+      "before": "",
+      "after": "로 이를 닦아요.",
+      "options": [
+        "word_moja",
+        "word_sigye",
+        "word_kadeu"
+      ],
+      "why": "닦다 of teeth is a toothbrush. 수건 is kept out because it wipes; a hat, a clock and a card clean no teeth. All four take 로."
     }
   ]
 }

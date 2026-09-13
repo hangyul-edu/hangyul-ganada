@@ -65,7 +65,8 @@
     ],
     "word_gae": [
       "köpek",
-      "Köpek koşuyor."
+      "Köpek koşuyor.",
+      "Köpek — ve aynı yazımla, nesneler için sayma sözcüğü: 사과 두 개, iki elma; 세 개 주세요, üç tane lütfen. Sayma sözcüğü Korece öz sayılarla kullanılır (하나, 둘, 셋 önünde 한, 두, 세 olur). Sayma sözcüğüyle hayvandan çok daha sık karşılaşırsın."
     ],
     "word_mun": [
       "kapı",
@@ -102,7 +103,8 @@
     ],
     "word_meori": [
       "baş",
-      "Başım ağrıyor."
+      "Başım ağrıyor.",
+      "Baş — ve üzerindeki saç da: 머리를 잘랐어요, saçımı kestirdim demektir; 머리를 감아요 ise başı değil saçı yıkamaktır. 머리가 아파요 baş ağrısıdır; 머리가 좋아요 zeki demektir. Özellikle saçtan söz edilecekse 머리카락, tel tel saç sözcüğüdür."
     ],
     "word_ip": [
       "ağız",
@@ -264,7 +266,8 @@
     ],
     "word_bap": [
       "yemek",
-      "Yemek yiyorum."
+      "Yemek yiyorum.",
+      "Pişmiş pirinç ve genişleyerek her türlü yemek: 밥 먹었어요? (yemek yedin mi?) günlük bir selamlaşmadır, 밥 먹으러 가요 ise ne yenirse yensin «hadi yemeğe» demektir. Pişmemiş pirinç 쌀, tarladaki bitki 벼'dir. 식사, yemek için daha resmî sözcüktür."
     ],
     "word_eomma": [
       "anne",
@@ -459,7 +462,8 @@
     ],
     "word_alda": [
       "bilmek",
-      "Adı biliyorum."
+      "Adı biliyorum.",
+      "Kökü ㄹ ile biten fiil: ㄴ, ㅂ ve ㅅ'den önce ㄹ düşer; bu yüzden 압니다 (resmî), 아세요? (biliyor musunuz?) ve 아는 사람 (tanıdık) denir, ama 알아요, 알고 ve 알면 korur. 알겠어요, anladım, tamam demektir — sürekli duyacağın bir sözdür. Zıddı 모르다, 르 düzensizdir: 몰라요."
     ],
     "word_yak": [
       "ilaç",
@@ -471,7 +475,8 @@
     ],
     "word_jal": [
       "iyi",
-      "İyi uyudun mu?"
+      "İyi uyudun mu?",
+      "«İyi», ve çok daha fazlası: 잘 먹었습니다 (yemek için teşekkürler, kelimesi kelimesine «iyi yedim»), 잘 잤어요? (iyi uyudun mu?), 잘 가요 (gidene hoşça kal), 잘 모르겠어요 (emin değilim). 하다 ile 잘하다 olur, bir şeyde iyi olmak: 한국어를 잘해요. Zıddı 못'tur: kötü ya da yapamamak."
     ],
     "word_anida": [
       "bir şey olmamak",
@@ -496,7 +501,8 @@
     ],
     "word_ttae": [
       "bir şeyin olduğu an",
-      "Küçükken kırsalda yaşıyordum."
+      "Küçükken kırsalda yaşıyordum.",
+      "«-dığında, -ken» anlamında zaman: 어릴 때 (küçükken), 밥 먹을 때 (yemek yerken), 그때 (o zaman), 방학 때 (tatilde). Doğrudan bir ismin ya da -ㄹ/을 almış bir fiilin ardından gelir: 갈 때, giderken; 먹을 때, yerken. Süre için 시간, saat için 시 kullanılır."
     ],
     "word_il": [
       "iş",
@@ -659,7 +665,8 @@
     ],
     "word_geotda": [
       "yürümek",
-      "Parkta yürüyorum."
+      "Parkta yürüyorum.",
+      "듣다 gibi ㄷ düzensiz fiili: ünlüden önce 걸어요 ve 걸었어요, ünsüzden önce 걷고 ve 걷습니다. 걸어요 aynı zamanda 걸다 (asmak, telefon etmek) fiilinin biçimidir: 전화를 걸어요 telefon etmek, 공원을 걸어요 parkta yürümek demektir; nesne belirler. 걸음 (adım) ismini de aklında tut."
     ],
     "word_gangaji": [
       "yavru köpek",
@@ -865,7 +872,8 @@
     ],
     "word_neomu": [
       "fazla",
-      "Bu kıyafet fazla büyük."
+      "Bu kıyafet fazla büyük.",
+      "Aslında «fazla, aşırı» — 너무 커요, fazla büyük — günlük konuşmada ise sadece «çok» anlamında da: 너무 좋아요, bayılıyorum; 너무 맛있어요, gerçekten lezzetli. İkisi de doğaldır. Yansız bir «çok» için, özellikle yazıda, 아주 ve 정말 daha güvenlidir."
     ],
     "word_yong": [
       "ejderha",
@@ -873,7 +881,8 @@
     ],
     "word_geureota": [
       "öyle olmak",
-      "Evet, öyle."
+      "Evet, öyle.",
+      "ㅎ düzensiz sıfatı: ünlüden önce ㅎ düşer ve ünlü değişir, böylece 그래요 (evet öyle, anladım) ve 그랬어요 olur; ㄴ'den önce de düşer: 그런 사람, öyle bir insan. 그렇고 ve 그렇지만 korur. 이렇다 (böyle), 저렇다 (şöyle, oradaki gibi) ve 어떻다 (nasıl) onunla aynı ailedendir: 이래요, 저래요, 어때요. 그렇게 zarfı öyle, o şekilde demektir."
     ],
     "word_hotel": [
       "otel",
@@ -897,7 +906,8 @@
     ],
     "word_maeum": [
       "kalp, gönül",
-      "Sıcak bir kalbi var."
+      "Sıcak bir kalbi var.",
+      "Aynı anda hem kalp hem gönül — duygular, niyetler, iç dünya; organ değil (o 심장). Üç deyim kullanımının çoğunu taşır: 마음에 들어요 (hoşuma gitti, kelimesi kelimesine «kalbime giriyor»), 마음이 아파요 (içim acıyor) ve 마음대로 (istediğin gibi). 마음이 따뜻하다, sıcak kalpli demektir."
     ],
     "word_jadongcha": [
       "otomobil",
@@ -961,7 +971,8 @@
     ],
     "word_sipda": [
       "istemek",
-      "Kore'ye gitmek istiyorum."
+      "Kore'ye gitmek istiyorum.",
+      "İstemek (bir şey yapmayı) — ama asla tek başına durmaz. Fiile 고 ile bağlanır: 가고 싶어요 (gitmek istiyorum), 먹고 싶어요 (yemek istiyorum). Bir şey istenirken de Korece yine fiil kullanır: 커피를 마시고 싶어요, kahve (içmek) istiyorum. Üçüncü kişi için 싶어하다 olur: 동생이 가고 싶어해요, küçük kardeşim gitmek istiyor."
     ],
     "word_nyuseu": [
       "haberler",
@@ -1190,7 +1201,8 @@
     ],
     "word_ajik": [
       "hâlâ, henüz",
-      "Henüz gelmediler."
+      "Henüz gelmediler.",
+      "Hâlâ, ya da henüz değil: olumsuzla henüz değil demektir — 아직 안 왔어요, henüz gelmediler; 아직 몰라요, henüz bilmiyorum — olumlu fiille ise hâlâ: 아직 자요, hâlâ uyuyor. Karşılığı 벌써'dir (çoktan, beklenenden erken); 이미 ise yansız anlamda «zaten, çoktan»."
     ],
     "word_gyedan": [
       "merdiven",
@@ -1222,7 +1234,8 @@
     ],
     "word_beolsseo": [
       "çoktan",
-      "Her şey çoktan bitti."
+      "Her şey çoktan bitti.",
+      "Çoktan, bir tutam şaşkınlıkla: beklediğinden erken. 벌써 다 끝났어요? — çoktan bitti mi? 벌써 열두 시예요, saat çoktan on iki olmuş. Şaşkınlık yoksa Korece 이미 kullanır: 이미 알고 있었어요, zaten biliyordum. Zıddı 아직'tir: hâlâ ya da henüz değil."
     ],
     "word_dangsin": [
       "siz, kibarca",
@@ -1475,7 +1488,8 @@
     ],
     "word_johahada": [
       "sevmek",
-      "Kahveyi severim."
+      "Kahveyi severim.",
+      "«Sevmek» Korecede bir fiil, 좋다 (iyi olmak) ise bir sıfattır; bu yüzden ek değişir: 커피를 좋아해요 (kahveyi severim) ama 커피가 좋아요 (kahve iyi, hoşuma gidiyor). Yeni başlayanlar ikisini karıştırır; 를 yalnızca 좋아하다 ile gelir. 싫어하다 (sevmemek) ile 싫다 da tam olarak aynı ilişkidedir."
     ],
     "word_jimseung": [
       "yabani hayvan",
@@ -1507,7 +1521,8 @@
     ],
     "word_gomapda": [
       "minnettar olmak",
-      "Yardımınız için teşekkürler."
+      "Yardımınız için teşekkürler.",
+      "Teşekkürler, iki günlük biçimden daha sıcak olanı: arkadaşlara ve samimi olduklarına 고마워요, daha resmî olarak 고맙습니다. 감사합니다 aynı anlama gelir ve yabancılar, çalışanlar ve büyüklerle daha güvenli seçimdir. İkisi de kibar biçimde ㅂ düzensizdir: 고맙어요 değil, 고마워요."
     ],
     "word_gyesan": [
       "hesap",
@@ -1841,7 +1856,8 @@
     ],
     "word_deutda": [
       "dinlemek, duymak",
-      "Müzik dinliyorum."
+      "Müzik dinliyorum.",
+      "ㄷ düzensiz fiili: ünlüden önce ㄷ, ㄹ olur; bu yüzden 들어요 ve 들었어요 denir, ama 듣고 ve 듣습니다 ㄷ'yi korur. Bu yüzden 들어요, 들다 (tutmak, kaldırmak) fiiline benzer; bağlam ayırt eder. 묻다 (sormak) ve 걷다 (yürümek) aynı şekilde değişir."
     ],
     "word_subak": [
       "karpuz",
@@ -2045,7 +2061,8 @@
     ],
     "word_sal": [
       "yaş, yaşı belirtirken",
-      "Yirmi yaşındayım."
+      "Yirmi yaşındayım.",
+      "Yaş yılları, Korece öz sayılarla sayılır: 스무 살 (yirmi), 서른 살 (otuz), 몇 살이에요? (kaç yaşındasın?). Önündeki değişen biçimlere dikkat — 한 살, 두 살, 세 살, 스무 살. Aynı yazımla 살, et ya da ten de demektir (살이 쪘어요, kilo aldım); öndeki sayı hangisi olduğunu söyler."
     ],
     "word_anae": [
       "eş, kadın",
@@ -2074,7 +2091,8 @@
     ],
     "word_dareuda": [
       "farklı olmak",
-      "Renkler farklı."
+      "Renkler farklı.",
+      "르 düzensiz sıfatı: 아/어'den önce 르'nin ㄹ'si önceki heceye katlanır; bu yüzden 달라요 ve 달랐어요 denir, ama 다르고 ve 다릅니다 düzenlidir. 빠르다 (hızlı), 모르다 (bilmemek) ve 부르다 (çağırmak) aynı şekilde değişir: 빨라요, 몰라요, 불러요. Neyden farklı olduğu 와/과 ya da 하고 ile söylenir: 저와 달라요."
     ],
     "word_geunyang": [
       "öylesine",
@@ -2374,7 +2392,8 @@
     ],
     "word_myeong": [
       "kişi, sayarken",
-      "Beş öğrenci var."
+      "Beş öğrenci var.",
+      "İnsanlar için sayma sözcüğü, Korece öz sayılarla: 학생 다섯 명 (beş öğrenci), 두 명이요 (iki kişi — restoran kapısında). 몇 명이에요? kaç kişi diye sorar. 분 aynı şeyin saygılı sayma sözcüğüdür (손님 두 분), 사람 da gayriresmî olarak sayabilir: 두 사람."
     ],
     "word_eonni": [
       "bir kadının ablası",
@@ -2451,7 +2470,8 @@
     ],
     "word_ppareuda": [
       "hızlı olmak",
-      "Tren hızlı."
+      "Tren hızlı.",
+      "다르다 gibi 르 düzensiz sıfatı: 아/어'den önce 빨라요 ve 빨랐어요, ama 빠르고, 빠릅니다 ve 빠른 기차 (hızlı tren) düzenlidir. Zarfı 빨리, hızlıca: 빨리 오세요, çabuk gel; 빨리빨리 acele etmek için bilinen Korece sözdür. Zıddı 느리다'dır."
     ],
     "word_gakkapda": [
       "yakın olmak",
@@ -2896,7 +2916,8 @@
     ],
     "word_joesonghada": [
       "özür dilemek",
-      "Geciktiğim için özür dilerim."
+      "Geciktiğim için özür dilerim.",
+      "Özür dilemenin iki yolundan daha resmî olanı: yabancılara, müşterilere, öğretmenlere ve büyüklere 죄송합니다; arkadaşlara ve eşitlere 미안해요 ya da 미안합니다. Resmî olman gereken birine 미안해요 demek fazla laubali, yakın bir arkadaşa 죄송해요 demek ise katı gelir — seçimin bütün amacı bu üslup düzeyidir."
     ],
     "word_silsu": [
       "hata",
@@ -3105,7 +3126,8 @@
     ],
     "word_chupda": [
       "soğuk olmak",
-      "Bugün hava soğuk."
+      "Bugün hava soğuk.",
+      "ㅂ düzensiz sıfatı: ünlüden önce ㅂ, 우 olur; bu yüzden 추워요, 추웠어요 ve 추운 날 (soğuk bir gün) denir, ama 춥고 ve 춥습니다 ㅂ'yi korur. 덥다 (sıcak), 어렵다 (zor), 쉽다 (kolay) ve 가깝다 (yakın) aynı şekilde işler. Hava veya ortam için kullanılır; soğuk bir içecek 차갑다'dır."
     ],
     "word_mogyoil": [
       "perşembe",
@@ -3980,7 +4002,8 @@
     ],
     "word_deopda": [
       "sıcak olmak",
-      "Yaz sıcaktır."
+      "Yaz sıcaktır.",
+      "춥다'nın eşi, ㅂ düzensiz sıfatı: ünlüden önce 더워요, 더웠어요, 더운 날; ünsüzden önce 덥고 ve 덥습니다. Havayı, bir odayı ya da nasıl hissettiğini anlatır: 저는 더워요, sıcak bastı. Dokununca sıcak olan, yemek veya su gibi şeyler 뜨겁다'dır."
     ],
     "word_akka": [
       "az önce",
@@ -4253,7 +4276,8 @@
     ],
     "word_mari": [
       "hayvan sayma sözcüğü",
-      "İki kedi besliyorum."
+      "İki kedi besliyorum.",
+      "Hayvanlar için sayma sözcüğü — balıktan file her hayvan: 고양이 두 마리 (iki kedi), 새 한 마리 (bir kuş), önünde Korece öz sayılarla. İnsanlar 명 ile, nesneler 개 ile sayılır; bir insan için 마리 kullanmak ortama göre şaka ya da hakarettir."
     ],
     "word_julda": [
       "azalmak",
