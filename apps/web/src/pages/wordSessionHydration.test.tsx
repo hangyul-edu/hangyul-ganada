@@ -60,8 +60,17 @@ function slowDriver(delayMs = 30): PersistenceDriver {
       if (key === 'durable') return true;
       if (key === 'name') return 'indexeddb';
       if (key === 'get' || key === 'getAll') {
-        return async (...args: [StoreName, string]) =>
-          later(await (Reflect.get(target, key, target) as (...a: unknown[]) => Promise<unknown>)(...args));
+        /*
+         * Bound to the driver. This used to call the method unbound, so every
+         * read threw `Cannot read properties of undefined (reading 'bucket')`,
+         * hydration fell into its catch and handed the screen an *empty*
+         * profile — and the test passed, because an empty profile also shows
+         * a word. It was measuring the failure path while describing the slow
+         * one (found in the v1.0.5 pass while writing the Numbers twin of this
+         * file). A wait is only a wait if the read succeeds afterwards.
+         */
+        const method = Reflect.get(target, key, target) as (...a: unknown[]) => Promise<unknown>;
+        return async (...args: [StoreName, string]) => later(await method.apply(target, args));
       }
       return Reflect.get(target, key, target);
     },
