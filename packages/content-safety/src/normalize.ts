@@ -4,7 +4,8 @@
  * The pipeline the policy document names, in order:
  *
  *   Unicode normalisation → zero-width and control removal → case folding →
- *   spacing and punctuation normalisation → (matching)
+ *   homoglyph folding in mixed-script tokens → spacing and punctuation
+ *   normalisation → (matching)
  *
  * Two forms come out of it. `norm` keeps word boundaries and is what token,
  * phrase and pattern matching read. `compact` has every space and punctuation
@@ -21,10 +22,29 @@ const INVISIBLE = /[\u200B-\u200F\u2060-\u2064\uFEFF\u00AD\uFE00-\uFE0F\u180E\u0
 /** Letters, digits and combining marks in any script — a Thai vowel or a Devanagari matra is part of its word. */
 const WORD_CHAR = /[\p{L}\p{N}\p{M}]/u;
 
-/** Characters that mask a letter inside a word: f*ck, s.e.x, s-e-x, s_e_x. */
-const MASK = /[*#.\-_·•~^+]/;
+/** Characters that mask a letter inside a word: f*ck, s.e.x, s-e-x, s_e_x, s(e)x. */
+const MASK = /[*#.\-_·•~^+()[\]{}]/;
 
 let leetTable: Record<string, string> = {};
+
+/**
+ * Cyrillic and Greek letters that print like Latin ones. They are folded only
+ * inside a token that mixes scripts (sеx with a Cyrillic е, fuсk with a
+ * Cyrillic с): a word written wholly in Cyrillic or Greek is a real word in
+ * its own language and is left exactly as it is.
+ */
+const HOMOGLYPHS: Record<string, string> = {
+  а: 'a', е: 'e', о: 'o', р: 'p', с: 'c', х: 'x', у: 'y', і: 'i', ј: 'j', ѕ: 's', һ: 'h', ԁ: 'd', ԛ: 'q', ԝ: 'w', ѵ: 'v', к: 'k', т: 't', м: 'm', в: 'b', н: 'h', ё: 'e',
+  α: 'a', ο: 'o', ε: 'e', ρ: 'p', χ: 'x', υ: 'y', ν: 'v', ι: 'i', κ: 'k', τ: 't', η: 'n', β: 'b',
+};
+const LATIN = /[a-z]/;
+const CYRILLIC_OR_GREEK = /[\u0370-\u03ff\u0400-\u04ff]/;
+function foldHomoglyphs(token: string): string {
+  if (!LATIN.test(token) || !CYRILLIC_OR_GREEK.test(token)) return token;
+  let out = '';
+  for (const ch of token) out += HOMOGLYPHS[ch] ?? ch;
+  return out;
+}
 
 /** Installed once from the policy so the module has no import cycle. */
 export function configureLeet(table: Record<string, string>): void {
@@ -54,7 +74,9 @@ function deobfuscate(token: string): string {
 }
 
 /**
- * Join a run of single letters separated by spaces or masks: `s e x` → `sex`.
+ * Join a run of single letters separated by spaces or masks: `s e x` → `sex`,
+ * and `s e l f - h a r m` → `selfharm` (a mask between two spelled letters is
+ * part of the run, not a word boundary).
  *
  * Three or more single letters in a row, so an initialism such as `a b` or a
  * list of Hangul consonants `ㄱ ㄴ ㄷ` is not folded — the Hangul lesson lists
@@ -62,7 +84,7 @@ function deobfuscate(token: string): string {
  * abbreviation it is not.
  */
 function joinSpelledOut(text: string): string {
-  return text.replace(/(?:^|(?<=\s))((?:[a-z]\s){2,}[a-z])(?=\s|$)/g, (run) => run.replace(/\s/g, ''));
+  return text.replace(/(?:^|(?<=\s))((?:[a-z](?:\s|\s?[*#.\-_]\s?){1,3}){2,}[a-z])(?=\s|$)/g, (run) => run.replace(/[\s*#.\-_]/g, ''));
 }
 
 /**
@@ -149,7 +171,7 @@ export function normalize(input: string): Normalized {
   text = text.replace(/\s+/g, ' ').trim();
   text = text
     .split(' ')
-    .map((token) => deobfuscate(token))
+    .map((token) => deobfuscate(foldHomoglyphs(token)))
     .join(' ');
   text = joinSpelledOut(text);
   return { norm: text, compact: compactOf(text), flat: flatOf(text) };
@@ -165,26 +187,45 @@ function flatOf(text: string): string {
  * Punctuation gone, word spaces kept, and a run of two or more single-syllable
  * Hangul tokens joined into one word. 섹 스 하 다 is an evasion; 복도 박물관 is
  * two words.
+ *
+ * A run of single syllables is also joined to the syllable word that follows
+ * it: 섹 스하다, 자 살하고 and 마 약을 are the two-character terms split once
+ * with their ending left attached, which neither the run rule nor the flat
+ * form (three characters and up) used to see. The join is forward only — a
+ * single syllable never attaches to the word before it — because 날씨 방
+ * would otherwise contain 씨방. Measured over every Korean surface the app
+ * ships (84,038 strings on 2026-09-15) the forward join adds no finding.
  */
 function compactOf(text: string): string {
   const tokens = text
     .split(' ')
-    .map((token) => flatOf(token))
-    .filter(Boolean);
+    .map((raw) => ({ flat: flatOf(raw), closed: /[^\p{L}\p{N}\p{M}]$/u.test(raw) }))
+    .filter((token) => token.flat);
   const out: string[] = [];
   let run: string[] = [];
+  // A syllable that ended in punctuation (자, 살펴봐요) closes its run: the
+  // comma is a boundary, and the forward join must not read 자살 there.
+  let closed = false;
   const flush = () => {
     if (run.length >= 2) out.push(run.join(''));
     else out.push(...run);
     run = [];
   };
   for (const token of tokens) {
-    if (token.length === 1 && isHangulTerm(token)) {
-      run.push(token);
+    if (token.flat.length === 1 && isHangulTerm(token.flat)) {
+      if (closed) flush();
+      run.push(token.flat);
+      closed = token.closed;
+      continue;
+    }
+    if (run.length && !closed && /^[가-힣]/.test(token.flat) && run.every((s) => /^[가-힣]$/.test(s))) {
+      out.push(run.join('') + token.flat);
+      run = [];
       continue;
     }
     flush();
-    out.push(token);
+    out.push(token.flat);
+    closed = false;
   }
   flush();
   return out.join(' ');

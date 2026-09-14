@@ -1436,7 +1436,9 @@
     },
     {
       "id": "latin-in-korean-sentence",
-      "lists": ["en"],
+      "lists": [
+        "en"
+      ],
       "text": "우리 sex 하자",
       "lang": "ko",
       "role": "sentence",
@@ -1446,7 +1448,9 @@
     },
     {
       "id": "latin-in-korean-option",
-      "lists": ["en"],
+      "lists": [
+        "en"
+      ],
       "text": "casino",
       "lang": "ko",
       "role": "option",
@@ -1468,6 +1472,259 @@
       "role": "sentence",
       "expect": "blocked",
       "category": "profanity"
+    },
+    {
+      "id": "sex-split-once-suffixed",
+      "text": "섹 스하다",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-split-once-conjugated",
+      "text": "어제 섹 스했어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-ideographic-space",
+      "text": "섹　스하다",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-soft-hyphen",
+      "text": "섹­스하다",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-emoji-split",
+      "text": "섹🙂스하다",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-newline-split",
+      "text": "섹\n스",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-en-cyrillic-e",
+      "text": "sеx",
+      "lang": "en",
+      "role": "option",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-en-cyrillic-x",
+      "text": "seх",
+      "lang": "en",
+      "role": "option",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-en-parenthesis-mask",
+      "text": "s(e)x",
+      "lang": "en",
+      "role": "option",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "sex-en-hyphen-spelled",
+      "text": "s-e-x",
+      "lang": "en",
+      "role": "option",
+      "expect": "blocked",
+      "category": "sexual"
+    },
+    {
+      "id": "suicide-split-once-suffixed",
+      "text": "자 살하고 싶어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "self_harm"
+    },
+    {
+      "id": "suicide-tab-split",
+      "text": "자\t살",
+      "lang": "ko",
+      "role": "option",
+      "expect": "blocked",
+      "category": "self_harm"
+    },
+    {
+      "id": "suicide-en-zero-width",
+      "text": "sui​cide",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "blocked",
+      "category": "self_harm"
+    },
+    {
+      "id": "self-harm-en-spelled-hyphen",
+      "text": "s e l f - h a r m",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "blocked",
+      "category": "self_harm"
+    },
+    {
+      "id": "drug-split-once-particle",
+      "text": "마 약을 샀어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "drugs"
+    },
+    {
+      "id": "drug-slash-mask",
+      "text": "마/약",
+      "lang": "ko",
+      "role": "option",
+      "expect": "blocked",
+      "category": "drugs"
+    },
+    {
+      "id": "profanity-en-cyrillic-c",
+      "text": "fuсk",
+      "lang": "en",
+      "role": "option",
+      "expect": "blocked",
+      "category": "profanity"
+    },
+    {
+      "id": "profanity-en-dotted",
+      "text": "f.u.c.k",
+      "lang": "en",
+      "role": "option",
+      "expect": "blocked",
+      "category": "profanity"
+    },
+    {
+      "id": "profanity-ko-hyphen",
+      "text": "씨-발",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "profanity"
+    },
+    {
+      "id": "profanity-ko-underscore",
+      "text": "씨_발",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "profanity"
+    },
+    {
+      "id": "profanity-ko-final-jamo-split",
+      "text": "씨바ㄹ",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "profanity"
+    },
+    {
+      "id": "gambling-en-fullwidth",
+      "text": "ｃａｓｉｎｏ",
+      "lang": "en",
+      "role": "option",
+      "expect": "blocked",
+      "category": "gambling"
+    },
+    {
+      "id": "violence-hanja-in-korean-option",
+      "text": "殺人",
+      "lang": "ko",
+      "role": "option",
+      "expect": "blocked",
+      "category": "violence",
+      "lists": [
+        "ja"
+      ]
+    },
+    {
+      "id": "drug-hanzi-in-korean-sentence",
+      "text": "吸毒을 했어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "drugs",
+      "lists": [
+        "zh-CN"
+      ]
+    },
+    {
+      "id": "profanity-cyrillic-in-korean-sentence",
+      "text": "그는 хуй라고 말했어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "profanity",
+      "lists": [
+        "ru"
+      ]
+    },
+    {
+      "id": "suicide-kana-in-english-gloss",
+      "text": "to 自殺したい",
+      "lang": "en",
+      "role": "gloss",
+      "expect": "blocked",
+      "category": "self_harm",
+      "lists": [
+        "ja"
+      ]
+    },
+    {
+      "id": "sex-latin-with-particle",
+      "text": "sex를 했어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "sexual",
+      "lists": [
+        "en"
+      ]
+    },
+    {
+      "id": "sex-latin-with-ending",
+      "text": "우리 sex하자",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "sexual",
+      "lists": [
+        "en"
+      ]
+    },
+    {
+      "id": "gambling-latin-with-particle",
+      "text": "casino에 갔어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "blocked",
+      "category": "gambling",
+      "lists": [
+        "en"
+      ]
     }
   ]
 }

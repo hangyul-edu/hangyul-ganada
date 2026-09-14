@@ -98,6 +98,18 @@ interface Compiled {
   romanized: RegExp | null;
 }
 
+/**
+ * Scripts other than Latin that a stray word can arrive in, the interface
+ * languages written in each (native there, so only their own lists apply) and
+ * the lists that read a word in that script anywhere else. Latin is the same
+ * rule with `latinScript` from the policy.
+ */
+const FOREIGN_SCRIPTS: { re: RegExp; native: Set<string>; lists: string[] }[] = [
+  { re: /[\u0400-\u04ff]/, native: new Set(['ru', 'uk', 'kk', 'ky', 'mn']), lists: ['ru'] },
+  { re: /[\u4e00-\u9fff]/, native: new Set(['zh-CN', 'ja']), lists: ['zh-CN', 'ja'] },
+  { re: /[\u3040-\u30ff]/, native: new Set(['ja']), lists: ['ja'] },
+];
+
 /** Endings a romaniser attaches to a Korean stem. */
 const ROMANIZED_ENDINGS = 'hada|haeyo|haesseoyo|hae|han|hal|hamnida|reul|eul|eun|neun|do|ro|euro|eseo|ege|hante|deul|ga';
 const HANGUL = '가-힣ㄱ-ㅎㅏ-ㅣ\u1100-\u11ff\u3130-\u318f';
@@ -134,13 +146,20 @@ function defaultMode(policy: Policy, lang: string, term: string): MatchMode {
   return base;
 }
 
-/** A token or phrase regex: the term at a script-run boundary, optionally followed by a Korean particle. */
+/**
+ * A token or phrase regex: the term at a script-run boundary, optionally
+ * followed by a Korean particle. For a term in any other script the boundary
+ * is a change of script as well as a non-letter: Hangul directly after `sex`
+ * (sex를, sex하자) or `хуй` (хуй라고) is a particle or an ending, and a Hangul
+ * syllable before it is the end of the previous word.
+ */
 function tokenRegex(terms: string[], hangul: boolean, particleAlternation: string): RegExp {
   const body = terms.map((t) => escapeRegExp(t).replace(/\s+/g, '\\s+')).join('|');
   if (hangul) {
     return new RegExp(`(?<![${HANGUL}])(?:${body})(?:${particleAlternation})?(?![${HANGUL}])`, 'u');
   }
-  return new RegExp(`(?<![\\p{L}\\p{N}\\p{M}])(?:${body})(?![\\p{L}\\p{N}\\p{M}])`, 'u');
+  const otherLetter = `(?:(?![${HANGUL}])[\\p{L}\\p{N}\\p{M}])`;
+  return new RegExp(`(?<!${otherLetter})(?:${body})(?!${otherLetter})`, 'u');
 }
 
 function compile(policy: Policy): CompiledPolicy {
@@ -331,6 +350,14 @@ function evaluateWith(compiledPolicy: CompiledPolicy, surface: Surface, facts: I
   // lists ("die" is an article there). `child_safety.py` does the same.
   const foreignLatin = !latinScript.has(surface.lang) && /[a-z]/.test(norm);
   const langs = foreignLatin ? [surface.lang, '*', 'en'] : [surface.lang, '*'];
+  // The same for the other scripts a stray word can arrive in: Cyrillic in a
+  // Korean field reads the Russian lists, Han or kana read the Chinese and
+  // Japanese ones (殺人 in a Korean option is not Korean). A field in a
+  // language written in that script reads only its own lists.
+  for (const script of FOREIGN_SCRIPTS) {
+    if (script.native.has(surface.lang) || !script.re.test(norm)) continue;
+    for (const lang of script.lists) if (!langs.includes(lang)) langs.push(lang);
+  }
   // A romanisation is Latin letters standing for Korean, not English: 군 is
   // romanised `gun` and is not a firearm. Only the romanised forms apply.
   const romanizationOnly = surface.role === 'romanization';

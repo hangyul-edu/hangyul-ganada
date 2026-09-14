@@ -31,7 +31,7 @@ HANGUL = "가-힣ㄱ-ㅎㅏ-ㅣ\u1100-\u11ff\u3130-\u318f"
 _INVISIBLE = re.compile(
     "[\u200B-\u200F\u2060-\u2064\uFEFF\u00AD\uFE00-\uFE0F\u180E\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]"
 )
-_MASK = set("*#.-_·•~^+")
+_MASK = set("*#.-_·•~^+()[]{}")
 _LETTER_CATS = ("L", "N", "M")
 
 
@@ -135,18 +135,24 @@ def _deobfuscate(token: str, leet: dict[str, str]) -> str:
     return token[:i] + core + token[j:]
 
 
-_SPELLED = re.compile(r"(?:^|(?<=\s))((?:[a-z]\s){2,}[a-z])(?=\s|$)")
+_SPELLED = re.compile(r"(?:^|(?<=\s))((?:[a-z](?:\s|\s?[*#.\-_]\s?){1,3}){2,}[a-z])(?=\s|$)")
+_SPELLED_SEP = re.compile(r"[\s*#.\-_]")
 
 
 def _flat(text: str) -> str:
     return "".join(ch for ch in text if _is_word_char(ch))
 
 
+_SYLLABLE_START = re.compile("[가-힣]")
+_SYLLABLE = re.compile("^[가-힣]$")
+
+
 def _compact(text: str) -> str:
     """Punctuation gone, word spaces kept, runs of single-syllable Hangul tokens joined."""
-    tokens = [t for t in (_flat(tok) for tok in text.split(" ")) if t]
+    tokens = [(f, bool(raw) and not _is_word_char(raw[-1])) for raw, f in ((r, _flat(r)) for r in text.split(" ")) if f]
     out: list[str] = []
     run: list[str] = []
+    closed = False
 
     def flush() -> None:
         if len(run) >= 2:
@@ -155,12 +161,23 @@ def _compact(text: str) -> str:
             out.extend(run)
         run.clear()
 
-    for tok in tokens:
+    for tok, tok_closed in tokens:
         if len(tok) == 1 and is_hangul_term(tok):
+            if closed:
+                flush()
             run.append(tok)
+            closed = tok_closed
+            continue
+        # A run of single syllables joins the syllable word after it (섹 스하다,
+        # 마 약을); forward only, so 날씨 방 does not become 씨방, and never past
+        # a syllable that ended in punctuation (자, 살펴봐요) — see normalize.ts.
+        if run and not closed and _SYLLABLE_START.match(tok) and all(_SYLLABLE.match(s) for s in run):
+            out.append("".join(run) + tok)
+            run.clear()
             continue
         flush()
         out.append(tok)
+        closed = False
     flush()
     return " ".join(out)
 
@@ -170,6 +187,24 @@ _JUNGSEONG = "ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ"
 _JONGSEONG = " ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ"
 _JAMO_RUN = re.compile("[\u3131-\u3163]{2,}")
 _LATIN = re.compile("[a-z]")
+_FOREIGN_SCRIPTS = (
+    (re.compile("[\u0400-\u04ff]"), frozenset({"ru", "uk", "kk", "ky", "mn"}), ("ru",)),
+    (re.compile("[\u4e00-\u9fff]"), frozenset({"zh-CN", "ja"}), ("zh-CN", "ja")),
+    (re.compile("[\u3040-\u30ff]"), frozenset({"ja"}), ("ja",)),
+)
+# Cyrillic and Greek letters that print like Latin ones; folded only inside a
+# token that mixes scripts (sеx, fuсk) — exactly HOMOGLYPHS in normalize.ts.
+_HOMOGLYPHS = {
+    "а": "a", "е": "e", "о": "o", "р": "p", "с": "c", "х": "x", "у": "y", "і": "i", "ј": "j", "ѕ": "s", "һ": "h", "ԁ": "d", "ԛ": "q", "ԝ": "w", "ѵ": "v", "к": "k", "т": "t", "м": "m", "в": "b", "н": "h", "ё": "e",
+    "α": "a", "ο": "o", "ε": "e", "ρ": "p", "χ": "x", "υ": "y", "ν": "v", "ι": "i", "κ": "k", "τ": "t", "η": "n", "β": "b",
+}
+_CYRILLIC_OR_GREEK = re.compile("[\u0370-\u03ff\u0400-\u04ff]")
+
+
+def _fold_homoglyphs(token: str) -> str:
+    if not _LATIN.search(token) or not _CYRILLIC_OR_GREEK.search(token):
+        return token
+    return "".join(_HOMOGLYPHS.get(ch, ch) for ch in token)
 
 
 def _compose_jamo(text: str) -> str:
@@ -224,8 +259,8 @@ def normalize(text: str, leet: dict[str, str] | None = None) -> tuple[str, str, 
     out = _close_syllables(unicodedata.normalize("NFKC", out))
     out = out.lower()
     out = " ".join(out.split())
-    out = " ".join(_deobfuscate(tok, leet) for tok in out.split(" "))
-    out = _SPELLED.sub(lambda m: m.group(0).replace(" ", ""), out)
+    out = " ".join(_deobfuscate(_fold_homoglyphs(tok), leet) for tok in out.split(" "))
+    out = _SPELLED.sub(lambda m: _SPELLED_SEP.sub("", m.group(0)), out)
     return out, _compact(out), _flat(out)
 
 
@@ -238,7 +273,10 @@ def _token_regex(terms: list[str], hangul: bool, particles: str) -> re.Pattern:
     body = "|".join("\\s+".join(re.escape(part) for part in t.split()) for t in terms)
     if hangul:
         return re.compile(f"(?<![{HANGUL}])(?:{body})(?:{particles})?(?![{HANGUL}])")
-    return re.compile(f"(?<!{WORD})(?:{body})(?!{WORD})")
+    # A change of script is a boundary too: Hangul right after `sex` or `хуй`
+    # is a particle or an ending — see tokenRegex in evaluate.ts.
+    other_letter = f"(?:(?![{HANGUL}]){WORD})"
+    return re.compile(f"(?<!{other_letter})(?:{body})(?!{other_letter})")
 
 
 def _default_mode(raw: dict, lang: str, term: str) -> str:
@@ -412,7 +450,16 @@ def evaluate_surface(
     # A German or Spanish field is all Latin letters and reads only its own
     # lists ("die" is an article there). `evaluate.ts` does the same.
     foreign_latin = lang not in pol.latin_script and _LATIN.search(norm)
-    langs = (lang, "*", "en") if foreign_latin else (lang, "*")
+    langs = [lang, "*", "en"] if foreign_latin else [lang, "*"]
+    # The same for Cyrillic, Han and kana: a stray word in one of those scripts
+    # reads the lists of the languages written in it (see FOREIGN_SCRIPTS in
+    # evaluate.ts); a field in such a language reads only its own lists.
+    for script_re, native, lists in _FOREIGN_SCRIPTS:
+        if lang in native or not script_re.search(norm):
+            continue
+        for extra in lists:
+            if extra not in langs:
+                langs.append(extra)
     romanization_only = role == "romanization"
     for entry in pol.concepts:
         concept = entry.concept

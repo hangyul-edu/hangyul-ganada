@@ -1420,6 +1420,69 @@
       "role": "sentence",
       "expect": "ok",
       "note": "the English list matches whole words; sex inside Essex is not one"
+    },
+    {
+      "id": "interjection-then-verb",
+      "text": "자, 살펴봐요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "weather-then-room",
+      "text": "날씨 방",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "new-clothes",
+      "text": "새 옷을 샀어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "this-medicine",
+      "text": "이 약을 드세요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "cyrillic-word-not-folded",
+      "text": "сех",
+      "lang": "ru",
+      "role": "option",
+      "expect": "ok"
+    },
+    {
+      "id": "greek-word-not-folded",
+      "text": "ρεχ",
+      "lang": "el",
+      "role": "option",
+      "expect": "ok"
+    },
+    {
+      "id": "russian-native-field",
+      "text": "Он сказал спасибо.",
+      "lang": "ru",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "japanese-native-field-kanji",
+      "text": "殺風景な部屋",
+      "lang": "ja",
+      "role": "sentence",
+      "expect": "ok"
+    },
+    {
+      "id": "parenthesised-korean-particle",
+      "text": "학생(들)이 왔어요",
+      "lang": "ko",
+      "role": "sentence",
+      "expect": "ok"
     }
   ]
 }
