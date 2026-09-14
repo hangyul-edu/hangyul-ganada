@@ -1296,8 +1296,9 @@
    "decision": "kept"
   },
   "levelTest:intro.retake": {
-   "hash": "13e25cb830e4",
-   "decision": "kept"
+   "hash": "fd9e8d04860d",
+   "decision": "rewritten",
+   "why": "“다시 해보기” ran the auxiliary together; the standard spacing for 보조 용언 after -아/어 is “해 보기” (the app spells it that way elsewhere)"
   },
   "levelTest:intro.previous": {
    "hash": "dffc9a766415",

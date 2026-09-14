@@ -11,7 +11,7 @@
     "unsure": "모르는 문제는 ‘모르겠어요’를 눌러도 괜찮아요.",
     "usedFor": "결과에 맞춰 오늘의 단어를 골라 줘요.",
     "start": "시작하기",
-    "retake": "다시 해보기",
+    "retake": "다시 해 보기",
     "previous": "지난번에는 레벨 {{level}}이었어요."
   },
   "progress": "{{asked, number}} / {{total, number}}",

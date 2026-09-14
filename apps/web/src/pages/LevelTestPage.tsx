@@ -154,6 +154,25 @@ export function LevelTestPage() {
     absolute, and a question is either asked in the learner's language or not
     asked. Reading `contentLocale` here would put the English back.
   */
+  /*
+    The bank is fetched while the intro is on screen, not when *Start* is
+    pressed.
+
+    Everything between the tap and the first question is this load: the
+    manifest, an 845 kB bank, the language's meanings, and then the runtime
+    content-safety gate reading every item — which, since v1.0.5, also loads
+    the learner's own language supplement and judges the meanings in that
+    language. Measured on the production build in the eighteenth pass, that
+    put 1.5–2.2 s between the tap and the first option, where the locale
+    render gate had budgeted 1.2 s and a learner had budgeted nothing. The
+    loader memoises per locale, so the effect below reuses this promise; a
+    learner who leaves the intro without starting has cost one fetch the next
+    sitting would have made anyway.
+  */
+  useEffect(() => {
+    void loadLevelTestBank(locale).catch(() => {});
+  }, [locale]);
+
   useEffect(() => {
     if (!started || bank) return;
     let live = true;

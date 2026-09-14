@@ -161,7 +161,9 @@ export function LettersPage() {
                                 {t('learning:letters.resume')}
                               </Badge>
                             ) : (
-                              <ChevronRightIcon size={20} />
+                              <span className={styles.rowTrailing}>
+                                <ChevronRightIcon size={20} />
+                              </span>
                             )}
                           </div>
 
@@ -201,7 +203,9 @@ export function LettersPage() {
               <h2 className={styles.rowTitle}>{t('learning:sounds.title')}</h2>
               <p className={styles.soundsBlurb}>{t('learning:sounds.blurb')}</p>
             </div>
-            <ChevronRightIcon size={20} />
+            <span className={styles.rowTrailing}>
+              <ChevronRightIcon size={20} />
+            </span>
           </Card>
         </Link>
 
@@ -222,7 +226,9 @@ export function LettersPage() {
               <h2 className={styles.rowTitle}>{t('numbers:title')}</h2>
               <p className={styles.soundsBlurb}>{t('numbers:subtitle')}</p>
             </div>
-            <ChevronRightIcon size={20} />
+            <span className={styles.rowTrailing}>
+              <ChevronRightIcon size={20} />
+            </span>
           </Card>
         </Link>
 

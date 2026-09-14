@@ -126,15 +126,44 @@
   color: var(--hg-text-disabled);
 }
 
+/*
+ * One guideline for every card's trailing indicator.
+ *
+ * Every navigation card on this screen — a lesson row, the sound-change card,
+ * the Numbers card — is the same two columns: the text, and one trailing
+ * slot that holds a chevron or a badge. The columns are a grid rather than a
+ * flex row with `space-between`, because the sound-change card used to be a
+ * plain flex row with no `flex: 1` on its text, so its chevron sat wherever
+ * the title ended: far to the left under 소리가 만날 때, near the edge under a
+ * long Numbers blurb, and never on the line the lesson rows drew. A grid with
+ * `minmax(0, 1fr)` for the text and `auto` for the slot puts the slot on the
+ * card's trailing edge whatever the title says, lets long translations wrap
+ * inside the text column without pushing anything, and follows the locale's
+ * direction — in Arabic the slot is on the left, and the chevron mirrors to
+ * point at it (`.hg-icon-directional`, global.css).
+ *
+ * The slot itself is a fixed 24 × 24 box (`.rowTrailing`) so the chevron's
+ * inset is the same on every card; the badge variant is wider and simply
+ * ends on the same edge. `letters.spec.ts` measures the rendered chevrons and
+ * refuses the old layout.
+ */
 .rowHead {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--hg-space-3);
+  column-gap: var(--hg-space-3);
 }
 
 .rowText {
   min-width: 0;
+}
+
+.rowTrailing {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  justify-self: end;
 }
 
 .rowTitle {
@@ -206,9 +235,10 @@
  * dressing it as a lesson would put a bar on the screen that never fills.
  */
 .sounds {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: var(--hg-space-3);
+  column-gap: var(--hg-space-3);
 }
 
 .soundsBlurb {
