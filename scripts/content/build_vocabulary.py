@@ -48,6 +48,7 @@ import child_safety  # noqa: E402
 import curation  # noqa: E402
 import difficulty  # noqa: E402
 import level as leveller  # noqa: E402
+import learner_grade  # noqa: E402
 import frequency
 import categories
 import gloss  # noqa: E402
@@ -270,7 +271,9 @@ def sense_id(identifier: str, gloss: str) -> str:
     return f"{identifier}#sense"
 
 
-def build_provenance(*, observed: bool, gloss_from_dictionary: bool) -> list[list[int]]:
+def build_provenance(
+    *, observed: bool, gloss_from_dictionary: bool, learner_graded: bool = False
+) -> list[list[int]]:
     entries: list[list[int]] = []
     if gloss_from_dictionary:
         entries.append(
@@ -284,6 +287,12 @@ def build_provenance(*, observed: bool, gloss_from_dictionary: bool) -> list[lis
                 _SOURCE_ORDER.index(sources.OPENSUBTITLES_FREQUENCY.id),
                 _field_set(["frequency_band", "frequency_rank", "frequency_rate"]),
             ]
+        )
+    if learner_graded:
+        # The learner list contributed evidence to the level; the level itself
+        # is still ours, and is listed under Hangyul ganada below.
+        entries.append(
+            [_SOURCE_ORDER.index(sources.NIKL_LEARNER_VOCABULARY.id), _field_set(["level"])]
         )
     entries.append(
         [
@@ -451,6 +460,27 @@ def main() -> int:
         )[0]
         for word in words
     }
+    # The National Institute's learner grade and rank, where the list holds
+    # the word — see `learner_grade.py`. The rank is re-expressed as a position
+    # among the taught words so it reads on the same scale as the subtitle rank.
+    graded = {word: learner_grade.lookup(word, pos_by_word[word]) for word in words}
+    ranked = sorted(
+        (word for word in words if graded[word] and graded[word].rank is not None),
+        key=lambda w: graded[w].rank,
+    )
+    learner_position = {word: index + 1 for index, word in enumerate(ranked)}
+    learner_total = len(ranked)
+    effective_usefulness = {
+        word: leveller.effective_usefulness(
+            kept[word].usefulness, graded[word].usefulness if graded[word] else None
+        )
+        for word in words
+    }
+    reconciled = [w for w in words if effective_usefulness[w] != kept[w].usefulness]
+    print(
+        f"  learner list: {sum(1 for g in graded.values() if g):,} of {len(words):,} words graded; "
+        f"{len(reconciled)} editorial usefulness marks lowered to the list's grade"
+    )
     level_components: dict[str, leveller.Components] = {}
     word_levels: dict[str, int] = {}
     modelled_levels: dict[str, int] = {}
@@ -469,6 +499,9 @@ def main() -> int:
             spelling=difficulty.spelling_cost(word),
             irregular=difficulty.is_irregular(word, pos_by_word[word]),
             signals=signals.get(word, {}),
+            learner_rank=learner_position.get(word),
+            learner_total=learner_total,
+            learner_usefulness=graded[word].usefulness if graded[word] else None,
         )
         level_components[word] = parts
         # The model's own answer, and then the editor's bound on it. Both are
@@ -476,7 +509,7 @@ def main() -> int:
         # word ships at, and the payload carries the first only where the second
         # moved it — see `USEFULNESS_CEILING` in level.py, and I-133.
         modelled = leveller.level_of(parts.score)
-        ceilinged = leveller.apply_ceiling(modelled, kept[word].usefulness)
+        ceilinged = leveller.apply_ceiling(modelled, effective_usefulness[word])
         modelled_levels[word] = modelled
         if ceilinged != modelled:
             ceilinged_words.append((word, modelled, ceilinged))
@@ -511,7 +544,7 @@ def main() -> int:
             if word not in modelled_levels:
                 continue
             modelled = modelled_levels[word]
-            ceilinged = leveller.apply_ceiling(modelled, kept[word].usefulness)
+            ceilinged = leveller.apply_ceiling(modelled, effective_usefulness[word])
             print(f"    {word}: {held if held is not None else 'keep'} / {modelled} / {ceilinged}")
 
     # The ledger first: every id it already hands out is spoken for, so a word
@@ -671,7 +704,9 @@ def main() -> int:
                     for letter in ready.letters
                 ),
                 "prov": build_provenance(
-                    observed=reading.observed, gloss_from_dictionary=entry.english is None
+                    observed=reading.observed,
+                    gloss_from_dictionary=entry.english is None,
+                    learner_graded=graded[word] is not None,
                 ),
                 # How it is actually said, and which pattern makes it differ.
                 #

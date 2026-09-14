@@ -58,6 +58,19 @@ OPENSUBTITLES_FREQUENCY = Source(
     reference_template="rank {frequency_rank} of 50,000 tokens (ko_50k, 2018)",
 )
 
+NIKL_LEARNER_VOCABULARY = Source(
+    id="nikl-learner-vocabulary-2003",
+    name="National Institute of Korean Language — 한국어 학습용 어휘 목록 (2003)",
+    license="KOGL Type 1 (공공누리 제1유형)",
+    license_url="https://www.kogl.or.kr/info/license.do",
+    homepage="https://www.korean.go.kr/front/etcData/etcDataView.do?mn_id=46&etc_seq=71",
+    provides="Learner grade (초급·중급·고급) and corpus rank, read as evidence for the Vocabulary Level",
+    attribution=(
+        "Vocabulary levels use the 한국어 학습용 어휘 목록 (2003) of the National Institute of "
+        "Korean Language (국립국어원), KOGL Type 1"
+    ),
+)
+
 EDGE_TTS = Source(
     id="microsoft-edge-tts",
     name="Microsoft Azure Neural TTS (ko-KR-SunHiNeural, ko-KR-InJoonNeural)",
@@ -84,6 +97,7 @@ HANGYUL_GANADA = Source(
 ALL_SOURCES = [
     WIKTIONARY,
     OPENSUBTITLES_FREQUENCY,
+    NIKL_LEARNER_VOCABULARY,
     EDGE_TTS,
     HANGYUL_GANADA,
 ]

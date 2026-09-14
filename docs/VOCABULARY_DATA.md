@@ -39,6 +39,7 @@ renders more than 120 entries.
 | part of speech, topic categories | English Wiktionary | CC BY-SA 4.0 |
 | synonyms (유의어) and antonyms (반의어) | Korean Wiktionary | CC BY-SA 4.0 |
 | corpus frequency band, rank and rate | two OpenSubtitles Korean corpora (`hermitdave/FrequencyWords`) | MIT (list) / CC BY-SA (corpus) |
+| learner grade (초급·중급·고급) and a second corpus rank, read as evidence for the 1–30 level | National Institute of Korean Language, 한국어 학습용 어휘 목록 (2003) — `content/vocabulary/nikl-learner-vocabulary-2003.json` | KOGL Type 1 (attribution, shown in Legal & Licences) |
 | meanings in eight languages, example sentence, its seven translations | Hangyul ganada editorial pack | ours |
 | meanings and example translations for Vietnamese and Thai, 500 words each | written by hand, `content/vocabulary/copy/` | ours |
 | pronunciation, spoken form, sound-change pattern, surface form, syllables, required letters, difficulty, category, readiness | Hangyul ganada | ours |

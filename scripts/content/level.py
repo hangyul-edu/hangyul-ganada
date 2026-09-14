@@ -150,7 +150,13 @@ class Components:
         return round(sum(WEIGHTS[k] * values[k] for k in WEIGHTS), 4)
 
 
-def frequency_cost(rank: int | None, per_million: float | None, observed_total: int) -> float:
+def frequency_cost(
+    rank: int | None,
+    per_million: float | None,
+    observed_total: int,
+    learner_rank: int | None = None,
+    learner_total: int = 0,
+) -> float:
     """0 for a word met every day, 1 for one the corpora never saw.
 
     Log rank rather than the rate, because the rate is dominated by a handful of
@@ -161,11 +167,53 @@ def frequency_cost(rank: int | None, per_million: float | None, observed_total: 
     is also evidence of a matcher that cannot see 담백한 — see
     `content/vocabulary/unobserved.json` — so it is not allowed to be the single
     hardest thing a word can be.
+
+    ## Two corpora, two kinds of Korean
+
+    The subtitle corpora are spoken, dramatic Korean: 형사, 요원 and 장군 rank
+    in their first thousand and 문의, 접수 and 야근 do not appear at all. The
+    National Institute's learner list (`learner_grade.py`) ranks words in a
+    balanced written-and-spoken corpus chosen for learners, and where it holds
+    the word its rank is read beside the subtitle rank — as a *position among
+    the taught words* on the same scale, so the two costs mean the same thing.
+
+    The **lower** of the two is taken, not the mean. The corpora sample
+    different registers: 정말, 괜찮다, 아니 and 제발 are in the first hundred
+    words anybody hears and sit far down a written list, and averaging moved
+    정말 from level 1 to level 5 and 제발 from 4 to 9. A word common in either
+    corpus is a word the learner will meet; a low rank in one of them, when
+    the other says common, is a fact about that corpus. A word the list lacks
+    keeps the subtitle reading alone; absence from a 5,965-word list is not
+    evidence of rarity.
     """
     if rank is None:
-        return 0.90
-    top = math.log(max(2, observed_total))
-    return min(1.0, math.log(max(1, rank)) / top)
+        subtitles = 0.90
+    else:
+        top = math.log(max(2, observed_total))
+        subtitles = min(1.0, math.log(max(1, rank)) / top)
+    if learner_rank is None or learner_total < 2:
+        return subtitles
+    learner = min(1.0, math.log(max(1, learner_rank)) / math.log(max(2, learner_total)))
+    return round(min(subtitles, learner), 6)
+
+
+def effective_usefulness(usefulness: int, learner_usefulness: int | None) -> int:
+    """The usefulness the model and the ceiling read: the editor's mark, or the
+    learner list's grade where that says the word is needed sooner.
+
+    The editor's `u` is a judgement made per authoring batch, and the corpus
+    showed what that costs: a batch written against the top of the scale marked
+    맛 as 5, *advanced*, and it shipped at level 23 beside 맛있다 at level 3.
+    The National Institute's grade is a judgement made per word by a panel of
+    educators, and it says 맛 is beginner Korean. Where the two disagree the
+    *lower* is taken — an editor may still say a word is needed sooner than the
+    list does (한글 is 1 here and unlisted there), which is a decision about
+    this product; an editor's mark that a beginner word is advanced is the
+    batch bias this exists to correct, and the list outranks it.
+    """
+    if learner_usefulness is None:
+        return usefulness
+    return min(usefulness, learner_usefulness)
 
 
 def utility_cost(
@@ -173,10 +221,11 @@ def utility_cost(
 ) -> float:
     """How much a learner needs this word, and how easily they can picture it.
 
-    `usefulness` is the editor's judgement, 1 to 5, and it is the part of this
-    model that knows 사과 matters more than 것. Concreteness is the other half:
-    a word for something that can be seen or done is learnable from a picture,
-    and one for a relation is not.
+    `usefulness` is the editor's judgement, 1 to 5 — already reconciled with the
+    learner list by `effective_usefulness` where the list holds the word — and
+    it is the part of this model that knows 사과 matters more than 것.
+    Concreteness is the other half: a word for something that can be seen or
+    done is learnable from a picture, and one for a relation is not.
 
     `category` is accepted and no longer used. It was a third term — a bonus for
     the six categories a beginner needs first — and it was double-counting:
@@ -385,10 +434,16 @@ def components(
     spelling: float,
     irregular: bool,
     signals: dict,
+    learner_rank: int | None = None,
+    learner_total: int = 0,
+    learner_usefulness: int | None = None,
 ) -> Components:
     return Components(
-        frequency=frequency_cost(rank, per_million, observed_total),
-        utility=utility_cost(usefulness, semantics, category, part_of_speech, word),
+        frequency=frequency_cost(rank, per_million, observed_total, learner_rank, learner_total),
+        utility=utility_cost(
+            effective_usefulness(usefulness, learner_usefulness),
+            semantics, category, part_of_speech, word,
+        ),
         linguistic=linguistic_cost(
             word=word, part_of_speech=part_of_speech, spelling=spelling,
             irregular=irregular, signals=signals,
