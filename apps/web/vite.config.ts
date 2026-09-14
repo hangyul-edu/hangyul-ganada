@@ -225,6 +225,12 @@ export default defineConfig({
            * else, and measured on its own so a policy that grows shows up as
            * its own number in the budget.
            */
+          if (/packages[\\/]content-safety[\\/]policy[\\/]runtime[\\/]([\w-]+)\.json/.test(id)) {
+            // One chunk per language supplement, fetched with the learner's
+            // own language and never before — see `runtimeEvaluatorFor`.
+            const lang = /policy[\\/]runtime[\\/]([\w-]+)\.json/.exec(id)?.[1];
+            return lang === 'index' ? 'content-safety' : `safety-${lang}`;
+          }
           if (id.includes('packages/content-safety')) return 'content-safety';
           /*
            * The conjugator, apart from the app for the same reason: its verb

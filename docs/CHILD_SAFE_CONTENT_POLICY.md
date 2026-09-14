@@ -104,27 +104,48 @@ word or a `*`-marked stem.
 | Dictionary publication | `scripts/content/build_dictionary.py` | headword, every sense gloss, every example; HARD_BLOCK rows and senses are not written, counts go in the manifest |
 | Assessment generation | `scripts/content/build_level_test.py` (anchors, retired words excluded from the dictionary pool) and `build_level_test.mjs` (distractor selection, composed sentences, then the finished item in every language) | prompt, answer, options, composed sentences, meanings in 32 locales |
 | Gap-fills | `build_level_test.mjs` → `cloze.json` | options and the composed sentence |
-| Runtime delivery | `apps/web/src/domain/contentSafety.ts` | a stored plan (retired words dropped from what is still owed), a stored sitting (not resumed if the loaded bank lacks an item), every bank item on load through `runtime-policy.json` — Korean and romanised forms, plus every dictionary anchor's headword read from its id |
+| Runtime delivery | `apps/web/src/domain/contentSafety.ts` | a stored plan (retired words dropped from what is still owed), a stored sitting (not resumed if the loaded bank lacks an item), every bank item on load through `runtime-policy.json` plus the English and interface-language supplements (`policy/runtime/<lang>.json`) — the Korean, the meanings in the learner's language, and every dictionary anchor's headword read from its id |
 | CI / release | `npm run content:safety:check` (in `verify:quick` and `verify:release`) | 14 content families, 32 locales, ~1.0 M fields, plus the fixture self-test |
 | Packaged artefacts | `npm run content:safety:bundle:check` (in `verify:release`); `--apk`/`--aab` for the signed packages | every JSON asset and every Korean string literal in every JS chunk; refuses the fixtures by name |
 
 A probabilistic classifier is not used. Every known term and structural
 variant is a deterministic rule with a fixture.
 
-## 6. The runtime subset
+## 6. The runtime subset, and the language supplements
 
 The app carries `packages/content-safety/policy/runtime-policy.json`: the
-full policy minus the thirty-one locales that are validated at publication and
-never generated on the device. Korean and romanised forms, the
-language-independent `*` lists, the context rules and the allow lists are
-complete; it fits, with the evaluator, inside the 24 kB route-chunk budget.
-The English lists are not carried (they would put the chunk past that
-budget), so a Latin word hidden in a Korean field is the publication gate's
-to refuse — every Korean string the app reads has been through it, and the
-fixtures that need the English lists say so (`lists: ["en"]`) and are held
-against the full policy only. A dictionary anchor
-names its headword in its id, so an assessment item is refused from the Korean
-in every interface language.
+full policy minus the thirty-one other languages and the English gloss
+indicators. Korean and romanised forms, the language-independent `*` lists,
+the context rules and the allow lists are complete; it fits, with the
+evaluator, inside the 24 kB route-chunk budget.
+
+Until v1.0.5 that was the whole of what the device carried, and the
+difference from the full policy was a documented gap: a Latin word hidden in a
+Korean field is refused by the release scanner through the *English* lists,
+which the base does not hold, and a meaning shown in the learner's own
+language was re-read on the device only when that language was Korean. Both
+are closed by **per-language supplements**: `build-runtime-policy.mjs` writes
+`policy/runtime/<lang>.json` for every language the policy names — that
+language's surfaces, match modes, exceptions and context rules, and for
+English the gloss indicators — and `runtimeEvaluatorFor(lang)` loads the
+English supplement plus the interface language's, merges them into the base by
+concept id and compiles one evaluator per language. The Level Test gate reads
+every bank item's Korean *and* its meanings in the interface language through
+that evaluator. Each supplement is a chunk of its own (`safety-<lang>`, 1.4 to
+16 kB gzipped, the English one largest), precached with the shell so the gate
+holds offline, and measured under the same 24 kB route budget, which was not
+raised. `packages/content-safety/src/runtime.test.ts` runs every fixture in
+every language through the supplemented evaluator and requires the full
+policy's verdict; the `lists: ["en"]` fixtures are held there too, not only
+against the full policy. The two evaluators share one version string, and a
+supplement from another version is refused at merge.
+
+The scan and the runtime read the same policy version: `content:safety:qa`
+records `policyVersion` in `docs/child-safe-content-audit.json`, the runtime
+exports `RUNTIME_POLICY_VERSION`, and `runtime.test.ts` requires them equal —
+so a bank cached on a device under an older policy is re-read under the
+current one on every load, and a term added to the policy is refused
+everywhere at once.
 
 ## 7. What a person still has to do
 

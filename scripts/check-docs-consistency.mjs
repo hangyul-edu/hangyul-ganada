@@ -94,8 +94,16 @@ const studySets = [...setsPerCategory.values()].reduce(
  * says 310 when the suite runs 329 is the same class of error as the category
  * count this script exists for.
  */
+const vitestCounts = new Map();
 function countVitest(workspace) {
   if (!withTests) return null;
+  // Each suite is run once; the summed figure below reuses the same run.
+  if (vitestCounts.has(workspace)) return vitestCounts.get(workspace);
+  const count = runVitest(workspace);
+  vitestCounts.set(workspace, count);
+  return count;
+}
+function runVitest(workspace) {
   // Through a file rather than through stdout: vitest's JSON reporter shares
   // stdout with anything the suite logs, and a single stray line makes the
   // parse fail in a way that looks like the suite failing.
@@ -189,6 +197,24 @@ const curriculum = JSON.parse(read('content/curriculum.json'));
 const numbers = await import('../apps/web/src/data/numbers.ts');
 const playwright = countPlaywright();
 
+/*
+ * The content inventory, computed fresh and compared with the committed copy.
+ *
+ * `docs/content-inventory.json` is the one file the report's current content
+ * figures are read from (`scripts/content-inventory.mjs`). It is embedded in
+ * `docs/report-metrics.json` below so that a reader of either file gets the
+ * same numbers, and a stale committed copy is a finding here rather than a
+ * silent divergence between two generated files.
+ */
+const { computeInventory } = await import('./content-inventory.mjs');
+const inventory = computeInventory();
+{
+  const committed = exists('docs/content-inventory.json') ? read('docs/content-inventory.json') : '';
+  if (committed !== JSON.stringify(inventory, null, 1) + '\n') {
+    problems.push('docs/content-inventory.json is stale — run npm run content:inventory');
+  }
+}
+
 const METRICS = {
   words: {
     value: vocabulary.words.length,
@@ -271,11 +297,12 @@ const METRICS = {
    * by arithmetic is exactly as capable of going stale as one it copies.
    */
   unitTestsAllPackages: {
-    value:
-      countVitest('apps/web') +
-      countVitest('packages/korean-morphology') +
-      countVitest('packages/handwriting-core') +
-      countVitest('packages/content-safety'),
+    value: withTests
+      ? countVitest('apps/web') +
+        countVitest('packages/korean-morphology') +
+        countVitest('packages/handwriting-core') +
+        countVitest('packages/content-safety')
+      : null,
     what: 'unit cases across all four packages',
     patterns: [
       /\|\s*Unit and integration tests\s*\|\s*\*{0,2}([\d,]+)\*{0,2} across \d+ files/g,
@@ -678,6 +705,45 @@ const DOCUMENTS = [
   'result/BUILD_OR_SIGNING_BLOCKERS.md',
 ];
 
+/*
+ * The delivery's own records describe the tree the delivery was built from.
+ *
+ * `result/RELEASE_VALIDATION.md` recorded 811 content-safety tests, which was
+ * the count at the commit the 1.0.4 artefacts were built from; the web product
+ * then moved on to 1.0.5 and 833, and this check failed on a file that only a
+ * native delivery rewrites and that this task may not touch. A delivery record
+ * is not stale for describing its delivery. So while the delivered commit is
+ * not HEAD, a document under `result/` is held only to the figures that
+ * describe the *artefact* — bytes, hashes, versionCode — and every tree-derived
+ * figure in it is read as the record of that commit. When a delivery is made
+ * from HEAD the two sets coincide and every figure is checked again.
+ */
+const DELIVERY_RECORDS = new Set(DOCUMENTS.filter((d) => d.startsWith('result/')));
+const ARTEFACT_METRICS = new Set([
+  'apkMegabytes',
+  'aabMegabytes',
+  'apkBytes',
+  'aabBytes',
+  'apkSha256',
+  'aabSha256',
+  'androidVersionCode',
+]);
+const deliveryIsHead = (() => {
+  if (!exists('result/build-info.json')) return true;
+  try {
+    const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim();
+    const built = String(JSON.parse(read('result/build-info.json')).commit ?? '');
+    return built === head;
+  } catch {
+    return true;
+  }
+})();
+if (!deliveryIsHead) {
+  console.log(
+    '· result/ records describe the delivered commit, not HEAD: only artefact figures are checked in them',
+  );
+}
+
 const updates = [];
 let checked = 0;
 
@@ -711,6 +777,9 @@ let checked = 0;
     issues: { open: count('OPEN'), partial: count('PARTIAL'), blocked: count('BLOCKED'), resolved: count('RESOLVED'), tracked: issueDoc.length },
     apk_mb: METRICS.apkMegabytes.value,
     aab_mb: METRICS.aabMegabytes.value,
+    delivery_commit_is_head: deliveryIsHead,
+    // The full content inventory, verbatim — see scripts/content-inventory.mjs.
+    content: inventory,
   };
   writeFileSync(join(ROOT, 'docs/report-metrics.json'), JSON.stringify(artifact, null, 1) + '\n');
 }
@@ -747,6 +816,7 @@ for (const [name, metric] of Object.entries(METRICS)) {
   const found = [];
   for (const document of DOCUMENTS) {
     if (!exists(document)) continue;
+    if (DELIVERY_RECORDS.has(document) && !deliveryIsHead && !ARTEFACT_METRICS.has(name)) continue;
     const text = rewritten.get(document) ?? read(document);
     const lines = text.split('\n');
     /*

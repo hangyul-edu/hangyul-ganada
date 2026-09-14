@@ -252,6 +252,10 @@ function scanJs(root, file) {
   // what refuses them. It is INTERNAL text, shipped because the runtime gate
   // needs it, and it is the one chunk whose literals are not learner content.
   if (/^content-safety-[\w-]+\.js$/.test(basename(file))) return;
+  // And the per-language supplements of the same policy (`safety-de`,
+  // `safety-en`, …), which are its lists cut by language: INTERNAL text for
+  // the same reason, and never Korean — the Korean lists are in the base.
+  if (/^safety-[\w-]+-[\w-]+\.js$/.test(basename(file))) return;
   // The conjugator's chunk is code and verb-class tables — it names 죽이다
   // among the verbs whose request form is not a favour — and carries no copy.
   if (/^korean-morphology-[\w-]+\.js$/.test(basename(file))) return;

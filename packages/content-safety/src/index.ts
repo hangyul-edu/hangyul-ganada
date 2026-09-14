@@ -11,4 +11,11 @@ export {
   createEvaluator,
 } from './evaluate';
 export type { Evaluator, Finding, ItemFacts, ItemResult, Role, Surface, Verdict } from './evaluate';
-export { runtimeEvaluator, RUNTIME_POLICY_VERSION } from './runtime';
+export {
+  runtimeEvaluator,
+  runtimeEvaluatorFor,
+  mergeSupplements,
+  RUNTIME_POLICY_VERSION,
+  RUNTIME_SUPPLEMENT_LANGUAGES,
+} from './runtime';
+export type { RuntimeSupplement } from './runtime';

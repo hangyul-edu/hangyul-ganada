@@ -74,6 +74,30 @@ describe('the shipped bank, through the runtime gate', () => {
     expect(refused.sort()).toEqual(SHIPPED_UNSAFE.map((item) => item.id).sort());
   });
 
+  it('refuses a meaning that is unsafe only in the learner\'s own language (the v1.0.5 gap)', async () => {
+    // Before v1.0.5 the runtime re-read meanings only in Korean; a German
+    // learner's meaning file was validated at publication and never on the
+    // device. The German supplement is loaded with the German interface now.
+    const item: LevelTestItem = { id: 'word_igida:meaning', kind: 'meaning', level: 10, prompt: '이기다', answerId: 'word_igida', optionIds: ['word_a', 'word_b', 'word_igida', 'word_c'] };
+    const meanings = new Map([['word_a', 'Sex haben'], ['word_b', 'einladen'], ['word_igida', 'gewinnen'], ['word_c', 'verlieren']]);
+    const { refused } = await guardLevelTestItems([item], meanings, 'de');
+    expect(refused).toEqual(['word_igida:meaning']);
+    const safe = new Map([['word_a', 'schlafen'], ['word_b', 'einladen'], ['word_igida', 'gewinnen'], ['word_c', 'verlieren']]);
+    expect((await guardLevelTestItems([item], safe, 'de')).refused).toEqual([]);
+  });
+
+  it('refuses a Latin term hidden in a Korean prompt, whatever the interface language', async () => {
+    // The release scanner reads the English lists for any Latin text in a
+    // Korean field; the base runtime policy carried no English lists, so this
+    // was the publication gate's alone. The English supplement travels with
+    // every interface language now.
+    const item: LevelTestItem = { id: 'word_hada:context', kind: 'context', level: 3, prompt: '우리 sex 하자', answerId: 'word_hada', optionIds: ['word_gada', 'word_hada', 'word_oda', 'word_boda'] };
+    for (const locale of ['ko', 'th', 'en']) {
+      const { refused } = await guardLevelTestItems([item], MEANINGS, locale);
+      expect(refused, locale).toEqual(['word_hada:context']);
+    }
+  });
+
   it('keeps a named daily-life card askable', async () => {
     const { items } = await guardLevelTestItems(SAFE, MEANINGS, 'en');
     expect(items.map((item) => item.id)).toContain('word_jukda:context');

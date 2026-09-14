@@ -78,23 +78,26 @@ export function repairPlanForRetiredWords(plan: DailyPlan): DailyPlan {
  * The bank items the runtime evaluator will let the engine ask.
  *
  * Reads the Korean prompt, answer and options, the headword of every
- * dictionary anchor an option or prompt names, and the resolved meanings when
- * the interface language is Korean — the one language the runtime policy
- * carries. Every other language's meanings were validated at publication and
- * are not re-read here; that limit is documented in
- * `docs/CHILD_SAFE_CONTENT_POLICY.md`.
+ * dictionary anchor an option or prompt names, and the resolved meanings in
+ * the interface language — through the evaluator for that language, which is
+ * the base runtime policy plus the English lists (a Latin term hidden in a
+ * Korean field is read against them, as the release scanner does) plus the
+ * language's own lists. Until v1.0.5 only Korean meanings were re-read here
+ * and the English lists were not on the device; both limits are closed, and
+ * `runtime.test.ts` holds every fixture in every language to the full
+ * policy's verdict through this evaluator.
  *
- * Loaded lazily: the evaluator and its policy are a chunk of their own, and
- * the Level Test is the only screen that needs them at fetch time.
+ * Loaded lazily: the evaluator, its policy and the two language supplements
+ * are chunks of their own, and the Level Test is the only screen that needs
+ * them at fetch time.
  */
 export async function guardLevelTestItems(
   items: LevelTestItem[],
   meanings: ReadonlyMap<string, string>,
   locale: string,
 ): Promise<{ items: LevelTestItem[]; refused: string[] }> {
-  const { runtimeEvaluator } = await import('@hangyul-ganada/content-safety/runtime');
-  const evaluator = runtimeEvaluator();
-  const readsLocale = locale === 'ko';
+  const { runtimeEvaluatorFor } = await import('@hangyul-ganada/content-safety/runtime');
+  const evaluator = await runtimeEvaluatorFor(locale);
   /*
     The word an anchor id names, for the allow lists.
 
@@ -139,7 +142,6 @@ export async function guardLevelTestItems(
         refused.push(item.id);
         return false;
       }
-      if (!readsLocale) continue;
       const text = meanings.get(id);
       if (text && evaluator.isBlocked(text, locale, 'option', { random: true, headword })) {
         refused.push(item.id);
