@@ -2731,7 +2731,7 @@
     ],
     "word_gamyeon": [
       "mască",
-      "Mi-am pus o mască."
+      "Am dansat purtând o mască."
     ],
     "word_ingi": [
       "popularitate",
@@ -8233,8 +8233,8 @@
       "M-am dus la profesorul meu."
     ],
     "word_jiwon": [
-      "sprijin",
-      "Am primit sprijin."
+      "sprijin, ajutor",
+      "Am primit sprijin de la guvern."
     ],
     "word_oraen": [
       "de multă vreme",
@@ -9684,8 +9684,8 @@
       "Paharul s-a revărsat de apă."
     ],
     "word_sinjang": [
-      "statură",
-      "Îmi măsor statura."
+      "înălțime",
+      "Ce înălțime aveți?"
     ],
     "word_neullida": [
       "a mări",
@@ -10393,8 +10393,8 @@
       "Analiza s-a încheiat."
     ],
     "word_jiji": [
-      "sprijin",
-      "Am primit sprijin."
+      "susținere",
+      "Am primit susținerea multor oameni."
     ],
     "word_seupai": [
       "spion",
@@ -13580,6 +13580,1994 @@
     "word_yubohada": [
       "a amâna hotărârea",
       "Ne-am amânat hotărârea o vreme."
+    ],
+    "word_gasu": [
+      "cântăreț",
+      "Cântărețul acela cântă bine."
+    ],
+    "word_gyejeol": [
+      "anotimp",
+      "Ce anotimp vă place?"
+    ],
+    "word_gyeongchalgwan": [
+      "polițist",
+      "Am întrebat un polițist despre drum."
+    ],
+    "word_gyeongchi": [
+      "peisaj",
+      "Aici peisajul este cu adevărat frumos."
+    ],
+    "word_godeunghaksaeng": [
+      "licean",
+      "Fratele meu mai mic este licean."
+    ],
+    "word_gwaja": [
+      "biscuiți sau gustări",
+      "Copiii mănâncă biscuiți."
+    ],
+    "word_gyogwaseo": [
+      "manual școlar",
+      "Deschideți manualul, vă rog."
+    ],
+    "word_gugyeong": [
+      "plimbare de privit",
+      "M-am dus să văd florile."
+    ],
+    "word_gisuksa": [
+      "cămin studențesc",
+      "Locuiesc la cămin."
+    ],
+    "word_namdongsaeng": [
+      "frate mai mic",
+      "Fratele meu mai mic este înalt."
+    ],
+    "word_naenyeon": [
+      "anul viitor",
+      "Anul viitor voi merge în Coreea."
+    ],
+    "word_dallyeok": [
+      "calendar",
+      "Pe perete atârnă un calendar."
+    ],
+    "word_daehaksaeng": [
+      "student",
+      "Fratele meu mai mic a devenit student."
+    ],
+    "word_dwaejigogi": [
+      "carne de porc",
+      "Am fript carne de porc și am mâncat-o."
+    ],
+    "word_deungsan": [
+      "drumeție pe munte",
+      "În weekend merg în drumeție pe munte."
+    ],
+    "word_maepda": [
+      "a fi iute",
+      "Acest tteokbokki este prea iute."
+    ],
+    "word_menyu": [
+      "meniu",
+      "Arătați-mi meniul, vă rog."
+    ],
+    "word_mogyok": [
+      "baie",
+      "Fac baie înainte de culcare."
+    ],
+    "word_mit": [
+      "partea de jos, sub",
+      "Pisica este sub pat."
+    ],
+    "word_bareum": [
+      "pronunție",
+      "Aveți o pronunție foarte bună."
+    ],
+    "word_banghak": [
+      "vacanță școlară",
+      "Ce veți face în vacanță?"
+    ],
+    "word_baebureuda": [
+      "a fi sătul",
+      "Am mâncat mult, așa că sunt sătul."
+    ],
+    "word_baekwajeom": [
+      "magazin universal",
+      "Am cumpărat haine de la magazinul universal."
+    ],
+    "word_bolpen": [
+      "pix",
+      "Împrumutați-mi un pix, vă rog."
+    ],
+    "word_saekkkal": [
+      "culoare",
+      "Îmi place această culoare."
+    ],
+    "word_seojeom": [
+      "librărie",
+      "Am cumpărat o carte de la librărie."
+    ],
+    "word_seonmulhada": [
+      "a dărui",
+      "I-am dăruit flori prietenului meu."
+    ],
+    "word_sesu": [
+      "spălatul pe față",
+      "Dimineața mă spăl pe față."
+    ],
+    "word_sopung": [
+      "excursie, picnic",
+      "Mâine mergem în excursie."
+    ],
+    "word_syoping": [
+      "cumpărături",
+      "În weekend am fost la cumpărături."
+    ],
+    "word_syupeomaket": [
+      "supermarket",
+      "Am cumpărat legume de la supermarket."
+    ],
+    "word_yangbok": [
+      "costum",
+      "Tatăl meu poartă costum."
+    ],
+    "word_eorini": [
+      "copil",
+      "Biletele sunt gratuite pentru copii."
+    ],
+    "word_eeokeon": [
+      "aer condiționat",
+      "Era cald, așa că am pornit aerul condiționat."
+    ],
+    "word_oraenman": [
+      "după mult timp",
+      "M-am întâlnit cu un prieten după mult timp."
+    ],
+    "word_oeguk": [
+      "străinătate",
+      "Ați locuit vreodată în străinătate?"
+    ],
+    "word_oegugeo": [
+      "limbă străină",
+      "Învăț o limbă străină."
+    ],
+    "word_oegugin": [
+      "străin",
+      "Am mulți prieteni străini."
+    ],
+    "word_undonghada": [
+      "a face sport",
+      "Fac sport în fiecare dimineață."
+    ],
+    "word_undonghwa": [
+      "pantofi sport",
+      "Mi-am pus pantofii sport noi."
+    ],
+    "word_ip_2": [
+      "frunză",
+      "Toamna cad frunzele."
+    ],
+    "word_jangmi": [
+      "trandafir",
+      "Trandafirii miros frumos."
+    ],
+    "word_jeomsimsigan": [
+      "pauza de prânz",
+      "În pauza de prânz mă plimb."
+    ],
+    "word_joreop": [
+      "absolvire",
+      "Felicitări pentru absolvire!"
+    ],
+    "word_junghakgyo": [
+      "gimnaziu",
+      "Fiul meu merge la gimnaziu."
+    ],
+    "word_chodeunghakgyo": [
+      "școală primară",
+      "Fiica mea a intrat la școala primară."
+    ],
+    "word_jinandal": [
+      "luna trecută",
+      "M-am mutat luna trecută."
+    ],
+    "word_jinanju": [
+      "săptămâna trecută",
+      "Săptămâna trecută am răcit."
+    ],
+    "word_jiugae": [
+      "radieră",
+      "Ștergeți cu radiera, vă rog."
+    ],
+    "word_jjigae": [
+      "tocană coreeană",
+      "La prânz am mâncat jjigae."
+    ],
+    "word_cheongbaji": [
+      "blugi",
+      "Blugii vă vin bine."
+    ],
+    "word_chiyak": [
+      "pastă de dinți",
+      "S-a terminat pasta de dinți."
+    ],
+    "word_kolla": [
+      "cola",
+      "O cola, vă rog."
+    ],
+    "word_taegwondo": [
+      "taekwondo",
+      "Copilul învață taekwondo."
+    ],
+    "word_teniseu": [
+      "tenis",
+      "Mi-am cumpărat o rachetă de tenis nouă."
+    ],
+    "word_tellebijeon": [
+      "televizor",
+      "Seara mă uit la televizor."
+    ],
+    "word_hangnyeon": [
+      "an de studiu, clasă",
+      "În ce clasă ești?"
+    ],
+    "word_hanbok": [
+      "hanbok, costum tradițional coreean",
+      "De Seollal purtăm hanbok."
+    ],
+    "word_hanja": [
+      "caractere chinezești",
+      "Caracterele chinezești sunt grele."
+    ],
+    "word_haembeogeo": [
+      "hamburger",
+      "Un hamburger, vă rog."
+    ],
+    "word_hyuil": [
+      "zi liberă",
+      "În zilele libere mă trezesc târziu."
+    ],
+    "word_hyuji": [
+      "șervețel de hârtie",
+      "Dați-mi un șervețel, vă rog."
+    ],
+    "word_kkeulhida": [
+      "a fierbe ceva",
+      "Fierb apă și beau ceai."
+    ],
+    "word_bokda": [
+      "a prăji amestecând",
+      "Am prăjit legumele și le-am mâncat."
+    ],
+    "word_damgeuda": [
+      "a înmuia, a scufunda",
+      "Mi-am băgat picioarele în apă."
+    ],
+    "word_gakkuda": [
+      "a îngriji, a cultiva",
+      "Bunica mea îngrijește grădina."
+    ],
+    "word_gwonhada": [
+      "a oferi, a recomanda",
+      "I-am oferit ceai oaspetelui."
+    ],
+    "word_kkeudeogida": [
+      "a da din cap aprobator",
+      "Copilul a dat din cap."
+    ],
+    "word_kkeunheojida": [
+      "a se rupe",
+      "Frânghia s-a rupt."
+    ],
+    "word_neolpida": [
+      "a lărgi",
+      "Se fac lucrări pentru a lărgi drumul."
+    ],
+    "word_nohida": [
+      "a fi așezat",
+      "Pe birou sunt așezate flori."
+    ],
+    "word_sallida": [
+      "a salva viața",
+      "Medicul l-a salvat pe pacient."
+    ],
+    "word_seuda": [
+      "a pune în picioare, a opri",
+      "Am pus umbrela în picioare lângă ușă."
+    ],
+    "word_seokkida": [
+      "a se amesteca",
+      "Apa și uleiul nu se amestecă."
+    ],
+    "word_kyeojida": [
+      "a se aprinde",
+      "Lumina s-a aprins singură."
+    ],
+    "word_jeonghaejida": [
+      "a fi stabilit",
+      "Ora ședinței a fost stabilită."
+    ],
+    "word_saenggyeonada": [
+      "a apărea, a lua ființă",
+      "Au apărut multe magazine noi."
+    ],
+    "word_naraoda": [
+      "a veni în zbor",
+      "O pasăre a venit în zbor la fereastră."
+    ],
+    "word_dallyeooda": [
+      "a veni alergând",
+      "Cățelușul a venit alergând la mine."
+    ],
+    "word_yangbohada": [
+      "a ceda",
+      "I-am cedat locul unei doamne în vârstă."
+    ],
+    "word_hwaryonghada": [
+      "a valorifica, a folosi bine",
+      "Îmi folosesc bine timpul din weekend."
+    ],
+    "word_dayanghada": [
+      "a fi variat",
+      "Acest magazin are o mare varietate de pâine."
+    ],
+    "word_dapdapada": [
+      "a se simți sufocat",
+      "Camera este mică și mă simt sufocat."
+    ],
+    "word_dukkeopda": [
+      "a fi gros",
+      "Această carte este foarte groasă."
+    ],
+    "word_dunggeulda": [
+      "a fi rotund",
+      "Luna este rotundă."
+    ],
+    "word_gukda": [
+      "a fi gros (ceva lung)",
+      "Acest copac are trunchiul gros."
+    ],
+    "word_ganeulda": [
+      "a fi subțire (ceva lung)",
+      "Acest fir este prea subțire."
+    ],
+    "word_mipda": [
+      "a fi antipatic, de urât",
+      "Nu suport oamenii care mint."
+    ],
+    "word_natseolda": [
+      "a fi nefamiliar, străin",
+      "Cartierul acesta îmi este încă străin."
+    ],
+    "word_eongttunghada": [
+      "a fi năstrușnic, neașteptat",
+      "Copilul a pus o întrebare năstrușnică."
+    ],
+    "word_usuhada": [
+      "a fi excelent",
+      "Notele sunt excelente."
+    ],
+    "word_jeokdanghada": [
+      "a fi potrivit",
+      "Camera aceasta are o mărime potrivită."
+    ],
+    "word_jogeumata": [
+      "a fi micuț",
+      "Am primit o cutiuță."
+    ],
+    "word_teunteunhada": [
+      "a fi solid, rezistent",
+      "Scaunul acesta este solid."
+    ],
+    "word_pyeollihada": [
+      "a fi comod, practic",
+      "Metroul este foarte comod."
+    ],
+    "word_pureuda": [
+      "a fi albastru sau verde (în natură)",
+      "Munții sunt verzi."
+    ],
+    "word_hwalbalhada": [
+      "a fi vioi",
+      "Copilul este foarte vioi."
+    ],
+    "word_kkwae": [
+      "destul de",
+      "Azi este destul de frig."
+    ],
+    "word_kkujunhi": [
+      "cu perseverență",
+      "Exersez cu perseverență în fiecare zi."
+    ],
+    "word_kkamjjak": [
+      "tresărind",
+      "Am tresărit la un zgomot puternic."
+    ],
+    "word_deoguna": [
+      "în plus",
+      "Am întârziat. În plus, plouă."
+    ],
+    "word_magu": [
+      "fără măsură, la întâmplare",
+      "Nu cheltuiți banii fără măsură, vă rog."
+    ],
+    "word_bigyojeok": [
+      "relativ",
+      "Această problemă este relativ ușoară."
+    ],
+    "word_yunanhi": [
+      "neobișnuit de",
+      "Azi sunt neobișnuit de obosit."
+    ],
+    "word_jeomcha": [
+      "treptat",
+      "Vremea se răcește treptat."
+    ],
+    "word_puk": [
+      "adânc",
+      "Odihniți-vă bine în weekend."
+    ],
+    "word_haemada": [
+      "în fiecare an",
+      "În fiecare an, primăvara, înfloresc florile."
+    ],
+    "word_hanpyeon": [
+      "pe de altă parte",
+      "Mă bucur. Pe de altă parte, sunt și îngrijorat."
+    ],
+    "word_jeuk": [
+      "adică",
+      "Ne vedem mâine, adică sâmbătă."
+    ],
+    "word_gawi": [
+      "foarfecă",
+      "Tai hârtia cu foarfeca."
+    ],
+    "word_gansik": [
+      "gustare",
+      "După-amiaza iau o gustare."
+    ],
+    "word_geosil": [
+      "sufragerie",
+      "Mă uit la televizor în sufragerie."
+    ],
+    "word_georeum": [
+      "pas",
+      "Faceți un pas înainte, vă rog."
+    ],
+    "word_golmok": [
+      "ulicioară",
+      "Copiii se joacă pe ulicioară."
+    ],
+    "word_gongmuwon": [
+      "funcționar public",
+      "Fratele meu mai mare este funcționar public."
+    ],
+    "word_gwamok": [
+      "materie școlară",
+      "Ce materie vă place?"
+    ],
+    "word_gwaje": [
+      "temă, proiect",
+      "Trebuie să predau tema până mâine."
+    ],
+    "word_gwangwang": [
+      "turism",
+      "Am făcut turism în Seul."
+    ],
+    "word_gwangwanggaek": [
+      "turist",
+      "Turiștii fac fotografii."
+    ],
+    "word_gyotongsago": [
+      "accident rutier",
+      "Ieri a avut loc un accident rutier."
+    ],
+    "word_gungmul": [
+      "zeamă, supă",
+      "Zeama este foarte răcoritoare."
+    ],
+    "word_geuneul": [
+      "umbră",
+      "Să ne odihnim la umbra copacului."
+    ],
+    "word_geulja": [
+      "literă, caracter",
+      "Literele sunt prea mici."
+    ],
+    "word_gigan": [
+      "perioadă",
+      "Este perioada examenelor, așa că sunt ocupat."
+    ],
+    "word_gion": [
+      "temperatura aerului",
+      "Azi temperatura a scăzut mult."
+    ],
+    "word_gichim": [
+      "tuse",
+      "Tușesc întruna."
+    ],
+    "word_kkeopjil": [
+      "coajă",
+      "Am dat jos coaja bananei."
+    ],
+    "word_kkokdaegi": [
+      "vârf",
+      "În vârful copacului este o pasăre."
+    ],
+    "word_kkochip": [
+      "petală",
+      "Petalele zboară în vânt."
+    ],
+    "word_kkul": [
+      "miere",
+      "Pun miere în ceai."
+    ],
+    "word_nabi": [
+      "fluture",
+      "Un fluture s-a așezat pe floare."
+    ],
+    "word_namutgaji": [
+      "creangă",
+      "O pasăre stă pe o creangă."
+    ],
+    "word_nammae": [
+      "frate și soră",
+      "Suntem frate și soră."
+    ],
+    "word_nagyeop": [
+      "frunze căzute",
+      "Pe cărare sunt multe frunze căzute."
+    ],
+    "word_noin": [
+      "persoană în vârstă",
+      "I-am cedat locul unei persoane în vârstă."
+    ],
+    "word_noriteo": [
+      "loc de joacă",
+      "Copiii se joacă la locul de joacă."
+    ],
+    "word_nongsa": [
+      "agricultură",
+      "Bunicul meu se ocupă cu agricultura."
+    ],
+    "word_nunbit": [
+      "privire",
+      "Privirea este caldă."
+    ],
+    "word_nunap": [
+      "în fața ochilor",
+      "Am pierdut autobuzul chiar în fața ochilor."
+    ],
+    "word_danjeom": [
+      "punct slab",
+      "Toată lumea are puncte slabe."
+    ],
+    "word_jangjeom": [
+      "punct forte",
+      "Punctul forte al acestei case este locația."
+    ],
+    "word_dalbit": [
+      "lumina lunii",
+      "Lumina lunii este foarte puternică."
+    ],
+    "word_dapjang": [
+      "răspuns",
+      "Aștept un răspuns."
+    ],
+    "word_daemun": [
+      "poartă",
+      "Deschideți poarta, vă rog."
+    ],
+    "word_deowi": [
+      "căldură",
+      "Căldura de anul acesta este cu adevărat mare."
+    ],
+    "word_chuwi": [
+      "frig",
+      "Mi-au înghețat mâinile de frig."
+    ],
+    "word_dogu": [
+      "unealtă",
+      "Aveți grijă de uneltele dumneavoastră."
+    ],
+    "word_dosirak": [
+      "pachet cu mâncare",
+      "Am luat un pachet cu mâncare."
+    ],
+    "word_dokseo": [
+      "lectură",
+      "Hobby-ul meu este lectura."
+    ],
+    "word_dongmurwon": [
+      "grădină zoologică",
+      "Am văzut un leu la grădina zoologică."
+    ],
+    "word_dutong": [
+      "durere de cap",
+      "Mă durea tare capul, așa că am luat un medicament."
+    ],
+    "word_dwijjok": [
+      "partea din spate",
+      "Sunt locuri în spate."
+    ],
+    "word_apjjok": [
+      "partea din față",
+      "Așezați-vă în față, vă rog."
+    ],
+    "word_anjjok": [
+      "partea interioară",
+      "Luați loc pe scaunul dinspre interior, vă rog."
+    ],
+    "word_wijjok": [
+      "partea de sus",
+      "Cărțile sunt pe raftul de sus."
+    ],
+    "word_araejjok": [
+      "partea de jos",
+      "Încercați să deschideți sertarul de jos."
+    ],
+    "word_ttam": [
+      "sudoare",
+      "Transpir de la sport."
+    ],
+    "word_ttangkong": [
+      "arahidă",
+      "Arahidele au gust de nucă prăjită."
+    ],
+    "word_ttukkeong": [
+      "capac",
+      "Deschideți capacul, vă rog."
+    ],
+    "word_maeumsok": [
+      "adâncul inimii",
+      "În sinea mea eram recunoscător."
+    ],
+    "word_manhwa": [
+      "benzi desenate",
+      "Fratelui meu mai mic îi plac benzile desenate."
+    ],
+    "word_maeryeok": [
+      "farmec",
+      "Orașul acesta are farmec."
+    ],
+    "word_meoritsok": [
+      "capul, mintea",
+      "Am mintea încâlcită."
+    ],
+    "word_memo": [
+      "notiță",
+      "Am lipit o notiță pe frigider."
+    ],
+    "word_myeongham": [
+      "carte de vizită",
+      "Am făcut schimb de cărți de vizită."
+    ],
+    "word_mogi": [
+      "țânțar",
+      "Vara sunt mulți țânțari."
+    ],
+    "word_more": [
+      "poimâine",
+      "Voi veni din nou poimâine."
+    ],
+    "word_mommuge": [
+      "greutate corporală",
+      "M-am cântărit."
+    ],
+    "word_muge": [
+      "greutate",
+      "Cântăresc bagajele."
+    ],
+    "word_munjang": [
+      "propoziție",
+      "Citiți această propoziție, vă rog."
+    ],
+    "word_misul": [
+      "arte plastice",
+      "La ora de desen desenăm."
+    ],
+    "word_misulgwan": [
+      "muzeu de artă",
+      "În weekend am fost la muzeul de artă."
+    ],
+    "word_milgaru": [
+      "făină",
+      "Fac pâine din făină."
+    ],
+    "word_badatga": [
+      "malul mării",
+      "M-am plimbat pe malul mării."
+    ],
+    "word_bawi": [
+      "stâncă",
+      "M-am așezat pe o stâncă."
+    ],
+    "word_balgarak": [
+      "deget de la picior",
+      "M-am lovit la un deget de la picior."
+    ],
+    "word_baegyeong": [
+      "fundal",
+      "Fundalul fotografiei este frumos."
+    ],
+    "word_beoreut": [
+      "obicei, nărav",
+      "Am obiceiul să-mi rod unghiile."
+    ],
+    "word_beoseot": [
+      "ciupercă",
+      "Am făcut supă cu ciuperci."
+    ],
+    "word_beoteo": [
+      "unt",
+      "Întind unt pe pâine."
+    ],
+    "word_bongji": [
+      "pungă",
+      "Am pus fructele într-o pungă."
+    ],
+    "word_bongtu": [
+      "plic",
+      "Am pus scrisoarea într-un plic."
+    ],
+    "word_bugeun": [
+      "împrejurimi",
+      "Locuiesc în apropierea gării."
+    ],
+    "word_bujagyong": [
+      "efect secundar",
+      "Acest medicament nu are efecte secundare."
+    ],
+    "word_bulbit": [
+      "lumină",
+      "Se vede o lumină în depărtare."
+    ],
+    "word_buran": [
+      "neliniște, anxietate",
+      "Simt neliniște înainte de examen."
+    ],
+    "word_ppallae": [
+      "rufe, spălat",
+      "S-au adunat multe rufe."
+    ],
+    "word_ppuri": [
+      "rădăcină",
+      "Rădăcinile copacului sunt adânci."
+    ],
+    "word_saheul": [
+      "trei zile",
+      "A plouat trei zile."
+    ],
+    "word_sangdaebang": [
+      "interlocutor, cealaltă parte",
+      "Ascultați cu atenție cealaltă persoană."
+    ],
+    "word_sangpum": [
+      "marfă, produs",
+      "A apărut un produs nou."
+    ],
+    "word_saeu": [
+      "crevete",
+      "Am fript creveți și i-am mâncat."
+    ],
+    "word_seolgeoji": [
+      "spălatul vaselor",
+      "Am spălat vasele după cină."
+    ],
+    "word_sonamu": [
+      "pin",
+      "Pe munte sunt mulți pini."
+    ],
+    "word_sonnyeo": [
+      "nepoată",
+      "Bunica își iubește mult nepoata."
+    ],
+    "word_sonbadak": [
+      "palmă",
+      "Am scris în palmă."
+    ],
+    "word_sonjabi": [
+      "mâner, clanță",
+      "Clanța ușii este stricată."
+    ],
+    "word_seupgwan": [
+      "obicei",
+      "Mi-am făcut obiceiul să mă culc devreme."
+    ],
+    "word_sonja": [
+      "nepot",
+      "Bunicul se joacă cu nepotul."
+    ],
+    "word_sunseo": [
+      "ordine",
+      "Intrați în ordine, vă rog."
+    ],
+    "word_sieomeoni": [
+      "soacră",
+      "Soacra mea gătește bine."
+    ],
+    "word_sikgu": [
+      "membru al familiei",
+      "Familia noastră are cinci membri."
+    ],
+    "word_sikpum": [
+      "produse alimentare",
+      "Raionul alimentar este la subsol."
+    ],
+    "word_sillae": [
+      "interior, în clădire",
+      "Scoateți-vă pălăria în interior, vă rog."
+    ],
+    "word_simbureum": [
+      "comision",
+      "M-am dus la magazin cu un comision de la mama."
+    ],
+    "word_akgi": [
+      "instrument muzical",
+      "Ce instrument vreți să învățați?"
+    ],
+    "word_aksu": [
+      "strângere de mână",
+      "Ne-am strâns mâna."
+    ],
+    "word_anbang": [
+      "dormitorul principal",
+      "Părinții mei dorm în dormitorul principal."
+    ],
+    "word_yaoe": [
+      "în aer liber",
+      "Am luat prânzul în aer liber."
+    ],
+    "word_yangnyeom": [
+      "condiment, marinată",
+      "Marinata a pătruns bine."
+    ],
+    "word_eoryeoum": [
+      "dificultate",
+      "Dacă aveți dificultăți, spuneți."
+    ],
+    "word_yeou": [
+      "vulpe",
+      "Am văzut o vulpe în pădure."
+    ],
+    "word_yeoyu": [
+      "răgaz, timp liber",
+      "În ultima vreme nu am timp liber."
+    ],
+    "word_yeollakcheo": [
+      "date de contact",
+      "Dați-mi datele dumneavoastră de contact, vă rog."
+    ],
+    "word_yeonmal": [
+      "sfârșitul anului",
+      "La sfârșitul anului sunt multe întâlniri."
+    ],
+    "word_yeolheul": [
+      "zece zile",
+      "Am călătorit zece zile."
+    ],
+    "word_yeongha": [
+      "sub zero",
+      "În dimineața aceasta este sub zero."
+    ],
+    "word_yeopjip": [
+      "casa vecină",
+      "În casa vecină s-a mutat o familie nouă."
+    ],
+    "word_ojingeo": [
+      "calamar",
+      "Calamarul se frige și se mănâncă."
+    ],
+    "word_ondo": [
+      "temperatură",
+      "Am ridicat puțin temperatura din cameră."
+    ],
+    "word_onmom": [
+      "tot corpul",
+      "Mă doare tot corpul."
+    ],
+    "word_oechul": [
+      "ieșire din casă",
+      "Mă pregătesc să ies."
+    ],
+    "word_oenson": [
+      "mâna stângă",
+      "Scriu cu mâna stângă."
+    ],
+    "word_oreunson": [
+      "mâna dreaptă",
+      "Ridicați mâna dreaptă, vă rog."
+    ],
+    "word_yogeum": [
+      "tarif, taxă",
+      "Tariful autobuzului a crescut."
+    ],
+    "word_yoksil": [
+      "baie",
+      "Am curățat baia."
+    ],
+    "word_yoksim": [
+      "lăcomie",
+      "Nu fiți lacom."
+    ],
+    "word_yongdon": [
+      "bani de buzunar",
+      "Am strâns banii de buzunar și am cumpărat o carte."
+    ],
+    "word_useung": [
+      "victorie, locul întâi",
+      "Echipa noastră a câștigat locul întâi."
+    ],
+    "word_upyo": [
+      "timbru",
+      "Colecționarea timbrelor este hobby-ul meu."
+    ],
+    "word_unjeonja": [
+      "șofer",
+      "Șoferii trebuie să poarte centura."
+    ],
+    "word_ureum": [
+      "plâns",
+      "Plânsul bebelușului s-a oprit."
+    ],
+    "word_wicheung": [
+      "etajul de sus",
+      "La etajul de sus este puțin zgomot."
+    ],
+    "word_yurichang": [
+      "geam",
+      "Am curățat geamurile."
+    ],
+    "word_yuchiwon": [
+      "grădiniță",
+      "Copilul meu merge la grădiniță."
+    ],
+    "word_yuhaeng": [
+      "modă, tendință",
+      "Culoarea aceasta este la modă în ultima vreme."
+    ],
+    "word_eumnyo": [
+      "băutură",
+      "Ce doriți să beți?"
+    ],
+    "word_iik": [
+      "profit, beneficiu",
+      "Luna aceasta am avut profit."
+    ],
+    "word_iteunnal": [
+      "ziua următoare",
+      "Am plecat în dimineața următoare."
+    ],
+    "word_ingu": [
+      "populație",
+      "Acest oraș are o populație mare."
+    ],
+    "word_ilsang": [
+      "viața de zi cu zi",
+      "M-am întors la viața de zi cu zi."
+    ],
+    "word_janchi": [
+      "ospăț, petrecere",
+      "Am făcut o petrecere de ziua bunicii."
+    ],
+    "word_jamot": [
+      "pijama",
+      "M-am schimbat în pijama."
+    ],
+    "word_jangnae": [
+      "viitor",
+      "Ce vrei să devii în viitor?"
+    ],
+    "word_jangma": [
+      "sezonul ploios",
+      "A început sezonul ploios."
+    ],
+    "word_jangsa": [
+      "comerț, afacere",
+      "În ultima vreme afacerea merge bine."
+    ],
+    "word_jaeryo": [
+      "ingredient, material",
+      "Am cumpărat ingredientele pentru gătit."
+    ],
+    "word_jeoja": [
+      "autor",
+      "L-am întâlnit pe autorul acestei cărți."
+    ],
+    "word_jeochuk": [
+      "economii",
+      "Fac economii în fiecare lună."
+    ],
+    "word_jeongong": [
+      "specializare",
+      "Ce specializare ai?"
+    ],
+    "word_jeonnal": [
+      "ziua dinainte",
+      "În ziua dinaintea examenului mă culc devreme."
+    ],
+    "word_jeongdap": [
+      "răspunsul corect",
+      "Am nimerit răspunsul corect."
+    ],
+    "word_jepum": [
+      "produs",
+      "Acest produs este de bună calitate."
+    ],
+    "word_josang": [
+      "strămoș",
+      "De sărbători ne cinstim strămoșii."
+    ],
+    "word_jwaseok": [
+      "loc, scaun",
+      "Verificați numărul locului, vă rog."
+    ],
+    "word_jubu": [
+      "casnică",
+      "Mătușa mea este casnică."
+    ],
+    "word_juchajang": [
+      "parcare",
+      "Am parcat mașina în parcare."
+    ],
+    "word_junbimul": [
+      "lucruri de adus",
+      "Ți-ai pregătit lucrurile pentru mâine?"
+    ],
+    "word_julgi": [
+      "tulpină",
+      "Tulpina florii este lungă."
+    ],
+    "word_chanmul": [
+      "apă rece",
+      "Un pahar cu apă rece, vă rog."
+    ],
+    "word_chamgireum": [
+      "ulei de susan",
+      "Adăugați puțin ulei de susan."
+    ],
+    "word_changbak": [
+      "dincolo de fereastră",
+      "Dincolo de fereastră ninge."
+    ],
+    "word_chaeneol": [
+      "canal",
+      "Schimbați canalul, vă rog."
+    ],
+    "word_chaekgabang": [
+      "ghiozdan",
+      "Ghiozdanul meu este prea greu."
+    ],
+    "word_cheongnyeon": [
+      "tânăr",
+      "Tinerii fac voluntariat."
+    ],
+    "word_cheongsonyeon": [
+      "adolescent",
+      "Tariful este mai ieftin pentru adolescenți."
+    ],
+    "word_chejung": [
+      "greutate corporală",
+      "Am slăbit puțin."
+    ],
+    "word_choroksaek": [
+      "culoarea verde",
+      "Mi-am pus o pălărie verde."
+    ],
+    "word_chobap": [
+      "sushi",
+      "La prânz am mâncat sushi."
+    ],
+    "word_chukje": [
+      "festival",
+      "Toamna are loc un festival."
+    ],
+    "word_munhwa": [
+      "cultură",
+      "Mă interesează mult cultura coreeană."
+    ],
+    "word_gyeongje": [
+      "economie",
+      "Mă uit zilnic la știrile economice."
+    ],
+    "word_yesul": [
+      "artă",
+      "Fratele meu mai mic studiază arta."
+    ],
+    "word_tteut": [
+      "înțeles",
+      "Nu știu înțelesul acestui cuvânt."
+    ],
+    "word_baljeon": [
+      "dezvoltare",
+      "Acest oraș se dezvoltă repede."
+    ],
+    "word_jeontong": [
+      "tradiție",
+      "Am ascultat muzică tradițională."
+    ],
+    "word_taedo": [
+      "atitudine",
+      "Atitudinea este foarte bună."
+    ],
+    "word_juwi": [
+      "împrejurimi",
+      "Uitați-vă bine în jur."
+    ],
+    "word_teukjing": [
+      "trăsătură",
+      "Trăsătura acestei zone este marea."
+    ],
+    "word_yejeong": [
+      "plan stabilit",
+      "Plănuiesc să plec săptămâna viitoare."
+    ],
+    "word_haengsa": [
+      "eveniment",
+      "Am participat la un eveniment școlar."
+    ],
+    "word_pandan": [
+      "judecată",
+      "Este nevoie de o judecată rapidă."
+    ],
+    "word_balpyo": [
+      "prezentare",
+      "Mâine am o prezentare."
+    ],
+    "word_gicho": [
+      "bază",
+      "Învăț din nou de la bază."
+    ],
+    "word_juingong": [
+      "personaj principal",
+      "Personajul principal al acestui roman este un student."
+    ],
+    "word_haeoe": [
+      "străinătate",
+      "Plec într-o călătorie în străinătate."
+    ],
+    "word_cheyuk": [
+      "educație fizică",
+      "Ora de sport este cea mai distractivă."
+    ],
+    "word_pyeongso": [
+      "zile obișnuite",
+      "M-am culcat mai devreme decât de obicei."
+    ],
+    "word_jutaek": [
+      "locuință",
+      "Prețurile locuințelor au crescut mult."
+    ],
+    "word_nongchon": [
+      "sat",
+      "Bunica mea locuiește la sat."
+    ],
+    "word_bat": [
+      "ogor",
+      "Am cules ardei pe ogor."
+    ],
+    "word_gyeot": [
+      "alături",
+      "Rămâi lângă mine."
+    ],
+    "word_gippeum": [
+      "bucurie",
+      "Vestea admiterii a adus o mare bucurie."
+    ],
+    "word_ipsul": [
+      "buze",
+      "Am buzele uscate."
+    ],
+    "word_heuk": [
+      "pământ",
+      "Când ating pământul mă simt bine."
+    ],
+    "word_gwahakja": [
+      "om de știință",
+      "Vreau să devin om de știință."
+    ],
+    "word_hoewon": [
+      "membru",
+      "Arătați-mi cardul de membru, vă rog."
+    ],
+    "word_bangmun": [
+      "vizită",
+      "Următoarea vizită este vineri."
+    ],
+    "word_bulman": [
+      "nemulțumire",
+      "Am ascultat nemulțumirea clientului."
+    ],
+    "word_gwangaek": [
+      "spectator",
+      "Spectatorii au aplaudat tare."
+    ],
+    "word_gomo": [
+      "mătușă din partea tatălui",
+      "Mătușa mi-a trimis un cadou."
+    ],
+    "word_toron": [
+      "dezbatere",
+      "Am avut o dezbatere la oră."
+    ],
+    "word_gosaeng": [
+      "greutăți",
+      "Ați trecut prin multe."
+    ],
+    "word_pado": [
+      "val",
+      "Valurile sunt înalte."
+    ],
+    "word_yegeum": [
+      "depozit bancar",
+      "Am retras puțin din depozit."
+    ],
+    "word_ipak": [
+      "admitere",
+      "Felicitări pentru admitere."
+    ],
+    "word_jehan": [
+      "limită",
+      "Există o limită de timp."
+    ],
+    "word_punggyeong": [
+      "peisaj",
+      "Peisajul de la fereastră este frumos."
+    ],
+    "word_gamdong": [
+      "emoție profundă",
+      "M-a emoționat filmul."
+    ],
+    "word_maru": [
+      "podea de lemn",
+      "M-am așezat pe podeaua de lemn și m-am odihnit."
+    ],
+    "word_yejeol": [
+      "maniere",
+      "Am învățat manierele la masă."
+    ],
+    "word_chincheok": [
+      "rudă",
+      "O rudă a venit la noi acasă."
+    ],
+    "word_haetsal": [
+      "raze de soare",
+      "Razele soarelui de dimineață sunt calde."
+    ],
+    "word_hakgi": [
+      "semestru",
+      "A început noul semestru."
+    ],
+    "word_hubae": [
+      "coleg mai tânăr",
+      "I-am plătit prânzul colegului mai tânăr."
+    ],
+    "word_hakseup": [
+      "învățare",
+      "Mi-am făcut un plan de învățare."
+    ],
+    "word_bigyo": [
+      "comparație",
+      "Comparația celor două produse este ușoară."
+    ],
+    "word_hyanggi": [
+      "parfum, mireasmă",
+      "Camera este plină de parfumul florilor."
+    ],
+    "word_garu": [
+      "pulbere",
+      "Am făcut medicamentul pulbere."
+    ],
+    "word_donghwa": [
+      "poveste",
+      "I-am citit copilului o poveste."
+    ],
+    "word_yuhak": [
+      "studii în străinătate",
+      "Fratele meu mai mare se pregătește pentru studii în străinătate."
+    ],
+    "word_damim": [
+      "diriginte",
+      "Dirigintele meu este amabil."
+    ],
+    "word_dojung": [
+      "la jumătatea drumului",
+      "A plouat pe drum."
+    ],
+    "word_chingchan": [
+      "laudă",
+      "Am primit o laudă de la profesor."
+    ],
+    "word_haetbit": [
+      "lumina soarelui",
+      "Lumina soarelui este prea puternică."
+    ],
+    "word_meonji": [
+      "praf",
+      "S-a adunat praf pe birou."
+    ],
+    "word_heungmi": [
+      "interes",
+      "Am prins interes pentru istorie."
+    ],
+    "word_dijain": [
+      "design",
+      "Geanta aceasta are un design frumos."
+    ],
+    "word_teol": [
+      "blană, păr",
+      "Blana pisicii este moale."
+    ],
+    "word_iljeong": [
+      "program",
+      "Am verificat programul de azi."
+    ],
+    "word_gyohwan": [
+      "schimb",
+      "Se poate schimba cu altă culoare?"
+    ],
+    "word_gugeo": [
+      "limba națională",
+      "Am dat examenul de limba coreeană."
+    ],
+    "word_jeulgeoum": [
+      "plăcere",
+      "Călătoria este o mare plăcere."
+    ],
+    "word_daehagwon": [
+      "școală postuniversitară",
+      "Urmez studii postuniversitare."
+    ],
+    "word_deungnok": [
+      "înregistrare",
+      "Am terminat înregistrarea la curs."
+    ],
+    "word_munui_2": [
+      "model, imprimeu",
+      "Am purtat o fustă cu imprimeu floral."
+    ],
+    "word_hwabun": [
+      "ghiveci",
+      "Am udat ghiveciul."
+    ],
+    "word_gyesangi": [
+      "calculator de buzunar",
+      "Am adunat cu calculatorul."
+    ],
+    "word_hagwon": [
+      "școală privată de meditații",
+      "Seara merg la cursul de engleză."
+    ],
+    "word_tomato": [
+      "roșie",
+      "Am tăiat roșii și am făcut o salată."
+    ],
+    "word_ppyam": [
+      "obraz",
+      "Mi s-au înroșit obrajii de frig."
+    ],
+    "word_tongjang": [
+      "carnet de bancă",
+      "Salariul a intrat pe carnetul meu de bancă."
+    ],
+    "word_gyeonggijang": [
+      "stadion",
+      "Stadionul s-a umplut de oameni."
+    ],
+    "word_cheonnal": [
+      "prima zi",
+      "Prima zi la muncă te emoționează."
+    ],
+    "word_yeoreumcheol": [
+      "sezonul de vară",
+      "În sezonul de vară beau multă apă."
+    ],
+    "word_chulgeun": [
+      "mersul la serviciu",
+      "La ora de mers la serviciu drumurile sunt blocate."
+    ],
+    "word_toegeun": [
+      "plecarea de la serviciu",
+      "După serviciu fac sport."
+    ],
+    "word_jeoncheol": [
+      "tren electric",
+      "Merg la școală cu trenul electric."
+    ],
+    "word_sikppang": [
+      "pâine de toast",
+      "Dimineața am prăjit pâine de toast."
+    ],
+    "word_taepung": [
+      "taifun",
+      "Zborul a fost anulat din cauza taifunului."
+    ],
+    "word_yeonhyu": [
+      "minivacanță",
+      "În minivacanță mi-am vizitat orașul natal."
+    ],
+    "word_chwijik": [
+      "angajare",
+      "Mă pregătesc pentru angajare."
+    ],
+    "word_baem": [
+      "șarpe",
+      "Am văzut un șarpe pe poteca de munte."
+    ],
+    "word_doenjang": [
+      "pastă de soia",
+      "Am făcut o supă cu pastă de soia."
+    ],
+    "word_keoteun": [
+      "perdea",
+      "Deschideți perdelele, vă rog."
+    ],
+    "word_sonagi": [
+      "aversă",
+      "A venit o aversă și mi s-au udat hainele."
+    ],
+    "word_goguma": [
+      "cartof dulce",
+      "Iarna, cartofii dulci copți sunt cei mai buni."
+    ],
+    "word_sonsugeon": [
+      "batistă",
+      "Mi-am șters sudoarea cu o batistă."
+    ],
+    "word_songaji": [
+      "vițel",
+      "Vițelul este lângă mama lui."
+    ],
+    "word_momsal": [
+      "dureri de epuizare",
+      "M-am îmbolnăvit de epuizare și m-am odihnit o zi."
+    ],
+    "word_chigwa": [
+      "cabinet stomatologic",
+      "Mă durea un dinte și m-am dus la dentist."
+    ],
+    "word_japangi": [
+      "automat",
+      "Am luat o cafea de la automat."
+    ],
+    "word_sangchu": [
+      "salată verde",
+      "Învelesc carnea în salată verde și o mănânc."
+    ],
+    "word_jaechaegi": [
+      "strănut",
+      "Praful mă face să strănut."
+    ],
+    "word_hoengdanbodo": [
+      "trecere de pietoni",
+      "Traversați pe trecerea de pietoni."
+    ],
+    "word_seonpunggi": [
+      "ventilator",
+      "Era cald, așa că am pornit ventilatorul."
+    ],
+    "word_pyeongil": [
+      "zi lucrătoare",
+      "În zilele lucrătoare sunt puțini clienți."
+    ],
+    "word_mokgeori": [
+      "colier",
+      "Am primit un colier de ziua mea."
+    ],
+    "word_sopo": [
+      "colet",
+      "Coletul a ajuns acasă."
+    ],
+    "word_araecheung": [
+      "etajul de jos",
+      "La etajul de jos este un magazin non-stop."
+    ],
+    "word_tteokbokki": [
+      "turtițe de orez picante",
+      "Tteokbokki este puțin picant."
+    ],
+    "word_nokcha": [
+      "ceai verde",
+      "Am băut un ceai verde cald."
+    ],
+    "word_seongham": [
+      "nume, respectuos",
+      "Îmi permiteți să vă întreb numele?"
+    ],
+    "word_setakso": [
+      "curățătorie",
+      "Am lăsat paltonul la curățătorie."
+    ],
+    "word_piltong": [
+      "penar",
+      "Nu am creion în penar."
+    ],
+    "word_haksaengjeung": [
+      "legitimație de student",
+      "Cu legitimația de student ai reducere."
+    ],
+    "word_bit_2": [
+      "pieptene",
+      "Am scos un pieptene din geantă."
+    ],
+    "word_kkamansaek": [
+      "negru intens",
+      "A trecut o pisică neagră ca smoala."
+    ],
+    "word_hayansaek": [
+      "alb imaculat",
+      "Am călcat o cămașă albă imaculată."
+    ],
+    "word_gaeguri": [
+      "broască",
+      "Broaștele orăcăie în iaz."
+    ],
+    "word_gilga": [
+      "marginea drumului",
+      "Au înflorit flori la marginea drumului."
+    ],
+    "word_binmul": [
+      "apă de ploaie",
+      "Apa de ploaie se scurge pe fereastră."
+    ],
+    "word_haetbyeot": [
+      "arșița soarelui",
+      "Am uscat rufele la soare."
+    ],
+    "word_kongnamul": [
+      "germeni de soia",
+      "Condimentez germenii de soia și îi mănânc."
+    ],
+    "word_namul": [
+      "verdețuri sălbatice condimentate",
+      "Primăvara, verdețurile sălbatice condimentate sunt gustoase."
+    ],
+    "word_hyeongwan": [
+      "hol de intrare",
+      "Scoateți-vă pantofii la intrare, vă rog."
+    ],
+    "word_kkeom": [
+      "gumă de mestecat",
+      "Nu mestecați gumă în timpul orei."
+    ],
+    "word_juk": [
+      "terci de orez",
+      "Când sunt bolnav mănânc terci de orez."
+    ],
+    "word_bapgeureut": [
+      "bol de orez",
+      "Am golit complet bolul de orez."
+    ],
+    "word_bulkkot": [
+      "flacără, scânteie",
+      "Flăcările au luminat cerul nopții."
+    ],
+    "word_sinipsaeng": [
+      "boboc",
+      "Este o petrecere de bun venit pentru boboci."
+    ],
+    "word_hoesaek": [
+      "gri",
+      "Se adună nori cenușii."
+    ],
+    "word_dongari": [
+      "club studențesc",
+      "M-am înscris în clubul de fotografie."
+    ],
+    "word_baiollin": [
+      "vioară",
+      "Sunetul viorii este frumos."
+    ],
+    "word_noraebang": [
+      "sală de karaoke",
+      "Am fost la karaoke cu prietenii."
+    ],
+    "word_daedosi": [
+      "oraș mare",
+      "În orașele mari locuințele sunt scumpe."
+    ],
+    "word_eorinai": [
+      "copil mic",
+      "Un copil mic plânge singur."
+    ],
+    "word_pojang": [
+      "ambalaj",
+      "Împachetați-l pentru cadou, vă rog."
+    ],
+    "word_inwon": [
+      "număr de persoane",
+      "Câte persoane sunteți?"
+    ],
+    "word_soseolga": [
+      "romancier",
+      "Am întâlnit un romancier celebru."
+    ],
+    "word_dojagi": [
+      "ceramică",
+      "Învăț să fac ceramică."
+    ],
+    "word_sinmunji": [
+      "hârtie de ziar",
+      "Am șters geamul cu hârtie de ziar."
+    ],
+    "word_gosokdoro": [
+      "autostradă",
+      "A avut loc un accident pe autostradă."
+    ],
+    "word_jagayong": [
+      "mașină personală",
+      "Fac naveta cu mașina personală."
+    ],
+    "word_majeunpyeon": [
+      "partea opusă",
+      "Banca este pe partea opusă."
+    ],
+    "word_geonneopyeon": [
+      "partea cealaltă a străzii",
+      "Magazinul de peste drum este mai ieftin."
+    ],
+    "word_iutjip": [
+      "casa vecinului",
+      "Vecinii ne-au dat turtițe de orez."
+    ],
+    "word_peullaseutik": [
+      "plastic",
+      "Plasticul se aruncă separat."
+    ],
+    "word_chuljang": [
+      "deplasare de serviciu",
+      "Săptămâna viitoare merg în deplasare la Busan."
+    ],
+    "word_mogyoktang": [
+      "baie publică",
+      "În weekend am fost la baia publică."
+    ],
+    "word_badanmul": [
+      "apă de mare",
+      "Apa mării este foarte rece."
+    ],
+    "word_chuka": [
+      "felicitare",
+      "Am pregătit un cadou de felicitare."
+    ],
+    "word_chwiso": [
+      "anulare",
+      "Anularea rezervării se poate face până în ziua dinainte."
+    ],
+    "word_gyeoulcheol": [
+      "sezonul de iarnă",
+      "Iarna, ferește-te de răceli."
+    ],
+    "word_gochujang": [
+      "pastă de ardei iute",
+      "Pun pastă de ardei iute în bibimbap."
+    ],
+    "word_bitamin": [
+      "vitamină",
+      "Iau vitamine în fiecare zi."
+    ],
+    "word_bilding": [
+      "clădire înaltă",
+      "Clădirea aceea are treizeci de etaje."
+    ],
+    "word_sikcho": [
+      "oțet",
+      "Am pus puțin oțet în salată."
+    ],
+    "word_janghakgeum": [
+      "bursă",
+      "Semestrul acesta am primit o bursă."
+    ],
+    "word_churimmun": [
+      "ușa de intrare",
+      "Închideți bine ușa de intrare, vă rog."
+    ],
+    "word_hoejang": [
+      "președinte",
+      "Președintele a rostit un cuvânt de bun venit."
+    ],
+    "word_tongil": [
+      "unificare",
+      "Am învățat despre unificare."
+    ],
+    "word_jaesan": [
+      "avere",
+      "Și-au lăsat averea familiei."
+    ],
+    "word_jeonguk": [
+      "toată țara",
+      "Plouă în toată țara."
+    ],
+    "word_gajeong": [
+      "cămin",
+      "M-am căsătorit și mi-am întemeiat un cămin."
+    ],
+    "word_nongeop": [
+      "agricultură",
+      "Agricultura este dezvoltată în această regiune."
+    ],
+    "word_sobija": [
+      "consumator",
+      "Ascultăm părerea consumatorilor."
+    ],
+    "word_nodongja": [
+      "muncitor",
+      "Muncitorii se odihnesc."
+    ],
+    "word_daejung": [
+      "publicul larg",
+      "Este foarte popular în rândul publicului larg."
+    ],
+    "word_siin": [
+      "poet",
+      "Îmi plac poeziile acelui poet."
+    ],
+    "word_anaunseo": [
+      "crainic",
+      "Crainicul citește știrile."
+    ],
+    "word_kkadak": [
+      "pricină",
+      "Spune-mi pricina întârzierii."
+    ],
+    "word_gyeongyeong": [
+      "management",
+      "Studiez management la universitate."
+    ],
+    "word_imgeum": [
+      "salariu",
+      "Salariile au crescut."
+    ],
+    "word_seoyang": [
+      "Occident",
+      "Îmi place mâncarea occidentală."
+    ],
+    "word_imiji": [
+      "imagine",
+      "Imaginea companiei s-a îmbunătățit."
+    ],
+    "word_suchul": [
+      "export",
+      "Exportul de mașini a crescut."
+    ],
+    "word_choecho": [
+      "primul",
+      "Acesta este primul din lume."
+    ],
+    "word_suip": [
+      "venit",
+      "Venitul meu a crescut puțin."
+    ],
+    "word_muyeok": [
+      "comerț exterior",
+      "Lucrez la o companie de comerț exterior."
+    ],
+    "word_jonghap": [
+      "ansamblu",
+      "Scorul de ansamblu este mare."
+    ],
+    "word_panmae": [
+      "vânzare",
+      "Vânzările au început."
+    ],
+    "word_gongsa": [
+      "lucrări de construcție",
+      "Drumul este închis din cauza lucrărilor."
+    ],
+    "word_muyong": [
+      "artă a dansului",
+      "Am văzut un spectacol de dans."
+    ],
+    "word_nonmun": [
+      "lucrare științifică",
+      "Scriu o lucrare științifică."
+    ],
+    "word_ollimpik": [
+      "Jocurile Olimpice",
+      "Am urmărit Jocurile Olimpice la televizor."
+    ],
+    "word_munjejeom": [
+      "punct problematic",
+      "Am găsit punctul problematic."
+    ],
+    "word_yesulga": [
+      "artist",
+      "În această zonă locuiesc artiști laolaltă."
+    ],
+    "word_model": [
+      "model",
+      "Modelul defilează pe podium."
+    ],
+    "word_yeonguso": [
+      "institut de cercetare",
+      "Lucrez la un institut de cercetare."
+    ],
+    "word_geulloja": [
+      "angajat",
+      "Ziua Muncii este în mai."
+    ],
+    "word_bangsongguk": [
+      "post de televiziune",
+      "Am vizitat un post de televiziune."
+    ],
+    "word_mulsok": [
+      "sub apă",
+      "Am deschis ochii sub apă."
+    ],
+    "word_wiban": [
+      "încălcare",
+      "Am plătit o amendă pentru trecerea pe roșu."
+    ],
+    "word_neomeo": [
+      "dincolo de",
+      "Dincolo de munte este un sat."
+    ],
+    "word_donggi": [
+      "motivație",
+      "Spuneți-ne motivația candidaturii."
+    ],
+    "word_seutail": [
+      "stil",
+      "Mi-am schimbat stilul de coafură."
+    ],
+    "word_sinyong": [
+      "credibilitate",
+      "Nu trebuie pierdută încrederea oamenilor."
+    ],
+    "word_banjang": [
+      "șef de clasă",
+      "Am fost ales șef de clasă."
+    ],
+    "word_sincheong": [
+      "cerere",
+      "Perioada de depunere a cererilor s-a încheiat."
+    ],
+    "word_apeum": [
+      "durere",
+      "Încerc să uit durerea."
+    ],
+    "word_gyoryu": [
+      "schimburi",
+      "Schimburile dintre cele două țări sunt intense."
+    ],
+    "word_geulsseugi": [
+      "scris",
+      "Urmez un curs de scriere."
+    ],
+    "word_daegieop": [
+      "companie mare",
+      "M-am angajat la o companie mare."
+    ],
+    "word_bujang": [
+      "șef de departament",
+      "Șeful de departament a convocat o ședință."
+    ],
+    "word_insang": [
+      "impresie",
+      "Prima impresie a fost bună."
+    ],
+    "word_sicheongja": [
+      "telespectator",
+      "Citesc scrisoarea unui telespectator."
+    ],
+    "word_jongeobwon": [
+      "angajat",
+      "Angajatul ne-a îndrumat cu amabilitate."
+    ],
+    "word_gukoeuiwon": [
+      "parlamentar",
+      "Sunt alegerile pentru a alege parlamentarii."
+    ],
+    "word_midieo": [
+      "mass-media",
+      "Influența mass-mediei este mare."
+    ],
+    "word_gotgot": [
+      "ici și colo",
+      "Au înflorit flori ici și colo."
+    ],
+    "word_tap": [
+      "turn, pagodă",
+      "La templu se află o pagodă veche."
+    ],
+    "word_geonchuk": [
+      "arhitectură",
+      "Am studiat arhitectura."
+    ],
+    "word_sigyongyu": [
+      "ulei de gătit",
+      "Am pus ulei în tigaie."
+    ],
+    "word_geop": [
+      "frică",
+      "Mi-e frică, așa că nu pot să mă urc."
+    ],
+    "word_seogyu": [
+      "petrol",
+      "Prețul petrolului a crescut."
+    ],
+    "word_chaegimja": [
+      "responsabil",
+      "Aș vrea să vorbesc cu responsabilul."
+    ],
+    "word_boram": [
+      "satisfacție a efortului",
+      "Predatul îmi dă satisfacție."
+    ],
+    "word_soseu": [
+      "sos",
+      "Dați-mi mai mult sos, vă rog."
+    ],
+    "word_urimal": [
+      "limba noastră",
+      "Să ne folosim frumos limba."
+    ],
+    "word_hyeonji": [
+      "locul respectiv, local",
+      "Am gustat mâncarea locală."
+    ],
+    "word_geot_2": [
+      "exterior",
+      "Exteriorul e tare și interiorul e moale."
+    ],
+    "word_seungyongcha": [
+      "autoturism",
+      "Sunt parcate cinci autoturisme."
+    ],
+    "word_jinchul": [
+      "expansiune",
+      "Ne pregătim pentru expansiunea în străinătate."
+    ],
+    "word_giun": [
+      "energie, vlagă",
+      "Nu am pic de energie."
+    ],
+    "word_abeonim": [
+      "tatăl dumneavoastră",
+      "Transmiteți-i salutări tatălui dumneavoastră."
+    ],
+    "word_mureum": [
+      "întrebare",
+      "Răspundeți la întrebare, vă rog."
+    ],
+    "word_eomeonim": [
+      "mama dumneavoastră",
+      "Mama dumneavoastră este sănătoasă?"
+    ],
+    "word_haeseok": [
+      "interpretare",
+      "Propoziția aceasta este greu de interpretat."
+    ],
+    "word_sayongja": [
+      "utilizator",
+      "Numărul utilizatorilor a crescut mult."
+    ],
+    "word_sawon": [
+      "angajat al firmei",
+      "A venit un angajat nou."
+    ],
+    "word_gangmul": [
+      "apa râului",
+      "Apa râului este limpede."
+    ],
+    "word_rideum": [
+      "ritm",
+      "Dansez în ritm."
+    ],
+    "word_moniteo": [
+      "monitor",
+      "Monitorul este prea întunecat."
+    ],
+    "word_un": [
+      "noroc",
+      "Norocul a fost de partea mea și am luat examenul."
+    ],
+    "word_ilsangsaenghwal": [
+      "viața cotidiană",
+      "Este un cuvânt folosit des în viața cotidiană."
+    ],
+    "word_binil": [
+      "folie de plastic",
+      "Am acoperit mâncarea cu folie."
     ]
   }
 }

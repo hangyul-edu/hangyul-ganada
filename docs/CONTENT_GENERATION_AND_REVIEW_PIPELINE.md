@@ -256,3 +256,34 @@ recordings. The order is not optional:
 
 `content:corpus` is the one people forget. Anything that loads content the way
 the app does reads `public/corpus/*.json`, not the generated pack.
+
+## 8. The figures every document reads, and the audits behind them
+
+Added in the v1.0.5 content pass, after the report was found carrying three
+different corpus sizes on one day. A figure that describes the content is
+never typed into a document; it is read from one of these generated files,
+each with a `--check` form in `verify:quick` that fails when the file is stale:
+
+| File | Written by | What it holds |
+| --- | --- | --- |
+| `docs/content-inventory.json` | `npm run content:inventory` | taught entries, headwords, senses, POS, levels, categories, bands, usefulness, locale completeness, audio coverage, level-test bank by level and kind, gap-fills, relations, safety findings, duplicates, zone exhaustion at every daily goal, and a `problems` list that must be empty |
+| `docs/content-translation-audit.json` + `docs/CONTENT_TRANSLATION_AUDIT_v1.0.5.md` | `npm run translation:audit` | every shipped row in every locale: presence, writing system, Korean or English copied through, placeholders, terminal punctuation, length outliers — labelled AUTOMATED CHECKED, never more; the model-read sample is `docs/content-translation-review-sample.json` |
+| `docs/content-scalability.json` | `npm run content:scalability` | what the first screen costs in the heaviest language, per-band and per-locale sizes, audio and bank totals, and the linear projection to 10,000 words |
+| `docs/QUOTE_TRANSLATION_REVIEW_v1.0.5.md` | `npm run quotes:review` | the 64 quotation rows with one label each and the attribution facts |
+| `docs/content-gates-negative.json` | `bash scripts/content-gates-negative.sh` | each new gate planted with its defect and shown to fail, then the tree re-run clean |
+| `docs/report-pdf-inspection.json` | `npm run report:pdf:inspect` | one row per rendered page of the report: blank, replacement character, Markdown artefact, Hangul present |
+
+The labels are fixed and the strongest one is never used: **AUTOMATED CHECKED**
+(a program proved the form), **MODEL-REVIEWED** (the model read it against the
+Korean and says so per row), **HUMAN REVIEW REQUIRED** (everything that is only
+the first two), **NATIVE-SPEAKER REVIEWED** (nobody has; do not write it).
+
+Adding words now starts from the National Institute of the Korean Language's
+learner list (`content/vocabulary/nikl-learner-vocabulary-2003.json`, KOGL
+type 1): the untaught A and B words are the candidate pool, and the level
+model reads the same list as its second frequency source
+(`scripts/content/learner_grade.py`, `docs/VOCABULARY_LEVEL_CALIBRATION.md`).
+A batch is authored outside the pack, passes `scripts/content/preflight_batch.py`,
+is merged with its twenty-four copy rows, and goes through §7 and every gate
+before the next batch starts. Draft batches live outside `/tmp`: a VM restart
+empties it.

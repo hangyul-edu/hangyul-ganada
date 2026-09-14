@@ -145,6 +145,10 @@ _IRREGULAR: dict[str, tuple[str, str | None]] = {
     "맛없다": ("마덥따", "tensing"),
     "끝없다": ("끄덥따", "tensing"),
     "나뭇잎": ("나문닙", "nasal"),
+    # 꽃잎 is the same compound shape as 나뭇잎 — 잎 is a word of its own — so
+    # the ㄴ is inserted and the ㅊ neutralises and assimilates in front of it:
+    # [꼳닙] → [꼰닙] (표준발음법 §29). Added with batch 302.
+    "꽃잎": ("꼰닙", "nasal"),
     "큰일": ("큰닐", None),
     "별일": ("별릴", None),
     # 표준발음법 §10, the 밟- exception: a ㄼ before a consonant is said [ㄹ] in

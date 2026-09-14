@@ -2709,8 +2709,8 @@
       "Meghívtam magamhoz egy barátomat."
     ],
     "word_gamyeon": [
-      "álarc, maszk",
-      "Álarcot vettem fel."
+      "álarc",
+      "Álarcban táncoltam."
     ],
     "word_ingi": [
       "népszerűség",
@@ -8233,8 +8233,8 @@
       "Meglátogattam a tanáromat."
     ],
     "word_jiwon": [
-      "támogatás",
-      "Támogatást kaptam."
+      "segítség, támogatás",
+      "Támogatást kaptam a kormánytól."
     ],
     "word_oraen": [
       "régi",
@@ -9693,7 +9693,7 @@
     ],
     "word_sinjang": [
       "testmagasság",
-      "Megmérem a testmagasságomat."
+      "Mekkora a testmagassága?"
     ],
     "word_neullida": [
       "megnövelni",
@@ -10401,8 +10401,8 @@
       "Az elemzés befejeződött."
     ],
     "word_jiji": [
-      "támogatottság",
-      "Elnyertem a támogatottságot."
+      "támogatás, kiállás",
+      "Sok ember támogatását kaptam meg."
     ],
     "word_seupai": [
       "kém",
@@ -13580,6 +13580,1994 @@
     "word_yubohada": [
       "felfüggeszt",
       "Az ítéletünket egy időre felfüggesztettük."
+    ],
+    "word_gasu": [
+      "énekes",
+      "Az az énekes jól énekel."
+    ],
+    "word_gyejeol": [
+      "évszak",
+      "Melyik évszakot szereti?"
+    ],
+    "word_gyeongchalgwan": [
+      "rendőr",
+      "Megkérdeztem egy rendőrtől az utat."
+    ],
+    "word_gyeongchi": [
+      "táj, kilátás",
+      "Itt igazán szép a táj."
+    ],
+    "word_godeunghaksaeng": [
+      "középiskolás",
+      "Az öcsém középiskolás."
+    ],
+    "word_gwaja": [
+      "keksz vagy nassolnivaló",
+      "A gyerekek kekszet esznek."
+    ],
+    "word_gyogwaseo": [
+      "tankönyv",
+      "Kérem, nyissák ki a tankönyvet."
+    ],
+    "word_gugyeong": [
+      "nézelődés",
+      "Elmentem virágot nézni."
+    ],
+    "word_gisuksa": [
+      "kollégium",
+      "Kollégiumban lakom."
+    ],
+    "word_namdongsaeng": [
+      "öcs",
+      "Az öcsém magas."
+    ],
+    "word_naenyeon": [
+      "jövő év",
+      "Jövőre Koreába megyek."
+    ],
+    "word_dallyeok": [
+      "naptár",
+      "A falon egy naptár lóg."
+    ],
+    "word_daehaksaeng": [
+      "egyetemista",
+      "Az öcsém egyetemista lett."
+    ],
+    "word_dwaejigogi": [
+      "sertéshús",
+      "Sertéshúst sütöttünk és megettük."
+    ],
+    "word_deungsan": [
+      "hegyi túrázás",
+      "Hétvégén túrázni megyek a hegyekbe."
+    ],
+    "word_maepda": [
+      "csípősnek lenni",
+      "Ez a tteokbokki túl csípős."
+    ],
+    "word_menyu": [
+      "étlap",
+      "Kérem, mutassa az étlapot."
+    ],
+    "word_mogyok": [
+      "fürdés",
+      "Lefekvés előtt fürdöm."
+    ],
+    "word_mit": [
+      "alsó rész, alatt",
+      "A macska az ágy alatt van."
+    ],
+    "word_bareum": [
+      "kiejtés",
+      "Nagyon jó a kiejtése."
+    ],
+    "word_banghak": [
+      "iskolai szünet",
+      "Mit fog csinálni a szünetben?"
+    ],
+    "word_baebureuda": [
+      "jóllakottnak lenni",
+      "Sokat ettem, úgyhogy jóllaktam."
+    ],
+    "word_baekwajeom": [
+      "áruház",
+      "Az áruházban vettem ruhát."
+    ],
+    "word_bolpen": [
+      "golyóstoll",
+      "Kérem, adjon kölcsön egy golyóstollat."
+    ],
+    "word_saekkkal": [
+      "szín",
+      "Tetszik ez a szín."
+    ],
+    "word_seojeom": [
+      "könyvesbolt",
+      "A könyvesboltban vettem egy könyvet."
+    ],
+    "word_seonmulhada": [
+      "megajándékozni",
+      "Virágot ajándékoztam a barátomnak."
+    ],
+    "word_sesu": [
+      "arcmosás",
+      "Reggel arcot mosok."
+    ],
+    "word_sopung": [
+      "kirándulás",
+      "Holnap kirándulni megyünk."
+    ],
+    "word_syoping": [
+      "vásárlás",
+      "Hétvégén vásárolni voltam."
+    ],
+    "word_syupeomaket": [
+      "szupermarket",
+      "A szupermarketben vettem zöldséget."
+    ],
+    "word_yangbok": [
+      "öltöny",
+      "Apám öltönyt visel."
+    ],
+    "word_eorini": [
+      "gyermek",
+      "A gyerekeknek ingyenes a jegy."
+    ],
+    "word_eeokeon": [
+      "légkondicionáló",
+      "Meleg volt, ezért bekapcsoltam a légkondit."
+    ],
+    "word_oraenman": [
+      "hosszú idő után",
+      "Hosszú idő után találkoztam egy barátommal."
+    ],
+    "word_oeguk": [
+      "külföld",
+      "Élt már külföldön?"
+    ],
+    "word_oegugeo": [
+      "idegen nyelv",
+      "Idegen nyelvet tanulok."
+    ],
+    "word_oegugin": [
+      "külföldi",
+      "Sok külföldi barátom van."
+    ],
+    "word_undonghada": [
+      "sportolni",
+      "Minden reggel sportolok."
+    ],
+    "word_undonghwa": [
+      "sportcipő",
+      "Felvettem az új sportcipőmet."
+    ],
+    "word_ip_2": [
+      "levél",
+      "Ősszel lehullanak a levelek."
+    ],
+    "word_jangmi": [
+      "rózsa",
+      "A rózsáknak jó az illatuk."
+    ],
+    "word_jeomsimsigan": [
+      "ebédidő",
+      "Ebédidőben sétálok egyet."
+    ],
+    "word_joreop": [
+      "diplomaszerzés, végzés",
+      "Gratulálok a végzéshez!"
+    ],
+    "word_junghakgyo": [
+      "felső tagozat",
+      "A fiam felső tagozatba jár."
+    ],
+    "word_chodeunghakgyo": [
+      "általános iskola",
+      "A lányom elkezdte az általános iskolát."
+    ],
+    "word_jinandal": [
+      "múlt hónap",
+      "Múlt hónapban elköltöztem."
+    ],
+    "word_jinanju": [
+      "múlt hét",
+      "Múlt héten megfáztam."
+    ],
+    "word_jiugae": [
+      "radír",
+      "Kérem, radírral törölje ki."
+    ],
+    "word_jjigae": [
+      "koreai ragu",
+      "Ebédre csigét ettem."
+    ],
+    "word_cheongbaji": [
+      "farmer",
+      "Jól áll önnek a farmer."
+    ],
+    "word_chiyak": [
+      "fogkrém",
+      "Elfogyott a fogkrém."
+    ],
+    "word_kolla": [
+      "kóla",
+      "Egy kólát kérek."
+    ],
+    "word_taegwondo": [
+      "taekwondo",
+      "A gyerek taekwondót tanul."
+    ],
+    "word_teniseu": [
+      "tenisz",
+      "Vettem egy új teniszütőt."
+    ],
+    "word_tellebijeon": [
+      "televízió",
+      "Este tévét nézek."
+    ],
+    "word_hangnyeon": [
+      "évfolyam",
+      "Hányadik évfolyamra jársz?"
+    ],
+    "word_hanbok": [
+      "hanbok, koreai hagyományos viselet",
+      "Szollalkor hanbokot viselünk."
+    ],
+    "word_hanja": [
+      "kínai írásjegyek",
+      "A kínai írásjegyek nehezek."
+    ],
+    "word_haembeogeo": [
+      "hamburger",
+      "Egy hamburgert kérek."
+    ],
+    "word_hyuil": [
+      "szabadnap",
+      "Szabadnapokon későn kelek."
+    ],
+    "word_hyuji": [
+      "papír zsebkendő",
+      "Kérek egy papír zsebkendőt."
+    ],
+    "word_kkeulhida": [
+      "felforralni",
+      "Vizet forralok, és teát iszom."
+    ],
+    "word_bokda": [
+      "pirítani, kevergetve sütni",
+      "Megpirítottam a zöldséget, és megettem."
+    ],
+    "word_damgeuda": [
+      "beáztatni, belemeríteni",
+      "Vízbe áztattam a lábam."
+    ],
+    "word_gakkuda": [
+      "gondozni, művelni",
+      "A nagymamám gondozza a kertet."
+    ],
+    "word_gwonhada": [
+      "kínálni, ajánlani",
+      "Teával kínáltam a vendéget."
+    ],
+    "word_kkeudeogida": [
+      "bólintani",
+      "A gyerek bólintott."
+    ],
+    "word_kkeunheojida": [
+      "elszakadni",
+      "A kötél elszakadt."
+    ],
+    "word_neolpida": [
+      "kiszélesíteni",
+      "Útszélesítési munkák folynak."
+    ],
+    "word_nohida": [
+      "el van helyezve, ott van",
+      "Az asztalon virágok vannak elhelyezve."
+    ],
+    "word_sallida": [
+      "megmenteni az életét",
+      "Az orvos megmentette a beteget."
+    ],
+    "word_seuda": [
+      "felállítani, megállítani",
+      "Az ajtó mellé állítottam az esernyőt."
+    ],
+    "word_seokkida": [
+      "keveredni",
+      "A víz és az olaj nem keveredik."
+    ],
+    "word_kyeojida": [
+      "felkapcsolódni",
+      "A lámpa magától felkapcsolódott."
+    ],
+    "word_jeonghaejida": [
+      "eldőlni, kitűzve lenni",
+      "Kitűzték a megbeszélés időpontját."
+    ],
+    "word_saenggyeonada": [
+      "keletkezni, létrejönni",
+      "Sok új üzlet jött létre."
+    ],
+    "word_naraoda": [
+      "odarepülni",
+      "Egy madár repült az ablakhoz."
+    ],
+    "word_dallyeooda": [
+      "odaszaladni",
+      "A kiskutya odaszaladt hozzám."
+    ],
+    "word_yangbohada": [
+      "átengedni",
+      "Átadtam a helyemet egy idős hölgynek."
+    ],
+    "word_hwaryonghada": [
+      "kihasználni, hasznosítani",
+      "Jól kihasználom a hétvégi időt."
+    ],
+    "word_dayanghada": [
+      "változatosnak lenni",
+      "Ebben a boltban változatos a kenyérválaszték."
+    ],
+    "word_dapdapada": [
+      "fullasztónak érezni",
+      "A szoba kicsi, ezért fullasztó."
+    ],
+    "word_dukkeopda": [
+      "vastagnak lenni",
+      "Ez a könyv nagyon vastag."
+    ],
+    "word_dunggeulda": [
+      "kereknek lenni",
+      "A hold kerek."
+    ],
+    "word_gukda": [
+      "vastagnak lenni (hosszúkás dolog)",
+      "Ennek a fának vastag a törzse."
+    ],
+    "word_ganeulda": [
+      "vékonynak lenni (hosszúkás dolog)",
+      "Ez a cérna túl vékony."
+    ],
+    "word_mipda": [
+      "ellenszenvesnek lenni",
+      "Utálom azokat, akik hazudnak."
+    ],
+    "word_natseolda": [
+      "idegennek lenni",
+      "Ez a környék még idegen nekem."
+    ],
+    "word_eongttunghada": [
+      "bolondosnak, váratlannak lenni",
+      "A gyerek egy bolondos kérdést tett fel."
+    ],
+    "word_usuhada": [
+      "kiválónak lenni",
+      "A jegyek kiválóak."
+    ],
+    "word_jeokdanghada": [
+      "megfelelőnek lenni",
+      "Ennek a szobának megfelelő a mérete."
+    ],
+    "word_jogeumata": [
+      "aprónak lenni",
+      "Kaptam egy apró dobozt."
+    ],
+    "word_teunteunhada": [
+      "erősnek, strapabírónak lenni",
+      "Ez a szék strapabíró."
+    ],
+    "word_pyeollihada": [
+      "kényelmesnek, praktikusnak lenni",
+      "A metró nagyon kényelmes."
+    ],
+    "word_pureuda": [
+      "kéknek vagy zöldnek lenni (a természetben)",
+      "A hegyek zöldek."
+    ],
+    "word_hwalbalhada": [
+      "élénknek lenni",
+      "A gyerek nagyon élénk."
+    ],
+    "word_kkwae": [
+      "elég, meglehetősen",
+      "Ma elég hideg van."
+    ],
+    "word_kkujunhi": [
+      "kitartóan",
+      "Minden nap kitartóan gyakorolok."
+    ],
+    "word_kkamjjak": [
+      "ijedten, meglepetten",
+      "Megijedtem egy hangos zajtól."
+    ],
+    "word_deoguna": [
+      "ráadásul",
+      "Elkéstem. Ráadásul esik is."
+    ],
+    "word_magu": [
+      "meggondolatlanul, össze-vissza",
+      "Kérem, ne költse a pénzt össze-vissza."
+    ],
+    "word_bigyojeok": [
+      "viszonylag",
+      "Ez a feladat viszonylag könnyű."
+    ],
+    "word_yunanhi": [
+      "szokatlanul",
+      "Ma szokatlanul fáradt vagyok."
+    ],
+    "word_jeomcha": [
+      "fokozatosan",
+      "Az idő fokozatosan hidegebb lesz."
+    ],
+    "word_puk": [
+      "mélyen",
+      "Hétvégén pihenje ki magát alaposan."
+    ],
+    "word_haemada": [
+      "minden évben",
+      "Minden évben tavasszal kinyílnak a virágok."
+    ],
+    "word_hanpyeon": [
+      "másfelől",
+      "Örülök. Másfelől aggódom is."
+    ],
+    "word_jeuk": [
+      "azaz",
+      "Holnap, azaz szombaton találkozunk."
+    ],
+    "word_gawi": [
+      "olló",
+      "Ollóval vágom a papírt."
+    ],
+    "word_gansik": [
+      "uzsonna",
+      "Délután uzsonnázom."
+    ],
+    "word_geosil": [
+      "nappali",
+      "A nappaliban tévézem."
+    ],
+    "word_georeum": [
+      "lépés",
+      "Kérem, lépjen egyet előre."
+    ],
+    "word_golmok": [
+      "sikátor",
+      "A sikátorban gyerekek játszanak."
+    ],
+    "word_gongmuwon": [
+      "köztisztviselő",
+      "A bátyám köztisztviselő."
+    ],
+    "word_gwamok": [
+      "tantárgy",
+      "Melyik tantárgyat szereti?"
+    ],
+    "word_gwaje": [
+      "feladat, beadandó",
+      "Holnapig be kell adnom a feladatot."
+    ],
+    "word_gwangwang": [
+      "turizmus, városnézés",
+      "Városnézésen voltam Szöulban."
+    ],
+    "word_gwangwanggaek": [
+      "turista",
+      "A turisták fényképeznek."
+    ],
+    "word_gyotongsago": [
+      "közlekedési baleset",
+      "Tegnap közlekedési baleset történt."
+    ],
+    "word_gungmul": [
+      "leves leve",
+      "A leves leve nagyon üdítő."
+    ],
+    "word_geuneul": [
+      "árnyék",
+      "Pihenjünk a fa árnyékában."
+    ],
+    "word_geulja": [
+      "betű, írásjegy",
+      "A betűk túl kicsik."
+    ],
+    "word_gigan": [
+      "időszak",
+      "Vizsgaidőszak van, ezért elfoglalt vagyok."
+    ],
+    "word_gion": [
+      "léghőmérséklet",
+      "Ma sokat esett a hőmérséklet."
+    ],
+    "word_gichim": [
+      "köhögés",
+      "Folyton köhögök."
+    ],
+    "word_kkeopjil": [
+      "héj",
+      "Lehúztam a banán héját."
+    ],
+    "word_kkokdaegi": [
+      "csúcs, tető",
+      "A fa tetején egy madár van."
+    ],
+    "word_kkochip": [
+      "szirom",
+      "A szirmokat viszi a szél."
+    ],
+    "word_kkul": [
+      "méz",
+      "Mézet teszek a teámba."
+    ],
+    "word_nabi": [
+      "lepke",
+      "Egy lepke szállt a virágra."
+    ],
+    "word_namutgaji": [
+      "faág",
+      "Egy madár ül a faágon."
+    ],
+    "word_nammae": [
+      "fiú- és lánytestvér",
+      "Testvérek vagyunk, fiú és lány."
+    ],
+    "word_nagyeop": [
+      "lehullott levelek",
+      "Az úton sok a lehullott levél."
+    ],
+    "word_noin": [
+      "idős ember",
+      "Átadtam a helyemet egy idős embernek."
+    ],
+    "word_noriteo": [
+      "játszótér",
+      "A gyerekek a játszótéren játszanak."
+    ],
+    "word_nongsa": [
+      "gazdálkodás",
+      "A nagyapám gazdálkodik."
+    ],
+    "word_nunbit": [
+      "tekintet",
+      "A tekintet meleg."
+    ],
+    "word_nunap": [
+      "a szem előtt",
+      "A szemem előtt ment el a busz."
+    ],
+    "word_danjeom": [
+      "gyenge pont",
+      "Mindenkinek vannak gyenge pontjai."
+    ],
+    "word_jangjeom": [
+      "erősség, előny",
+      "Ennek a háznak az előnye a fekvése."
+    ],
+    "word_dalbit": [
+      "holdfény",
+      "A holdfény nagyon világos."
+    ],
+    "word_dapjang": [
+      "válasz",
+      "Várom a választ."
+    ],
+    "word_daemun": [
+      "kapu",
+      "Kérem, nyissa ki a kaput."
+    ],
+    "word_deowi": [
+      "hőség",
+      "Az idei hőség igazán erős."
+    ],
+    "word_chuwi": [
+      "hideg",
+      "A hidegtől lefagyott a kezem."
+    ],
+    "word_dogu": [
+      "szerszám",
+      "Vigyázzon jól a szerszámaira."
+    ],
+    "word_dosirak": [
+      "dobozos ebéd",
+      "Csomagoltam magamnak ebédet."
+    ],
+    "word_dokseo": [
+      "olvasás",
+      "A hobbim az olvasás."
+    ],
+    "word_dongmurwon": [
+      "állatkert",
+      "Láttam egy oroszlánt az állatkertben."
+    ],
+    "word_dutong": [
+      "fejfájás",
+      "Erős fejfájásom volt, ezért bevettem egy gyógyszert."
+    ],
+    "word_dwijjok": [
+      "hátsó rész",
+      "Hátul vannak helyek."
+    ],
+    "word_apjjok": [
+      "elülső rész",
+      "Kérem, üljön előre."
+    ],
+    "word_anjjok": [
+      "belső oldal",
+      "Kérem, üljön a belső ülésre."
+    ],
+    "word_wijjok": [
+      "felső rész",
+      "A könyvek a felső polcon vannak."
+    ],
+    "word_araejjok": [
+      "alsó rész",
+      "Próbálja kinyitni az alsó fiókot."
+    ],
+    "word_ttam": [
+      "izzadság",
+      "Izzadok a sportolástól."
+    ],
+    "word_ttangkong": [
+      "földimogyoró",
+      "A földimogyoró pörkölt ízű."
+    ],
+    "word_ttukkeong": [
+      "fedő",
+      "Kérem, nyissa ki a fedőt."
+    ],
+    "word_maeumsok": [
+      "a szív mélye",
+      "Szívem mélyén hálás voltam."
+    ],
+    "word_manhwa": [
+      "képregény",
+      "Az öcsém szereti a képregényeket."
+    ],
+    "word_maeryeok": [
+      "vonzerő, báj",
+      "Ennek a városnak van bája."
+    ],
+    "word_meoritsok": [
+      "fej, elme",
+      "Kavarognak a gondolataim."
+    ],
+    "word_memo": [
+      "feljegyzés, üzenet",
+      "Ragasztottam egy üzenetet a hűtőre."
+    ],
+    "word_myeongham": [
+      "névjegykártya",
+      "Névjegykártyát cseréltünk."
+    ],
+    "word_mogi": [
+      "szúnyog",
+      "Nyáron sok a szúnyog."
+    ],
+    "word_more": [
+      "holnapután",
+      "Holnapután megint jövök."
+    ],
+    "word_mommuge": [
+      "testsúly",
+      "Megmértem a testsúlyomat."
+    ],
+    "word_muge": [
+      "súly",
+      "Megmérem a csomag súlyát."
+    ],
+    "word_munjang": [
+      "mondat",
+      "Kérem, olvassa el ezt a mondatot."
+    ],
+    "word_misul": [
+      "képzőművészet, rajz",
+      "Rajzórán rajzolunk."
+    ],
+    "word_misulgwan": [
+      "művészeti múzeum",
+      "Hétvégén elmentem a művészeti múzeumba."
+    ],
+    "word_milgaru": [
+      "liszt",
+      "Lisztből sütök kenyeret."
+    ],
+    "word_badatga": [
+      "tengerpart",
+      "Sétáltam a tengerparton."
+    ],
+    "word_bawi": [
+      "szikla",
+      "Leültem egy sziklára."
+    ],
+    "word_balgarak": [
+      "lábujj",
+      "Megsérült a lábujjam."
+    ],
+    "word_baegyeong": [
+      "háttér",
+      "A fénykép háttere szép."
+    ],
+    "word_beoreut": [
+      "szokás, rossz szokás",
+      "Az a szokásom, hogy rágom a körmömet."
+    ],
+    "word_beoseot": [
+      "gomba",
+      "Gombás levest főztem."
+    ],
+    "word_beoteo": [
+      "vaj",
+      "Vajat kenek a kenyérre."
+    ],
+    "word_bongji": [
+      "zacskó",
+      "Zacskóba tettem a gyümölcsöt."
+    ],
+    "word_bongtu": [
+      "boríték",
+      "Borítékba tettem a levelet."
+    ],
+    "word_bugeun": [
+      "környék",
+      "Az állomás környékén lakom."
+    ],
+    "word_bujagyong": [
+      "mellékhatás",
+      "Ennek a gyógyszernek nincs mellékhatása."
+    ],
+    "word_bulbit": [
+      "fény",
+      "Messziről egy fény látszik."
+    ],
+    "word_buran": [
+      "szorongás, nyugtalanság",
+      "Vizsga előtt szorongok."
+    ],
+    "word_ppallae": [
+      "mosnivaló, mosás",
+      "Sok mosnivaló gyűlt össze."
+    ],
+    "word_ppuri": [
+      "gyökér",
+      "A fa gyökerei mélyek."
+    ],
+    "word_saheul": [
+      "három nap",
+      "Három napig esett."
+    ],
+    "word_sangdaebang": [
+      "a másik fél",
+      "Hallgassa meg figyelmesen a másik felet."
+    ],
+    "word_sangpum": [
+      "áru, termék",
+      "Új termék jelent meg."
+    ],
+    "word_saeu": [
+      "garnélarák",
+      "Garnélát sütöttem és megettem."
+    ],
+    "word_seolgeoji": [
+      "mosogatás",
+      "Vacsora után elmosogattam."
+    ],
+    "word_sonamu": [
+      "fenyőfa",
+      "A hegyen sok a fenyőfa."
+    ],
+    "word_sonnyeo": [
+      "unoka, lány",
+      "A nagymama nagyon szereti az unokáját."
+    ],
+    "word_sonbadak": [
+      "tenyér",
+      "A tenyeremre írtam."
+    ],
+    "word_sonjabi": [
+      "kilincs, fogantyú",
+      "Elromlott az ajtó kilincse."
+    ],
+    "word_seupgwan": [
+      "szokás",
+      "Rászoktam, hogy korán feküdjek le."
+    ],
+    "word_sonja": [
+      "unoka, fiú",
+      "A nagypapa az unokájával játszik."
+    ],
+    "word_sunseo": [
+      "sorrend",
+      "Kérem, sorrendben jöjjenek be."
+    ],
+    "word_sieomeoni": [
+      "anyós, a férj anyja",
+      "Az anyósom jól főz."
+    ],
+    "word_sikgu": [
+      "családtag",
+      "A családunk öttagú."
+    ],
+    "word_sikpum": [
+      "élelmiszer",
+      "Az élelmiszerosztály az alagsorban van."
+    ],
+    "word_sillae": [
+      "beltér",
+      "Beltérben kérem, vegye le a kalapját."
+    ],
+    "word_simbureum": [
+      "megbízatás, elküldés",
+      "Anyu megbízásából elmentem a boltba."
+    ],
+    "word_akgi": [
+      "hangszer",
+      "Milyen hangszeren szeretne megtanulni játszani?"
+    ],
+    "word_aksu": [
+      "kézfogás",
+      "Kezet fogtunk."
+    ],
+    "word_anbang": [
+      "fő hálószoba",
+      "A szüleim a fő hálószobában alszanak."
+    ],
+    "word_yaoe": [
+      "szabad tér, szabad ég alatt",
+      "A szabadban ebédeltünk."
+    ],
+    "word_yangnyeom": [
+      "fűszerezés, pác",
+      "A pác jól átjárta."
+    ],
+    "word_eoryeoum": [
+      "nehézség",
+      "Ha nehézsége van, szóljon."
+    ],
+    "word_yeou": [
+      "róka",
+      "Láttam egy rókát az erdőben."
+    ],
+    "word_yeoyu": [
+      "mozgástér, ráérő idő",
+      "Mostanában nincs ráérő időm."
+    ],
+    "word_yeollakcheo": [
+      "elérhetőség",
+      "Kérem, adja meg az elérhetőségét."
+    ],
+    "word_yeonmal": [
+      "év vége",
+      "Év végén sok az összejövetel."
+    ],
+    "word_yeolheul": [
+      "tíz nap",
+      "Tíz napig utaztam."
+    ],
+    "word_yeongha": [
+      "fagypont alatt",
+      "Ma reggel fagypont alatt van."
+    ],
+    "word_yeopjip": [
+      "szomszéd ház",
+      "A szomszéd házba új család költözött."
+    ],
+    "word_ojingeo": [
+      "tintahal",
+      "A tintahalat sütve eszik."
+    ],
+    "word_ondo": [
+      "hőmérséklet",
+      "Kicsit feljebb vettem a szoba hőmérsékletét."
+    ],
+    "word_onmom": [
+      "egész test",
+      "Az egész testem fáj."
+    ],
+    "word_oechul": [
+      "elmenés otthonról",
+      "Készülök elmenni otthonról."
+    ],
+    "word_oenson": [
+      "bal kéz",
+      "Bal kézzel írok."
+    ],
+    "word_oreunson": [
+      "jobb kéz",
+      "Kérem, emelje fel a jobb kezét."
+    ],
+    "word_yogeum": [
+      "viteldíj, díj",
+      "Felment a buszjegy ára."
+    ],
+    "word_yoksil": [
+      "fürdőszoba",
+      "Kitakarítottam a fürdőszobát."
+    ],
+    "word_yoksim": [
+      "mohóság",
+      "Ne legyen mohó."
+    ],
+    "word_yongdon": [
+      "zsebpénz",
+      "Összegyűjtöttem a zsebpénzemet, és vettem egy könyvet."
+    ],
+    "word_useung": [
+      "győzelem, első hely",
+      "A csapatunk megnyerte az első helyet."
+    ],
+    "word_upyo": [
+      "bélyeg",
+      "A hobbim a bélyeggyűjtés."
+    ],
+    "word_unjeonja": [
+      "vezető, sofőr",
+      "A vezetőknek be kell kötniük a biztonsági övet."
+    ],
+    "word_ureum": [
+      "sírás",
+      "A baba sírása abbamaradt."
+    ],
+    "word_wicheung": [
+      "felső emelet",
+      "A felső emeleten kicsit zajos."
+    ],
+    "word_yurichang": [
+      "ablaküveg",
+      "Tisztára mostam az ablaküvegeket."
+    ],
+    "word_yuchiwon": [
+      "óvoda",
+      "A gyerekem óvodába jár."
+    ],
+    "word_yuhaeng": [
+      "divat",
+      "Mostanában ez a szín a divat."
+    ],
+    "word_eumnyo": [
+      "ital",
+      "Mit szeretne inni?"
+    ],
+    "word_iik": [
+      "nyereség, haszon",
+      "Ebben a hónapban nyereségünk volt."
+    ],
+    "word_iteunnal": [
+      "a következő nap",
+      "Másnap reggel elutaztam."
+    ],
+    "word_ingu": [
+      "népesség",
+      "Ennek a városnak nagy a népessége."
+    ],
+    "word_ilsang": [
+      "hétköznapok",
+      "Visszatértem a hétköznapokba."
+    ],
+    "word_janchi": [
+      "lakoma, ünnepség",
+      "Ünnepséget tartottunk a nagymama születésnapjára."
+    ],
+    "word_jamot": [
+      "pizsama",
+      "Átöltöztem pizsamába."
+    ],
+    "word_jangnae": [
+      "jövő",
+      "Mi szeretnél lenni, ha nagy leszel?"
+    ],
+    "word_jangma": [
+      "esős évszak",
+      "Elkezdődött az esős évszak."
+    ],
+    "word_jangsa": [
+      "üzlet, kereskedés",
+      "Mostanában jól megy az üzlet."
+    ],
+    "word_jaeryo": [
+      "hozzávaló, anyag",
+      "Megvettem a főzéshez a hozzávalókat."
+    ],
+    "word_jeoja": [
+      "szerző",
+      "Találkoztam ennek a könyvnek a szerzőjével."
+    ],
+    "word_jeochuk": [
+      "megtakarítás",
+      "Minden hónapban félreteszek pénzt."
+    ],
+    "word_jeongong": [
+      "szak",
+      "Milyen szakon tanul?"
+    ],
+    "word_jeonnal": [
+      "az előző nap",
+      "A vizsga előtti napon korán lefekszem."
+    ],
+    "word_jeongdap": [
+      "helyes válasz",
+      "Eltaláltam a helyes választ."
+    ],
+    "word_jepum": [
+      "termék",
+      "Ez a termék jó minőségű."
+    ],
+    "word_josang": [
+      "ős",
+      "Ünnepekkor tiszteletünket tesszük az ősök előtt."
+    ],
+    "word_jwaseok": [
+      "ülés, ülőhely",
+      "Kérem, ellenőrizze az ülésszámát."
+    ],
+    "word_jubu": [
+      "háziasszony",
+      "A nagynéném háziasszony."
+    ],
+    "word_juchajang": [
+      "parkoló",
+      "A parkolóban tettem le az autót."
+    ],
+    "word_junbimul": [
+      "hozandó felszerelés",
+      "Összekészítetted a holnapi felszerelést?"
+    ],
+    "word_julgi": [
+      "szár",
+      "A virág szára hosszú."
+    ],
+    "word_chanmul": [
+      "hideg víz",
+      "Egy pohár hideg vizet kérek."
+    ],
+    "word_chamgireum": [
+      "szezámolaj",
+      "Adjon hozzá egy kis szezámolajat."
+    ],
+    "word_changbak": [
+      "az ablakon kívül",
+      "Az ablakon túl havazik."
+    ],
+    "word_chaeneol": [
+      "csatorna",
+      "Kérem, váltson csatornát."
+    ],
+    "word_chaekgabang": [
+      "iskolatáska",
+      "Az iskolatáskám túl nehéz."
+    ],
+    "word_cheongnyeon": [
+      "fiatal",
+      "A fiatalok önkénteskednek."
+    ],
+    "word_cheongsonyeon": [
+      "serdülő, tizenéves",
+      "A tizenéveseknek olcsóbb a viteldíj."
+    ],
+    "word_chejung": [
+      "testsúly",
+      "Kicsit fogytam."
+    ],
+    "word_choroksaek": [
+      "zöld szín",
+      "Zöld kalapot vettem fel."
+    ],
+    "word_chobap": [
+      "szusi",
+      "Ebédre szusit ettem."
+    ],
+    "word_chukje": [
+      "fesztivál",
+      "Ősszel fesztivált tartanak."
+    ],
+    "word_munhwa": [
+      "kultúra",
+      "Nagyon érdekel a koreai kultúra."
+    ],
+    "word_gyeongje": [
+      "gazdaság",
+      "Minden nap nézem a gazdasági híreket."
+    ],
+    "word_yesul": [
+      "művészet",
+      "Az öcsém művészetet tanul."
+    ],
+    "word_tteut": [
+      "jelentés",
+      "Nem tudom ennek a szónak a jelentését."
+    ],
+    "word_baljeon": [
+      "fejlődés",
+      "Ez a város gyorsan fejlődik."
+    ],
+    "word_jeontong": [
+      "hagyomány",
+      "Hagyományos zenét hallgattam."
+    ],
+    "word_taedo": [
+      "hozzáállás",
+      "A hozzáállás nagyon jó."
+    ],
+    "word_juwi": [
+      "környezet, körülötte lévő",
+      "Nézzen jól körül."
+    ],
+    "word_teukjing": [
+      "jellegzetesség",
+      "Ennek a vidéknek a jellegzetessége a tenger."
+    ],
+    "word_yejeong": [
+      "terv, előre eldöntött dolog",
+      "A jövő héten tervezek elutazni."
+    ],
+    "word_haengsa": [
+      "rendezvény",
+      "Részt vettem egy iskolai rendezvényen."
+    ],
+    "word_pandan": [
+      "ítélet, megítélés",
+      "Gyors ítélőképességre van szükség."
+    ],
+    "word_balpyo": [
+      "előadás, prezentáció",
+      "Holnap előadást tartok."
+    ],
+    "word_gicho": [
+      "alap",
+      "Az alapoktól tanulom újra."
+    ],
+    "word_juingong": [
+      "főszereplő",
+      "Ennek a regénynek a főszereplője egy diák."
+    ],
+    "word_haeoe": [
+      "külföld",
+      "Külföldi utazásra indulok."
+    ],
+    "word_cheyuk": [
+      "testnevelés",
+      "A tesióra a legjobb."
+    ],
+    "word_pyeongso": [
+      "hétköznap, általában",
+      "A szokásosnál korábban feküdtem le."
+    ],
+    "word_jutaek": [
+      "lakóház",
+      "A házak ára sokat emelkedett."
+    ],
+    "word_nongchon": [
+      "falu, vidék",
+      "A nagymamám falun él."
+    ],
+    "word_bat": [
+      "szántóföld, veteményes",
+      "Paprikát szedtem a földön."
+    ],
+    "word_gyeot": [
+      "oldal",
+      "Maradj mellettem."
+    ],
+    "word_gippeum": [
+      "öröm",
+      "A sikeres felvétel híre nagy öröm volt."
+    ],
+    "word_ipsul": [
+      "ajak",
+      "Kiszáradt az ajkam."
+    ],
+    "word_heuk": [
+      "föld, talaj",
+      "Jó érzés a földet megérinteni."
+    ],
+    "word_gwahakja": [
+      "tudós",
+      "Tudós szeretnék lenni."
+    ],
+    "word_hoewon": [
+      "tag",
+      "Kérem, mutassa a tagsági kártyáját."
+    ],
+    "word_bangmun": [
+      "látogatás",
+      "A következő látogatás pénteken lesz."
+    ],
+    "word_bulman": [
+      "elégedetlenség",
+      "Meghallgattam a vevő panaszát."
+    ],
+    "word_gwangaek": [
+      "néző",
+      "A nézők hangosan tapsoltak."
+    ],
+    "word_gomo": [
+      "nagynéni apai ágon",
+      "A nagynéném ajándékot küldött."
+    ],
+    "word_toron": [
+      "vita",
+      "Vitát tartottunk az órán."
+    ],
+    "word_gosaeng": [
+      "nehézség, megpróbáltatás",
+      "Sok mindenen ment keresztül."
+    ],
+    "word_pado": [
+      "hullám",
+      "Magasak a hullámok."
+    ],
+    "word_yegeum": [
+      "bankbetét",
+      "Kivettem egy keveset a betétemből."
+    ],
+    "word_ipak": [
+      "beiratkozás, felvétel",
+      "Gratulálok a felvételhez."
+    ],
+    "word_jehan": [
+      "korlátozás",
+      "Van időkorlát."
+    ],
+    "word_punggyeong": [
+      "táj",
+      "Az ablakból nyíló táj gyönyörű."
+    ],
+    "word_gamdong": [
+      "meghatottság",
+      "Meghatott a film."
+    ],
+    "word_maru": [
+      "fapadló",
+      "Leültem a fapadlóra pihenni."
+    ],
+    "word_yejeol": [
+      "illem",
+      "Megtanultam az étkezési illemet."
+    ],
+    "word_chincheok": [
+      "rokon",
+      "Egy rokon jött hozzánk."
+    ],
+    "word_haetsal": [
+      "napsugár",
+      "A reggeli napsugár meleg."
+    ],
+    "word_hakgi": [
+      "félév",
+      "Elkezdődött az új félév."
+    ],
+    "word_hubae": [
+      "fiatalabb iskola- vagy munkatárs",
+      "Meghívtam ebédre a fiatalabb kollégámat."
+    ],
+    "word_hakseup": [
+      "tanulás",
+      "Tanulási tervet készítettem."
+    ],
+    "word_bigyo": [
+      "összehasonlítás",
+      "A két termék összehasonlítása könnyű."
+    ],
+    "word_hyanggi": [
+      "illat",
+      "A szoba tele van virágillattal."
+    ],
+    "word_garu": [
+      "por",
+      "Porrá törtem a gyógyszert."
+    ],
+    "word_donghwa": [
+      "mese",
+      "Mesét olvastam a gyerekemnek."
+    ],
+    "word_yuhak": [
+      "külföldi tanulmányok",
+      "A bátyám külföldi tanulmányokra készül."
+    ],
+    "word_damim": [
+      "osztályfőnök",
+      "Az osztályfőnököm kedves."
+    ],
+    "word_dojung": [
+      "útközben",
+      "Útközben esett az eső."
+    ],
+    "word_chingchan": [
+      "dicséret",
+      "Dicséretet kaptam a tanáromtól."
+    ],
+    "word_haetbit": [
+      "napfény",
+      "Túl erős a napfény."
+    ],
+    "word_meonji": [
+      "por",
+      "Por gyűlt össze az íróasztalon."
+    ],
+    "word_heungmi": [
+      "érdeklődés",
+      "Felkeltette az érdeklődésemet a történelem."
+    ],
+    "word_dijain": [
+      "dizájn",
+      "Ennek a táskának szép a dizájnja."
+    ],
+    "word_teol": [
+      "szőr",
+      "A macska szőre puha."
+    ],
+    "word_iljeong": [
+      "napirend, program",
+      "Megnéztem a mai programot."
+    ],
+    "word_gyohwan": [
+      "csere",
+      "Ki lehet cserélni másik színre?"
+    ],
+    "word_gugeo": [
+      "nemzeti nyelv",
+      "Koreai nyelvből vizsgáztam."
+    ],
+    "word_jeulgeoum": [
+      "élvezet",
+      "Az utazás nagy élvezet."
+    ],
+    "word_daehagwon": [
+      "posztgraduális képzés",
+      "Posztgraduális képzésre járok."
+    ],
+    "word_deungnok": [
+      "regisztráció",
+      "Befejeztem a jelentkezést az órára."
+    ],
+    "word_munui_2": [
+      "minta",
+      "Virágmintás szoknyát vettem fel."
+    ],
+    "word_hwabun": [
+      "virágcserép",
+      "Megöntöztem a virágcserepet."
+    ],
+    "word_gyesangi": [
+      "számológép",
+      "Számológéppel adtam össze."
+    ],
+    "word_hagwon": [
+      "magániskola, tanfolyam",
+      "Este angol tanfolyamra járok."
+    ],
+    "word_tomato": [
+      "paradicsom",
+      "Felszeleteltem a paradicsomot, és salátát csináltam."
+    ],
+    "word_ppyam": [
+      "arc, orca",
+      "Kipirult az arcom a hidegtől."
+    ],
+    "word_tongjang": [
+      "bankkönyv",
+      "Megjött a fizetés a bankkönyvemre."
+    ],
+    "word_gyeonggijang": [
+      "stadion",
+      "A stadion tele lett emberekkel."
+    ],
+    "word_cheonnal": [
+      "első nap",
+      "Az első munkanap izgalmas."
+    ],
+    "word_yeoreumcheol": [
+      "nyári időszak",
+      "Nyáron sok vizet iszom."
+    ],
+    "word_chulgeun": [
+      "munkába járás",
+      "Munkába menet idején dugók vannak."
+    ],
+    "word_toegeun": [
+      "munkából való távozás",
+      "Munka után edzek."
+    ],
+    "word_jeoncheol": [
+      "villamos vasút",
+      "Villamos vasúttal járok iskolába."
+    ],
+    "word_sikppang": [
+      "szeletelt kenyér",
+      "Reggel pirítóst készítettem."
+    ],
+    "word_taepung": [
+      "tájfun",
+      "A tájfun miatt törölték a járatot."
+    ],
+    "word_yeonhyu": [
+      "hosszú hétvége",
+      "A hosszú hétvégén hazalátogattam a szülővárosomba."
+    ],
+    "word_chwijik": [
+      "elhelyezkedés",
+      "Az elhelyezkedésre készülök."
+    ],
+    "word_baem": [
+      "kígyó",
+      "Láttam egy kígyót a hegyi ösvényen."
+    ],
+    "word_doenjang": [
+      "szójababpaszta",
+      "Szójababpasztából levest főztem."
+    ],
+    "word_keoteun": [
+      "függöny",
+      "Kérem, húzza el a függönyt."
+    ],
+    "word_sonagi": [
+      "zápor",
+      "Jött egy zápor, és átázott a ruhám."
+    ],
+    "word_goguma": [
+      "édesburgonya",
+      "Télen a sült édesburgonya a legjobb."
+    ],
+    "word_sonsugeon": [
+      "zsebkendő",
+      "Zsebkendővel töröltem le az izzadságot."
+    ],
+    "word_songaji": [
+      "borjú",
+      "A borjú az anyja mellett van."
+    ],
+    "word_momsal": [
+      "kimerültségtől való rosszullét",
+      "Kimerültségtől lettem rosszul, ezért egy napot pihentem."
+    ],
+    "word_chigwa": [
+      "fogászat",
+      "Fájt a fogam, ezért elmentem a fogorvoshoz."
+    ],
+    "word_japangi": [
+      "automata",
+      "Kávét vettem az automatából."
+    ],
+    "word_sangchu": [
+      "saláta",
+      "A húst salátalevélbe csomagolva eszem."
+    ],
+    "word_jaechaegi": [
+      "tüsszentés",
+      "A portól tüsszögök."
+    ],
+    "word_hoengdanbodo": [
+      "gyalogátkelő",
+      "A gyalogátkelőn menjen át."
+    ],
+    "word_seonpunggi": [
+      "ventilátor",
+      "Meleg volt, ezért bekapcsoltam a ventilátort."
+    ],
+    "word_pyeongil": [
+      "hétköznap",
+      "Hétköznap kevés a vendég."
+    ],
+    "word_mokgeori": [
+      "nyaklánc",
+      "Nyakláncot kaptam a születésnapomra."
+    ],
+    "word_sopo": [
+      "csomag",
+      "A csomag megérkezett a házhoz."
+    ],
+    "word_araecheung": [
+      "alsó emelet",
+      "Az alsó szinten van egy kisbolt."
+    ],
+    "word_tteokbokki": [
+      "csípős rizssütemény",
+      "A tteokbokki kicsit csípős."
+    ],
+    "word_nokcha": [
+      "zöld tea",
+      "Meleg zöld teát ittam."
+    ],
+    "word_seongham": [
+      "név, tiszteletteljesen",
+      "Megkérdezhetem a becses nevét?"
+    ],
+    "word_setakso": [
+      "tisztító",
+      "Beadtam a kabátomat a tisztítóba."
+    ],
+    "word_piltong": [
+      "tolltartó",
+      "Nincs ceruza a tolltartómban."
+    ],
+    "word_haksaengjeung": [
+      "diákigazolvány",
+      "Diákigazolvánnyal kedvezmény jár."
+    ],
+    "word_bit_2": [
+      "fésű",
+      "Elővettem egy fésűt a táskámból."
+    ],
+    "word_kkamansaek": [
+      "koromfekete szín",
+      "Egy koromfekete macska ment el mellettem."
+    ],
+    "word_hayansaek": [
+      "hófehér szín",
+      "Kivasaltam egy hófehér inget."
+    ],
+    "word_gaeguri": [
+      "béka",
+      "A tóban brekegnek a békák."
+    ],
+    "word_gilga": [
+      "útszél",
+      "Az út szélén virágok nyíltak."
+    ],
+    "word_binmul": [
+      "esővíz",
+      "Az esővíz végigfolyik az ablakon."
+    ],
+    "word_haetbyeot": [
+      "napsütés melege",
+      "A napon szárítottam a ruhát."
+    ],
+    "word_kongnamul": [
+      "szójacsíra",
+      "A szójacsírát befűszerezve eszem."
+    ],
+    "word_namul": [
+      "fűszerezett vadnövény",
+      "Tavasszal finom a fűszerezett vadnövény."
+    ],
+    "word_hyeongwan": [
+      "előszoba",
+      "Kérem, vegye le a cipőjét az előszobában."
+    ],
+    "word_kkeom": [
+      "rágógumi",
+      "Ne rágózzatok óra közben."
+    ],
+    "word_juk": [
+      "rizskása",
+      "Ha beteg vagyok, rizskását eszem."
+    ],
+    "word_bapgeureut": [
+      "rizses tál",
+      "Teljesen kiürítettem a rizses tálamat."
+    ],
+    "word_bulkkot": [
+      "láng, szikra",
+      "A lángok bevilágították az éjszakai eget."
+    ],
+    "word_sinipsaeng": [
+      "elsős, új diák",
+      "Az új diákoknak köszöntő ünnepség lesz."
+    ],
+    "word_hoesaek": [
+      "szürke szín",
+      "Szürke felhők gyülekeznek."
+    ],
+    "word_dongari": [
+      "diákkör",
+      "Beléptem a fotós diákkörbe."
+    ],
+    "word_baiollin": [
+      "hegedű",
+      "Gyönyörű a hegedű hangja."
+    ],
+    "word_noraebang": [
+      "karaokészoba",
+      "Karaokézni mentem a barátaimmal."
+    ],
+    "word_daedosi": [
+      "nagyváros",
+      "A nagyvárosban drága a lakhatás."
+    ],
+    "word_eorinai": [
+      "kisgyerek",
+      "Egy kisgyerek egyedül sír."
+    ],
+    "word_pojang": [
+      "csomagolás",
+      "Kérem, csomagolja be ajándékként."
+    ],
+    "word_inwon": [
+      "létszám",
+      "Hány fő?"
+    ],
+    "word_soseolga": [
+      "regényíró",
+      "Találkoztam egy híres regényíróval."
+    ],
+    "word_dojagi": [
+      "kerámia",
+      "Kerámiakészítést tanulok."
+    ],
+    "word_sinmunji": [
+      "újságpapír",
+      "Újságpapírral töröltem le az ablakot."
+    ],
+    "word_gosokdoro": [
+      "autópálya",
+      "Baleset történt az autópályán."
+    ],
+    "word_jagayong": [
+      "saját autó",
+      "Saját autóval járok dolgozni."
+    ],
+    "word_majeunpyeon": [
+      "szemközti oldal",
+      "A bank a szemközti oldalon van."
+    ],
+    "word_geonneopyeon": [
+      "túloldal",
+      "A túloldali bolt olcsóbb."
+    ],
+    "word_iutjip": [
+      "szomszéd háza",
+      "A szomszédok rizssüteményt adtak nekünk."
+    ],
+    "word_peullaseutik": [
+      "műanyag",
+      "A műanyagot külön dobjuk ki."
+    ],
+    "word_chuljang": [
+      "kiküldetés",
+      "Jövő héten kiküldetésbe megyek Puszanba."
+    ],
+    "word_mogyoktang": [
+      "közfürdő",
+      "Hétvégén elmentem a közfürdőbe."
+    ],
+    "word_badanmul": [
+      "tengervíz",
+      "A tengervíz nagyon hideg."
+    ],
+    "word_chuka": [
+      "gratuláció",
+      "Készítettem egy gratulációs ajándékot."
+    ],
+    "word_chwiso": [
+      "lemondás",
+      "A foglalást az előző napig lehet lemondani."
+    ],
+    "word_gyeoulcheol": [
+      "téli időszak",
+      "Télen vigyázzon a megfázásra."
+    ],
+    "word_gochujang": [
+      "csilipaszta",
+      "Csilipasztát teszek a bibimbapba."
+    ],
+    "word_bitamin": [
+      "vitamin",
+      "Minden nap szedek vitamint."
+    ],
+    "word_bilding": [
+      "toronyház",
+      "Az a toronyház harmincemeletes."
+    ],
+    "word_sikcho": [
+      "ecet",
+      "Tettem egy kis ecetet a salátába."
+    ],
+    "word_janghakgeum": [
+      "ösztöndíj",
+      "Ebben a félévben ösztöndíjat kaptam."
+    ],
+    "word_churimmun": [
+      "bejárati ajtó",
+      "Kérem, csukja be jól a bejárati ajtót."
+    ],
+    "word_hoejang": [
+      "elnök",
+      "Az elnök köszöntőt mondott."
+    ],
+    "word_tongil": [
+      "egyesítés",
+      "Az egyesítésről tanultunk."
+    ],
+    "word_jaesan": [
+      "vagyon",
+      "A vagyonukat a családra hagyták."
+    ],
+    "word_jeonguk": [
+      "egész ország",
+      "Az egész országban esik."
+    ],
+    "word_gajeong": [
+      "otthon, család",
+      "Megházasodtam és családot alapítottam."
+    ],
+    "word_nongeop": [
+      "mezőgazdaság",
+      "Ebben a régióban fejlett a mezőgazdaság."
+    ],
+    "word_sobija": [
+      "fogyasztó",
+      "Meghallgatjuk a fogyasztók véleményét."
+    ],
+    "word_nodongja": [
+      "munkás",
+      "A munkások pihennek."
+    ],
+    "word_daejung": [
+      "nagyközönség",
+      "Nagyon népszerű a nagyközönség körében."
+    ],
+    "word_siin": [
+      "költő",
+      "Szeretem annak a költőnek a verseit."
+    ],
+    "word_anaunseo": [
+      "bemondó",
+      "A bemondó olvassa a híreket."
+    ],
+    "word_kkadak": [
+      "ok",
+      "Mondd el, mi az oka, hogy elkéstél."
+    ],
+    "word_gyeongyeong": [
+      "üzletvezetés",
+      "Az egyetemen üzletvezetést tanulok."
+    ],
+    "word_imgeum": [
+      "munkabér",
+      "Emelkedtek a bérek."
+    ],
+    "word_seoyang": [
+      "Nyugat",
+      "Szeretem a nyugati ételeket."
+    ],
+    "word_imiji": [
+      "imázs",
+      "A cég imázsa javult."
+    ],
+    "word_suchul": [
+      "export",
+      "Nőtt az autóexport."
+    ],
+    "word_choecho": [
+      "a legelső",
+      "Ez a világon a legelső."
+    ],
+    "word_suip": [
+      "jövedelem",
+      "Kicsit nőtt a jövedelmem."
+    ],
+    "word_muyeok": [
+      "külkereskedelem",
+      "Egy külkereskedelmi cégnél dolgozom."
+    ],
+    "word_jonghap": [
+      "összesítés",
+      "Az összesített pontszám magas."
+    ],
+    "word_panmae": [
+      "értékesítés",
+      "Megkezdődött az értékesítés."
+    ],
+    "word_gongsa": [
+      "építkezés",
+      "Az építkezés miatt le van zárva az út."
+    ],
+    "word_muyong": [
+      "táncművészet",
+      "Láttam egy táncelőadást."
+    ],
+    "word_nonmun": [
+      "szakdolgozat",
+      "Szakdolgozatot írok."
+    ],
+    "word_ollimpik": [
+      "olimpia",
+      "A tévében néztem az olimpiát."
+    ],
+    "word_munjejeom": [
+      "problémás pont",
+      "Megtaláltuk a problémás pontot."
+    ],
+    "word_yesulga": [
+      "művész",
+      "Ezen a környéken művészek élnek együtt."
+    ],
+    "word_model": [
+      "modell",
+      "A modell végigmegy a kifutón."
+    ],
+    "word_yeonguso": [
+      "kutatóintézet",
+      "Egy kutatóintézetben dolgozom."
+    ],
+    "word_geulloja": [
+      "munkavállaló",
+      "A munka ünnepe májusban van."
+    ],
+    "word_bangsongguk": [
+      "műsorszóró állomás",
+      "Meglátogattunk egy tévéállomást."
+    ],
+    "word_mulsok": [
+      "víz alatt",
+      "Kinyitottam a szemem a víz alatt."
+    ],
+    "word_wiban": [
+      "szabálysértés",
+      "Bírságot fizettem a tilos jelzésen áthajtásért."
+    ],
+    "word_neomeo": [
+      "túl",
+      "A hegyen túl van egy falu."
+    ],
+    "word_donggi": [
+      "motiváció",
+      "Mondja el a jelentkezése motivációját."
+    ],
+    "word_seutail": [
+      "stílus",
+      "Megváltoztattam a frizurám stílusát."
+    ],
+    "word_sinyong": [
+      "hitel, megbízhatóság",
+      "Az emberek bizalmát nem szabad elveszíteni."
+    ],
+    "word_banjang": [
+      "osztályelnök",
+      "Osztályelnöknek választottak."
+    ],
+    "word_sincheong": [
+      "jelentkezés",
+      "A jelentkezési időszak lezárult."
+    ],
+    "word_apeum": [
+      "fájdalom",
+      "Próbálom elfelejteni a fájdalmat."
+    ],
+    "word_gyoryu": [
+      "kapcsolatok, csere",
+      "A két ország közötti kapcsolatok élénkek."
+    ],
+    "word_geulsseugi": [
+      "írás",
+      "Írásórára járok."
+    ],
+    "word_daegieop": [
+      "nagyvállalat",
+      "Egy nagyvállalatnál helyezkedtem el."
+    ],
+    "word_bujang": [
+      "osztályvezető",
+      "Az osztályvezető értekezletet hívott össze."
+    ],
+    "word_insang": [
+      "benyomás",
+      "Az első benyomás jó volt."
+    ],
+    "word_sicheongja": [
+      "tévénéző",
+      "Felolvassák egy néző levelét."
+    ],
+    "word_jongeobwon": [
+      "alkalmazott",
+      "Az alkalmazott kedvesen útbaigazított minket."
+    ],
+    "word_gukoeuiwon": [
+      "országgyűlési képviselő",
+      "Ez a képviselőválasztás."
+    ],
+    "word_midieo": [
+      "média",
+      "A média hatása nagy."
+    ],
+    "word_gotgot": [
+      "itt-ott",
+      "Itt-ott virágok nyíltak."
+    ],
+    "word_tap": [
+      "torony, pagoda",
+      "A templomnál egy régi pagoda áll."
+    ],
+    "word_geonchuk": [
+      "építészet",
+      "Építészetet tanultam."
+    ],
+    "word_sigyongyu": [
+      "étolaj",
+      "Étolajat öntöttem a serpenyőbe."
+    ],
+    "word_geop": [
+      "félelem",
+      "Félek, ezért nem tudok felülni rá."
+    ],
+    "word_seogyu": [
+      "kőolaj",
+      "Emelkedett a kőolaj ára."
+    ],
+    "word_chaegimja": [
+      "felelős",
+      "A felelőssel szeretnék beszélni."
+    ],
+    "word_boram": [
+      "a fáradozás gyümölcse",
+      "A tanítás értelmet ad a munkámnak."
+    ],
+    "word_soseu": [
+      "szósz",
+      "Kérek még szószt."
+    ],
+    "word_urimal": [
+      "a mi nyelvünk",
+      "Használjuk szépen a nyelvünket."
+    ],
+    "word_hyeonji": [
+      "helyszín, helyi",
+      "Kipróbáltam a helyi ételeket."
+    ],
+    "word_geot_2": [
+      "külső",
+      "Kívül kemény, belül puha."
+    ],
+    "word_seungyongcha": [
+      "személyautó",
+      "Öt személyautó parkol."
+    ],
+    "word_jinchul": [
+      "terjeszkedés",
+      "Készülünk a külföldi terjeszkedésre."
+    ],
+    "word_giun": [
+      "erő, energia",
+      "Egy csepp erőm sincs."
+    ],
+    "word_abeonim": [
+      "édesapja, tisztelettel",
+      "Adja át üdvözletemet az édesapjának."
+    ],
+    "word_mureum": [
+      "kérdés",
+      "Kérem, válaszoljon a kérdésre."
+    ],
+    "word_eomeonim": [
+      "édesanyja, tisztelettel",
+      "Jól van az édesanyja?"
+    ],
+    "word_haeseok": [
+      "értelmezés",
+      "Ezt a mondatot nehéz értelmezni."
+    ],
+    "word_sayongja": [
+      "felhasználó",
+      "A felhasználók száma sokat nőtt."
+    ],
+    "word_sawon": [
+      "cégalkalmazott",
+      "Új alkalmazott érkezett."
+    ],
+    "word_gangmul": [
+      "folyóvíz",
+      "A folyó vize tiszta."
+    ],
+    "word_rideum": [
+      "ritmus",
+      "A ritmusra táncolok."
+    ],
+    "word_moniteo": [
+      "monitor",
+      "A monitor túl sötét."
+    ],
+    "word_un": [
+      "szerencse",
+      "Mellém állt a szerencse, és átmentem a vizsgán."
+    ],
+    "word_ilsangsaenghwal": [
+      "mindennapi élet",
+      "Ez egy, a mindennapi életben gyakran használt szó."
+    ],
+    "word_binil": [
+      "fólia",
+      "Fóliával takartam le az ételt."
     ]
   }
 }

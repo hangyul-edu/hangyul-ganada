@@ -66,7 +66,7 @@ NIKL_LEARNER_VOCABULARY = Source(
     homepage="https://www.korean.go.kr/front/etcData/etcDataView.do?mn_id=46&etc_seq=71",
     provides="Learner grade (초급·중급·고급) and corpus rank, read as evidence for the Vocabulary Level",
     attribution=(
-        "Vocabulary levels use the 한국어 학습용 어휘 목록 (2003) of the National Institute of "
+        "Vocabulary levels use the 한국어 학습용 어휘 목록 of the National Institute of "
         "Korean Language (국립국어원), KOGL Type 1"
     ),
 )

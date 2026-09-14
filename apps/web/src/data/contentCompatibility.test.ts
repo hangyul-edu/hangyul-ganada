@@ -34,7 +34,7 @@ describe('a content change and a learner who already has progress', () => {
     expect(strangers.map((word) => `${word.word}/${word.id}`)).toEqual([]);
   });
 
-  it('resolves every id the ledger has ever issued, bar three that never shipped', () => {
+  it('resolves every id the ledger has ever issued, bar four that never shipped', () => {
     /*
      * The other direction, and the one that breaks a saved word: an id that has
      * shipped and then stopped resolving leaves a progress row, a saved-words
@@ -47,7 +47,14 @@ describe('a content change and a learner who already has progress', () => {
      * would be "an id may stop resolving" and that is the thing this test
      * exists to refuse.
      */
-    const neverShipped = new Set(['word_buditda', 'word_sukda', 'word_aigu']);
+    const neverShipped = new Set(['word_buditda', 'word_sukda', 'word_aigu', 'word_mit_2']);
+    /*
+     * `word_mit_2` is 및, allocated in the eighteenth pass (batch 301) and cut
+     * from the same pass before any build was delivered: every example that
+     * uses a formal connective trips the register rule by construction, and a
+     * beginner meets 그리고 first. The ledger keeps the id because the ledger
+     * is append-only; no device holds progress under it.
+     */
     /*
      * And one more way an id may stop resolving, which is the only honest
      * one: the word was retired under the child-safe content policy, and a

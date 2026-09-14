@@ -13,7 +13,9 @@
     "fired. See docs/VOCABULARY_LEVEL_CALIBRATION.md for how the bands were set.",
     "",
     "Every word here exists in the taught corpus. A missing anchor is an error,",
-    "because an anchor that silently stops being checked is worse than none."
+    "because an anchor that silently stops being checked is worse than none.",
+    "",
+    "2026-09-14: 그러나, 학년, 여러, 이렇다 and 년 were added to `foundation` because the National Institute's learner list grades all five 초급 and the model sat them at 7–11 when it read the subtitle corpora alone; with the list as a second source they are 1–5. They are the assertion that the second source stays in the model — remove it and this file fails (scripts/content-gates-negative.sh, N7)."
   ],
   "bands": {
     "foundation": {
@@ -93,7 +95,12 @@
       "길",
       "방",
       "옆",
-      "아래"
+      "아래",
+      "그러나",
+      "학년",
+      "여러",
+      "이렇다",
+      "년"
     ],
     "early": [
       "마시다",

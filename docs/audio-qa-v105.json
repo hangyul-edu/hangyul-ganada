@@ -1,0 +1,9 @@
+{
+ "checked": 15960,
+ "decoded": 15960,
+ "total_bytes": 83166072,
+ "errors": [],
+ "warnings": [
+  "word_babb [female] '못': mean -9.7 dB is far from the -16 dB target"
+ ]
+}

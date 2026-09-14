@@ -2710,7 +2710,7 @@
     ],
     "word_gamyeon": [
       "maschera",
-      "Ho indossato una maschera."
+      "Ho ballato con una maschera."
     ],
     "word_ingi": [
       "popolarità",
@@ -8233,8 +8233,8 @@
       "Ho fatto visita al mio insegnante."
     ],
     "word_jiwon": [
-      "sostegno, appoggio",
-      "Ho ricevuto sostegno."
+      "aiuto, assistenza",
+      "Ho ricevuto un aiuto dal governo."
     ],
     "word_oraen": [
       "di lunga data",
@@ -9693,7 +9693,7 @@
     ],
     "word_sinjang": [
       "statura",
-      "Misuro la statura."
+      "Quanto è alto?"
     ],
     "word_neullida": [
       "aumentare, accrescere",
@@ -10401,8 +10401,8 @@
       "L’analisi è terminata."
     ],
     "word_jiji": [
-      "sostegno, appoggio",
-      "Ho ricevuto sostegno."
+      "sostegno",
+      "Ho ricevuto il sostegno di molte persone."
     ],
     "word_seupai": [
       "spia",
@@ -13580,6 +13580,1994 @@
     "word_yubohada": [
       "sospendere il giudizio",
       "Abbiamo sospeso il giudizio per un momento."
+    ],
+    "word_gasu": [
+      "cantante",
+      "Quel cantante canta bene."
+    ],
+    "word_gyejeol": [
+      "stagione",
+      "Quale stagione ti piace?"
+    ],
+    "word_gyeongchalgwan": [
+      "agente di polizia",
+      "Ho chiesto la strada a un agente di polizia."
+    ],
+    "word_gyeongchi": [
+      "paesaggio",
+      "Qui il paesaggio è davvero bello."
+    ],
+    "word_godeunghaksaeng": [
+      "studente delle superiori",
+      "Mio fratello minore è uno studente delle superiori."
+    ],
+    "word_gwaja": [
+      "biscotti o snack",
+      "I bambini mangiano dei biscotti."
+    ],
+    "word_gyogwaseo": [
+      "libro di testo",
+      "Aprite il libro di testo, per favore."
+    ],
+    "word_gugyeong": [
+      "giro per guardare",
+      "Sono andato a vedere i fiori."
+    ],
+    "word_gisuksa": [
+      "dormitorio",
+      "Vivo in un dormitorio."
+    ],
+    "word_namdongsaeng": [
+      "fratello minore",
+      "Mio fratello minore è alto."
+    ],
+    "word_naenyeon": [
+      "l'anno prossimo",
+      "L'anno prossimo andrò in Corea."
+    ],
+    "word_dallyeok": [
+      "calendario",
+      "C'è un calendario appeso alla parete."
+    ],
+    "word_daehaksaeng": [
+      "studente universitario",
+      "Mio fratello minore è diventato uno studente universitario."
+    ],
+    "word_dwaejigogi": [
+      "carne di maiale",
+      "Abbiamo grigliato la carne di maiale e l'abbiamo mangiata."
+    ],
+    "word_deungsan": [
+      "escursione in montagna",
+      "Nel fine settimana vado in montagna."
+    ],
+    "word_maepda": [
+      "essere piccante",
+      "Questo tteokbokki è troppo piccante."
+    ],
+    "word_menyu": [
+      "menù",
+      "Mi mostri il menù, per favore."
+    ],
+    "word_mogyok": [
+      "bagno",
+      "Faccio il bagno prima di dormire."
+    ],
+    "word_mit": [
+      "parte di sotto, sotto",
+      "Il gatto è sotto il letto."
+    ],
+    "word_bareum": [
+      "pronuncia",
+      "La tua pronuncia è molto buona."
+    ],
+    "word_banghak": [
+      "vacanze scolastiche",
+      "Cosa farai durante le vacanze?"
+    ],
+    "word_baebureuda": [
+      "essere sazio",
+      "Ho mangiato tanto, quindi sono sazio."
+    ],
+    "word_baekwajeom": [
+      "grande magazzino",
+      "Ho comprato dei vestiti al grande magazzino."
+    ],
+    "word_bolpen": [
+      "penna a sfera",
+      "Mi presti una penna, per favore."
+    ],
+    "word_saekkkal": [
+      "colore",
+      "Questo colore mi piace."
+    ],
+    "word_seojeom": [
+      "libreria",
+      "Ho comprato un libro in libreria."
+    ],
+    "word_seonmulhada": [
+      "regalare",
+      "Ho regalato dei fiori a un amico."
+    ],
+    "word_sesu": [
+      "lavarsi il viso",
+      "La mattina mi lavo il viso."
+    ],
+    "word_sopung": [
+      "gita, picnic",
+      "Domani andiamo in gita."
+    ],
+    "word_syoping": [
+      "shopping",
+      "Nel fine settimana ho fatto shopping."
+    ],
+    "word_syupeomaket": [
+      "supermercato",
+      "Ho comprato le verdure al supermercato."
+    ],
+    "word_yangbok": [
+      "completo, abito da uomo",
+      "Mio padre indossa un completo."
+    ],
+    "word_eorini": [
+      "bambino",
+      "I biglietti sono gratuiti per i bambini."
+    ],
+    "word_eeokeon": [
+      "condizionatore",
+      "Faceva caldo, così ho acceso il condizionatore."
+    ],
+    "word_oraenman": [
+      "dopo tanto tempo",
+      "Ho incontrato un amico dopo tanto tempo."
+    ],
+    "word_oeguk": [
+      "paese straniero",
+      "Hai mai vissuto all'estero?"
+    ],
+    "word_oegugeo": [
+      "lingua straniera",
+      "Sto imparando una lingua straniera."
+    ],
+    "word_oegugin": [
+      "straniero",
+      "Ho molti amici stranieri."
+    ],
+    "word_undonghada": [
+      "fare esercizio",
+      "Faccio esercizio ogni mattina."
+    ],
+    "word_undonghwa": [
+      "scarpe da ginnastica",
+      "Ho messo le scarpe da ginnastica nuove."
+    ],
+    "word_ip_2": [
+      "foglia",
+      "In autunno cadono le foglie."
+    ],
+    "word_jangmi": [
+      "rosa",
+      "Le rose hanno un buon profumo."
+    ],
+    "word_jeomsimsigan": [
+      "ora di pranzo",
+      "All'ora di pranzo faccio una passeggiata."
+    ],
+    "word_joreop": [
+      "diploma, laurea",
+      "Congratulazioni per il diploma!"
+    ],
+    "word_junghakgyo": [
+      "scuola media",
+      "Mio figlio va alle medie."
+    ],
+    "word_chodeunghakgyo": [
+      "scuola elementare",
+      "Mia figlia ha iniziato le elementari."
+    ],
+    "word_jinandal": [
+      "il mese scorso",
+      "Il mese scorso ho traslocato."
+    ],
+    "word_jinanju": [
+      "la settimana scorsa",
+      "La settimana scorsa ho preso il raffreddore."
+    ],
+    "word_jiugae": [
+      "gomma",
+      "Cancellalo con la gomma, per favore."
+    ],
+    "word_jjigae": [
+      "stufato coreano",
+      "A pranzo ho mangiato uno stufato."
+    ],
+    "word_cheongbaji": [
+      "jeans",
+      "I jeans ti stanno bene."
+    ],
+    "word_chiyak": [
+      "dentifricio",
+      "È finito il dentifricio."
+    ],
+    "word_kolla": [
+      "cola",
+      "Una cola, per favore."
+    ],
+    "word_taegwondo": [
+      "taekwondo",
+      "Il bambino impara il taekwondo."
+    ],
+    "word_teniseu": [
+      "tennis",
+      "Ho comprato una racchetta da tennis nuova."
+    ],
+    "word_tellebijeon": [
+      "televisione",
+      "La sera guardo la televisione."
+    ],
+    "word_hangnyeon": [
+      "anno scolastico, classe",
+      "In che anno sei?"
+    ],
+    "word_hanbok": [
+      "hanbok, abito tradizionale coreano",
+      "A Seollal indossiamo l'hanbok."
+    ],
+    "word_hanja": [
+      "caratteri cinesi",
+      "I caratteri cinesi sono difficili."
+    ],
+    "word_haembeogeo": [
+      "hamburger",
+      "Un hamburger, per favore."
+    ],
+    "word_hyuil": [
+      "giorno di riposo",
+      "Nei giorni di riposo mi alzo tardi."
+    ],
+    "word_hyuji": [
+      "fazzoletto di carta",
+      "Mi dai un fazzoletto, per favore?"
+    ],
+    "word_kkeulhida": [
+      "far bollire",
+      "Faccio bollire l'acqua e bevo il tè."
+    ],
+    "word_bokda": [
+      "saltare in padella",
+      "Ho saltato le verdure in padella e le ho mangiate."
+    ],
+    "word_damgeuda": [
+      "immergere, mettere a bagno",
+      "Ho immerso i piedi nell'acqua."
+    ],
+    "word_gakkuda": [
+      "curare, coltivare",
+      "Mia nonna cura il giardino."
+    ],
+    "word_gwonhada": [
+      "offrire, consigliare",
+      "Ho offerto del tè all'ospite."
+    ],
+    "word_kkeudeogida": [
+      "annuire",
+      "Il bambino ha annuito."
+    ],
+    "word_kkeunheojida": [
+      "spezzarsi",
+      "La corda si è spezzata."
+    ],
+    "word_neolpida": [
+      "allargare",
+      "Stanno facendo lavori per allargare la strada."
+    ],
+    "word_nohida": [
+      "essere posato",
+      "Sulla scrivania sono posati dei fiori."
+    ],
+    "word_sallida": [
+      "salvare la vita",
+      "Il medico ha salvato il paziente."
+    ],
+    "word_seuda": [
+      "mettere in piedi, fermare",
+      "Ho messo l'ombrello in piedi accanto alla porta."
+    ],
+    "word_seokkida": [
+      "mescolarsi",
+      "L'acqua e l'olio non si mescolano."
+    ],
+    "word_kyeojida": [
+      "accendersi",
+      "La luce si è accesa da sola."
+    ],
+    "word_jeonghaejida": [
+      "essere fissato",
+      "L'orario della riunione è stato fissato."
+    ],
+    "word_saenggyeonada": [
+      "nascere, spuntare",
+      "Sono spuntati molti negozi nuovi."
+    ],
+    "word_naraoda": [
+      "arrivare in volo",
+      "Un uccello è arrivato in volo alla finestra."
+    ],
+    "word_dallyeooda": [
+      "arrivare di corsa",
+      "Il cucciolo è corso verso di me."
+    ],
+    "word_yangbohada": [
+      "cedere",
+      "Ho ceduto il posto a una signora anziana."
+    ],
+    "word_hwaryonghada": [
+      "sfruttare bene",
+      "Sfrutto bene il tempo del fine settimana."
+    ],
+    "word_dayanghada": [
+      "essere vario",
+      "Questo negozio ha una grande varietà di pane."
+    ],
+    "word_dapdapada": [
+      "sentirsi soffocare",
+      "La stanza è piccola e mi sento soffocare."
+    ],
+    "word_dukkeopda": [
+      "essere spesso",
+      "Questo libro è molto spesso."
+    ],
+    "word_dunggeulda": [
+      "essere rotondo",
+      "La luna è rotonda."
+    ],
+    "word_gukda": [
+      "essere grosso",
+      "Questo albero ha il tronco grosso."
+    ],
+    "word_ganeulda": [
+      "essere sottile",
+      "Questo filo è troppo sottile."
+    ],
+    "word_mipda": [
+      "essere odioso",
+      "Detesto le persone che mentono."
+    ],
+    "word_natseolda": [
+      "essere estraneo, poco familiare",
+      "Questo quartiere mi è ancora poco familiare."
+    ],
+    "word_eongttunghada": [
+      "essere strampalato",
+      "Il bambino ha fatto una domanda strampalata."
+    ],
+    "word_usuhada": [
+      "essere eccellente",
+      "I voti sono eccellenti."
+    ],
+    "word_jeokdanghada": [
+      "essere adeguato",
+      "Questa stanza ha una grandezza adeguata."
+    ],
+    "word_jogeumata": [
+      "essere piccolino",
+      "Ho ricevuto una scatolina."
+    ],
+    "word_teunteunhada": [
+      "essere robusto",
+      "Questa sedia è robusta."
+    ],
+    "word_pyeollihada": [
+      "essere comodo, pratico",
+      "La metropolitana è molto comoda."
+    ],
+    "word_pureuda": [
+      "essere azzurro o verde, in natura",
+      "Le montagne sono verdi."
+    ],
+    "word_hwalbalhada": [
+      "essere vivace",
+      "Il bambino è molto vivace."
+    ],
+    "word_kkwae": [
+      "abbastanza, piuttosto",
+      "Oggi fa abbastanza freddo."
+    ],
+    "word_kkujunhi": [
+      "con costanza",
+      "Mi esercito con costanza ogni giorno."
+    ],
+    "word_kkamjjak": [
+      "di soprassalto",
+      "Mi sono spaventato per un forte rumore."
+    ],
+    "word_deoguna": [
+      "per di più",
+      "Sono in ritardo. Per di più, piove."
+    ],
+    "word_magu": [
+      "a casaccio, senza ritegno",
+      "Non spendere i soldi a casaccio, per favore."
+    ],
+    "word_bigyojeok": [
+      "relativamente",
+      "Questo problema è relativamente facile."
+    ],
+    "word_yunanhi": [
+      "insolitamente",
+      "Oggi sono insolitamente stanco."
+    ],
+    "word_jeomcha": [
+      "gradualmente",
+      "Il tempo si sta gradualmente raffreddando."
+    ],
+    "word_puk": [
+      "profondamente",
+      "Riposati bene nel fine settimana."
+    ],
+    "word_haemada": [
+      "ogni anno",
+      "Ogni anno in primavera sbocciano i fiori."
+    ],
+    "word_hanpyeon": [
+      "d'altra parte",
+      "Sono contento. D'altra parte, sono anche preoccupato."
+    ],
+    "word_jeuk": [
+      "cioè",
+      "Ci vediamo domani, cioè sabato."
+    ],
+    "word_gawi": [
+      "forbici",
+      "Taglio la carta con le forbici."
+    ],
+    "word_gansik": [
+      "merenda",
+      "Nel pomeriggio faccio merenda."
+    ],
+    "word_geosil": [
+      "soggiorno",
+      "Guardo la televisione in soggiorno."
+    ],
+    "word_georeum": [
+      "passo",
+      "Faccia un passo avanti, per favore."
+    ],
+    "word_golmok": [
+      "vicolo",
+      "I bambini giocano nel vicolo."
+    ],
+    "word_gongmuwon": [
+      "impiegato pubblico",
+      "Mio fratello maggiore è un impiegato pubblico."
+    ],
+    "word_gwamok": [
+      "materia",
+      "Quale materia ti piace?"
+    ],
+    "word_gwaje": [
+      "compito, elaborato",
+      "Devo consegnare il compito entro domani."
+    ],
+    "word_gwangwang": [
+      "turismo",
+      "Ho fatto il turista a Seul."
+    ],
+    "word_gwangwanggaek": [
+      "turista",
+      "I turisti scattano foto."
+    ],
+    "word_gyotongsago": [
+      "incidente stradale",
+      "Ieri c'è stato un incidente stradale."
+    ],
+    "word_gungmul": [
+      "brodo",
+      "Il brodo è davvero rinfrescante."
+    ],
+    "word_geuneul": [
+      "ombra",
+      "Riposiamoci all'ombra dell'albero."
+    ],
+    "word_geulja": [
+      "lettera, carattere",
+      "Le lettere sono troppo piccole."
+    ],
+    "word_gigan": [
+      "periodo",
+      "È il periodo degli esami, quindi sono occupato."
+    ],
+    "word_gion": [
+      "temperatura dell'aria",
+      "Oggi la temperatura è scesa molto."
+    ],
+    "word_gichim": [
+      "tosse",
+      "Continuo a tossire."
+    ],
+    "word_kkeopjil": [
+      "buccia, guscio",
+      "Ho tolto la buccia alla banana."
+    ],
+    "word_kkokdaegi": [
+      "cima",
+      "C'è un uccello in cima all'albero."
+    ],
+    "word_kkochip": [
+      "petalo",
+      "I petali volano nel vento."
+    ],
+    "word_kkul": [
+      "miele",
+      "Metto il miele nel tè."
+    ],
+    "word_nabi": [
+      "farfalla",
+      "Una farfalla si è posata sul fiore."
+    ],
+    "word_namutgaji": [
+      "ramo",
+      "Un uccello è appollaiato su un ramo."
+    ],
+    "word_nammae": [
+      "fratello e sorella",
+      "Siamo fratello e sorella."
+    ],
+    "word_nagyeop": [
+      "foglie cadute",
+      "Ci sono molte foglie cadute sul sentiero."
+    ],
+    "word_noin": [
+      "anziano",
+      "Ho ceduto il posto a una persona anziana."
+    ],
+    "word_noriteo": [
+      "parco giochi",
+      "I bambini giocano al parco giochi."
+    ],
+    "word_nongsa": [
+      "agricoltura",
+      "Mio nonno fa l'agricoltore."
+    ],
+    "word_nunbit": [
+      "sguardo",
+      "Lo sguardo è caloroso."
+    ],
+    "word_nunap": [
+      "davanti agli occhi",
+      "Ho perso l'autobus proprio davanti ai miei occhi."
+    ],
+    "word_danjeom": [
+      "punto debole",
+      "Tutti hanno dei punti deboli."
+    ],
+    "word_jangjeom": [
+      "punto di forza",
+      "Il punto di forza di questa casa è la posizione."
+    ],
+    "word_dalbit": [
+      "chiaro di luna",
+      "Il chiaro di luna è molto luminoso."
+    ],
+    "word_dapjang": [
+      "risposta",
+      "Sto aspettando una risposta."
+    ],
+    "word_daemun": [
+      "cancello",
+      "Apra il cancello, per favore."
+    ],
+    "word_deowi": [
+      "caldo",
+      "Il caldo di quest'anno è davvero forte."
+    ],
+    "word_chuwi": [
+      "freddo",
+      "Mi si sono gelate le mani per il freddo."
+    ],
+    "word_dogu": [
+      "attrezzo, strumento",
+      "Abbi cura dei tuoi attrezzi."
+    ],
+    "word_dosirak": [
+      "pranzo al sacco",
+      "Ho portato il pranzo al sacco."
+    ],
+    "word_dokseo": [
+      "lettura",
+      "Il mio hobby è la lettura."
+    ],
+    "word_dongmurwon": [
+      "zoo",
+      "Ho visto un leone allo zoo."
+    ],
+    "word_dutong": [
+      "mal di testa",
+      "Avevo un forte mal di testa, così ho preso una medicina."
+    ],
+    "word_dwijjok": [
+      "parte posteriore",
+      "Ci sono posti nella parte posteriore."
+    ],
+    "word_apjjok": [
+      "parte anteriore",
+      "Si sieda davanti, per favore."
+    ],
+    "word_anjjok": [
+      "lato interno",
+      "Si sieda al posto interno, per favore."
+    ],
+    "word_wijjok": [
+      "parte superiore",
+      "I libri sono sullo scaffale in alto."
+    ],
+    "word_araejjok": [
+      "parte inferiore",
+      "Provi ad aprire il cassetto in basso."
+    ],
+    "word_ttam": [
+      "sudore",
+      "Sudo per l'esercizio fisico."
+    ],
+    "word_ttangkong": [
+      "arachide",
+      "Le arachidi hanno un gusto tostato."
+    ],
+    "word_ttukkeong": [
+      "coperchio",
+      "Apra il coperchio, per favore."
+    ],
+    "word_maeumsok": [
+      "il profondo del cuore",
+      "In cuor mio ero grato."
+    ],
+    "word_manhwa": [
+      "fumetto",
+      "A mio fratello minore piacciono i fumetti."
+    ],
+    "word_maeryeok": [
+      "fascino",
+      "Questa città ha fascino."
+    ],
+    "word_meoritsok": [
+      "la testa, la mente",
+      "Ho la testa confusa."
+    ],
+    "word_memo": [
+      "appunto, nota",
+      "Ho attaccato un appunto sul frigorifero."
+    ],
+    "word_myeongham": [
+      "biglietto da visita",
+      "Ci siamo scambiati i biglietti da visita."
+    ],
+    "word_mogi": [
+      "zanzara",
+      "In estate ci sono molte zanzare."
+    ],
+    "word_more": [
+      "dopodomani",
+      "Tornerò dopodomani."
+    ],
+    "word_mommuge": [
+      "peso corporeo",
+      "Mi sono pesato."
+    ],
+    "word_muge": [
+      "peso",
+      "Peso i bagagli."
+    ],
+    "word_munjang": [
+      "frase",
+      "Legga questa frase, per favore."
+    ],
+    "word_misul": [
+      "arte",
+      "A lezione di arte disegniamo."
+    ],
+    "word_misulgwan": [
+      "museo d'arte",
+      "Nel fine settimana sono andato al museo d'arte."
+    ],
+    "word_milgaru": [
+      "farina",
+      "Faccio il pane con la farina."
+    ],
+    "word_badatga": [
+      "riva del mare",
+      "Ho passeggiato in riva al mare."
+    ],
+    "word_bawi": [
+      "roccia, masso",
+      "Mi sono seduto su una roccia."
+    ],
+    "word_balgarak": [
+      "dito del piede",
+      "Mi sono fatto male a un dito del piede."
+    ],
+    "word_baegyeong": [
+      "sfondo",
+      "Lo sfondo della foto è bello."
+    ],
+    "word_beoreut": [
+      "vizio, abitudine",
+      "Ho il vizio di mangiarmi le unghie."
+    ],
+    "word_beoseot": [
+      "fungo",
+      "Ho fatto una zuppa con i funghi."
+    ],
+    "word_beoteo": [
+      "burro",
+      "Spalmo il burro sul pane."
+    ],
+    "word_bongji": [
+      "sacchetto",
+      "Ho messo la frutta in un sacchetto."
+    ],
+    "word_bongtu": [
+      "busta",
+      "Ho messo la lettera in una busta."
+    ],
+    "word_bugeun": [
+      "dintorni, vicinanze",
+      "Abito nei pressi della stazione."
+    ],
+    "word_bujagyong": [
+      "effetto collaterale",
+      "Questa medicina non ha effetti collaterali."
+    ],
+    "word_bulbit": [
+      "luce, bagliore",
+      "Vedo una luce in lontananza."
+    ],
+    "word_buran": [
+      "ansia, inquietudine",
+      "Prima di un esame provo ansia."
+    ],
+    "word_ppallae": [
+      "bucato",
+      "Si è accumulato molto bucato."
+    ],
+    "word_ppuri": [
+      "radice",
+      "Le radici dell'albero sono profonde."
+    ],
+    "word_saheul": [
+      "tre giorni",
+      "Ha piovuto per tre giorni."
+    ],
+    "word_sangdaebang": [
+      "l'altra persona, l'interlocutore",
+      "Ascolta bene l'altra persona."
+    ],
+    "word_sangpum": [
+      "prodotto, merce",
+      "È uscito un nuovo prodotto."
+    ],
+    "word_saeu": [
+      "gambero",
+      "Ho grigliato dei gamberi e li ho mangiati."
+    ],
+    "word_seolgeoji": [
+      "lavare i piatti",
+      "Ho lavato i piatti dopo cena."
+    ],
+    "word_sonamu": [
+      "pino",
+      "In montagna ci sono molti pini."
+    ],
+    "word_sonnyeo": [
+      "nipote, femmina",
+      "La nonna vuole molto bene a sua nipote."
+    ],
+    "word_sonbadak": [
+      "palmo della mano",
+      "Ho scritto sul palmo della mano."
+    ],
+    "word_sonjabi": [
+      "maniglia",
+      "La maniglia della porta è rotta."
+    ],
+    "word_seupgwan": [
+      "abitudine",
+      "Ho preso l'abitudine di andare a letto presto."
+    ],
+    "word_sonja": [
+      "nipote, maschio",
+      "Il nonno gioca con suo nipote."
+    ],
+    "word_sunseo": [
+      "ordine",
+      "Entrate in ordine, per favore."
+    ],
+    "word_sieomeoni": [
+      "suocera, madre del marito",
+      "Mia suocera cucina bene."
+    ],
+    "word_sikgu": [
+      "membro della famiglia",
+      "La nostra famiglia ha cinque membri."
+    ],
+    "word_sikpum": [
+      "prodotti alimentari",
+      "Il reparto alimentari è nel seminterrato."
+    ],
+    "word_sillae": [
+      "interno, al chiuso",
+      "Al chiuso si tolga il cappello, per favore."
+    ],
+    "word_simbureum": [
+      "commissione",
+      "Sono andato al negozio per una commissione della mamma."
+    ],
+    "word_akgi": [
+      "strumento musicale",
+      "Quale strumento vuoi imparare?"
+    ],
+    "word_aksu": [
+      "stretta di mano",
+      "Ci siamo stretti la mano."
+    ],
+    "word_anbang": [
+      "camera da letto principale",
+      "I miei genitori dormono nella camera principale."
+    ],
+    "word_yaoe": [
+      "all'aperto",
+      "Abbiamo pranzato all'aperto."
+    ],
+    "word_yangnyeom": [
+      "condimento",
+      "Il condimento è penetrato bene."
+    ],
+    "word_eoryeoum": [
+      "difficoltà",
+      "Se ci sono difficoltà, dillo."
+    ],
+    "word_yeou": [
+      "volpe",
+      "Ho visto una volpe nel bosco."
+    ],
+    "word_yeoyu": [
+      "margine, tempo libero",
+      "Ultimamente non ho tempo libero."
+    ],
+    "word_yeollakcheo": [
+      "recapito, contatto",
+      "Mi dia il suo recapito, per favore."
+    ],
+    "word_yeonmal": [
+      "fine anno",
+      "A fine anno ci sono molti incontri."
+    ],
+    "word_yeolheul": [
+      "dieci giorni",
+      "Ho viaggiato per dieci giorni."
+    ],
+    "word_yeongha": [
+      "sotto zero",
+      "Stamattina siamo sotto zero."
+    ],
+    "word_yeopjip": [
+      "casa accanto",
+      "Una nuova famiglia si è trasferita nella casa accanto."
+    ],
+    "word_ojingeo": [
+      "calamaro",
+      "Il calamaro si mangia grigliato."
+    ],
+    "word_ondo": [
+      "temperatura",
+      "Ho alzato un po' la temperatura della stanza."
+    ],
+    "word_onmom": [
+      "tutto il corpo",
+      "Mi fa male tutto il corpo."
+    ],
+    "word_oechul": [
+      "uscita",
+      "Mi preparo per uscire."
+    ],
+    "word_oenson": [
+      "mano sinistra",
+      "Scrivo con la mano sinistra."
+    ],
+    "word_oreunson": [
+      "mano destra",
+      "Alzi la mano destra, per favore."
+    ],
+    "word_yogeum": [
+      "tariffa",
+      "La tariffa dell'autobus è aumentata."
+    ],
+    "word_yoksil": [
+      "bagno",
+      "Ho pulito il bagno."
+    ],
+    "word_yoksim": [
+      "avidità",
+      "Non essere avido."
+    ],
+    "word_yongdon": [
+      "paghetta",
+      "Ho messo da parte la paghetta e ho comprato un libro."
+    ],
+    "word_useung": [
+      "vittoria, primo posto",
+      "La nostra squadra ha vinto il primo posto."
+    ],
+    "word_upyo": [
+      "francobollo",
+      "Collezionare francobolli è il mio hobby."
+    ],
+    "word_unjeonja": [
+      "conducente",
+      "I conducenti devono allacciare la cintura."
+    ],
+    "word_ureum": [
+      "pianto",
+      "Il pianto del bambino è cessato."
+    ],
+    "word_wicheung": [
+      "piano di sopra",
+      "Il piano di sopra è un po' rumoroso."
+    ],
+    "word_yurichang": [
+      "vetro della finestra",
+      "Ho pulito i vetri delle finestre."
+    ],
+    "word_yuchiwon": [
+      "asilo",
+      "Mio figlio va all'asilo."
+    ],
+    "word_yuhaeng": [
+      "moda, tendenza",
+      "Questo colore va di moda ultimamente."
+    ],
+    "word_eumnyo": [
+      "bevanda",
+      "Cosa desidera da bere?"
+    ],
+    "word_iik": [
+      "profitto, beneficio",
+      "Questo mese abbiamo fatto un profitto."
+    ],
+    "word_iteunnal": [
+      "il giorno dopo",
+      "Sono partito la mattina dopo."
+    ],
+    "word_ingu": [
+      "popolazione",
+      "Questa città ha una grande popolazione."
+    ],
+    "word_ilsang": [
+      "quotidianità",
+      "Sono tornato alla quotidianità."
+    ],
+    "word_janchi": [
+      "festa, banchetto",
+      "Abbiamo fatto una festa per il compleanno della nonna."
+    ],
+    "word_jamot": [
+      "pigiama",
+      "Mi sono messo il pigiama."
+    ],
+    "word_jangnae": [
+      "futuro",
+      "Cosa vuoi fare da grande?"
+    ],
+    "word_jangma": [
+      "stagione delle piogge",
+      "È iniziata la stagione delle piogge."
+    ],
+    "word_jangsa": [
+      "commercio, affari",
+      "Ultimamente gli affari vanno bene."
+    ],
+    "word_jaeryo": [
+      "ingrediente, materiale",
+      "Ho comprato gli ingredienti per cucinare."
+    ],
+    "word_jeoja": [
+      "autore",
+      "Ho incontrato l'autore di questo libro."
+    ],
+    "word_jeochuk": [
+      "risparmio",
+      "Risparmio ogni mese."
+    ],
+    "word_jeongong": [
+      "specializzazione",
+      "Qual è la tua specializzazione?"
+    ],
+    "word_jeonnal": [
+      "il giorno prima",
+      "Il giorno prima di un esame vado a letto presto."
+    ],
+    "word_jeongdap": [
+      "risposta esatta",
+      "Ho indovinato la risposta esatta."
+    ],
+    "word_jepum": [
+      "prodotto",
+      "Questo prodotto è di buona qualità."
+    ],
+    "word_josang": [
+      "antenato",
+      "Durante le feste rendiamo omaggio agli antenati."
+    ],
+    "word_jwaseok": [
+      "posto a sedere",
+      "Controlli il numero del suo posto, per favore."
+    ],
+    "word_jubu": [
+      "casalinga",
+      "Mia zia è casalinga."
+    ],
+    "word_juchajang": [
+      "parcheggio",
+      "Ho parcheggiato l'auto nel parcheggio."
+    ],
+    "word_junbimul": [
+      "occorrente da portare",
+      "Hai preparato l'occorrente per domani?"
+    ],
+    "word_julgi": [
+      "gambo, stelo",
+      "Lo stelo del fiore è lungo."
+    ],
+    "word_chanmul": [
+      "acqua fredda",
+      "Un bicchiere d'acqua fredda, per favore."
+    ],
+    "word_chamgireum": [
+      "olio di sesamo",
+      "Aggiungi un po' di olio di sesamo."
+    ],
+    "word_changbak": [
+      "fuori dalla finestra",
+      "Fuori dalla finestra nevica."
+    ],
+    "word_chaeneol": [
+      "canale",
+      "Cambia canale, per favore."
+    ],
+    "word_chaekgabang": [
+      "zaino di scuola",
+      "Il mio zaino di scuola è troppo pesante."
+    ],
+    "word_cheongnyeon": [
+      "giovane",
+      "I giovani fanno volontariato."
+    ],
+    "word_cheongsonyeon": [
+      "adolescente",
+      "La tariffa è più bassa per gli adolescenti."
+    ],
+    "word_chejung": [
+      "peso corporeo",
+      "Ho perso un po' di peso."
+    ],
+    "word_choroksaek": [
+      "colore verde",
+      "Ho messo un cappello verde."
+    ],
+    "word_chobap": [
+      "sushi",
+      "A pranzo ho mangiato il sushi."
+    ],
+    "word_chukje": [
+      "festival",
+      "In autunno si tiene un festival."
+    ],
+    "word_munhwa": [
+      "cultura",
+      "Mi interessa molto la cultura coreana."
+    ],
+    "word_gyeongje": [
+      "economia",
+      "Guardo le notizie economiche ogni giorno."
+    ],
+    "word_yesul": [
+      "arte",
+      "Mio fratello minore studia arte."
+    ],
+    "word_tteut": [
+      "significato",
+      "Non conosco il significato di questa parola."
+    ],
+    "word_baljeon": [
+      "sviluppo",
+      "Questa città si sviluppa in fretta."
+    ],
+    "word_jeontong": [
+      "tradizione",
+      "Ho ascoltato musica tradizionale."
+    ],
+    "word_taedo": [
+      "atteggiamento",
+      "L'atteggiamento è molto buono."
+    ],
+    "word_juwi": [
+      "dintorni",
+      "Guardati bene intorno."
+    ],
+    "word_teukjing": [
+      "caratteristica",
+      "La caratteristica di questa zona è il mare."
+    ],
+    "word_yejeong": [
+      "programma previsto",
+      "Ho in programma di partire la settimana prossima."
+    ],
+    "word_haengsa": [
+      "evento",
+      "Ho partecipato a un evento scolastico."
+    ],
+    "word_pandan": [
+      "giudizio",
+      "Serve un giudizio rapido."
+    ],
+    "word_balpyo": [
+      "presentazione",
+      "Domani ho una presentazione."
+    ],
+    "word_gicho": [
+      "basi",
+      "Sto imparando di nuovo dalle basi."
+    ],
+    "word_juingong": [
+      "protagonista",
+      "Il protagonista di questo romanzo è uno studente."
+    ],
+    "word_haeoe": [
+      "estero",
+      "Parto per un viaggio all'estero."
+    ],
+    "word_cheyuk": [
+      "educazione fisica",
+      "L'ora di educazione fisica è la più divertente."
+    ],
+    "word_pyeongso": [
+      "giorni normali",
+      "Sono andato a letto prima del solito."
+    ],
+    "word_jutaek": [
+      "abitazione",
+      "I prezzi delle case sono saliti molto."
+    ],
+    "word_nongchon": [
+      "campagna",
+      "Mia nonna vive in campagna."
+    ],
+    "word_bat": [
+      "campo",
+      "Ho raccolto peperoncini nel campo."
+    ],
+    "word_gyeot": [
+      "fianco",
+      "Resta al mio fianco."
+    ],
+    "word_gippeum": [
+      "gioia",
+      "La notizia dell'ammissione è stata una grande gioia."
+    ],
+    "word_ipsul": [
+      "labbra",
+      "Ho le labbra secche."
+    ],
+    "word_heuk": [
+      "terra",
+      "Toccare la terra mi fa stare bene."
+    ],
+    "word_gwahakja": [
+      "scienziato",
+      "Voglio diventare uno scienziato."
+    ],
+    "word_hoewon": [
+      "socio, membro",
+      "Mi mostri la tessera di socio, per favore."
+    ],
+    "word_bangmun": [
+      "visita",
+      "La prossima visita è venerdì."
+    ],
+    "word_bulman": [
+      "insoddisfazione",
+      "Ho ascoltato la lamentela del cliente."
+    ],
+    "word_gwangaek": [
+      "spettatore",
+      "Gli spettatori hanno applaudito forte."
+    ],
+    "word_gomo": [
+      "zia paterna",
+      "Mia zia mi ha mandato un regalo."
+    ],
+    "word_toron": [
+      "dibattito",
+      "Abbiamo fatto un dibattito in classe."
+    ],
+    "word_gosaeng": [
+      "fatica",
+      "Ha passato tanta fatica."
+    ],
+    "word_pado": [
+      "onda",
+      "Le onde sono alte."
+    ],
+    "word_yegeum": [
+      "deposito bancario",
+      "Ho prelevato un po' dal mio deposito."
+    ],
+    "word_ipak": [
+      "ammissione",
+      "Congratulazioni per l'ammissione."
+    ],
+    "word_jehan": [
+      "limite",
+      "C'è un limite di tempo."
+    ],
+    "word_punggyeong": [
+      "paesaggio",
+      "Il paesaggio dalla finestra è bello."
+    ],
+    "word_gamdong": [
+      "commozione",
+      "Mi sono commosso guardando il film."
+    ],
+    "word_maru": [
+      "pavimento di legno",
+      "Mi sono seduto sul pavimento di legno a riposare."
+    ],
+    "word_yejeol": [
+      "buone maniere",
+      "Ho imparato le buone maniere a tavola."
+    ],
+    "word_chincheok": [
+      "parente",
+      "Un parente è venuto a casa nostra."
+    ],
+    "word_haetsal": [
+      "raggi di sole",
+      "I raggi del sole del mattino sono caldi."
+    ],
+    "word_hakgi": [
+      "semestre",
+      "È iniziato il nuovo semestre."
+    ],
+    "word_hubae": [
+      "collega più giovane",
+      "Ho offerto il pranzo al mio collega più giovane."
+    ],
+    "word_hakseup": [
+      "apprendimento",
+      "Ho fatto un piano di apprendimento."
+    ],
+    "word_bigyo": [
+      "confronto",
+      "Il confronto tra i due prodotti è facile."
+    ],
+    "word_hyanggi": [
+      "profumo",
+      "La stanza è piena del profumo dei fiori."
+    ],
+    "word_garu": [
+      "polvere",
+      "Ho ridotto la medicina in polvere."
+    ],
+    "word_donghwa": [
+      "fiaba",
+      "Ho letto una fiaba a mio figlio."
+    ],
+    "word_yuhak": [
+      "studio all'estero",
+      "Mio fratello maggiore si prepara a studiare all'estero."
+    ],
+    "word_damim": [
+      "insegnante di classe",
+      "Il mio insegnante di classe è gentile."
+    ],
+    "word_dojung": [
+      "metà strada",
+      "Ha piovuto lungo la strada."
+    ],
+    "word_chingchan": [
+      "lode",
+      "Ho ricevuto una lode dal mio insegnante."
+    ],
+    "word_haetbit": [
+      "luce del sole",
+      "La luce del sole è troppo forte."
+    ],
+    "word_meonji": [
+      "polvere",
+      "Si è accumulata polvere sulla scrivania."
+    ],
+    "word_heungmi": [
+      "interesse",
+      "Mi è venuto interesse per la storia."
+    ],
+    "word_dijain": [
+      "design",
+      "Questa borsa ha un bel design."
+    ],
+    "word_teol": [
+      "pelo",
+      "Il pelo del gatto è morbido."
+    ],
+    "word_iljeong": [
+      "programma, agenda",
+      "Ho controllato il programma di oggi."
+    ],
+    "word_gyohwan": [
+      "cambio, scambio",
+      "Si può cambiare con un altro colore?"
+    ],
+    "word_gugeo": [
+      "lingua nazionale",
+      "Ho fatto l'esame di lingua coreana."
+    ],
+    "word_jeulgeoum": [
+      "piacere, divertimento",
+      "Viaggiare è un grande piacere."
+    ],
+    "word_daehagwon": [
+      "scuola di specializzazione",
+      "Frequento la scuola di specializzazione."
+    ],
+    "word_deungnok": [
+      "registrazione, iscrizione",
+      "Ho completato l'iscrizione al corso."
+    ],
+    "word_munui_2": [
+      "fantasia, motivo",
+      "Ho indossato una gonna a fiori."
+    ],
+    "word_hwabun": [
+      "vaso di fiori",
+      "Ho innaffiato il vaso."
+    ],
+    "word_gyesangi": [
+      "calcolatrice",
+      "L'ho sommato con la calcolatrice."
+    ],
+    "word_hagwon": [
+      "istituto privato",
+      "La sera vado all'istituto di inglese."
+    ],
+    "word_tomato": [
+      "pomodoro",
+      "Ho tagliato i pomodori e fatto un'insalata."
+    ],
+    "word_ppyam": [
+      "guancia",
+      "Mi sono arrossate le guance per il freddo."
+    ],
+    "word_tongjang": [
+      "libretto bancario",
+      "Lo stipendio è arrivato sul mio libretto."
+    ],
+    "word_gyeonggijang": [
+      "stadio",
+      "Lo stadio si è riempito di gente."
+    ],
+    "word_cheonnal": [
+      "primo giorno",
+      "Il primo giorno di lavoro mette ansia."
+    ],
+    "word_yeoreumcheol": [
+      "periodo estivo",
+      "Nel periodo estivo bevo molta acqua."
+    ],
+    "word_chulgeun": [
+      "andata al lavoro",
+      "All'ora di andare al lavoro le strade sono intasate."
+    ],
+    "word_toegeun": [
+      "uscita dal lavoro",
+      "Dopo il lavoro faccio sport."
+    ],
+    "word_jeoncheol": [
+      "treno elettrico",
+      "Vado a scuola con il treno elettrico."
+    ],
+    "word_sikppang": [
+      "pane in cassetta",
+      "Stamattina ho tostato il pane in cassetta."
+    ],
+    "word_taepung": [
+      "tifone",
+      "Il volo è stato cancellato per il tifone."
+    ],
+    "word_yeonhyu": [
+      "ponte festivo",
+      "Durante il ponte sono tornato nella mia città natale."
+    ],
+    "word_chwijik": [
+      "trovare lavoro",
+      "Mi sto preparando a trovare lavoro."
+    ],
+    "word_baem": [
+      "serpente",
+      "Ho visto un serpente sul sentiero di montagna."
+    ],
+    "word_doenjang": [
+      "pasta di soia",
+      "Ho fatto una zuppa con la pasta di soia."
+    ],
+    "word_keoteun": [
+      "tenda",
+      "Apra le tende, per favore."
+    ],
+    "word_sonagi": [
+      "acquazzone",
+      "È venuto un acquazzone e mi sono bagnato i vestiti."
+    ],
+    "word_goguma": [
+      "patata dolce",
+      "D'inverno le patate dolci arrosto sono il massimo."
+    ],
+    "word_sonsugeon": [
+      "fazzoletto",
+      "Mi sono asciugato il sudore con un fazzoletto."
+    ],
+    "word_songaji": [
+      "vitello",
+      "Il vitello è accanto alla madre."
+    ],
+    "word_momsal": [
+      "malessere da stanchezza",
+      "Ho avuto un malessere da stanchezza e ho riposato un giorno."
+    ],
+    "word_chigwa": [
+      "studio dentistico",
+      "Mi faceva male un dente e sono andato dal dentista."
+    ],
+    "word_japangi": [
+      "distributore automatico",
+      "Ho preso un caffè al distributore."
+    ],
+    "word_sangchu": [
+      "lattuga",
+      "Avvolgo la carne nella lattuga e la mangio."
+    ],
+    "word_jaechaegi": [
+      "starnuto",
+      "La polvere mi fa starnutire."
+    ],
+    "word_hoengdanbodo": [
+      "strisce pedonali",
+      "Attraversi sulle strisce pedonali."
+    ],
+    "word_seonpunggi": [
+      "ventilatore",
+      "Faceva caldo, così ho acceso il ventilatore."
+    ],
+    "word_pyeongil": [
+      "giorno feriale",
+      "Nei giorni feriali ci sono pochi clienti."
+    ],
+    "word_mokgeori": [
+      "collana",
+      "Ho ricevuto una collana per il mio compleanno."
+    ],
+    "word_sopo": [
+      "pacco",
+      "Il pacco è arrivato a casa."
+    ],
+    "word_araecheung": [
+      "piano di sotto",
+      "Al piano di sotto c'è un minimarket."
+    ],
+    "word_tteokbokki": [
+      "gnocchi di riso piccanti",
+      "Il tteokbokki è un po' piccante."
+    ],
+    "word_nokcha": [
+      "tè verde",
+      "Ho bevuto un tè verde caldo."
+    ],
+    "word_seongham": [
+      "nome, in forma di rispetto",
+      "Posso sapere il Suo nome?"
+    ],
+    "word_setakso": [
+      "lavanderia",
+      "Ho lasciato il cappotto in lavanderia."
+    ],
+    "word_piltong": [
+      "astuccio",
+      "Non c'è una matita nel mio astuccio."
+    ],
+    "word_haksaengjeung": [
+      "tessera studentesca",
+      "Con la tessera studentesca c'è lo sconto."
+    ],
+    "word_bit_2": [
+      "pettine",
+      "Ho tirato fuori un pettine dalla borsa."
+    ],
+    "word_kkamansaek": [
+      "nero intenso",
+      "È passato un gatto nero intenso."
+    ],
+    "word_hayansaek": [
+      "bianco candido",
+      "Ho stirato una camicia bianca candida."
+    ],
+    "word_gaeguri": [
+      "rana",
+      "Le rane gracidano nello stagno."
+    ],
+    "word_gilga": [
+      "ciglio della strada",
+      "Sono sbocciati fiori sul ciglio della strada."
+    ],
+    "word_binmul": [
+      "acqua piovana",
+      "L'acqua piovana scorre sulla finestra."
+    ],
+    "word_haetbyeot": [
+      "calore del sole",
+      "Ho asciugato il bucato al sole."
+    ],
+    "word_kongnamul": [
+      "germogli di soia",
+      "Condisco i germogli di soia e li mangio."
+    ],
+    "word_namul": [
+      "verdure selvatiche condite",
+      "In primavera le verdure selvatiche condite sono buone."
+    ],
+    "word_hyeongwan": [
+      "ingresso",
+      "Si tolga le scarpe all'ingresso, per favore."
+    ],
+    "word_kkeom": [
+      "gomma da masticare",
+      "Non masticare la gomma durante la lezione."
+    ],
+    "word_juk": [
+      "porridge di riso",
+      "Quando sono malato mangio il porridge di riso."
+    ],
+    "word_bapgeureut": [
+      "ciotola di riso",
+      "Ho svuotato completamente la ciotola di riso."
+    ],
+    "word_bulkkot": [
+      "fiamma, scintilla",
+      "Le fiamme hanno illuminato il cielo notturno."
+    ],
+    "word_sinipsaeng": [
+      "matricola",
+      "C'è una festa di benvenuto per le matricole."
+    ],
+    "word_hoesaek": [
+      "grigio",
+      "Si stanno addensando nuvole grigie."
+    ],
+    "word_dongari": [
+      "club studentesco",
+      "Mi sono iscritto al club di fotografia."
+    ],
+    "word_baiollin": [
+      "violino",
+      "Il suono del violino è bellissimo."
+    ],
+    "word_noraebang": [
+      "sala karaoke",
+      "Sono andato al karaoke con gli amici."
+    ],
+    "word_daedosi": [
+      "grande città",
+      "Nelle grandi città le case costano care."
+    ],
+    "word_eorinai": [
+      "bambino piccolo",
+      "Un bambino piccolo piange da solo."
+    ],
+    "word_pojang": [
+      "confezione",
+      "Me lo confezioni per regalo, per favore."
+    ],
+    "word_inwon": [
+      "numero di persone",
+      "Quante persone siete?"
+    ],
+    "word_soseolga": [
+      "romanziere",
+      "Ho incontrato un romanziere famoso."
+    ],
+    "word_dojagi": [
+      "ceramica",
+      "Sto imparando a fare ceramica."
+    ],
+    "word_sinmunji": [
+      "carta di giornale",
+      "Ho pulito il vetro con la carta di giornale."
+    ],
+    "word_gosokdoro": [
+      "autostrada",
+      "C'è stato un incidente in autostrada."
+    ],
+    "word_jagayong": [
+      "auto privata",
+      "Vado al lavoro con la mia auto."
+    ],
+    "word_majeunpyeon": [
+      "lato opposto",
+      "La banca è sul lato opposto."
+    ],
+    "word_geonneopyeon": [
+      "altro lato della strada",
+      "Il negozio dall'altro lato della strada costa meno."
+    ],
+    "word_iutjip": [
+      "casa dei vicini",
+      "I vicini ci hanno dato dei dolci di riso."
+    ],
+    "word_peullaseutik": [
+      "plastica",
+      "La plastica si butta separatamente."
+    ],
+    "word_chuljang": [
+      "viaggio di lavoro",
+      "La settimana prossima vado a Busan per lavoro."
+    ],
+    "word_mogyoktang": [
+      "bagno pubblico",
+      "Nel fine settimana sono andato ai bagni pubblici."
+    ],
+    "word_badanmul": [
+      "acqua di mare",
+      "L'acqua di mare è molto fredda."
+    ],
+    "word_chuka": [
+      "congratulazioni",
+      "Ho preparato un regalo di congratulazioni."
+    ],
+    "word_chwiso": [
+      "cancellazione",
+      "La cancellazione della prenotazione è possibile fino al giorno prima."
+    ],
+    "word_gyeoulcheol": [
+      "periodo invernale",
+      "Nel periodo invernale attenzione ai raffreddori."
+    ],
+    "word_gochujang": [
+      "pasta di peperoncino",
+      "Metto la pasta di peperoncino nel bibimbap."
+    ],
+    "word_bitamin": [
+      "vitamina",
+      "Prendo le vitamine ogni giorno."
+    ],
+    "word_bilding": [
+      "grattacielo, palazzo",
+      "Quel palazzo ha trenta piani."
+    ],
+    "word_sikcho": [
+      "aceto",
+      "Ho messo un po' di aceto nell'insalata."
+    ],
+    "word_janghakgeum": [
+      "borsa di studio",
+      "Questo semestre ho ricevuto una borsa di studio."
+    ],
+    "word_churimmun": [
+      "porta d'ingresso",
+      "Chiuda bene la porta d'ingresso, per favore."
+    ],
+    "word_hoejang": [
+      "presidente",
+      "Il presidente ha fatto un discorso di saluto."
+    ],
+    "word_tongil": [
+      "unificazione",
+      "Abbiamo studiato l'unificazione."
+    ],
+    "word_jaesan": [
+      "patrimonio",
+      "Hanno lasciato il patrimonio alla famiglia."
+    ],
+    "word_jeonguk": [
+      "tutto il paese",
+      "Piove in tutto il paese."
+    ],
+    "word_gajeong": [
+      "famiglia, focolare",
+      "Mi sono sposato e ho messo su famiglia."
+    ],
+    "word_nongeop": [
+      "agricoltura",
+      "In questa regione l'agricoltura è sviluppata."
+    ],
+    "word_sobija": [
+      "consumatore",
+      "Ascoltiamo l'opinione dei consumatori."
+    ],
+    "word_nodongja": [
+      "operaio",
+      "Gli operai stanno riposando."
+    ],
+    "word_daejung": [
+      "grande pubblico",
+      "È molto popolare tra il grande pubblico."
+    ],
+    "word_siin": [
+      "poeta",
+      "Mi piacciono le poesie di quel poeta."
+    ],
+    "word_anaunseo": [
+      "annunciatore",
+      "L'annunciatore legge le notizie."
+    ],
+    "word_kkadak": [
+      "motivo",
+      "Dimmi il motivo del tuo ritardo."
+    ],
+    "word_gyeongyeong": [
+      "gestione aziendale",
+      "Studio gestione aziendale all'università."
+    ],
+    "word_imgeum": [
+      "salario",
+      "I salari sono aumentati."
+    ],
+    "word_seoyang": [
+      "Occidente",
+      "Mi piace la cucina occidentale."
+    ],
+    "word_imiji": [
+      "immagine",
+      "L'immagine dell'azienda è migliorata."
+    ],
+    "word_suchul": [
+      "esportazione",
+      "Le esportazioni di auto sono aumentate."
+    ],
+    "word_choecho": [
+      "il primo in assoluto",
+      "Questo è il primo al mondo."
+    ],
+    "word_suip": [
+      "reddito",
+      "Il mio reddito è aumentato un po'."
+    ],
+    "word_muyeok": [
+      "commercio internazionale",
+      "Lavoro in una società di commercio internazionale."
+    ],
+    "word_jonghap": [
+      "insieme complessivo",
+      "Il punteggio complessivo è alto."
+    ],
+    "word_panmae": [
+      "vendita",
+      "Le vendite sono iniziate."
+    ],
+    "word_gongsa": [
+      "lavori di costruzione",
+      "La strada è chiusa per lavori."
+    ],
+    "word_muyong": [
+      "danza",
+      "Ho visto uno spettacolo di danza."
+    ],
+    "word_nonmun": [
+      "tesi",
+      "Sto scrivendo la tesi."
+    ],
+    "word_ollimpik": [
+      "Olimpiadi",
+      "Ho guardato le Olimpiadi in televisione."
+    ],
+    "word_munjejeom": [
+      "punto critico",
+      "Abbiamo individuato il punto critico."
+    ],
+    "word_yesulga": [
+      "artista",
+      "In questa zona vivono insieme molti artisti."
+    ],
+    "word_model": [
+      "modella",
+      "La modella sfila in passerella."
+    ],
+    "word_yeonguso": [
+      "istituto di ricerca",
+      "Lavoro in un istituto di ricerca."
+    ],
+    "word_geulloja": [
+      "lavoratore dipendente",
+      "La festa dei lavoratori è a maggio."
+    ],
+    "word_bangsongguk": [
+      "emittente",
+      "Abbiamo visitato un'emittente."
+    ],
+    "word_mulsok": [
+      "sott'acqua",
+      "Ho aperto gli occhi sott'acqua."
+    ],
+    "word_wiban": [
+      "infrazione",
+      "Ho pagato una multa per essere passato col rosso."
+    ],
+    "word_neomeo": [
+      "al di là",
+      "Al di là della montagna c'è un villaggio."
+    ],
+    "word_donggi": [
+      "motivazione",
+      "Ci dica la motivazione della sua candidatura."
+    ],
+    "word_seutail": [
+      "stile",
+      "Ho cambiato stile di capelli."
+    ],
+    "word_sinyong": [
+      "credibilità",
+      "Non bisogna perdere la fiducia degli altri."
+    ],
+    "word_banjang": [
+      "capoclasse",
+      "Sono stato eletto capoclasse."
+    ],
+    "word_sincheong": [
+      "domanda, richiesta",
+      "Il periodo per le domande è finito."
+    ],
+    "word_apeum": [
+      "dolore",
+      "Cerco di dimenticare il dolore."
+    ],
+    "word_gyoryu": [
+      "scambi",
+      "Gli scambi tra i due paesi sono vivaci."
+    ],
+    "word_geulsseugi": [
+      "scrittura",
+      "Seguo un corso di scrittura."
+    ],
+    "word_daegieop": [
+      "grande azienda",
+      "Ho trovato lavoro in una grande azienda."
+    ],
+    "word_bujang": [
+      "caporeparto",
+      "Il caporeparto ha convocato una riunione."
+    ],
+    "word_insang": [
+      "impressione",
+      "La prima impressione è stata buona."
+    ],
+    "word_sicheongja": [
+      "telespettatore",
+      "Leggono la lettera di un telespettatore."
+    ],
+    "word_jongeobwon": [
+      "dipendente",
+      "Il dipendente ci ha guidati con gentilezza."
+    ],
+    "word_gukoeuiwon": [
+      "parlamentare",
+      "Sono le elezioni per scegliere i parlamentari."
+    ],
+    "word_midieo": [
+      "media",
+      "L'influenza dei media è grande."
+    ],
+    "word_gotgot": [
+      "qua e là",
+      "Sono sbocciati fiori qua e là."
+    ],
+    "word_tap": [
+      "torre, pagoda",
+      "Nel tempio c'è una vecchia pagoda."
+    ],
+    "word_geonchuk": [
+      "architettura",
+      "Mi sono laureato in architettura."
+    ],
+    "word_sigyongyu": [
+      "olio da cucina",
+      "Ho messo l'olio nella padella."
+    ],
+    "word_geop": [
+      "paura",
+      "Ho paura, quindi non posso salirci."
+    ],
+    "word_seogyu": [
+      "petrolio",
+      "Il prezzo del petrolio è salito."
+    ],
+    "word_chaegimja": [
+      "responsabile",
+      "Vorrei parlare con il responsabile."
+    ],
+    "word_boram": [
+      "soddisfazione per l'impegno",
+      "Insegnare mi dà soddisfazione."
+    ],
+    "word_soseu": [
+      "salsa",
+      "Mi dia più salsa, per favore."
+    ],
+    "word_urimal": [
+      "la nostra lingua",
+      "Usiamo bene la nostra lingua."
+    ],
+    "word_hyeonji": [
+      "posto stesso, locale",
+      "Ho provato il cibo locale."
+    ],
+    "word_geot_2": [
+      "esterno",
+      "Fuori è duro e dentro è morbido."
+    ],
+    "word_seungyongcha": [
+      "autovettura",
+      "Ci sono cinque autovetture parcheggiate."
+    ],
+    "word_jinchul": [
+      "espansione in un nuovo ambito",
+      "Prepariamo l'espansione all'estero."
+    ],
+    "word_giun": [
+      "energia",
+      "Non ho nessuna energia."
+    ],
+    "word_abeonim": [
+      "padre, forma di rispetto",
+      "Porti i miei saluti a Suo padre."
+    ],
+    "word_mureum": [
+      "domanda",
+      "Risponda alla domanda, per favore."
+    ],
+    "word_eomeonim": [
+      "madre, forma di rispetto",
+      "Sua madre sta bene di salute?"
+    ],
+    "word_haeseok": [
+      "interpretazione",
+      "Questa frase è difficile da interpretare."
+    ],
+    "word_sayongja": [
+      "utente",
+      "Il numero di utenti è cresciuto molto."
+    ],
+    "word_sawon": [
+      "impiegato",
+      "È entrato un nuovo impiegato."
+    ],
+    "word_gangmul": [
+      "acqua del fiume",
+      "L'acqua del fiume è limpida."
+    ],
+    "word_rideum": [
+      "ritmo",
+      "Ballo a ritmo."
+    ],
+    "word_moniteo": [
+      "monitor",
+      "Il monitor è troppo scuro."
+    ],
+    "word_un": [
+      "fortuna",
+      "La fortuna mi ha assistito e ho superato l'esame."
+    ],
+    "word_ilsangsaenghwal": [
+      "vita quotidiana",
+      "È una parola usata spesso nella vita quotidiana."
+    ],
+    "word_binil": [
+      "pellicola di plastica",
+      "Ho coperto il cibo con la pellicola."
     ]
   }
 }

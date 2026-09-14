@@ -57,6 +57,35 @@ Twenty-three, extracted once into `content/vocabulary/word-signals.json` by
 | **linguistic** | syllable count; part of speech; spelling difficulty; irregular conjugation; honorific status; derivational shape (`-하다`, `-되다`, `-스럽다`, `-롭다`, …); whether the word is an analysable compound |
 | **semantic** | number of dictionary senses; number of distinct part-of-speech entries (homography); usage register (literary, dialectal, archaic, slang); abstractness of the semantic template; Sino-Korean origin *when combined with* abstractness; whether the word is an idiom |
 
+### 2.1a A second frequency source, and a ceiling on the editor's mark (v1.0.5)
+
+The subtitle corpora are one witness, and a batch author's `u` mark is another,
+and the eighteenth pass measured what the two together had done: 맛 at 23, 미리
+at 24, 딱히 at 30, because a batch written against the top of the scale marked
+them 4 or 5 and the subtitle reader had not seen their fused forms. The model
+now reads the National Institute of the Korean Language's learner vocabulary
+list (`content/vocabulary/nikl-learner-vocabulary-2003.json`, 5,965 words
+graded 초급·중급·고급 with the list's own corpus rank; KOGL type 1, attributed
+in Legal & Licences) through `scripts/content/learner_grade.py`, and two rules
+apply:
+
+* `frequency_cost` is the **lower** of the subtitle cost and the learner-list
+  cost. Averaging was tried first and rejected: it moved 정말 from 1 to 5,
+  because a list that stops at 5,965 words ranks a very common word higher
+  than a 50-million-token corpus does. The lower cost says "either witness
+  has seen this often", which is what a learner's chance of having met the
+  word actually depends on.
+* `effective_usefulness` is the editor's `u`, **capped** at the grade's
+  usefulness (초급 → 2, 중급 → 3, 고급 → 4), so a per-batch mark can never
+  hold a first-semester word above the beginner band.
+
+Result on the 3,370-word corpus of the seventeenth pass: 1,031 words moved
+down, 0 up, every anchor in `level-anchors.json` held. The negative case N7 in
+`scripts/content-gates-negative.sh` removes the learner term and requires
+`vocabulary:level:qa` to fail. No level is balanced by hand; the only manual
+inputs remain `level-overrides.json` (each with a written reason) and the
+anchors, which are assertions the model must satisfy, not values it copies.
+
 Two of those deserve their own line because they are the ones most often got
 wrong:
 

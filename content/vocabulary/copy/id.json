@@ -2710,7 +2710,7 @@
     ],
     "word_gamyeon": [
       "topeng",
-      "Saya memakai topeng."
+      "Saya menari sambil memakai topeng."
     ],
     "word_ingi": [
       "popularitas",
@@ -8233,8 +8233,8 @@
       "Saya mendatangi guru saya."
     ],
     "word_jiwon": [
-      "dukungan",
-      "Saya mendapat dukungan."
+      "bantuan",
+      "Saya menerima bantuan dari pemerintah."
     ],
     "word_oraen": [
       "lama",
@@ -9693,7 +9693,7 @@
     ],
     "word_sinjang": [
       "tinggi badan",
-      "Saya mengukur tinggi badan."
+      "Berapa tinggi badan Anda?"
     ],
     "word_neullida": [
       "menambah",
@@ -10401,8 +10401,8 @@
       "Analisisnya sudah selesai."
     ],
     "word_jiji": [
-      "sokongan",
-      "Saya memperoleh sokongan."
+      "dukungan",
+      "Saya mendapat dukungan banyak orang."
     ],
     "word_seupai": [
       "mata-mata",
@@ -13580,6 +13580,1994 @@
     "word_yubohada": [
       "menangguhkan",
       "Kami menangguhkan penilaian sejenak."
+    ],
+    "word_gasu": [
+      "penyanyi",
+      "Penyanyi itu bernyanyi dengan baik."
+    ],
+    "word_gyejeol": [
+      "musim",
+      "Musim apa yang Anda suka?"
+    ],
+    "word_gyeongchalgwan": [
+      "polisi",
+      "Saya bertanya arah kepada seorang polisi."
+    ],
+    "word_gyeongchi": [
+      "pemandangan",
+      "Pemandangan di sini benar-benar indah."
+    ],
+    "word_godeunghaksaeng": [
+      "siswa SMA",
+      "Adik saya siswa SMA."
+    ],
+    "word_gwaja": [
+      "kue kering atau camilan",
+      "Anak-anak makan camilan."
+    ],
+    "word_gyogwaseo": [
+      "buku pelajaran",
+      "Silakan buka buku pelajaran."
+    ],
+    "word_gugyeong": [
+      "jalan-jalan melihat",
+      "Saya pergi melihat bunga."
+    ],
+    "word_gisuksa": [
+      "asrama",
+      "Saya tinggal di asrama."
+    ],
+    "word_namdongsaeng": [
+      "adik laki-laki",
+      "Adik laki-laki saya tinggi."
+    ],
+    "word_naenyeon": [
+      "tahun depan",
+      "Tahun depan saya akan pergi ke Korea."
+    ],
+    "word_dallyeok": [
+      "kalender",
+      "Ada kalender tergantung di dinding."
+    ],
+    "word_daehaksaeng": [
+      "mahasiswa",
+      "Adik saya sudah menjadi mahasiswa."
+    ],
+    "word_dwaejigogi": [
+      "daging babi",
+      "Kami memanggang daging babi lalu memakannya."
+    ],
+    "word_deungsan": [
+      "mendaki gunung",
+      "Saya mendaki gunung pada akhir pekan."
+    ],
+    "word_maepda": [
+      "pedas",
+      "Tteokbokki ini terlalu pedas."
+    ],
+    "word_menyu": [
+      "menu",
+      "Tolong tunjukkan menunya."
+    ],
+    "word_mogyok": [
+      "mandi",
+      "Saya mandi sebelum tidur."
+    ],
+    "word_mit": [
+      "bawah",
+      "Kucing itu ada di bawah tempat tidur."
+    ],
+    "word_bareum": [
+      "pelafalan",
+      "Pelafalan Anda sangat bagus."
+    ],
+    "word_banghak": [
+      "liburan sekolah",
+      "Apa yang akan Anda lakukan saat liburan?"
+    ],
+    "word_baebureuda": [
+      "kenyang",
+      "Saya makan banyak, jadi saya kenyang."
+    ],
+    "word_baekwajeom": [
+      "pusat perbelanjaan",
+      "Saya membeli pakaian di pusat perbelanjaan."
+    ],
+    "word_bolpen": [
+      "pulpen",
+      "Tolong pinjami saya pulpen."
+    ],
+    "word_saekkkal": [
+      "warna",
+      "Saya suka warna ini."
+    ],
+    "word_seojeom": [
+      "toko buku",
+      "Saya membeli buku di toko buku."
+    ],
+    "word_seonmulhada": [
+      "memberi hadiah",
+      "Saya menghadiahkan bunga kepada teman."
+    ],
+    "word_sesu": [
+      "cuci muka",
+      "Saya cuci muka di pagi hari."
+    ],
+    "word_sopung": [
+      "piknik",
+      "Besok kami pergi piknik."
+    ],
+    "word_syoping": [
+      "belanja",
+      "Saya berbelanja pada akhir pekan."
+    ],
+    "word_syupeomaket": [
+      "supermarket",
+      "Saya membeli sayuran di supermarket."
+    ],
+    "word_yangbok": [
+      "setelan jas",
+      "Ayah saya memakai setelan jas."
+    ],
+    "word_eorini": [
+      "anak-anak",
+      "Tiket gratis untuk anak-anak."
+    ],
+    "word_eeokeon": [
+      "AC, pendingin ruangan",
+      "Karena panas, saya menyalakan AC."
+    ],
+    "word_oraenman": [
+      "setelah sekian lama",
+      "Saya bertemu teman setelah sekian lama."
+    ],
+    "word_oeguk": [
+      "luar negeri",
+      "Apakah Anda pernah tinggal di luar negeri?"
+    ],
+    "word_oegugeo": [
+      "bahasa asing",
+      "Saya sedang belajar bahasa asing."
+    ],
+    "word_oegugin": [
+      "orang asing",
+      "Saya punya banyak teman orang asing."
+    ],
+    "word_undonghada": [
+      "berolahraga",
+      "Saya berolahraga setiap pagi."
+    ],
+    "word_undonghwa": [
+      "sepatu olahraga",
+      "Saya memakai sepatu olahraga baru."
+    ],
+    "word_ip_2": [
+      "daun",
+      "Pada musim gugur daun-daun berguguran."
+    ],
+    "word_jangmi": [
+      "mawar",
+      "Harum mawar itu wangi."
+    ],
+    "word_jeomsimsigan": [
+      "jam makan siang",
+      "Saya berjalan-jalan saat jam makan siang."
+    ],
+    "word_joreop": [
+      "kelulusan",
+      "Selamat atas kelulusanmu!"
+    ],
+    "word_junghakgyo": [
+      "SMP",
+      "Anak laki-laki saya sekolah di SMP."
+    ],
+    "word_chodeunghakgyo": [
+      "SD",
+      "Anak perempuan saya sudah masuk SD."
+    ],
+    "word_jinandal": [
+      "bulan lalu",
+      "Saya pindah rumah bulan lalu."
+    ],
+    "word_jinanju": [
+      "minggu lalu",
+      "Saya kena flu minggu lalu."
+    ],
+    "word_jiugae": [
+      "penghapus",
+      "Tolong hapus dengan penghapus."
+    ],
+    "word_jjigae": [
+      "sup kental Korea",
+      "Saya makan jjigae saat makan siang."
+    ],
+    "word_cheongbaji": [
+      "celana jin",
+      "Celana jin cocok untuk Anda."
+    ],
+    "word_chiyak": [
+      "pasta gigi",
+      "Pasta giginya sudah habis."
+    ],
+    "word_kolla": [
+      "kola",
+      "Tolong satu gelas kola."
+    ],
+    "word_taegwondo": [
+      "taekwondo",
+      "Anak itu belajar taekwondo."
+    ],
+    "word_teniseu": [
+      "tenis",
+      "Saya membeli raket tenis baru."
+    ],
+    "word_tellebijeon": [
+      "televisi",
+      "Saya menonton televisi pada malam hari."
+    ],
+    "word_hangnyeon": [
+      "kelas, tingkat",
+      "Kamu kelas berapa?"
+    ],
+    "word_hanbok": [
+      "hanbok, pakaian tradisional Korea",
+      "Kami memakai hanbok saat Seollal."
+    ],
+    "word_hanja": [
+      "aksara Tionghoa",
+      "Aksara Tionghoa itu sulit."
+    ],
+    "word_haembeogeo": [
+      "hamburger",
+      "Tolong satu hamburger."
+    ],
+    "word_hyuil": [
+      "hari libur",
+      "Pada hari libur saya bangun terlambat."
+    ],
+    "word_hyuji": [
+      "tisu",
+      "Tolong beri saya tisu."
+    ],
+    "word_kkeulhida": [
+      "merebus",
+      "Saya merebus air lalu minum teh."
+    ],
+    "word_bokda": [
+      "menumis",
+      "Saya menumis sayuran lalu memakannya."
+    ],
+    "word_damgeuda": [
+      "merendam",
+      "Saya merendam kaki di air."
+    ],
+    "word_gakkuda": [
+      "merawat, menanam",
+      "Nenek saya merawat kebun."
+    ],
+    "word_gwonhada": [
+      "menawarkan, menganjurkan",
+      "Saya menawarkan teh kepada tamu."
+    ],
+    "word_kkeudeogida": [
+      "mengangguk",
+      "Anak itu mengangguk."
+    ],
+    "word_kkeunheojida": [
+      "putus",
+      "Talinya putus."
+    ],
+    "word_neolpida": [
+      "melebarkan",
+      "Sedang ada pekerjaan untuk melebarkan jalan."
+    ],
+    "word_nohida": [
+      "terletak, ditaruh",
+      "Ada bunga yang ditaruh di atas meja."
+    ],
+    "word_sallida": [
+      "menyelamatkan nyawa",
+      "Dokter menyelamatkan pasien itu."
+    ],
+    "word_seuda": [
+      "menegakkan, menghentikan",
+      "Saya menyandarkan payung di samping pintu."
+    ],
+    "word_seokkida": [
+      "bercampur",
+      "Air dan minyak tidak bercampur."
+    ],
+    "word_kyeojida": [
+      "menyala",
+      "Lampunya menyala sendiri."
+    ],
+    "word_jeonghaejida": [
+      "ditentukan",
+      "Waktu rapat sudah ditentukan."
+    ],
+    "word_saenggyeonada": [
+      "bermunculan",
+      "Banyak toko baru bermunculan."
+    ],
+    "word_naraoda": [
+      "terbang datang",
+      "Seekor burung terbang ke jendela."
+    ],
+    "word_dallyeooda": [
+      "berlari datang",
+      "Anak anjing itu berlari ke arah saya."
+    ],
+    "word_yangbohada": [
+      "mengalah, memberi",
+      "Saya memberikan tempat duduk kepada seorang nenek."
+    ],
+    "word_hwaryonghada": [
+      "memanfaatkan",
+      "Saya memanfaatkan waktu akhir pekan dengan baik."
+    ],
+    "word_dayanghada": [
+      "beragam",
+      "Toko ini punya beragam jenis roti."
+    ],
+    "word_dapdapada": [
+      "merasa sesak",
+      "Kamarnya sempit, jadi terasa sesak."
+    ],
+    "word_dukkeopda": [
+      "tebal",
+      "Buku ini sangat tebal."
+    ],
+    "word_dunggeulda": [
+      "bulat",
+      "Bulan itu bulat."
+    ],
+    "word_gukda": [
+      "besar, tebal (benda panjang)",
+      "Batang pohon ini besar."
+    ],
+    "word_ganeulda": [
+      "tipis, halus (benda panjang)",
+      "Benang ini terlalu tipis."
+    ],
+    "word_mipda": [
+      "menyebalkan, dibenci",
+      "Saya benci orang yang berbohong."
+    ],
+    "word_natseolda": [
+      "asing",
+      "Lingkungan ini masih terasa asing bagi saya."
+    ],
+    "word_eongttunghada": [
+      "aneh, di luar dugaan",
+      "Anak itu mengajukan pertanyaan yang aneh."
+    ],
+    "word_usuhada": [
+      "unggul",
+      "Nilainya unggul."
+    ],
+    "word_jeokdanghada": [
+      "pas, sesuai",
+      "Ukuran kamar ini pas."
+    ],
+    "word_jogeumata": [
+      "mungil",
+      "Saya menerima kotak yang mungil."
+    ],
+    "word_teunteunhada": [
+      "kokoh, kuat",
+      "Kursi ini kokoh."
+    ],
+    "word_pyeollihada": [
+      "praktis, nyaman",
+      "Kereta bawah tanah sangat praktis."
+    ],
+    "word_pureuda": [
+      "biru atau hijau (di alam)",
+      "Gunung-gunung itu hijau."
+    ],
+    "word_hwalbalhada": [
+      "aktif, lincah",
+      "Anak itu sangat aktif."
+    ],
+    "word_kkwae": [
+      "cukup, lumayan",
+      "Hari ini cukup dingin."
+    ],
+    "word_kkujunhi": [
+      "dengan tekun, terus-menerus",
+      "Saya berlatih dengan tekun setiap hari."
+    ],
+    "word_kkamjjak": [
+      "terkejut",
+      "Saya terkejut mendengar suara keras."
+    ],
+    "word_deoguna": [
+      "lagi pula",
+      "Saya terlambat. Lagi pula, hujan turun."
+    ],
+    "word_magu": [
+      "sembarangan",
+      "Jangan menghabiskan uang sembarangan."
+    ],
+    "word_bigyojeok": [
+      "relatif",
+      "Soal ini relatif mudah."
+    ],
+    "word_yunanhi": [
+      "luar biasa, tidak seperti biasanya",
+      "Hari ini saya lelah tidak seperti biasanya."
+    ],
+    "word_jeomcha": [
+      "berangsur-angsur",
+      "Cuaca berangsur-angsur menjadi dingin."
+    ],
+    "word_puk": [
+      "nyenyak",
+      "Beristirahatlah dengan baik pada akhir pekan."
+    ],
+    "word_haemada": [
+      "setiap tahun",
+      "Setiap tahun bunga mekar di musim semi."
+    ],
+    "word_hanpyeon": [
+      "di sisi lain",
+      "Saya senang. Di sisi lain, saya juga khawatir."
+    ],
+    "word_jeuk": [
+      "yaitu",
+      "Kita bertemu besok, yaitu hari Sabtu."
+    ],
+    "word_gawi": [
+      "gunting",
+      "Saya memotong kertas dengan gunting."
+    ],
+    "word_gansik": [
+      "camilan",
+      "Saya makan camilan di sore hari."
+    ],
+    "word_geosil": [
+      "ruang tamu",
+      "Saya menonton televisi di ruang tamu."
+    ],
+    "word_georeum": [
+      "langkah",
+      "Silakan maju satu langkah."
+    ],
+    "word_golmok": [
+      "gang",
+      "Anak-anak bermain di gang."
+    ],
+    "word_gongmuwon": [
+      "pegawai negeri",
+      "Kakak laki-laki saya pegawai negeri."
+    ],
+    "word_gwamok": [
+      "mata pelajaran",
+      "Mata pelajaran apa yang Anda suka?"
+    ],
+    "word_gwaje": [
+      "tugas",
+      "Saya harus mengumpulkan tugas sebelum besok."
+    ],
+    "word_gwangwang": [
+      "wisata",
+      "Saya berwisata di Seoul."
+    ],
+    "word_gwangwanggaek": [
+      "wisatawan",
+      "Para wisatawan sedang berfoto."
+    ],
+    "word_gyotongsago": [
+      "kecelakaan lalu lintas",
+      "Kemarin terjadi kecelakaan lalu lintas."
+    ],
+    "word_gungmul": [
+      "kuah",
+      "Kuahnya sangat segar."
+    ],
+    "word_geuneul": [
+      "tempat teduh",
+      "Mari beristirahat di bawah pohon yang teduh."
+    ],
+    "word_geulja": [
+      "huruf",
+      "Hurufnya terlalu kecil."
+    ],
+    "word_gigan": [
+      "periode, masa",
+      "Sekarang masa ujian, jadi saya sibuk."
+    ],
+    "word_gion": [
+      "suhu udara",
+      "Suhu udara hari ini turun banyak."
+    ],
+    "word_gichim": [
+      "batuk",
+      "Saya batuk terus."
+    ],
+    "word_kkeopjil": [
+      "kulit",
+      "Saya mengupas kulit pisang."
+    ],
+    "word_kkokdaegi": [
+      "puncak",
+      "Ada burung di puncak pohon."
+    ],
+    "word_kkochip": [
+      "kelopak bunga",
+      "Kelopak bunga beterbangan tertiup angin."
+    ],
+    "word_kkul": [
+      "madu",
+      "Saya menaruh madu di teh."
+    ],
+    "word_nabi": [
+      "kupu-kupu",
+      "Seekor kupu-kupu hinggap di bunga."
+    ],
+    "word_namutgaji": [
+      "ranting, dahan",
+      "Seekor burung bertengger di dahan."
+    ],
+    "word_nammae": [
+      "kakak beradik laki-laki dan perempuan",
+      "Kami kakak beradik laki-laki dan perempuan."
+    ],
+    "word_nagyeop": [
+      "daun gugur",
+      "Banyak daun gugur di jalan."
+    ],
+    "word_noin": [
+      "orang lanjut usia",
+      "Saya memberikan tempat duduk kepada orang lanjut usia."
+    ],
+    "word_noriteo": [
+      "taman bermain",
+      "Anak-anak bermain di taman bermain."
+    ],
+    "word_nongsa": [
+      "bertani",
+      "Kakek saya bertani."
+    ],
+    "word_nunbit": [
+      "sorot mata",
+      "Sorot matanya hangat."
+    ],
+    "word_nunap": [
+      "di depan mata",
+      "Saya ketinggalan bus tepat di depan mata."
+    ],
+    "word_danjeom": [
+      "kekurangan",
+      "Semua orang punya kekurangan."
+    ],
+    "word_jangjeom": [
+      "kelebihan",
+      "Kelebihan rumah ini adalah lokasinya."
+    ],
+    "word_dalbit": [
+      "cahaya bulan",
+      "Cahaya bulan sangat terang."
+    ],
+    "word_dapjang": [
+      "balasan",
+      "Saya sedang menunggu balasan."
+    ],
+    "word_daemun": [
+      "gerbang",
+      "Tolong buka gerbangnya."
+    ],
+    "word_deowi": [
+      "hawa panas",
+      "Hawa panas tahun ini benar-benar hebat."
+    ],
+    "word_chuwi": [
+      "hawa dingin",
+      "Tangan saya membeku karena hawa dingin."
+    ],
+    "word_dogu": [
+      "alat",
+      "Rawatlah alat-alat Anda dengan baik."
+    ],
+    "word_dosirak": [
+      "bekal makan",
+      "Saya membawa bekal makan."
+    ],
+    "word_dokseo": [
+      "membaca",
+      "Hobi saya membaca."
+    ],
+    "word_dongmurwon": [
+      "kebun binatang",
+      "Saya melihat singa di kebun binatang."
+    ],
+    "word_dutong": [
+      "sakit kepala",
+      "Sakit kepala saya parah, jadi saya minum obat."
+    ],
+    "word_dwijjok": [
+      "bagian belakang",
+      "Ada tempat duduk di bagian belakang."
+    ],
+    "word_apjjok": [
+      "bagian depan",
+      "Silakan duduk di bagian depan."
+    ],
+    "word_anjjok": [
+      "bagian dalam",
+      "Silakan duduk di kursi sebelah dalam."
+    ],
+    "word_wijjok": [
+      "bagian atas",
+      "Buku-bukunya ada di rak bagian atas."
+    ],
+    "word_araejjok": [
+      "bagian bawah",
+      "Coba buka laci bagian bawah."
+    ],
+    "word_ttam": [
+      "keringat",
+      "Saya berkeringat karena berolahraga."
+    ],
+    "word_ttangkong": [
+      "kacang tanah",
+      "Kacang tanahnya gurih."
+    ],
+    "word_ttukkeong": [
+      "tutup",
+      "Tolong buka tutupnya."
+    ],
+    "word_maeumsok": [
+      "lubuk hati",
+      "Dalam hati saya berterima kasih."
+    ],
+    "word_manhwa": [
+      "komik",
+      "Adik saya suka komik."
+    ],
+    "word_maeryeok": [
+      "daya tarik",
+      "Kota ini punya daya tarik."
+    ],
+    "word_meoritsok": [
+      "isi kepala, pikiran",
+      "Pikiran saya kacau."
+    ],
+    "word_memo": [
+      "catatan, memo",
+      "Saya menempelkan catatan di kulkas."
+    ],
+    "word_myeongham": [
+      "kartu nama",
+      "Kami bertukar kartu nama."
+    ],
+    "word_mogi": [
+      "nyamuk",
+      "Ada banyak nyamuk pada musim panas."
+    ],
+    "word_more": [
+      "lusa",
+      "Saya akan datang lagi lusa."
+    ],
+    "word_mommuge": [
+      "berat badan",
+      "Saya menimbang berat badan."
+    ],
+    "word_muge": [
+      "berat",
+      "Saya menimbang barang bawaan."
+    ],
+    "word_munjang": [
+      "kalimat",
+      "Silakan baca kalimat ini."
+    ],
+    "word_misul": [
+      "seni rupa",
+      "Kami menggambar di kelas seni rupa."
+    ],
+    "word_misulgwan": [
+      "galeri seni",
+      "Saya pergi ke galeri seni pada akhir pekan."
+    ],
+    "word_milgaru": [
+      "tepung terigu",
+      "Saya membuat roti dari tepung terigu."
+    ],
+    "word_badatga": [
+      "tepi laut",
+      "Saya berjalan di tepi laut."
+    ],
+    "word_bawi": [
+      "batu besar, batu karang",
+      "Saya duduk di atas batu besar."
+    ],
+    "word_balgarak": [
+      "jari kaki",
+      "Jari kaki saya terluka."
+    ],
+    "word_baegyeong": [
+      "latar belakang",
+      "Latar belakang fotonya bagus."
+    ],
+    "word_beoreut": [
+      "kebiasaan",
+      "Saya punya kebiasaan menggigit kuku."
+    ],
+    "word_beoseot": [
+      "jamur",
+      "Saya memasak sup dengan jamur."
+    ],
+    "word_beoteo": [
+      "mentega",
+      "Saya mengoleskan mentega di roti."
+    ],
+    "word_bongji": [
+      "kantong",
+      "Saya memasukkan buah ke dalam kantong."
+    ],
+    "word_bongtu": [
+      "amplop",
+      "Saya memasukkan surat ke dalam amplop."
+    ],
+    "word_bugeun": [
+      "sekitar",
+      "Saya tinggal di sekitar stasiun."
+    ],
+    "word_bujagyong": [
+      "efek samping",
+      "Obat ini tidak punya efek samping."
+    ],
+    "word_bulbit": [
+      "cahaya lampu",
+      "Terlihat cahaya dari kejauhan."
+    ],
+    "word_buran": [
+      "kecemasan",
+      "Saya merasa cemas sebelum ujian."
+    ],
+    "word_ppallae": [
+      "cucian",
+      "Cucian sudah menumpuk banyak."
+    ],
+    "word_ppuri": [
+      "akar",
+      "Akar pohon itu dalam."
+    ],
+    "word_saheul": [
+      "tiga hari",
+      "Hujan turun selama tiga hari."
+    ],
+    "word_sangdaebang": [
+      "lawan bicara",
+      "Dengarkan baik-baik lawan bicara Anda."
+    ],
+    "word_sangpum": [
+      "barang dagangan, produk",
+      "Produk baru sudah keluar."
+    ],
+    "word_saeu": [
+      "udang",
+      "Saya memanggang udang lalu memakannya."
+    ],
+    "word_seolgeoji": [
+      "cuci piring",
+      "Saya mencuci piring setelah makan malam."
+    ],
+    "word_sonamu": [
+      "pohon pinus",
+      "Ada banyak pohon pinus di gunung."
+    ],
+    "word_sonnyeo": [
+      "cucu perempuan",
+      "Nenek sangat menyayangi cucu perempuannya."
+    ],
+    "word_sonbadak": [
+      "telapak tangan",
+      "Saya menulis di telapak tangan."
+    ],
+    "word_sonjabi": [
+      "gagang, pegangan",
+      "Gagang pintunya rusak."
+    ],
+    "word_seupgwan": [
+      "kebiasaan",
+      "Saya membiasakan diri tidur lebih awal."
+    ],
+    "word_sonja": [
+      "cucu laki-laki",
+      "Kakek sedang bermain dengan cucu laki-lakinya."
+    ],
+    "word_sunseo": [
+      "urutan",
+      "Silakan masuk sesuai urutan."
+    ],
+    "word_sieomeoni": [
+      "ibu mertua",
+      "Ibu mertua saya pandai memasak."
+    ],
+    "word_sikgu": [
+      "anggota keluarga",
+      "Keluarga kami beranggotakan lima orang."
+    ],
+    "word_sikpum": [
+      "bahan makanan",
+      "Bagian bahan makanan ada di lantai bawah tanah."
+    ],
+    "word_sillae": [
+      "dalam ruangan",
+      "Tolong lepas topi di dalam ruangan."
+    ],
+    "word_simbureum": [
+      "suruhan",
+      "Saya pergi ke toko atas suruhan ibu."
+    ],
+    "word_akgi": [
+      "alat musik",
+      "Alat musik apa yang ingin Anda pelajari?"
+    ],
+    "word_aksu": [
+      "jabat tangan",
+      "Kami berjabat tangan."
+    ],
+    "word_anbang": [
+      "kamar utama",
+      "Orang tua saya tidur di kamar utama."
+    ],
+    "word_yaoe": [
+      "luar ruangan",
+      "Kami makan siang di luar ruangan."
+    ],
+    "word_yangnyeom": [
+      "bumbu",
+      "Bumbunya sudah meresap dengan baik."
+    ],
+    "word_eoryeoum": [
+      "kesulitan",
+      "Kalau ada kesulitan, bilang saja."
+    ],
+    "word_yeou": [
+      "rubah",
+      "Saya melihat rubah di hutan."
+    ],
+    "word_yeoyu": [
+      "waktu luang, kelonggaran",
+      "Akhir-akhir ini saya tidak punya waktu luang."
+    ],
+    "word_yeollakcheo": [
+      "kontak",
+      "Tolong beri tahu kontak Anda."
+    ],
+    "word_yeonmal": [
+      "akhir tahun",
+      "Ada banyak acara kumpul di akhir tahun."
+    ],
+    "word_yeolheul": [
+      "sepuluh hari",
+      "Saya bepergian selama sepuluh hari."
+    ],
+    "word_yeongha": [
+      "di bawah nol",
+      "Pagi ini suhunya di bawah nol."
+    ],
+    "word_yeopjip": [
+      "rumah sebelah",
+      "Keluarga baru pindah ke rumah sebelah."
+    ],
+    "word_ojingeo": [
+      "cumi-cumi",
+      "Cumi-cumi dipanggang lalu dimakan."
+    ],
+    "word_ondo": [
+      "suhu",
+      "Saya menaikkan sedikit suhu kamar."
+    ],
+    "word_onmom": [
+      "seluruh tubuh",
+      "Seluruh tubuh saya sakit."
+    ],
+    "word_oechul": [
+      "keluar rumah",
+      "Saya bersiap-siap untuk keluar."
+    ],
+    "word_oenson": [
+      "tangan kiri",
+      "Saya menulis dengan tangan kiri."
+    ],
+    "word_oreunson": [
+      "tangan kanan",
+      "Silakan angkat tangan kanan."
+    ],
+    "word_yogeum": [
+      "tarif, ongkos",
+      "Tarif bus naik."
+    ],
+    "word_yoksil": [
+      "kamar mandi",
+      "Saya membersihkan kamar mandi."
+    ],
+    "word_yoksim": [
+      "keserakahan",
+      "Jangan serakah."
+    ],
+    "word_yongdon": [
+      "uang saku",
+      "Saya menabung uang saku dan membeli buku."
+    ],
+    "word_useung": [
+      "juara pertama",
+      "Tim kami menjadi juara pertama."
+    ],
+    "word_upyo": [
+      "perangko",
+      "Mengumpulkan perangko adalah hobi saya."
+    ],
+    "word_unjeonja": [
+      "pengemudi",
+      "Pengemudi harus memakai sabuk pengaman."
+    ],
+    "word_ureum": [
+      "tangisan",
+      "Tangisan bayi itu berhenti."
+    ],
+    "word_wicheung": [
+      "lantai atas",
+      "Lantai atas agak berisik."
+    ],
+    "word_yurichang": [
+      "kaca jendela",
+      "Saya membersihkan kaca jendela."
+    ],
+    "word_yuchiwon": [
+      "taman kanak-kanak",
+      "Anak saya bersekolah di taman kanak-kanak."
+    ],
+    "word_yuhaeng": [
+      "tren, mode",
+      "Warna ini sedang tren akhir-akhir ini."
+    ],
+    "word_eumnyo": [
+      "minuman",
+      "Anda ingin minum apa?"
+    ],
+    "word_iik": [
+      "keuntungan",
+      "Bulan ini kami mendapat keuntungan."
+    ],
+    "word_iteunnal": [
+      "hari berikutnya",
+      "Saya berangkat keesokan paginya."
+    ],
+    "word_ingu": [
+      "penduduk",
+      "Kota ini berpenduduk banyak."
+    ],
+    "word_ilsang": [
+      "kehidupan sehari-hari",
+      "Saya kembali ke kehidupan sehari-hari."
+    ],
+    "word_janchi": [
+      "pesta, perjamuan",
+      "Kami mengadakan pesta ulang tahun nenek."
+    ],
+    "word_jamot": [
+      "piyama",
+      "Saya berganti piyama."
+    ],
+    "word_jangnae": [
+      "masa depan",
+      "Kamu ingin menjadi apa di masa depan?"
+    ],
+    "word_jangma": [
+      "musim hujan",
+      "Musim hujan sudah mulai."
+    ],
+    "word_jangsa": [
+      "dagang, usaha",
+      "Akhir-akhir ini dagangan laris."
+    ],
+    "word_jaeryo": [
+      "bahan",
+      "Saya membeli bahan masakan."
+    ],
+    "word_jeoja": [
+      "penulis",
+      "Saya bertemu penulis buku ini."
+    ],
+    "word_jeochuk": [
+      "tabungan",
+      "Saya menabung setiap bulan."
+    ],
+    "word_jeongong": [
+      "jurusan",
+      "Jurusanmu apa?"
+    ],
+    "word_jeonnal": [
+      "sehari sebelumnya",
+      "Sehari sebelum ujian saya tidur lebih awal."
+    ],
+    "word_jeongdap": [
+      "jawaban yang benar",
+      "Saya menjawab dengan benar."
+    ],
+    "word_jepum": [
+      "produk",
+      "Produk ini berkualitas baik."
+    ],
+    "word_josang": [
+      "leluhur",
+      "Pada hari raya kami memberi hormat kepada leluhur."
+    ],
+    "word_jwaseok": [
+      "tempat duduk, kursi",
+      "Silakan periksa nomor tempat duduk Anda."
+    ],
+    "word_jubu": [
+      "ibu rumah tangga",
+      "Bibi saya ibu rumah tangga."
+    ],
+    "word_juchajang": [
+      "tempat parkir",
+      "Saya memarkir mobil di tempat parkir."
+    ],
+    "word_junbimul": [
+      "perlengkapan yang harus dibawa",
+      "Sudah siapkan perlengkapan untuk besok?"
+    ],
+    "word_julgi": [
+      "batang, tangkai",
+      "Tangkai bunganya panjang."
+    ],
+    "word_chanmul": [
+      "air dingin",
+      "Tolong segelas air dingin."
+    ],
+    "word_chamgireum": [
+      "minyak wijen",
+      "Tambahkan sedikit minyak wijen."
+    ],
+    "word_changbak": [
+      "di luar jendela",
+      "Salju turun di luar jendela."
+    ],
+    "word_chaeneol": [
+      "saluran",
+      "Tolong ganti salurannya."
+    ],
+    "word_chaekgabang": [
+      "tas sekolah",
+      "Tas sekolah saya terlalu berat."
+    ],
+    "word_cheongnyeon": [
+      "pemuda",
+      "Para pemuda menjadi relawan."
+    ],
+    "word_cheongsonyeon": [
+      "remaja",
+      "Tarif lebih murah untuk remaja."
+    ],
+    "word_chejung": [
+      "berat badan",
+      "Berat badan saya turun sedikit."
+    ],
+    "word_choroksaek": [
+      "warna hijau",
+      "Saya memakai topi hijau."
+    ],
+    "word_chobap": [
+      "sushi",
+      "Saya makan sushi saat makan siang."
+    ],
+    "word_chukje": [
+      "festival",
+      "Festival diadakan pada musim gugur."
+    ],
+    "word_munhwa": [
+      "budaya",
+      "Saya sangat tertarik pada budaya Korea."
+    ],
+    "word_gyeongje": [
+      "ekonomi",
+      "Saya menonton berita ekonomi setiap hari."
+    ],
+    "word_yesul": [
+      "seni",
+      "Adik saya belajar seni."
+    ],
+    "word_tteut": [
+      "arti",
+      "Saya tidak tahu arti kata ini."
+    ],
+    "word_baljeon": [
+      "perkembangan",
+      "Kota ini berkembang cepat."
+    ],
+    "word_jeontong": [
+      "tradisi",
+      "Saya mendengarkan musik tradisional."
+    ],
+    "word_taedo": [
+      "sikap",
+      "Sikapnya sangat baik."
+    ],
+    "word_juwi": [
+      "sekitar",
+      "Perhatikan sekitar Anda dengan baik."
+    ],
+    "word_teukjing": [
+      "ciri khas",
+      "Ciri khas daerah ini adalah laut."
+    ],
+    "word_yejeong": [
+      "rencana yang sudah ditetapkan",
+      "Saya berencana berangkat minggu depan."
+    ],
+    "word_haengsa": [
+      "acara",
+      "Saya ikut acara sekolah."
+    ],
+    "word_pandan": [
+      "penilaian",
+      "Diperlukan penilaian yang cepat."
+    ],
+    "word_balpyo": [
+      "presentasi",
+      "Besok saya ada presentasi."
+    ],
+    "word_gicho": [
+      "dasar",
+      "Saya belajar lagi dari dasar."
+    ],
+    "word_juingong": [
+      "tokoh utama",
+      "Tokoh utama novel ini adalah seorang pelajar."
+    ],
+    "word_haeoe": [
+      "luar negeri",
+      "Saya berangkat berwisata ke luar negeri."
+    ],
+    "word_cheyuk": [
+      "pendidikan jasmani",
+      "Pelajaran olahraga paling seru."
+    ],
+    "word_pyeongso": [
+      "hari-hari biasa",
+      "Saya tidur lebih awal dari biasanya."
+    ],
+    "word_jutaek": [
+      "rumah tinggal",
+      "Harga rumah naik banyak."
+    ],
+    "word_nongchon": [
+      "desa pertanian",
+      "Nenek saya tinggal di desa."
+    ],
+    "word_bat": [
+      "ladang",
+      "Saya memetik cabai di ladang."
+    ],
+    "word_gyeot": [
+      "sisi",
+      "Tetaplah di sisiku."
+    ],
+    "word_gippeum": [
+      "kegembiraan",
+      "Kabar lulus itu membawa kegembiraan besar."
+    ],
+    "word_ipsul": [
+      "bibir",
+      "Bibir saya kering."
+    ],
+    "word_heuk": [
+      "tanah",
+      "Menyentuh tanah membuat perasaan senang."
+    ],
+    "word_gwahakja": [
+      "ilmuwan",
+      "Saya ingin menjadi ilmuwan."
+    ],
+    "word_hoewon": [
+      "anggota",
+      "Tolong tunjukkan kartu anggota."
+    ],
+    "word_bangmun": [
+      "kunjungan",
+      "Kunjungan berikutnya hari Jumat."
+    ],
+    "word_bulman": [
+      "ketidakpuasan",
+      "Saya mendengarkan keluhan pelanggan."
+    ],
+    "word_gwangaek": [
+      "penonton",
+      "Penonton bertepuk tangan dengan keras."
+    ],
+    "word_gomo": [
+      "bibi dari pihak ayah",
+      "Bibi mengirimi saya hadiah."
+    ],
+    "word_toron": [
+      "debat",
+      "Kami berdebat di kelas."
+    ],
+    "word_gosaeng": [
+      "kesusahan",
+      "Anda sudah banyak bersusah payah."
+    ],
+    "word_pado": [
+      "ombak",
+      "Ombaknya tinggi."
+    ],
+    "word_yegeum": [
+      "simpanan bank",
+      "Saya menarik sedikit simpanan."
+    ],
+    "word_ipak": [
+      "masuk sekolah",
+      "Selamat atas masuk sekolahmu."
+    ],
+    "word_jehan": [
+      "batas",
+      "Ada batas waktu."
+    ],
+    "word_punggyeong": [
+      "pemandangan",
+      "Pemandangan dari jendela indah."
+    ],
+    "word_gamdong": [
+      "rasa haru",
+      "Saya terharu menonton film itu."
+    ],
+    "word_maru": [
+      "lantai kayu",
+      "Saya duduk di lantai kayu dan beristirahat."
+    ],
+    "word_yejeol": [
+      "tata krama",
+      "Saya belajar tata krama makan."
+    ],
+    "word_chincheok": [
+      "kerabat",
+      "Seorang kerabat datang ke rumah kami."
+    ],
+    "word_haetsal": [
+      "sinar mentari",
+      "Sinar mentari pagi hangat."
+    ],
+    "word_hakgi": [
+      "semester",
+      "Semester baru sudah dimulai."
+    ],
+    "word_hubae": [
+      "junior",
+      "Saya mentraktir junior makan siang."
+    ],
+    "word_hakseup": [
+      "pembelajaran",
+      "Saya membuat rencana belajar."
+    ],
+    "word_bigyo": [
+      "perbandingan",
+      "Perbandingan kedua produk itu mudah."
+    ],
+    "word_hyanggi": [
+      "wangi",
+      "Kamar itu penuh wangi bunga."
+    ],
+    "word_garu": [
+      "bubuk",
+      "Saya menghaluskan obat menjadi bubuk."
+    ],
+    "word_donghwa": [
+      "dongeng",
+      "Saya membacakan dongeng untuk anak saya."
+    ],
+    "word_yuhak": [
+      "belajar di luar negeri",
+      "Kakak laki-laki saya bersiap belajar di luar negeri."
+    ],
+    "word_damim": [
+      "wali kelas",
+      "Wali kelas saya baik hati."
+    ],
+    "word_dojung": [
+      "tengah jalan",
+      "Di tengah jalan turun hujan."
+    ],
+    "word_chingchan": [
+      "pujian",
+      "Saya mendapat pujian dari guru."
+    ],
+    "word_haetbit": [
+      "cahaya matahari",
+      "Cahaya mataharinya terlalu kuat."
+    ],
+    "word_meonji": [
+      "debu",
+      "Debu menumpuk di meja."
+    ],
+    "word_heungmi": [
+      "minat",
+      "Saya jadi berminat pada sejarah."
+    ],
+    "word_dijain": [
+      "desain",
+      "Tas ini desainnya cantik."
+    ],
+    "word_teol": [
+      "bulu",
+      "Bulu kucing itu lembut."
+    ],
+    "word_iljeong": [
+      "jadwal",
+      "Saya memeriksa jadwal hari ini."
+    ],
+    "word_gyohwan": [
+      "penukaran",
+      "Bisa ditukar dengan warna lain?"
+    ],
+    "word_gugeo": [
+      "bahasa nasional",
+      "Saya mengikuti ujian bahasa Korea."
+    ],
+    "word_jeulgeoum": [
+      "kesenangan",
+      "Bepergian adalah kesenangan besar."
+    ],
+    "word_daehagwon": [
+      "pascasarjana",
+      "Saya sedang kuliah pascasarjana."
+    ],
+    "word_deungnok": [
+      "pendaftaran",
+      "Saya sudah menyelesaikan pendaftaran kelas."
+    ],
+    "word_munui_2": [
+      "corak",
+      "Saya memakai rok bercorak bunga."
+    ],
+    "word_hwabun": [
+      "pot bunga",
+      "Saya menyiram pot bunga."
+    ],
+    "word_gyesangi": [
+      "kalkulator",
+      "Saya menjumlahkannya dengan kalkulator."
+    ],
+    "word_hagwon": [
+      "lembaga kursus",
+      "Malam hari saya pergi ke tempat kursus bahasa Inggris."
+    ],
+    "word_tomato": [
+      "tomat",
+      "Saya mengiris tomat dan membuat salad."
+    ],
+    "word_ppyam": [
+      "pipi",
+      "Pipi saya memerah karena dingin."
+    ],
+    "word_tongjang": [
+      "buku tabungan",
+      "Gaji sudah masuk ke buku tabungan saya."
+    ],
+    "word_gyeonggijang": [
+      "stadion",
+      "Stadion penuh dengan orang."
+    ],
+    "word_cheonnal": [
+      "hari pertama",
+      "Hari pertama kerja bikin tegang."
+    ],
+    "word_yeoreumcheol": [
+      "musim panas",
+      "Pada musim panas saya minum banyak air."
+    ],
+    "word_chulgeun": [
+      "berangkat kerja",
+      "Jalan macet pada jam berangkat kerja."
+    ],
+    "word_toegeun": [
+      "pulang kerja",
+      "Setelah pulang kerja saya berolahraga."
+    ],
+    "word_jeoncheol": [
+      "kereta listrik",
+      "Saya naik kereta listrik ke sekolah."
+    ],
+    "word_sikppang": [
+      "roti tawar",
+      "Pagi ini saya memanggang roti tawar."
+    ],
+    "word_taepung": [
+      "topan",
+      "Penerbangan dibatalkan karena topan."
+    ],
+    "word_yeonhyu": [
+      "libur panjang",
+      "Saat libur panjang saya pulang kampung."
+    ],
+    "word_chwijik": [
+      "mendapat pekerjaan",
+      "Saya sedang bersiap mencari kerja."
+    ],
+    "word_baem": [
+      "ular",
+      "Saya melihat ular di jalan gunung."
+    ],
+    "word_doenjang": [
+      "pasta kedelai",
+      "Saya memasak sup dengan pasta kedelai."
+    ],
+    "word_keoteun": [
+      "gorden",
+      "Tolong buka gordennya."
+    ],
+    "word_sonagi": [
+      "hujan deras sesaat",
+      "Turun hujan deras sesaat dan baju saya basah."
+    ],
+    "word_goguma": [
+      "ubi jalar",
+      "Di musim dingin, ubi bakar paling enak."
+    ],
+    "word_sonsugeon": [
+      "saputangan",
+      "Saya menyeka keringat dengan saputangan."
+    ],
+    "word_songaji": [
+      "anak sapi",
+      "Anak sapi itu berada di samping induknya."
+    ],
+    "word_momsal": [
+      "sakit badan karena kelelahan",
+      "Badan saya sakit karena kelelahan, jadi saya istirahat sehari."
+    ],
+    "word_chigwa": [
+      "klinik gigi",
+      "Gigi saya sakit, jadi saya pergi ke dokter gigi."
+    ],
+    "word_japangi": [
+      "mesin penjual otomatis",
+      "Saya mengambil kopi dari mesin penjual otomatis."
+    ],
+    "word_sangchu": [
+      "selada",
+      "Saya membungkus daging dengan selada lalu memakannya."
+    ],
+    "word_jaechaegi": [
+      "bersin",
+      "Saya bersin karena debu."
+    ],
+    "word_hoengdanbodo": [
+      "zebra cross",
+      "Silakan menyeberang di zebra cross."
+    ],
+    "word_seonpunggi": [
+      "kipas angin",
+      "Karena panas, saya menyalakan kipas angin."
+    ],
+    "word_pyeongil": [
+      "hari kerja",
+      "Pada hari kerja pelanggannya sedikit."
+    ],
+    "word_mokgeori": [
+      "kalung",
+      "Saya mendapat kalung saat ulang tahun."
+    ],
+    "word_sopo": [
+      "paket",
+      "Paketnya sudah sampai di rumah."
+    ],
+    "word_araecheung": [
+      "lantai bawah",
+      "Di lantai bawah ada minimarket."
+    ],
+    "word_tteokbokki": [
+      "kue beras pedas",
+      "Tteokbokki-nya agak pedas."
+    ],
+    "word_nokcha": [
+      "teh hijau",
+      "Saya minum teh hijau hangat."
+    ],
+    "word_seongham": [
+      "nama, dengan hormat",
+      "Boleh saya tahu nama Bapak/Ibu?"
+    ],
+    "word_setakso": [
+      "tempat laundry",
+      "Saya menitipkan mantel di tempat laundry."
+    ],
+    "word_piltong": [
+      "kotak pensil",
+      "Tidak ada pensil di kotak pensil saya."
+    ],
+    "word_haksaengjeung": [
+      "kartu pelajar",
+      "Ada diskon kalau punya kartu pelajar."
+    ],
+    "word_bit_2": [
+      "sisir",
+      "Saya mengeluarkan sisir dari tas."
+    ],
+    "word_kkamansaek": [
+      "hitam pekat",
+      "Seekor kucing hitam pekat lewat."
+    ],
+    "word_hayansaek": [
+      "putih bersih",
+      "Saya menyetrika kemeja putih bersih."
+    ],
+    "word_gaeguri": [
+      "katak",
+      "Katak-katak bersuara di kolam."
+    ],
+    "word_gilga": [
+      "pinggir jalan",
+      "Bunga-bunga mekar di pinggir jalan."
+    ],
+    "word_binmul": [
+      "air hujan",
+      "Air hujan mengalir di jendela."
+    ],
+    "word_haetbyeot": [
+      "terik matahari",
+      "Saya menjemur cucian di bawah terik matahari."
+    ],
+    "word_kongnamul": [
+      "tauge",
+      "Saya membumbui tauge lalu memakannya."
+    ],
+    "word_namul": [
+      "sayuran liar berbumbu",
+      "Di musim semi sayuran liar berbumbu terasa enak."
+    ],
+    "word_hyeongwan": [
+      "ruang masuk",
+      "Tolong lepas sepatu di ruang masuk."
+    ],
+    "word_kkeom": [
+      "permen karet",
+      "Jangan mengunyah permen karet saat pelajaran."
+    ],
+    "word_juk": [
+      "bubur",
+      "Saat sakit saya makan bubur."
+    ],
+    "word_bapgeureut": [
+      "mangkuk nasi",
+      "Saya menghabiskan isi mangkuk nasi."
+    ],
+    "word_bulkkot": [
+      "nyala api",
+      "Nyala api menerangi langit malam."
+    ],
+    "word_sinipsaeng": [
+      "siswa baru",
+      "Ada acara penyambutan siswa baru."
+    ],
+    "word_hoesaek": [
+      "warna abu-abu",
+      "Awan abu-abu mulai berkumpul."
+    ],
+    "word_dongari": [
+      "klub mahasiswa",
+      "Saya bergabung dengan klub fotografi."
+    ],
+    "word_baiollin": [
+      "biola",
+      "Suara biola itu indah."
+    ],
+    "word_noraebang": [
+      "ruang karaoke",
+      "Saya pergi karaoke dengan teman-teman."
+    ],
+    "word_daedosi": [
+      "kota besar",
+      "Di kota besar harga rumah mahal."
+    ],
+    "word_eorinai": [
+      "anak kecil",
+      "Seorang anak kecil menangis sendirian."
+    ],
+    "word_pojang": [
+      "kemasan",
+      "Tolong bungkus sebagai kado."
+    ],
+    "word_inwon": [
+      "jumlah orang",
+      "Berapa orang?"
+    ],
+    "word_soseolga": [
+      "novelis",
+      "Saya bertemu seorang novelis terkenal."
+    ],
+    "word_dojagi": [
+      "keramik",
+      "Saya belajar membuat keramik."
+    ],
+    "word_sinmunji": [
+      "kertas koran",
+      "Saya mengelap kaca jendela dengan kertas koran."
+    ],
+    "word_gosokdoro": [
+      "jalan tol",
+      "Terjadi kecelakaan di jalan tol."
+    ],
+    "word_jagayong": [
+      "mobil pribadi",
+      "Saya pulang pergi kerja dengan mobil pribadi."
+    ],
+    "word_majeunpyeon": [
+      "seberang",
+      "Bank ada di seberang."
+    ],
+    "word_geonneopyeon": [
+      "seberang jalan",
+      "Toko di seberang jalan lebih murah."
+    ],
+    "word_iutjip": [
+      "rumah tetangga",
+      "Tetangga memberi kami kue beras."
+    ],
+    "word_peullaseutik": [
+      "plastik",
+      "Plastik dibuang secara terpisah."
+    ],
+    "word_chuljang": [
+      "perjalanan dinas",
+      "Minggu depan saya perjalanan dinas ke Busan."
+    ],
+    "word_mogyoktang": [
+      "pemandian umum",
+      "Akhir pekan saya pergi ke pemandian umum."
+    ],
+    "word_badanmul": [
+      "air laut",
+      "Air lautnya sangat dingin."
+    ],
+    "word_chuka": [
+      "ucapan selamat",
+      "Saya menyiapkan hadiah ucapan selamat."
+    ],
+    "word_chwiso": [
+      "pembatalan",
+      "Pembatalan reservasi bisa sampai sehari sebelumnya."
+    ],
+    "word_gyeoulcheol": [
+      "musim dingin",
+      "Hati-hati flu di musim dingin."
+    ],
+    "word_gochujang": [
+      "pasta cabai",
+      "Saya menambahkan pasta cabai ke bibimbap."
+    ],
+    "word_bitamin": [
+      "vitamin",
+      "Saya minum vitamin setiap hari."
+    ],
+    "word_bilding": [
+      "gedung tinggi",
+      "Gedung itu tiga puluh lantai."
+    ],
+    "word_sikcho": [
+      "cuka",
+      "Saya menambahkan sedikit cuka ke salad."
+    ],
+    "word_janghakgeum": [
+      "beasiswa",
+      "Semester ini saya mendapat beasiswa."
+    ],
+    "word_churimmun": [
+      "pintu masuk",
+      "Tolong tutup pintu masuk dengan rapat."
+    ],
+    "word_hoejang": [
+      "ketua",
+      "Ketua menyampaikan kata sambutan."
+    ],
+    "word_tongil": [
+      "penyatuan",
+      "Kami belajar tentang penyatuan."
+    ],
+    "word_jaesan": [
+      "harta",
+      "Mereka meninggalkan harta untuk keluarga."
+    ],
+    "word_jeonguk": [
+      "seluruh negeri",
+      "Hujan turun di seluruh negeri."
+    ],
+    "word_gajeong": [
+      "rumah tangga",
+      "Saya menikah dan membangun rumah tangga."
+    ],
+    "word_nongeop": [
+      "pertanian",
+      "Pertanian maju di daerah ini."
+    ],
+    "word_sobija": [
+      "konsumen",
+      "Kami mendengarkan pendapat konsumen."
+    ],
+    "word_nodongja": [
+      "buruh",
+      "Para buruh sedang beristirahat."
+    ],
+    "word_daejung": [
+      "masyarakat umum",
+      "Ini sangat populer di kalangan masyarakat umum."
+    ],
+    "word_siin": [
+      "penyair",
+      "Saya suka puisi penyair itu."
+    ],
+    "word_anaunseo": [
+      "penyiar",
+      "Penyiar membacakan berita."
+    ],
+    "word_kkadak": [
+      "sebab",
+      "Katakan sebab kamu terlambat."
+    ],
+    "word_gyeongyeong": [
+      "manajemen",
+      "Saya belajar manajemen di universitas."
+    ],
+    "word_imgeum": [
+      "upah",
+      "Upah naik."
+    ],
+    "word_seoyang": [
+      "Barat",
+      "Saya suka makanan Barat."
+    ],
+    "word_imiji": [
+      "citra",
+      "Citra perusahaan membaik."
+    ],
+    "word_suchul": [
+      "ekspor",
+      "Ekspor mobil meningkat."
+    ],
+    "word_choecho": [
+      "yang pertama",
+      "Ini yang pertama di dunia."
+    ],
+    "word_suip": [
+      "pendapatan",
+      "Pendapatan saya naik sedikit."
+    ],
+    "word_muyeok": [
+      "perdagangan",
+      "Saya bekerja di perusahaan perdagangan."
+    ],
+    "word_jonghap": [
+      "gabungan",
+      "Skor gabungannya tinggi."
+    ],
+    "word_panmae": [
+      "penjualan",
+      "Penjualan sudah dimulai."
+    ],
+    "word_gongsa": [
+      "pekerjaan konstruksi",
+      "Jalan ditutup karena pekerjaan konstruksi."
+    ],
+    "word_muyong": [
+      "seni tari",
+      "Saya menonton pertunjukan tari."
+    ],
+    "word_nonmun": [
+      "skripsi",
+      "Saya sedang menulis skripsi."
+    ],
+    "word_ollimpik": [
+      "Olimpiade",
+      "Saya menonton Olimpiade di televisi."
+    ],
+    "word_munjejeom": [
+      "titik masalah",
+      "Kami menemukan titik masalahnya."
+    ],
+    "word_yesulga": [
+      "seniman",
+      "Para seniman tinggal bersama di daerah ini."
+    ],
+    "word_model": [
+      "model",
+      "Model itu berjalan di atas panggung."
+    ],
+    "word_yeonguso": [
+      "lembaga penelitian",
+      "Saya bekerja di lembaga penelitian."
+    ],
+    "word_geulloja": [
+      "pekerja",
+      "Hari Pekerja jatuh pada bulan Mei."
+    ],
+    "word_bangsongguk": [
+      "stasiun televisi",
+      "Kami mengunjungi stasiun televisi."
+    ],
+    "word_mulsok": [
+      "dalam air",
+      "Saya membuka mata di dalam air."
+    ],
+    "word_wiban": [
+      "pelanggaran",
+      "Saya membayar denda karena pelanggaran lampu lalu lintas."
+    ],
+    "word_neomeo": [
+      "seberang, balik",
+      "Ada desa di balik gunung."
+    ],
+    "word_donggi": [
+      "motivasi",
+      "Ceritakan motivasi Anda melamar."
+    ],
+    "word_seutail": [
+      "gaya",
+      "Saya mengubah gaya rambut."
+    ],
+    "word_sinyong": [
+      "kepercayaan",
+      "Kepercayaan orang tidak boleh hilang."
+    ],
+    "word_banjang": [
+      "ketua kelas",
+      "Saya terpilih menjadi ketua kelas."
+    ],
+    "word_sincheong": [
+      "pendaftaran",
+      "Masa pendaftaran sudah berakhir."
+    ],
+    "word_apeum": [
+      "rasa sakit",
+      "Saya berusaha melupakan rasa sakit itu."
+    ],
+    "word_gyoryu": [
+      "pertukaran",
+      "Pertukaran antara kedua negara aktif."
+    ],
+    "word_geulsseugi": [
+      "menulis",
+      "Saya mengikuti kelas menulis."
+    ],
+    "word_daegieop": [
+      "perusahaan besar",
+      "Saya diterima bekerja di perusahaan besar."
+    ],
+    "word_bujang": [
+      "kepala bagian",
+      "Kepala bagian mengadakan rapat."
+    ],
+    "word_insang": [
+      "kesan",
+      "Kesan pertamanya baik."
+    ],
+    "word_sicheongja": [
+      "pemirsa",
+      "Mereka membacakan surat dari pemirsa."
+    ],
+    "word_jongeobwon": [
+      "pegawai",
+      "Pegawai itu memandu kami dengan ramah."
+    ],
+    "word_gukoeuiwon": [
+      "anggota parlemen",
+      "Ini pemilihan untuk memilih anggota parlemen."
+    ],
+    "word_midieo": [
+      "media",
+      "Pengaruh media sangat besar."
+    ],
+    "word_gotgot": [
+      "di sana-sini",
+      "Bunga-bunga bermekaran di sana-sini."
+    ],
+    "word_tap": [
+      "menara, pagoda",
+      "Ada pagoda tua di kuil itu."
+    ],
+    "word_geonchuk": [
+      "arsitektur",
+      "Saya mengambil jurusan arsitektur."
+    ],
+    "word_sigyongyu": [
+      "minyak goreng",
+      "Saya menuang minyak goreng ke wajan."
+    ],
+    "word_geop": [
+      "rasa takut",
+      "Saya takut, jadi tidak bisa naik."
+    ],
+    "word_seogyu": [
+      "minyak bumi",
+      "Harga minyak bumi naik."
+    ],
+    "word_chaegimja": [
+      "penanggung jawab",
+      "Saya ingin bicara dengan penanggung jawab."
+    ],
+    "word_boram": [
+      "rasa berharga atas usaha",
+      "Saya merasa mengajar itu berharga."
+    ],
+    "word_soseu": [
+      "saus",
+      "Tolong tambah sausnya."
+    ],
+    "word_urimal": [
+      "bahasa kita",
+      "Mari gunakan bahasa kita dengan indah."
+    ],
+    "word_hyeonji": [
+      "tempat setempat",
+      "Saya mencoba makanan setempat."
+    ],
+    "word_geot_2": [
+      "bagian luar",
+      "Bagian luarnya keras dan dalamnya lembut."
+    ],
+    "word_seungyongcha": [
+      "mobil penumpang",
+      "Ada lima mobil penumpang yang diparkir."
+    ],
+    "word_jinchul": [
+      "ekspansi",
+      "Kami bersiap untuk ekspansi ke luar negeri."
+    ],
+    "word_giun": [
+      "tenaga",
+      "Saya sama sekali tidak bertenaga."
+    ],
+    "word_abeonim": [
+      "ayah, dengan hormat",
+      "Sampaikan salam saya kepada ayah Anda."
+    ],
+    "word_mureum": [
+      "pertanyaan",
+      "Tolong jawab pertanyaannya."
+    ],
+    "word_eomeonim": [
+      "ibu, dengan hormat",
+      "Apakah ibu Anda sehat?"
+    ],
+    "word_haeseok": [
+      "penafsiran",
+      "Kalimat ini sulit ditafsirkan."
+    ],
+    "word_sayongja": [
+      "pengguna",
+      "Jumlah pengguna bertambah banyak."
+    ],
+    "word_sawon": [
+      "karyawan",
+      "Ada karyawan baru yang masuk."
+    ],
+    "word_gangmul": [
+      "air sungai",
+      "Air sungainya jernih."
+    ],
+    "word_rideum": [
+      "irama",
+      "Saya menari mengikuti irama."
+    ],
+    "word_moniteo": [
+      "monitor",
+      "Monitornya terlalu gelap."
+    ],
+    "word_un": [
+      "keberuntungan",
+      "Keberuntungan berpihak pada saya dan saya lulus ujian."
+    ],
+    "word_ilsangsaenghwal": [
+      "kehidupan sehari-hari",
+      "Ini kata yang sering dipakai dalam kehidupan sehari-hari."
+    ],
+    "word_binil": [
+      "plastik tipis",
+      "Saya menutup makanan dengan plastik."
     ]
   }
 }

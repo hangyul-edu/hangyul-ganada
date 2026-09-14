@@ -2122,7 +2122,7 @@
     ],
     "word_gamyeon": [
       "mặt nạ",
-      "Tôi đeo mặt nạ."
+      "Tôi đeo mặt nạ nhảy múa."
     ],
     "word_jasin": [
       "bản thân",
@@ -6511,7 +6511,7 @@
     ],
     "word_jiwon": [
       "sự hỗ trợ",
-      "Tôi đã nhận được hỗ trợ."
+      "Tôi nhận được sự hỗ trợ của chính phủ."
     ],
     "word_tteolda": [
       "run",
@@ -7734,7 +7734,7 @@
     ],
     "word_sinjang": [
       "chiều cao",
-      "Tôi đo chiều cao."
+      "Chiều cao của bạn là bao nhiêu?"
     ],
     "word_eojjae": [
       "sao thế",
@@ -8406,7 +8406,7 @@
     ],
     "word_jiji": [
       "sự ủng hộ",
-      "Tôi đã nhận được sự ủng hộ."
+      "Tôi nhận được sự ủng hộ của nhiều người."
     ],
     "word_yeonguhada": [
       "nghiên cứu",
@@ -13580,6 +13580,1994 @@
     "word_yubohada": [
       "tạm gác lại",
       "Chúng tôi tạm gác lại phán đoán một lúc."
+    ],
+    "word_gasu": [
+      "ca sĩ",
+      "Ca sĩ đó hát hay."
+    ],
+    "word_gyejeol": [
+      "mùa",
+      "Bạn thích mùa nào?"
+    ],
+    "word_gyeongchalgwan": [
+      "cảnh sát",
+      "Tôi hỏi đường một cảnh sát."
+    ],
+    "word_gyeongchi": [
+      "phong cảnh",
+      "Phong cảnh ở đây thật sự đẹp."
+    ],
+    "word_godeunghaksaeng": [
+      "học sinh trung học phổ thông",
+      "Em trai tôi là học sinh trung học phổ thông."
+    ],
+    "word_gwaja": [
+      "bánh kẹo",
+      "Bọn trẻ đang ăn bánh kẹo."
+    ],
+    "word_gyogwaseo": [
+      "sách giáo khoa",
+      "Hãy mở sách giáo khoa ra."
+    ],
+    "word_gugyeong": [
+      "đi ngắm, đi xem",
+      "Tôi đi ngắm hoa."
+    ],
+    "word_gisuksa": [
+      "ký túc xá",
+      "Tôi sống ở ký túc xá."
+    ],
+    "word_namdongsaeng": [
+      "em trai",
+      "Em trai tôi cao."
+    ],
+    "word_naenyeon": [
+      "năm sau",
+      "Năm sau tôi sẽ đi Hàn Quốc."
+    ],
+    "word_dallyeok": [
+      "lịch",
+      "Trên tường có treo một cuốn lịch."
+    ],
+    "word_daehaksaeng": [
+      "sinh viên",
+      "Em trai tôi đã trở thành sinh viên."
+    ],
+    "word_dwaejigogi": [
+      "thịt lợn",
+      "Chúng tôi nướng thịt lợn rồi ăn."
+    ],
+    "word_deungsan": [
+      "leo núi",
+      "Cuối tuần tôi đi leo núi."
+    ],
+    "word_maepda": [
+      "cay",
+      "Tteokbokki này cay quá."
+    ],
+    "word_menyu": [
+      "thực đơn",
+      "Cho tôi xem thực đơn với."
+    ],
+    "word_mogyok": [
+      "tắm",
+      "Tôi tắm trước khi đi ngủ."
+    ],
+    "word_mit": [
+      "phía dưới",
+      "Con mèo ở dưới gầm giường."
+    ],
+    "word_bareum": [
+      "phát âm",
+      "Bạn phát âm rất tốt."
+    ],
+    "word_banghak": [
+      "kỳ nghỉ hè",
+      "Bạn sẽ làm gì trong kỳ nghỉ?"
+    ],
+    "word_baebureuda": [
+      "no",
+      "Tôi ăn nhiều nên no rồi."
+    ],
+    "word_baekwajeom": [
+      "trung tâm thương mại",
+      "Tôi mua quần áo ở trung tâm thương mại."
+    ],
+    "word_bolpen": [
+      "bút bi",
+      "Cho tôi mượn cây bút với."
+    ],
+    "word_saekkkal": [
+      "màu sắc",
+      "Tôi thích màu này."
+    ],
+    "word_seojeom": [
+      "hiệu sách",
+      "Tôi mua một quyển sách ở hiệu sách."
+    ],
+    "word_seonmulhada": [
+      "tặng quà",
+      "Tôi tặng hoa cho bạn."
+    ],
+    "word_sesu": [
+      "rửa mặt",
+      "Buổi sáng tôi rửa mặt."
+    ],
+    "word_sopung": [
+      "dã ngoại",
+      "Ngày mai chúng tôi đi dã ngoại."
+    ],
+    "word_syoping": [
+      "mua sắm",
+      "Cuối tuần tôi đi mua sắm."
+    ],
+    "word_syupeomaket": [
+      "siêu thị",
+      "Tôi mua rau ở siêu thị."
+    ],
+    "word_yangbok": [
+      "bộ vest",
+      "Bố tôi mặc bộ vest."
+    ],
+    "word_eorini": [
+      "trẻ em",
+      "Vé miễn phí cho trẻ em."
+    ],
+    "word_eeokeon": [
+      "máy điều hòa",
+      "Trời nóng nên tôi bật máy điều hòa."
+    ],
+    "word_oraenman": [
+      "lâu rồi mới",
+      "Lâu rồi tôi mới gặp lại một người bạn."
+    ],
+    "word_oeguk": [
+      "nước ngoài",
+      "Bạn đã từng sống ở nước ngoài chưa?"
+    ],
+    "word_oegugeo": [
+      "ngoại ngữ",
+      "Tôi đang học ngoại ngữ."
+    ],
+    "word_oegugin": [
+      "người nước ngoài",
+      "Tôi có nhiều bạn là người nước ngoài."
+    ],
+    "word_undonghada": [
+      "tập thể dục",
+      "Tôi tập thể dục mỗi sáng."
+    ],
+    "word_undonghwa": [
+      "giày thể thao",
+      "Tôi đi đôi giày thể thao mới."
+    ],
+    "word_ip_2": [
+      "lá",
+      "Mùa thu lá rụng."
+    ],
+    "word_jangmi": [
+      "hoa hồng",
+      "Hoa hồng thơm lắm."
+    ],
+    "word_jeomsimsigan": [
+      "giờ ăn trưa",
+      "Giờ ăn trưa tôi đi dạo."
+    ],
+    "word_joreop": [
+      "tốt nghiệp",
+      "Chúc mừng bạn tốt nghiệp!"
+    ],
+    "word_junghakgyo": [
+      "trường trung học cơ sở",
+      "Con trai tôi học trường trung học cơ sở."
+    ],
+    "word_chodeunghakgyo": [
+      "trường tiểu học",
+      "Con gái tôi đã vào trường tiểu học."
+    ],
+    "word_jinandal": [
+      "tháng trước",
+      "Tháng trước tôi đã chuyển nhà."
+    ],
+    "word_jinanju": [
+      "tuần trước",
+      "Tuần trước tôi bị cảm."
+    ],
+    "word_jiugae": [
+      "cục tẩy",
+      "Hãy dùng cục tẩy để xóa."
+    ],
+    "word_jjigae": [
+      "canh hầm Hàn Quốc",
+      "Trưa nay tôi ăn canh jjigae."
+    ],
+    "word_cheongbaji": [
+      "quần bò",
+      "Bạn mặc quần bò rất hợp."
+    ],
+    "word_chiyak": [
+      "kem đánh răng",
+      "Kem đánh răng hết rồi."
+    ],
+    "word_kolla": [
+      "cô-ca",
+      "Cho tôi một ly cô-ca."
+    ],
+    "word_taegwondo": [
+      "taekwondo",
+      "Đứa trẻ đang học taekwondo."
+    ],
+    "word_teniseu": [
+      "quần vợt",
+      "Tôi mua một cây vợt tennis mới."
+    ],
+    "word_tellebijeon": [
+      "ti vi",
+      "Buổi tối tôi xem ti vi."
+    ],
+    "word_hangnyeon": [
+      "lớp, năm học",
+      "Bạn học lớp mấy?"
+    ],
+    "word_hanbok": [
+      "hanbok, trang phục truyền thống Hàn Quốc",
+      "Vào Seollal chúng tôi mặc hanbok."
+    ],
+    "word_hanja": [
+      "chữ Hán",
+      "Chữ Hán khó."
+    ],
+    "word_haembeogeo": [
+      "bánh hamburger",
+      "Cho tôi một cái bánh hamburger."
+    ],
+    "word_hyuil": [
+      "ngày nghỉ",
+      "Ngày nghỉ tôi dậy muộn."
+    ],
+    "word_hyuji": [
+      "khăn giấy",
+      "Cho tôi xin một tờ khăn giấy."
+    ],
+    "word_kkeulhida": [
+      "đun sôi",
+      "Tôi đun nước rồi uống trà."
+    ],
+    "word_bokda": [
+      "xào",
+      "Tôi xào rau rồi ăn."
+    ],
+    "word_damgeuda": [
+      "ngâm",
+      "Tôi ngâm chân trong nước."
+    ],
+    "word_gakkuda": [
+      "chăm sóc, vun trồng",
+      "Bà tôi chăm sóc khu vườn."
+    ],
+    "word_gwonhada": [
+      "mời, khuyên",
+      "Tôi mời khách uống trà."
+    ],
+    "word_kkeudeogida": [
+      "gật đầu",
+      "Đứa trẻ gật đầu."
+    ],
+    "word_kkeunheojida": [
+      "bị đứt",
+      "Sợi dây bị đứt."
+    ],
+    "word_neolpida": [
+      "mở rộng",
+      "Người ta đang thi công mở rộng đường."
+    ],
+    "word_nohida": [
+      "được đặt",
+      "Trên bàn có đặt hoa."
+    ],
+    "word_sallida": [
+      "cứu sống",
+      "Bác sĩ đã cứu sống bệnh nhân."
+    ],
+    "word_seuda": [
+      "dựng, dừng",
+      "Tôi dựng ô cạnh cửa."
+    ],
+    "word_seokkida": [
+      "hòa lẫn",
+      "Nước và dầu không hòa lẫn."
+    ],
+    "word_kyeojida": [
+      "bật lên, sáng lên",
+      "Đèn tự bật sáng."
+    ],
+    "word_jeonghaejida": [
+      "được định",
+      "Giờ họp đã được ấn định."
+    ],
+    "word_saenggyeonada": [
+      "mọc lên, xuất hiện",
+      "Nhiều cửa hàng mới đã mọc lên."
+    ],
+    "word_naraoda": [
+      "bay đến",
+      "Một con chim bay đến bên cửa sổ."
+    ],
+    "word_dallyeooda": [
+      "chạy đến",
+      "Chú cún chạy đến chỗ tôi."
+    ],
+    "word_yangbohada": [
+      "nhường",
+      "Tôi nhường ghế cho một cụ bà."
+    ],
+    "word_hwaryonghada": [
+      "tận dụng",
+      "Tôi tận dụng tốt thời gian cuối tuần."
+    ],
+    "word_dayanghada": [
+      "đa dạng",
+      "Cửa hàng này có nhiều loại bánh mì đa dạng."
+    ],
+    "word_dapdapada": [
+      "ngột ngạt",
+      "Phòng chật nên ngột ngạt."
+    ],
+    "word_dukkeopda": [
+      "dày",
+      "Cuốn sách này rất dày."
+    ],
+    "word_dunggeulda": [
+      "tròn",
+      "Mặt trăng tròn."
+    ],
+    "word_gukda": [
+      "to, mập (vật dài)",
+      "Cây này có thân to."
+    ],
+    "word_ganeulda": [
+      "mảnh, nhỏ (vật dài)",
+      "Sợi chỉ này quá mảnh."
+    ],
+    "word_mipda": [
+      "đáng ghét",
+      "Tôi ghét những người nói dối."
+    ],
+    "word_natseolda": [
+      "lạ lẫm",
+      "Khu này vẫn còn lạ lẫm với tôi."
+    ],
+    "word_eongttunghada": [
+      "kỳ quặc",
+      "Đứa trẻ hỏi một câu kỳ quặc."
+    ],
+    "word_usuhada": [
+      "xuất sắc",
+      "Thành tích học tập xuất sắc."
+    ],
+    "word_jeokdanghada": [
+      "vừa phải, thích hợp",
+      "Phòng này có kích thước vừa phải."
+    ],
+    "word_jogeumata": [
+      "bé xíu",
+      "Tôi nhận được một chiếc hộp bé xíu."
+    ],
+    "word_teunteunhada": [
+      "chắc chắn",
+      "Chiếc ghế này chắc chắn."
+    ],
+    "word_pyeollihada": [
+      "tiện lợi",
+      "Tàu điện ngầm rất tiện lợi."
+    ],
+    "word_pureuda": [
+      "xanh (trời, cây cỏ)",
+      "Núi xanh rì."
+    ],
+    "word_hwalbalhada": [
+      "hoạt bát",
+      "Đứa trẻ rất hoạt bát."
+    ],
+    "word_kkwae": [
+      "khá",
+      "Hôm nay khá lạnh."
+    ],
+    "word_kkujunhi": [
+      "đều đặn",
+      "Tôi luyện tập đều đặn mỗi ngày."
+    ],
+    "word_kkamjjak": [
+      "giật mình",
+      "Tôi giật mình vì tiếng ồn lớn."
+    ],
+    "word_deoguna": [
+      "hơn nữa",
+      "Tôi bị muộn. Hơn nữa trời còn mưa."
+    ],
+    "word_magu": [
+      "bừa bãi",
+      "Xin đừng tiêu tiền bừa bãi."
+    ],
+    "word_bigyojeok": [
+      "tương đối",
+      "Bài này tương đối dễ."
+    ],
+    "word_yunanhi": [
+      "khác thường",
+      "Hôm nay tôi mệt khác thường."
+    ],
+    "word_jeomcha": [
+      "dần dần",
+      "Thời tiết dần dần lạnh hơn."
+    ],
+    "word_puk": [
+      "say, sâu",
+      "Cuối tuần hãy nghỉ ngơi thật thoải mái."
+    ],
+    "word_haemada": [
+      "hàng năm",
+      "Hàng năm hoa nở vào mùa xuân."
+    ],
+    "word_hanpyeon": [
+      "mặt khác",
+      "Tôi vui. Mặt khác, tôi cũng lo."
+    ],
+    "word_jeuk": [
+      "tức là",
+      "Gặp nhau ngày mai, tức là thứ Bảy."
+    ],
+    "word_gawi": [
+      "cái kéo",
+      "Tôi cắt giấy bằng kéo."
+    ],
+    "word_gansik": [
+      "đồ ăn vặt",
+      "Buổi chiều tôi ăn vặt."
+    ],
+    "word_geosil": [
+      "phòng khách",
+      "Tôi xem ti vi ở phòng khách."
+    ],
+    "word_georeum": [
+      "bước chân",
+      "Hãy bước lên một bước."
+    ],
+    "word_golmok": [
+      "ngõ hẻm",
+      "Bọn trẻ đang chơi trong ngõ."
+    ],
+    "word_gongmuwon": [
+      "công chức",
+      "Anh trai tôi là công chức."
+    ],
+    "word_gwamok": [
+      "môn học",
+      "Bạn thích môn học nào?"
+    ],
+    "word_gwaje": [
+      "bài tập, nhiệm vụ",
+      "Tôi phải nộp bài tập trước ngày mai."
+    ],
+    "word_gwangwang": [
+      "du lịch, tham quan",
+      "Tôi đi tham quan Seoul."
+    ],
+    "word_gwangwanggaek": [
+      "khách du lịch",
+      "Khách du lịch đang chụp ảnh."
+    ],
+    "word_gyotongsago": [
+      "tai nạn giao thông",
+      "Hôm qua đã xảy ra một vụ tai nạn giao thông."
+    ],
+    "word_gungmul": [
+      "nước dùng",
+      "Nước dùng rất thanh mát."
+    ],
+    "word_geuneul": [
+      "bóng râm",
+      "Chúng ta nghỉ dưới bóng cây nhé."
+    ],
+    "word_geulja": [
+      "chữ",
+      "Chữ quá nhỏ."
+    ],
+    "word_gigan": [
+      "thời kỳ, khoảng thời gian",
+      "Đang là kỳ thi nên tôi bận."
+    ],
+    "word_gion": [
+      "nhiệt độ không khí",
+      "Hôm nay nhiệt độ giảm nhiều."
+    ],
+    "word_gichim": [
+      "cơn ho",
+      "Tôi ho mãi không dứt."
+    ],
+    "word_kkeopjil": [
+      "vỏ",
+      "Tôi bóc vỏ chuối."
+    ],
+    "word_kkokdaegi": [
+      "đỉnh",
+      "Có một con chim trên đỉnh cây."
+    ],
+    "word_kkochip": [
+      "cánh hoa",
+      "Cánh hoa bay trong gió."
+    ],
+    "word_kkul": [
+      "mật ong",
+      "Tôi cho mật ong vào trà."
+    ],
+    "word_nabi": [
+      "con bướm",
+      "Một con bướm đậu trên bông hoa."
+    ],
+    "word_namutgaji": [
+      "cành cây",
+      "Một con chim đậu trên cành cây."
+    ],
+    "word_nammae": [
+      "anh em, chị em",
+      "Chúng tôi là anh em."
+    ],
+    "word_nagyeop": [
+      "lá rụng",
+      "Trên đường có nhiều lá rụng."
+    ],
+    "word_noin": [
+      "người già",
+      "Tôi nhường ghế cho một người già."
+    ],
+    "word_noriteo": [
+      "sân chơi",
+      "Bọn trẻ đang chơi ở sân chơi."
+    ],
+    "word_nongsa": [
+      "nghề nông",
+      "Ông tôi làm nghề nông."
+    ],
+    "word_nunbit": [
+      "ánh mắt",
+      "Ánh mắt ấm áp."
+    ],
+    "word_nunap": [
+      "trước mắt",
+      "Tôi lỡ chuyến xe buýt ngay trước mắt."
+    ],
+    "word_danjeom": [
+      "điểm yếu",
+      "Ai cũng có điểm yếu."
+    ],
+    "word_jangjeom": [
+      "ưu điểm",
+      "Ưu điểm của ngôi nhà này là vị trí."
+    ],
+    "word_dalbit": [
+      "ánh trăng",
+      "Ánh trăng rất sáng."
+    ],
+    "word_dapjang": [
+      "thư trả lời",
+      "Tôi đang chờ thư trả lời."
+    ],
+    "word_daemun": [
+      "cổng",
+      "Xin hãy mở cổng."
+    ],
+    "word_deowi": [
+      "cái nóng",
+      "Cái nóng năm nay thật khủng khiếp."
+    ],
+    "word_chuwi": [
+      "cái lạnh",
+      "Tay tôi tê cóng vì lạnh."
+    ],
+    "word_dogu": [
+      "dụng cụ",
+      "Hãy giữ gìn dụng cụ cẩn thận."
+    ],
+    "word_dosirak": [
+      "cơm hộp",
+      "Tôi mang cơm hộp đi."
+    ],
+    "word_dokseo": [
+      "đọc sách",
+      "Sở thích của tôi là đọc sách."
+    ],
+    "word_dongmurwon": [
+      "sở thú",
+      "Tôi thấy một con sư tử ở sở thú."
+    ],
+    "word_dutong": [
+      "đau đầu",
+      "Tôi đau đầu nặng nên đã uống thuốc."
+    ],
+    "word_dwijjok": [
+      "phía sau",
+      "Phía sau còn chỗ ngồi."
+    ],
+    "word_apjjok": [
+      "phía trước",
+      "Mời ngồi phía trước."
+    ],
+    "word_anjjok": [
+      "phía trong",
+      "Xin mời ngồi ở chỗ phía trong."
+    ],
+    "word_wijjok": [
+      "phía trên",
+      "Sách ở kệ phía trên."
+    ],
+    "word_araejjok": [
+      "phía dưới",
+      "Thử mở ngăn kéo phía dưới xem."
+    ],
+    "word_ttam": [
+      "mồ hôi",
+      "Tôi đổ mồ hôi vì tập thể dục."
+    ],
+    "word_ttangkong": [
+      "đậu phộng",
+      "Đậu phộng có vị bùi."
+    ],
+    "word_ttukkeong": [
+      "nắp",
+      "Xin hãy mở nắp."
+    ],
+    "word_maeumsok": [
+      "đáy lòng",
+      "Trong lòng tôi rất biết ơn."
+    ],
+    "word_manhwa": [
+      "truyện tranh",
+      "Em trai tôi thích truyện tranh."
+    ],
+    "word_maeryeok": [
+      "sức hút",
+      "Thành phố này có sức hút."
+    ],
+    "word_meoritsok": [
+      "trong đầu, tâm trí",
+      "Đầu óc tôi rối bời."
+    ],
+    "word_memo": [
+      "ghi chú",
+      "Tôi dán một ghi chú lên tủ lạnh."
+    ],
+    "word_myeongham": [
+      "danh thiếp",
+      "Chúng tôi trao đổi danh thiếp."
+    ],
+    "word_mogi": [
+      "con muỗi",
+      "Mùa hè có nhiều muỗi."
+    ],
+    "word_more": [
+      "ngày kia",
+      "Ngày kia tôi sẽ đến lại."
+    ],
+    "word_mommuge": [
+      "cân nặng",
+      "Tôi đã cân."
+    ],
+    "word_muge": [
+      "trọng lượng",
+      "Tôi cân hành lý."
+    ],
+    "word_munjang": [
+      "câu",
+      "Hãy đọc câu này."
+    ],
+    "word_misul": [
+      "mỹ thuật",
+      "Trong giờ mỹ thuật chúng tôi vẽ tranh."
+    ],
+    "word_misulgwan": [
+      "bảo tàng mỹ thuật",
+      "Cuối tuần tôi đi bảo tàng mỹ thuật."
+    ],
+    "word_milgaru": [
+      "bột mì",
+      "Tôi làm bánh mì từ bột mì."
+    ],
+    "word_badatga": [
+      "bờ biển",
+      "Tôi đi dạo dọc bờ biển."
+    ],
+    "word_bawi": [
+      "tảng đá",
+      "Tôi ngồi lên một tảng đá."
+    ],
+    "word_balgarak": [
+      "ngón chân",
+      "Tôi bị đau ngón chân."
+    ],
+    "word_baegyeong": [
+      "phông nền",
+      "Phông nền của bức ảnh đẹp."
+    ],
+    "word_beoreut": [
+      "thói quen, tật",
+      "Tôi có tật cắn móng tay."
+    ],
+    "word_beoseot": [
+      "nấm",
+      "Tôi nấu canh với nấm."
+    ],
+    "word_beoteo": [
+      "bơ",
+      "Tôi phết bơ lên bánh mì."
+    ],
+    "word_bongji": [
+      "túi",
+      "Tôi cho hoa quả vào túi."
+    ],
+    "word_bongtu": [
+      "phong bì",
+      "Tôi bỏ lá thư vào phong bì."
+    ],
+    "word_bugeun": [
+      "vùng lân cận, gần",
+      "Tôi sống gần nhà ga."
+    ],
+    "word_bujagyong": [
+      "tác dụng phụ",
+      "Thuốc này không có tác dụng phụ."
+    ],
+    "word_bulbit": [
+      "ánh đèn",
+      "Tôi thấy ánh đèn từ xa."
+    ],
+    "word_buran": [
+      "lo lắng, bất an",
+      "Trước kỳ thi tôi thấy bất an."
+    ],
+    "word_ppallae": [
+      "đồ giặt",
+      "Đồ giặt chất đống rồi."
+    ],
+    "word_ppuri": [
+      "rễ",
+      "Rễ cây rất sâu."
+    ],
+    "word_saheul": [
+      "ba ngày",
+      "Trời mưa suốt ba ngày."
+    ],
+    "word_sangdaebang": [
+      "đối phương",
+      "Hãy lắng nghe đối phương."
+    ],
+    "word_sangpum": [
+      "hàng hóa, sản phẩm",
+      "Có sản phẩm mới ra mắt."
+    ],
+    "word_saeu": [
+      "con tôm",
+      "Tôi nướng tôm rồi ăn."
+    ],
+    "word_seolgeoji": [
+      "rửa bát",
+      "Tôi rửa bát sau bữa tối."
+    ],
+    "word_sonamu": [
+      "cây thông",
+      "Trên núi có nhiều cây thông."
+    ],
+    "word_sonnyeo": [
+      "cháu gái",
+      "Bà rất yêu cháu gái."
+    ],
+    "word_sonbadak": [
+      "lòng bàn tay",
+      "Tôi viết lên lòng bàn tay."
+    ],
+    "word_sonjabi": [
+      "tay nắm, tay cầm",
+      "Tay nắm cửa bị hỏng."
+    ],
+    "word_seupgwan": [
+      "thói quen",
+      "Tôi đã tạo thói quen đi ngủ sớm."
+    ],
+    "word_sonja": [
+      "cháu trai",
+      "Ông đang chơi với cháu trai."
+    ],
+    "word_sunseo": [
+      "thứ tự",
+      "Hãy vào theo thứ tự."
+    ],
+    "word_sieomeoni": [
+      "mẹ chồng",
+      "Mẹ chồng tôi nấu ăn giỏi."
+    ],
+    "word_sikgu": [
+      "thành viên gia đình",
+      "Gia đình tôi có năm người."
+    ],
+    "word_sikpum": [
+      "thực phẩm",
+      "Khu thực phẩm ở tầng hầm."
+    ],
+    "word_sillae": [
+      "trong nhà",
+      "Vào trong nhà xin bỏ mũ ra."
+    ],
+    "word_simbureum": [
+      "việc vặt được sai",
+      "Tôi đi cửa hàng làm việc vặt cho mẹ."
+    ],
+    "word_akgi": [
+      "nhạc cụ",
+      "Bạn muốn học nhạc cụ nào?"
+    ],
+    "word_aksu": [
+      "bắt tay",
+      "Chúng tôi bắt tay nhau."
+    ],
+    "word_anbang": [
+      "phòng ngủ chính",
+      "Bố mẹ tôi ngủ ở phòng ngủ chính."
+    ],
+    "word_yaoe": [
+      "ngoài trời",
+      "Chúng tôi ăn trưa ngoài trời."
+    ],
+    "word_yangnyeom": [
+      "gia vị",
+      "Gia vị đã thấm đều."
+    ],
+    "word_eoryeoum": [
+      "khó khăn",
+      "Nếu có khó khăn thì hãy nói."
+    ],
+    "word_yeou": [
+      "con cáo",
+      "Tôi thấy một con cáo trong rừng."
+    ],
+    "word_yeoyu": [
+      "thời gian rảnh, dư dả",
+      "Dạo này tôi không có thời gian rảnh."
+    ],
+    "word_yeollakcheo": [
+      "thông tin liên lạc",
+      "Cho tôi xin thông tin liên lạc của bạn."
+    ],
+    "word_yeonmal": [
+      "cuối năm",
+      "Cuối năm có nhiều buổi gặp mặt."
+    ],
+    "word_yeolheul": [
+      "mười ngày",
+      "Tôi đi du lịch mười ngày."
+    ],
+    "word_yeongha": [
+      "dưới không độ",
+      "Sáng nay nhiệt độ dưới không độ."
+    ],
+    "word_yeopjip": [
+      "nhà bên cạnh",
+      "Một gia đình mới đã chuyển đến nhà bên cạnh."
+    ],
+    "word_ojingeo": [
+      "mực",
+      "Mực được nướng lên để ăn."
+    ],
+    "word_ondo": [
+      "nhiệt độ",
+      "Tôi tăng nhiệt độ phòng lên một chút."
+    ],
+    "word_onmom": [
+      "toàn thân",
+      "Toàn thân tôi đau nhức."
+    ],
+    "word_oechul": [
+      "đi ra ngoài",
+      "Tôi đang chuẩn bị đi ra ngoài."
+    ],
+    "word_oenson": [
+      "tay trái",
+      "Tôi viết bằng tay trái."
+    ],
+    "word_oreunson": [
+      "tay phải",
+      "Xin hãy giơ tay phải lên."
+    ],
+    "word_yogeum": [
+      "giá vé, phí",
+      "Giá vé xe buýt đã tăng."
+    ],
+    "word_yoksil": [
+      "phòng tắm",
+      "Tôi đã dọn phòng tắm."
+    ],
+    "word_yoksim": [
+      "lòng tham",
+      "Đừng tham lam."
+    ],
+    "word_yongdon": [
+      "tiền tiêu vặt",
+      "Tôi để dành tiền tiêu vặt mua một quyển sách."
+    ],
+    "word_useung": [
+      "vô địch, giải nhất",
+      "Đội chúng tôi đã giành giải nhất."
+    ],
+    "word_upyo": [
+      "tem thư",
+      "Sưu tập tem là sở thích của tôi."
+    ],
+    "word_unjeonja": [
+      "người lái xe",
+      "Người lái xe phải thắt dây an toàn."
+    ],
+    "word_ureum": [
+      "tiếng khóc",
+      "Tiếng khóc của em bé đã dừng."
+    ],
+    "word_wicheung": [
+      "tầng trên",
+      "Tầng trên hơi ồn."
+    ],
+    "word_yurichang": [
+      "kính cửa sổ",
+      "Tôi lau sạch kính cửa sổ."
+    ],
+    "word_yuchiwon": [
+      "trường mẫu giáo",
+      "Con tôi đi học mẫu giáo."
+    ],
+    "word_yuhaeng": [
+      "mốt, xu hướng",
+      "Dạo này màu này đang là mốt."
+    ],
+    "word_eumnyo": [
+      "đồ uống",
+      "Quý khách muốn uống gì ạ?"
+    ],
+    "word_iik": [
+      "lợi nhuận, lợi ích",
+      "Tháng này chúng tôi có lợi nhuận."
+    ],
+    "word_iteunnal": [
+      "ngày hôm sau",
+      "Tôi rời đi vào sáng hôm sau."
+    ],
+    "word_ingu": [
+      "dân số",
+      "Thành phố này có dân số đông."
+    ],
+    "word_ilsang": [
+      "cuộc sống thường ngày",
+      "Tôi đã trở lại cuộc sống thường ngày."
+    ],
+    "word_janchi": [
+      "tiệc, lễ mừng",
+      "Chúng tôi tổ chức tiệc mừng sinh nhật bà."
+    ],
+    "word_jamot": [
+      "đồ ngủ",
+      "Tôi thay đồ ngủ."
+    ],
+    "word_jangnae": [
+      "tương lai",
+      "Sau này bạn muốn làm gì?"
+    ],
+    "word_jangma": [
+      "mùa mưa",
+      "Mùa mưa đã bắt đầu."
+    ],
+    "word_jangsa": [
+      "việc buôn bán",
+      "Dạo này buôn bán thuận lợi."
+    ],
+    "word_jaeryo": [
+      "nguyên liệu",
+      "Tôi mua nguyên liệu nấu ăn."
+    ],
+    "word_jeoja": [
+      "tác giả",
+      "Tôi đã gặp tác giả của cuốn sách này."
+    ],
+    "word_jeochuk": [
+      "tiết kiệm",
+      "Tôi tiết kiệm mỗi tháng."
+    ],
+    "word_jeongong": [
+      "chuyên ngành",
+      "Chuyên ngành của bạn là gì?"
+    ],
+    "word_jeonnal": [
+      "ngày hôm trước",
+      "Ngày trước kỳ thi tôi đi ngủ sớm."
+    ],
+    "word_jeongdap": [
+      "đáp án đúng",
+      "Tôi đã trả lời đúng."
+    ],
+    "word_jepum": [
+      "sản phẩm",
+      "Sản phẩm này có chất lượng tốt."
+    ],
+    "word_josang": [
+      "tổ tiên",
+      "Vào ngày lễ chúng tôi bái tổ tiên."
+    ],
+    "word_jwaseok": [
+      "chỗ ngồi",
+      "Vui lòng kiểm tra số ghế của bạn."
+    ],
+    "word_jubu": [
+      "nội trợ",
+      "Dì tôi là người nội trợ."
+    ],
+    "word_juchajang": [
+      "bãi đỗ xe",
+      "Tôi đỗ xe ở bãi đỗ xe."
+    ],
+    "word_junbimul": [
+      "đồ cần chuẩn bị",
+      "Bạn đã chuẩn bị đồ cho ngày mai chưa?"
+    ],
+    "word_julgi": [
+      "cành, thân",
+      "Cành hoa dài."
+    ],
+    "word_chanmul": [
+      "nước lạnh",
+      "Cho tôi một ly nước lạnh."
+    ],
+    "word_chamgireum": [
+      "dầu mè",
+      "Cho một chút dầu mè."
+    ],
+    "word_changbak": [
+      "ngoài cửa sổ",
+      "Ngoài cửa sổ tuyết đang rơi."
+    ],
+    "word_chaeneol": [
+      "kênh",
+      "Đổi kênh giúp tôi với."
+    ],
+    "word_chaekgabang": [
+      "cặp sách",
+      "Cặp sách của tôi quá nặng."
+    ],
+    "word_cheongnyeon": [
+      "thanh niên",
+      "Các thanh niên đang làm tình nguyện."
+    ],
+    "word_cheongsonyeon": [
+      "thanh thiếu niên",
+      "Giá vé rẻ hơn cho thanh thiếu niên."
+    ],
+    "word_chejung": [
+      "cân nặng",
+      "Cân nặng của tôi giảm một chút."
+    ],
+    "word_choroksaek": [
+      "màu xanh lá",
+      "Tôi đội một chiếc mũ màu xanh lá."
+    ],
+    "word_chobap": [
+      "sushi",
+      "Trưa nay tôi ăn sushi."
+    ],
+    "word_chukje": [
+      "lễ hội",
+      "Lễ hội được tổ chức vào mùa thu."
+    ],
+    "word_munhwa": [
+      "văn hóa",
+      "Tôi rất quan tâm đến văn hóa Hàn Quốc."
+    ],
+    "word_gyeongje": [
+      "kinh tế",
+      "Tôi xem tin tức kinh tế mỗi ngày."
+    ],
+    "word_yesul": [
+      "nghệ thuật",
+      "Em trai tôi học nghệ thuật."
+    ],
+    "word_tteut": [
+      "nghĩa",
+      "Tôi không biết nghĩa của từ này."
+    ],
+    "word_baljeon": [
+      "sự phát triển",
+      "Thành phố này phát triển nhanh."
+    ],
+    "word_jeontong": [
+      "truyền thống",
+      "Tôi đã nghe nhạc truyền thống."
+    ],
+    "word_taedo": [
+      "thái độ",
+      "Thái độ rất tốt."
+    ],
+    "word_juwi": [
+      "xung quanh",
+      "Hãy nhìn kỹ xung quanh."
+    ],
+    "word_teukjing": [
+      "đặc điểm",
+      "Đặc điểm của vùng này là biển."
+    ],
+    "word_yejeong": [
+      "dự định",
+      "Tôi dự định đi vào tuần sau."
+    ],
+    "word_haengsa": [
+      "sự kiện",
+      "Tôi đã tham gia một sự kiện của trường."
+    ],
+    "word_pandan": [
+      "sự phán đoán",
+      "Cần phán đoán nhanh."
+    ],
+    "word_balpyo": [
+      "bài thuyết trình",
+      "Ngày mai tôi có bài thuyết trình."
+    ],
+    "word_gicho": [
+      "nền tảng, cơ bản",
+      "Tôi học lại từ cơ bản."
+    ],
+    "word_juingong": [
+      "nhân vật chính",
+      "Nhân vật chính của tiểu thuyết này là một học sinh."
+    ],
+    "word_haeoe": [
+      "nước ngoài",
+      "Tôi đi du lịch nước ngoài."
+    ],
+    "word_cheyuk": [
+      "thể dục",
+      "Giờ thể dục là vui nhất."
+    ],
+    "word_pyeongso": [
+      "ngày thường",
+      "Tôi đi ngủ sớm hơn ngày thường."
+    ],
+    "word_jutaek": [
+      "nhà ở",
+      "Giá nhà ở đã tăng nhiều."
+    ],
+    "word_nongchon": [
+      "nông thôn",
+      "Bà tôi sống ở nông thôn."
+    ],
+    "word_bat": [
+      "ruộng rau",
+      "Tôi hái ớt ngoài ruộng."
+    ],
+    "word_gyeot": [
+      "bên cạnh",
+      "Hãy ở bên cạnh tôi."
+    ],
+    "word_gippeum": [
+      "niềm vui",
+      "Tin đậu mang lại niềm vui lớn."
+    ],
+    "word_ipsul": [
+      "môi",
+      "Môi tôi bị khô."
+    ],
+    "word_heuk": [
+      "đất",
+      "Chạm vào đất làm tôi thấy dễ chịu."
+    ],
+    "word_gwahakja": [
+      "nhà khoa học",
+      "Tôi muốn trở thành nhà khoa học."
+    ],
+    "word_hoewon": [
+      "hội viên",
+      "Vui lòng cho xem thẻ hội viên."
+    ],
+    "word_bangmun": [
+      "chuyến thăm",
+      "Lần thăm tiếp theo là thứ Sáu."
+    ],
+    "word_bulman": [
+      "sự bất mãn",
+      "Tôi đã lắng nghe lời phàn nàn của khách."
+    ],
+    "word_gwangaek": [
+      "khán giả",
+      "Khán giả vỗ tay rất to."
+    ],
+    "word_gomo": [
+      "cô",
+      "Cô đã gửi quà cho tôi."
+    ],
+    "word_toron": [
+      "cuộc tranh luận",
+      "Chúng tôi đã tranh luận trong lớp."
+    ],
+    "word_gosaeng": [
+      "sự vất vả",
+      "Anh đã vất vả nhiều."
+    ],
+    "word_pado": [
+      "sóng",
+      "Sóng cao."
+    ],
+    "word_yegeum": [
+      "tiền gửi",
+      "Tôi rút một ít tiền gửi."
+    ],
+    "word_ipak": [
+      "nhập học",
+      "Chúc mừng bạn nhập học."
+    ],
+    "word_jehan": [
+      "giới hạn",
+      "Có giới hạn thời gian."
+    ],
+    "word_punggyeong": [
+      "phong cảnh",
+      "Phong cảnh bên cửa sổ thật đẹp."
+    ],
+    "word_gamdong": [
+      "sự cảm động",
+      "Xem phim tôi đã rất cảm động."
+    ],
+    "word_maru": [
+      "sàn gỗ",
+      "Tôi ngồi trên sàn gỗ nghỉ ngơi."
+    ],
+    "word_yejeol": [
+      "lễ nghi, phép tắc",
+      "Tôi đã học phép tắc trên bàn ăn."
+    ],
+    "word_chincheok": [
+      "họ hàng",
+      "Một người họ hàng đã đến nhà chúng tôi."
+    ],
+    "word_haetsal": [
+      "tia nắng",
+      "Tia nắng buổi sáng ấm áp."
+    ],
+    "word_hakgi": [
+      "học kỳ",
+      "Học kỳ mới đã bắt đầu."
+    ],
+    "word_hubae": [
+      "hậu bối",
+      "Tôi mời hậu bối ăn trưa."
+    ],
+    "word_hakseup": [
+      "việc học tập",
+      "Tôi đã lập kế hoạch học tập."
+    ],
+    "word_bigyo": [
+      "sự so sánh",
+      "Việc so sánh hai sản phẩm rất dễ."
+    ],
+    "word_hyanggi": [
+      "hương thơm",
+      "Căn phòng tràn ngập hương hoa."
+    ],
+    "word_garu": [
+      "bột",
+      "Tôi đã tán thuốc thành bột."
+    ],
+    "word_donghwa": [
+      "truyện cổ tích",
+      "Tôi đọc truyện cổ tích cho con nghe."
+    ],
+    "word_yuhak": [
+      "du học",
+      "Anh trai tôi đang chuẩn bị đi du học."
+    ],
+    "word_damim": [
+      "giáo viên chủ nhiệm",
+      "Giáo viên chủ nhiệm của tôi rất tốt bụng."
+    ],
+    "word_dojung": [
+      "giữa đường",
+      "Trên đường đi trời đã mưa."
+    ],
+    "word_chingchan": [
+      "lời khen",
+      "Tôi được thầy giáo khen."
+    ],
+    "word_haetbit": [
+      "ánh nắng",
+      "Ánh nắng quá gắt."
+    ],
+    "word_meonji": [
+      "bụi",
+      "Bụi bám đầy trên bàn."
+    ],
+    "word_heungmi": [
+      "hứng thú",
+      "Tôi đã có hứng thú với lịch sử."
+    ],
+    "word_dijain": [
+      "thiết kế",
+      "Chiếc túi này có thiết kế đẹp."
+    ],
+    "word_teol": [
+      "lông",
+      "Lông mèo mềm mại."
+    ],
+    "word_iljeong": [
+      "lịch trình",
+      "Tôi đã kiểm tra lịch trình hôm nay."
+    ],
+    "word_gyohwan": [
+      "sự trao đổi, đổi",
+      "Có thể đổi sang màu khác không?"
+    ],
+    "word_gugeo": [
+      "quốc ngữ",
+      "Tôi đã thi môn tiếng Hàn."
+    ],
+    "word_jeulgeoum": [
+      "niềm vui thích",
+      "Du lịch là một niềm vui thích lớn."
+    ],
+    "word_daehagwon": [
+      "cao học",
+      "Tôi đang học cao học."
+    ],
+    "word_deungnok": [
+      "đăng ký",
+      "Tôi đã đăng ký lớp học xong."
+    ],
+    "word_munui_2": [
+      "hoa văn",
+      "Tôi mặc váy có hoa văn hoa."
+    ],
+    "word_hwabun": [
+      "chậu hoa",
+      "Tôi tưới nước cho chậu hoa."
+    ],
+    "word_gyesangi": [
+      "máy tính bỏ túi",
+      "Tôi cộng bằng máy tính bỏ túi."
+    ],
+    "word_hagwon": [
+      "trung tâm học thêm",
+      "Buổi tối tôi đi học thêm tiếng Anh."
+    ],
+    "word_tomato": [
+      "cà chua",
+      "Tôi thái cà chua làm salad."
+    ],
+    "word_ppyam": [
+      "má",
+      "Má tôi đỏ lên vì lạnh."
+    ],
+    "word_tongjang": [
+      "sổ tài khoản",
+      "Lương đã vào sổ tài khoản của tôi."
+    ],
+    "word_gyeonggijang": [
+      "sân vận động",
+      "Sân vận động chật kín người."
+    ],
+    "word_cheonnal": [
+      "ngày đầu tiên",
+      "Ngày đầu đi làm thật hồi hộp."
+    ],
+    "word_yeoreumcheol": [
+      "mùa hè",
+      "Vào mùa hè tôi uống nhiều nước."
+    ],
+    "word_chulgeun": [
+      "đi làm",
+      "Vào giờ đi làm đường bị tắc."
+    ],
+    "word_toegeun": [
+      "tan làm",
+      "Sau khi tan làm tôi tập thể dục."
+    ],
+    "word_jeoncheol": [
+      "tàu điện",
+      "Tôi đi học bằng tàu điện."
+    ],
+    "word_sikppang": [
+      "bánh mì gối",
+      "Sáng nay tôi nướng bánh mì gối."
+    ],
+    "word_taepung": [
+      "bão",
+      "Chuyến bay bị hủy vì bão."
+    ],
+    "word_yeonhyu": [
+      "kỳ nghỉ dài",
+      "Tôi về quê trong kỳ nghỉ dài."
+    ],
+    "word_chwijik": [
+      "xin việc",
+      "Tôi đang chuẩn bị xin việc."
+    ],
+    "word_baem": [
+      "rắn",
+      "Tôi thấy một con rắn trên đường núi."
+    ],
+    "word_doenjang": [
+      "tương đậu nành",
+      "Tôi nấu canh bằng tương đậu nành."
+    ],
+    "word_keoteun": [
+      "rèm cửa",
+      "Làm ơn mở rèm cửa."
+    ],
+    "word_sonagi": [
+      "mưa rào",
+      "Trời đổ mưa rào nên quần áo tôi bị ướt."
+    ],
+    "word_goguma": [
+      "khoai lang",
+      "Mùa đông khoai lang nướng là ngon nhất."
+    ],
+    "word_sonsugeon": [
+      "khăn tay",
+      "Tôi lau mồ hôi bằng khăn tay."
+    ],
+    "word_songaji": [
+      "bê con",
+      "Con bê ở bên cạnh mẹ nó."
+    ],
+    "word_momsal": [
+      "ốm vì kiệt sức",
+      "Tôi bị ốm vì kiệt sức nên nghỉ một ngày."
+    ],
+    "word_chigwa": [
+      "nha khoa",
+      "Tôi bị đau răng nên đi nha khoa."
+    ],
+    "word_japangi": [
+      "máy bán hàng tự động",
+      "Tôi lấy cà phê từ máy bán hàng tự động."
+    ],
+    "word_sangchu": [
+      "rau xà lách",
+      "Tôi cuốn thịt với xà lách để ăn."
+    ],
+    "word_jaechaegi": [
+      "hắt hơi",
+      "Bụi làm tôi hắt hơi."
+    ],
+    "word_hoengdanbodo": [
+      "vạch sang đường",
+      "Hãy qua đường ở vạch sang đường."
+    ],
+    "word_seonpunggi": [
+      "quạt máy",
+      "Trời nóng nên tôi bật quạt."
+    ],
+    "word_pyeongil": [
+      "ngày trong tuần",
+      "Ngày trong tuần có ít khách."
+    ],
+    "word_mokgeori": [
+      "dây chuyền",
+      "Tôi được tặng dây chuyền vào sinh nhật."
+    ],
+    "word_sopo": [
+      "bưu kiện",
+      "Bưu kiện đã đến nhà."
+    ],
+    "word_araecheung": [
+      "tầng dưới",
+      "Ở tầng dưới có cửa hàng tiện lợi."
+    ],
+    "word_tteokbokki": [
+      "bánh gạo cay",
+      "Tteokbokki hơi cay."
+    ],
+    "word_nokcha": [
+      "trà xanh",
+      "Tôi uống trà xanh ấm."
+    ],
+    "word_seongham": [
+      "quý danh",
+      "Xin hỏi quý danh của ngài?"
+    ],
+    "word_setakso": [
+      "tiệm giặt",
+      "Tôi gửi áo khoác ở tiệm giặt."
+    ],
+    "word_piltong": [
+      "hộp bút",
+      "Trong hộp bút của tôi không có bút chì."
+    ],
+    "word_haksaengjeung": [
+      "thẻ học sinh",
+      "Có thẻ học sinh thì được giảm giá."
+    ],
+    "word_bit_2": [
+      "lược",
+      "Tôi lấy chiếc lược ra khỏi túi."
+    ],
+    "word_kkamansaek": [
+      "màu đen tuyền",
+      "Một con mèo đen tuyền đi ngang qua."
+    ],
+    "word_hayansaek": [
+      "màu trắng tinh",
+      "Tôi ủi một chiếc áo sơ mi trắng tinh."
+    ],
+    "word_gaeguri": [
+      "ếch",
+      "Ếch kêu trong ao."
+    ],
+    "word_gilga": [
+      "ven đường",
+      "Hoa nở ven đường."
+    ],
+    "word_binmul": [
+      "nước mưa",
+      "Nước mưa chảy dọc theo cửa sổ."
+    ],
+    "word_haetbyeot": [
+      "nắng",
+      "Tôi phơi quần áo dưới nắng."
+    ],
+    "word_kongnamul": [
+      "giá đỗ",
+      "Tôi trộn gia vị vào giá đỗ để ăn."
+    ],
+    "word_namul": [
+      "rau rừng trộn",
+      "Vào mùa xuân rau rừng trộn rất ngon."
+    ],
+    "word_hyeongwan": [
+      "lối vào nhà",
+      "Vui lòng cởi giày ở lối vào."
+    ],
+    "word_kkeom": [
+      "kẹo cao su",
+      "Đừng nhai kẹo cao su trong giờ học."
+    ],
+    "word_juk": [
+      "cháo",
+      "Khi ốm tôi ăn cháo."
+    ],
+    "word_bapgeureut": [
+      "bát cơm",
+      "Tôi ăn sạch bát cơm."
+    ],
+    "word_bulkkot": [
+      "ngọn lửa, tia lửa",
+      "Ngọn lửa thắp sáng bầu trời đêm."
+    ],
+    "word_sinipsaeng": [
+      "học sinh mới",
+      "Có tiệc chào mừng học sinh mới."
+    ],
+    "word_hoesaek": [
+      "màu xám",
+      "Mây xám đang kéo đến."
+    ],
+    "word_dongari": [
+      "câu lạc bộ sinh viên",
+      "Tôi đã tham gia câu lạc bộ nhiếp ảnh."
+    ],
+    "word_baiollin": [
+      "vi-ô-lông",
+      "Tiếng vi-ô-lông thật hay."
+    ],
+    "word_noraebang": [
+      "phòng karaoke",
+      "Tôi đi hát karaoke với bạn bè."
+    ],
+    "word_daedosi": [
+      "thành phố lớn",
+      "Ở thành phố lớn giá nhà đắt."
+    ],
+    "word_eorinai": [
+      "em bé",
+      "Một em bé đang khóc một mình."
+    ],
+    "word_pojang": [
+      "gói, đóng gói",
+      "Làm ơn gói lại thành quà."
+    ],
+    "word_inwon": [
+      "số người",
+      "Có bao nhiêu người?"
+    ],
+    "word_soseolga": [
+      "tiểu thuyết gia",
+      "Tôi đã gặp một tiểu thuyết gia nổi tiếng."
+    ],
+    "word_dojagi": [
+      "đồ gốm",
+      "Tôi đang học làm đồ gốm."
+    ],
+    "word_sinmunji": [
+      "giấy báo",
+      "Tôi lau cửa kính bằng giấy báo."
+    ],
+    "word_gosokdoro": [
+      "đường cao tốc",
+      "Có tai nạn trên đường cao tốc."
+    ],
+    "word_jagayong": [
+      "xe riêng",
+      "Tôi đi làm bằng xe riêng."
+    ],
+    "word_majeunpyeon": [
+      "phía đối diện",
+      "Ngân hàng ở phía đối diện."
+    ],
+    "word_geonneopyeon": [
+      "bên kia đường",
+      "Cửa hàng bên kia đường rẻ hơn."
+    ],
+    "word_iutjip": [
+      "nhà hàng xóm",
+      "Hàng xóm cho chúng tôi bánh gạo."
+    ],
+    "word_peullaseutik": [
+      "nhựa",
+      "Nhựa được vứt riêng."
+    ],
+    "word_chuljang": [
+      "chuyến công tác",
+      "Tuần sau tôi đi công tác ở Busan."
+    ],
+    "word_mogyoktang": [
+      "nhà tắm công cộng",
+      "Cuối tuần tôi đi nhà tắm công cộng."
+    ],
+    "word_badanmul": [
+      "nước biển",
+      "Nước biển rất lạnh."
+    ],
+    "word_chuka": [
+      "lời chúc mừng",
+      "Tôi đã chuẩn bị quà chúc mừng."
+    ],
+    "word_chwiso": [
+      "hủy",
+      "Có thể hủy đặt chỗ đến trước một ngày."
+    ],
+    "word_gyeoulcheol": [
+      "mùa đông",
+      "Vào mùa đông hãy cẩn thận bị cảm."
+    ],
+    "word_gochujang": [
+      "tương ớt Hàn Quốc",
+      "Tôi cho tương ớt vào cơm trộn."
+    ],
+    "word_bitamin": [
+      "vitamin",
+      "Tôi uống vitamin mỗi ngày."
+    ],
+    "word_bilding": [
+      "tòa nhà cao tầng",
+      "Tòa nhà đó có ba mươi tầng."
+    ],
+    "word_sikcho": [
+      "giấm",
+      "Tôi cho một chút giấm vào salad."
+    ],
+    "word_janghakgeum": [
+      "học bổng",
+      "Học kỳ này tôi nhận được học bổng."
+    ],
+    "word_churimmun": [
+      "cửa ra vào",
+      "Vui lòng đóng kỹ cửa ra vào."
+    ],
+    "word_hoejang": [
+      "chủ tịch",
+      "Chủ tịch đã phát biểu chào mừng."
+    ],
+    "word_tongil": [
+      "sự thống nhất",
+      "Chúng tôi đã học về sự thống nhất."
+    ],
+    "word_jaesan": [
+      "tài sản",
+      "Họ để lại tài sản cho gia đình."
+    ],
+    "word_jeonguk": [
+      "cả nước",
+      "Trời mưa trên cả nước."
+    ],
+    "word_gajeong": [
+      "gia đình, tổ ấm",
+      "Tôi kết hôn và xây dựng tổ ấm."
+    ],
+    "word_nongeop": [
+      "nông nghiệp",
+      "Nông nghiệp ở vùng này rất phát triển."
+    ],
+    "word_sobija": [
+      "người tiêu dùng",
+      "Chúng tôi lắng nghe ý kiến của người tiêu dùng."
+    ],
+    "word_nodongja": [
+      "người lao động",
+      "Những người lao động đang nghỉ ngơi."
+    ],
+    "word_daejung": [
+      "đại chúng",
+      "Nó rất được đại chúng ưa thích."
+    ],
+    "word_siin": [
+      "nhà thơ",
+      "Tôi thích thơ của nhà thơ đó."
+    ],
+    "word_anaunseo": [
+      "phát thanh viên",
+      "Phát thanh viên đọc tin tức."
+    ],
+    "word_kkadak": [
+      "lý do",
+      "Hãy nói lý do bạn đến muộn."
+    ],
+    "word_gyeongyeong": [
+      "quản trị kinh doanh",
+      "Tôi học quản trị kinh doanh ở đại học."
+    ],
+    "word_imgeum": [
+      "tiền lương",
+      "Tiền lương đã tăng."
+    ],
+    "word_seoyang": [
+      "phương Tây",
+      "Tôi thích đồ ăn phương Tây."
+    ],
+    "word_imiji": [
+      "hình ảnh",
+      "Hình ảnh của công ty đã tốt hơn."
+    ],
+    "word_suchul": [
+      "xuất khẩu",
+      "Xuất khẩu ô tô đã tăng."
+    ],
+    "word_choecho": [
+      "đầu tiên",
+      "Đây là cái đầu tiên trên thế giới."
+    ],
+    "word_suip": [
+      "thu nhập",
+      "Thu nhập của tôi tăng một chút."
+    ],
+    "word_muyeok": [
+      "mậu dịch",
+      "Tôi làm việc ở công ty mậu dịch."
+    ],
+    "word_jonghap": [
+      "tổng hợp",
+      "Điểm tổng hợp cao."
+    ],
+    "word_panmae": [
+      "bán hàng",
+      "Việc bán hàng đã bắt đầu."
+    ],
+    "word_gongsa": [
+      "công trình xây dựng",
+      "Đường bị chặn vì công trình xây dựng."
+    ],
+    "word_muyong": [
+      "nghệ thuật múa",
+      "Tôi đã xem một buổi biểu diễn múa."
+    ],
+    "word_nonmun": [
+      "luận văn",
+      "Tôi đang viết luận văn."
+    ],
+    "word_ollimpik": [
+      "Thế vận hội",
+      "Tôi xem Thế vận hội trên tivi."
+    ],
+    "word_munjejeom": [
+      "điểm có vấn đề",
+      "Chúng tôi đã tìm ra điểm có vấn đề."
+    ],
+    "word_yesulga": [
+      "nghệ sĩ",
+      "Các nghệ sĩ sống cùng nhau ở khu này."
+    ],
+    "word_model": [
+      "người mẫu",
+      "Người mẫu bước đi trên sàn diễn."
+    ],
+    "word_yeonguso": [
+      "viện nghiên cứu",
+      "Tôi làm việc ở viện nghiên cứu."
+    ],
+    "word_geulloja": [
+      "người làm công",
+      "Ngày Người lao động là vào tháng Năm."
+    ],
+    "word_bangsongguk": [
+      "đài truyền hình",
+      "Chúng tôi đã tham quan đài truyền hình."
+    ],
+    "word_mulsok": [
+      "dưới nước",
+      "Tôi mở mắt dưới nước."
+    ],
+    "word_wiban": [
+      "vi phạm",
+      "Tôi đã nộp phạt vì vi phạm đèn tín hiệu."
+    ],
+    "word_neomeo": [
+      "bên kia",
+      "Bên kia ngọn núi có một ngôi làng."
+    ],
+    "word_donggi": [
+      "động cơ",
+      "Hãy cho biết động cơ ứng tuyển của bạn."
+    ],
+    "word_seutail": [
+      "phong cách",
+      "Tôi đã đổi kiểu tóc."
+    ],
+    "word_sinyong": [
+      "uy tín",
+      "Không được đánh mất uy tín."
+    ],
+    "word_banjang": [
+      "lớp trưởng",
+      "Tôi được bầu làm lớp trưởng."
+    ],
+    "word_sincheong": [
+      "đơn đăng ký",
+      "Thời hạn đăng ký đã kết thúc."
+    ],
+    "word_apeum": [
+      "nỗi đau",
+      "Tôi cố gắng quên đi nỗi đau."
+    ],
+    "word_gyoryu": [
+      "giao lưu",
+      "Giao lưu giữa hai nước rất sôi nổi."
+    ],
+    "word_geulsseugi": [
+      "viết lách",
+      "Tôi học lớp viết."
+    ],
+    "word_daegieop": [
+      "tập đoàn lớn",
+      "Tôi đã xin được việc ở một tập đoàn lớn."
+    ],
+    "word_bujang": [
+      "trưởng phòng",
+      "Trưởng phòng đã triệu tập cuộc họp."
+    ],
+    "word_insang": [
+      "ấn tượng",
+      "Ấn tượng đầu tiên rất tốt."
+    ],
+    "word_sicheongja": [
+      "khán giả truyền hình",
+      "Họ đọc thư của một khán giả."
+    ],
+    "word_jongeobwon": [
+      "nhân viên",
+      "Nhân viên đã hướng dẫn chúng tôi rất tận tình."
+    ],
+    "word_gukoeuiwon": [
+      "nghị sĩ quốc hội",
+      "Đây là cuộc bầu cử để chọn nghị sĩ quốc hội."
+    ],
+    "word_midieo": [
+      "truyền thông",
+      "Ảnh hưởng của truyền thông rất lớn."
+    ],
+    "word_gotgot": [
+      "khắp nơi",
+      "Hoa nở khắp nơi."
+    ],
+    "word_tap": [
+      "tháp",
+      "Trong chùa có một ngọn tháp cổ."
+    ],
+    "word_geonchuk": [
+      "kiến trúc",
+      "Tôi học chuyên ngành kiến trúc."
+    ],
+    "word_sigyongyu": [
+      "dầu ăn",
+      "Tôi cho dầu ăn vào chảo."
+    ],
+    "word_geop": [
+      "nỗi sợ",
+      "Tôi sợ nên không thể lên được."
+    ],
+    "word_seogyu": [
+      "dầu mỏ",
+      "Giá dầu mỏ đã tăng."
+    ],
+    "word_chaegimja": [
+      "người phụ trách",
+      "Tôi muốn nói chuyện với người phụ trách."
+    ],
+    "word_boram": [
+      "ý nghĩa của nỗ lực",
+      "Tôi cảm thấy việc dạy học rất đáng giá."
+    ],
+    "word_soseu": [
+      "nước sốt",
+      "Cho tôi thêm nước sốt."
+    ],
+    "word_urimal": [
+      "tiếng của chúng ta",
+      "Hãy dùng tiếng của chúng ta thật đẹp."
+    ],
+    "word_hyeonji": [
+      "địa phương, tại chỗ",
+      "Tôi đã thử món ăn địa phương."
+    ],
+    "word_geot_2": [
+      "bề ngoài",
+      "Bên ngoài cứng, bên trong mềm."
+    ],
+    "word_seungyongcha": [
+      "xe ô tô con",
+      "Có năm chiếc xe ô tô con đang đỗ."
+    ],
+    "word_jinchul": [
+      "tiến vào, mở rộng",
+      "Chúng tôi đang chuẩn bị tiến ra nước ngoài."
+    ],
+    "word_giun": [
+      "sức lực",
+      "Tôi không còn chút sức lực nào."
+    ],
+    "word_abeonim": [
+      "cha, cách nói kính trọng",
+      "Xin gửi lời hỏi thăm đến cha của anh."
+    ],
+    "word_mureum": [
+      "câu hỏi",
+      "Vui lòng trả lời câu hỏi."
+    ],
+    "word_eomeonim": [
+      "mẹ, cách nói kính trọng",
+      "Mẹ của anh có khỏe không?"
+    ],
+    "word_haeseok": [
+      "sự diễn giải",
+      "Câu này khó diễn giải."
+    ],
+    "word_sayongja": [
+      "người dùng",
+      "Số người dùng đã tăng rất nhiều."
+    ],
+    "word_sawon": [
+      "nhân viên công ty",
+      "Có một nhân viên mới vào."
+    ],
+    "word_gangmul": [
+      "nước sông",
+      "Nước sông trong."
+    ],
+    "word_rideum": [
+      "nhịp điệu",
+      "Tôi nhảy theo nhịp điệu."
+    ],
+    "word_moniteo": [
+      "màn hình máy tính",
+      "Màn hình tối quá."
+    ],
+    "word_un": [
+      "vận may",
+      "Vận may đến với tôi nên tôi đã đỗ kỳ thi."
+    ],
+    "word_ilsangsaenghwal": [
+      "sinh hoạt hằng ngày",
+      "Đây là từ thường dùng trong sinh hoạt hằng ngày."
+    ],
+    "word_binil": [
+      "màng nhựa mỏng",
+      "Tôi bọc thức ăn bằng màng nhựa."
     ]
   }
 }

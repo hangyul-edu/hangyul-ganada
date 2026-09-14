@@ -785,6 +785,15 @@ def check_compounds(report: Report) -> None:
         # derive exactly that — this set records that somebody read them and
         # agreed rather than that the gate was quietened.
         "빚어지다", "잦아들다",
+        # The eighteenth pass, batches 300–306, read the same way. 놓이다 and
+        # 섞이다 are 놓-/섞- plus the passive -이-, so the ㅎ drops and the ㄲ
+        # carries over: 노이다, 서끼다. 맞은편 is 맞- plus the ending -은 in
+        # front of 편: 마즌편. 떡볶이 is 볶- plus the nominalising -이, the
+        # same shape as 먹이: 떡뽀끼. In all four the vowel begins an ending and
+        # the rules derive exactly that. 꽃잎 is the other case — 잎 is a word
+        # of its own, so it takes the ㄴ that 나뭇잎 takes — and it is in
+        # pronunciation._IRREGULAR as 꼰닙, not here.
+        "놓이다", "섞이다", "맞은편", "떡볶이",
         "만약", "만일", "큰일", "별일", "나뭇잎",
     }
     known = set(_IRREGULAR) | reviewed

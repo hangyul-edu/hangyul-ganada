@@ -2731,7 +2731,7 @@
     ],
     "word_gamyeon": [
       "maske",
-      "Maske taktım."
+      "Maske takıp dans ettim."
     ],
     "word_ingi": [
       "popülerlik",
@@ -8233,8 +8233,8 @@
       "Öğretmenimin ziyaretine gittim."
     ],
     "word_jiwon": [
-      "destek",
-      "Destek aldım."
+      "yardım, destek",
+      "Hükümetten yardım aldım."
     ],
     "word_oraen": [
       "uzun süredir",
@@ -9685,7 +9685,7 @@
     ],
     "word_sinjang": [
       "boy",
-      "Boyumu ölçüyorum."
+      "Boyunuz kaç?"
     ],
     "word_neullida": [
       "artırmak",
@@ -10394,7 +10394,7 @@
     ],
     "word_jiji": [
       "destek",
-      "Destek gördüm."
+      "Birçok insanın desteğini aldım."
     ],
     "word_seupai": [
       "casus",
@@ -13580,6 +13580,1994 @@
     "word_yubohada": [
       "askıya almak",
       "Kararımızı bir süre askıya aldık."
+    ],
+    "word_gasu": [
+      "şarkıcı",
+      "O şarkıcı iyi şarkı söylüyor."
+    ],
+    "word_gyejeol": [
+      "mevsim",
+      "Hangi mevsimi seversiniz?"
+    ],
+    "word_gyeongchalgwan": [
+      "polis memuru",
+      "Bir polis memuruna yolu sordum."
+    ],
+    "word_gyeongchi": [
+      "manzara",
+      "Burada manzara gerçekten güzel."
+    ],
+    "word_godeunghaksaeng": [
+      "lise öğrencisi",
+      "Kardeşim lise öğrencisi."
+    ],
+    "word_gwaja": [
+      "bisküvi veya atıştırmalık",
+      "Çocuklar atıştırmalık yiyor."
+    ],
+    "word_gyogwaseo": [
+      "ders kitabı",
+      "Lütfen ders kitabını açın."
+    ],
+    "word_gugyeong": [
+      "gezip görme",
+      "Çiçekleri görmeye gittim."
+    ],
+    "word_gisuksa": [
+      "yurt",
+      "Yurtta kalıyorum."
+    ],
+    "word_namdongsaeng": [
+      "erkek kardeş",
+      "Erkek kardeşim uzun boylu."
+    ],
+    "word_naenyeon": [
+      "gelecek yıl",
+      "Gelecek yıl Kore'ye gideceğim."
+    ],
+    "word_dallyeok": [
+      "takvim",
+      "Duvarda bir takvim asılı."
+    ],
+    "word_daehaksaeng": [
+      "üniversite öğrencisi",
+      "Kardeşim üniversite öğrencisi oldu."
+    ],
+    "word_dwaejigogi": [
+      "domuz eti",
+      "Domuz etini ızgarada pişirip yedik."
+    ],
+    "word_deungsan": [
+      "dağ yürüyüşü",
+      "Hafta sonu dağ yürüyüşüne gidiyorum."
+    ],
+    "word_maepda": [
+      "acı olmak",
+      "Bu tteokbokki çok acı."
+    ],
+    "word_menyu": [
+      "menü",
+      "Menüyü gösterir misiniz, lütfen?"
+    ],
+    "word_mogyok": [
+      "banyo",
+      "Yatmadan önce banyo yapıyorum."
+    ],
+    "word_mit": [
+      "alt",
+      "Kedi yatağın altında."
+    ],
+    "word_bareum": [
+      "telaffuz",
+      "Telaffuzunuz çok iyi."
+    ],
+    "word_banghak": [
+      "okul tatili",
+      "Tatilde ne yapacaksınız?"
+    ],
+    "word_baebureuda": [
+      "tok olmak",
+      "Çok yedim, bu yüzden tokum."
+    ],
+    "word_baekwajeom": [
+      "alışveriş merkezi",
+      "Alışveriş merkezinden kıyafet aldım."
+    ],
+    "word_bolpen": [
+      "tükenmez kalem",
+      "Bana bir kalem ödünç verir misiniz?"
+    ],
+    "word_saekkkal": [
+      "renk",
+      "Bu rengi beğendim."
+    ],
+    "word_seojeom": [
+      "kitapçı",
+      "Kitapçıdan bir kitap aldım."
+    ],
+    "word_seonmulhada": [
+      "hediye etmek",
+      "Arkadaşıma çiçek hediye ettim."
+    ],
+    "word_sesu": [
+      "yüz yıkama",
+      "Sabah yüzümü yıkıyorum."
+    ],
+    "word_sopung": [
+      "piknik",
+      "Yarın pikniğe gidiyoruz."
+    ],
+    "word_syoping": [
+      "alışveriş",
+      "Hafta sonu alışveriş yaptım."
+    ],
+    "word_syupeomaket": [
+      "süpermarket",
+      "Süpermarketten sebze aldım."
+    ],
+    "word_yangbok": [
+      "takım elbise",
+      "Babam takım elbise giyer."
+    ],
+    "word_eorini": [
+      "çocuk",
+      "Çocuklar için biletler ücretsiz."
+    ],
+    "word_eeokeon": [
+      "klima",
+      "Hava sıcaktı, bu yüzden klimayı açtım."
+    ],
+    "word_oraenman": [
+      "uzun zaman sonra",
+      "Uzun zaman sonra bir arkadaşımla görüştüm."
+    ],
+    "word_oeguk": [
+      "yabancı ülke",
+      "Hiç yurt dışında yaşadınız mı?"
+    ],
+    "word_oegugeo": [
+      "yabancı dil",
+      "Yabancı dil öğreniyorum."
+    ],
+    "word_oegugin": [
+      "yabancı",
+      "Çok sayıda yabancı arkadaşım var."
+    ],
+    "word_undonghada": [
+      "spor yapmak",
+      "Her sabah spor yapıyorum."
+    ],
+    "word_undonghwa": [
+      "spor ayakkabı",
+      "Yeni spor ayakkabımı giydim."
+    ],
+    "word_ip_2": [
+      "yaprak",
+      "Sonbaharda yapraklar dökülür."
+    ],
+    "word_jangmi": [
+      "gül",
+      "Güllerin kokusu güzel."
+    ],
+    "word_jeomsimsigan": [
+      "öğle arası",
+      "Öğle arasında yürüyüş yapıyorum."
+    ],
+    "word_joreop": [
+      "mezuniyet",
+      "Mezuniyetin kutlu olsun!"
+    ],
+    "word_junghakgyo": [
+      "ortaokul",
+      "Oğlum ortaokula gidiyor."
+    ],
+    "word_chodeunghakgyo": [
+      "ilkokul",
+      "Kızım ilkokula başladı."
+    ],
+    "word_jinandal": [
+      "geçen ay",
+      "Geçen ay taşındım."
+    ],
+    "word_jinanju": [
+      "geçen hafta",
+      "Geçen hafta soğuk aldım."
+    ],
+    "word_jiugae": [
+      "silgi",
+      "Lütfen silgiyle silin."
+    ],
+    "word_jjigae": [
+      "Kore güveci",
+      "Öğle yemeğinde jjigae yedim."
+    ],
+    "word_cheongbaji": [
+      "kot pantolon",
+      "Kot pantolon size yakışıyor."
+    ],
+    "word_chiyak": [
+      "diş macunu",
+      "Diş macunu bitti."
+    ],
+    "word_kolla": [
+      "kola",
+      "Bir kola, lütfen."
+    ],
+    "word_taegwondo": [
+      "tekvando",
+      "Çocuk tekvando öğreniyor."
+    ],
+    "word_teniseu": [
+      "tenis",
+      "Yeni bir tenis raketi aldım."
+    ],
+    "word_tellebijeon": [
+      "televizyon",
+      "Akşam televizyon izliyorum."
+    ],
+    "word_hangnyeon": [
+      "sınıf, yıl",
+      "Kaçıncı sınıftasın?"
+    ],
+    "word_hanbok": [
+      "hanbok, Kore geleneksel kıyafeti",
+      "Seollal'da hanbok giyeriz."
+    ],
+    "word_hanja": [
+      "Çince karakterler",
+      "Çince karakterler zor."
+    ],
+    "word_haembeogeo": [
+      "hamburger",
+      "Bir hamburger, lütfen."
+    ],
+    "word_hyuil": [
+      "tatil günü",
+      "Tatil günlerinde geç kalkıyorum."
+    ],
+    "word_hyuji": [
+      "kağıt mendil",
+      "Bir kağıt mendil verir misiniz, lütfen?"
+    ],
+    "word_kkeulhida": [
+      "kaynatmak",
+      "Su kaynatıp çay içiyorum."
+    ],
+    "word_bokda": [
+      "sotelemek",
+      "Sebzeleri soteleyip yedim."
+    ],
+    "word_damgeuda": [
+      "daldırmak, suya batırmak",
+      "Ayaklarımı suya soktum."
+    ],
+    "word_gakkuda": [
+      "bakmak, yetiştirmek",
+      "Büyükannem bahçeye bakıyor."
+    ],
+    "word_gwonhada": [
+      "ikram etmek, tavsiye etmek",
+      "Misafire çay ikram ettim."
+    ],
+    "word_kkeudeogida": [
+      "başını sallamak",
+      "Çocuk başını salladı."
+    ],
+    "word_kkeunheojida": [
+      "kopmak",
+      "İp koptu."
+    ],
+    "word_neolpida": [
+      "genişletmek",
+      "Yolu genişletme çalışması yapılıyor."
+    ],
+    "word_nohida": [
+      "konulmuş olmak, durmak",
+      "Masanın üstünde çiçekler duruyor."
+    ],
+    "word_sallida": [
+      "hayat kurtarmak",
+      "Doktor hastayı kurtardı."
+    ],
+    "word_seuda": [
+      "dikmek, durdurmak",
+      "Şemsiyeyi kapının yanına diktim."
+    ],
+    "word_seokkida": [
+      "karışmak",
+      "Su ile yağ karışmaz."
+    ],
+    "word_kyeojida": [
+      "yanmak, açılmak",
+      "Işık kendi kendine yandı."
+    ],
+    "word_jeonghaejida": [
+      "belirlenmek",
+      "Toplantı saati belirlendi."
+    ],
+    "word_saenggyeonada": [
+      "ortaya çıkmak",
+      "Birçok yeni dükkân ortaya çıktı."
+    ],
+    "word_naraoda": [
+      "uçarak gelmek",
+      "Pencereye bir kuş uçarak geldi."
+    ],
+    "word_dallyeooda": [
+      "koşarak gelmek",
+      "Yavru köpek bana koşarak geldi."
+    ],
+    "word_yangbohada": [
+      "yol vermek, yer vermek",
+      "Yaşlı bir hanıma yerimi verdim."
+    ],
+    "word_hwaryonghada": [
+      "iyi değerlendirmek",
+      "Hafta sonu zamanımı iyi değerlendiriyorum."
+    ],
+    "word_dayanghada": [
+      "çeşitli olmak",
+      "Bu dükkânın ekmek çeşitleri çok."
+    ],
+    "word_dapdapada": [
+      "bunalmak, sıkışmış hissetmek",
+      "Oda dar olduğu için bunalıyorum."
+    ],
+    "word_dukkeopda": [
+      "kalın olmak",
+      "Bu kitap çok kalın."
+    ],
+    "word_dunggeulda": [
+      "yuvarlak olmak",
+      "Ay yuvarlak."
+    ],
+    "word_gukda": [
+      "kalın olmak (uzun bir şey)",
+      "Bu ağacın gövdesi kalın."
+    ],
+    "word_ganeulda": [
+      "ince olmak (uzun bir şey)",
+      "Bu iplik çok ince."
+    ],
+    "word_mipda": [
+      "sevimsiz olmak, nefret edilesi olmak",
+      "Yalan söyleyen insanlardan nefret ediyorum."
+    ],
+    "word_natseolda": [
+      "yabancı olmak, alışık olmamak",
+      "Bu mahalle bana hâlâ yabancı."
+    ],
+    "word_eongttunghada": [
+      "saçma, beklenmedik olmak",
+      "Çocuk beklenmedik bir soru sordu."
+    ],
+    "word_usuhada": [
+      "üstün olmak",
+      "Notlar üstün."
+    ],
+    "word_jeokdanghada": [
+      "uygun olmak",
+      "Bu odanın boyutu uygun."
+    ],
+    "word_jogeumata": [
+      "minicik olmak",
+      "Minicik bir kutu aldım."
+    ],
+    "word_teunteunhada": [
+      "sağlam olmak",
+      "Bu sandalye sağlam."
+    ],
+    "word_pyeollihada": [
+      "kullanışlı olmak",
+      "Metro çok kullanışlı."
+    ],
+    "word_pureuda": [
+      "mavi ya da yeşil olmak (doğada)",
+      "Dağlar yemyeşil."
+    ],
+    "word_hwalbalhada": [
+      "hareketli olmak",
+      "Çocuk çok hareketli."
+    ],
+    "word_kkwae": [
+      "epey, oldukça",
+      "Bugün epey soğuk."
+    ],
+    "word_kkujunhi": [
+      "düzenli olarak, istikrarla",
+      "Her gün düzenli olarak pratik yapıyorum."
+    ],
+    "word_kkamjjak": [
+      "irkilerek",
+      "Yüksek bir sesten irkildim."
+    ],
+    "word_deoguna": [
+      "üstelik",
+      "Geç kaldım. Üstelik yağmur yağıyor."
+    ],
+    "word_magu": [
+      "rastgele, ölçüsüzce",
+      "Lütfen parayı ölçüsüzce harcamayın."
+    ],
+    "word_bigyojeok": [
+      "nispeten",
+      "Bu problem nispeten kolay."
+    ],
+    "word_yunanhi": [
+      "alışılmadık şekilde",
+      "Bugün alışılmadık şekilde yorgunum."
+    ],
+    "word_jeomcha": [
+      "giderek",
+      "Hava giderek soğuyor."
+    ],
+    "word_puk": [
+      "deliksiz, derin",
+      "Hafta sonu iyice dinlenin."
+    ],
+    "word_haemada": [
+      "her yıl",
+      "Her yıl ilkbaharda çiçekler açar."
+    ],
+    "word_hanpyeon": [
+      "öte yandan",
+      "Mutluyum. Öte yandan endişeliyim de."
+    ],
+    "word_jeuk": [
+      "yani",
+      "Yarın, yani cumartesi görüşelim."
+    ],
+    "word_gawi": [
+      "makas",
+      "Kâğıdı makasla kesiyorum."
+    ],
+    "word_gansik": [
+      "ara öğün, atıştırmalık",
+      "Öğleden sonra atıştırmalık yiyorum."
+    ],
+    "word_geosil": [
+      "oturma odası",
+      "Oturma odasında televizyon izliyorum."
+    ],
+    "word_georeum": [
+      "adım",
+      "Lütfen bir adım öne çıkın."
+    ],
+    "word_golmok": [
+      "ara sokak",
+      "Ara sokakta çocuklar oynuyor."
+    ],
+    "word_gongmuwon": [
+      "memur",
+      "Ağabeyim memur."
+    ],
+    "word_gwamok": [
+      "ders",
+      "Hangi dersi seversiniz?"
+    ],
+    "word_gwaje": [
+      "ödev, proje",
+      "Ödevi yarına kadar teslim etmem gerekiyor."
+    ],
+    "word_gwangwang": [
+      "turizm, gezi",
+      "Seul'de gezi yaptım."
+    ],
+    "word_gwangwanggaek": [
+      "turist",
+      "Turistler fotoğraf çekiyor."
+    ],
+    "word_gyotongsago": [
+      "trafik kazası",
+      "Dün bir trafik kazası oldu."
+    ],
+    "word_gungmul": [
+      "çorba suyu",
+      "Çorba suyu çok ferahlatıcı."
+    ],
+    "word_geuneul": [
+      "gölge",
+      "Ağacın gölgesinde dinlenelim."
+    ],
+    "word_geulja": [
+      "harf",
+      "Harfler çok küçük."
+    ],
+    "word_gigan": [
+      "dönem, süre",
+      "Sınav dönemi olduğu için meşgulüm."
+    ],
+    "word_gion": [
+      "hava sıcaklığı",
+      "Bugün hava sıcaklığı çok düştü."
+    ],
+    "word_gichim": [
+      "öksürük",
+      "Öksürüğüm durmuyor."
+    ],
+    "word_kkeopjil": [
+      "kabuk",
+      "Muzun kabuğunu soydum."
+    ],
+    "word_kkokdaegi": [
+      "tepe, zirve",
+      "Ağacın tepesinde bir kuş var."
+    ],
+    "word_kkochip": [
+      "taç yaprağı",
+      "Taç yaprakları rüzgârda uçuşuyor."
+    ],
+    "word_kkul": [
+      "bal",
+      "Çaya bal koyuyorum."
+    ],
+    "word_nabi": [
+      "kelebek",
+      "Bir kelebek çiçeğe kondu."
+    ],
+    "word_namutgaji": [
+      "ağaç dalı",
+      "Bir kuş dalda oturuyor."
+    ],
+    "word_nammae": [
+      "kardeş, erkek ve kız",
+      "Biz kardeşiz."
+    ],
+    "word_nagyeop": [
+      "dökülmüş yapraklar",
+      "Yolda çok dökülmüş yaprak var."
+    ],
+    "word_noin": [
+      "yaşlı",
+      "Yaşlı birine yerimi verdim."
+    ],
+    "word_noriteo": [
+      "oyun parkı",
+      "Çocuklar oyun parkında oynuyor."
+    ],
+    "word_nongsa": [
+      "çiftçilik",
+      "Dedem çiftçilik yapıyor."
+    ],
+    "word_nunbit": [
+      "bakış",
+      "Bakışları sıcak."
+    ],
+    "word_nunap": [
+      "gözlerin önü",
+      "Otobüsü gözümün önünde kaçırdım."
+    ],
+    "word_danjeom": [
+      "zayıf yön, kusur",
+      "Herkesin zayıf yönleri vardır."
+    ],
+    "word_jangjeom": [
+      "güçlü yön, avantaj",
+      "Bu evin güçlü yönü konumu."
+    ],
+    "word_dalbit": [
+      "ay ışığı",
+      "Ay ışığı çok parlak."
+    ],
+    "word_dapjang": [
+      "yanıt",
+      "Yanıt bekliyorum."
+    ],
+    "word_daemun": [
+      "dış kapı",
+      "Lütfen dış kapıyı açın."
+    ],
+    "word_deowi": [
+      "sıcak, sıcaklık",
+      "Bu yılki sıcaklar gerçekten şiddetli."
+    ],
+    "word_chuwi": [
+      "soğuk",
+      "Soğuktan ellerim dondu."
+    ],
+    "word_dogu": [
+      "alet",
+      "Aletlerinize iyi bakın."
+    ],
+    "word_dosirak": [
+      "yemek kutusu, sefer tası",
+      "Yemeğimi kutuya koyup götürdüm."
+    ],
+    "word_dokseo": [
+      "kitap okuma",
+      "Hobim kitap okumak."
+    ],
+    "word_dongmurwon": [
+      "hayvanat bahçesi",
+      "Hayvanat bahçesinde bir aslan gördüm."
+    ],
+    "word_dutong": [
+      "baş ağrısı",
+      "Başım çok ağrıdığı için ilaç aldım."
+    ],
+    "word_dwijjok": [
+      "arka taraf",
+      "Arka tarafta yer var."
+    ],
+    "word_apjjok": [
+      "ön taraf",
+      "Lütfen ön tarafa oturun."
+    ],
+    "word_anjjok": [
+      "iç taraf",
+      "Lütfen içerideki koltuğa oturun."
+    ],
+    "word_wijjok": [
+      "üst taraf",
+      "Kitaplar üst rafta."
+    ],
+    "word_araejjok": [
+      "alt taraf",
+      "Alt çekmeceyi açmayı deneyin."
+    ],
+    "word_ttam": [
+      "ter",
+      "Spor yaptığım için terliyorum."
+    ],
+    "word_ttangkong": [
+      "yer fıstığı",
+      "Yer fıstığının tadı kavrulmuş gibi."
+    ],
+    "word_ttukkeong": [
+      "kapak",
+      "Lütfen kapağı açın."
+    ],
+    "word_maeumsok": [
+      "kalbin derinliği",
+      "İçimden minnettar oldum."
+    ],
+    "word_manhwa": [
+      "çizgi roman",
+      "Kardeşim çizgi roman seviyor."
+    ],
+    "word_maeryeok": [
+      "çekicilik, cazibe",
+      "Bu şehrin bir cazibesi var."
+    ],
+    "word_meoritsok": [
+      "kafanın içi, zihin",
+      "Kafam karışık."
+    ],
+    "word_memo": [
+      "not",
+      "Buzdolabına bir not yapıştırdım."
+    ],
+    "word_myeongham": [
+      "kartvizit",
+      "Kartvizit alışverişi yaptık."
+    ],
+    "word_mogi": [
+      "sivrisinek",
+      "Yazın çok sivrisinek olur."
+    ],
+    "word_more": [
+      "öbür gün",
+      "Öbür gün yine geleceğim."
+    ],
+    "word_mommuge": [
+      "vücut ağırlığı",
+      "Kilomu ölçtüm."
+    ],
+    "word_muge": [
+      "ağırlık",
+      "Bagajın ağırlığını tartıyorum."
+    ],
+    "word_munjang": [
+      "cümle",
+      "Lütfen bu cümleyi okuyun."
+    ],
+    "word_misul": [
+      "resim, güzel sanatlar",
+      "Resim dersinde resim yapıyoruz."
+    ],
+    "word_misulgwan": [
+      "sanat müzesi",
+      "Hafta sonu sanat müzesine gittim."
+    ],
+    "word_milgaru": [
+      "un",
+      "Undan ekmek yapıyorum."
+    ],
+    "word_badatga": [
+      "deniz kıyısı",
+      "Deniz kıyısında yürüdüm."
+    ],
+    "word_bawi": [
+      "kaya",
+      "Bir kayanın üstüne oturdum."
+    ],
+    "word_balgarak": [
+      "ayak parmağı",
+      "Ayak parmağımı incittim."
+    ],
+    "word_baegyeong": [
+      "arka plan",
+      "Fotoğrafın arka planı güzel."
+    ],
+    "word_beoreut": [
+      "alışkanlık, huy",
+      "Tırnak yeme alışkanlığım var."
+    ],
+    "word_beoseot": [
+      "mantar",
+      "Mantarlı çorba yaptım."
+    ],
+    "word_beoteo": [
+      "tereyağı",
+      "Ekmeğe tereyağı sürüyorum."
+    ],
+    "word_bongji": [
+      "poşet, torba",
+      "Meyveleri poşete koydum."
+    ],
+    "word_bongtu": [
+      "zarf",
+      "Mektubu zarfa koydum."
+    ],
+    "word_bugeun": [
+      "civar, yakın",
+      "İstasyon civarında oturuyorum."
+    ],
+    "word_bujagyong": [
+      "yan etki",
+      "Bu ilacın yan etkisi yok."
+    ],
+    "word_bulbit": [
+      "ışık",
+      "Uzakta bir ışık görünüyor."
+    ],
+    "word_buran": [
+      "kaygı, huzursuzluk",
+      "Sınavdan önce kaygı duyuyorum."
+    ],
+    "word_ppallae": [
+      "çamaşır",
+      "Çok çamaşır birikti."
+    ],
+    "word_ppuri": [
+      "kök",
+      "Ağacın kökleri derin."
+    ],
+    "word_saheul": [
+      "üç gün",
+      "Üç gün boyunca yağmur yağdı."
+    ],
+    "word_sangdaebang": [
+      "karşı taraf, muhatap",
+      "Karşı tarafı iyi dinleyin."
+    ],
+    "word_sangpum": [
+      "ürün, mal",
+      "Yeni bir ürün çıktı."
+    ],
+    "word_saeu": [
+      "karides",
+      "Karides ızgara yapıp yedim."
+    ],
+    "word_seolgeoji": [
+      "bulaşık yıkama",
+      "Akşam yemeğinden sonra bulaşıkları yıkadım."
+    ],
+    "word_sonamu": [
+      "çam ağacı",
+      "Dağda çok çam ağacı var."
+    ],
+    "word_sonnyeo": [
+      "kız torun",
+      "Büyükanne torununu çok seviyor."
+    ],
+    "word_sonbadak": [
+      "avuç içi",
+      "Avucumun içine yazdım."
+    ],
+    "word_sonjabi": [
+      "kulp, kol",
+      "Kapı kolu bozuldu."
+    ],
+    "word_seupgwan": [
+      "alışkanlık",
+      "Erken yatma alışkanlığı edindim."
+    ],
+    "word_sonja": [
+      "erkek torun",
+      "Dede torunuyla oynuyor."
+    ],
+    "word_sunseo": [
+      "sıra",
+      "Lütfen sırayla girin."
+    ],
+    "word_sieomeoni": [
+      "kaynana",
+      "Kaynanam güzel yemek yapar."
+    ],
+    "word_sikgu": [
+      "aile üyesi",
+      "Ailemiz beş kişi."
+    ],
+    "word_sikpum": [
+      "gıda",
+      "Gıda reyonu bodrum katta."
+    ],
+    "word_sillae": [
+      "iç mekân",
+      "Lütfen içeride şapkanızı çıkarın."
+    ],
+    "word_simbureum": [
+      "ayak işi",
+      "Annemin işi için dükkâna gittim."
+    ],
+    "word_akgi": [
+      "müzik aleti",
+      "Hangi müzik aletini öğrenmek istiyorsunuz?"
+    ],
+    "word_aksu": [
+      "el sıkışma",
+      "El sıkıştık."
+    ],
+    "word_anbang": [
+      "ana yatak odası",
+      "Annemle babam ana yatak odasında uyur."
+    ],
+    "word_yaoe": [
+      "açık hava",
+      "Öğle yemeğini açık havada yedik."
+    ],
+    "word_yangnyeom": [
+      "baharat, sos",
+      "Sos iyice sinmiş."
+    ],
+    "word_eoryeoum": [
+      "zorluk",
+      "Zorluk varsa söyleyin."
+    ],
+    "word_yeou": [
+      "tilki",
+      "Ormanda bir tilki gördüm."
+    ],
+    "word_yeoyu": [
+      "boş zaman, imkân",
+      "Bu aralar hiç boş zamanım yok."
+    ],
+    "word_yeollakcheo": [
+      "iletişim bilgileri",
+      "Lütfen iletişim bilgilerinizi verin."
+    ],
+    "word_yeonmal": [
+      "yıl sonu",
+      "Yıl sonunda çok toplantı olur."
+    ],
+    "word_yeolheul": [
+      "on gün",
+      "On gün seyahat ettim."
+    ],
+    "word_yeongha": [
+      "sıfırın altı",
+      "Bu sabah sıfırın altında."
+    ],
+    "word_yeopjip": [
+      "yan ev, komşu ev",
+      "Yan eve yeni bir aile taşındı."
+    ],
+    "word_ojingeo": [
+      "kalamar",
+      "Kalamar ızgara yapılıp yenir."
+    ],
+    "word_ondo": [
+      "sıcaklık",
+      "Oda sıcaklığını biraz yükselttim."
+    ],
+    "word_onmom": [
+      "bütün vücut",
+      "Bütün vücudum ağrıyor."
+    ],
+    "word_oechul": [
+      "dışarı çıkma",
+      "Dışarı çıkmaya hazırlanıyorum."
+    ],
+    "word_oenson": [
+      "sol el",
+      "Sol elimle yazıyorum."
+    ],
+    "word_oreunson": [
+      "sağ el",
+      "Lütfen sağ elinizi kaldırın."
+    ],
+    "word_yogeum": [
+      "ücret",
+      "Otobüs ücreti zamlandı."
+    ],
+    "word_yoksil": [
+      "banyo",
+      "Banyoyu temizledim."
+    ],
+    "word_yoksim": [
+      "açgözlülük",
+      "Açgözlü olmayın."
+    ],
+    "word_yongdon": [
+      "harçlık",
+      "Harçlığımı biriktirip bir kitap aldım."
+    ],
+    "word_useung": [
+      "şampiyonluk, birincilik",
+      "Takımımız birinci oldu."
+    ],
+    "word_upyo": [
+      "posta pulu",
+      "Pul biriktirmek benim hobim."
+    ],
+    "word_unjeonja": [
+      "sürücü",
+      "Sürücüler emniyet kemeri takmalı."
+    ],
+    "word_ureum": [
+      "ağlama",
+      "Bebeğin ağlaması kesildi."
+    ],
+    "word_wicheung": [
+      "üst kat",
+      "Üst kat biraz gürültülü."
+    ],
+    "word_yurichang": [
+      "pencere camı",
+      "Pencere camlarını temizledim."
+    ],
+    "word_yuchiwon": [
+      "anaokulu",
+      "Çocuğum anaokuluna gidiyor."
+    ],
+    "word_yuhaeng": [
+      "moda",
+      "Bu aralar bu renk moda."
+    ],
+    "word_eumnyo": [
+      "içecek",
+      "Ne içmek istersiniz?"
+    ],
+    "word_iik": [
+      "kâr, fayda",
+      "Bu ay kâr ettik."
+    ],
+    "word_iteunnal": [
+      "ertesi gün",
+      "Ertesi sabah yola çıktım."
+    ],
+    "word_ingu": [
+      "nüfus",
+      "Bu şehrin nüfusu kalabalık."
+    ],
+    "word_ilsang": [
+      "günlük hayat",
+      "Günlük hayata döndüm."
+    ],
+    "word_janchi": [
+      "şölen, kutlama",
+      "Büyükannemin doğum günü için kutlama yaptık."
+    ],
+    "word_jamot": [
+      "pijama",
+      "Pijamamı giydim."
+    ],
+    "word_jangnae": [
+      "gelecek",
+      "Gelecekte ne olmak istiyorsun?"
+    ],
+    "word_jangma": [
+      "yağmur mevsimi",
+      "Yağmur mevsimi başladı."
+    ],
+    "word_jangsa": [
+      "ticaret, iş",
+      "Bu aralar işler iyi gidiyor."
+    ],
+    "word_jaeryo": [
+      "malzeme",
+      "Yemek malzemelerini aldım."
+    ],
+    "word_jeoja": [
+      "yazar",
+      "Bu kitabın yazarıyla tanıştım."
+    ],
+    "word_jeochuk": [
+      "birikim",
+      "Her ay birikim yapıyorum."
+    ],
+    "word_jeongong": [
+      "bölüm",
+      "Bölümün ne?"
+    ],
+    "word_jeonnal": [
+      "bir önceki gün",
+      "Sınavdan önceki gün erken yatarım."
+    ],
+    "word_jeongdap": [
+      "doğru cevap",
+      "Doğru cevabı bildim."
+    ],
+    "word_jepum": [
+      "ürün",
+      "Bu ürünün kalitesi iyi."
+    ],
+    "word_josang": [
+      "ata",
+      "Bayramlarda atalarımızı anarız."
+    ],
+    "word_jwaseok": [
+      "koltuk",
+      "Lütfen koltuk numaranızı kontrol edin."
+    ],
+    "word_jubu": [
+      "ev hanımı",
+      "Teyzem ev hanımı."
+    ],
+    "word_juchajang": [
+      "otopark",
+      "Arabayı otoparka park ettim."
+    ],
+    "word_junbimul": [
+      "getirilecekler",
+      "Yarın için gerekli eşyaları hazırladın mı?"
+    ],
+    "word_julgi": [
+      "sap, gövde",
+      "Çiçeğin sapı uzun."
+    ],
+    "word_chanmul": [
+      "soğuk su",
+      "Bir bardak soğuk su, lütfen."
+    ],
+    "word_chamgireum": [
+      "susam yağı",
+      "Biraz susam yağı ekleyin."
+    ],
+    "word_changbak": [
+      "pencerenin dışı",
+      "Pencerenin dışında kar yağıyor."
+    ],
+    "word_chaeneol": [
+      "kanal",
+      "Lütfen kanalı değiştirin."
+    ],
+    "word_chaekgabang": [
+      "okul çantası",
+      "Okul çantam çok ağır."
+    ],
+    "word_cheongnyeon": [
+      "genç",
+      "Gençler gönüllü çalışıyor."
+    ],
+    "word_cheongsonyeon": [
+      "genç, ergen",
+      "Gençler için ücret daha ucuz."
+    ],
+    "word_chejung": [
+      "vücut ağırlığı",
+      "Biraz kilo verdim."
+    ],
+    "word_choroksaek": [
+      "yeşil renk",
+      "Yeşil bir şapka taktım."
+    ],
+    "word_chobap": [
+      "suşi",
+      "Öğle yemeğinde suşi yedim."
+    ],
+    "word_chukje": [
+      "festival",
+      "Sonbaharda festival düzenleniyor."
+    ],
+    "word_munhwa": [
+      "kültür",
+      "Kore kültürüne çok ilgim var."
+    ],
+    "word_gyeongje": [
+      "ekonomi",
+      "Her gün ekonomi haberlerini izliyorum."
+    ],
+    "word_yesul": [
+      "sanat",
+      "Kardeşim sanat okuyor."
+    ],
+    "word_tteut": [
+      "anlam",
+      "Bu kelimenin anlamını bilmiyorum."
+    ],
+    "word_baljeon": [
+      "gelişme",
+      "Bu şehir hızla gelişiyor."
+    ],
+    "word_jeontong": [
+      "gelenek",
+      "Geleneksel müzik dinledim."
+    ],
+    "word_taedo": [
+      "tutum",
+      "Tutum çok iyi."
+    ],
+    "word_juwi": [
+      "çevre, etraf",
+      "Etrafınıza iyi bakın."
+    ],
+    "word_teukjing": [
+      "özellik",
+      "Bu bölgenin özelliği deniz."
+    ],
+    "word_yejeong": [
+      "plan, program",
+      "Gelecek hafta ayrılmayı planlıyorum."
+    ],
+    "word_haengsa": [
+      "etkinlik",
+      "Okul etkinliğine katıldım."
+    ],
+    "word_pandan": [
+      "yargı, karar",
+      "Hızlı bir karar gerekiyor."
+    ],
+    "word_balpyo": [
+      "sunum",
+      "Yarın sunumum var."
+    ],
+    "word_gicho": [
+      "temel",
+      "Temelden yeniden öğreniyorum."
+    ],
+    "word_juingong": [
+      "başkahraman",
+      "Bu romanın başkahramanı bir öğrenci."
+    ],
+    "word_haeoe": [
+      "yurt dışı",
+      "Yurt dışına seyahate çıkıyorum."
+    ],
+    "word_cheyuk": [
+      "beden eğitimi",
+      "Beden eğitimi dersi en eğlencelisi."
+    ],
+    "word_pyeongso": [
+      "sıradan günler",
+      "Her zamankinden erken yattım."
+    ],
+    "word_jutaek": [
+      "konut",
+      "Konut fiyatları çok yükseldi."
+    ],
+    "word_nongchon": [
+      "köy",
+      "Büyükannem köyde yaşıyor."
+    ],
+    "word_bat": [
+      "tarla",
+      "Tarlada biber topladım."
+    ],
+    "word_gyeot": [
+      "yan",
+      "Yanımda kal."
+    ],
+    "word_gippeum": [
+      "sevinç",
+      "Kazanma haberi büyük sevinç getirdi."
+    ],
+    "word_ipsul": [
+      "dudak",
+      "Dudaklarım kurudu."
+    ],
+    "word_heuk": [
+      "toprak",
+      "Toprağa dokununca iyi hissediyorum."
+    ],
+    "word_gwahakja": [
+      "bilim insanı",
+      "Bilim insanı olmak istiyorum."
+    ],
+    "word_hoewon": [
+      "üye",
+      "Lütfen üyelik kartınızı gösterin."
+    ],
+    "word_bangmun": [
+      "ziyaret",
+      "Bir sonraki ziyaret cuma günü."
+    ],
+    "word_bulman": [
+      "memnuniyetsizlik",
+      "Müşterinin şikâyetini dinledim."
+    ],
+    "word_gwangaek": [
+      "seyirci",
+      "Seyirciler yüksek sesle alkışladı."
+    ],
+    "word_gomo": [
+      "hala",
+      "Halam bana hediye gönderdi."
+    ],
+    "word_toron": [
+      "tartışma",
+      "Derste tartışma yaptık."
+    ],
+    "word_gosaeng": [
+      "zahmet",
+      "Çok zahmet çektiniz."
+    ],
+    "word_pado": [
+      "dalga",
+      "Dalgalar yüksek."
+    ],
+    "word_yegeum": [
+      "mevduat",
+      "Mevduatımdan biraz çektim."
+    ],
+    "word_ipak": [
+      "okula giriş",
+      "Okula girişini kutlarım."
+    ],
+    "word_jehan": [
+      "sınırlama",
+      "Zaman sınırı var."
+    ],
+    "word_punggyeong": [
+      "manzara",
+      "Pencereden görünen manzara güzel."
+    ],
+    "word_gamdong": [
+      "duygulanma",
+      "Filmden çok etkilendim."
+    ],
+    "word_maru": [
+      "ahşap zemin",
+      "Ahşap zemine oturup dinlendim."
+    ],
+    "word_yejeol": [
+      "görgü",
+      "Sofra görgüsünü öğrendim."
+    ],
+    "word_chincheok": [
+      "akraba",
+      "Bir akraba evimize geldi."
+    ],
+    "word_haetsal": [
+      "güneş ışınları",
+      "Sabah güneşi ılık."
+    ],
+    "word_hakgi": [
+      "dönem",
+      "Yeni dönem başladı."
+    ],
+    "word_hubae": [
+      "alt dönem, genç meslektaş",
+      "Genç meslektaşıma öğle yemeği ısmarladım."
+    ],
+    "word_hakseup": [
+      "öğrenme",
+      "Öğrenme planı yaptım."
+    ],
+    "word_bigyo": [
+      "karşılaştırma",
+      "İki ürünün karşılaştırması kolay."
+    ],
+    "word_hyanggi": [
+      "koku, rayiha",
+      "Oda çiçek kokusuyla dolu."
+    ],
+    "word_garu": [
+      "toz",
+      "İlacı toz hâline getirdim."
+    ],
+    "word_donghwa": [
+      "masal",
+      "Çocuğuma masal okudum."
+    ],
+    "word_yuhak": [
+      "yurt dışında eğitim",
+      "Ağabeyim yurt dışında eğitime hazırlanıyor."
+    ],
+    "word_damim": [
+      "sınıf öğretmeni",
+      "Sınıf öğretmenim nazik."
+    ],
+    "word_dojung": [
+      "yol ortası",
+      "Giderken yolda yağmur yağdı."
+    ],
+    "word_chingchan": [
+      "övgü",
+      "Öğretmenimden övgü aldım."
+    ],
+    "word_haetbit": [
+      "güneş ışığı",
+      "Güneş ışığı çok güçlü."
+    ],
+    "word_meonji": [
+      "toz",
+      "Masada toz birikmiş."
+    ],
+    "word_heungmi": [
+      "ilgi",
+      "Tarihe ilgi duymaya başladım."
+    ],
+    "word_dijain": [
+      "tasarım",
+      "Bu çantanın tasarımı güzel."
+    ],
+    "word_teol": [
+      "tüy, kürk",
+      "Kedinin tüyü yumuşak."
+    ],
+    "word_iljeong": [
+      "program, takvim",
+      "Bugünkü programı kontrol ettim."
+    ],
+    "word_gyohwan": [
+      "değişim",
+      "Başka bir renkle değiştirilebilir mi?"
+    ],
+    "word_gugeo": [
+      "ulusal dil",
+      "Kore dili sınavına girdim."
+    ],
+    "word_jeulgeoum": [
+      "keyif",
+      "Seyahat büyük bir keyif."
+    ],
+    "word_daehagwon": [
+      "lisansüstü okulu",
+      "Lisansüstü eğitim alıyorum."
+    ],
+    "word_deungnok": [
+      "kayıt",
+      "Ders kaydını tamamladım."
+    ],
+    "word_munui_2": [
+      "desen",
+      "Çiçek desenli etek giydim."
+    ],
+    "word_hwabun": [
+      "saksı",
+      "Saksıyı suladım."
+    ],
+    "word_gyesangi": [
+      "hesap makinesi",
+      "Hesap makinesiyle topladım."
+    ],
+    "word_hagwon": [
+      "özel kurs",
+      "Akşamları İngilizce kursuna gidiyorum."
+    ],
+    "word_tomato": [
+      "domates",
+      "Domates doğrayıp salata yaptım."
+    ],
+    "word_ppyam": [
+      "yanak",
+      "Soğuktan yanaklarım kızardı."
+    ],
+    "word_tongjang": [
+      "banka cüzdanı",
+      "Maaş banka cüzdanıma yattı."
+    ],
+    "word_gyeonggijang": [
+      "stadyum",
+      "Stadyum insanlarla doldu."
+    ],
+    "word_cheonnal": [
+      "ilk gün",
+      "İşteki ilk gün insanı gerer."
+    ],
+    "word_yeoreumcheol": [
+      "yaz mevsimi",
+      "Yaz mevsiminde çok su içerim."
+    ],
+    "word_chulgeun": [
+      "işe gidiş",
+      "İşe gidiş saatinde yollar tıkanır."
+    ],
+    "word_toegeun": [
+      "iş çıkışı",
+      "İş çıkışında spor yapıyorum."
+    ],
+    "word_jeoncheol": [
+      "elektrikli tren",
+      "Okula elektrikli trenle gidiyorum."
+    ],
+    "word_sikppang": [
+      "tost ekmeği",
+      "Sabah tost ekmeği kızarttım."
+    ],
+    "word_taepung": [
+      "tayfun",
+      "Tayfun yüzünden uçuş iptal edildi."
+    ],
+    "word_yeonhyu": [
+      "uzun tatil",
+      "Uzun tatilde memleketime gittim."
+    ],
+    "word_chwijik": [
+      "işe girme",
+      "İşe girmeye hazırlanıyorum."
+    ],
+    "word_baem": [
+      "yılan",
+      "Dağ yolunda bir yılan gördüm."
+    ],
+    "word_doenjang": [
+      "soya ezmesi",
+      "Soya ezmesiyle çorba yaptım."
+    ],
+    "word_keoteun": [
+      "perde",
+      "Lütfen perdeleri açın."
+    ],
+    "word_sonagi": [
+      "sağanak",
+      "Sağanak bastırdı ve giysilerim ıslandı."
+    ],
+    "word_goguma": [
+      "tatlı patates",
+      "Kışın közlenmiş tatlı patates en iyisi."
+    ],
+    "word_sonsugeon": [
+      "mendil",
+      "Terimi mendille sildim."
+    ],
+    "word_songaji": [
+      "buzağı",
+      "Buzağı annesinin yanında."
+    ],
+    "word_momsal": [
+      "yorgunluk hastalığı",
+      "Yorgunluktan hastalandım ve bir gün dinlendim."
+    ],
+    "word_chigwa": [
+      "diş kliniği",
+      "Dişim ağrıdı, diş hekimine gittim."
+    ],
+    "word_japangi": [
+      "otomat",
+      "Otomattan kahve aldım."
+    ],
+    "word_sangchu": [
+      "marul",
+      "Eti marula sarıp yiyorum."
+    ],
+    "word_jaechaegi": [
+      "hapşırık",
+      "Toz yüzünden hapşırıyorum."
+    ],
+    "word_hoengdanbodo": [
+      "yaya geçidi",
+      "Lütfen yaya geçidinden geçin."
+    ],
+    "word_seonpunggi": [
+      "vantilatör",
+      "Sıcaktı, vantilatörü açtım."
+    ],
+    "word_pyeongil": [
+      "hafta içi",
+      "Hafta içi müşteri az olur."
+    ],
+    "word_mokgeori": [
+      "kolye",
+      "Doğum günümde kolye aldım."
+    ],
+    "word_sopo": [
+      "koli",
+      "Koli eve ulaştı."
+    ],
+    "word_araecheung": [
+      "alt kat",
+      "Alt katta bir market var."
+    ],
+    "word_tteokbokki": [
+      "acılı pirinç keki",
+      "Tteokbokki biraz acı."
+    ],
+    "word_nokcha": [
+      "yeşil çay",
+      "Sıcak yeşil çay içtim."
+    ],
+    "word_seongham": [
+      "isim, saygılı",
+      "İsminizi öğrenebilir miyim?"
+    ],
+    "word_setakso": [
+      "kuru temizleme",
+      "Paltomu kuru temizlemeye verdim."
+    ],
+    "word_piltong": [
+      "kalem kutusu",
+      "Kalem kutumda kurşun kalem yok."
+    ],
+    "word_haksaengjeung": [
+      "öğrenci kimliği",
+      "Öğrenci kimliği olursa indirim var."
+    ],
+    "word_bit_2": [
+      "tarak",
+      "Çantamdan bir tarak çıkardım."
+    ],
+    "word_kkamansaek": [
+      "simsiyah renk",
+      "Simsiyah bir kedi geçti."
+    ],
+    "word_hayansaek": [
+      "bembeyaz renk",
+      "Bembeyaz bir gömlek ütüledim."
+    ],
+    "word_gaeguri": [
+      "kurbağa",
+      "Gölette kurbağalar vıraklıyor."
+    ],
+    "word_gilga": [
+      "yol kenarı",
+      "Yol kenarında çiçekler açtı."
+    ],
+    "word_binmul": [
+      "yağmur suyu",
+      "Yağmur suyu pencereden süzülüyor."
+    ],
+    "word_haetbyeot": [
+      "güneşin sıcağı",
+      "Çamaşırları güneşte kuruttum."
+    ],
+    "word_kongnamul": [
+      "soya filizi",
+      "Soya filizini baharatlayıp yiyorum."
+    ],
+    "word_namul": [
+      "baharatlı yabani ot",
+      "İlkbaharda baharatlı yabani otlar lezzetli olur."
+    ],
+    "word_hyeongwan": [
+      "giriş holü",
+      "Lütfen ayakkabınızı girişte çıkarın."
+    ],
+    "word_kkeom": [
+      "sakız",
+      "Ders sırasında sakız çiğnemeyin."
+    ],
+    "word_juk": [
+      "pirinç lapası",
+      "Hastayken pirinç lapası yerim."
+    ],
+    "word_bapgeureut": [
+      "pirinç kâsesi",
+      "Pirinç kâsesini tamamen boşalttım."
+    ],
+    "word_bulkkot": [
+      "alev, kıvılcım",
+      "Alevler gece göğünü aydınlattı."
+    ],
+    "word_sinipsaeng": [
+      "yeni öğrenci",
+      "Yeni öğrenciler için karşılama partisi var."
+    ],
+    "word_hoesaek": [
+      "gri",
+      "Gri bulutlar toplanıyor."
+    ],
+    "word_dongari": [
+      "öğrenci kulübü",
+      "Fotoğraf kulübüne katıldım."
+    ],
+    "word_baiollin": [
+      "keman",
+      "Keman sesi çok güzel."
+    ],
+    "word_noraebang": [
+      "karaoke odası",
+      "Arkadaşlarımla karaokeye gittim."
+    ],
+    "word_daedosi": [
+      "büyük şehir",
+      "Büyük şehirde ev fiyatları pahalı."
+    ],
+    "word_eorinai": [
+      "küçük çocuk",
+      "Küçük bir çocuk tek başına ağlıyor."
+    ],
+    "word_pojang": [
+      "paketleme",
+      "Hediye paketi yapar mısınız?"
+    ],
+    "word_inwon": [
+      "kişi sayısı",
+      "Kaç kişisiniz?"
+    ],
+    "word_soseolga": [
+      "romancı",
+      "Ünlü bir romancıyla tanıştım."
+    ],
+    "word_dojagi": [
+      "seramik",
+      "Seramik yapmayı öğreniyorum."
+    ],
+    "word_sinmunji": [
+      "gazete kâğıdı",
+      "Pencereyi gazete kâğıdıyla sildim."
+    ],
+    "word_gosokdoro": [
+      "otoyol",
+      "Otoyolda kaza oldu."
+    ],
+    "word_jagayong": [
+      "özel araç",
+      "İşe kendi arabamla gidip geliyorum."
+    ],
+    "word_majeunpyeon": [
+      "karşı taraf",
+      "Banka karşı tarafta."
+    ],
+    "word_geonneopyeon": [
+      "yolun karşısı",
+      "Yolun karşısındaki dükkân daha ucuz."
+    ],
+    "word_iutjip": [
+      "komşunun evi",
+      "Komşular bize pirinç keki verdi."
+    ],
+    "word_peullaseutik": [
+      "plastik",
+      "Plastik ayrı atılır."
+    ],
+    "word_chuljang": [
+      "iş seyahati",
+      "Gelecek hafta Busan'a iş seyahatine gidiyorum."
+    ],
+    "word_mogyoktang": [
+      "hamam",
+      "Hafta sonu hamama gittim."
+    ],
+    "word_badanmul": [
+      "deniz suyu",
+      "Deniz suyu çok soğuk."
+    ],
+    "word_chuka": [
+      "tebrik",
+      "Bir tebrik hediyesi hazırladım."
+    ],
+    "word_chwiso": [
+      "iptal",
+      "Rezervasyon iptali bir gün öncesine kadar yapılabilir."
+    ],
+    "word_gyeoulcheol": [
+      "kış mevsimi",
+      "Kış mevsiminde soğuk algınlığına dikkat edin."
+    ],
+    "word_gochujang": [
+      "acı biber ezmesi",
+      "Bibimbap'a acı biber ezmesi koyuyorum."
+    ],
+    "word_bitamin": [
+      "vitamin",
+      "Her gün vitamin alıyorum."
+    ],
+    "word_bilding": [
+      "yüksek bina",
+      "O bina otuz katlı."
+    ],
+    "word_sikcho": [
+      "sirke",
+      "Salataya biraz sirke ekledim."
+    ],
+    "word_janghakgeum": [
+      "burs",
+      "Bu dönem burs aldım."
+    ],
+    "word_churimmun": [
+      "giriş kapısı",
+      "Lütfen giriş kapısını iyice kapatın."
+    ],
+    "word_hoejang": [
+      "başkan",
+      "Başkan bir hoş geldiniz konuşması yaptı."
+    ],
+    "word_tongil": [
+      "birleşme",
+      "Birleşme hakkında bilgi edindik."
+    ],
+    "word_jaesan": [
+      "mal varlığı",
+      "Mal varlıklarını aileye bıraktılar."
+    ],
+    "word_jeonguk": [
+      "tüm ülke",
+      "Tüm ülkede yağmur yağıyor."
+    ],
+    "word_gajeong": [
+      "aile, yuva",
+      "Evlenip bir yuva kurdum."
+    ],
+    "word_nongeop": [
+      "tarım",
+      "Bu bölgede tarım gelişmiş."
+    ],
+    "word_sobija": [
+      "tüketici",
+      "Tüketicilerin görüşlerini dinliyoruz."
+    ],
+    "word_nodongja": [
+      "işçi",
+      "İşçiler dinleniyor."
+    ],
+    "word_daejung": [
+      "halk",
+      "Halk arasında çok popüler."
+    ],
+    "word_siin": [
+      "şair",
+      "O şairin şiirlerini seviyorum."
+    ],
+    "word_anaunseo": [
+      "spiker",
+      "Spiker haberleri okuyor."
+    ],
+    "word_kkadak": [
+      "neden",
+      "Geç kalma nedenini söyle."
+    ],
+    "word_gyeongyeong": [
+      "işletme",
+      "Üniversitede işletme okuyorum."
+    ],
+    "word_imgeum": [
+      "ücret, maaş",
+      "Ücretler yükseldi."
+    ],
+    "word_seoyang": [
+      "Batı",
+      "Batı yemeklerini seviyorum."
+    ],
+    "word_imiji": [
+      "imaj",
+      "Şirketin imajı düzeldi."
+    ],
+    "word_suchul": [
+      "ihracat",
+      "Otomobil ihracatı arttı."
+    ],
+    "word_choecho": [
+      "ilk",
+      "Bu, dünyada bir ilk."
+    ],
+    "word_suip": [
+      "gelir",
+      "Gelirim biraz arttı."
+    ],
+    "word_muyeok": [
+      "dış ticaret",
+      "Bir dış ticaret şirketinde çalışıyorum."
+    ],
+    "word_jonghap": [
+      "genel toplam",
+      "Genel puan yüksek."
+    ],
+    "word_panmae": [
+      "satış",
+      "Satış başladı."
+    ],
+    "word_gongsa": [
+      "inşaat",
+      "İnşaat yüzünden yol kapalı."
+    ],
+    "word_muyong": [
+      "dans sanatı",
+      "Bir dans gösterisi izledim."
+    ],
+    "word_nonmun": [
+      "tez",
+      "Tez yazıyorum."
+    ],
+    "word_ollimpik": [
+      "Olimpiyatlar",
+      "Olimpiyatları televizyondan izledim."
+    ],
+    "word_munjejeom": [
+      "sorunlu nokta",
+      "Sorunlu noktayı bulduk."
+    ],
+    "word_yesulga": [
+      "sanatçı",
+      "Bu bölgede sanatçılar bir arada yaşıyor."
+    ],
+    "word_model": [
+      "manken",
+      "Manken podyumda yürüyor."
+    ],
+    "word_yeonguso": [
+      "araştırma enstitüsü",
+      "Bir araştırma enstitüsünde çalışıyorum."
+    ],
+    "word_geulloja": [
+      "çalışan",
+      "İşçi Bayramı mayıs ayında."
+    ],
+    "word_bangsongguk": [
+      "yayın istasyonu",
+      "Bir yayın istasyonunu ziyaret ettik."
+    ],
+    "word_mulsok": [
+      "su altı",
+      "Su altında gözlerimi açtım."
+    ],
+    "word_wiban": [
+      "ihlal",
+      "Işık ihlali yüzünden ceza ödedim."
+    ],
+    "word_neomeo": [
+      "öte",
+      "Dağın ötesinde bir köy var."
+    ],
+    "word_donggi": [
+      "motivasyon",
+      "Başvuru motivasyonunuzu söyleyin."
+    ],
+    "word_seutail": [
+      "stil",
+      "Saç stilimi değiştirdim."
+    ],
+    "word_sinyong": [
+      "itibar, güven",
+      "İnsanların güvenini kaybetmek olmaz."
+    ],
+    "word_banjang": [
+      "sınıf başkanı",
+      "Sınıf başkanı seçildim."
+    ],
+    "word_sincheong": [
+      "başvuru",
+      "Başvuru süresi bitti."
+    ],
+    "word_apeum": [
+      "acı",
+      "Acıyı unutmaya çalışıyorum."
+    ],
+    "word_gyoryu": [
+      "alışveriş, etkileşim",
+      "İki ülke arasındaki etkileşim canlı."
+    ],
+    "word_geulsseugi": [
+      "yazma",
+      "Yazma dersi alıyorum."
+    ],
+    "word_daegieop": [
+      "büyük şirket",
+      "Büyük bir şirkette işe girdim."
+    ],
+    "word_bujang": [
+      "bölüm müdürü",
+      "Bölüm müdürü toplantı düzenledi."
+    ],
+    "word_insang": [
+      "izlenim",
+      "İlk izlenim iyiydi."
+    ],
+    "word_sicheongja": [
+      "izleyici",
+      "Bir izleyicinin mektubunu okuyorlar."
+    ],
+    "word_jongeobwon": [
+      "çalışan",
+      "Çalışan bize nazikçe yol gösterdi."
+    ],
+    "word_gukoeuiwon": [
+      "milletvekili",
+      "Bu, milletvekillerini seçmek için yapılan seçim."
+    ],
+    "word_midieo": [
+      "medya",
+      "Medyanın etkisi büyük."
+    ],
+    "word_gotgot": [
+      "her yerde, yer yer",
+      "Yer yer çiçekler açtı."
+    ],
+    "word_tap": [
+      "kule, pagoda",
+      "Tapınakta eski bir pagoda var."
+    ],
+    "word_geonchuk": [
+      "mimarlık",
+      "Mimarlık okudum."
+    ],
+    "word_sigyongyu": [
+      "yemeklik yağ",
+      "Tavaya yemeklik yağ koydum."
+    ],
+    "word_geop": [
+      "korku",
+      "Korkuyorum, o yüzden binemiyorum."
+    ],
+    "word_seogyu": [
+      "petrol",
+      "Petrol fiyatı yükseldi."
+    ],
+    "word_chaegimja": [
+      "sorumlu kişi",
+      "Sorumlu kişiyle görüşmek istiyorum."
+    ],
+    "word_boram": [
+      "emeğin karşılığı",
+      "Öğretmekten emeğimin karşılığını alıyorum."
+    ],
+    "word_soseu": [
+      "sos",
+      "Lütfen biraz daha sos verin."
+    ],
+    "word_urimal": [
+      "dilimiz",
+      "Dilimizi güzel kullanalım."
+    ],
+    "word_hyeonji": [
+      "yerinde, yerel",
+      "Yerel yemekleri denedim."
+    ],
+    "word_geot_2": [
+      "dış",
+      "Dışı sert, içi yumuşak."
+    ],
+    "word_seungyongcha": [
+      "binek araç",
+      "Beş binek araç park hâlinde."
+    ],
+    "word_jinchul": [
+      "yeni alana açılma",
+      "Yurt dışına açılmaya hazırlanıyoruz."
+    ],
+    "word_giun": [
+      "enerji, hâl",
+      "Hiç hâlim yok."
+    ],
+    "word_abeonim": [
+      "babanız, saygılı",
+      "Babanıza selamlarımı iletin."
+    ],
+    "word_mureum": [
+      "soru",
+      "Lütfen soruya cevap verin."
+    ],
+    "word_eomeonim": [
+      "anneniz, saygılı",
+      "Anneniz sağlıklı mı?"
+    ],
+    "word_haeseok": [
+      "yorum",
+      "Bu cümleyi yorumlamak zor."
+    ],
+    "word_sayongja": [
+      "kullanıcı",
+      "Kullanıcı sayısı çok arttı."
+    ],
+    "word_sawon": [
+      "şirket çalışanı",
+      "Yeni bir çalışan geldi."
+    ],
+    "word_gangmul": [
+      "nehir suyu",
+      "Nehir suyu berrak."
+    ],
+    "word_rideum": [
+      "ritim",
+      "Ritme uygun dans ediyorum."
+    ],
+    "word_moniteo": [
+      "monitör",
+      "Monitör çok karanlık."
+    ],
+    "word_un": [
+      "şans",
+      "Şans yanımdaydı ve sınavı geçtim."
+    ],
+    "word_ilsangsaenghwal": [
+      "günlük yaşam",
+      "Günlük yaşamda sık kullanılan bir kelime."
+    ],
+    "word_binil": [
+      "naylon",
+      "Yemeğin üstünü naylonla örttüm."
     ]
   }
 }

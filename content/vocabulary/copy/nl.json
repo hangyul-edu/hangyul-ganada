@@ -2731,7 +2731,7 @@
     ],
     "word_gamyeon": [
       "masker",
-      "Ik heb een masker opgezet."
+      "Ik danste met een masker op."
     ],
     "word_ingi": [
       "populariteit",
@@ -8233,8 +8233,8 @@
       "Ik ben mijn leraar gaan opzoeken."
     ],
     "word_jiwon": [
-      "ondersteuning",
-      "Ik heb ondersteuning gekregen."
+      "hulp, ondersteuning",
+      "Ik kreeg hulp van de overheid."
     ],
     "word_oraen": [
       "langdurig",
@@ -9685,7 +9685,7 @@
     ],
     "word_sinjang": [
       "lichaamslengte",
-      "Ik meet mijn lengte."
+      "Hoe lang bent u?"
     ],
     "word_neullida": [
       "verhogen",
@@ -10393,8 +10393,8 @@
       "De analyse is klaar."
     ],
     "word_jiji": [
-      "steun",
-      "Ik heb steun gekregen."
+      "steun, bijval",
+      "Ik kreeg de steun van veel mensen."
     ],
     "word_seupai": [
       "spion",
@@ -13580,6 +13580,1994 @@
     "word_yubohada": [
       "opschorten",
       "We schortten ons oordeel even op."
+    ],
+    "word_gasu": [
+      "zanger",
+      "Die zanger zingt goed."
+    ],
+    "word_gyejeol": [
+      "seizoen",
+      "Welk seizoen vindt u fijn?"
+    ],
+    "word_gyeongchalgwan": [
+      "politieagent",
+      "Ik heb een politieagent de weg gevraagd."
+    ],
+    "word_gyeongchi": [
+      "uitzicht, landschap",
+      "Het uitzicht hier is echt mooi."
+    ],
+    "word_godeunghaksaeng": [
+      "middelbare scholier",
+      "Mijn jongere broer zit op de middelbare school."
+    ],
+    "word_gwaja": [
+      "koekjes of snacks",
+      "De kinderen eten koekjes."
+    ],
+    "word_gyogwaseo": [
+      "schoolboek",
+      "Sla het schoolboek open, alstublieft."
+    ],
+    "word_gugyeong": [
+      "rondkijken",
+      "Ik ging naar de bloemen kijken."
+    ],
+    "word_gisuksa": [
+      "studentenhuis",
+      "Ik woon in een studentenhuis."
+    ],
+    "word_namdongsaeng": [
+      "jongere broer",
+      "Mijn jongere broer is lang."
+    ],
+    "word_naenyeon": [
+      "volgend jaar",
+      "Volgend jaar ga ik naar Korea."
+    ],
+    "word_dallyeok": [
+      "kalender",
+      "Er hangt een kalender aan de muur."
+    ],
+    "word_daehaksaeng": [
+      "student",
+      "Mijn jongere broer is student geworden."
+    ],
+    "word_dwaejigogi": [
+      "varkensvlees",
+      "We hebben varkensvlees gegrild en opgegeten."
+    ],
+    "word_deungsan": [
+      "bergwandelen",
+      "In het weekend ga ik bergwandelen."
+    ],
+    "word_maepda": [
+      "pittig zijn",
+      "Deze tteokbokki is te pittig."
+    ],
+    "word_menyu": [
+      "menukaart",
+      "Mag ik de menukaart zien, alstublieft?"
+    ],
+    "word_mogyok": [
+      "bad",
+      "Voor het slapen neem ik een bad."
+    ],
+    "word_mit": [
+      "onderkant, onder",
+      "De kat ligt onder het bed."
+    ],
+    "word_bareum": [
+      "uitspraak",
+      "Uw uitspraak is heel goed."
+    ],
+    "word_banghak": [
+      "schoolvakantie",
+      "Wat ga je in de vakantie doen?"
+    ],
+    "word_baebureuda": [
+      "vol zitten",
+      "Ik heb veel gegeten, dus ik zit vol."
+    ],
+    "word_baekwajeom": [
+      "warenhuis",
+      "Ik heb kleren gekocht in het warenhuis."
+    ],
+    "word_bolpen": [
+      "balpen",
+      "Mag ik een balpen lenen, alstublieft?"
+    ],
+    "word_saekkkal": [
+      "kleur",
+      "Deze kleur bevalt me."
+    ],
+    "word_seojeom": [
+      "boekhandel",
+      "Ik heb een boek gekocht bij de boekhandel."
+    ],
+    "word_seonmulhada": [
+      "cadeau geven",
+      "Ik heb mijn vriend bloemen cadeau gegeven."
+    ],
+    "word_sesu": [
+      "het gezicht wassen",
+      "'s Ochtends was ik mijn gezicht."
+    ],
+    "word_sopung": [
+      "picknick, uitje",
+      "Morgen gaan we picknicken."
+    ],
+    "word_syoping": [
+      "winkelen",
+      "Ik ben in het weekend gaan winkelen."
+    ],
+    "word_syupeomaket": [
+      "supermarkt",
+      "Ik heb groente gekocht in de supermarkt."
+    ],
+    "word_yangbok": [
+      "pak",
+      "Mijn vader draagt een pak."
+    ],
+    "word_eorini": [
+      "kind",
+      "Voor kinderen zijn de kaartjes gratis."
+    ],
+    "word_eeokeon": [
+      "airconditioning",
+      "Het was warm, dus ik zette de airco aan."
+    ],
+    "word_oraenman": [
+      "lang geleden",
+      "Ik heb na lange tijd een vriend gezien."
+    ],
+    "word_oeguk": [
+      "buitenland",
+      "Hebt u ooit in het buitenland gewoond?"
+    ],
+    "word_oegugeo": [
+      "vreemde taal",
+      "Ik leer een vreemde taal."
+    ],
+    "word_oegugin": [
+      "buitenlander",
+      "Ik heb veel buitenlandse vrienden."
+    ],
+    "word_undonghada": [
+      "sporten",
+      "Ik sport elke ochtend."
+    ],
+    "word_undonghwa": [
+      "sportschoenen",
+      "Ik heb mijn nieuwe sportschoenen aangetrokken."
+    ],
+    "word_ip_2": [
+      "blad",
+      "In de herfst vallen de bladeren."
+    ],
+    "word_jangmi": [
+      "roos",
+      "De rozen ruiken lekker."
+    ],
+    "word_jeomsimsigan": [
+      "lunchpauze",
+      "In de lunchpauze maak ik een wandeling."
+    ],
+    "word_joreop": [
+      "afstuderen",
+      "Gefeliciteerd met je diploma!"
+    ],
+    "word_junghakgyo": [
+      "onderbouw van de middelbare school",
+      "Mijn zoon zit in de onderbouw van de middelbare school."
+    ],
+    "word_chodeunghakgyo": [
+      "basisschool",
+      "Mijn dochter is naar de basisschool gegaan."
+    ],
+    "word_jinandal": [
+      "vorige maand",
+      "Ik ben vorige maand verhuisd."
+    ],
+    "word_jinanju": [
+      "vorige week",
+      "Ik ben vorige week verkouden geworden."
+    ],
+    "word_jiugae": [
+      "gum",
+      "Gum het uit met een gum, alstublieft."
+    ],
+    "word_jjigae": [
+      "Koreaanse stoofpot",
+      "Ik heb jjigae gegeten als lunch."
+    ],
+    "word_cheongbaji": [
+      "spijkerbroek",
+      "Een spijkerbroek staat u goed."
+    ],
+    "word_chiyak": [
+      "tandpasta",
+      "De tandpasta is op."
+    ],
+    "word_kolla": [
+      "cola",
+      "Eén cola, alstublieft."
+    ],
+    "word_taegwondo": [
+      "taekwondo",
+      "Het kind leert taekwondo."
+    ],
+    "word_teniseu": [
+      "tennis",
+      "Ik heb een nieuw tennisracket gekocht."
+    ],
+    "word_tellebijeon": [
+      "televisie",
+      "'s Avonds kijk ik televisie."
+    ],
+    "word_hangnyeon": [
+      "leerjaar, klas",
+      "In welke klas zit je?"
+    ],
+    "word_hanbok": [
+      "hanbok, Koreaanse klederdracht",
+      "Met Seollal dragen we hanbok."
+    ],
+    "word_hanja": [
+      "Chinese karakters",
+      "Chinese karakters zijn moeilijk."
+    ],
+    "word_haembeogeo": [
+      "hamburger",
+      "Eén hamburger, alstublieft."
+    ],
+    "word_hyuil": [
+      "vrije dag",
+      "Op vrije dagen sta ik laat op."
+    ],
+    "word_hyuji": [
+      "tissue",
+      "Mag ik een tissue, alstublieft?"
+    ],
+    "word_kkeulhida": [
+      "koken, aan de kook brengen",
+      "Ik kook water en drink thee."
+    ],
+    "word_bokda": [
+      "roerbakken",
+      "Ik heb de groente geroerbakt en opgegeten."
+    ],
+    "word_damgeuda": [
+      "onderdompelen, weken",
+      "Ik heb mijn voeten in het water gestoken."
+    ],
+    "word_gakkuda": [
+      "verzorgen, kweken",
+      "Mijn oma verzorgt de tuin."
+    ],
+    "word_gwonhada": [
+      "aanbieden, aanraden",
+      "Ik heb de gast thee aangeboden."
+    ],
+    "word_kkeudeogida": [
+      "knikken",
+      "Het kind knikte."
+    ],
+    "word_kkeunheojida": [
+      "breken, afbreken",
+      "Het touw is gebroken."
+    ],
+    "word_neolpida": [
+      "verbreden",
+      "Er wordt gewerkt aan het verbreden van de weg."
+    ],
+    "word_nohida": [
+      "geplaatst zijn, liggen",
+      "Er staan bloemen op het bureau."
+    ],
+    "word_sallida": [
+      "het leven redden",
+      "De dokter heeft de patiënt gered."
+    ],
+    "word_seuda": [
+      "rechtop zetten, stilzetten",
+      "Ik heb de paraplu naast de deur gezet."
+    ],
+    "word_seokkida": [
+      "zich vermengen",
+      "Water en olie vermengen zich niet."
+    ],
+    "word_kyeojida": [
+      "aangaan",
+      "Het licht ging vanzelf aan."
+    ],
+    "word_jeonghaejida": [
+      "vastgesteld worden",
+      "De tijd van de vergadering is vastgesteld."
+    ],
+    "word_saenggyeonada": [
+      "ontstaan",
+      "Er zijn veel nieuwe winkels ontstaan."
+    ],
+    "word_naraoda": [
+      "aan komen vliegen",
+      "Er kwam een vogel naar het raam gevlogen."
+    ],
+    "word_dallyeooda": [
+      "aan komen rennen",
+      "Het puppy kwam naar me toe gerend."
+    ],
+    "word_yangbohada": [
+      "afstaan, voorrang geven",
+      "Ik heb mijn plaats afgestaan aan een oudere dame."
+    ],
+    "word_hwaryonghada": [
+      "goed benutten",
+      "Ik benut mijn weekendtijd goed."
+    ],
+    "word_dayanghada": [
+      "gevarieerd zijn",
+      "Deze winkel heeft een gevarieerd aanbod brood."
+    ],
+    "word_dapdapada": [
+      "benauwd zijn",
+      "De kamer is klein, dus het voelt benauwd."
+    ],
+    "word_dukkeopda": [
+      "dik zijn",
+      "Dit boek is heel dik."
+    ],
+    "word_dunggeulda": [
+      "rond zijn",
+      "De maan is rond."
+    ],
+    "word_gukda": [
+      "dik zijn, van iets langs",
+      "Deze boom heeft een dikke stam."
+    ],
+    "word_ganeulda": [
+      "dun zijn, van iets langs",
+      "Deze draad is te dun."
+    ],
+    "word_mipda": [
+      "hatelijk zijn",
+      "Ik heb een hekel aan mensen die liegen."
+    ],
+    "word_natseolda": [
+      "onbekend zijn, vreemd zijn",
+      "Deze buurt is me nog vreemd."
+    ],
+    "word_eongttunghada": [
+      "vreemd, onverwacht zijn",
+      "Het kind stelde een vreemde vraag."
+    ],
+    "word_usuhada": [
+      "uitstekend zijn",
+      "De cijfers zijn uitstekend."
+    ],
+    "word_jeokdanghada": [
+      "geschikt zijn, passend zijn",
+      "Deze kamer heeft een passende grootte."
+    ],
+    "word_jogeumata": [
+      "heel klein zijn",
+      "Ik heb een heel klein doosje gekregen."
+    ],
+    "word_teunteunhada": [
+      "stevig zijn",
+      "Deze stoel is stevig."
+    ],
+    "word_pyeollihada": [
+      "handig zijn, gemakkelijk zijn",
+      "De metro is heel handig."
+    ],
+    "word_pureuda": [
+      "blauw of groen zijn, in de natuur",
+      "De bergen zijn groen."
+    ],
+    "word_hwalbalhada": [
+      "levendig zijn",
+      "Het kind is heel levendig."
+    ],
+    "word_kkwae": [
+      "vrij, behoorlijk",
+      "Het is vandaag behoorlijk koud."
+    ],
+    "word_kkujunhi": [
+      "gestaag",
+      "Ik oefen elke dag gestaag."
+    ],
+    "word_kkamjjak": [
+      "met een schrik",
+      "Ik schrok van een hard geluid."
+    ],
+    "word_deoguna": [
+      "bovendien",
+      "Ik ben te laat. Bovendien regent het."
+    ],
+    "word_magu": [
+      "klakkeloos, ongeremd",
+      "Geef alstublieft niet klakkeloos geld uit."
+    ],
+    "word_bigyojeok": [
+      "relatief",
+      "Dit probleem is relatief eenvoudig."
+    ],
+    "word_yunanhi": [
+      "ongewoon",
+      "Ik ben vandaag ongewoon moe."
+    ],
+    "word_jeomcha": [
+      "geleidelijk",
+      "Het weer wordt geleidelijk kouder."
+    ],
+    "word_puk": [
+      "diep",
+      "Rust in het weekend goed uit."
+    ],
+    "word_haemada": [
+      "elk jaar",
+      "Elk jaar bloeien de bloemen in de lente."
+    ],
+    "word_hanpyeon": [
+      "aan de andere kant",
+      "Ik ben blij. Aan de andere kant maak ik me ook zorgen."
+    ],
+    "word_jeuk": [
+      "dat wil zeggen",
+      "We zien elkaar morgen, dat wil zeggen zaterdag."
+    ],
+    "word_gawi": [
+      "schaar",
+      "Ik knip het papier met een schaar."
+    ],
+    "word_gansik": [
+      "tussendoortje",
+      "'s Middags eet ik een tussendoortje."
+    ],
+    "word_geosil": [
+      "woonkamer",
+      "Ik kijk televisie in de woonkamer."
+    ],
+    "word_georeum": [
+      "stap",
+      "Doe een stap naar voren, alstublieft."
+    ],
+    "word_golmok": [
+      "steegje",
+      "Kinderen spelen in het steegje."
+    ],
+    "word_gongmuwon": [
+      "ambtenaar",
+      "Mijn oudere broer is ambtenaar."
+    ],
+    "word_gwamok": [
+      "schoolvak",
+      "Welk vak vindt u leuk?"
+    ],
+    "word_gwaje": [
+      "opdracht",
+      "Ik moet de opdracht morgen inleveren."
+    ],
+    "word_gwangwang": [
+      "toerisme, sightseeing",
+      "Ik heb Seoul bezichtigd."
+    ],
+    "word_gwangwanggaek": [
+      "toerist",
+      "De toeristen maken foto's."
+    ],
+    "word_gyotongsago": [
+      "verkeersongeluk",
+      "Gisteren is er een verkeersongeluk gebeurd."
+    ],
+    "word_gungmul": [
+      "bouillon",
+      "De bouillon is heerlijk verfrissend."
+    ],
+    "word_geuneul": [
+      "schaduw",
+      "Laten we in de schaduw van de boom rusten."
+    ],
+    "word_geulja": [
+      "letter, teken",
+      "De letters zijn te klein."
+    ],
+    "word_gigan": [
+      "periode",
+      "Het is examenperiode, dus ik heb het druk."
+    ],
+    "word_gion": [
+      "luchttemperatuur",
+      "De temperatuur is vandaag flink gedaald."
+    ],
+    "word_gichim": [
+      "hoest",
+      "Ik blijf hoesten."
+    ],
+    "word_kkeopjil": [
+      "schil, schaal",
+      "Ik heb de schil van de banaan gehaald."
+    ],
+    "word_kkokdaegi": [
+      "top",
+      "Er zit een vogel in de top van de boom."
+    ],
+    "word_kkochip": [
+      "bloemblaadje",
+      "De bloemblaadjes waaien weg in de wind."
+    ],
+    "word_kkul": [
+      "honing",
+      "Ik doe honing in mijn thee."
+    ],
+    "word_nabi": [
+      "vlinder",
+      "Een vlinder landde op de bloem."
+    ],
+    "word_namutgaji": [
+      "tak",
+      "Er zit een vogel op een tak."
+    ],
+    "word_nammae": [
+      "broer en zus",
+      "Wij zijn broer en zus."
+    ],
+    "word_nagyeop": [
+      "gevallen bladeren",
+      "Er liggen veel gevallen bladeren op het pad."
+    ],
+    "word_noin": [
+      "oudere, bejaarde",
+      "Ik heb mijn plaats afgestaan aan een oudere."
+    ],
+    "word_noriteo": [
+      "speeltuin",
+      "De kinderen spelen in de speeltuin."
+    ],
+    "word_nongsa": [
+      "landbouw, boeren",
+      "Mijn opa is boer."
+    ],
+    "word_nunbit": [
+      "blik",
+      "De blik is warm."
+    ],
+    "word_nunap": [
+      "vlak voor de ogen",
+      "Ik miste de bus vlak voor mijn ogen."
+    ],
+    "word_danjeom": [
+      "zwak punt",
+      "Iedereen heeft zwakke punten."
+    ],
+    "word_jangjeom": [
+      "sterk punt",
+      "Het sterke punt van dit huis is de ligging."
+    ],
+    "word_dalbit": [
+      "maanlicht",
+      "Het maanlicht is heel helder."
+    ],
+    "word_dapjang": [
+      "antwoord",
+      "Ik wacht op een antwoord."
+    ],
+    "word_daemun": [
+      "voorpoort, hek",
+      "Doe het hek open, alstublieft."
+    ],
+    "word_deowi": [
+      "hitte",
+      "De hitte van dit jaar is echt heftig."
+    ],
+    "word_chuwi": [
+      "kou",
+      "Mijn handen bevroren van de kou."
+    ],
+    "word_dogu": [
+      "gereedschap",
+      "Zorg goed voor uw gereedschap."
+    ],
+    "word_dosirak": [
+      "lunchtrommel, lunchpakket",
+      "Ik heb een lunchpakket meegenomen."
+    ],
+    "word_dokseo": [
+      "lezen",
+      "Mijn hobby is lezen."
+    ],
+    "word_dongmurwon": [
+      "dierentuin",
+      "Ik heb een leeuw gezien in de dierentuin."
+    ],
+    "word_dutong": [
+      "hoofdpijn",
+      "Ik had erge hoofdpijn, dus ik nam een medicijn."
+    ],
+    "word_dwijjok": [
+      "achterkant",
+      "Achterin zijn nog plaatsen."
+    ],
+    "word_apjjok": [
+      "voorkant",
+      "Ga vooraan zitten, alstublieft."
+    ],
+    "word_anjjok": [
+      "binnenkant",
+      "Gaat u op de binnenste plaats zitten, alstublieft."
+    ],
+    "word_wijjok": [
+      "bovenkant",
+      "De boeken staan op de bovenste plank."
+    ],
+    "word_araejjok": [
+      "onderkant",
+      "Probeer de onderste la eens open te doen."
+    ],
+    "word_ttam": [
+      "zweet",
+      "Ik zweet van het sporten."
+    ],
+    "word_ttangkong": [
+      "pinda",
+      "De pinda's smaken lekker nootachtig."
+    ],
+    "word_ttukkeong": [
+      "deksel",
+      "Doe het deksel open, alstublieft."
+    ],
+    "word_maeumsok": [
+      "het diepst van het hart",
+      "In mijn hart was ik dankbaar."
+    ],
+    "word_manhwa": [
+      "strip",
+      "Mijn jongere broer houdt van strips."
+    ],
+    "word_maeryeok": [
+      "charme",
+      "Deze stad heeft charme."
+    ],
+    "word_meoritsok": [
+      "hoofd, gedachten",
+      "Mijn hoofd is een chaos."
+    ],
+    "word_memo": [
+      "memo, briefje",
+      "Ik heb een briefje op de koelkast geplakt."
+    ],
+    "word_myeongham": [
+      "visitekaartje",
+      "We hebben visitekaartjes uitgewisseld."
+    ],
+    "word_mogi": [
+      "mug",
+      "In de zomer zijn er veel muggen."
+    ],
+    "word_more": [
+      "overmorgen",
+      "Ik kom overmorgen weer."
+    ],
+    "word_mommuge": [
+      "lichaamsgewicht",
+      "Ik heb mezelf gewogen."
+    ],
+    "word_muge": [
+      "gewicht",
+      "Ik weeg de bagage."
+    ],
+    "word_munjang": [
+      "zin",
+      "Lees deze zin, alstublieft."
+    ],
+    "word_misul": [
+      "beeldende kunst",
+      "In de tekenles tekenen we."
+    ],
+    "word_misulgwan": [
+      "kunstmuseum",
+      "Ik ben in het weekend naar het kunstmuseum geweest."
+    ],
+    "word_milgaru": [
+      "bloem, meel",
+      "Ik maak brood van bloem."
+    ],
+    "word_badatga": [
+      "strand, zeekust",
+      "Ik heb langs het strand gewandeld."
+    ],
+    "word_bawi": [
+      "rots",
+      "Ik ging op een rots zitten."
+    ],
+    "word_balgarak": [
+      "teen",
+      "Ik heb mijn teen bezeerd."
+    ],
+    "word_baegyeong": [
+      "achtergrond",
+      "De achtergrond van de foto is mooi."
+    ],
+    "word_beoreut": [
+      "gewoonte, tic",
+      "Ik heb de gewoonte om op mijn nagels te bijten."
+    ],
+    "word_beoseot": [
+      "paddenstoel, champignon",
+      "Ik heb soep gemaakt met paddenstoelen."
+    ],
+    "word_beoteo": [
+      "boter",
+      "Ik smeer boter op het brood."
+    ],
+    "word_bongji": [
+      "zakje, tas",
+      "Ik heb het fruit in een zakje gedaan."
+    ],
+    "word_bongtu": [
+      "envelop",
+      "Ik heb de brief in een envelop gedaan."
+    ],
+    "word_bugeun": [
+      "omgeving, buurt",
+      "Ik woon in de buurt van het station."
+    ],
+    "word_bujagyong": [
+      "bijwerking",
+      "Dit medicijn heeft geen bijwerkingen."
+    ],
+    "word_bulbit": [
+      "licht, schijnsel",
+      "Ik zie in de verte een licht."
+    ],
+    "word_buran": [
+      "onrust, angst",
+      "Voor een examen voel ik me onrustig."
+    ],
+    "word_ppallae": [
+      "was",
+      "Er ligt veel was opgestapeld."
+    ],
+    "word_ppuri": [
+      "wortel",
+      "De wortels van de boom zijn diep."
+    ],
+    "word_saheul": [
+      "drie dagen",
+      "Het heeft drie dagen geregend."
+    ],
+    "word_sangdaebang": [
+      "de ander, gesprekspartner",
+      "Luister goed naar de ander."
+    ],
+    "word_sangpum": [
+      "product, waar",
+      "Er is een nieuw product uitgekomen."
+    ],
+    "word_saeu": [
+      "garnaal",
+      "Ik heb garnalen gegrild en opgegeten."
+    ],
+    "word_seolgeoji": [
+      "afwas",
+      "Ik heb na het eten de afwas gedaan."
+    ],
+    "word_sonamu": [
+      "dennenboom",
+      "Er staan veel dennenbomen op de berg."
+    ],
+    "word_sonnyeo": [
+      "kleindochter",
+      "De oma houdt heel veel van haar kleindochter."
+    ],
+    "word_sonbadak": [
+      "handpalm",
+      "Ik heb op mijn handpalm geschreven."
+    ],
+    "word_sonjabi": [
+      "handvat, deurklink",
+      "De deurklink is kapot."
+    ],
+    "word_seupgwan": [
+      "gewoonte",
+      "Ik heb mezelf aangeleerd om vroeg naar bed te gaan."
+    ],
+    "word_sonja": [
+      "kleinzoon",
+      "De opa speelt met zijn kleinzoon."
+    ],
+    "word_sunseo": [
+      "volgorde",
+      "Kom in volgorde binnen, alstublieft."
+    ],
+    "word_sieomeoni": [
+      "schoonmoeder",
+      "Mijn schoonmoeder kookt goed."
+    ],
+    "word_sikgu": [
+      "gezinslid",
+      "Ons gezin bestaat uit vijf personen."
+    ],
+    "word_sikpum": [
+      "levensmiddelen",
+      "De levensmiddelenafdeling is in de kelder."
+    ],
+    "word_sillae": [
+      "binnen, binnenshuis",
+      "Zet binnen uw hoed af, alstublieft."
+    ],
+    "word_simbureum": [
+      "boodschap",
+      "Ik ging voor mama een boodschap doen in de winkel."
+    ],
+    "word_akgi": [
+      "muziekinstrument",
+      "Welk instrument wilt u leren spelen?"
+    ],
+    "word_aksu": [
+      "handdruk",
+      "We hebben elkaar de hand geschud."
+    ],
+    "word_anbang": [
+      "hoofdslaapkamer",
+      "Mijn ouders slapen in de hoofdslaapkamer."
+    ],
+    "word_yaoe": [
+      "buiten, buitenlucht",
+      "We hebben buiten geluncht."
+    ],
+    "word_yangnyeom": [
+      "kruiden, marinade",
+      "De marinade is goed ingetrokken."
+    ],
+    "word_eoryeoum": [
+      "moeilijkheid",
+      "Als er moeilijkheden zijn, zeg het dan."
+    ],
+    "word_yeou": [
+      "vos",
+      "Ik heb een vos gezien in het bos."
+    ],
+    "word_yeoyu": [
+      "speelruimte, vrije tijd",
+      "Ik heb tegenwoordig geen vrije tijd."
+    ],
+    "word_yeollakcheo": [
+      "contactgegevens",
+      "Geef me uw contactgegevens, alstublieft."
+    ],
+    "word_yeonmal": [
+      "einde van het jaar",
+      "Aan het einde van het jaar zijn er veel bijeenkomsten."
+    ],
+    "word_yeolheul": [
+      "tien dagen",
+      "Ik heb tien dagen gereisd."
+    ],
+    "word_yeongha": [
+      "onder nul",
+      "Vanochtend is het onder nul."
+    ],
+    "word_yeopjip": [
+      "buurhuis",
+      "Er is een nieuw gezin in het buurhuis komen wonen."
+    ],
+    "word_ojingeo": [
+      "inktvis",
+      "Inktvis wordt gegrild en gegeten."
+    ],
+    "word_ondo": [
+      "temperatuur",
+      "Ik heb de kamertemperatuur iets verhoogd."
+    ],
+    "word_onmom": [
+      "het hele lichaam",
+      "Mijn hele lichaam doet pijn."
+    ],
+    "word_oechul": [
+      "uitgaan, de deur uit gaan",
+      "Ik maak me klaar om de deur uit te gaan."
+    ],
+    "word_oenson": [
+      "linkerhand",
+      "Ik schrijf met mijn linkerhand."
+    ],
+    "word_oreunson": [
+      "rechterhand",
+      "Steek uw rechterhand op, alstublieft."
+    ],
+    "word_yogeum": [
+      "tarief, vervoerskosten",
+      "Het bustarief is gestegen."
+    ],
+    "word_yoksil": [
+      "badkamer",
+      "Ik heb de badkamer schoongemaakt."
+    ],
+    "word_yoksim": [
+      "hebzucht",
+      "Wees niet hebzuchtig."
+    ],
+    "word_yongdon": [
+      "zakgeld",
+      "Ik heb mijn zakgeld gespaard en een boek gekocht."
+    ],
+    "word_useung": [
+      "eerste plaats, overwinning",
+      "Ons team heeft de eerste plaats gewonnen."
+    ],
+    "word_upyo": [
+      "postzegel",
+      "Postzegels verzamelen is mijn hobby."
+    ],
+    "word_unjeonja": [
+      "bestuurder",
+      "Bestuurders moeten een gordel dragen."
+    ],
+    "word_ureum": [
+      "gehuil",
+      "Het gehuil van de baby is gestopt."
+    ],
+    "word_wicheung": [
+      "de verdieping erboven",
+      "Het is boven een beetje lawaaierig."
+    ],
+    "word_yurichang": [
+      "ruit",
+      "Ik heb de ruiten schoongemaakt."
+    ],
+    "word_yuchiwon": [
+      "kleuterschool",
+      "Mijn kind gaat naar de kleuterschool."
+    ],
+    "word_yuhaeng": [
+      "mode, trend",
+      "Deze kleur is tegenwoordig in de mode."
+    ],
+    "word_eumnyo": [
+      "drankje",
+      "Wat wilt u drinken?"
+    ],
+    "word_iik": [
+      "winst, voordeel",
+      "Deze maand hebben we winst gemaakt."
+    ],
+    "word_iteunnal": [
+      "de volgende dag",
+      "Ik ben de volgende ochtend vertrokken."
+    ],
+    "word_ingu": [
+      "bevolking",
+      "Deze stad heeft veel inwoners."
+    ],
+    "word_ilsang": [
+      "dagelijks leven",
+      "Ik ben terug in het dagelijks leven."
+    ],
+    "word_janchi": [
+      "feestmaal, feest",
+      "We hebben een feest gehouden voor oma's verjaardag."
+    ],
+    "word_jamot": [
+      "pyjama",
+      "Ik heb mijn pyjama aangetrokken."
+    ],
+    "word_jangnae": [
+      "toekomst",
+      "Wat wil je later worden?"
+    ],
+    "word_jangma": [
+      "regenseizoen",
+      "Het regenseizoen is begonnen."
+    ],
+    "word_jangsa": [
+      "handel, zaak",
+      "De zaken gaan tegenwoordig goed."
+    ],
+    "word_jaeryo": [
+      "ingrediënt, materiaal",
+      "Ik heb de ingrediënten om te koken gekocht."
+    ],
+    "word_jeoja": [
+      "auteur",
+      "Ik heb de auteur van dit boek ontmoet."
+    ],
+    "word_jeochuk": [
+      "sparen",
+      "Ik spaar elke maand."
+    ],
+    "word_jeongong": [
+      "studierichting",
+      "Wat is je studierichting?"
+    ],
+    "word_jeonnal": [
+      "de dag ervoor",
+      "De dag voor een examen ga ik vroeg naar bed."
+    ],
+    "word_jeongdap": [
+      "het juiste antwoord",
+      "Ik had het juiste antwoord."
+    ],
+    "word_jepum": [
+      "product",
+      "Dit product is van goede kwaliteit."
+    ],
+    "word_josang": [
+      "voorouder",
+      "Op feestdagen eren we onze voorouders."
+    ],
+    "word_jwaseok": [
+      "zitplaats",
+      "Controleer uw stoelnummer, alstublieft."
+    ],
+    "word_jubu": [
+      "huisvrouw",
+      "Mijn tante is huisvrouw."
+    ],
+    "word_juchajang": [
+      "parkeerplaats",
+      "Ik heb de auto op de parkeerplaats gezet."
+    ],
+    "word_junbimul": [
+      "benodigdheden, spullen om mee te nemen",
+      "Heb je je spullen voor morgen klaargelegd?"
+    ],
+    "word_julgi": [
+      "steel, stengel",
+      "De steel van de bloem is lang."
+    ],
+    "word_chanmul": [
+      "koud water",
+      "Een glas koud water, alstublieft."
+    ],
+    "word_chamgireum": [
+      "sesamolie",
+      "Voeg een beetje sesamolie toe."
+    ],
+    "word_changbak": [
+      "buiten het raam",
+      "Buiten het raam sneeuwt het."
+    ],
+    "word_chaeneol": [
+      "zender",
+      "Zet een andere zender op, alstublieft."
+    ],
+    "word_chaekgabang": [
+      "schooltas",
+      "Mijn schooltas is te zwaar."
+    ],
+    "word_cheongnyeon": [
+      "jongere",
+      "Jongeren doen vrijwilligerswerk."
+    ],
+    "word_cheongsonyeon": [
+      "jongere, tiener",
+      "Het tarief is goedkoper voor tieners."
+    ],
+    "word_chejung": [
+      "lichaamsgewicht",
+      "Ik ben een beetje afgevallen."
+    ],
+    "word_choroksaek": [
+      "groen",
+      "Ik heb een groene hoed opgezet."
+    ],
+    "word_chobap": [
+      "sushi",
+      "Ik heb sushi gegeten als lunch."
+    ],
+    "word_chukje": [
+      "festival",
+      "In de herfst wordt er een festival gehouden."
+    ],
+    "word_munhwa": [
+      "cultuur",
+      "Ik ben erg geïnteresseerd in de Koreaanse cultuur."
+    ],
+    "word_gyeongje": [
+      "economie",
+      "Ik kijk elke dag naar het economisch nieuws."
+    ],
+    "word_yesul": [
+      "kunst",
+      "Mijn jongere broer studeert kunst."
+    ],
+    "word_tteut": [
+      "betekenis",
+      "Ik ken de betekenis van dit woord niet."
+    ],
+    "word_baljeon": [
+      "ontwikkeling",
+      "Deze stad ontwikkelt zich snel."
+    ],
+    "word_jeontong": [
+      "traditie",
+      "Ik heb naar traditionele muziek geluisterd."
+    ],
+    "word_taedo": [
+      "houding",
+      "De houding is heel goed."
+    ],
+    "word_juwi": [
+      "omgeving",
+      "Kijk goed om je heen."
+    ],
+    "word_teukjing": [
+      "kenmerk",
+      "Het kenmerk van deze streek is de zee."
+    ],
+    "word_yejeong": [
+      "plan, planning",
+      "Ik ben van plan volgende week te vertrekken."
+    ],
+    "word_haengsa": [
+      "evenement",
+      "Ik heb meegedaan aan een schoolevenement."
+    ],
+    "word_pandan": [
+      "oordeel",
+      "Er is een snel oordeel nodig."
+    ],
+    "word_balpyo": [
+      "presentatie",
+      "Ik heb morgen een presentatie."
+    ],
+    "word_gicho": [
+      "basis",
+      "Ik leer het opnieuw vanaf de basis."
+    ],
+    "word_juingong": [
+      "hoofdpersoon",
+      "De hoofdpersoon van deze roman is een student."
+    ],
+    "word_haeoe": [
+      "buitenland",
+      "Ik vertrek op reis naar het buitenland."
+    ],
+    "word_cheyuk": [
+      "lichamelijke opvoeding",
+      "De gymles is het leukst."
+    ],
+    "word_pyeongso": [
+      "gewone dagen",
+      "Ik ben vroeger dan anders naar bed gegaan."
+    ],
+    "word_jutaek": [
+      "woning",
+      "De huizenprijzen zijn flink gestegen."
+    ],
+    "word_nongchon": [
+      "boerendorp, platteland",
+      "Mijn oma woont op het platteland."
+    ],
+    "word_bat": [
+      "akker",
+      "Ik heb pepers geplukt op de akker."
+    ],
+    "word_gyeot": [
+      "zij",
+      "Blijf aan mijn zijde."
+    ],
+    "word_gippeum": [
+      "vreugde",
+      "Het nieuws dat ik geslaagd was, gaf grote vreugde."
+    ],
+    "word_ipsul": [
+      "lippen",
+      "Mijn lippen zijn droog."
+    ],
+    "word_heuk": [
+      "aarde, grond",
+      "Aarde aanraken geeft me een goed gevoel."
+    ],
+    "word_gwahakja": [
+      "wetenschapper",
+      "Ik wil wetenschapper worden."
+    ],
+    "word_hoewon": [
+      "lid",
+      "Laat uw lidmaatschapskaart zien, alstublieft."
+    ],
+    "word_bangmun": [
+      "bezoek",
+      "Het volgende bezoek is op vrijdag."
+    ],
+    "word_bulman": [
+      "ontevredenheid",
+      "Ik heb naar de klacht van de klant geluisterd."
+    ],
+    "word_gwangaek": [
+      "toeschouwer",
+      "Het publiek klapte luid."
+    ],
+    "word_gomo": [
+      "tante van vaderskant",
+      "Mijn tante heeft me een cadeau gestuurd."
+    ],
+    "word_toron": [
+      "debat",
+      "We hebben in de les gedebatteerd."
+    ],
+    "word_gosaeng": [
+      "moeite, ontbering",
+      "U hebt veel doorgemaakt."
+    ],
+    "word_pado": [
+      "golf",
+      "De golven zijn hoog."
+    ],
+    "word_yegeum": [
+      "banktegoed",
+      "Ik heb een beetje van mijn tegoed opgenomen."
+    ],
+    "word_ipak": [
+      "toelating tot een school",
+      "Gefeliciteerd met je toelating."
+    ],
+    "word_jehan": [
+      "beperking, limiet",
+      "Er is een tijdslimiet."
+    ],
+    "word_punggyeong": [
+      "landschap",
+      "Het landschap vanuit het raam is prachtig."
+    ],
+    "word_gamdong": [
+      "ontroering",
+      "Ik was ontroerd door de film."
+    ],
+    "word_maru": [
+      "houten vloer",
+      "Ik ging op de houten vloer zitten om uit te rusten."
+    ],
+    "word_yejeol": [
+      "etiquette, goede manieren",
+      "Ik heb tafelmanieren geleerd."
+    ],
+    "word_chincheok": [
+      "familielid",
+      "Er kwam een familielid bij ons thuis."
+    ],
+    "word_haetsal": [
+      "zonnestralen",
+      "De ochtendzon is warm."
+    ],
+    "word_hakgi": [
+      "semester",
+      "Het nieuwe semester is begonnen."
+    ],
+    "word_hubae": [
+      "jongerejaars, jongere collega",
+      "Ik heb lunch gekocht voor mijn jongere collega."
+    ],
+    "word_hakseup": [
+      "leren, studie",
+      "Ik heb een leerplan gemaakt."
+    ],
+    "word_bigyo": [
+      "vergelijking",
+      "De vergelijking van de twee producten is eenvoudig."
+    ],
+    "word_hyanggi": [
+      "geur",
+      "De kamer is vol bloemengeur."
+    ],
+    "word_garu": [
+      "poeder",
+      "Ik heb het medicijn tot poeder gemaakt."
+    ],
+    "word_donghwa": [
+      "sprookje",
+      "Ik heb mijn kind een sprookje voorgelezen."
+    ],
+    "word_yuhak": [
+      "studie in het buitenland",
+      "Mijn oudere broer bereidt zich voor op een studie in het buitenland."
+    ],
+    "word_damim": [
+      "klassenleraar",
+      "Mijn klassenleraar is vriendelijk."
+    ],
+    "word_dojung": [
+      "halverwege, onderweg",
+      "Onderweg ging het regenen."
+    ],
+    "word_chingchan": [
+      "lof, compliment",
+      "Ik kreeg een compliment van mijn leraar."
+    ],
+    "word_haetbit": [
+      "zonlicht",
+      "Het zonlicht is te fel."
+    ],
+    "word_meonji": [
+      "stof",
+      "Er ligt stof op het bureau."
+    ],
+    "word_heungmi": [
+      "interesse",
+      "Ik heb interesse gekregen in geschiedenis."
+    ],
+    "word_dijain": [
+      "ontwerp, design",
+      "Deze tas heeft een mooi ontwerp."
+    ],
+    "word_teol": [
+      "vacht, haar",
+      "De vacht van de kat is zacht."
+    ],
+    "word_iljeong": [
+      "schema, planning",
+      "Ik heb de planning van vandaag bekeken."
+    ],
+    "word_gyohwan": [
+      "ruil, omruilen",
+      "Kan ik het ruilen voor een andere kleur?"
+    ],
+    "word_gugeo": [
+      "nationale taal",
+      "Ik heb het examen Koreaans gedaan."
+    ],
+    "word_jeulgeoum": [
+      "plezier",
+      "Reizen is een groot plezier."
+    ],
+    "word_daehagwon": [
+      "masteropleiding",
+      "Ik volg een masteropleiding."
+    ],
+    "word_deungnok": [
+      "registratie, inschrijving",
+      "Ik heb de inschrijving voor de les afgerond."
+    ],
+    "word_munui_2": [
+      "patroon, motief",
+      "Ik droeg een rok met bloemenmotief."
+    ],
+    "word_hwabun": [
+      "bloempot",
+      "Ik heb de bloempot water gegeven."
+    ],
+    "word_gyesangi": [
+      "rekenmachine",
+      "Ik heb het opgeteld met de rekenmachine."
+    ],
+    "word_hagwon": [
+      "privé-instituut",
+      "'s Avonds ga ik naar het Engels-instituut."
+    ],
+    "word_tomato": [
+      "tomaat",
+      "Ik heb tomaten gesneden en een salade gemaakt."
+    ],
+    "word_ppyam": [
+      "wang",
+      "Mijn wangen zijn rood van de kou."
+    ],
+    "word_tongjang": [
+      "bankboekje",
+      "Mijn salaris is op mijn bankboekje binnengekomen."
+    ],
+    "word_gyeonggijang": [
+      "stadion",
+      "Het stadion zat vol mensen."
+    ],
+    "word_cheonnal": [
+      "eerste dag",
+      "De eerste werkdag is spannend."
+    ],
+    "word_yeoreumcheol": [
+      "zomerseizoen",
+      "In het zomerseizoen drink ik veel water."
+    ],
+    "word_chulgeun": [
+      "naar het werk gaan",
+      "In de ochtendspits staan de wegen vast."
+    ],
+    "word_toegeun": [
+      "van het werk gaan",
+      "Na het werk sport ik."
+    ],
+    "word_jeoncheol": [
+      "elektrische trein",
+      "Ik ga met de elektrische trein naar school."
+    ],
+    "word_sikppang": [
+      "casinobrood",
+      "Vanochtend heb ik brood geroosterd."
+    ],
+    "word_taepung": [
+      "tyfoon",
+      "De vlucht is geannuleerd vanwege de tyfoon."
+    ],
+    "word_yeonhyu": [
+      "lang weekend",
+      "Tijdens het lange weekend ben ik naar mijn geboortestad geweest."
+    ],
+    "word_chwijik": [
+      "een baan vinden",
+      "Ik bereid me voor op het vinden van een baan."
+    ],
+    "word_baem": [
+      "slang",
+      "Ik zag een slang op het bergpad."
+    ],
+    "word_doenjang": [
+      "sojabonenpasta",
+      "Ik heb soep gemaakt met sojabonenpasta."
+    ],
+    "word_keoteun": [
+      "gordijn",
+      "Doe de gordijnen open, alstublieft."
+    ],
+    "word_sonagi": [
+      "regenbui",
+      "Er kwam een regenbui en mijn kleren werden nat."
+    ],
+    "word_goguma": [
+      "zoete aardappel",
+      "In de winter zijn gepofte zoete aardappels het lekkerst."
+    ],
+    "word_sonsugeon": [
+      "zakdoek",
+      "Ik veegde het zweet af met een zakdoek."
+    ],
+    "word_songaji": [
+      "kalf",
+      "Het kalf staat naast zijn moeder."
+    ],
+    "word_momsal": [
+      "spierpijn van uitputting",
+      "Ik was ziek van uitputting en heb een dag gerust."
+    ],
+    "word_chigwa": [
+      "tandartspraktijk",
+      "Ik had kiespijn en ben naar de tandarts gegaan."
+    ],
+    "word_japangi": [
+      "automaat",
+      "Ik heb koffie uit de automaat gehaald."
+    ],
+    "word_sangchu": [
+      "sla",
+      "Ik wikkel het vlees in sla en eet het op."
+    ],
+    "word_jaechaegi": [
+      "nies",
+      "Ik moet niezen van het stof."
+    ],
+    "word_hoengdanbodo": [
+      "zebrapad",
+      "Steek over bij het zebrapad."
+    ],
+    "word_seonpunggi": [
+      "ventilator",
+      "Het was warm, dus ik zette de ventilator aan."
+    ],
+    "word_pyeongil": [
+      "doordeweekse dag",
+      "Doordeweeks zijn er weinig klanten."
+    ],
+    "word_mokgeori": [
+      "ketting",
+      "Ik kreeg een ketting voor mijn verjaardag."
+    ],
+    "word_sopo": [
+      "pakket",
+      "Het pakket is thuis aangekomen."
+    ],
+    "word_araecheung": [
+      "de verdieping eronder",
+      "Op de verdieping eronder is een buurtwinkel."
+    ],
+    "word_tteokbokki": [
+      "pittige rijstcakes",
+      "De tteokbokki is een beetje pittig."
+    ],
+    "word_nokcha": [
+      "groene thee",
+      "Ik heb warme groene thee gedronken."
+    ],
+    "word_seongham": [
+      "naam, beleefd",
+      "Mag ik uw naam weten?"
+    ],
+    "word_setakso": [
+      "wasserij",
+      "Ik heb mijn jas bij de wasserij afgegeven."
+    ],
+    "word_piltong": [
+      "etui",
+      "Er zit geen potlood in mijn etui."
+    ],
+    "word_haksaengjeung": [
+      "studentenkaart",
+      "Met een studentenkaart krijg je korting."
+    ],
+    "word_bit_2": [
+      "kam",
+      "Ik haalde een kam uit mijn tas."
+    ],
+    "word_kkamansaek": [
+      "gitzwart",
+      "Er liep een gitzwarte kat voorbij."
+    ],
+    "word_hayansaek": [
+      "spierwit",
+      "Ik heb een spierwit overhemd gestreken."
+    ],
+    "word_gaeguri": [
+      "kikker",
+      "De kikkers kwaken in de vijver."
+    ],
+    "word_gilga": [
+      "wegkant",
+      "Langs de weg zijn bloemen gaan bloeien."
+    ],
+    "word_binmul": [
+      "regenwater",
+      "Regenwater stroomt langs het raam."
+    ],
+    "word_haetbyeot": [
+      "zonnewarmte",
+      "Ik heb de was in de zon gedroogd."
+    ],
+    "word_kongnamul": [
+      "taugé",
+      "Ik kruid de taugé en eet het op."
+    ],
+    "word_namul": [
+      "gekruide wilde groenten",
+      "In de lente zijn gekruide wilde groenten lekker."
+    ],
+    "word_hyeongwan": [
+      "hal, entree",
+      "Trek uw schoenen uit in de hal, alstublieft."
+    ],
+    "word_kkeom": [
+      "kauwgom",
+      "Kauw geen kauwgom tijdens de les."
+    ],
+    "word_juk": [
+      "rijstepap",
+      "Als ik ziek ben eet ik rijstepap."
+    ],
+    "word_bapgeureut": [
+      "rijstkom",
+      "Ik heb mijn rijstkom helemaal leeggegeten."
+    ],
+    "word_bulkkot": [
+      "vlam, vonk",
+      "De vlammen verlichtten de nachthemel."
+    ],
+    "word_sinipsaeng": [
+      "nieuwe student",
+      "Er is een welkomstfeest voor de nieuwe studenten."
+    ],
+    "word_hoesaek": [
+      "grijs",
+      "Er komen grijze wolken aan."
+    ],
+    "word_dongari": [
+      "studentenclub",
+      "Ik ben lid geworden van de fotografieclub."
+    ],
+    "word_baiollin": [
+      "viool",
+      "Het geluid van de viool is prachtig."
+    ],
+    "word_noraebang": [
+      "karaokekamer",
+      "Ik ben met vrienden naar de karaoke geweest."
+    ],
+    "word_daedosi": [
+      "grote stad",
+      "In een grote stad is wonen duur."
+    ],
+    "word_eorinai": [
+      "klein kind",
+      "Een klein kind huilt in zijn eentje."
+    ],
+    "word_pojang": [
+      "verpakking",
+      "Wilt u het als cadeau inpakken?"
+    ],
+    "word_inwon": [
+      "aantal personen",
+      "Met hoeveel personen bent u?"
+    ],
+    "word_soseolga": [
+      "romanschrijver",
+      "Ik heb een beroemde romanschrijver ontmoet."
+    ],
+    "word_dojagi": [
+      "aardewerk",
+      "Ik leer aardewerk maken."
+    ],
+    "word_sinmunji": [
+      "krantenpapier",
+      "Ik heb de ruit met krantenpapier schoongemaakt."
+    ],
+    "word_gosokdoro": [
+      "snelweg",
+      "Er is een ongeluk gebeurd op de snelweg."
+    ],
+    "word_jagayong": [
+      "eigen auto",
+      "Ik ga met mijn eigen auto naar het werk."
+    ],
+    "word_majeunpyeon": [
+      "overkant",
+      "De bank is aan de overkant."
+    ],
+    "word_geonneopyeon": [
+      "overzijde van de straat",
+      "De winkel aan de overzijde is goedkoper."
+    ],
+    "word_iutjip": [
+      "huis van de buren",
+      "De buren gaven ons rijstcakes."
+    ],
+    "word_peullaseutik": [
+      "plastic",
+      "Plastic wordt apart weggegooid."
+    ],
+    "word_chuljang": [
+      "zakenreis",
+      "Volgende week ga ik op zakenreis naar Busan."
+    ],
+    "word_mogyoktang": [
+      "badhuis",
+      "In het weekend ben ik naar het badhuis gegaan."
+    ],
+    "word_badanmul": [
+      "zeewater",
+      "Het zeewater is erg koud."
+    ],
+    "word_chuka": [
+      "felicitatie",
+      "Ik heb een felicitatiecadeau klaargemaakt."
+    ],
+    "word_chwiso": [
+      "annulering",
+      "Annuleren van de reservering kan tot de dag ervoor."
+    ],
+    "word_gyeoulcheol": [
+      "winterseizoen",
+      "Pas in het winterseizoen op voor verkoudheid."
+    ],
+    "word_gochujang": [
+      "chilipasta",
+      "Ik doe chilipasta in de bibimbap."
+    ],
+    "word_bitamin": [
+      "vitamine",
+      "Ik neem elke dag vitamines."
+    ],
+    "word_bilding": [
+      "hoog gebouw",
+      "Dat gebouw heeft dertig verdiepingen."
+    ],
+    "word_sikcho": [
+      "azijn",
+      "Ik heb een beetje azijn in de salade gedaan."
+    ],
+    "word_janghakgeum": [
+      "studiebeurs",
+      "Dit semester heb ik een studiebeurs gekregen."
+    ],
+    "word_churimmun": [
+      "toegangsdeur",
+      "Doe de toegangsdeur goed dicht, alstublieft."
+    ],
+    "word_hoejang": [
+      "voorzitter",
+      "De voorzitter hield een welkomstwoord."
+    ],
+    "word_tongil": [
+      "hereniging",
+      "We hebben over de hereniging geleerd."
+    ],
+    "word_jaesan": [
+      "vermogen, bezit",
+      "Ze lieten hun bezit na aan de familie."
+    ],
+    "word_jeonguk": [
+      "het hele land",
+      "Het regent in het hele land."
+    ],
+    "word_gajeong": [
+      "gezin, thuis",
+      "Ik ben getrouwd en heb een gezin gesticht."
+    ],
+    "word_nongeop": [
+      "landbouw",
+      "In deze streek is de landbouw goed ontwikkeld."
+    ],
+    "word_sobija": [
+      "consument",
+      "We luisteren naar de mening van consumenten."
+    ],
+    "word_nodongja": [
+      "arbeider",
+      "De arbeiders rusten uit."
+    ],
+    "word_daejung": [
+      "het grote publiek",
+      "Het is erg populair bij het grote publiek."
+    ],
+    "word_siin": [
+      "dichter",
+      "Ik hou van de gedichten van die dichter."
+    ],
+    "word_anaunseo": [
+      "omroeper",
+      "De omroeper leest het nieuws voor."
+    ],
+    "word_kkadak": [
+      "reden",
+      "Vertel me de reden waarom je te laat was."
+    ],
+    "word_gyeongyeong": [
+      "bedrijfskunde",
+      "Ik studeer bedrijfskunde aan de universiteit."
+    ],
+    "word_imgeum": [
+      "loon",
+      "De lonen zijn gestegen."
+    ],
+    "word_seoyang": [
+      "het Westen",
+      "Ik hou van westers eten."
+    ],
+    "word_imiji": [
+      "imago",
+      "Het imago van het bedrijf is verbeterd."
+    ],
+    "word_suchul": [
+      "export",
+      "De export van auto's is toegenomen."
+    ],
+    "word_choecho": [
+      "de allereerste",
+      "Dit is de eerste ter wereld."
+    ],
+    "word_suip": [
+      "inkomen",
+      "Mijn inkomen is een beetje gestegen."
+    ],
+    "word_muyeok": [
+      "internationale handel",
+      "Ik werk bij een handelsonderneming."
+    ],
+    "word_jonghap": [
+      "totaal",
+      "De totaalscore is hoog."
+    ],
+    "word_panmae": [
+      "verkoop",
+      "De verkoop is begonnen."
+    ],
+    "word_gongsa": [
+      "bouwwerkzaamheden",
+      "De weg is afgesloten wegens bouwwerkzaamheden."
+    ],
+    "word_muyong": [
+      "danskunst",
+      "Ik heb een dansvoorstelling gezien."
+    ],
+    "word_nonmun": [
+      "scriptie",
+      "Ik schrijf mijn scriptie."
+    ],
+    "word_ollimpik": [
+      "Olympische Spelen",
+      "Ik heb de Olympische Spelen op televisie gekeken."
+    ],
+    "word_munjejeom": [
+      "knelpunt",
+      "We hebben het knelpunt gevonden."
+    ],
+    "word_yesulga": [
+      "kunstenaar",
+      "In deze buurt wonen kunstenaars bij elkaar."
+    ],
+    "word_model": [
+      "model",
+      "Het model loopt over de catwalk."
+    ],
+    "word_yeonguso": [
+      "onderzoeksinstituut",
+      "Ik werk bij een onderzoeksinstituut."
+    ],
+    "word_geulloja": [
+      "werknemer",
+      "De Dag van de Arbeid is in mei."
+    ],
+    "word_bangsongguk": [
+      "omroepstation",
+      "We hebben een omroepstation bezocht."
+    ],
+    "word_mulsok": [
+      "onder water",
+      "Ik deed mijn ogen open onder water."
+    ],
+    "word_wiban": [
+      "overtreding",
+      "Ik heb een boete betaald voor het negeren van een verkeerslicht."
+    ],
+    "word_neomeo": [
+      "voorbij",
+      "Voorbij de berg ligt een dorp."
+    ],
+    "word_donggi": [
+      "motivatie",
+      "Vertel ons uw motivatie om te solliciteren."
+    ],
+    "word_seutail": [
+      "stijl",
+      "Ik heb mijn haarstijl veranderd."
+    ],
+    "word_sinyong": [
+      "krediet, vertrouwen",
+      "Het vertrouwen van mensen mag je niet verliezen."
+    ],
+    "word_banjang": [
+      "klassenvertegenwoordiger",
+      "Ik ben gekozen tot klassenvertegenwoordiger."
+    ],
+    "word_sincheong": [
+      "aanvraag",
+      "De aanvraagperiode is voorbij."
+    ],
+    "word_apeum": [
+      "pijn",
+      "Ik probeer de pijn te vergeten."
+    ],
+    "word_gyoryu": [
+      "uitwisseling",
+      "De uitwisseling tussen de twee landen is levendig."
+    ],
+    "word_geulsseugi": [
+      "schrijven",
+      "Ik volg een schrijfcursus."
+    ],
+    "word_daegieop": [
+      "groot bedrijf",
+      "Ik heb een baan bij een groot bedrijf gekregen."
+    ],
+    "word_bujang": [
+      "afdelingshoofd",
+      "Het afdelingshoofd heeft een vergadering belegd."
+    ],
+    "word_insang": [
+      "indruk",
+      "De eerste indruk was goed."
+    ],
+    "word_sicheongja": [
+      "kijker",
+      "Ze lezen een brief van een kijker voor."
+    ],
+    "word_jongeobwon": [
+      "medewerker",
+      "De medewerker heeft ons vriendelijk geholpen."
+    ],
+    "word_gukoeuiwon": [
+      "parlementslid",
+      "Het zijn de verkiezingen voor de parlementsleden."
+    ],
+    "word_midieo": [
+      "media",
+      "De invloed van de media is groot."
+    ],
+    "word_gotgot": [
+      "hier en daar",
+      "Hier en daar zijn bloemen gaan bloeien."
+    ],
+    "word_tap": [
+      "toren, pagode",
+      "Bij de tempel staat een oude pagode."
+    ],
+    "word_geonchuk": [
+      "architectuur",
+      "Ik heb architectuur gestudeerd."
+    ],
+    "word_sigyongyu": [
+      "bakolie",
+      "Ik heb bakolie in de pan gedaan."
+    ],
+    "word_geop": [
+      "angst",
+      "Ik ben bang, dus ik kan er niet in."
+    ],
+    "word_seogyu": [
+      "aardolie",
+      "De olieprijs is gestegen."
+    ],
+    "word_chaegimja": [
+      "verantwoordelijke",
+      "Ik wil graag de verantwoordelijke spreken."
+    ],
+    "word_boram": [
+      "voldoening",
+      "Lesgeven geeft me voldoening."
+    ],
+    "word_soseu": [
+      "saus",
+      "Mag ik meer saus, alstublieft?"
+    ],
+    "word_urimal": [
+      "onze taal",
+      "Laten we onze taal mooi gebruiken."
+    ],
+    "word_hyeonji": [
+      "ter plaatse, lokaal",
+      "Ik heb het lokale eten geprobeerd."
+    ],
+    "word_geot_2": [
+      "buitenkant",
+      "De buitenkant is hard en de binnenkant zacht."
+    ],
+    "word_seungyongcha": [
+      "personenauto",
+      "Er staan vijf personenauto's geparkeerd."
+    ],
+    "word_jinchul": [
+      "uitbreiding naar een nieuw gebied",
+      "We bereiden een uitbreiding naar het buitenland voor."
+    ],
+    "word_giun": [
+      "energie, kracht",
+      "Ik heb helemaal geen energie."
+    ],
+    "word_abeonim": [
+      "vader, beleefd",
+      "Doe uw vader de groeten van mij."
+    ],
+    "word_mureum": [
+      "vraag",
+      "Beantwoord de vraag, alstublieft."
+    ],
+    "word_eomeonim": [
+      "moeder, beleefd",
+      "Is uw moeder in goede gezondheid?"
+    ],
+    "word_haeseok": [
+      "interpretatie",
+      "Deze zin is moeilijk te interpreteren."
+    ],
+    "word_sayongja": [
+      "gebruiker",
+      "Het aantal gebruikers is sterk gegroeid."
+    ],
+    "word_sawon": [
+      "bedrijfsmedewerker",
+      "Er is een nieuwe medewerker begonnen."
+    ],
+    "word_gangmul": [
+      "rivierwater",
+      "Het rivierwater is helder."
+    ],
+    "word_rideum": [
+      "ritme",
+      "Ik dans op het ritme."
+    ],
+    "word_moniteo": [
+      "beeldscherm",
+      "Het beeldscherm is te donker."
+    ],
+    "word_un": [
+      "geluk",
+      "Het geluk was met me en ik slaagde voor het examen."
+    ],
+    "word_ilsangsaenghwal": [
+      "dagelijks leven",
+      "Het is een woord dat in het dagelijks leven veel wordt gebruikt."
+    ],
+    "word_binil": [
+      "plasticfolie",
+      "Ik heb het eten met plasticfolie afgedekt."
     ]
   }
 }

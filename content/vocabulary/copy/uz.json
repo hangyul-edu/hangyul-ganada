@@ -2731,7 +2731,7 @@
     ],
     "word_gamyeon": [
       "niqob",
-      "Niqob taqdim."
+      "Niqob taqib raqsga tushdim."
     ],
     "word_ingi": [
       "mashhurlik",
@@ -8233,8 +8233,8 @@
       "O‘qituvchimni izlab bordim."
     ],
     "word_jiwon": [
-      "qo‘llab-quvvatlash",
-      "Qo‘llab-quvvatlash oldim."
+      "yordam, ko'mak",
+      "Hukumatdan yordam oldim."
     ],
     "word_oraen": [
       "uzoq yillik",
@@ -9684,8 +9684,8 @@
       "Piyoladan suv toshib ketdi."
     ],
     "word_sinjang": [
-      "bo‘y",
-      "Bo‘yimni o‘lchayman."
+      "bo'y",
+      "Bo'yingiz qancha?"
     ],
     "word_neullida": [
       "oshirmoq",
@@ -10393,8 +10393,8 @@
       "Tahlil tugadi."
     ],
     "word_jiji": [
-      "qo‘llab-quvvatlash",
-      "Qo‘llab-quvvatlash oldim."
+      "qo'llab-quvvatlash",
+      "Ko'p odamlarning qo'llab-quvvatlashiga ega bo'ldim."
     ],
     "word_seupai": [
       "josus",
@@ -13580,6 +13580,1994 @@
     "word_yubohada": [
       "qarorni keyinga surmoq",
       "Qarorimizni bir muddat keyinga surdik."
+    ],
+    "word_gasu": [
+      "qo'shiqchi",
+      "Ana u qo'shiqchi yaxshi kuylaydi."
+    ],
+    "word_gyejeol": [
+      "fasl",
+      "Qaysi faslni yoqtirasiz?"
+    ],
+    "word_gyeongchalgwan": [
+      "politsiyachi",
+      "Men politsiyachidan yo'l so'radim."
+    ],
+    "word_gyeongchi": [
+      "manzara",
+      "Bu yerda manzara juda chiroyli."
+    ],
+    "word_godeunghaksaeng": [
+      "yuqori sinf o'quvchisi",
+      "Ukam yuqori sinf o'quvchisi."
+    ],
+    "word_gwaja": [
+      "pechenye yoki gazak",
+      "Bolalar pechenye yeyishyapti."
+    ],
+    "word_gyogwaseo": [
+      "darslik",
+      "Iltimos, darslikni oching."
+    ],
+    "word_gugyeong": [
+      "tomosha",
+      "Gullarni tomosha qilgani bordim."
+    ],
+    "word_gisuksa": [
+      "yotoqxona",
+      "Men yotoqxonada yashayman."
+    ],
+    "word_namdongsaeng": [
+      "uka",
+      "Ukam baland bo'yli."
+    ],
+    "word_naenyeon": [
+      "kelasi yil",
+      "Kelasi yili Koreyaga boraman."
+    ],
+    "word_dallyeok": [
+      "taqvim",
+      "Devorda taqvim osilgan."
+    ],
+    "word_daehaksaeng": [
+      "talaba",
+      "Ukam talaba bo'ldi."
+    ],
+    "word_dwaejigogi": [
+      "cho'chqa go'shti",
+      "Biz cho'chqa go'shtini qovurib yedik."
+    ],
+    "word_deungsan": [
+      "toqqa chiqish",
+      "Dam olish kunlari toqqa chiqaman."
+    ],
+    "word_maepda": [
+      "achchiq bo'lmoq",
+      "Bu ttokpokki juda achchiq."
+    ],
+    "word_menyu": [
+      "menyu",
+      "Iltimos, menyuni ko'rsating."
+    ],
+    "word_mogyok": [
+      "cho'milish",
+      "Uxlashdan oldin cho'milaman."
+    ],
+    "word_mit": [
+      "ost, tag",
+      "Mushuk karavot ostida."
+    ],
+    "word_bareum": [
+      "talaffuz",
+      "Talaffuzingiz juda yaxshi."
+    ],
+    "word_banghak": [
+      "ta'til",
+      "Ta'tilda nima qilasiz?"
+    ],
+    "word_baebureuda": [
+      "to'q bo'lmoq",
+      "Ko'p yedim, shuning uchun to'qman."
+    ],
+    "word_baekwajeom": [
+      "universal do'kon",
+      "Universal do'kondan kiyim sotib oldim."
+    ],
+    "word_bolpen": [
+      "ruchka",
+      "Iltimos, ruchka berib turing."
+    ],
+    "word_saekkkal": [
+      "rang",
+      "Menga bu rang yoqdi."
+    ],
+    "word_seojeom": [
+      "kitob do'koni",
+      "Kitob do'konidan kitob sotib oldim."
+    ],
+    "word_seonmulhada": [
+      "sovg'a qilmoq",
+      "Do'stimga gul sovg'a qildim."
+    ],
+    "word_sesu": [
+      "yuz yuvish",
+      "Ertalab yuzimni yuvaman."
+    ],
+    "word_sopung": [
+      "sayr",
+      "Ertaga sayrga boramiz."
+    ],
+    "word_syoping": [
+      "xarid",
+      "Dam olish kuni xarid qildim."
+    ],
+    "word_syupeomaket": [
+      "supermarket",
+      "Supermarketdan sabzavot sotib oldim."
+    ],
+    "word_yangbok": [
+      "kostyum",
+      "Dadam kostyum kiyadi."
+    ],
+    "word_eorini": [
+      "bola",
+      "Bolalar uchun chipta bepul."
+    ],
+    "word_eeokeon": [
+      "konditsioner",
+      "Issiq bo'lgani uchun konditsionerni yoqdim."
+    ],
+    "word_oraenman": [
+      "uzoq vaqt o'tib",
+      "Uzoq vaqt o'tib do'stimni uchratdim."
+    ],
+    "word_oeguk": [
+      "chet el",
+      "Chet elda yashab ko'rganmisiz?"
+    ],
+    "word_oegugeo": [
+      "chet tili",
+      "Chet tilini o'rganyapman."
+    ],
+    "word_oegugin": [
+      "chet ellik",
+      "Chet ellik do'stlarim ko'p."
+    ],
+    "word_undonghada": [
+      "sport bilan shug'ullanmoq",
+      "Har kuni ertalab sport bilan shug'ullanaman."
+    ],
+    "word_undonghwa": [
+      "krossovka",
+      "Yangi krossovkamni kiydim."
+    ],
+    "word_ip_2": [
+      "barg",
+      "Kuzda barglar to'kiladi."
+    ],
+    "word_jangmi": [
+      "atirgul",
+      "Atirgul hidi yoqimli."
+    ],
+    "word_jeomsimsigan": [
+      "tushlik vaqti",
+      "Tushlik vaqtida sayr qilaman."
+    ],
+    "word_joreop": [
+      "bitiruv",
+      "Bitiruvingiz bilan tabriklayman!"
+    ],
+    "word_junghakgyo": [
+      "o'rta maktab",
+      "O'g'lim o'rta maktabda o'qiydi."
+    ],
+    "word_chodeunghakgyo": [
+      "boshlang'ich maktab",
+      "Qizim boshlang'ich maktabga kirdi."
+    ],
+    "word_jinandal": [
+      "o'tgan oy",
+      "O'tgan oy ko'chib o'tdim."
+    ],
+    "word_jinanju": [
+      "o'tgan hafta",
+      "O'tgan hafta shamollab qoldim."
+    ],
+    "word_jiugae": [
+      "o'chirg'ich",
+      "Iltimos, o'chirg'ich bilan o'chiring."
+    ],
+    "word_jjigae": [
+      "koreys sho'rvasi",
+      "Tushlikka jjigae yedim."
+    ],
+    "word_cheongbaji": [
+      "jinsi shim",
+      "Jinsi shim sizga yarashadi."
+    ],
+    "word_chiyak": [
+      "tish pastasi",
+      "Tish pastasi tugab qoldi."
+    ],
+    "word_kolla": [
+      "kola",
+      "Bir stakan kola bering."
+    ],
+    "word_taegwondo": [
+      "taekvondo",
+      "Bola taekvondo o'rganyapti."
+    ],
+    "word_teniseu": [
+      "tennis",
+      "Yangi tennis raketkasi sotib oldim."
+    ],
+    "word_tellebijeon": [
+      "televizor",
+      "Kechqurun televizor ko'raman."
+    ],
+    "word_hangnyeon": [
+      "sinf, kurs",
+      "Nechanchi sinfda o'qiysan?"
+    ],
+    "word_hanbok": [
+      "hanbok, koreys milliy libosi",
+      "Sollal bayramida hanbok kiyamiz."
+    ],
+    "word_hanja": [
+      "xitoy ieroglifi",
+      "Xitoy ieroglifi qiyin."
+    ],
+    "word_haembeogeo": [
+      "gamburger",
+      "Bitta gamburger bering."
+    ],
+    "word_hyuil": [
+      "dam olish kuni",
+      "Dam olish kunlari kech turaman."
+    ],
+    "word_hyuji": [
+      "salfetka",
+      "Iltimos, salfetka bering."
+    ],
+    "word_kkeulhida": [
+      "qaynatmoq",
+      "Suv qaynatib choy ichaman."
+    ],
+    "word_bokda": [
+      "qovurmoq",
+      "Sabzavotlarni qovurib yedim."
+    ],
+    "word_damgeuda": [
+      "botirmoq, ivitmoq",
+      "Oyoqlarimni suvga botirdim."
+    ],
+    "word_gakkuda": [
+      "parvarish qilmoq",
+      "Buvim bog'ni parvarish qiladi."
+    ],
+    "word_gwonhada": [
+      "taklif qilmoq",
+      "Mehmonga choy taklif qildim."
+    ],
+    "word_kkeudeogida": [
+      "bosh irg'amoq",
+      "Bola boshini irg'adi."
+    ],
+    "word_kkeunheojida": [
+      "uzilmoq",
+      "Arqon uzildi."
+    ],
+    "word_neolpida": [
+      "kengaytirmoq",
+      "Yo'lni kengaytirish ishlari olib borilmoqda."
+    ],
+    "word_nohida": [
+      "qo'yilgan bo'lmoq",
+      "Stol ustida gullar qo'yilgan."
+    ],
+    "word_sallida": [
+      "hayotini saqlab qolmoq",
+      "Shifokor bemorni saqlab qoldi."
+    ],
+    "word_seuda": [
+      "tik qo'ymoq, to'xtatmoq",
+      "Soyabonni eshik yoniga tik qo'ydim."
+    ],
+    "word_seokkida": [
+      "aralashmoq",
+      "Suv bilan yog' aralashmaydi."
+    ],
+    "word_kyeojida": [
+      "yonmoq, yoqilmoq",
+      "Chiroq o'zi yonib ketdi."
+    ],
+    "word_jeonghaejida": [
+      "belgilanmoq",
+      "Majlis vaqti belgilandi."
+    ],
+    "word_saenggyeonada": [
+      "paydo bo'lmoq",
+      "Ko'plab yangi do'konlar paydo bo'ldi."
+    ],
+    "word_naraoda": [
+      "uchib kelmoq",
+      "Deraza oldiga qush uchib keldi."
+    ],
+    "word_dallyeooda": [
+      "yugurib kelmoq",
+      "Kuchukcha men tomon yugurib keldi."
+    ],
+    "word_yangbohada": [
+      "yon bermoq, o'rin bermoq",
+      "Keksa ayolga o'rnimni berdim."
+    ],
+    "word_hwaryonghada": [
+      "foydalanmoq",
+      "Dam olish kunlaridan yaxshi foydalanaman."
+    ],
+    "word_dayanghada": [
+      "xilma-xil bo'lmoq",
+      "Bu do'konda non turlari xilma-xil."
+    ],
+    "word_dapdapada": [
+      "siqilmoq, dim bo'lmoq",
+      "Xona tor, shuning uchun dim."
+    ],
+    "word_dukkeopda": [
+      "qalin bo'lmoq",
+      "Bu kitob juda qalin."
+    ],
+    "word_dunggeulda": [
+      "yumaloq bo'lmoq",
+      "Oy yumaloq."
+    ],
+    "word_gukda": [
+      "yo'g'on bo'lmoq",
+      "Bu daraxtning tanasi yo'g'on."
+    ],
+    "word_ganeulda": [
+      "ingichka bo'lmoq",
+      "Bu ip juda ingichka."
+    ],
+    "word_mipda": [
+      "yoqimsiz bo'lmoq",
+      "Yolg'on gapiradigan odamlarni yomon ko'raman."
+    ],
+    "word_natseolda": [
+      "notanish bo'lmoq",
+      "Bu mahalla menga hali ham notanish."
+    ],
+    "word_eongttunghada": [
+      "g'alati bo'lmoq",
+      "Bola g'alati savol berdi."
+    ],
+    "word_usuhada": [
+      "a'lo bo'lmoq",
+      "Baholari a'lo."
+    ],
+    "word_jeokdanghada": [
+      "mos bo'lmoq",
+      "Bu xonaning hajmi mos."
+    ],
+    "word_jogeumata": [
+      "kichkina bo'lmoq",
+      "Kichkina quticha oldim."
+    ],
+    "word_teunteunhada": [
+      "mustahkam bo'lmoq",
+      "Bu stul mustahkam."
+    ],
+    "word_pyeollihada": [
+      "qulay bo'lmoq",
+      "Metro juda qulay."
+    ],
+    "word_pureuda": [
+      "ko'k yoki yashil bo'lmoq",
+      "Tog'lar yam-yashil."
+    ],
+    "word_hwalbalhada": [
+      "harakatchan bo'lmoq",
+      "Bola juda harakatchan."
+    ],
+    "word_kkwae": [
+      "ancha",
+      "Bugun ancha sovuq."
+    ],
+    "word_kkujunhi": [
+      "muntazam",
+      "Har kuni muntazam mashq qilaman."
+    ],
+    "word_kkamjjak": [
+      "cho'chib",
+      "Qattiq ovozdan cho'chib tushdim."
+    ],
+    "word_deoguna": [
+      "buning ustiga",
+      "Kechikdim. Buning ustiga yomg'ir yog'yapti."
+    ],
+    "word_magu": [
+      "betartib, o'ylamasdan",
+      "Iltimos, pulni o'ylamasdan sarflamang."
+    ],
+    "word_bigyojeok": [
+      "nisbatan",
+      "Bu masala nisbatan oson."
+    ],
+    "word_yunanhi": [
+      "odatdan tashqari",
+      "Bugun odatdan tashqari charchadim."
+    ],
+    "word_jeomcha": [
+      "asta-sekin",
+      "Havo asta-sekin sovib boryapti."
+    ],
+    "word_puk": [
+      "qattiq, chuqur",
+      "Dam olish kunlari yaxshilab dam oling."
+    ],
+    "word_haemada": [
+      "har yili",
+      "Har yili bahorda gullar ochiladi."
+    ],
+    "word_hanpyeon": [
+      "boshqa tomondan",
+      "Xursandman. Boshqa tomondan, xavotirdaman ham."
+    ],
+    "word_jeuk": [
+      "ya'ni",
+      "Ertaga, ya'ni shanba kuni uchrashamiz."
+    ],
+    "word_gawi": [
+      "qaychi",
+      "Qog'ozni qaychi bilan qirqaman."
+    ],
+    "word_gansik": [
+      "yengil tamaddi",
+      "Tushdan keyin yengil tamaddi qilaman."
+    ],
+    "word_geosil": [
+      "mehmonxona",
+      "Mehmonxonada televizor ko'raman."
+    ],
+    "word_georeum": [
+      "qadam",
+      "Bir qadam oldinga qo'ying."
+    ],
+    "word_golmok": [
+      "tor ko'cha",
+      "Tor ko'chada bolalar o'ynayapti."
+    ],
+    "word_gongmuwon": [
+      "davlat xizmatchisi",
+      "Akam davlat xizmatchisi."
+    ],
+    "word_gwamok": [
+      "fan",
+      "Qaysi fanni yoqtirasiz?"
+    ],
+    "word_gwaje": [
+      "topshiriq",
+      "Topshiriqni ertagacha topshirishim kerak."
+    ],
+    "word_gwangwang": [
+      "sayohat, turizm",
+      "Seul bo'ylab sayohat qildim."
+    ],
+    "word_gwangwanggaek": [
+      "sayyoh",
+      "Sayyohlar suratga tushmoqda."
+    ],
+    "word_gyotongsago": [
+      "yo'l-transport hodisasi",
+      "Kecha yo'l-transport hodisasi bo'ldi."
+    ],
+    "word_gungmul": [
+      "sho'rva suvi",
+      "Sho'rvaning suvi juda yoqimli."
+    ],
+    "word_geuneul": [
+      "soya",
+      "Daraxt soyasida dam olaylik."
+    ],
+    "word_geulja": [
+      "harf",
+      "Harflar juda kichik."
+    ],
+    "word_gigan": [
+      "muddat, davr",
+      "Imtihon davri, shuning uchun bandman."
+    ],
+    "word_gion": [
+      "havo harorati",
+      "Bugun havo harorati ancha pasaydi."
+    ],
+    "word_gichim": [
+      "yo'tal",
+      "Yo'talim to'xtamayapti."
+    ],
+    "word_kkeopjil": [
+      "po'st",
+      "Banan po'stini archdim."
+    ],
+    "word_kkokdaegi": [
+      "cho'qqi",
+      "Daraxt uchida qush bor."
+    ],
+    "word_kkochip": [
+      "gulbarg",
+      "Gulbarglar shamolda uchmoqda."
+    ],
+    "word_kkul": [
+      "asal",
+      "Choyga asal solaman."
+    ],
+    "word_nabi": [
+      "kapalak",
+      "Kapalak gulga qo'ndi."
+    ],
+    "word_namutgaji": [
+      "daraxt shoxi",
+      "Shoxda qush o'tiribdi."
+    ],
+    "word_nammae": [
+      "aka-singil, opa-uka",
+      "Biz aka-singilmiz."
+    ],
+    "word_nagyeop": [
+      "xazon",
+      "Yo'lda xazon ko'p."
+    ],
+    "word_noin": [
+      "keksa odam",
+      "Keksa odamga o'rnimni berdim."
+    ],
+    "word_noriteo": [
+      "o'yin maydonchasi",
+      "Bolalar o'yin maydonchasida o'ynayapti."
+    ],
+    "word_nongsa": [
+      "dehqonchilik",
+      "Bobom dehqonchilik qiladi."
+    ],
+    "word_nunbit": [
+      "nigoh",
+      "Nigoh iliq."
+    ],
+    "word_nunap": [
+      "ko'z oldi",
+      "Avtobus ko'z oldimda ketib qoldi."
+    ],
+    "word_danjeom": [
+      "kamchilik",
+      "Har kimning kamchiligi bor."
+    ],
+    "word_jangjeom": [
+      "afzallik",
+      "Bu uyning afzalligi — joylashuvi."
+    ],
+    "word_dalbit": [
+      "oy nuri",
+      "Oy nuri juda yorug'."
+    ],
+    "word_dapjang": [
+      "javob",
+      "Javob kutyapman."
+    ],
+    "word_daemun": [
+      "darvoza",
+      "Iltimos, darvozani oching."
+    ],
+    "word_deowi": [
+      "issiq, jazirama",
+      "Bu yilgi jazirama juda kuchli."
+    ],
+    "word_chuwi": [
+      "sovuq",
+      "Sovuqdan qo'llarim muzlab qoldi."
+    ],
+    "word_dogu": [
+      "asbob",
+      "Asboblaringizni yaxshi saqlang."
+    ],
+    "word_dosirak": [
+      "tushlik qutisi",
+      "Tushlik qutisini olib bordim."
+    ],
+    "word_dokseo": [
+      "kitob o'qish",
+      "Mening sevimli mashg'ulotim — kitob o'qish."
+    ],
+    "word_dongmurwon": [
+      "hayvonot bog'i",
+      "Hayvonot bog'ida sher ko'rdim."
+    ],
+    "word_dutong": [
+      "bosh og'rig'i",
+      "Boshim qattiq og'rigani uchun dori ichdim."
+    ],
+    "word_dwijjok": [
+      "orqa tomon",
+      "Orqa tomonda joy bor."
+    ],
+    "word_apjjok": [
+      "old tomon",
+      "Old tomonga o'tiring."
+    ],
+    "word_anjjok": [
+      "ichki tomon",
+      "Ichki o'rindiqqa o'tiring."
+    ],
+    "word_wijjok": [
+      "yuqori tomon",
+      "Kitoblar yuqori tokchada."
+    ],
+    "word_araejjok": [
+      "pastki tomon",
+      "Pastki tortmani ochib ko'ring."
+    ],
+    "word_ttam": [
+      "ter",
+      "Mashqdan terlayapman."
+    ],
+    "word_ttangkong": [
+      "yeryong'oq",
+      "Yeryong'oqning mazasi qovurilgan yong'oqdek."
+    ],
+    "word_ttukkeong": [
+      "qopqoq",
+      "Iltimos, qopqoqni oching."
+    ],
+    "word_maeumsok": [
+      "ko'ngil to'ri",
+      "Ko'nglimda minnatdor bo'ldim."
+    ],
+    "word_manhwa": [
+      "komiks",
+      "Ukam komikslarni yaxshi ko'radi."
+    ],
+    "word_maeryeok": [
+      "jozibadorlik",
+      "Bu shaharning o'ziga xos jozibasi bor."
+    ],
+    "word_meoritsok": [
+      "miya, xayol",
+      "Xayolim chalkash."
+    ],
+    "word_memo": [
+      "eslatma, xat",
+      "Muzlatgichga eslatma yopishtirdim."
+    ],
+    "word_myeongham": [
+      "tashrif qog'ozi",
+      "Biz tashrif qog'ozlarini almashdik."
+    ],
+    "word_mogi": [
+      "chivin",
+      "Yozda chivin ko'p bo'ladi."
+    ],
+    "word_more": [
+      "indinga",
+      "Indinga yana kelaman."
+    ],
+    "word_mommuge": [
+      "tana vazni",
+      "Vaznimni o'lchadim."
+    ],
+    "word_muge": [
+      "og'irlik, vazn",
+      "Yukning vaznini o'lchayman."
+    ],
+    "word_munjang": [
+      "gap, jumla",
+      "Iltimos, bu gapni o'qing."
+    ],
+    "word_misul": [
+      "tasviriy san'at",
+      "Tasviriy san'at darsida rasm chizamiz."
+    ],
+    "word_misulgwan": [
+      "san'at muzeyi",
+      "Dam olish kuni san'at muzeyiga bordim."
+    ],
+    "word_milgaru": [
+      "un",
+      "Undan non yopaman."
+    ],
+    "word_badatga": [
+      "dengiz bo'yi",
+      "Dengiz bo'yida sayr qildim."
+    ],
+    "word_bawi": [
+      "qoya, xarsang",
+      "Xarsang ustiga o'tirdim."
+    ],
+    "word_balgarak": [
+      "oyoq barmog'i",
+      "Oyoq barmog'imni jarohatladim."
+    ],
+    "word_baegyeong": [
+      "fon",
+      "Suratning foni chiroyli."
+    ],
+    "word_beoreut": [
+      "odat",
+      "Tirnoq tishlash odatim bor."
+    ],
+    "word_beoseot": [
+      "qo'ziqorin",
+      "Qo'ziqorin solib sho'rva pishirdim."
+    ],
+    "word_beoteo": [
+      "sariyog'",
+      "Nonga sariyog' surtaman."
+    ],
+    "word_bongji": [
+      "paket, xalta",
+      "Mevalarni paketga soldim."
+    ],
+    "word_bongtu": [
+      "konvert",
+      "Xatni konvertga soldim."
+    ],
+    "word_bugeun": [
+      "atrof, yaqin",
+      "Vokzal yaqinida yashayman."
+    ],
+    "word_bujagyong": [
+      "nojo'ya ta'sir",
+      "Bu dorining nojo'ya ta'siri yo'q."
+    ],
+    "word_bulbit": [
+      "chiroq nuri",
+      "Uzoqdan yorug'lik ko'rinyapti."
+    ],
+    "word_buran": [
+      "xavotir, bezovtalik",
+      "Imtihon oldidan xavotirlanaman."
+    ],
+    "word_ppallae": [
+      "kir, kir yuvish",
+      "Kir ko'p yig'ilib qoldi."
+    ],
+    "word_ppuri": [
+      "ildiz",
+      "Daraxtning ildizi chuqur."
+    ],
+    "word_saheul": [
+      "uch kun",
+      "Uch kun yomg'ir yog'di."
+    ],
+    "word_sangdaebang": [
+      "suhbatdosh, qarshi tomon",
+      "Suhbatdoshingizni diqqat bilan tinglang."
+    ],
+    "word_sangpum": [
+      "tovar, mahsulot",
+      "Yangi mahsulot chiqdi."
+    ],
+    "word_saeu": [
+      "krevetka",
+      "Krevetkani qovurib yedim."
+    ],
+    "word_seolgeoji": [
+      "idish yuvish",
+      "Kechki ovqatdan keyin idish yuvdim."
+    ],
+    "word_sonamu": [
+      "qarag'ay",
+      "Tog'da qarag'ay ko'p."
+    ],
+    "word_sonnyeo": [
+      "nabira qiz",
+      "Buvi nabira qizini juda yaxshi ko'radi."
+    ],
+    "word_sonbadak": [
+      "kaft",
+      "Kaftimga yozib qo'ydim."
+    ],
+    "word_sonjabi": [
+      "dastak, tutqich",
+      "Eshik dastagi buzilib qoldi."
+    ],
+    "word_seupgwan": [
+      "odat",
+      "Erta uxlashni odat qildim."
+    ],
+    "word_sonja": [
+      "nabira o'g'il",
+      "Bobo nabirasi bilan o'ynayapti."
+    ],
+    "word_sunseo": [
+      "tartib, navbat",
+      "Navbat bilan kiring."
+    ],
+    "word_sieomeoni": [
+      "qaynona",
+      "Qaynonam ovqatni yaxshi pishiradi."
+    ],
+    "word_sikgu": [
+      "oila a'zosi",
+      "Bizning oilamiz besh kishidan iborat."
+    ],
+    "word_sikpum": [
+      "oziq-ovqat",
+      "Oziq-ovqat bo'limi yerto'lada."
+    ],
+    "word_sillae": [
+      "bino ichi",
+      "Bino ichida shlyapangizni yeching."
+    ],
+    "word_simbureum": [
+      "yumush",
+      "Onamning yumushi bilan do'konga bordim."
+    ],
+    "word_akgi": [
+      "musiqa asbobi",
+      "Qaysi musiqa asbobini o'rganmoqchisiz?"
+    ],
+    "word_aksu": [
+      "qo'l berib ko'rishish",
+      "Biz qo'l berib ko'rishdik."
+    ],
+    "word_anbang": [
+      "katta yotoqxona",
+      "Ota-onam katta yotoqxonada uxlaydi."
+    ],
+    "word_yaoe": [
+      "ochiq havo",
+      "Ochiq havoda tushlik qildik."
+    ],
+    "word_yangnyeom": [
+      "ziravor",
+      "Ziravor yaxshi singgan."
+    ],
+    "word_eoryeoum": [
+      "qiyinchilik",
+      "Qiyinchilik bo'lsa, ayting."
+    ],
+    "word_yeou": [
+      "tulki",
+      "O'rmonda tulki ko'rdim."
+    ],
+    "word_yeoyu": [
+      "bo'sh vaqt, imkoniyat",
+      "Hozirgi paytda bo'sh vaqtim yo'q."
+    ],
+    "word_yeollakcheo": [
+      "aloqa ma'lumotlari",
+      "Iltimos, aloqa ma'lumotlaringizni bering."
+    ],
+    "word_yeonmal": [
+      "yil oxiri",
+      "Yil oxirida uchrashuvlar ko'p bo'ladi."
+    ],
+    "word_yeolheul": [
+      "o'n kun",
+      "O'n kun sayohat qildim."
+    ],
+    "word_yeongha": [
+      "noldan past",
+      "Bugun ertalab harorat noldan past."
+    ],
+    "word_yeopjip": [
+      "qo'shni uy",
+      "Qo'shni uyga yangi oila ko'chib keldi."
+    ],
+    "word_ojingeo": [
+      "kalmar",
+      "Kalmarni qovurib yeyishadi."
+    ],
+    "word_ondo": [
+      "harorat",
+      "Xona haroratini biroz ko'tardim."
+    ],
+    "word_onmom": [
+      "butun tana",
+      "Butun tanam og'riyapti."
+    ],
+    "word_oechul": [
+      "tashqariga chiqish",
+      "Tashqariga chiqishga tayyorlanyapman."
+    ],
+    "word_oenson": [
+      "chap qo'l",
+      "Chap qo'lim bilan yozaman."
+    ],
+    "word_oreunson": [
+      "o'ng qo'l",
+      "O'ng qo'lingizni ko'taring."
+    ],
+    "word_yogeum": [
+      "haq, to'lov",
+      "Avtobus haqi oshdi."
+    ],
+    "word_yoksil": [
+      "hammom",
+      "Hammomni tozaladim."
+    ],
+    "word_yoksim": [
+      "ochko'zlik",
+      "Ochko'z bo'lmang."
+    ],
+    "word_yongdon": [
+      "cho'ntak puli",
+      "Cho'ntak pulimni yig'ib kitob sotib oldim."
+    ],
+    "word_useung": [
+      "g'alaba, birinchi o'rin",
+      "Bizning jamoa birinchi o'rinni oldi."
+    ],
+    "word_upyo": [
+      "pochta markasi",
+      "Marka yig'ish — mening sevimli mashg'ulotim."
+    ],
+    "word_unjeonja": [
+      "haydovchi",
+      "Haydovchilar xavfsizlik kamarini taqishi kerak."
+    ],
+    "word_ureum": [
+      "yig'i",
+      "Chaqaloqning yig'isi to'xtadi."
+    ],
+    "word_wicheung": [
+      "yuqori qavat",
+      "Yuqori qavat biroz shovqinli."
+    ],
+    "word_yurichang": [
+      "deraza oynasi",
+      "Deraza oynalarini tozaladim."
+    ],
+    "word_yuchiwon": [
+      "bolalar bog'chasi",
+      "Bolam bolalar bog'chasiga boradi."
+    ],
+    "word_yuhaeng": [
+      "moda",
+      "Hozirgi kunda bu rang modada."
+    ],
+    "word_eumnyo": [
+      "ichimlik",
+      "Nima ichasiz?"
+    ],
+    "word_iik": [
+      "foyda",
+      "Bu oy foyda ko'rdik."
+    ],
+    "word_iteunnal": [
+      "ertasi kun",
+      "Ertasi kuni ertalab jo'nab ketdim."
+    ],
+    "word_ingu": [
+      "aholi",
+      "Bu shaharning aholisi ko'p."
+    ],
+    "word_ilsang": [
+      "kundalik hayot",
+      "Kundalik hayotga qaytdim."
+    ],
+    "word_janchi": [
+      "to'y, ziyofat",
+      "Buvimning tug'ilgan kuniga ziyofat qildik."
+    ],
+    "word_jamot": [
+      "pijama",
+      "Pijamamni kiyib oldim."
+    ],
+    "word_jangnae": [
+      "kelajak",
+      "Kelajakda kim bo'lmoqchisan?"
+    ],
+    "word_jangma": [
+      "yomg'irli mavsum",
+      "Yomg'irli mavsum boshlandi."
+    ],
+    "word_jangsa": [
+      "savdo",
+      "Hozir savdo yaxshi ketyapti."
+    ],
+    "word_jaeryo": [
+      "masalliq, material",
+      "Ovqat masalliqlarini sotib oldim."
+    ],
+    "word_jeoja": [
+      "muallif",
+      "Bu kitobning muallifi bilan uchrashdim."
+    ],
+    "word_jeochuk": [
+      "jamg'arma",
+      "Har oy pul jamg'araman."
+    ],
+    "word_jeongong": [
+      "mutaxassislik",
+      "Mutaxassisligingiz nima?"
+    ],
+    "word_jeonnal": [
+      "oldingi kun",
+      "Imtihondan oldingi kuni erta uxlayman."
+    ],
+    "word_jeongdap": [
+      "to'g'ri javob",
+      "To'g'ri javob berdim."
+    ],
+    "word_jepum": [
+      "mahsulot",
+      "Bu mahsulotning sifati yaxshi."
+    ],
+    "word_josang": [
+      "ajdod",
+      "Bayramlarda ajdodlarimizni yod etamiz."
+    ],
+    "word_jwaseok": [
+      "o'rindiq",
+      "O'rindiq raqamingizni tekshiring."
+    ],
+    "word_jubu": [
+      "uy bekasi",
+      "Xolam uy bekasi."
+    ],
+    "word_juchajang": [
+      "avtoturargoh",
+      "Mashinani avtoturargohga qo'ydim."
+    ],
+    "word_junbimul": [
+      "olib boradigan narsalar",
+      "Ertaga kerakli narsalarni tayyorladingmi?"
+    ],
+    "word_julgi": [
+      "poya",
+      "Gulning poyasi uzun."
+    ],
+    "word_chanmul": [
+      "sovuq suv",
+      "Bir stakan sovuq suv bering."
+    ],
+    "word_chamgireum": [
+      "kunjut yog'i",
+      "Ozgina kunjut yog'i qo'shing."
+    ],
+    "word_changbak": [
+      "deraza tashqarisi",
+      "Deraza tashqarisida qor yog'yapti."
+    ],
+    "word_chaeneol": [
+      "kanal",
+      "Iltimos, kanalni o'zgartiring."
+    ],
+    "word_chaekgabang": [
+      "maktab sumkasi",
+      "Maktab sumkam juda og'ir."
+    ],
+    "word_cheongnyeon": [
+      "yosh yigit-qiz",
+      "Yoshlar ko'ngilli ish qilishyapti."
+    ],
+    "word_cheongsonyeon": [
+      "o'smir",
+      "O'smirlar uchun haq arzon."
+    ],
+    "word_chejung": [
+      "tana vazni",
+      "Vaznim biroz kamaydi."
+    ],
+    "word_choroksaek": [
+      "yashil rang",
+      "Yashil shlyapa kiydim."
+    ],
+    "word_chobap": [
+      "sushi",
+      "Tushlikka sushi yedim."
+    ],
+    "word_chukje": [
+      "festival",
+      "Kuzda festival o'tkaziladi."
+    ],
+    "word_munhwa": [
+      "madaniyat",
+      "Koreya madaniyatiga qiziqishim katta."
+    ],
+    "word_gyeongje": [
+      "iqtisodiyot",
+      "Har kuni iqtisodiy yangiliklarni ko'raman."
+    ],
+    "word_yesul": [
+      "san'at",
+      "Ukam san'atni o'rganyapti."
+    ],
+    "word_tteut": [
+      "ma'no",
+      "Bu so'zning ma'nosini bilmayman."
+    ],
+    "word_baljeon": [
+      "rivojlanish",
+      "Bu shahar tez rivojlanmoqda."
+    ],
+    "word_jeontong": [
+      "an'ana",
+      "An'anaviy musiqa tingladim."
+    ],
+    "word_taedo": [
+      "munosabat",
+      "Munosabat juda yaxshi."
+    ],
+    "word_juwi": [
+      "atrof",
+      "Atrofingizga yaxshilab qarang."
+    ],
+    "word_teukjing": [
+      "xususiyat",
+      "Bu hududning xususiyati — dengiz."
+    ],
+    "word_yejeong": [
+      "reja",
+      "Kelasi hafta jo'nab ketishni rejalashtiryapman."
+    ],
+    "word_haengsa": [
+      "tadbir",
+      "Maktab tadbirida qatnashdim."
+    ],
+    "word_pandan": [
+      "hukm, qaror",
+      "Tez qaror kerak."
+    ],
+    "word_balpyo": [
+      "taqdimot",
+      "Ertaga taqdimotim bor."
+    ],
+    "word_gicho": [
+      "asos",
+      "Asosdan qayta o'rganyapman."
+    ],
+    "word_juingong": [
+      "bosh qahramon",
+      "Bu romanning bosh qahramoni — talaba."
+    ],
+    "word_haeoe": [
+      "chet el",
+      "Chet elga sayohatga chiqyapman."
+    ],
+    "word_cheyuk": [
+      "jismoniy tarbiya",
+      "Jismoniy tarbiya darsi eng qiziq."
+    ],
+    "word_pyeongso": [
+      "oddiy kunlar",
+      "Odatdagidan erta uxladim."
+    ],
+    "word_jutaek": [
+      "turar joy",
+      "Uy narxlari ancha oshdi."
+    ],
+    "word_nongchon": [
+      "qishloq",
+      "Buvim qishloqda yashaydi."
+    ],
+    "word_bat": [
+      "dala",
+      "Dalada qalampir terdim."
+    ],
+    "word_gyeot": [
+      "yon",
+      "Yonimda bo'l."
+    ],
+    "word_gippeum": [
+      "quvonch",
+      "O'tganlik xabari katta quvonch keltirdi."
+    ],
+    "word_ipsul": [
+      "lab",
+      "Lablarim qurib qoldi."
+    ],
+    "word_heuk": [
+      "tuproq",
+      "Tuproqni ushlasam ko'nglim yayraydi."
+    ],
+    "word_gwahakja": [
+      "olim",
+      "Olim bo'lmoqchiman."
+    ],
+    "word_hoewon": [
+      "a'zo",
+      "A'zolik kartangizni ko'rsating."
+    ],
+    "word_bangmun": [
+      "tashrif",
+      "Keyingi tashrif juma kuni."
+    ],
+    "word_bulman": [
+      "norozilik",
+      "Mijozning shikoyatini tingladim."
+    ],
+    "word_gwangaek": [
+      "tomoshabin",
+      "Tomoshabinlar qattiq qarsak chalishdi."
+    ],
+    "word_gomo": [
+      "amma",
+      "Ammam menga sovg'a yubordi."
+    ],
+    "word_toron": [
+      "bahs",
+      "Darsda bahs o'tkazdik."
+    ],
+    "word_gosaeng": [
+      "mashaqqat",
+      "Siz ko'p mashaqqat chekdingiz."
+    ],
+    "word_pado": [
+      "to'lqin",
+      "To'lqinlar baland."
+    ],
+    "word_yegeum": [
+      "omonat",
+      "Omonatimdan ozgina oldim."
+    ],
+    "word_ipak": [
+      "o'qishga kirish",
+      "O'qishga kirganing bilan tabriklayman."
+    ],
+    "word_jehan": [
+      "cheklov",
+      "Vaqt cheklovi bor."
+    ],
+    "word_punggyeong": [
+      "manzara",
+      "Deraza yonidagi manzara go'zal."
+    ],
+    "word_gamdong": [
+      "ta'sirlanish",
+      "Kinoni ko'rib qattiq ta'sirlandim."
+    ],
+    "word_maru": [
+      "yog'och pol",
+      "Yog'och polga o'tirib dam oldim."
+    ],
+    "word_yejeol": [
+      "odob",
+      "Dasturxon odobini o'rgandim."
+    ],
+    "word_chincheok": [
+      "qarindosh",
+      "Uyimizga qarindosh keldi."
+    ],
+    "word_haetsal": [
+      "quyosh nurlari",
+      "Ertalabki quyosh nurlari iliq."
+    ],
+    "word_hakgi": [
+      "semestr",
+      "Yangi semestr boshlandi."
+    ],
+    "word_hubae": [
+      "kichik hamkasb",
+      "Kichik hamkasbimga tushlik olib berdim."
+    ],
+    "word_hakseup": [
+      "o'rganish",
+      "O'rganish rejasini tuzdim."
+    ],
+    "word_bigyo": [
+      "taqqoslash",
+      "Ikki mahsulotni taqqoslash oson."
+    ],
+    "word_hyanggi": [
+      "xushbo'y hid",
+      "Xona gullarning xushbo'y hidiga to'la."
+    ],
+    "word_garu": [
+      "kukun",
+      "Dorini kukun qildim."
+    ],
+    "word_donghwa": [
+      "ertak",
+      "Bolamga ertak o'qib berdim."
+    ],
+    "word_yuhak": [
+      "chet elda o'qish",
+      "Akam chet elda o'qishga tayyorlanyapti."
+    ],
+    "word_damim": [
+      "sinf rahbari",
+      "Sinf rahbarim mehribon."
+    ],
+    "word_dojung": [
+      "yo'l o'rtasi",
+      "Ketayotganda yo'lda yomg'ir yog'di."
+    ],
+    "word_chingchan": [
+      "maqtov",
+      "O'qituvchimdan maqtov eshitdim."
+    ],
+    "word_haetbit": [
+      "quyosh yorug'i",
+      "Quyosh yorug'i juda kuchli."
+    ],
+    "word_meonji": [
+      "chang",
+      "Stol ustida chang to'planibdi."
+    ],
+    "word_heungmi": [
+      "qiziqish",
+      "Tarixga qiziqishim paydo bo'ldi."
+    ],
+    "word_dijain": [
+      "dizayn",
+      "Bu sumkaning dizayni chiroyli."
+    ],
+    "word_teol": [
+      "jun",
+      "Mushukning juni yumshoq."
+    ],
+    "word_iljeong": [
+      "jadval",
+      "Bugungi jadvalni tekshirdim."
+    ],
+    "word_gyohwan": [
+      "almashtirish",
+      "Boshqa rangga almashtirsa bo'ladimi?"
+    ],
+    "word_gugeo": [
+      "milliy til",
+      "Koreys tilidan imtihon topshirdim."
+    ],
+    "word_jeulgeoum": [
+      "zavq",
+      "Sayohat — katta zavq."
+    ],
+    "word_daehagwon": [
+      "magistratura",
+      "Magistraturada o'qiyapman."
+    ],
+    "word_deungnok": [
+      "ro'yxatdan o'tish",
+      "Darsga ro'yxatdan o'tishni tugatdim."
+    ],
+    "word_munui_2": [
+      "naqsh",
+      "Gul naqshli yubka kiydim."
+    ],
+    "word_hwabun": [
+      "gultuvak",
+      "Gultuvakka suv quydim."
+    ],
+    "word_gyesangi": [
+      "kalkulyator",
+      "Kalkulyator bilan qo'shdim."
+    ],
+    "word_hagwon": [
+      "xususiy o'quv markazi",
+      "Kechqurun ingliz tili kursiga boraman."
+    ],
+    "word_tomato": [
+      "pomidor",
+      "Pomidorni to'g'rab salat qildim."
+    ],
+    "word_ppyam": [
+      "yonoq",
+      "Sovuqdan yonoqlarim qizarib ketdi."
+    ],
+    "word_tongjang": [
+      "omonat daftarchasi",
+      "Maosh omonat daftarchamga tushdi."
+    ],
+    "word_gyeonggijang": [
+      "stadion",
+      "Stadion odamga to'ldi."
+    ],
+    "word_cheonnal": [
+      "birinchi kun",
+      "Ishdagi birinchi kun hayajonli bo'ladi."
+    ],
+    "word_yeoreumcheol": [
+      "yoz mavsumi",
+      "Yoz mavsumida ko'p suv ichaman."
+    ],
+    "word_chulgeun": [
+      "ishga borish",
+      "Ishga borish vaqtida yo'llar tiqilib qoladi."
+    ],
+    "word_toegeun": [
+      "ishdan qaytish",
+      "Ishdan keyin sport bilan shug'ullanaman."
+    ],
+    "word_jeoncheol": [
+      "elektr poyezdi",
+      "Maktabga elektr poyezdida boraman."
+    ],
+    "word_sikppang": [
+      "bo'lak non",
+      "Ertalab non qovurdim."
+    ],
+    "word_taepung": [
+      "tayfun",
+      "Tayfun sababli reys bekor qilindi."
+    ],
+    "word_yeonhyu": [
+      "uzun dam olish",
+      "Uzun dam olish kunlarida ona shahrimga borib keldim."
+    ],
+    "word_chwijik": [
+      "ishga joylashish",
+      "Ishga joylashishga tayyorlanyapman."
+    ],
+    "word_baem": [
+      "ilon",
+      "Tog' yo'lida ilon ko'rdim."
+    ],
+    "word_doenjang": [
+      "soya pastasi",
+      "Soya pastasidan sho'rva pishirdim."
+    ],
+    "word_keoteun": [
+      "parda",
+      "Pardalarni oching."
+    ],
+    "word_sonagi": [
+      "jala",
+      "Jala yog'ib kiyimim ho'l bo'ldi."
+    ],
+    "word_goguma": [
+      "shirin kartoshka",
+      "Qishda pishirilgan shirin kartoshka eng zo'r."
+    ],
+    "word_sonsugeon": [
+      "dastro'mol",
+      "Terimni dastro'mol bilan artdim."
+    ],
+    "word_songaji": [
+      "buzoq",
+      "Buzoq onasining yonida."
+    ],
+    "word_momsal": [
+      "charchoqdan tana og'rig'i",
+      "Charchoqdan kasal bo'lib, bir kun dam oldim."
+    ],
+    "word_chigwa": [
+      "tish shifoxonasi",
+      "Tishim og'rib, tish shifokoriga bordim."
+    ],
+    "word_japangi": [
+      "savdo avtomati",
+      "Avtomatdan kofe oldim."
+    ],
+    "word_sangchu": [
+      "latuk",
+      "Go'shtni latukka o'rab yeyman."
+    ],
+    "word_jaechaegi": [
+      "aksirish",
+      "Changdan aksiryapman."
+    ],
+    "word_hoengdanbodo": [
+      "piyodalar o'tish joyi",
+      "Piyodalar o'tish joyidan o'ting."
+    ],
+    "word_seonpunggi": [
+      "ventilyator",
+      "Issiq bo'lgani uchun ventilyatorni yoqdim."
+    ],
+    "word_pyeongil": [
+      "ish kuni",
+      "Ish kunlari mijozlar kam bo'ladi."
+    ],
+    "word_mokgeori": [
+      "marjon",
+      "Tug'ilgan kunimga marjon oldim."
+    ],
+    "word_sopo": [
+      "posilka",
+      "Posilka uyga yetib keldi."
+    ],
+    "word_araecheung": [
+      "pastki qavat",
+      "Pastki qavatda kichik do'kon bor."
+    ],
+    "word_tteokbokki": [
+      "achchiq guruch kulchasi",
+      "Ttokpokki biroz achchiq."
+    ],
+    "word_nokcha": [
+      "ko'k choy",
+      "Iliq ko'k choy ichdim."
+    ],
+    "word_seongham": [
+      "ism, hurmat bilan",
+      "Ismingizni bilsam bo'ladimi?"
+    ],
+    "word_setakso": [
+      "kir yuvish shoxobchasi",
+      "Paltomni kir yuvish shoxobchasiga topshirdim."
+    ],
+    "word_piltong": [
+      "qalamdon",
+      "Qalamdonimda qalam yo'q."
+    ],
+    "word_haksaengjeung": [
+      "talabalik guvohnomasi",
+      "Talabalik guvohnomasi bo'lsa chegirma bor."
+    ],
+    "word_bit_2": [
+      "taroq",
+      "Sumkadan taroq oldim."
+    ],
+    "word_kkamansaek": [
+      "qop-qora rang",
+      "Qop-qora mushuk o'tib ketdi."
+    ],
+    "word_hayansaek": [
+      "oppoq rang",
+      "Oppoq ko'ylakni dazmolladim."
+    ],
+    "word_gaeguri": [
+      "qurbaqa",
+      "Hovuzda qurbaqalar qurillayapti."
+    ],
+    "word_gilga": [
+      "yo'l chekkasi",
+      "Yo'l chekkasida gullar ochildi."
+    ],
+    "word_binmul": [
+      "yomg'ir suvi",
+      "Yomg'ir suvi deraza bo'ylab oqmoqda."
+    ],
+    "word_haetbyeot": [
+      "quyosh tafti",
+      "Kirlarni quyoshda quritdim."
+    ],
+    "word_kongnamul": [
+      "soya nihollari",
+      "Soya nihollarini ziravorlab yeyman."
+    ],
+    "word_namul": [
+      "ziravorlangan yovvoyi ko'katlar",
+      "Bahorda ziravorlangan yovvoyi ko'katlar mazali bo'ladi."
+    ],
+    "word_hyeongwan": [
+      "kiraverish",
+      "Kiraverishda oyoq kiyimingizni yeching."
+    ],
+    "word_kkeom": [
+      "saqich",
+      "Dars paytida saqich chaynamang."
+    ],
+    "word_juk": [
+      "guruch bo'tqasi",
+      "Kasal bo'lganimda guruch bo'tqasi yeyman."
+    ],
+    "word_bapgeureut": [
+      "guruch kosasi",
+      "Guruch kosasini butunlay bo'shatdim."
+    ],
+    "word_bulkkot": [
+      "alanga, uchqun",
+      "Alanga tungi osmonni yoritdi."
+    ],
+    "word_sinipsaeng": [
+      "yangi talaba",
+      "Yangi talabalar uchun kutib olish kechasi bor."
+    ],
+    "word_hoesaek": [
+      "kulrang",
+      "Kulrang bulutlar to'planmoqda."
+    ],
+    "word_dongari": [
+      "talabalar to'garagi",
+      "Foto to'garagiga a'zo bo'ldim."
+    ],
+    "word_baiollin": [
+      "skripka",
+      "Skripka ovozi go'zal."
+    ],
+    "word_noraebang": [
+      "karaoke xonasi",
+      "Do'stlarim bilan karaokega bordim."
+    ],
+    "word_daedosi": [
+      "katta shahar",
+      "Katta shaharda uy narxi qimmat."
+    ],
+    "word_eorinai": [
+      "kichkina bola",
+      "Kichkina bola yolg'iz yig'layapti."
+    ],
+    "word_pojang": [
+      "o'rash",
+      "Sovg'a qilib o'rab bering."
+    ],
+    "word_inwon": [
+      "odamlar soni",
+      "Necha kishisizlar?"
+    ],
+    "word_soseolga": [
+      "romannavis",
+      "Mashhur romannavis bilan uchrashdim."
+    ],
+    "word_dojagi": [
+      "sopol",
+      "Sopol buyum yasashni o'rganyapman."
+    ],
+    "word_sinmunji": [
+      "gazeta qog'ozi",
+      "Derazani gazeta qog'ozi bilan artdim."
+    ],
+    "word_gosokdoro": [
+      "avtomagistral",
+      "Avtomagistralda avariya bo'ldi."
+    ],
+    "word_jagayong": [
+      "shaxsiy mashina",
+      "Ishga shaxsiy mashinamda qatnayman."
+    ],
+    "word_majeunpyeon": [
+      "qarshi tomon",
+      "Bank qarshi tomonda."
+    ],
+    "word_geonneopyeon": [
+      "yo'lning narigi tomoni",
+      "Yo'lning narigi tomonidagi do'kon arzonroq."
+    ],
+    "word_iutjip": [
+      "qo'shnining uyi",
+      "Qo'shnilar bizga guruch kulchasi berdi."
+    ],
+    "word_peullaseutik": [
+      "plastik",
+      "Plastik alohida tashlanadi."
+    ],
+    "word_chuljang": [
+      "xizmat safari",
+      "Kelasi hafta Pusanga xizmat safariga boraman."
+    ],
+    "word_mogyoktang": [
+      "umumiy hammom",
+      "Dam olish kuni umumiy hammomga bordim."
+    ],
+    "word_badanmul": [
+      "dengiz suvi",
+      "Dengiz suvi juda sovuq."
+    ],
+    "word_chuka": [
+      "tabrik",
+      "Tabrik sovg'asini tayyorladim."
+    ],
+    "word_chwiso": [
+      "bekor qilish",
+      "Bronni oldingi kungacha bekor qilish mumkin."
+    ],
+    "word_gyeoulcheol": [
+      "qish mavsumi",
+      "Qish mavsumida shamollashdan ehtiyot bo'ling."
+    ],
+    "word_gochujang": [
+      "qalampir pastasi",
+      "Bibimbapga qalampir pastasi solaman."
+    ],
+    "word_bitamin": [
+      "vitamin",
+      "Har kuni vitamin ichaman."
+    ],
+    "word_bilding": [
+      "baland bino",
+      "U bino o'ttiz qavatli."
+    ],
+    "word_sikcho": [
+      "sirka",
+      "Salatga ozgina sirka qo'shdim."
+    ],
+    "word_janghakgeum": [
+      "stipendiya",
+      "Bu semestrda stipendiya oldim."
+    ],
+    "word_churimmun": [
+      "kirish eshigi",
+      "Kirish eshigini yaxshilab yoping."
+    ],
+    "word_hoejang": [
+      "rais",
+      "Rais tabrik so'zini aytdi."
+    ],
+    "word_tongil": [
+      "birlashish",
+      "Birlashish haqida bilib oldik."
+    ],
+    "word_jaesan": [
+      "mol-mulk",
+      "Mol-mulkini oilasiga qoldirdi."
+    ],
+    "word_jeonguk": [
+      "butun mamlakat",
+      "Butun mamlakatda yomg'ir yog'yapti."
+    ],
+    "word_gajeong": [
+      "oila, xonadon",
+      "Uylanib, oila qurdim."
+    ],
+    "word_nongeop": [
+      "qishloq xo'jaligi",
+      "Bu hududda qishloq xo'jaligi rivojlangan."
+    ],
+    "word_sobija": [
+      "iste'molchi",
+      "Iste'molchilarning fikrini tinglaymiz."
+    ],
+    "word_nodongja": [
+      "ishchi",
+      "Ishchilar dam olishyapti."
+    ],
+    "word_daejung": [
+      "omma",
+      "Omma orasida juda mashhur."
+    ],
+    "word_siin": [
+      "shoir",
+      "O'sha shoirning she'rlarini yoqtiraman."
+    ],
+    "word_anaunseo": [
+      "diktor",
+      "Diktor yangiliklarni o'qiyapti."
+    ],
+    "word_kkadak": [
+      "sabab",
+      "Kechikish sababingni ayt."
+    ],
+    "word_gyeongyeong": [
+      "biznes boshqaruvi",
+      "Universitetda biznes boshqaruvini o'rganaman."
+    ],
+    "word_imgeum": [
+      "ish haqi",
+      "Ish haqi oshdi."
+    ],
+    "word_seoyang": [
+      "G'arb",
+      "G'arb taomlarini yoqtiraman."
+    ],
+    "word_imiji": [
+      "imij",
+      "Kompaniyaning imiji yaxshilandi."
+    ],
+    "word_suchul": [
+      "eksport",
+      "Avtomobil eksporti oshdi."
+    ],
+    "word_choecho": [
+      "eng birinchi",
+      "Bu — dunyodagi eng birinchisi."
+    ],
+    "word_suip": [
+      "daromad",
+      "Daromadim biroz oshdi."
+    ],
+    "word_muyeok": [
+      "savdo-sotiq",
+      "Savdo kompaniyasida ishlayman."
+    ],
+    "word_jonghap": [
+      "umumiy",
+      "Umumiy ball yuqori."
+    ],
+    "word_panmae": [
+      "sotuv",
+      "Sotuv boshlandi."
+    ],
+    "word_gongsa": [
+      "qurilish ishlari",
+      "Qurilish ishlari tufayli yo'l yopiq."
+    ],
+    "word_muyong": [
+      "raqs san'ati",
+      "Raqs tomoshasini ko'rdim."
+    ],
+    "word_nonmun": [
+      "ilmiy ish",
+      "Ilmiy ish yozyapman."
+    ],
+    "word_ollimpik": [
+      "Olimpiada",
+      "Olimpiadani televizorda ko'rdim."
+    ],
+    "word_munjejeom": [
+      "muammoli joy",
+      "Muammoli joyni topdik."
+    ],
+    "word_yesulga": [
+      "san'atkor",
+      "Bu hududda san'atkorlar birga yashaydi."
+    ],
+    "word_model": [
+      "model",
+      "Model podiumda yuryapti."
+    ],
+    "word_yeonguso": [
+      "tadqiqot instituti",
+      "Tadqiqot institutida ishlayman."
+    ],
+    "word_geulloja": [
+      "mehnatkash",
+      "Mehnatkashlar kuni may oyida."
+    ],
+    "word_bangsongguk": [
+      "telestudiya",
+      "Telestudiyaga bordik."
+    ],
+    "word_mulsok": [
+      "suv ostida",
+      "Suv ostida ko'zimni ochdim."
+    ],
+    "word_wiban": [
+      "buzish",
+      "Svetofor qoidasini buzganim uchun jarima to'ladim."
+    ],
+    "word_neomeo": [
+      "narigi tomon",
+      "Tog'ning narigi tomonida qishloq bor."
+    ],
+    "word_donggi": [
+      "sabab, motiv",
+      "Ariza berish sababingizni ayting."
+    ],
+    "word_seutail": [
+      "uslub",
+      "Soch uslubimni o'zgartirdim."
+    ],
+    "word_sinyong": [
+      "ishonch",
+      "Odamlarning ishonchini yo'qotmaslik kerak."
+    ],
+    "word_banjang": [
+      "sinf sardori",
+      "Sinf sardori etib saylandim."
+    ],
+    "word_sincheong": [
+      "ariza",
+      "Ariza berish muddati tugadi."
+    ],
+    "word_apeum": [
+      "og'riq, dard",
+      "Dardni unutishga harakat qilaman."
+    ],
+    "word_gyoryu": [
+      "aloqa, almashinuv",
+      "Ikki mamlakat o'rtasidagi aloqalar faol."
+    ],
+    "word_geulsseugi": [
+      "yozish",
+      "Yozish darsiga qatnayman."
+    ],
+    "word_daegieop": [
+      "yirik kompaniya",
+      "Yirik kompaniyaga ishga kirdim."
+    ],
+    "word_bujang": [
+      "bo'lim boshlig'i",
+      "Bo'lim boshlig'i majlis chaqirdi."
+    ],
+    "word_insang": [
+      "taassurot",
+      "Birinchi taassurot yaxshi bo'ldi."
+    ],
+    "word_sicheongja": [
+      "tomoshabin",
+      "Ular tomoshabinning xatini o'qishyapti."
+    ],
+    "word_jongeobwon": [
+      "xodim",
+      "Xodim bizga muloyimlik bilan yo'l ko'rsatdi."
+    ],
+    "word_gukoeuiwon": [
+      "parlament a'zosi",
+      "Bu — parlament a'zolarini saylash saylovi."
+    ],
+    "word_midieo": [
+      "ommaviy axborot vositalari",
+      "OAVning ta'siri katta."
+    ],
+    "word_gotgot": [
+      "har yerda",
+      "Har yerda gullar ochildi."
+    ],
+    "word_tap": [
+      "minora",
+      "Ibodatxonada eski minora bor."
+    ],
+    "word_geonchuk": [
+      "arxitektura",
+      "Arxitektura yo'nalishida o'qidim."
+    ],
+    "word_sigyongyu": [
+      "oshxona yog'i",
+      "Tovaga oshxona yog'i quydim."
+    ],
+    "word_geop": [
+      "qo'rquv",
+      "Qo'rqaman, shuning uchun mina olmayman."
+    ],
+    "word_seogyu": [
+      "neft",
+      "Neft narxi oshdi."
+    ],
+    "word_chaegimja": [
+      "mas'ul shaxs",
+      "Mas'ul shaxs bilan gaplashmoqchiman."
+    ],
+    "word_boram": [
+      "mehnat samarasi",
+      "O'qitish ishimda samara his qilaman."
+    ],
+    "word_soseu": [
+      "sous",
+      "Yana sous bering."
+    ],
+    "word_urimal": [
+      "bizning tilimiz",
+      "Tilimizni chiroyli ishlataylik."
+    ],
+    "word_hyeonji": [
+      "mahalliy joy",
+      "Mahalliy taomni tatib ko'rdim."
+    ],
+    "word_geot_2": [
+      "tashqi tomon",
+      "Tashqarisi qattiq, ichi yumshoq."
+    ],
+    "word_seungyongcha": [
+      "yengil avtomobil",
+      "Beshta yengil avtomobil to'xtab turibdi."
+    ],
+    "word_jinchul": [
+      "yangi sohaga chiqish",
+      "Chet elga chiqishga tayyorlanyapmiz."
+    ],
+    "word_giun": [
+      "kuch, quvvat",
+      "Umuman quvvatim yo'q."
+    ],
+    "word_abeonim": [
+      "otangiz, hurmat bilan",
+      "Otangizga salom ayting."
+    ],
+    "word_mureum": [
+      "savol",
+      "Savolga javob bering."
+    ],
+    "word_eomeonim": [
+      "onangiz, hurmat bilan",
+      "Onangiz sog'-salomatmilar?"
+    ],
+    "word_haeseok": [
+      "talqin",
+      "Bu gapni talqin qilish qiyin."
+    ],
+    "word_sayongja": [
+      "foydalanuvchi",
+      "Foydalanuvchilar soni ancha oshdi."
+    ],
+    "word_sawon": [
+      "kompaniya xodimi",
+      "Yangi xodim keldi."
+    ],
+    "word_gangmul": [
+      "daryo suvi",
+      "Daryo suvi tiniq."
+    ],
+    "word_rideum": [
+      "ritm",
+      "Ritmga mos raqsga tushaman."
+    ],
+    "word_moniteo": [
+      "monitor",
+      "Monitor juda qorong'i."
+    ],
+    "word_un": [
+      "omad",
+      "Omad yor bo'lib, imtihondan o'tdim."
+    ],
+    "word_ilsangsaenghwal": [
+      "kundalik turmush",
+      "Bu kundalik turmushda tez-tez ishlatiladigan so'z."
+    ],
+    "word_binil": [
+      "yupqa plyonka",
+      "Ovqatni plyonka bilan yopdim."
     ]
   }
 }
