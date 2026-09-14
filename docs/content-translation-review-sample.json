@@ -1,0 +1,728 @@
+{
+ "_comment": "Model-read second pass over a seeded random sample (random.Random(20260914), 3 rows per non-source locale). Verdicts are the model's reading of meaning, register and naturalness against the Korean and the English gloss. This is not a native-speaker review and is not labelled as one.",
+ "reviewed": "2026-09-14",
+ "method": "seeded random sample, 3 rows per locale, 30 locales, meaning and example translation read together",
+ "label": "MODEL-REVIEWED",
+ "rows": [
+  {
+   "locale": "ja",
+   "id": "word_noin",
+   "word": "노인",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ja",
+   "id": "word_geunmuhada",
+   "word": "근무하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": "\"銀行に勤めています\" would be the more usual phrasing; meaning intact"
+  },
+  {
+   "locale": "ja",
+   "id": "word_jaranghada",
+   "word": "자랑하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "zh-CN",
+   "id": "word_pureuda",
+   "word": "푸르다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "zh-CN",
+   "id": "word_naseoda",
+   "word": "나서다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "zh-CN",
+   "id": "word_gyeongchalseo",
+   "word": "경찰서",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "es",
+   "id": "word_pogeunhada",
+   "word": "포근하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "es",
+   "id": "word_apseoda",
+   "word": "앞서다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "es",
+   "id": "word_goryeohada",
+   "word": "고려하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "fr",
+   "id": "word_na",
+   "word": "나",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": "\"Moi, j'apprends\" adds emphasis the Korean does not carry; acceptable for a pronoun card"
+  },
+  {
+   "locale": "fr",
+   "id": "word_samyeong",
+   "word": "사명",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "fr",
+   "id": "word_byeonhwa",
+   "word": "변화",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "de",
+   "id": "word_jinhaenghada",
+   "word": "진행하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "de",
+   "id": "word_chago_2",
+   "word": "착오",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "de",
+   "id": "word_bikida",
+   "word": "비키다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "pt-BR",
+   "id": "word_ilgop",
+   "word": "일곱",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "pt-BR",
+   "id": "word_hwaksinhada",
+   "word": "확신하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "pt-BR",
+   "id": "word_biilbijae",
+   "word": "비일비재",
+   "field": "meaning+example",
+   "verdict": "FLAGGED",
+   "note": "meaning \"a miúdo\" is European Portuguese; corrected to \"com frequência\" in this pass"
+  },
+  {
+   "locale": "ar",
+   "id": "word_uisang",
+   "word": "의상",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": "meaning carries a parenthetical register note \"(عرض)\"; style only"
+  },
+  {
+   "locale": "ar",
+   "id": "word_sangjinghada",
+   "word": "상징하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ar",
+   "id": "word_sukso",
+   "word": "숙소",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "bn",
+   "id": "word_chyeodaboda",
+   "word": "쳐다보다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "bn",
+   "id": "word_hwaryonghada",
+   "word": "활용하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "bn",
+   "id": "word_dongjjok",
+   "word": "동쪽",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "cs",
+   "id": "word_hajiman",
+   "word": "하지만",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "cs",
+   "id": "word_gugeupcha",
+   "word": "구급차",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "cs",
+   "id": "word_susaek",
+   "word": "수색",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "el",
+   "id": "word_samda_2",
+   "word": "삼다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "el",
+   "id": "word_malsseum",
+   "word": "말씀",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "el",
+   "id": "word_siwonhada",
+   "word": "시원하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "fil",
+   "id": "word_seda",
+   "word": "세다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "fil",
+   "id": "word_ipda",
+   "word": "입다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "fil",
+   "id": "word_balsang",
+   "word": "발상",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "hi",
+   "id": "word_gyeonghyang",
+   "word": "경향",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "hi",
+   "id": "word_jung",
+   "word": "중",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "hi",
+   "id": "word_migugin",
+   "word": "미국인",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "hu",
+   "id": "word_jamot",
+   "word": "잠옷",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "hu",
+   "id": "word_ilsacheolli",
+   "word": "일사천리",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "hu",
+   "id": "word_mojori",
+   "word": "모조리",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "id",
+   "id": "word_geuneul",
+   "word": "그늘",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": "renders \"under the shady tree\" rather than \"in the shade of the tree\"; sense intact"
+  },
+  {
+   "locale": "id",
+   "id": "word_kkeunta",
+   "word": "끊다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "id",
+   "id": "word_naeseuda",
+   "word": "내세우다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "it",
+   "id": "word_chingchan",
+   "word": "칭찬",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "it",
+   "id": "word_gongwon",
+   "word": "공원",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "it",
+   "id": "word_jeonmunga",
+   "word": "전문가",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "kk",
+   "id": "word_cheongchureoram",
+   "word": "청출어람",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "kk",
+   "id": "word_gaesi",
+   "word": "개시",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "kk",
+   "id": "word_talchul",
+   "word": "탈출",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ky",
+   "id": "word_gyesan",
+   "word": "계산",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ky",
+   "id": "word_teibeul",
+   "word": "테이블",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ky",
+   "id": "word_neolpida",
+   "word": "넓히다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "mn",
+   "id": "word_jeojohada",
+   "word": "저조하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "mn",
+   "id": "word_bulgogi",
+   "word": "불고기",
+   "field": "meaning+example",
+   "verdict": "FLAGGED",
+   "note": "\"амтагдуухан\" is not the word for sweet; corrected to \"чихэрлэг амттай\" in this pass"
+  },
+  {
+   "locale": "mn",
+   "id": "word_kkada",
+   "word": "까다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "nl",
+   "id": "word_chyeodaboda",
+   "word": "쳐다보다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "nl",
+   "id": "word_jangchi",
+   "word": "장치",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "nl",
+   "id": "word_myeongbaekada",
+   "word": "명백하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "pl",
+   "id": "word_changgo",
+   "word": "창고",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "pl",
+   "id": "word_ilgeoyangdeuk",
+   "word": "일거양득",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "pl",
+   "id": "word_chujin",
+   "word": "추진",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ro",
+   "id": "word_gohyang",
+   "word": "고향",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ro",
+   "id": "word_more",
+   "word": "모레",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ro",
+   "id": "word_junbi",
+   "word": "준비",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ru",
+   "id": "word_sarajida",
+   "word": "사라지다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ru",
+   "id": "word_heoyonghada",
+   "word": "허용하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ru",
+   "id": "word_busuda",
+   "word": "부수다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "sv",
+   "id": "word_sal",
+   "word": "살",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": "\"levnadsår\" is formal; the example uses the natural \"år gammal\""
+  },
+  {
+   "locale": "sv",
+   "id": "word_himnaeda",
+   "word": "힘내다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "sv",
+   "id": "word_gwayeon",
+   "word": "과연",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ta",
+   "id": "word_mukda_2",
+   "word": "묵다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "ta",
+   "id": "word_baneunghada",
+   "word": "반응하다",
+   "field": "meaning+example",
+   "verdict": "FLAGGED",
+   "note": "\"துலங்கு\" means to shine, not to react; corrected to \"எதிர்வினை புரி\" in this pass"
+  },
+  {
+   "locale": "ta",
+   "id": "word_simhwadoeda",
+   "word": "심화되다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "te",
+   "id": "word_hyeongnim",
+   "word": "형님",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "te",
+   "id": "word_seoltang",
+   "word": "설탕",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "te",
+   "id": "word_podo",
+   "word": "포도",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "th",
+   "id": "word_matchuda",
+   "word": "맞추다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "th",
+   "id": "word_naragada",
+   "word": "날아가다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "th",
+   "id": "word_heomulda",
+   "word": "허물다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "tr",
+   "id": "word_syawohada",
+   "word": "샤워하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "tr",
+   "id": "word_jallagada",
+   "word": "잘나가다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "tr",
+   "id": "word_heungmi",
+   "word": "흥미",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "uk",
+   "id": "word_byeonhwa",
+   "word": "변화",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": "\"робить велику різницю\" would read more naturally; meaning intact"
+  },
+  {
+   "locale": "uk",
+   "id": "word_saenggakada",
+   "word": "생각하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "uk",
+   "id": "word_sillye",
+   "word": "실례",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "uz",
+   "id": "word_iksukada",
+   "word": "익숙하다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "uz",
+   "id": "word_japangi",
+   "word": "자판기",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "uz",
+   "id": "word_yanghae",
+   "word": "양해",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "vi",
+   "id": "word_banchan",
+   "word": "반찬",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "vi",
+   "id": "word_geonneda",
+   "word": "건네다",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  },
+  {
+   "locale": "vi",
+   "id": "word_munje",
+   "word": "문제",
+   "field": "meaning+example",
+   "verdict": "PASS",
+   "note": ""
+  }
+ ]
+}

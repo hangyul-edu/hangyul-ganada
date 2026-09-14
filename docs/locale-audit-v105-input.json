@@ -1,0 +1,1137 @@
+{
+ "_comment": "Input for scripts/build-locale-audit-v105.mjs — the per-locale correction tallies of the v1.0.5 web content remediation. meanings/examples are word counts derived by diffing the copy packs and entry files against HEAD d06c7faa (words that existed there) and against the 2026-09-14 23:55 working-tree backup (words added in this remediation), plus the remediation patch files applied before that backup (patchC–patchI); the word lists are the evidence. The safety and UI rows are the individual corrections. No row here is a native-speaker judgment.",
+ "baseline": "d06c7faa",
+ "backup": "worktree-changes-20260914-2355.tgz",
+ "date": "2026-09-15",
+ "corrections": {
+  "ar": {
+   "meanings": 3,
+   "examples": 17,
+   "meaningWords": [
+    "안쪽",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "bn": {
+   "meanings": 0,
+   "examples": 17,
+   "meaningWords": [],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "cs": {
+   "meanings": 4,
+   "examples": 17,
+   "meaningWords": [
+    "신장",
+    "안쪽",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "de": {
+   "meanings": 0,
+   "examples": 17,
+   "meaningWords": [],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "el": {
+   "meanings": 3,
+   "examples": 17,
+   "meaningWords": [
+    "안쪽",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "en": {
+   "meanings": 139,
+   "examples": 20,
+   "meaningWords": [
+    "가격",
+    "가득하다",
+    "가면",
+    "가엾다",
+    "감사",
+    "감싸다",
+    "검색",
+    "겁",
+    "고장나다",
+    "곳곳",
+    "관두다",
+    "교도소",
+    "귀하다",
+    "그다지",
+    "근무",
+    "근무하다",
+    "까먹다",
+    "꺼지다",
+    "끓다",
+    "나다",
+    "냄새나다",
+    "누리다",
+    "눈부시다",
+    "늘",
+    "다들",
+    "달걀",
+    "달리다",
+    "달콤하다",
+    "도달하다",
+    "등장하다",
+    "따라가다",
+    "딱히",
+    "또",
+    "또는",
+    "뜨겁다",
+    "마치다",
+    "맡다",
+    "매우",
+    "몰다",
+    "몰아내다",
+    "무너지다",
+    "묻다",
+    "물러서다",
+    "미술",
+    "바깥",
+    "바꾸다",
+    "반드시",
+    "밝혀지다",
+    "버릇",
+    "번거롭다",
+    "변하다",
+    "보고하다",
+    "보살피다",
+    "보호하다",
+    "본래",
+    "부딪치다",
+    "부인하다",
+    "붉다",
+    "비상",
+    "삶다",
+    "새우다",
+    "색깔",
+    "생존하다",
+    "서양",
+    "세계",
+    "세우다",
+    "수사하다",
+    "수색",
+    "수행하다",
+    "슈퍼마켓",
+    "스타",
+    "신고",
+    "신장",
+    "실제",
+    "싫어하다",
+    "아니",
+    "아니요",
+    "아마도",
+    "아예",
+    "아픔",
+    "아휴",
+    "알",
+    "어리다",
+    "어찌",
+    "언제나",
+    "여러분",
+    "영리하다",
+    "예전",
+    "옮다",
+    "외과",
+    "외상",
+    "운",
+    "의학",
+    "이동하다",
+    "이미",
+    "이튿날",
+    "일상생활",
+    "일주일",
+    "자기",
+    "잠자다",
+    "장래",
+    "저것",
+    "절반",
+    "제한",
+    "좋아지다",
+    "죄송하다",
+    "주위",
+    "줍다",
+    "중앙",
+    "지나치다",
+    "지난번",
+    "지다",
+    "지불하다",
+    "지원",
+    "지원하다",
+    "지지",
+    "집어들다",
+    "짙다",
+    "쫓아가다",
+    "참",
+    "체중",
+    "초록",
+    "초록색",
+    "최초",
+    "추다",
+    "치르다",
+    "치밀하다",
+    "태양",
+    "풀다",
+    "풍경",
+    "풍기다",
+    "하얗다",
+    "하여튼",
+    "해마다",
+    "헤집다",
+    "혈액",
+    "홀로",
+    "환하다",
+    "휴대폰"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "나다",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "잎",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외",
+    "휴지"
+   ]
+  },
+  "es": {
+   "meanings": 0,
+   "examples": 19,
+   "meaningWords": [],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "포장",
+    "해외",
+    "휴지"
+   ]
+  },
+  "fil": {
+   "meanings": 4,
+   "examples": 17,
+   "meaningWords": [
+    "신장",
+    "안쪽",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "fr": {
+   "meanings": 0,
+   "examples": 17,
+   "meaningWords": [],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "hi": {
+   "meanings": 3,
+   "examples": 17,
+   "meaningWords": [
+    "신장",
+    "안쪽",
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "hu": {
+   "meanings": 4,
+   "examples": 17,
+   "meaningWords": [
+    "가면",
+    "안쪽",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "id": {
+   "meanings": 2,
+   "examples": 17,
+   "meaningWords": [
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "it": {
+   "meanings": 3,
+   "examples": 17,
+   "meaningWords": [
+    "안쪽",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "ja": {
+   "meanings": 0,
+   "examples": 17,
+   "meaningWords": [],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "kk": {
+   "meanings": 3,
+   "examples": 17,
+   "meaningWords": [
+    "가면",
+    "신용",
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "ko": {
+   "meanings": 1,
+   "examples": 16,
+   "meaningWords": [
+    "찍다"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "ky": {
+   "meanings": 3,
+   "examples": 17,
+   "meaningWords": [
+    "신용",
+    "안쪽",
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "mn": {
+   "meanings": 4,
+   "examples": 18,
+   "meaningWords": [
+    "가면",
+    "불고기",
+    "신장",
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "불고기",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "nl": {
+   "meanings": 2,
+   "examples": 17,
+   "meaningWords": [
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "pl": {
+   "meanings": 2,
+   "examples": 17,
+   "meaningWords": [
+    "안쪽",
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "pt-BR": {
+   "meanings": 1,
+   "examples": 18,
+   "meaningWords": [
+    "비일비재"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외",
+    "휴지"
+   ]
+  },
+  "ro": {
+   "meanings": 4,
+   "examples": 17,
+   "meaningWords": [
+    "신장",
+    "안쪽",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "ru": {
+   "meanings": 4,
+   "examples": 17,
+   "meaningWords": [
+    "안쪽",
+    "자판기",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "sv": {
+   "meanings": 2,
+   "examples": 17,
+   "meaningWords": [
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "ta": {
+   "meanings": 4,
+   "examples": 18,
+   "meaningWords": [
+    "매력",
+    "반응하다",
+    "안쪽",
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "반응하다",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "te": {
+   "meanings": 1,
+   "examples": 17,
+   "meaningWords": [
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "th": {
+   "meanings": 1,
+   "examples": 17,
+   "meaningWords": [
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "tr": {
+   "meanings": 2,
+   "examples": 17,
+   "meaningWords": [
+    "신용",
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "uk": {
+   "meanings": 3,
+   "examples": 17,
+   "meaningWords": [
+    "안쪽",
+    "자판기",
+    "지원"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "uz": {
+   "meanings": 3,
+   "examples": 17,
+   "meaningWords": [
+    "신장",
+    "지원",
+    "지지"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "vi": {
+   "meanings": 1,
+   "examples": 17,
+   "meaningWords": [
+    "안쪽"
+   ],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  },
+  "zh-CN": {
+   "meanings": 0,
+   "examples": 18,
+   "meaningWords": [],
+   "exampleWords": [
+    "가면",
+    "가정",
+    "겁",
+    "고생",
+    "땅콩",
+    "비교",
+    "빗",
+    "소포",
+    "신장",
+    "안쪽",
+    "운",
+    "지원",
+    "지지",
+    "친척",
+    "테니스",
+    "통장",
+    "평소",
+    "해외"
+   ]
+  }
+ },
+ "uiStrings": {
+  "ko": [
+   "levelTest:intro.retake: 다시 해보기 → 다시 해 보기 (auxiliary-verb spacing)"
+  ]
+ },
+ "safety": {
+  "ru": [
+   "자판기: the meaning “автомат” (also the runtime Russian list’s gambling-machine sense) → “аппарат для продажи напитков”; example rewritten to match"
+  ],
+  "uk": [
+   "자판기: “автомат” → “апарат для продажу напоїв”; example rewritten to match"
+  ],
+  "ta": [
+   "매력: “கவர்ச்சி” (sexual-attraction sense) → “ஈர்ப்பு”; example rewritten to match"
+  ]
+ },
+ "collisionsCorrected": {
+  "en": {
+   "sharedGlossGroupsBefore": 108,
+   "sharedGlossGroupsAfter": 0,
+   "note": "108 groups of taught words sharing one English gloss were differentiated (patches C, J, K, L, M); a shared gloss is a distractor collision in the meaning/produce exercises and in the Level Test."
+  }
+ },
+ "collisionsRejectedAtBuild": {
+  "ar": {
+   "sameMeaningGroups": 192,
+   "sameMeaningGroupsAtHead": 151
+  },
+  "bn": {
+   "sameMeaningGroups": 256,
+   "sameMeaningGroupsAtHead": 204
+  },
+  "cs": {
+   "sameMeaningGroups": 162,
+   "sameMeaningGroupsAtHead": 131
+  },
+  "el": {
+   "sameMeaningGroups": 228,
+   "sameMeaningGroupsAtHead": 185
+  },
+  "fil": {
+   "sameMeaningGroups": 236,
+   "sameMeaningGroupsAtHead": 189
+  },
+  "hi": {
+   "sameMeaningGroups": 252,
+   "sameMeaningGroupsAtHead": 189
+  },
+  "hu": {
+   "sameMeaningGroups": 207,
+   "sameMeaningGroupsAtHead": 173
+  },
+  "id": {
+   "sameMeaningGroups": 314,
+   "sameMeaningGroupsAtHead": 260
+  },
+  "it": {
+   "sameMeaningGroups": 177,
+   "sameMeaningGroupsAtHead": 143
+  },
+  "kk": {
+   "sameMeaningGroups": 508,
+   "sameMeaningGroupsAtHead": 457
+  },
+  "ky": {
+   "sameMeaningGroups": 539,
+   "sameMeaningGroupsAtHead": 492
+  },
+  "mn": {
+   "sameMeaningGroups": 485,
+   "sameMeaningGroupsAtHead": 418
+  },
+  "nl": {
+   "sameMeaningGroups": 355,
+   "sameMeaningGroupsAtHead": 312
+  },
+  "pl": {
+   "sameMeaningGroups": 354,
+   "sameMeaningGroupsAtHead": 308
+  },
+  "ro": {
+   "sameMeaningGroups": 404,
+   "sameMeaningGroupsAtHead": 363
+  },
+  "ru": {
+   "sameMeaningGroups": 141,
+   "sameMeaningGroupsAtHead": 110
+  },
+  "sv": {
+   "sameMeaningGroups": 308,
+   "sameMeaningGroupsAtHead": 271
+  },
+  "ta": {
+   "sameMeaningGroups": 435,
+   "sameMeaningGroupsAtHead": 383
+  },
+  "te": {
+   "sameMeaningGroups": 401,
+   "sameMeaningGroupsAtHead": 346
+  },
+  "th": {
+   "sameMeaningGroups": 312,
+   "sameMeaningGroupsAtHead": 269
+  },
+  "tr": {
+   "sameMeaningGroups": 465,
+   "sameMeaningGroupsAtHead": 421
+  },
+  "uk": {
+   "sameMeaningGroups": 365,
+   "sameMeaningGroupsAtHead": 325
+  },
+  "uz": {
+   "sameMeaningGroups": 408,
+   "sameMeaningGroupsAtHead": 362
+  },
+  "vi": {
+   "sameMeaningGroups": 323,
+   "sameMeaningGroupsAtHead": 279
+  }
+ }
+}
