@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import type { EvaluationResult } from '@hangyul-ganada/handwriting-core';
@@ -68,7 +68,7 @@ import styles from './SessionPage.module.css';
 export function ReviewSessionPage() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
-  const { state, practicePlan, recordReview, recordHeard, startSession, completeSession } =
+  const { state, ready, practicePlan, recordReview, recordHeard, startSession, completeSession } =
     useLearner();
   const location = useLocation();
   const { t } = useTranslation(['learning', 'handwriting', 'common', 'vocabulary']);
@@ -124,19 +124,44 @@ export function ReviewSessionPage() {
    * all — and there is only ever one of them per visit.
    */
   const initial = useRef<PracticePlan | null>(null);
-  if (initial.current === null) {
+  const mounted = useRef(false);
+  function resolve(): PracticePlan {
+    return practicePlan({
+      ...(mode ? { mode } : {}),
+      ...(savedOnly ? { savedOnly } : {}),
+      ...(mistakesOnly ? { mistakesOnly } : {}),
+    });
+  }
+  if (!mounted.current) {
+    mounted.current = true;
     const handed = (location.state as { plan?: PracticePlan } | null)?.plan;
-    initial.current =
-      handed && Array.isArray(handed.items)
-        ? handed
-        : practicePlan({
-            ...(mode ? { mode } : {}),
-            ...(savedOnly ? { savedOnly } : {}),
-            ...(mistakesOnly ? { mistakesOnly } : {}),
-          });
+    if (handed && Array.isArray(handed.items)) initial.current = handed;
+    /*
+      A fresh resolution waits for the profile.
+
+      The router mounts as soon as the corpus core is in (`CorpusGate`), and
+      the store can still be reading IndexedDB at that moment. A plan resolved
+      then is resolved over an empty profile, and because it is frozen on mount
+      it stays empty: a refresh or a deep link into `/review/session` on a slow
+      device read "nothing to review" to a learner with twelve words due. So
+      until `ready` there is no plan, and the screen below draws nothing — the
+      launch picture is usually still up — and the effect after the queue
+      resolves it once, the moment the store has answered. Only the first
+      render resolves here: a later render doing so would set the frozen plan
+      without setting the queue that was initialised from it.
+    */
+    else if (ready) initial.current = resolve();
   }
 
-  const [queue, setQueue] = useState(initial.current.items);
+  const [queue, setQueue] = useState(() => initial.current?.items ?? []);
+  useEffect(() => {
+    if (initial.current !== null || !ready) return;
+    initial.current = resolve();
+    setQueue(initial.current.items);
+    // `resolve` closes over the same params the mount-time resolution used;
+    // the ref guard makes this run once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ready]);
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState<
     Array<{
@@ -264,6 +289,8 @@ export function ReviewSessionPage() {
    * availability was recomputed after Start and could disagree with the number
    * that had just been shown.
    */
+  if (initial.current === null) return null;
+
   if (queue.length === 0) {
     return (
       <FocusScreen
