@@ -2543,6 +2543,160 @@
       "evidence": "Probed 2026-09-15 with 26 shapes beyond the existing fixtures; 10 passed. Four rules now refuse them, in `packages/content-safety/src/normalize.ts`/`evaluate.ts` and the Python port `scripts/content/child_safety.py` alike: a run of single syllables joins forward to the syllable word after it and never across punctuation (the false-positive cost was measured over the 84,038 Korean strings the app ships: 0 new findings); Cyrillic and Greek look-alikes are folded to Latin only inside a token that mixes scripts; a change of script is a token boundary; a stray word in Cyrillic, Han or kana is read against the lists of the languages written in it. Fixtures 368 → 406 (38 new: 29 negative, 9 positive guards such as 자, 살펴봐요 and 날씨 방); `child_safety.py --self-test` 406/406 agree with the TypeScript evaluator; the runtime suite holds every fixture through the learner's supplement; negative cases N9 and N10 put each rule back and require the fixtures to fail.",
       "recommendedFix": "Done. Shapes still not refused, by decision: a term with Hangul inside a Latin word (섹s하다), repeated letters (sexxx), HTML entities — none can arise from the authoring pipeline, and each would cost real false positives.",
       "effort": "MEDIUM"
+    },
+    {
+      "id": "I-235",
+      "area": "Streak",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "A streak day was any day with recorded activity, so twenty seconds on a session screen with nothing answered was a learning day; Numbers answers did not count until a lesson completed; a never-active learner read \"0 days\" beside a flame",
+      "customerImpact": "A learner who opened Today's Words and closed it read \"1 day\" on Home; one who answered ten Numbers questions read nothing; a new learner saw an active zero-day streak. Home also rendered the chip before the profile had loaded, briefly showing 0 days and Lv. 1 to a learner on a long run.",
+      "evidence": "Reproduced in the store on 2026-09-16 (`recordStudyTime(20_000)` → `summary.streak_days` 1). The rule is now `isQualifyingDay` in `domain/activity.ts`: a local calendar day with at least one answered question (letter, word, review or Numbers, right or wrong) or an item reaching learned; the first such day is Day 1; study time is recorded and never a streak day; the level test counts for nothing. `active_days` is the durable evidence and rows corroborate it — nothing is migrated. Numbers `exercise_attempted`/`review_completed` now credit the day. Home shows \"Start today\" for `status: never` and nothing until `ready`; My Learning's day count and the weekly summary read the same rule. 20 domain fixtures, 11 store fixtures (same-day repeats, next day, missed day, reload, duplicate write, DST, time-zone repeat, future and back-dated rows, an existing profile), 3 browser cases in `e2e/streak.spec.ts`. Negative cases N12 and N13 in `docs/content-gates-negative.json`.",
+      "recommendedFix": "Done.",
+      "effort": "MEDIUM"
+    },
+    {
+      "id": "I-236",
+      "area": "Progress",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "An item reaching learned through a checked attempt was never credited to the day: the completion flag was noted inside a React updater and read after it, and React had not run the updater yet",
+      "customerImpact": "The Activity screen's \"Letters finished\" and \"Words finished\" for a day, and \"finished this week\", stayed at 0 for every item learned through a writing or review attempt.",
+      "evidence": "Reproduced 2026-09-16: `recordAttempt` reaching `learned` left `characters_learned` at 0 because `trackActivity` had queued a state update first, so the second updater was deferred past the flag read. `creditActivity` now folds the activity row and `active_days` into the same updater from the same `prev`, idempotent under a repeated run; `updateProgress` and `recordNumbersEvent` credit inside their updaters. `store/streak.test.tsx` holds a Numbers lesson completing once.",
+      "recommendedFix": "Done.",
+      "effort": "SMALL"
+    },
+    {
+      "id": "I-237",
+      "area": "Letters",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The letter-sound question for ㅢ could draw ㅣ and 이 — both \"i\" — or ㅡ and 으 — both \"eu\" — as two of its four buttons",
+      "customerImpact": "About one seed in twenty-five, the learner was shown two identical answers with one of them marked wrong.",
+      "evidence": "3,000-seed sweep on 2026-09-16: 139 distinct duplicate draws, all for ㅢ, whose pool joins its confusion group with the syllables built from its components. `answerability` had tried three seeds. The `read` builder now draws the pool wider and keeps the first three distinct romanisations; `answerable.test.ts` sweeps 400 seeds per character; negative case N14.",
+      "recommendedFix": "Done.",
+      "effort": "SMALL"
+    },
+    {
+      "id": "I-238",
+      "area": "Vocabulary",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Reading and production questions could offer a near-synonym gloss as a wrong answer: 잠깐 \"a moment\" beside 잠시 \"a moment, short time\", 사용하다 \"to use\" beside 이용하다 \"to make use of\", 좋아지다 beside 나아지다, 최소한 beside 적어도 — 220 such pairs in English, more in the other packs",
+      "customerImpact": "A learner who knew the word was marked wrong for a defensible answer.",
+      "evidence": "Read off the exercise inventory (`docs/exercise-inventory.json`) on 2026-09-16. `sameMeaning` in `features/learning/wordOptions.ts` used exact equality after folding; it now splits a gloss into senses and refuses a distractor when any sense folds to the same string as, or its content words are all among, a sense of the answer — in every locale, at build time of the question. `wordOptions.test.ts` holds 20 fixture pairs in both directions and five look-alike pairs that must stay available; negative case N16. The Level Test builder already had a shared-gloss-word rule and was not affected.",
+      "recommendedFix": "Done.",
+      "effort": "SMALL"
+    },
+    {
+      "id": "I-239",
+      "area": "Vocabulary",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "A matching grid could show one meaning on two rows in 31 languages — 아빠 and 아버지 are both \"baba\" in Turkish, 좋다 and 괜찮다 both \"iyi olmak\", 세상 and 세계 both \"العالم\" — and mark one of the two wrong by which id was tapped",
+      "customerImpact": "Every pair of same-level words sharing a gloss in a pack could land in one day's grid; 896 such pairs across the packs, none in English, which is why the English reading of the grid never met one.",
+      "evidence": "Measured by `scripts/exercise-inventory.mts` over every pair of same-level words in every pack. `buildDailyQuestions` now keeps the taught word's row and drops a later member whose meaning folds to one already on the grid; `repairCompletion` credits the dropped word through the question that did ask about it. `dailyQuestions.test.ts` holds the case; negative case N15.",
+      "recommendedFix": "Done.",
+      "effort": "SMALL"
+    },
+    {
+      "id": "I-240",
+      "area": "Korean content",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Seven ㅀ-stem verbs (싫다, 잃다, 끓다, 옳다, 뚫다, 앓다, 꿇다) carried a pronunciation note naming 된소리되기 for a change that is aspiration; 옮기다 and 굶주리다 named tensing where none occurs; 담요 and 식용유 were transcribed [다묘] and [시굥유] against 표준 발음법 §29; 큰일 and 별일 were filed under liaison; 솔직히 was [솔지키]",
+      "customerImpact": "The word card under 싫다 → 실타 read \"된소리로 바뀌어요\": a false rule on the screen whose job is the rule.",
+      "evidence": "All 902 pronunciation notes read against 표준 발음법 on 2026-09-16. `pronunciation.py`: the tensing recogniser skips ㅀ/ㄶ before ㄱㄷㅂㅈ and a sonorant cluster before a non-ending; a seventh pattern `insertion` (ㄴ 첨가, §29) with lesson copy in 32 languages holds 담요, 식용유, 큰일, 별일, 꽃잎, 나뭇잎, 일일이; §26 forms for 솔직하다, 솔직히, 일석이조. `qa_pronunciation.py` now carries pattern-label fixtures, makes every §29 candidate a named decision (91 read as liaison), and runs the pronunciation rows of `content/korean-gold-set.json`; negative cases N17 and N18.",
+      "recommendedFix": "Done.",
+      "effort": "MEDIUM"
+    },
+    {
+      "id": "I-241",
+      "area": "Conjugation",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The conjugation panel printed 먹으세요, 마시세요, 자세요, 있으세요 and 말하세요 under \"Please do\", where Korean uses the honorific verb: 드세요, 주무세요, 계세요, 말씀하세요",
+      "customerImpact": "The card taught the form a Korean teacher corrects in a learner's first month.",
+      "evidence": "`displayConjugations` in `packages/korean-morphology` substitutes the suppletive command on the card; the morphology itself is unchanged so a typed 먹으세요 still analyses to 먹다. Held by `conjugate.test.ts` and the `honorific_display` rows of the gold set; negative case N19.",
+      "recommendedFix": "Done.",
+      "effort": "SMALL"
+    },
+    {
+      "id": "I-242",
+      "area": "Level Test",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "Sixty-four gap-fills had a second defensible answer among their options — 의사가 환자를 보호했어요, 결과를 찾아봐 주세요, 대사/사위가 한국에 왔어요, 생일에 냄비를 받았어요, 저녁에 소설을 봐요 — found by reading every gap-fill with all four options substituted",
+      "customerImpact": "A learner picking a sentence Korean supports was marked wrong in Today's Vocabulary, Review and the Level Test.",
+      "evidence": "Every gap-fill in `cloze.json` read four times on 2026-09-16 as the bank re-drew (608 items in the final bank; the builder is now seeded per item so a later re-read is a read of the items that changed). 42 pairs banned in `answer-conflicts.json`; 36 words whose frame admits any member of its class withdrawn from gap-fills with `ctx: 0` (they stay taught). A-24 to A-87 in `docs/AMBIGUITY_LEDGER.md`; negative case N20.",
+      "recommendedFix": "Done.",
+      "effort": "MEDIUM"
+    },
+    {
+      "id": "I-243",
+      "area": "Korean content",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "Editorial defects in the taught corpus: 고장나다 and 신경쓰다 taught joined spellings the standard writes as two words; 고마워 was an inflected form kept as a headword; 그렇게 was glossed \"so, so much\" under an example meaning \"like that\"; 빼다's Korean definition described taking out while the card taught subtracting; 어서 was defined as a greeting; 해마다's Korean definition contained the answer; 한잔 하실래요 was spaced against the headword 한잔하다; 등 (the back) sat at level 1 on the frequency of 등 \"etc.\"; 당신 sat at level 1; 곳곳 was tagged an adverb; the ㅡ hint mixed speech levels",
+      "customerImpact": "A learner met a non-standard spelling on a card, a gloss that did not match its example, a production question whose Korean prompt showed the answer, and 당신 in the first week.",
+      "evidence": "All 3,867 entries (word, part of speech, level, English gloss, Korean definition, example, translation) read on 2026-09-16. Three tombstones (`retired-words.json`, category `editorial`), glosses and definitions corrected in the entry and in the 24 copy packs where the sense had drifted, the 한잔 example re-recorded in both voices, two level overrides with reasons, one part of speech.",
+      "recommendedFix": "Done.",
+      "effort": "MEDIUM"
+    },
+    {
+      "id": "I-244",
+      "area": "Content QA",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "No machine-readable inventory listed every learner-reachable question with its prompt, answer, distractors, hint, feedback and evidence; runtime-generated families were sampled at three seeds",
+      "customerImpact": "Defects in the letter pool (I-237), the reading distractors (I-238) and the matching grid (I-239) were invisible to every gate.",
+      "evidence": "`scripts/exercise-inventory.mts` writes `docs/exercise-inventory.json`: 20,302 rows over letter read/listen/distinguish/write, word read/produce/context/build, matching by level band, the Level Test bank, and the Numbers course, with 548,852 checks in 32 locales, a curriculum progression map, and per-row status labels (AUTOMATED CHECKED, MODEL-REVIEWED, HUMAN REVIEW REQUIRED). `exercise:inventory:check` is in `verify:release`.",
+      "recommendedFix": "Done.",
+      "effort": "MEDIUM"
+    },
+    {
+      "id": "I-245",
+      "area": "Content QA",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "No expert gold set held the taught Korean rules independently of the code that generates them",
+      "customerImpact": "A generator could drift and its own tests would drift with it.",
+      "evidence": "`content/korean-gold-set.json`: 40 letters, syllables, final sounds, 27 sound-change rows with their §, particles including 로 after ㄹ, every supported irregular class, the suppletive honorifics, spacing, weak frames, gloss collisions, translation collisions and safety evasions, each family with must-not rows. Run by `apps/web/src/data/koreanGoldSet.test.ts` and `qa_pronunciation.check_gold_set`; `npm run gold:check`.",
+      "recommendedFix": "Done.",
+      "effort": "SMALL"
+    },
+    {
+      "id": "I-246",
+      "area": "Localization",
+      "severity": "P2",
+      "status": "OPEN",
+      "summary": "The exercise inventory's gloss-overlap heuristic flags 30,736 answer/distractor pairs across 32 locales for a human reader, and no locale is native-reviewed",
+      "customerImpact": "Most hits are look-alike pairs by design (\"here\"/\"there\"); the pairs the runtime now refuses are the confirmed class. The remaining hits are a reading list, not a defect list.",
+      "evidence": "Counted per locale in `docs/exercise-inventory.json` `totals.gloss_overlap_hits_by_locale`; the 220 English pairs were read and the confirmed synonyms fixed under I-238. The other 31 locales need a native reader; see I-17.",
+      "recommendedFix": "Read the per-locale overlap lists with a native speaker of each language; confirm or dismiss each pair.",
+      "effort": "LARGE"
+    },
+    {
+      "id": "I-247",
+      "area": "Web UI",
+      "severity": "P2",
+      "status": "RESOLVED",
+      "summary": "The Home header squeezed the logo instead of scaling it: 29 px wide at 320 px with 200 % text on a first launch, and 98 px (distorted) with a one-day streak",
+      "customerImpact": "The first-launch invitation chip (\"Start today\", 21 characters in French) is wider than the \"0 days\" it replaced, and the header's `auto 1fr` grid narrowed the logo's box while its height stayed 26 px — a smeared wordmark on the screen the app opens to. The same squeeze already applied to a streak learner at 200 % text on the narrowest phone.",
+      "evidence": "Measured in the production build at 320 px: fresh profile logo 115/71/29 px at 100/150/200 % text; streak profile 123/123/98 px. After the fix: 115/88/88 and 123/111/88, every one at the asset's own aspect ratio; `e2e/home-header.spec.ts` 25 cases green, `hdr-*.png` inspected.",
+      "recommendedFix": "Done: the brand header is a flex row whose heading shrinks first (weight 100, floor 88 px) and whose image scales with `max-width: 100%; height: auto`; the invitation chip folds onto two lines (`.streakStart`) and clamps at two as the last resort. `apps/web/src/ui/AppHeader.module.css`, `apps/web/src/pages/HomePage.module.css`.",
+      "effort": "SMALL"
+    },
+    {
+      "id": "I-248",
+      "area": "Review",
+      "severity": "P1",
+      "status": "RESOLVED",
+      "summary": "The review session resolved its plan on mount and froze it, and the router mounts before the profile has been read — so a refresh or deep link into /review/session on a slow device read \"Nothing to review right now\" over words that were due",
+      "customerImpact": "A learner who refreshed the review screen, resumed the app on it, or reached it before IndexedDB had answered was told nothing was due and sent back; the words were still there on the next visit. Invisible on a fast device, which is how it shipped; the word session (`wordSessionHydration.test.tsx`) and the Numbers order (I-204) had the same class of defect and were fixed earlier in v1.0.5; this is the third instance.",
+      "evidence": "Seen first as two e2e cases (`choice-layout.spec.ts`, ko and ar) failing only inside a 29-minute run and passing alone. `apps/web/src/pages/reviewSessionHydration.test.tsx` mounts the page over a store that answers slowly with twelve due words: before the fix the empty state is shown and the question never arrives (2 of 3 fail); after it the first question appears and the empty state is never painted. Negative case N21 puts the mount-time resolution back and the two fixtures fail. A handed plan (`location.state.plan`) is unaffected; a profile with nothing due still reaches the empty state, after hydration.",
+      "recommendedFix": "Done: `ReviewSessionPage` resolves a fresh plan only once `ready`, draws nothing until then, and resolves once in an effect when the store answers.",
+      "effort": "SMALL"
     }
   ]
 }
