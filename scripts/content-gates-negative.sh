@@ -24,6 +24,16 @@
 # | **N9** | The normaliser's forward join removed, so 섹 스하다 (a two-character term split once with its ending attached) reads as two words again. |
 # | **N10** | The script-change boundary removed from the token rule, so `sex를` with a Hangul particle attached is a whole word again. |
 # | **N11** | The per-locale audit table's input changed under it without regeneration. |
+# | **N12** | The streak counted from zero again — the first learning day reads Day 0 (`streakSummary` starts at −1). |
+# | **N13** | A day with only session-screen time counted as a streak day again (`isQualifyingDay` returns true for every row). |
+# | **N14** | The letter-sound question drawing two options with one romanisation again (the label filter removed). |
+# | **N15** | The matching grid showing one meaning on two rows again (the dedupe removed). |
+# | **N16** | Reading questions offering a near-synonym gloss again (`sameMeaning` back to exact equality). |
+# | **N17** | ㅀ-stems labelled 된소리되기 again (the aspiration exclusion removed from `_fires`). |
+# | **N18** | 담요 back to plain liaison — [다묘] — (its §29 row removed). |
+# | **N19** | The card printing 먹으세요 under "Please do" again (the suppletive table emptied). |
+# | **N20** | A banned rival planted back into a shipped gap-fill (보호했어요 beside 살렸어요). |
+# | **N21** | The review session resolving its plan before the profile has loaded ("nothing to review" over twelve due words). |
 #
 # Generated packs are restored by copying the backup back, never with
 # `git checkout` — the working tree is ahead of HEAD and a checkout would put a
@@ -44,13 +54,21 @@ LEVEL=scripts/content/level.py
 NORM=packages/content-safety/src/normalize.ts
 EVAL=packages/content-safety/src/evaluate.ts
 LOCIN=docs/locale-audit-v105-input.json
+ACT=apps/web/src/domain/activity.ts
+RSP=apps/web/src/pages/ReviewSessionPage.tsx
+EXER=apps/web/src/features/review/exercises.ts
+DAILY=apps/web/src/features/vocabulary/dailyQuestions.ts
+WOPT=apps/web/src/features/learning/wordOptions.ts
+PRON=scripts/content/pronunciation.py
+CONJ=packages/korean-morphology/src/conjugate.ts
+BANK=apps/web/public/level-test/$(python3 -c "import json;print(json.load(open('apps/web/public/level-test/manifest.json'))['bank'])")
 
 WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"' EXIT
 slot() { echo "$WORK/$(echo "$1" | tr '/' '_')"; }
 backup() { cp "$1" "$(slot "$1")"; }
 restore() { cp "$(slot "$1")" "$1"; }
-for f in "$INV" "$TH" "$EN" "$VI" "$SCAL" "$SUPP" "$LEVEL" "$NORM" "$EVAL" "$LOCIN"; do backup "$f"; done
+for f in "$INV" "$TH" "$EN" "$VI" "$SCAL" "$SUPP" "$LEVEL" "$NORM" "$EVAL" "$LOCIN" "$ACT" "$EXER" "$DAILY" "$WOPT" "$PRON" "$CONJ" "$BANK" "$RSP"; do backup "$f"; done
 
 pass=0
 fail=0
@@ -75,7 +93,7 @@ expect_fail() {
     fail=$((fail + 1))
   else
     local line
-    line=$(grep -m1 -E 'blocked|blocking|exceeds|refus|slipped|outside|✗|FAIL|failed|stale|problem|Error|error|drift|expected|anchor' "$WORK/out" | sed 's/^ *//' | cut -c1-140)
+    line=$(grep -m1 -E 'blocked|blocking|exceeds|refus|slipped|outside|✗|FAIL|failed|stale|problem|Error|error|drift|expected|anchor|conflict' "$WORK/out" | sed 's/^ *//' | cut -c1-140)
     echo "$name: caught — $line"
     record "$name" "caught" "$desc — $line"
     pass=$((pass + 1))
@@ -157,6 +175,73 @@ sabotage "$LOCIN" '"date": "' '"date": "1999-01-01", "_planted": "'
 expect_fail N11 "stale per-locale audit table" node scripts/build-locale-audit-v105.mjs --check
 restore "$LOCIN"
 
+echo "N12 the streak counted from zero (first learning day reads Day 0)"
+sabotage "$ACT" '  let current = 0;
+  while (days.has(dateKey(cursor))) {' '  let current = -1;
+  while (days.has(dateKey(cursor))) {'
+expect_fail N12 "a first learning day reading Day 0 passes the streak fixtures" npx vitest run --root apps/web src/domain/streak.test.ts src/store/streak.test.tsx
+restore "$ACT"
+
+echo "N13 a session-screen-only day counted as a streak day"
+sabotage "$ACT" 'export function isQualifyingDay(row: DailyActivity): boolean {
+  return (' 'export function isQualifyingDay(row: DailyActivity): boolean {
+  return true || ('
+expect_fail N13 "viewing counted as learning passes the streak fixtures" npx vitest run --root apps/web src/domain/streak.test.ts src/store/streak.test.tsx
+restore "$ACT"
+
+echo "N14 the letter-sound question drawing i beside i again"
+sabotage "$EXER" '        if (!other || taken.has(other.romanization)) continue;' '        if (!other) continue;'
+expect_fail N14 "two identical sound labels pass the seed sweep" npx vitest run --root apps/web src/features/review/answerable.test.ts
+restore "$EXER"
+
+echo "N15 the matching grid showing one meaning twice again"
+sabotage "$DAILY" '        if (shown.has(key)) continue;' '        if (false) continue;'
+expect_fail N15 "a duplicated meaning in a matching grid passes" npx vitest run --root apps/web src/features/vocabulary/dailyQuestions.test.ts
+restore "$DAILY"
+
+echo "N16 near-synonym glosses offered against each other again"
+sabotage "$WOPT" 'export function sameMeaning(a: string, b: string): boolean {
+  const sensesA = senses(a);' 'export function sameMeaning(a: string, b: string): boolean {
+  if (a !== b) return false;
+  const sensesA = senses(a);'
+expect_fail N16 "잠깐 offered against 잠시 passes" npx vitest run --root apps/web src/features/learning/wordOptions.test.ts src/data/koreanGoldSet.test.ts
+restore "$WOPT"
+
+echo "N17 ㅀ-stems labelled 된소리되기 again"
+sabotage "$PRON" '            if final in ("ㅀ", "ㄶ") and initial != "ㅅ":
+                continue' '            pass'
+expect_fail N17 "싫다 labelled tensing passes the pronunciation gold rows" python3 scripts/content/qa_pronunciation.py --check
+restore "$PRON"
+
+echo "N18 담요 back to plain liaison"
+sabotage "$PRON" '    "담요": ("담뇨", "insertion"),' ''
+expect_fail N18 "담요 → 다묘 passes the pronunciation gold rows" python3 scripts/content/qa_pronunciation.py --check
+restore "$PRON"
+
+echo "N19 the card printing 먹으세요 under Please do again"
+sabotage "$CONJ" '  먹다: '"'"'드세요'"'"',' ''
+expect_fail N19 "먹으세요 on the card passes the morphology suite" npx vitest run --root packages/korean-morphology src/conjugate.test.ts
+restore "$CONJ"
+
+echo "N20 a banned rival planted back into a shipped gap-fill"
+python3 - "$BANK" <<'PY'
+import json, sys
+path = sys.argv[1]
+d = json.load(open(path, encoding='utf-8'))
+item = next(i for i in d['items'] if i['id'] == 'word_sallida:context')
+assert '닿았어요' in item['options'] and 'word_data' in item['distractorIds'], 'the sabotage no longer applies: the item re-drew'
+item['options'] = ['보호했어요' if o == '닿았어요' else o for o in item['options']]
+item['distractorIds'] = ['word_bohohada' if i == 'word_data' else i for i in item['distractorIds']]
+json.dump(d, open(path, 'w', encoding='utf-8'), ensure_ascii=False)
+PY
+expect_fail N20 "보호했어요 beside 살렸어요 passes the ambiguity gate" npx tsx scripts/level-test-ambiguity-qa.mjs --check
+restore "$BANK"
+
+echo "N21 the review session resolving its plan before the profile has loaded"
+sabotage "$RSP" '    else if (ready) initial.current = resolve();' '    else initial.current = resolve();'
+expect_fail N21 "an empty plan frozen before hydration passes" npx vitest run --root apps/web src/pages/reviewSessionHydration.test.tsx
+restore "$RSP"
+
 if [ "$FAST" -eq 0 ]; then
   echo "N7  the level model ignoring the learner list (rebuilds the pack twice)"
   sabotage "$LEVEL" '    return round(min(subtitles, learner), 6)' '    return round(subtitles, 6)'
@@ -175,6 +260,12 @@ expect_pass "translation audit" node scripts/content-translation-audit.mjs --che
 expect_pass "scalability" node scripts/content-scalability.mjs --check
 expect_pass "runtime supplement tests" npx vitest run packages/content-safety/src/runtime.test.ts
 expect_pass "content safety" npx tsx scripts/content-safety-qa.mjs --check
+expect_pass "streak" npx vitest run --root apps/web src/domain/streak.test.ts src/store/streak.test.tsx
+expect_pass "review hydration" npx vitest run --root apps/web src/pages/reviewSessionHydration.test.tsx
+expect_pass "questions" npx vitest run --root apps/web src/features/review/answerable.test.ts src/features/vocabulary/dailyQuestions.test.ts src/features/learning/wordOptions.test.ts src/data/koreanGoldSet.test.ts
+expect_pass "pronunciation" python3 scripts/content/qa_pronunciation.py --check
+expect_pass "morphology" npx vitest run --root packages/korean-morphology src/conjugate.test.ts
+expect_pass "ambiguity" npx tsx scripts/level-test-ambiguity-qa.mjs --check
 [ "$FAST" -eq 0 ] && expect_pass "levels" node scripts/vocabulary-level-qa.mjs --check
 
 python3 - "$RESULTS" <<'EOF'
