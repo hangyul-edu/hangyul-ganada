@@ -148,15 +148,34 @@
  * starts on the same rule as the cards under it.
  */
 .brand {
-  grid-template-columns: auto 1fr;
+  display: flex;
   justify-content: space-between;
   padding: var(--hg-space-3) var(--hg-space-5) var(--hg-space-2);
   background: transparent;
 }
 
+/*
+ * When the row is too narrow for the logo and both chips — a 320 px phone with
+ * the text at 150 % or 200 %, or a first launch in a language whose invitation
+ * runs long — the logo gives way first, and gives way by scaling, not by being
+ * squeezed.
+ *
+ * It was `auto 1fr` grid tracks, and the `auto` track did what auto tracks do
+ * under pressure: shrank the `<img>` box while its `height` stayed 26 px, so
+ * the wordmark was drawn 29 px wide and 26 px tall on the narrowest phone at
+ * 200 % text — a smeared logo on the screen the app opens to. The heading now
+ * shrinks with a weight far above the action's, so the chips keep their
+ * natural width until the logo reaches its floor, and only then does the
+ * invitation chip start folding onto two lines (`HomePage.module.css`,
+ * `.streakStart`). The floor keeps the mark legible — 88 px is 18.5 px tall —
+ * and `AppHeader.tsx`'s `width`/`height` attributes keep the aspect ratio while
+ * the image scales, so it can be small but never distorted.
+ */
 .brandTitle {
   display: flex;
   align-items: center;
+  flex: 0 100 auto;
+  min-width: 88px;
   /* The heading's size comes from the image; it must not inherit an h1's. */
   font-size: 0;
   line-height: 0;
@@ -167,17 +186,22 @@
  *
  * Small enough that the streak beside it reads as its equal rather than being
  * shouted down, and small enough that the first learning card is above the
- * fold at 375 × 667. Width follows from the asset's own aspect ratio, so the
- * mark is never distorted.
+ * fold at 375 × 667. Width follows from the asset's own aspect ratio, and when
+ * the heading is narrower than that width the whole mark scales down to fit
+ * it — both dimensions, ratio kept — rather than the box being narrowed.
  */
 .brandLogo {
-  height: 26px;
   width: auto;
+  height: auto;
+  max-height: 26px;
+  max-width: 100%;
 }
 
 /* The action sits at the end of the row whatever the reading direction. */
 .brand .action {
-  justify-self: end;
+  flex: 0 1 auto;
+  min-width: 0;
+  margin-inline-start: auto;
 }
 
 .action {

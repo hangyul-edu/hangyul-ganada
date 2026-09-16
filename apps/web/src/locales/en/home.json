@@ -1,6 +1,7 @@
 {
   "streak": {
-    "aria": "View your learning record"
+    "aria": "View your learning record",
+    "start": "Start today"
   },
   "celebrate": "That's today's goal done.",
   "dailyGoal": "Letters today",

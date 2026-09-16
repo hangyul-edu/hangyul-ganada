@@ -107,6 +107,38 @@
   inset: -6px -4px;
 }
 
+/*
+ * The invitation a learner sees before their first learning day.
+ *
+ * Words rather than a number, and in French twenty-one characters of them
+ * ("Commencez aujourd’hui"), so unlike "12 days" this chip can be wider than a
+ * 320 px header has room for once the logo and the level chip have taken
+ * theirs. It folds onto a second line before it truncates: two lines of caption
+ * text are 31 px, which the 32 px chip already holds, so at the normal text
+ * size the fold costs no height; at 150 % and 200 % the chip grows and the row
+ * grows with it, which is what every other header on the product does with a
+ * long title. The clamp is the last resort for a language that will not fit
+ * on two lines either, and no shipped string reaches it.
+ */
+.streakStart {
+  flex: 0 1 auto;
+  min-width: 0;
+  height: auto;
+  min-height: 32px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.streakStart span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-wrap: balance;
+}
+
 @media (hover: hover) {
   .streak:hover {
     background: var(--hg-primary-subtle-hover);
@@ -146,6 +178,7 @@
   step larger and bold. That is how a measurement is written down.
 */
 .statusLevel {
+  flex: none;
   display: inline-flex;
   align-items: center;
   gap: 4px;

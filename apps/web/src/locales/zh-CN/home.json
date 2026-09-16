@@ -1,6 +1,7 @@
 {
   "streak": {
-    "aria": "查看学习记录"
+    "aria": "查看学习记录",
+    "start": "今天开始"
   },
   "celebrate": "今天的目标完成了。",
   "dailyGoal": "今天的字母",

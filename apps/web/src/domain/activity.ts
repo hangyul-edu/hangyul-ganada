@@ -156,61 +156,112 @@ export function recordActivity(
 // --- Streaks -----------------------------------------------------------------
 
 export interface StreakSummary {
-  /** Consecutive days ending today or yesterday. */
+  /**
+   * Consecutive learning days ending today or yesterday. `0` only when there
+   * is no active run — never for a learner who has learned today.
+   */
   current: number;
   /** The longest run the learner has ever managed. */
   longest: number;
-  /** Every day with any recorded practice. */
+  /** Every day with at least one qualifying learning activity. */
   totalDays: number;
+  /**
+   * What the number means for the learner in front of it.
+   *
+   * - `never`: no qualifying day has ever been recorded. The honest screen is
+   *   an invitation to start, not a flame beside a zero.
+   * - `active`: the run reaches today or yesterday; `current` is at least 1.
+   * - `lapsed`: there is history, and the run is broken; `current` is 0.
+   */
+  status: 'never' | 'active' | 'lapsed';
 }
 
-/**
- * Streak figures from a set of dates.
- *
- * `current` allows the run to end *yesterday*: a learner who has not opened the
- * app yet today has not broken anything, and a streak that resets at midnight
- * punishes people for the hour they happen to practise. `longest` is a plain
- * historical maximum and never shrinks.
- */
 /**
  * The one place a streak day is defined.
  *
- * A streak day is **a day with any recorded study activity**: an attempt, a
- * completed item (both land in `settings.active_days` via `trackActivity`), or
- * measured time on a session screen (which lands in the activity map via
- * `recordStudyTime` and nowhere else). The union covers both, and both screens
- * that show a current streak read it through here.
+ * ## The rule
  *
- * Why a union rather than one of the two: the two stores are written by
- * different events. Opening a session and studying the introduction cards for
- * a minute writes study time but no attempt, so that day exists in the
- * activity map and not in `active_days`. Before this function, Home computed
- * its streak from `active_days` and the Activity screen from the activity map
- * — and a learner with three such days read "4 days" on Home under a
- * "7 days in a row" on the very next screen. Same learner, same history, two
- * answers. One definition, used everywhere, is the fix; which store a day
- * happens to be recorded in is an implementation detail no learner should be
- * able to observe.
+ * A streak day is **a local calendar day with at least one qualifying learning
+ * activity**, and a qualifying activity is one of:
+ *
+ * - an **answered exercise** — a letter, word, review or Numbers question the
+ *   learner committed an answer to, right or wrong, including a handwriting
+ *   attempt that was checked (`recordAttempt`, `recordReview`, and the Numbers
+ *   `exercise_attempted` / `review_completed` events);
+ * - an **item reaching `learned`** or a **Numbers lesson completing**.
+ *
+ * These are the only events that write `settings.active_days` and the only
+ * ones that raise a day's `attempts`, `characters_learned`, `words_learned` or
+ * `numbers_lessons_completed`. The first such day is Day 1; a second one on
+ * the very next local day is Day 2; a day missed ends the run and the next
+ * qualifying day starts again at 1. Several activities on one day are one day.
+ *
+ * ## What does *not* qualify
+ *
+ * Opening the app, visiting a screen, reading a lesson's introduction cards,
+ * playing a recording, saving a word, changing a setting, or sitting the
+ * Vocabulary Level Test. Measured foreground time (`recordStudyTime`) is
+ * recorded and shown as study time, and is **not** a streak day on its own: a
+ * learner who opened a session and closed it twenty seconds later has not
+ * learned anything the streak can honestly count. This is the rule that
+ * replaced the earlier union of "any recorded study activity", under which
+ * time on a session screen with no answer was a streak day.
+ *
+ * ## Why two stores are read, and which is canonical
+ *
+ * `active_days` is the durable list and is written only by qualifying events.
+ * The activity map is read as corroboration for the same events — a day whose
+ * row carries an attempt or a completion is a learning day even if the
+ * settings write behind it was lost — and rows that carry only study time are
+ * ignored. Nothing is migrated: the streak is derived from the evidence on
+ * every read, so an existing learner's history is neither rewritten nor
+ * re-counted.
  */
-export function studyDays(activity: ActivityMap, activeDays: readonly string[]): string[] {
-  return [...new Set([...Object.keys(activity), ...activeDays])];
+export function isQualifyingDay(row: DailyActivity): boolean {
+  return (
+    row.attempts > 0 ||
+    row.characters_learned > 0 ||
+    row.words_learned > 0 ||
+    (row.numbers_lessons_completed ?? 0) > 0
+  );
+}
+
+/** The local calendar days that count towards the streak. Unique, unsorted. */
+export function qualifyingDays(activity: ActivityMap, activeDays: readonly string[]): string[] {
+  const days = new Set<string>(activeDays);
+  for (const [date, row] of Object.entries(activity)) {
+    if (isQualifyingDay(row)) days.add(date);
+  }
+  return [...days];
 }
 
 /**
- * Streak figures every screen shares. See `studyDays` for the definition of a
- * day; see `streakSummary` for the arithmetic.
+ * Streak figures every screen shares. See `isQualifyingDay` for the definition
+ * of a day; see `streakSummary` for the arithmetic. Every consumer — Home, the
+ * Activity screen, My Learning, the weekly summary — reads through here.
  */
 export function learningStreak(
   activity: ActivityMap,
   activeDays: readonly string[],
   now: Date,
 ): StreakSummary {
-  return streakSummary(studyDays(activity, activeDays), now);
+  return streakSummary(qualifyingDays(activity, activeDays), now);
 }
 
+/**
+ * The arithmetic over a set of local date keys.
+ *
+ * `current` allows the run to end *yesterday*: a learner who has not practised
+ * yet today has not broken anything, and a streak that resets at midnight
+ * punishes people for the hour they happen to practise. `longest` is a plain
+ * historical maximum and never shrinks. Days are compared as local calendar
+ * keys (`dateKey`), so a DST change or a clock set to another time zone can
+ * move which day an event lands in but can never split one day in two or skip
+ * a day that was recorded.
+ */
 export function streakSummary(dates: readonly string[], now: Date): StreakSummary {
   const unique = [...new Set(dates)].sort();
-  if (unique.length === 0) return { current: 0, longest: 0, totalDays: 0 };
+  if (unique.length === 0) return { current: 0, longest: 0, totalDays: 0, status: 'never' };
 
   let longest = 1;
   let run = 1;
@@ -223,7 +274,9 @@ export function streakSummary(dates: readonly string[], now: Date): StreakSummar
   const cursor = new Date(now);
   if (!days.has(dateKey(cursor))) {
     cursor.setDate(cursor.getDate() - 1);
-    if (!days.has(dateKey(cursor))) return { current: 0, longest, totalDays: unique.length };
+    if (!days.has(dateKey(cursor))) {
+      return { current: 0, longest, totalDays: unique.length, status: 'lapsed' };
+    }
   }
   let current = 0;
   while (days.has(dateKey(cursor))) {
@@ -231,7 +284,7 @@ export function streakSummary(dates: readonly string[], now: Date): StreakSummar
     cursor.setDate(cursor.getDate() - 1);
   }
 
-  return { current, longest, totalDays: unique.length };
+  return { current, longest, totalDays: unique.length, status: 'active' };
 }
 
 function isNextDay(earlier: string, later: string): boolean {
@@ -547,9 +600,9 @@ function summarise(activity: ActivityMap, start: string): WeekSummary {
   return {
     start,
     end,
-    // A day with a row is a day the learner opened the app and did something;
-    // `recordActivity` and `recordStudyTime` are the only things that make one.
-    daysStudied: rows.length,
+    // The same definition of a learning day as the streak — `isQualifyingDay`
+    // — so the week can never claim a day the streak does not.
+    daysStudied: rows.filter(isQualifyingDay).length,
     minutes: Math.round(rows.reduce((n, row) => n + row.active_ms, 0) / 60_000),
     attempts,
     passes,

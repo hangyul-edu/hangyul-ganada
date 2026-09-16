@@ -1,6 +1,7 @@
 {
   "streak": {
-    "aria": "학습 기록 보기"
+    "aria": "학습 기록 보기",
+    "start": "오늘 시작해요"
   },
   "celebrate": "오늘 목표를 다 했어요.",
   "dailyGoal": "오늘의 글자",

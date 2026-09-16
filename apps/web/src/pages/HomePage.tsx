@@ -54,7 +54,7 @@ const READY_FOR_WORDS = 11;
  */
 export function HomePage() {
   const navigate = useNavigate();
-  const { summary, state, vocabularyProgressToday, vocabularyLevel } = useLearner();
+  const { summary, state, ready, vocabularyProgressToday, vocabularyLevel } = useLearner();
   const { t } = useTranslation(['home', 'common', 'vocabulary', 'learning', 'activity', 'levelTest']);
   const { locale } = useLocale();
   const format = useFormatters();
@@ -152,28 +152,48 @@ export function HomePage() {
             badge, no gradient, no medal. §21 — this is a measurement a learner
             can be proud of, not a trophy the app awards itself.
           */
-          <div className={styles.status}>
-            <Link
-              to="/me/activity"
-              className={styles.streak}
-              aria-label={t('home:streak.aria')}
-              data-testid="home-streak"
-            >
-              <FireIcon size={15} />
-              <span className="hg-numeric">
-                {t('common:units.day', { count: summary.streak_days })}
-              </span>
-            </Link>
-            <Link
-              to="/me/level-test"
-              className={styles.statusLevel}
-              data-testid="home-status-level"
-              aria-label={t('levelTest:home.aria', { level: vocabularyLevel })}
-            >
-              <span className={styles.statusLevelPrefix}>{t('levelTest:home.short')}</span>
-              <span className={`${styles.statusLevelNumber} hg-numeric`}>{vocabularyLevel}</span>
-            </Link>
-          </div>
+          /*
+            Nothing until the profile has loaded. Before `ready` the store holds
+            the empty default, and the pair would read "0 days · Lv. 1" to a
+            learner on a twelve-day run at level 14 for as long as IndexedDB
+            takes to answer — a wrong fact, briefly, on every launch.
+          */
+          ready ? (
+            <div className={styles.status}>
+              <Link
+                to="/me/activity"
+                className={`${styles.streak} ${summary.streak_status === 'never' ? styles.streakStart : ''}`}
+                aria-label={t('home:streak.aria')}
+                data-testid="home-streak"
+                data-streak-status={summary.streak_status}
+              >
+                {summary.streak_status === 'never' ? (
+                  /*
+                    A learner who has never answered a question has no streak,
+                    and "0 days" beside a flame says they have one and it is
+                    zero. The honest chip is the invitation.
+                  */
+                  <span>{t('home:streak.start')}</span>
+                ) : (
+                  <>
+                    <FireIcon size={15} />
+                    <span className="hg-numeric">
+                      {t('common:units.day', { count: summary.streak_days })}
+                    </span>
+                  </>
+                )}
+              </Link>
+              <Link
+                to="/me/level-test"
+                className={styles.statusLevel}
+                data-testid="home-status-level"
+                aria-label={t('levelTest:home.aria', { level: vocabularyLevel })}
+              >
+                <span className={styles.statusLevelPrefix}>{t('levelTest:home.short')}</span>
+                <span className={`${styles.statusLevelNumber} hg-numeric`}>{vocabularyLevel}</span>
+              </Link>
+            </div>
+          ) : null
         }
       />
 

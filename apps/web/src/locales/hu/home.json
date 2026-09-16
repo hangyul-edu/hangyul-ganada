@@ -1,6 +1,7 @@
 {
   "streak": {
-    "aria": "Nézd meg a tanulási naplódat"
+    "aria": "Nézd meg a tanulási naplódat",
+    "start": "Kezdj ma"
   },
   "celebrate": "A mai cél megvan.",
   "dailyGoal": "Mai betűk",

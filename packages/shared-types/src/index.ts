@@ -1364,8 +1364,19 @@ export interface ProgressSummary {
   /** Items that reached `learned` today, against the learner's daily target. */
   today_completed: number;
   daily_target: number;
-  /** Consecutive days ending today (or yesterday) with at least one item learned. */
+  /**
+   * Consecutive learning days ending today (or yesterday). A learning day is
+   * one with at least one answered question or completed item — see
+   * `isQualifyingDay` in the web app's `domain/activity.ts`. The first such
+   * day is 1; this is 0 only when there is no active run.
+   */
   streak_days: number;
+  /**
+   * `never`: no learning day has ever been recorded (show an invitation, not
+   * a zero). `active`: `streak_days` ≥ 1. `lapsed`: history exists and the
+   * run is broken.
+   */
+  streak_status: 'never' | 'active' | 'lapsed';
   selected_font_id: string;
 }
 

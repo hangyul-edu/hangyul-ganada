@@ -1,6 +1,7 @@
 {
   "streak": {
-    "aria": "O‘qish yozuvingizni ko‘ring"
+    "aria": "O‘qish yozuvingizni ko‘ring",
+    "start": "Bugun boshlang"
   },
   "celebrate": "Bugungi maqsad bajarildi.",
   "dailyGoal": "Bugungi harflar",

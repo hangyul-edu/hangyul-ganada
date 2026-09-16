@@ -1,6 +1,7 @@
 {
   "streak": {
-    "aria": "Lernverlauf ansehen"
+    "aria": "Lernverlauf ansehen",
+    "start": "Heute anfangen"
   },
   "celebrate": "Das Tagesziel ist geschafft.",
   "dailyGoal": "Buchstaben heute",

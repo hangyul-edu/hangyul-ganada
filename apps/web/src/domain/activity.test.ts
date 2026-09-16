@@ -144,7 +144,7 @@ describe('streaks', () => {
   const now = T('2026-08-16T12:00:00.000Z');
 
   it('is empty for a learner with no history', () => {
-    expect(streakSummary([], now)).toEqual({ current: 0, longest: 0, totalDays: 0 });
+    expect(streakSummary([], now)).toEqual({ current: 0, longest: 0, totalDays: 0, status: 'never' });
   });
 
   it('counts consecutive days up to today', () => {

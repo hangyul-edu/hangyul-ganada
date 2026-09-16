@@ -360,32 +360,47 @@ export function LearnerProvider({
     });
   }, []);
 
-  const trackActivity = useCallback((event: ActivityEvent) => {
-    const now = new Date();
-    const date = dateKey(now);
-    setState((prev) => {
+  /**
+   * Credits one learning event to today, inside whatever state update is
+   * already in flight.
+   *
+   * Pure over `prev` — the activity row is folded by `recordActivity` and the
+   * day is appended to `active_days` only if it is not there — so an updater
+   * that calls it can run any number of times with the same `prev` and land
+   * on the same state. That is the property the earlier shape lacked: the
+   * completion flag was *noted* inside an updater and *acted on* after it, and
+   * React only runs an updater eagerly when nothing is queued ahead of it.
+   * `recordAttempt` queues `trackActivity` first, so the flag was read before
+   * the updater had run and an item reaching `learned` was never credited to
+   * the day. The repository writes are idempotent per row and per settings
+   * document, so a repeated run repeats a write, never a count.
+   *
+   * Practising counts as showing up: the streak used to move only when an
+   * item reached `learned`, which meant a learner who spent twenty minutes
+   * failing a hard character had, as far as the app was concerned, not
+   * studied that day. `isQualifyingDay` in `domain/activity.ts` is the rule.
+   */
+  const creditActivity = useCallback(
+    (prev: LearnerState, event: ActivityEvent, now: Date): LearnerState => {
+      const date = dateKey(now);
       const next = recordActivity(prev.activity[date], event, now);
       void activityRepo.current?.put(next);
+      const activity = { ...prev.activity, [date]: next };
+      if (prev.settings.active_days.includes(date)) return { ...prev, activity };
+      const settings = { ...prev.settings, active_days: [...prev.settings.active_days, date] };
+      void settingsRepo.current?.save(settings);
+      return { ...prev, activity, settings };
+    },
+    [],
+  );
 
-      // Practising counts as showing up.
-      //
-      // The streak used to move only when an item reached `learned`, which
-      // meant a learner who spent twenty minutes failing a hard character had,
-      // as far as the app was concerned, not studied that day. That is the
-      // opposite of what a streak is for: it measures the habit, not the
-      // outcome, and the daily goal is already the place where finishing
-      // things is counted.
-      const activeDays = prev.settings.active_days.includes(date)
-        ? prev.settings.active_days
-        : [...prev.settings.active_days, date];
-      if (activeDays !== prev.settings.active_days) {
-        const settings = { ...prev.settings, active_days: activeDays };
-        void settingsRepo.current?.save(settings);
-        return { ...prev, activity: { ...prev.activity, [date]: next }, settings };
-      }
-      return { ...prev, activity: { ...prev.activity, [date]: next } };
-    });
-  }, []);
+  const trackActivity = useCallback(
+    (event: ActivityEvent) => {
+      const now = new Date();
+      setState((prev) => creditActivity(prev, event, now));
+    },
+    [creditActivity],
+  );
 
   const updateProgress = useCallback(
     (
@@ -393,38 +408,20 @@ export function LearnerProvider({
       itemKey: string,
       transform: (previous: ItemProgress | undefined) => ItemProgress,
     ) => {
-      /*
-       * Noted inside the updater and acted on after it, by **assignment**.
-       *
-       * React may run an updater more than once for one call — StrictMode does
-       * it on every render in development, and the concurrent renderer is
-       * entitled to. Each run gets the same `prev`, so anything derived is the
-       * same; anything *accumulated* is not. This used to `push` onto an array
-       * declared out here, which meant one finished letter appended two
-       * completions and the day's tally on the Activity screen counted it
-       * twice, while `state.progress` — the same event, the canonical copy —
-       * counted it once. Two screens, one truth, two answers.
-       *
-       * A single assignment is idempotent under any number of runs, and one
-       * call to `updateProgress` concerns exactly one item, so one slot is all
-       * this ever needed.
-       */
-      let justCompleted: ItemProgress['kind'] | null = null;
+      const now = new Date();
       setState((prev) => {
         const key = progressKey(kind, itemKey);
         const next = transform(prev.progress[key]);
         if (next === prev.progress[key]) return prev;
         persistProgress(next);
-
-        // Reaching `learned` is a day's *outcome* and is recorded as one; the
-        // streak itself is kept by `trackActivity`, which counts showing up.
-        justCompleted =
-          next.stage === 'learned' && prev.progress[key]?.stage !== 'learned' ? kind : null;
-        return { ...prev, progress: { ...prev.progress, [key]: next } };
+        const state = { ...prev, progress: { ...prev.progress, [key]: next } };
+        // Reaching `learned` is a day's *outcome* and is recorded as one, in
+        // the same updater and from the same `prev` — see `creditActivity`.
+        const justCompleted = next.stage === 'learned' && prev.progress[key]?.stage !== 'learned';
+        return justCompleted ? creditActivity(state, { type: 'completed', kind }, now) : state;
       });
-      if (justCompleted) trackActivity({ type: 'completed', kind: justCompleted });
     },
-    [persistProgress, trackActivity],
+    [persistProgress, creditActivity],
   );
 
   const setPreferences = useCallback((patch: Partial<LearnerPreferences>) => {
@@ -839,27 +836,52 @@ export function LearnerProvider({
    * Records one Numbers event against one lesson and persists the record.
    *
    * The reducer decides what the event means for completion; this only routes
-   * it. `trackActivity` is told when — and only when — the derived status
-   * first reaches `completed`, which is the one moment a lesson counts towards
-   * the day. Every write is serialised per lesson by the repository, so a
-   * stale snapshot cannot land on top of a mastery result recorded a moment
-   * earlier.
+   * it. The day is credited when — and only when — the derived status first
+   * reaches `completed`, and for every answered question (see below). Every
+   * write is serialised per lesson by the repository, so a stale snapshot
+   * cannot land on top of a mastery result recorded a moment earlier.
    */
-  const recordNumbersEvent = useCallback((lessonId: string, event: NumbersEvent) => {
-    const lesson = getNumberLesson(lessonId);
-    if (!lesson) return;
-    const now = new Date();
-    setState((prev) => {
-      const before = prev.numbers[lessonId] ?? blankLessonProgress(lessonId, now);
-      const after = applyNumbersEvent(before, lesson, event, now);
-      if (after === before) return prev;
-      void numbersRepo.current?.put(after);
-      if (before.completed_at === null && after.completed_at !== null) {
-        trackActivity({ type: 'completed', kind: 'number' });
-      }
-      return { ...prev, numbers: { ...prev.numbers, [lessonId]: after } };
-    });
-  }, [trackActivity]);
+  const recordNumbersEvent = useCallback(
+    (lessonId: string, event: NumbersEvent) => {
+      const lesson = getNumberLesson(lessonId);
+      if (!lesson) return;
+      const now = new Date();
+      setState((prev) => {
+        const before = prev.numbers[lessonId] ?? blankLessonProgress(lessonId, now);
+        const after = applyNumbersEvent(before, lesson, event, now);
+        if (after === before) return prev;
+        void numbersRepo.current?.put(after);
+        let state: LearnerState = { ...prev, numbers: { ...prev.numbers, [lessonId]: after } };
+        /*
+         * An answered Numbers question is a learning activity and counts
+         * towards the day exactly as an answered letter or word question does
+         * — see `isQualifyingDay`. Before this, only a *completed* Numbers
+         * lesson reached the day, so a learner who answered ten questions and
+         * stopped one short of the mastery check had, as far as the streak
+         * knew, not studied that day. Opening, reading and viewing examples
+         * are recorded on the lesson and are not learning days.
+         */
+        if (event.type === 'exercise_attempted' || event.type === 'review_completed') {
+          state = creditActivity(
+            state,
+            {
+              type: 'attempt',
+              itemKey: `number:${lessonId}:${event.item_id}`,
+              kind: 'number',
+              passed: event.correct,
+              review: event.type === 'review_completed',
+            },
+            now,
+          );
+        }
+        if (before.completed_at === null && after.completed_at !== null) {
+          state = creditActivity(state, { type: 'completed', kind: 'number' }, now);
+        }
+        return state;
+      });
+    },
+    [creditActivity],
+  );
 
   /** Numbers only. Letters, words, streaks and settings are untouched. */
   const resetNumbersProgress = useCallback(async () => {
@@ -1321,6 +1343,7 @@ export function LearnerProvider({
     // word is accessible whatever this says.
     const readable = VOCABULARY.filter((w) => usesKnownLetters(w, knownLetters));
     const now = new Date();
+    const streak = learningStreak(state.activity, state.settings.active_days, now);
 
     return {
       characters_learned: learned.filter((row) => row.kind === 'character').length,
@@ -1338,10 +1361,12 @@ export function LearnerProvider({
       sessions_completed: state.sessions.filter((s) => s.completed_at).length,
       today_completed: learnedToday(state.progress, now),
       daily_target: state.settings.daily_target,
-      // One streak truth for every screen: `learningStreak` unions the
-      // activity map (study time) with `active_days` (practice events), so
-      // Home and the Activity screen can never disagree about the current run.
-      streak_days: learningStreak(state.activity, state.settings.active_days, now).current,
+      // One streak truth for every screen: `learningStreak` reads the
+      // learning days out of `active_days` and the activity rows under one
+      // rule (`isQualifyingDay`), so Home, the Activity screen and My
+      // Learning can never disagree about the current run.
+      streak_days: streak.current,
+      streak_status: streak.status,
       selected_font_id: state.settings.selected_font_id,
     };
   }, [state, knownLetters, reviewSummary]);

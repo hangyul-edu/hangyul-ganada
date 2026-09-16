@@ -1,6 +1,7 @@
 {
   "streak": {
-    "aria": "Voir votre historique d’apprentissage"
+    "aria": "Voir votre historique d’apprentissage",
+    "start": "Commencez aujourd’hui"
   },
   "celebrate": "L’objectif du jour est atteint.",
   "dailyGoal": "Lettres du jour",

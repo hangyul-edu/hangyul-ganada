@@ -8,6 +8,7 @@ import { FONT_PREVIEW_PRIMARY, FONT_PREVIEW_SECONDARY, PRACTICE_FONTS, textFamil
 import { useCorpus } from '../data/useCorpus';
 import { readBackup, type LearningBackup } from '../storage/backup';
 import { openBackupFile, saveBackupFile } from '../storage/backupFile';
+import { learningStreak } from '../domain/activity';
 import { alphabetProgress, vocabularyProgress } from '../domain/progress';
 import { NextStepCard } from '../features/learning/NextStepCard';
 import { DAILY_WORD_GOALS } from '../domain/vocabularyDay';
@@ -101,13 +102,13 @@ export function MyPage() {
   useCorpus();
   const vocabulary = vocabularyProgress(state.progress);
   /**
-   * Days the learner has studied.
-   *
-   * A row in the activity map is written the first time something happens on a
-   * given day and never otherwise — see `domain/activity.ts` — so counting the
-   * rows counts the days, without a second record to keep in step.
+   * Days the learner has studied — the streak's own count of learning days
+   * (`learningStreak(...).totalDays`), so this figure, the Activity screen's
+   * "Days practised" and the streak on Home are one number. Counting the
+   * activity rows here used to include days that held only time on a session
+   * screen, which the streak does not count.
    */
-  const studyDays = Object.keys(state.activity).length;
+  const studyDays = learningStreak(state.activity, state.settings.active_days, new Date()).totalDays;
 
   const selectFont = (id: string) => {
     setPreferences({ selected_font_id: id });
