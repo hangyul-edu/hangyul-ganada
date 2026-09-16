@@ -93,7 +93,8 @@
     "nasal": "Före ㄴ eller ㅁ blir konsonanten framför nasal.",
     "lateral": "ㄴ och ㄹ bredvid varandra blir båda ㄹ.",
     "palatal": "Ett slut-ㄷ eller -ㅌ före 이 sägs som ㅈ eller ㅊ.",
-    "liaison": "Slutkonsonanten glider över till nästa block."
+    "liaison": "Slutkonsonanten glider över till nästa block.",
+    "insertion": "I en sammansättning uttalas ett ㄴ före 이, 야, 여, 요 eller 유 trots att det inte skrivs."
   },
   "save": {
     "action": "Spara",

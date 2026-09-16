@@ -197,7 +197,8 @@
       "nasal": "Lágy, orrhangú hang",
       "lateral": "ㄴ és ㄹ együtt",
       "palatal": "ㄷ és ㅌ 이 előtt",
-      "liaison": "A hang átcsúszik"
+      "liaison": "A hang átcsúszik",
+      "insertion": "Megjelenik egy ㄴ"
     }
   },
   "mistakes": {

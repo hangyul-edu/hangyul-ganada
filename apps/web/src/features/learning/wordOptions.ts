@@ -112,15 +112,65 @@ function shuffle<T>(items: T[], seed: number): T[] {
  */
 export type MeaningLookup = (word: VocabularyWord) => string;
 
-/** Two glosses that a learner would read as the same answer. */
-function sameMeaning(a: string, b: string): boolean {
-  const normalise = (text: string) =>
-    text
-      .toLowerCase()
-      .replace(/^(to |a |an |the )/, '')
-      .replace(/[^\p{L}\p{N}]+/gu, ' ')
-      .trim();
-  return normalise(a) === normalise(b);
+/**
+ * Two glosses that a learner would read as the same answer.
+ *
+ * Equality after folding used to be the whole test, and it let 잠깐 ("a
+ * moment") be offered against 잠시 ("a moment, short time"), 사용하다 ("to
+ * use") against 이용하다 ("to make use of"), 좋아지다 ("to get better, to
+ * improve") against 나아지다 ("to get better"), 최소한 ("at the very least")
+ * against 적어도 ("at least") — 220 such pairs in English alone, read off the
+ * exercise inventory on 2026-09-16, every one a question with two right
+ * answers. So a gloss is now read as its **senses** (split at commas,
+ * semicolons and brackets), and two glosses collide when any sense of one
+ * folds to the same string as a sense of the other, or when the content
+ * words of one sense are all among the content words of the other ("to
+ * report" inside "to report to a superior"; "a car" inside "a passenger
+ * car"). Words that merely share a
+ * head — "to go up" and "to go in", "last week" and "last month" — do not
+ * collide, and stay the look-alike distractors they were meant to be.
+ *
+ * Scripts without spaces (Chinese, Japanese, Thai) fold to one token, and
+ * for those a first sense contained in the other is the collision: 世界 inside
+ * 全世界. A Latin single word is never a substring match — "man" is not inside
+ * "woman" for a reader.
+ */
+const ARTICLES = /^(to|a|an|the|un|une|le|la|les|el|los|las|der|die|das|ein|eine|o|os|um|uma|il|lo|gli|i|een|het|en|de|du|des)$/;
+function senses(text: string): string[] {
+  return text
+    .normalize('NFC')
+    .toLowerCase()
+    .split(/[,;(（—–]/)
+    .map((sense) => sense.replace(/[^\p{L}\p{N}\p{M}\s]+/gu, ' ').trim())
+    .filter((sense) => sense.length > 0);
+}
+function contentWords(sense: string): string[] {
+  return sense.split(/\s+/).filter((word) => word.length > 0 && !ARTICLES.test(word));
+}
+function sameSense(first: string, second: string): boolean {
+  if (first === second) return true;
+  const wordsA = contentWords(first);
+  const wordsB = contentWords(second);
+  if (wordsA.length === 0 || wordsB.length === 0) return false;
+  if (wordsA.length === 1 && wordsB.length === 1) {
+    // One token each: identical, or — where the script writes no spaces —
+    // one inside the other.
+    const spaced = /[a-z\u00C0-\u024F\u0370-\u03FF\u0400-\u04FF]/.test(wordsA[0]! + wordsB[0]!);
+    return spaced ? wordsA[0] === wordsB[0] : wordsA[0]!.includes(wordsB[0]!) || wordsB[0]!.includes(wordsA[0]!);
+  }
+  const setA = new Set(wordsA);
+  const setB = new Set(wordsB);
+  return wordsA.every((word) => setB.has(word)) || wordsB.every((word) => setA.has(word));
+}
+/**
+ * Every sense against every sense: 요구하다 is "to demand, to request" and
+ * 요청하다 is "to request", and a learner who knows the second sense of the
+ * first has two right answers.
+ */
+export function sameMeaning(a: string, b: string): boolean {
+  const sensesA = senses(a);
+  const sensesB = senses(b);
+  return sensesA.some((first) => sensesB.some((second) => sameSense(first, second)));
 }
 
 /**

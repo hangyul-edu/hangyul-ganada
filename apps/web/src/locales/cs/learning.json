@@ -199,7 +199,8 @@
       "nasal": "Měkký nosový zvuk",
       "lateral": "ㄴ a ㄹ vedle sebe",
       "palatal": "ㄷ a ㅌ před 이",
-      "liaison": "Zvuk se přesune dál"
+      "liaison": "Zvuk se přesune dál",
+      "insertion": "Objeví se ㄴ"
     }
   },
   "mistakes": {

@@ -293,7 +293,25 @@ const RELATED = new Map();
   }
 }
 
-/** Deterministic: the same corpus must produce the same bank, twice. */
+/**
+ * Deterministic: the same corpus must produce the same bank, twice.
+ *
+ * Seeded **per item** rather than once for the whole run. One stream for the
+ * whole bank meant that retiring one word, or adding one answer-conflict
+ * pair, moved every draw after it: the 2026-09-16 pass changed 27 items and
+ * watched 558 others re-draw their distractors, each of which then had to be
+ * read again. With the stream seeded from the item's own id, an item's draw
+ * changes only when its own pool does, and a re-read after a content change
+ * is a read of the items that changed.
+ */
+function seedOf(text) {
+  let value = 2166136261;
+  for (let i = 0; i < text.length; i += 1) {
+    value ^= text.charCodeAt(i);
+    value = Math.imul(value, 16777619);
+  }
+  return value >>> 0;
+}
 function rng(seed) {
   let state = seed >>> 0;
   return () => {
@@ -484,7 +502,6 @@ function collideInAnyLocale(a, b) {
   return false;
 }
 
-const random = rng(20260822);
 const items = [];
 /** Validated gap-fills for taught words, for the rest of the product. */
 const cloze = {};
@@ -523,7 +540,7 @@ for (const anchor of anchors) {
 
   // --- Korean shown, meaning chosen -----------------------------------------
   const chosen = [];
-  for (const other of shuffled(others, random)) {
+  for (const other of shuffled(others, rng(seedOf(`${anchor.id}:meaning`)))) {
     if (chosen.length === OPTIONS - 1) break;
     if (other.gloss === anchor.gloss || chosen.some((c) => c.gloss === other.gloss)) continue;
     if (sharesMeaning(other.gloss, anchor.gloss)) continue;
@@ -564,7 +581,7 @@ for (const anchor of anchors) {
 
   // --- Meaning shown, Korean chosen ------------------------------------------
   const koreans = [];
-  for (const other of shuffled(others, random)) {
+  for (const other of shuffled(others, rng(seedOf(`${anchor.id}:produce`)))) {
     if (koreans.length === OPTIONS - 1) break;
     if (other.word === anchor.word || koreans.includes(other.word)) continue;
     if (sharesMeaning(other.gloss, anchor.gloss)) continue;
@@ -928,7 +945,7 @@ for (const anchor of anchors) {
    * or will. Teaching-corpus words are hand-picked for being worth knowing, so
    * they go first and the dictionary fills in only when they run out.
    */
-  const ranked = shuffled(others, random).sort(
+  const ranked = shuffled(others, rng(seedOf(`${anchor.id}:context`))).sort(
     (a, b) => (a.source === 'corpus' ? 0 : 1) - (b.source === 'corpus' ? 0 : 1),
   );
   for (const other of ranked) {

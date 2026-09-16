@@ -93,7 +93,8 @@
     "nasal": "ㄴ yoki ㅁ dan oldin, undan oldingi undosh burun tovushiga aylanadi.",
     "lateral": "Yonma-yon kelgan ㄴ va ㄹ ikkalasi ham ㄹ bo‘ladi.",
     "palatal": "이 dan oldingi yopuvchi ㄷ yoki ㅌ, ㅈ yoki ㅊ kabi aytiladi.",
-    "liaison": "Yopuvchi undosh keyingi katakka siljiydi."
+    "liaison": "Yopuvchi undosh keyingi katakka siljiydi.",
+    "insertion": "Qo‘shma so‘zda 이, 야, 여, 요 yoki 유 oldida yozilmagan bo‘lsa ham ㄴ tovushi aytiladi."
   },
   "save": {
     "action": "Saqlash",

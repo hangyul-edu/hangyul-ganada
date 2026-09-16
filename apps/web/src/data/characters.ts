@@ -209,7 +209,7 @@ export const CORE_VOWELS: HangulCharacter[] = [
     letter_name: '으', sound_example: '으',
     translations: {
       en: t('lips flat and wide, no English equivalent', 'One horizontal line.'),
-      ko: t('"으" 소리. 입술을 옆으로 폅니다.', '가로선 하나.'),
+      ko: t('"으" 소리. 입술을 옆으로 펴요.', '가로선 하나.'),
     },
   }),
   letter({

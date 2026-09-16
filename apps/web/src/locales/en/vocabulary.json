@@ -93,7 +93,8 @@
     "nasal": "Before ㄴ or ㅁ, the consonant in front turns nasal.",
     "lateral": "ㄴ and ㄹ side by side both become ㄹ.",
     "palatal": "A final ㄷ or ㅌ before 이 is said like ㅈ or ㅊ.",
-    "liaison": "The final consonant slides onto the next block."
+    "liaison": "The final consonant slides onto the next block.",
+    "insertion": "In a compound, an ㄴ is said before 이, 야, 여, 요 or 유 even though none is written."
   },
   "save": {
     "action": "Save",

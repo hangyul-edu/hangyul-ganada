@@ -485,13 +485,25 @@ function characterExercise(
       // The reverse: the letter is shown and the *sound* is chosen. This is the
       // direction that catches a learner who can pick ㅏ out of a line-up by
       // shape and still cannot say it.
-      const others = recognitionOptions(candidate.itemKey, seed + 3).filter(
-        (glyph) => glyph !== candidate.itemKey,
-      );
-      const options = [candidate.itemKey, ...others.slice(0, 3)]
-        .map((glyph) => ALL_CHARACTERS.find((c) => c.character === glyph))
-        .filter((c): c is NonNullable<typeof c> => Boolean(c))
-        .map((c) => ({ id: c.character, label: c.romanization }));
+      /*
+       * The options here are *sounds*, so two glyphs with one romanisation are
+       * one button drawn twice. ㅢ's pool holds ㅣ and 이 (both "i") and ㅡ and
+       * 으 (both "eu") — its confusion group and the syllables built from its
+       * components — and about one seed in twenty-five drew both halves of a
+       * pair, so the screen showed "i" beside "i" with one of them wrong. The
+       * pool is drawn wider than three and filtered by label until three
+       * distinct sounds are found; a pool that cannot supply three is asked
+       * with what it has, as before.
+       */
+      const taken = new Set([meta.romanization]);
+      const options = [{ id: candidate.itemKey, label: meta.romanization }];
+      for (const glyph of recognitionOptions(candidate.itemKey, seed + 3, 99)) {
+        if (glyph === candidate.itemKey || options.length >= 4) continue;
+        const other = ALL_CHARACTERS.find((c) => c.character === glyph);
+        if (!other || taken.has(other.romanization)) continue;
+        taken.add(other.romanization);
+        options.push({ id: other.character, label: other.romanization });
+      }
       if (options.length < 3) return null;
       return {
         candidate,

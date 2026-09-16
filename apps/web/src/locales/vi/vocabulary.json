@@ -93,7 +93,8 @@
     "nasal": "Trước ㄴ hoặc ㅁ, phụ âm đứng trước chuyển thành âm mũi.",
     "lateral": "ㄴ và ㄹ đứng cạnh nhau thì cả hai đều đọc thành ㄹ.",
     "palatal": "ㄷ hoặc ㅌ cuối đứng trước 이 được đọc như ㅈ hoặc ㅊ.",
-    "liaison": "Phụ âm cuối trượt sang chữ tiếp theo."
+    "liaison": "Phụ âm cuối trượt sang chữ tiếp theo.",
+    "insertion": "Trong từ ghép, âm ㄴ được đọc trước 이, 야, 여, 요 hoặc 유 dù không được viết ra."
   },
   "save": {
     "action": "Lưu",

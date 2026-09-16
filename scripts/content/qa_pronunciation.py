@@ -103,6 +103,37 @@ FIXTURES: tuple[tuple[str, str, str], ...] = (
     ("옮기다", "옴기다", "no tensing before a causative -기-, which the rule used to add"),
 )
 
+#: Which *rule* the note names, for the words where the rules used to name the
+#: wrong one. The spoken form of 싫다 was right all along; the card under it
+#: said 된소리로 바뀌어요, which is the rule for 학교 and not the one that turns
+#: ㅀ + ㄷ into [ㅌ]. `(word, expected pattern or None)` — None means no named
+#: pattern, which is what a word whose only change is 자음군 단순화 gets.
+PATTERN_FIXTURES: tuple[tuple[str, str | None, str], ...] = (
+    ("싫다", "aspiration", "ㅀ + ㄷ aspirates; was labelled tensing"),
+    ("잃다", "aspiration", "the same cluster"),
+    ("끓다", "aspiration", "the same cluster"),
+    ("옳다", "aspiration", "the same cluster"),
+    ("뚫다", "aspiration", "the same cluster"),
+    ("많다", "aspiration", "ㄶ + ㄷ"),
+    ("좋다", "aspiration", "ㅎ + ㄷ"),
+    ("옮기다", None, "ㄻ before a causative -기-: [옴기다], no tensing to name"),
+    ("굶주리다", None, "ㄻ before a compound: [굼주리다], no tensing to name"),
+    ("삶다", "tensing", "ㄻ before the ending -다: [삼따], the morphological rule"),
+    ("앉다", "tensing", "ㄵ before -다"),
+    ("학교", "tensing", "the phonological rule"),
+    ("담요", "insertion", "표준발음법 §29's own example: [담뇨]"),
+    ("식용유", "insertion", "§29 again: [시굥뉴]"),
+    ("큰일", "insertion", "[큰닐]; liaison would say [크닐]"),
+    ("별일", "insertion", "[별릴]; liaison would say [벼릴]"),
+    ("꽃잎", "insertion", "[꼰닙]: the ㄴ comes first, the nasalisation after"),
+    ("솔직히", "tensing", "§26: Sino-Korean ㄹ + ㅈ is [ㅉ]"),
+    ("같이", "palatal", "ㅌ + 이"),
+    ("국물", "nasal", "ㄱ + ㅁ"),
+    ("신라", "lateral", "ㄴ + ㄹ"),
+    ("한국어", "liaison", "ㄱ onto a vowel"),
+    ("옷", None, "받침 neutralisation alone is not one of the seven"),
+)
+
 #: 낳다, and how a recogniser disagreement was finally settled.
 #:
 #: The screen reported 낳다 as 낫다 from both voices, and for three cycles that
@@ -688,6 +719,50 @@ def check_fixtures(report: Report) -> None:
         note = sound_for(word)
         if note and row.get("say") != note[0]:
             report.error(f"fixture {word}: shipped note {row.get('say')!r} ≠ {note[0]!r}")
+    check_gold_set(report)
+    vocabulary_rows = vocabulary
+    for word, expected, why in PATTERN_FIXTURES:
+        report.checked += 1
+        got = pattern_of(word)
+        if got != expected:
+            report.error(f"pattern fixture {word} ({why}): rules name {got!r}, expected {expected!r}")
+        row = vocabulary_rows.get(word)
+        if row is not None and row.get("sayWhy") != expected:
+            report.error(f"pattern fixture {word}: shipped label {row.get('sayWhy')!r} ≠ {expected!r}")
+
+
+GOLD = ROOT / "content" / "korean-gold-set.json"
+
+
+def check_gold_set(report: Report) -> None:
+    """The expert gold set's pronunciation rows, against the rules.
+
+    ``content/korean-gold-set.json`` was written from 표준 발음법 and the
+    dictionary, not from ``pronunciation.py``; its ``sound_changes`` rows are
+    spoken form + pattern, its ``final_sounds`` rows are 받침 neutralisation,
+    and its ``must_not`` rows are the answers the rules used to give and may
+    never give again (담요 → 다묘, 싫다 labelled tensing).
+    """
+    gold = load_json(GOLD)
+    for row in gold["sound_changes"]:
+        report.checked += 1
+        got_form = spoken_form(row["word"])
+        got_pattern = pattern_of(row["word"])
+        if got_form != row["said"]:
+            report.error(f"gold {row['word']}: rules say {got_form!r}, the standard says {row['said']!r} ({row.get('rule', '')})")
+        if got_pattern != row["pattern"]:
+            report.error(f"gold {row['word']}: rules name {got_pattern!r}, the gold set names {row['pattern']!r}")
+    for row in gold["final_sounds"]:
+        report.checked += 1
+        got = spoken_form(row["syllable"])
+        if got != row["said"]:
+            report.error(f"gold {row['syllable']}: rules say {got!r}, the standard says {row['said']!r} ({row['rule']})")
+    for row in gold["sound_changes_must_not"]:
+        report.checked += 1
+        if "not_said" in row and spoken_form(row["word"]) == row["not_said"]:
+            report.error(f"gold {row['word']}: rules still say {row['not_said']!r} — {row['why']}")
+        if "not_pattern" in row and pattern_of(row["word"]) == row["not_pattern"]:
+            report.error(f"gold {row['word']}: rules still name {row['not_pattern']!r} — {row['why']}")
 
 
 #: Codas that are not one of the seven, i.e. the ones whose value changes if the
@@ -796,6 +871,30 @@ def check_compounds(report: Report) -> None:
         "놓이다", "섞이다", "맞은편", "떡볶이",
         "만약", "만일", "큰일", "별일", "나뭇잎",
     }
+    #: The §29 candidates read one by one on 2026-09-16 against 표준국어대사전
+    #: and found to be ordinary liaison — a Sino-Korean word, a stem plus a
+    #: suffix, or a compound whose second half does not take the ㄴ. A word
+    #: that inserts one belongs in `pronunciation._IRREGULAR` instead. Until
+    #: this list existed the case was a warning, and 담요 and 식용유 — the
+    #: standard's own two examples — shipped as [다묘] and [시굥유].
+    reviewed_liaison = {
+        "중요하다", "생일", "고양이", "종이", "필요하다", "많이", "필요", "만약",
+        "공연", "금요일", "끓이다", "목욕", "일요일", "목요일", "월요일", "없이",
+        "호랑이", "놀이터", "낙엽", "움직이다", "군인", "외국인", "원숭이", "확인",
+        "종일", "승용차", "놀이", "원인", "길이", "어린이", "놓이다", "녹이다", "책임",
+        "확인하다", "높이", "통일", "깊이", "손잡이", "섞이다", "근육", "출입문",
+        "당연하다", "성인", "촬영", "석유", "평일", "신용", "반짝이다", "목걸이",
+        "할인", "경영", "미국인", "책임자", "줄이다", "담임", "먹이다", "환영하다",
+        "당연히", "송이", "끄덕이다", "번역", "쌓이다", "목욕탕", "떡볶이", "촬영하다",
+        "신입생", "똑같이", "엉덩이", "붙이다", "범인", "망설이다", "쌍둥이", "속이다",
+        "운영하다", "젊은이", "활용하다", "부작용", "숙이다", "깨끗이", "달이다",
+        "무엇이든", "가만있다", "감염", "반영하다", "맞벌이", "필연적", "참여하다",
+        "만일", "본인", "틀림없이", "승인", "높이다", "기울이다", "굳이", "책임지다",
+        "들이다", "속삭이다", "번영", "덧붙이다", "통용되다", "선입견", "잔인하다",
+        "끊임없이", "공유하다", "일석이조", "벌이다", "감언이설", "복용하다",
+        "인산인해", "작심삼일", "샅샅이", "강요하다", "돌이키다", "끊임없다",
+        "각양각색", "하염없이", "같이", "맛있다", "멋있다",
+    }
     known = set(_IRREGULAR) | reviewed
     candidates: list[str] = []
     for word in load_json(VOCABULARY)["words"]:
@@ -822,13 +921,18 @@ def check_compounds(report: Report) -> None:
                 candidates.append(text)
             break
 
+    unreviewed = [word for word in candidates if word not in reviewed_liaison]
+    for word in unreviewed:
+        report.error(
+            f"{word}: a 받침 meets 이/야/여/요/유 here and nobody has decided whether the "
+            "second half is a word of its own (표준발음법 §29 inserts an ㄴ if it is: "
+            "담요 [담뇨]). Read it, then name it in qa_pronunciation.check_compounds "
+            "(ordinary liaison) or in pronunciation._IRREGULAR (insertion)."
+        )
     if candidates:
         report.notes.append(
-            f"{len(candidates)} word(s) where a compound would insert an ㄴ before "
-            "이/야/여/요/유 if the second half were a word of its own (표준발음법 §29). "
-            "Read as ordinary liaison, which is right for the Sino-Korean ones: "
-            + ", ".join(candidates[:8])
-            + ("…" if len(candidates) > 8 else "")
+            f"{len(candidates)} §29 candidate(s), {len(candidates) - len(unreviewed)} read "
+            "as ordinary liaison and the rest listed in pronunciation._IRREGULAR"
         )
 
 

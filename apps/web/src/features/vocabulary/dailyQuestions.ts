@@ -171,9 +171,30 @@ export function buildDailyQuestions(
       */
       const gridLocale = meaningOf(word).locale;
       const pairs: MatchPair[] = [];
-      for (const member of members) {
+      /*
+        One meaning per row, too.
+
+        아빠 and 아버지 are both "baba" in Turkish, "ayah" in Indonesian and
+        "apa" in Hungarian; 좋다 and 괜찮다 are both "iyi olmak"; 저기 and 거기
+        are both "هناك". Both words sit at the same level, so both can land in
+        one day's grid, and a grid with two identical right-hand rows has two
+        right answers for each of them and marks one of the two wrong by which
+        id the learner happened to tap. Measured over every pair of same-level
+        words in the 32 packs: 896 such pairs, none of them in English, which
+        is why the English-only reading of the grid never saw one.
+
+        The taught word keeps its row; a later member whose meaning reads the
+        same is left out, and `repairCompletion` credits it through the
+        question that did ask about it.
+      */
+      const shown = new Set<string>();
+      const ordered = [word, ...members.filter((member) => member.id !== word.id)];
+      for (const member of ordered) {
         const copy = meaningOf(member);
         if (!copy.value || copy.locale !== gridLocale) continue;
+        const key = copy.value.normalize('NFC').toLowerCase().replace(/[^\p{L}\p{N}\p{M}\s]/gu, '').replace(/\s+/g, ' ').trim();
+        if (shown.has(key)) continue;
+        shown.add(key);
         pairs.push({
           wordId: member.id,
           korean: member.word,

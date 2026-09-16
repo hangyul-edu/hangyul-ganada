@@ -7,7 +7,7 @@ import { openApp, waitForLaunch } from './helpers/launch';
  *
  * ## Why this is not a DOM count
  *
- * The page builds itself out of the corpus: each of the six patterns in
+ * The page builds itself out of the corpus: each of the seven patterns in
  * `sound_patterns` finds the three lowest-difficulty words the build has tagged
  * with it, and a pattern that finds none is dropped — `.filter(examples.length
  * > 0)` in `SoundChangesPage`. That is the right behaviour and it is silent,
@@ -24,13 +24,16 @@ import { openApp, waitForLaunch } from './helpers/launch';
  * sound-change lesson" was taught nowhere. Five cards where the copy is written
  * for six.
  *
+ * The seventh, ㄴ 첨가 (표준발음법 §29: 담요 [담뇨], 식용유 [시굥뉴]), was added on
+ * 2026-09-16; its words had been labelled plain liaison until then.
+ *
  * So this asserts the lesson by *name*: every pattern that has copy must have a
  * card, and every card must show a written form, a spoken form and a way to
  * hear it. A shallow count would have passed the whole time.
  */
 
 /** Every pattern the product has written an explanation for. */
-const PATTERNS = ['tensing', 'aspiration', 'nasal', 'lateral', 'palatal', 'liaison'] as const;
+const PATTERNS = ['tensing', 'aspiration', 'nasal', 'lateral', 'palatal', 'liaison', 'insertion'] as const;
 
 test('the sound-change lesson has a card for every pattern it has copy for', async ({ page }) => {
   await openApp(page, '/letters/sounds');

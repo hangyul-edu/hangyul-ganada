@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { classify, stemOf } from './classes';
-import { conjugate, conjugationTable, type Form } from './conjugate';
+import { conjugate, conjugationTable, displayConjugations, type Form } from './conjugate';
 
 /**
  * The conjugation table, written from the grammar rather than from the code.
@@ -353,6 +353,27 @@ describe('the command row is licensed, not generated', () => {
     ['꾸다', '꾸세요'],
   ])('keeps the command form of %s', (lemma, expected) => {
     expect(conjugate(lemma, 'honorific', { partOfSpeech: 'verb' })).toBe(expected);
+  });
+
+  /*
+   * The polite command of some verbs is another verb. 먹으세요 is what a
+   * teacher corrects in a learner's first month; the honorific verb is
+   * 드시다 and the command is 드세요. The card printed 먹으세요, 마시세요,
+   * 자세요, 있으세요 and 말하세요 under "Please do" until 2026-09-16.
+   */
+  it.each([
+    ['먹다', '드세요'],
+    ['마시다', '드세요'],
+    ['자다', '주무세요'],
+    ['있다', '계세요'],
+    ['말하다', '말씀하세요'],
+  ])('shows the honorific verb of %s on the card', (lemma, expected) => {
+    const rows = displayConjugations(lemma, { partOfSpeech: 'verb' });
+    const command = rows.find((row) => row.form === 'honorific');
+    expect(command?.value).toBe(expected);
+    expect(rows.map((row) => row.value)).not.toContain(conjugate(lemma, 'honorific', { partOfSpeech: 'verb' }));
+    // The morphology itself is unchanged, so a typed 먹으세요 still analyses to 먹다.
+    expect(conjugate(lemma, 'presentPolite', { partOfSpeech: 'verb' })).not.toBe(expected);
   });
 
   it('맞다 — the photographed card — shows neither command nor request', () => {

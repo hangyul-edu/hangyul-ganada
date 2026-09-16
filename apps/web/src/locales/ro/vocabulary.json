@@ -96,7 +96,8 @@
     "nasal": "Înainte de ㄴ sau ㅁ, consoana dinaintea lor devine nazală.",
     "lateral": "ㄴ și ㄹ alăturate devin amândouă ㄹ.",
     "palatal": "Un ㄷ sau ㅌ final înainte de 이 se rostește ca ㅈ sau ㅊ.",
-    "liaison": "Consoana finală alunecă în blocul următor."
+    "liaison": "Consoana finală alunecă în blocul următor.",
+    "insertion": "Într-un cuvânt compus se pronunță un ㄴ înaintea lui 이, 야, 여, 요 sau 유, deși nu este scris."
   },
   "save": {
     "action": "Salvează",

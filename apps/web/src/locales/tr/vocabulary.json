@@ -93,7 +93,8 @@
     "nasal": "ㄴ ya da ㅁ önünde, öndeki ünsüz genizden çıkar.",
     "lateral": "Yan yana gelen ㄴ ile ㄹ ikisi de ㄹ olur.",
     "palatal": "이 önünde kapatan ㄷ ya da ㅌ, ㅈ ya da ㅊ gibi okunur.",
-    "liaison": "Kapatan ünsüz sonraki bloğa kayar."
+    "liaison": "Kapatan ünsüz sonraki bloğa kayar.",
+    "insertion": "Birleşik sözcükte 이, 야, 여, 요 ya da 유’dan önce yazılmasa da bir ㄴ sesi söylenir."
   },
   "save": {
     "action": "Kaydet",

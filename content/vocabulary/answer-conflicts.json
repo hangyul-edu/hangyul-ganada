@@ -152,6 +152,300 @@
       "b": "조금",
       "frame": "____ 한글을 써요.",
       "why": "both are adverbs that fit a bare adverbial slot — writing Hangul every day and writing a little of it are both ordinary"
+    },
+    {
+      "a": "살리다",
+      "b": "보호하다",
+      "frame": "의사가 환자를 ____.",
+      "why": "환자를 보호하다 is as ordinary as 환자를 살리다",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "알리다",
+      "b": "찾아보다",
+      "frame": "결과를 ____ 주세요.",
+      "why": "결과를 찾아봐 주세요 asks for the result to be looked up, and is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "정신과",
+      "b": "병실",
+      "frame": "____에서 상담을 받았어요.",
+      "why": "병실에서 상담을 받았어요 is a sentence about a hospital stay",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "위성",
+      "b": "태양",
+      "frame": "____이 지구를 돌아요.",
+      "why": "태양이 지구를 돌아요 is wrong astronomy and right Korean; the frame does not decide it",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "체포하다",
+      "b": "몰아내다",
+      "frame": "경찰이 도둑을 ____.",
+      "why": "경찰이 도둑을 몰아냈어요 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "주차장",
+      "b": "정상",
+      "frame": "____에 차를 세웠어요.",
+      "why": "정상에 차를 세웠어요 — parked at the summit — is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "운전자",
+      "b": "근로자",
+      "frame": "____는 안전벨트를 매야 해요.",
+      "why": "근로자 wearing a safety belt is a workplace rule as much as a road one",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "음료",
+      "b": "메뉴",
+      "frame": "____는 뭘로 하시겠어요?",
+      "why": "메뉴는 뭘로 하시겠어요 is what a waiter says",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "버터",
+      "b": "치즈",
+      "frame": "빵에 ____를 발라요.",
+      "why": "크림치즈 is spread on bread",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "텔레비전",
+      "b": "휴대폰",
+      "frame": "저녁에 ____을 봐요.",
+      "why": "저녁에 휴대폰을 봐요 is what most people do",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "텔레비전",
+      "b": "인터넷",
+      "frame": "저녁에 ____을 봐요.",
+      "why": "인터넷을 봐요 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "토마토",
+      "b": "고구마",
+      "frame": "____를 썰어서 샐러드를 만들었어요.",
+      "why": "a sweet-potato salad is a dish",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "메모",
+      "b": "엽서",
+      "frame": "냉장고에 ____를 붙였어요.",
+      "why": "postcards go on fridges",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "드론",
+      "b": "로켓",
+      "frame": "____이 하늘을 날아요.",
+      "why": "로켓이 하늘을 날아요 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "봉투",
+      "b": "책가방",
+      "frame": "편지를 ____에 넣었어요.",
+      "why": "편지를 책가방에 넣었어요 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "장학금",
+      "b": "바이올린",
+      "frame": "이번 학기에 ____을 받았어요.",
+      "why": "받다 accepts any gift",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "위험하다",
+      "b": "싫다",
+      "frame": "밤에 혼자 가면 ____.",
+      "why": "밤에 혼자 가면 싫어요 is a colloquial objection and reads as Korean",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "모델",
+      "b": "남동생",
+      "frame": "____이 무대를 걸어요.",
+      "why": "a brother can walk a stage",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "후배",
+      "b": "담임",
+      "frame": "____에게 점심을 사 줬어요.",
+      "why": "one buys lunch for a teacher as readily as for a junior",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "놓다",
+      "b": "세우다",
+      "frame": "가방을 바닥에 ____.",
+      "why": "가방을 바닥에 세웠어요 stands the bag up, and is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "거실",
+      "b": "소파",
+      "frame": "____에서 텔레비전을 봐요.",
+      "why": "소파에서 텔레비전을 봐요 is where most people watch it",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "엉뚱하다",
+      "b": "자세하다",
+      "frame": "아이가 ____ 질문을 했어요.",
+      "why": "a detailed question is as ordinary as an odd one",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "조그맣다",
+      "b": "적당하다",
+      "frame": "____ 상자를 받았어요.",
+      "why": "적당한 상자 is a box of a suitable size",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "식용유",
+      "b": "버터",
+      "frame": "팬에 ____를 둘렀어요.",
+      "why": "a pan is coated with butter as readily as with oil",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "엽서",
+      "b": "소포",
+      "frame": "여행지에서 ____를 보냈어요.",
+      "why": "parcels are sent from a trip as readily as postcards",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "물속",
+      "b": "지하실",
+      "frame": "____에서 눈을 떴어요.",
+      "why": "waking up in a basement is a sentence",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "할부",
+      "b": "대출",
+      "frame": "냉장고를 ____로 샀어요.",
+      "why": "냉장고를 대출로 샀어요 — bought with a loan — is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "믿다",
+      "b": "사랑하다",
+      "frame": "저는 친구를 ____.",
+      "why": "친구를 사랑해요 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "지하실",
+      "b": "마당",
+      "frame": "____에 짐을 두었어요.",
+      "why": "마당에 짐을 두었어요 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "계란",
+      "b": "생선",
+      "frame": "아침에 ____을 삶았어요.",
+      "why": "fish is boiled as readily as eggs",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "지식",
+      "b": "진실",
+      "frame": "책에서 ____을 얻어요.",
+      "why": "책에서 진실을 얻어요 is a sentence people write",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "돌아보다",
+      "b": "비교하다",
+      "frame": "지난 일을 ____.",
+      "why": "지난 일을 비교했어요 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "메모",
+      "b": "봉투",
+      "frame": "냉장고에 ____를 붙였어요.",
+      "why": "an envelope stuck on a fridge is a sentence",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "주장하다",
+      "b": "정리하다",
+      "frame": "자기 생각을 ____.",
+      "why": "자기 생각을 정리했어요 is at least as common",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "전자",
+      "b": "전기",
+      "frame": "____는 눈에 보이지 않아요.",
+      "why": "전기는 눈에 보이지 않아요 is true and ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "실내",
+      "b": "복도",
+      "frame": "____에서는 모자를 벗으세요.",
+      "why": "복도에서는 모자를 벗으세요 is a rule a school might have",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "졸리다",
+      "b": "행복하다",
+      "frame": "밥을 먹으면 ____.",
+      "why": "밥을 먹으면 행복해요 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "칠판",
+      "b": "교과서",
+      "frame": "____에 글씨를 써요.",
+      "why": "one writes in a textbook",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "끄덕이다",
+      "b": "흔들다",
+      "frame": "아이가 고개를 ____.",
+      "why": "고개를 흔들었어요 is the other answer",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "상추",
+      "b": "식빵",
+      "frame": "고기를 ____에 싸서 먹어요.",
+      "why": "meat wrapped in bread is a sandwich",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "모색하다",
+      "b": "도모하다",
+      "frame": "다른 방법을 ____ 있어요.",
+      "why": "방법을 도모하다 is ordinary",
+      "read": "2026-09-16"
+    },
+    {
+      "a": "쇠퇴",
+      "b": "침체",
+      "frame": "전통 산업이 ____의 길을 걷고 있어요.",
+      "why": "침체의 길 is as idiomatic as 쇠퇴의 길",
+      "read": "2026-09-16"
     }
   ]
 }

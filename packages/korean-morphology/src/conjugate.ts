@@ -317,6 +317,29 @@ function prospective(stem: string, cls: ConjugationClass): string {
   return withEu.slice(0, -1) + compose(parts.initial, parts.medial, FINALS.indexOf('ㄹ'));
 }
 
+/**
+ * Verbs whose polite command is another verb.
+ *
+ * -(으)세요 is honorific, and Korean honours the *subject* of some verbs with
+ * a different verb rather than a suffix: one does not say 먹으세요 to anyone
+ * one would say -세요 to — the verb is 드시다, so the command is 드세요. Every
+ * textbook teaches this pair in the first weeks and every Korean teacher
+ * corrects 먹으세요 on sight. The card's "Please do" row used to print
+ * 먹으세요, 마시세요, 자세요, 있으세요 and 말하세요; `displayConjugations`
+ * prints these instead. 있다 is 계세요 because the card teaches 있다 as *to be
+ * in a place*; the possessive sense would keep 있으세요.
+ */
+const SUPPLETIVE_HONORIFIC: Record<string, string> = {
+  먹다: '드세요',
+  마시다: '드세요',
+  자다: '주무세요',
+  잠자다: '주무세요',
+  있다: '계세요',
+  말하다: '말씀하세요',
+  얘기하다: '말씀하세요',
+  이야기하다: '말씀하세요',
+};
+
 /** 계시 → 계세요. The honorific suffix drops its 시 before the fused 세요. */
 function honorificPolite(stem: string): string {
   return `${stem.slice(0, -1)}세요`;
@@ -445,12 +468,23 @@ export function displayConjugations(
   shape: WordShape = {},
 ): Array<{ form: Form; value: string }> {
   const seen = new Set<string>();
-  return conjugationTable(lemma, shape).filter((row) => {
-    if (row.form === 'infinitive' || row.form === 'adnominal') return false;
-    if (seen.has(row.value)) return false;
-    seen.add(row.value);
-    return true;
-  });
+  const suppletive = SUPPLETIVE_HONORIFIC[lemma.normalize('NFC')];
+  return conjugationTable(lemma, shape)
+    .map((row) =>
+      /*
+       * The morphology stays 먹으세요 — `analyse` has to take a learner from a
+       * typed 먹으세요 back to 먹다 — and the *card* shows the verb a Korean
+       * would say. The substitution lives here, on the display, for that
+       * reason.
+       */
+      row.form === 'honorific' && suppletive ? { ...row, value: suppletive } : row,
+    )
+    .filter((row) => {
+      if (row.form === 'infinitive' || row.form === 'adnominal') return false;
+      if (seen.has(row.value)) return false;
+      seen.add(row.value);
+      return true;
+    });
 }
 
 /** Every form of a word, for the 활용 panel. Missing forms are omitted. */

@@ -93,7 +93,8 @@
     "nasal": "Vóór ㄴ of ㅁ wordt de medeklinker ervoor nasaal.",
     "lateral": "ㄴ en ㄹ naast elkaar worden allebei ㄹ.",
     "palatal": "Een slot-ㄷ of -ㅌ vóór 이 klinkt als ㅈ of ㅊ.",
-    "liaison": "De slotmedeklinker schuift door naar het volgende blok."
+    "liaison": "De slotmedeklinker schuift door naar het volgende blok.",
+    "insertion": "In een samenstelling klinkt een ㄴ vóór 이, 야, 여, 요 of 유, ook al staat die er niet."
   },
   "save": {
     "action": "Bewaren",

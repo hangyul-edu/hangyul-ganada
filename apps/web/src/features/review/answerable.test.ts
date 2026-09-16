@@ -114,6 +114,39 @@ describe('generated questions', () => {
     }
   });
 
+  it('never offers two letter sounds that read identically, whatever the seed', () => {
+    /*
+     * The seeded draw, swept rather than sampled. ㅢ's pool holds ㅣ and 이
+     * (both "i") and ㅡ and 으 (both "eu"), and with three fixed seeds the
+     * pair never happened to be drawn together; over three thousand seeds it
+     * was, about one time in twenty-five, and the screen showed "i" beside
+     * "i" with one of them marked wrong.
+     */
+    for (const character of ALL_CHARACTERS) {
+      for (let seed = 0; seed < 400; seed += 1) {
+        const exercise = buildExercise(
+          {
+            kind: 'character',
+            itemKey: character.character,
+            skill: 'visual_recognition',
+            mode: 'read',
+            priority: 1,
+            recall: 0.5,
+            partner: null,
+            intervene: false,
+            need: 'due',
+          },
+          meaningOf,
+          seed,
+        );
+        if (!exercise?.options) continue;
+        const labels = exercise.options.map((option) => option.label);
+        expect(new Set(labels).size, `read ${character.character} seed ${seed}: ${labels.join(' ')}`).toBe(labels.length);
+        expect(labels.length).toBeGreaterThanOrEqual(3);
+      }
+    }
+  });
+
   it('asks about the thing it shows', () => {
     for (const exercise of EXERCISES) {
       if (exercise.candidate.kind !== 'word') continue;

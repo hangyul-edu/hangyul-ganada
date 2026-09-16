@@ -199,7 +199,8 @@
       "nasal": "Miękki, nosowy dźwięk",
       "lateral": "ㄴ i ㄹ razem",
       "palatal": "ㄷ i ㅌ przed 이",
-      "liaison": "Dźwięk przesuwa się dalej"
+      "liaison": "Dźwięk przesuwa się dalej",
+      "insertion": "Pojawia się ㄴ"
     }
   },
   "mistakes": {

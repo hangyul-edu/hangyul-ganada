@@ -5,7 +5,8 @@
     "review schedule and mistakes rows for it are kept on the device. The runtime reads this file to",
     "drop a retired word from today's plan and the review queue without erasing what was earned.",
     "`replacement` names the word that fills the same slot when one exists; null means the level band",
-    "had supply and nothing was authored in its place."
+    "had supply and nothing was authored in its place.",
+    "2026-09-16: three editorial tombstones (category `editorial`) — words retired because the headword itself was not standard (고장나다, 신경쓰다) or was an inflected form (고마워). The same runtime handling applies: the id stays, the plan repair drops the unresolved word, nothing earned is erased."
   ],
   "policyVersion": "1.0.0",
   "words": {
@@ -260,6 +261,39 @@
       "previous": {
         "ex": "살신성인의 정신을 기려요.",
         "en": "giving one's life for what is right"
+      }
+    },
+    "word_singyeongsseuda": {
+      "word": "신경쓰다",
+      "category": "editorial",
+      "reason": "Not a headword: the idiom 신경(을) 쓰다 is written as two words; the card taught the joined spelling 신경쓰다. Retired as an editorial correction, not under the content policy.",
+      "retiredOn": "2026-09-16",
+      "replacement": null,
+      "previous": {
+        "ex": "너무 신경쓰지 마세요.",
+        "en": "to care about, to mind"
+      }
+    },
+    "word_gomawo": {
+      "word": "고마워",
+      "category": "editorial",
+      "reason": "An inflected form of 고맙다 (taught at level 3), not a headword — the rule that retired 좋아요, 와라 and 아니야. Retired as an editorial correction, not under the content policy.",
+      "retiredOn": "2026-09-16",
+      "replacement": null,
+      "previous": {
+        "ex": "도와줘서 고마워.",
+        "en": "thanks"
+      }
+    },
+    "word_gojangnada": {
+      "word": "고장나다",
+      "category": "editorial",
+      "reason": "Not a headword: 고장 나다 is written as two words (고장 is the noun; 국립국어원's guidance spaces 고장 나다). The corpus itself writes 시계가 고장 났어요 on the 고장 card. Retired as an editorial correction, not under the content policy.",
+      "retiredOn": "2026-09-16",
+      "replacement": null,
+      "previous": {
+        "ex": "시계가 고장났어요.",
+        "en": "to break down, of a machine"
       }
     }
   }

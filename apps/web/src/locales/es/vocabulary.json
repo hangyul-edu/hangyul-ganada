@@ -96,7 +96,8 @@
     "nasal": "Ante ㄴ o ㅁ, la consonante anterior se vuelve nasal.",
     "lateral": "ㄴ y ㄹ juntas suenan las dos como ㄹ.",
     "palatal": "Una ㄷ o ㅌ final ante 이 suena como ㅈ o ㅊ.",
-    "liaison": "La consonante final pasa al bloque siguiente."
+    "liaison": "La consonante final pasa al bloque siguiente.",
+    "insertion": "En una palabra compuesta se pronuncia una ㄴ antes de 이, 야, 여, 요 o 유 aunque no esté escrita."
   },
   "save": {
     "action": "Guardar",

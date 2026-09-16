@@ -115,6 +115,14 @@
     "싫다": {
       "level": 6,
       "why": "The 78th commonest word in the corpora and the other half of 좋다, which is level 1: 좋아요/싫어요 is a first-month pair in every syllabus, and the model's 7 comes from the usefulness mark of 2 (no ceiling) plus a frequency cost that is already 0.54 at rank 78. Set to 6 in the v1.0.5 pass, when the corrected frequency reader left level 6 at 39 words — one under the 40 a daily plan needs — and this was the word most clearly sitting a level too high beside it. Not a quota: a quota would have picked whichever word was nearest the boundary, and 열쇠 and 카메라 were nearer."
+    },
+    "등": {
+      "level": 9,
+      "why": "The frequency reader cannot tell the body part from 등 'and so on', which is one of the commonest tokens in any Korean text, so the model filed the back of the body at level 1 beside 집 and 물. A learner meets 허리 (8), 어깨 (8) and 가슴 (10) around here; 9 puts it with them. Read 2026-09-16."
+    },
+    "당신": {
+      "level": 12,
+      "why": "Ranked first-tier by subtitle frequency, where it is what married couples call each other and what strangers say when a quarrel starts. A beginner who takes it for the ordinary 'you' offends people; textbooks introduce it late and with a warning, and the card's gloss already carries one. 12 keeps it in the corpus and out of the first weeks. Read 2026-09-16."
     }
   }
 }

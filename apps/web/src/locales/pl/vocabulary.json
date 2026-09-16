@@ -99,7 +99,8 @@
     "nasal": "Przed ㄴ albo ㅁ poprzedzająca spółgłoska staje się nosowa.",
     "lateral": "ㄴ i ㄹ obok siebie obie stają się ㄹ.",
     "palatal": "Zamykające ㄷ albo ㅌ przed 이 wymawia się jak ㅈ albo ㅊ.",
-    "liaison": "Spółgłoska zamykająca przesuwa się na następny blok."
+    "liaison": "Spółgłoska zamykająca przesuwa się na następny blok.",
+    "insertion": "W wyrazie złożonym przed 이, 야, 여, 요 lub 유 wymawia się ㄴ, choć go nie zapisano."
   },
   "save": {
     "action": "Zapisz",

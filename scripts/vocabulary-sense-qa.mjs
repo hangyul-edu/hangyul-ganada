@@ -318,7 +318,7 @@ const REVIEWED_SPLIT = new Set(
     'ja/외계', 'ja/곱다', 'ja/돋다', 'ja/뜯다', 'ja/이제',
     // Japanese needs two words where Korean and English need one.
     'ja/나', 'ja/있다', 'ja/없다', 'ja/알다', 'ja/살다', 'ja/동생', 'ja/받다', 'ja/내다',
-    'ja/풀다', 'ja/담다', 'ja/나다', 'ja/빼다', 'ja/몰다', 'ja/치르다', 'ja/잠그다',
+    'ja/풀다', 'ja/담다', 'ja/나다', 'ja/몰다', 'ja/치르다', 'ja/잠그다',
     'ja/틀다', 'ja/아하',
     // A collocation list in parentheses, not a second sense: 上（学、班）.
     'zh-CN/다니다',

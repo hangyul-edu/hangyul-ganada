@@ -259,7 +259,12 @@ const FIXTURES = [
     // The first two letters is one syllable's onset and nucleus. Every sound
     // change in the standard that can reach the first syllable — nasalisation,
     // lateralisation, aspiration — changes at most the coda, which is later.
-    if (shared !== -1 && shared < 2 && stem.slice(0, 2) !== row.romanization.slice(0, 2)) {
+    // ㄹ is r before a vowel and l before a consonant, so a first syllable
+    // whose coda is ㄹ reads *ir-* in the id and *il-* in the romanisation
+    // once a following ㄹ is doubled: 일일이 is `word_iriri` and reads illiri.
+    // Same letter, same word.
+    const fold = (text) => text.replace(/r/g, 'l');
+    if (shared !== -1 && shared < 2 && fold(stem.slice(0, 2)) !== fold(row.romanization.slice(0, 2))) {
       strayed += 1;
       if (strayed <= 8) {
         fail(

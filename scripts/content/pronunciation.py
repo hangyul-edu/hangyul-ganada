@@ -44,6 +44,7 @@ PATTERNS: tuple[tuple[str, str], ...] = (
     ("nasal", "a stop before ㄴ or ㅁ becomes a nasal: 국물 → 궁물"),
     ("lateral", "ㄴ and ㄹ meeting become ㄹㄹ: 신라 → 실라"),
     ("palatal", "ㄷ or ㅌ before 이 is said ji or chi: 같이 → 가치"),
+    ("insertion", "a compound gains an ㄴ before 이/야/여/요/유: 담요 → 담뇨"),
     ("liaison", "the final consonant moves onto the next syllable: 한국어 → 한구거"),
 )
 
@@ -55,7 +56,12 @@ PATTERNS: tuple[tuple[str, str], ...] = (
 #: vocabulary — at which point the panel stops meaning "look at this one" and
 #: starts meaning "ignore me". It is taught once, in the sound-change lesson,
 #: where it belongs.
-NOTEWORTHY = frozenset({"tensing", "aspiration", "nasal", "lateral", "palatal"})
+#:
+#: ㄴ 첨가 (표준발음법 §29) is included: it writes a consonant that is nowhere
+#: in the spelling, so a learner reading 담요 as [다묘] has no way to know they
+#: are wrong, and the handful of words that take it are exactly the ones where
+#: a note earns its place.
+NOTEWORTHY = frozenset({"tensing", "aspiration", "nasal", "lateral", "palatal", "insertion"})
 
 #: Finals that make a following plain consonant tense. 받침 ㄱ/ㄷ/ㅂ and the
 #: clusters that reduce to them.
@@ -144,13 +150,31 @@ _CLUSTER_LIAISON = {
 _IRREGULAR: dict[str, tuple[str, str | None]] = {
     "맛없다": ("마덥따", "tensing"),
     "끝없다": ("끄덥따", "tensing"),
-    "나뭇잎": ("나문닙", "nasal"),
-    # 꽃잎 is the same compound shape as 나뭇잎 — 잎 is a word of its own — so
-    # the ㄴ is inserted and the ㅊ neutralises and assimilates in front of it:
-    # [꼳닙] → [꼰닙] (표준발음법 §29). Added with batch 302.
-    "꽃잎": ("꼰닙", "nasal"),
-    "큰일": ("큰닐", None),
-    "별일": ("별릴", None),
+    # ㄴ 첨가, 표준발음법 §29. Every word here is a compound whose second half
+    # begins 이/야/여/요/유 and is a word (or suffix) of its own, so an ㄴ is
+    # said that is written nowhere, and the ordinary rules then run on top of
+    # it: 나뭇잎 [나묻닙] → [나문닙], 꽃잎 [꼳닙] → [꼰닙], 별일 [별닐] → [별릴],
+    # 일일이 [일닐리] → [일리리]. They are labelled by the rule that *starts*
+    # the change rather than the one that finishes it, because the inserted ㄴ
+    # is the thing a reader cannot see. 담요 and 식용유 are the standard's own
+    # examples for §29 ([담ː뇨], [시굥뉴]); the rules used to derive plain
+    # liaison for both, and the labels of 큰일 and 별일 used to fall back to
+    # liaison, under which "받침이 넘어가요" would predict [크닐] and [벼릴].
+    "나뭇잎": ("나문닙", "insertion"),
+    "꽃잎": ("꼰닙", "insertion"),
+    "큰일": ("큰닐", "insertion"),
+    "별일": ("별릴", "insertion"),
+    "담요": ("담뇨", "insertion"),
+    "식용유": ("시굥뉴", "insertion"),
+    "일일이": ("일리리", "insertion"),
+    # 표준발음법 §26: in a Sino-Korean word a ㄷ, ㅅ or ㅈ after a ㄹ 받침 is
+    # tense — 솔직 is [솔찍], 일석 is [일썩]. The rules cannot tell a Sino-Korean
+    # ㄹ from a native one (물질 [물찔] against 물자 [물자]) and so do not apply
+    # the rule in general; these are the words in the corpus that carry a note
+    # or a lesson row and were derived without it.
+    "솔직하다": ("솔찌카다", "tensing"),
+    "솔직히": ("솔찌키", "tensing"),
+    "일석이조": ("일써기조", "tensing"),
     # 표준발음법 §10, the 밟- exception: a ㄼ before a consonant is said [ㄹ] in
     # every word except this stem, where it is [ㅂ]. 넓다 is [널따] and 밟다 is
     # [밥따], and the rule that gets the first one right gets the second wrong.
@@ -202,7 +226,7 @@ def pattern_of(word: str) -> str | None:
         return _IRREGULAR[word][1] or "liaison"
     if spoken_form(word) == word:
         return None
-    for name in ("tensing", "aspiration", "nasal", "lateral", "palatal", "liaison"):
+    for name, _ in PATTERNS:
         if _fires(word, name):
             return name
     # Nothing named fired, and the word is still said differently: what is
@@ -319,8 +343,21 @@ def _fires(word: str, pattern: str) -> bool:
             continue
 
         if pattern == "tensing":
-            if final in _TENSING_FINALS and initial in _TENSABLE:
-                return True
+            if final not in _TENSING_FINALS or initial not in _TENSABLE:
+                continue
+            # ㅎ-clusters aspirate a following ㄱ ㄷ ㅂ ㅈ rather than tensing
+            # it: 싫다 is [실타], 많다 is [만타]. Only a following ㅅ tenses
+            # (싫소 [실쏘]). This branch used to answer "tensing" for every
+            # ㅀ-stem in the corpus — 싫다, 잃다, 끓다, 옳다, 뚫다, 앓다, 꿇다 —
+            # and the word card named a rule the spoken form does not show.
+            if final in ("ㅀ", "ㄶ") and initial != "ㅅ":
+                continue
+            # A sonorant cluster tenses only before an ending — the same
+            # condition `_with_tensing` applies. Without it 옮기다 was labelled
+            # tensing while its spoken form, correctly, showed none.
+            if final in _SONORANT_CLUSTERS and then not in _ENDING_SYLLABLES:
+                continue
+            return True
         elif pattern == "aspiration":
             if final in ("ㅎ", "ㄶ", "ㅀ") and initial in ("ㄱ", "ㄷ", "ㅂ", "ㅈ"):
                 return True
@@ -337,6 +374,11 @@ def _fires(word: str, pattern: str) -> bool:
         elif pattern == "palatal":
             if final in ("ㄷ", "ㅌ") and initial == "ㅇ" and medial == "ㅣ":
                 return True
+        elif pattern == "insertion":
+            # Never derived: whether the second half is a word of its own is a
+            # fact about morphemes, and the words that take it are listed in
+            # `_IRREGULAR`. Reaching here means the word is not one of them.
+            continue
         elif pattern == "liaison":
             # A 받침 with a vowel behind it, which is the whole rule: the
             # consonant leaves the block it is written in and starts the next

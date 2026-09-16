@@ -197,7 +197,8 @@
       "nasal": "A soft, nasal sound",
       "lateral": "ㄴ and ㄹ together",
       "palatal": "ㄷ and ㅌ before 이",
-      "liaison": "The sound slides over"
+      "liaison": "The sound slides over",
+      "insertion": "An ㄴ appears"
     }
   },
   "mistakes": {

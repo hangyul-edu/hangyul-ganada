@@ -197,7 +197,8 @@
       "nasal": "콧소리로 바뀌어요",
       "lateral": "ㄴ과 ㄹ이 만나면",
       "palatal": "ㄷ, ㅌ이 ‘이’를 만나면",
-      "liaison": "받침이 넘어가요"
+      "liaison": "받침이 넘어가요",
+      "insertion": "ㄴ 소리가 생겨요"
     }
   },
   "mistakes": {

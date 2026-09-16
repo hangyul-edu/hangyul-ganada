@@ -93,7 +93,8 @@
     "nasal": "Bago ang ㄴ o ㅁ, nagiging pang-ilong ang katinig sa unahan.",
     "lateral": "Kapag magkatabi ang ㄴ at ㄹ, pareho silang nagiging ㄹ.",
     "palatal": "Ang pangwakas na ㄷ o ㅌ bago ang 이 ay binibigkas na parang ㅈ o ㅊ.",
-    "liaison": "Dumudulas ang pangwakas na katinig papunta sa susunod na kahon."
+    "liaison": "Dumudulas ang pangwakas na katinig papunta sa susunod na kahon.",
+    "insertion": "Sa tambalang salita, binibigkas ang ㄴ bago ang 이, 야, 여, 요 o 유 kahit hindi ito nakasulat."
   },
   "save": {
     "action": "I-save",

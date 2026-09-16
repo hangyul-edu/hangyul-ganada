@@ -562,7 +562,7 @@
       "Otam ishga boradi."
     ],
     "word_eoseo": [
-      "kiring, tezroq",
+      "qani, tezroq",
       "Xush kelibsiz, kiring."
     ],
     "word_mot": [
@@ -1994,10 +1994,6 @@
       "bu safar",
       "Bu safar men qilaman."
     ],
-    "word_gomawo": [
-      "rahmat",
-      "Yordam berganing uchun rahmat."
-    ],
     "word_banchan": [
       "guruch bilan yeyiladigan garnir",
       "Garnirlar mazali."
@@ -2662,8 +2658,8 @@
       "G‘ildirak dumalab ketyapti."
     ],
     "word_geureoke": [
-      "shuncha",
-      "Iltimos, shuncha qilmang."
+      "shunday, u tarzda",
+      "Iltimos, unday qilmang."
     ],
     "word_samak": [
       "cho‘l",
@@ -8344,10 +8340,6 @@
       "nima balo",
       "Bu yerda nima balo bo‘lyapti?"
     ],
-    "word_singyeongsseuda": [
-      "parvo qilmoq",
-      "Uncha parvo qilmang."
-    ],
     "word_naeryeonota": [
       "qo‘yib qo‘ymoq",
       "Sumkangizni qo‘yib qo‘ying."
@@ -8543,10 +8535,6 @@
     "word_maedalda": [
       "osib qo‘ymoq",
       "Shiftga chiroq osib qo‘ydim."
-    ],
-    "word_gojangnada": [
-      "buzilmoq",
-      "Soat ishdan chiqdi."
     ],
     "word_tteoollida": [
       "esga solmoq",

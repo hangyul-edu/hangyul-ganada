@@ -201,7 +201,8 @@
       "nasal": "صوت أنفي خفيف",
       "lateral": "ㄴ و ㄹ معًا",
       "palatal": "ㄷ و ㅌ قبل 이",
-      "liaison": "الصوت ينزلق"
+      "liaison": "الصوت ينزلق",
+      "insertion": "يظهر صوت ㄴ"
     }
   },
   "mistakes": {

@@ -96,7 +96,8 @@
     "nasal": "Devant ㄴ ou ㅁ, la consonne précédente devient nasale.",
     "lateral": "ㄴ et ㄹ côte à côte se disent toutes deux ㄹ.",
     "palatal": "Un ㄷ ou ㅌ final devant 이 se dit comme ㅈ ou ㅊ.",
-    "liaison": "La consonne finale passe sur le bloc suivant."
+    "liaison": "La consonne finale passe sur le bloc suivant.",
+    "insertion": "Dans un mot composé, un ㄴ se prononce devant 이, 야, 여, 요 ou 유 même s’il n’est pas écrit."
   },
   "save": {
     "action": "Enregistrer",

@@ -198,7 +198,8 @@
       "nasal": "Um som nasal suave",
       "lateral": "ㄴ e ㄹ juntas",
       "palatal": "ㄷ e ㅌ antes de 이",
-      "liaison": "O som escorrega"
+      "liaison": "O som escorrega",
+      "insertion": "Aparece um ㄴ"
     }
   },
   "mistakes": {

@@ -197,7 +197,8 @@
       "nasal": "Een zachte, nasale klank",
       "lateral": "ㄴ en ㄹ samen",
       "palatal": "ㄷ en ㅌ vóór 이",
-      "liaison": "De klank schuift door"
+      "liaison": "De klank schuift door",
+      "insertion": "Er komt een ㄴ bij"
     }
   },
   "mistakes": {

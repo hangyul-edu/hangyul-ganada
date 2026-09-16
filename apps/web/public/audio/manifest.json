@@ -1,6 +1,6 @@
 {
- "version": "20260914-f243a83b",
- "generated_at": "2026-09-14T15:19:28+00:00",
+ "version": "20260916-3f5cf56d",
+ "generated_at": "2026-09-16T02:47:26+00:00",
  "provider": {
   "id": "microsoft-edge-tts",
   "female_voice": "ko-KR-SunHiNeural",
@@ -10592,21 +10592,6 @@
    }
   },
   {
-   "id": "ex_b108bb3420c2e0acbdc4f0c9c020b9c8c138c6942e",
-   "text": "너무 신경쓰지 마세요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_b108bb3420c2e0acbdc4f0c9c020b9c8c138c6942e.mp3",
-    "duration_ms": 1776,
-    "bytes": 7341
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_b108bb3420c2e0acbdc4f0c9c020b9c8c138c6942e.mp3",
-    "duration_ms": 1896,
-    "bytes": 7821
-   }
-  },
-  {
    "id": "ex_b108bb3420c7accd09d558c9c020b9c8c138c6942e",
    "text": "너무 재촉하지 마세요.",
    "kind": "sentence",
@@ -13199,21 +13184,6 @@
     "src": "audio/sentences/male/ex_b3c4c640c8fcc154c11c20ace0b9c8c6ccc6942e.mp3",
     "duration_ms": 1800,
     "bytes": 7437
-   }
-  },
-  {
-   "id": "ex_b3c4c640c918c11c20ace0b9c8c6cc2e",
-   "text": "도와줘서 고마워.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_b3c4c640c918c11c20ace0b9c8c6cc2e.mp3",
-    "duration_ms": 1488,
-    "bytes": 6189
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_b3c4c640c918c11c20ace0b9c8c6cc2e.mp3",
-    "duration_ms": 1488,
-    "bytes": 6189
    }
   },
   {
@@ -29549,21 +29519,6 @@
     "src": "audio/sentences/male/ex_c2dcacc4ac0020ace0c7a520b0acc5b4c6942e.mp3",
     "duration_ms": 1704,
     "bytes": 7053
-   }
-  },
-  {
-   "id": "ex_c2dcacc4ac0020ace0c7a5b0acc5b4c6942e",
-   "text": "시계가 고장났어요.",
-   "kind": "sentence",
-   "female": {
-    "src": "audio/sentences/female/ex_c2dcacc4ac0020ace0c7a5b0acc5b4c6942e.mp3",
-    "duration_ms": 1752,
-    "bytes": 7245
-   },
-   "male": {
-    "src": "audio/sentences/male/ex_c2dcacc4ac0020ace0c7a5b0acc5b4c6942e.mp3",
-    "duration_ms": 1632,
-    "bytes": 6765
    }
   },
   {
@@ -57077,18 +57032,18 @@
    }
   },
   {
-   "id": "ex_d55cc79420d558c2e4b798c6943f",
-   "text": "한잔 하실래요?",
+   "id": "ex_d55cc794d558c2e4b798c6943f",
+   "text": "한잔하실래요?",
    "kind": "sentence",
    "female": {
-    "src": "audio/sentences/female/ex_d55cc79420d558c2e4b798c6943f.mp3",
-    "duration_ms": 1320,
-    "bytes": 5517
+    "src": "audio/sentences/female/ex_d55cc794d558c2e4b798c6943f.mp3",
+    "duration_ms": 1272,
+    "bytes": 5325
    },
    "male": {
-    "src": "audio/sentences/male/ex_d55cc79420d558c2e4b798c6943f.mp3",
-    "duration_ms": 1200,
-    "bytes": 5037
+    "src": "audio/sentences/male/ex_d55cc794d558c2e4b798c6943f.mp3",
+    "duration_ms": 1104,
+    "bytes": 4653
    }
   },
   {
@@ -65087,21 +65042,6 @@
    }
   },
   {
-   "id": "word_ace0b9c8c6cc",
-   "text": "고마워",
-   "kind": "word",
-   "female": {
-    "src": "audio/vocabulary/female/word_ace0b9c8c6cc.mp3",
-    "duration_ms": 816,
-    "bytes": 3501
-   },
-   "male": {
-    "src": "audio/vocabulary/male/word_ace0b9c8c6cc.mp3",
-    "duration_ms": 720,
-    "bytes": 3117
-   }
-  },
-  {
    "id": "word_ace0b9d9b2e4",
    "text": "고맙다",
    "kind": "word",
@@ -65339,21 +65279,6 @@
     "src": "audio/vocabulary/male/word_ace0c7a5.mp3",
     "duration_ms": 576,
     "bytes": 2541
-   }
-  },
-  {
-   "id": "word_ace0c7a5b098b2e4",
-   "text": "고장나다",
-   "kind": "word",
-   "female": {
-    "src": "audio/vocabulary/female/word_ace0c7a5b098b2e4.mp3",
-    "duration_ms": 1056,
-    "bytes": 4461
-   },
-   "male": {
-    "src": "audio/vocabulary/male/word_ace0c7a5b098b2e4.mp3",
-    "duration_ms": 888,
-    "bytes": 3789
    }
   },
   {
@@ -92504,21 +92429,6 @@
     "src": "audio/vocabulary/male/word_c2ddd488.mp3",
     "duration_ms": 720,
     "bytes": 3117
-   }
-  },
-  {
-   "id": "word_c2e0acbdc4f0b2e4",
-   "text": "신경쓰다",
-   "kind": "word",
-   "female": {
-    "src": "audio/vocabulary/female/word_c2e0acbdc4f0b2e4.mp3",
-    "duration_ms": 1152,
-    "bytes": 4845
-   },
-   "male": {
-    "src": "audio/vocabulary/male/word_c2e0acbdc4f0b2e4.mp3",
-    "duration_ms": 912,
-    "bytes": 3885
    }
   },
   {

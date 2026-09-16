@@ -198,7 +198,8 @@
       "nasal": "Un suono nasale morbido",
       "lateral": "ㄴ e ㄹ insieme",
       "palatal": "ㄷ e ㅌ prima di 이",
-      "liaison": "Il suono scivola avanti"
+      "liaison": "Il suono scivola avanti",
+      "insertion": "Compare una ㄴ"
     }
   },
   "mistakes": {

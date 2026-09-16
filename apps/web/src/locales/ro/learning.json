@@ -198,7 +198,8 @@
       "nasal": "Un sunet nazal, moale",
       "lateral": "ㄴ și ㄹ împreună",
       "palatal": "ㄷ și ㅌ înainte de 이",
-      "liaison": "Sunetul alunecă mai departe"
+      "liaison": "Sunetul alunecă mai departe",
+      "insertion": "Apare un ㄴ"
     }
   },
   "mistakes": {

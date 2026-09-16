@@ -6,32 +6,32 @@ edit this file by hand.*
 
 ## 1. What was audited
 
-**9,056 rows**, one per reachable Korean item.
+**9,017 rows**, one per reachable Korean item.
 
 | Resolution | Rows |
 |:---|---:|
-| `PASS` | 8,999 |
-| `REMOVE` | 54 |
+| `PASS` | 8,924 |
+| `REMOVE` | 90 |
 | `REWRITE` | 3 |
 
 | Family | Rows |
 |:---|---:|
-| level test | 4,245 |
-| word card example sentence | 3,867 |
-| daily vocabulary / review gap-fill | 645 |
+| level test | 4,246 |
+| word card example sentence | 3,864 |
+| daily vocabulary / review gap-fill | 608 |
 | numbers | 299 |
 
 ## 2. Inventory of every source a learner can receive Korean from
 
 | Content family | Source of truth | Generated output | Items | Question types | Levels | Locales | Runtime consumer | Validation | Human review |
 |:---|:---|:---|---:|:---|:---|:---|:---|:---|:---|
-| Word card example sentences | content/vocabulary/entries/*.jsonl | apps/web/public/corpus/band-*.json | 3867 | example | 1–30 | 32 | word cards, Today’s Vocabulary, Review | gated | read 2026-09-10 |
-| Level test — meaning | content-cache/level-test-anchors.json | public/level-test/bank-426e426a.json | 1789 | meaning | 1–30 | 32 | Vocabulary Level Test | gated | gates only |
-| Level test — produce | content-cache/level-test-anchors.json | public/level-test/bank-426e426a.json | 1789 | produce | 1–30 | 32 | Vocabulary Level Test | gated | gates only |
-| Level test — context | content/vocabulary/entries/*.jsonl | public/level-test/bank-426e426a.json | 613 | gap-fill | 3–30 | 32 | Vocabulary Level Test | gated | every item read 2026-09-10 |
-| Daily / review gap-fills | content/vocabulary/entries/*.jsonl | src/data/generated/cloze.json | 645 | gap-fill | 3–30 | 32 | Today’s Vocabulary, Review | gated | same items as above |
-| Refused contextual items | ctx: 0 in content/vocabulary/entries/*.jsonl | — (not shipped) | 54 | gap-fill | 3–30 | — | none | refused | read and refused |
-| Hand-written contextual items | content/vocabulary/context-items.json | public/level-test/bank-426e426a.json | 39 | gap-fill | 1–5 | 32 | Vocabulary Level Test, Today’s Vocabulary, Review | validated by the builder against the generated items’ own rules | authored and read 2026-09-10 |
+| Word card example sentences | content/vocabulary/entries/*.jsonl | apps/web/public/corpus/band-*.json | 3864 | example | 1–30 | 32 | word cards, Today’s Vocabulary, Review | gated | read 2026-09-10 |
+| Level test — meaning | content-cache/level-test-anchors.json | public/level-test/bank-fd211461.json | 1790 | meaning | 1–30 | 32 | Vocabulary Level Test | gated | gates only |
+| Level test — produce | content-cache/level-test-anchors.json | public/level-test/bank-fd211461.json | 1790 | produce | 1–30 | 32 | Vocabulary Level Test | gated | gates only |
+| Level test — context | content/vocabulary/entries/*.jsonl | public/level-test/bank-fd211461.json | 576 | gap-fill | 3–30 | 32 | Vocabulary Level Test | gated | every item read 2026-09-10 |
+| Daily / review gap-fills | content/vocabulary/entries/*.jsonl | src/data/generated/cloze.json | 608 | gap-fill | 3–30 | 32 | Today’s Vocabulary, Review | gated | same items as above |
+| Refused contextual items | ctx: 0 in content/vocabulary/entries/*.jsonl | — (not shipped) | 90 | gap-fill | 3–30 | — | none | refused | read and refused |
+| Hand-written contextual items | content/vocabulary/context-items.json | public/level-test/bank-fd211461.json | 39 | gap-fill | 1–5 | 32 | Vocabulary Level Test, Today’s Vocabulary, Review | validated by the builder against the generated items’ own rules | authored and read 2026-09-10 |
 | Negative fixtures | content/vocabulary/context-negative-fixtures.json | — (not shipped) | 8 | gap-fill | 5–15 | — | the gate only | must fail | authored 2026-09-10 |
 | Numbers questions | apps/web/src/data/numbers.ts | the bundle | 299 | 9 kinds | modules 1–6 | 32 | Numbers course | gated | ledger |
 | Dictionary senses | content-cache (Wiktionary) | public/dictionary/* | 38746 | reference | n/a | en only | Search | gated | never scheduled; not taught |
@@ -45,8 +45,8 @@ inline translations per entry — 32 interface languages in total.
 | Dimension | Decided by | Result |
 |:---|:---|:---|
 | Grammar | `leveltest:ambiguity`, `answerability`, `conjugation:qa`, `korean:education` | PASS on every shipped row |
-| Unique answer | the frame rules in the builder, re-derived by `leveltest:ambiguity` | PASS on every shipped row; 54 rows removed |
-| Distractor quality | `leveltest:distractors` (new) | PASS on every shipped row; 54 rows removed |
+| Unique answer | the frame rules in the builder, re-derived by `leveltest:ambiguity` | PASS on every shipped row; 90 rows removed |
+| Distractor quality | `leveltest:distractors` (new) | PASS on every shipped row; 90 rows removed |
 | Difficulty | `context_level` from `sentence_demand.py`; `dailyplan:level`, `synthetic:users:qa` | PASS |
 | Translation consistency | `leveltest:locale`, `translation:semantics`, `copy:fresh` | PASS |
 | **Naturalness and collocation** | **a person, and not a native speaker** | **BLOCKED_EXTERNAL_REVIEW on every row** |

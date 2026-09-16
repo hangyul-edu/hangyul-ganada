@@ -11,7 +11,7 @@ a person had to read.
 
 ## 1. Every question family
 
-5,204 objective questions, from three sources.
+5,132 objective questions, from three sources.
 
 | Surface | Family | Questions | What is meant to pin the answer |
 |:---|:---|---:|:---|
@@ -24,11 +24,11 @@ a person had to read.
 | Numbers course | `numbers-chooseCounterForm` | 13 | options come from the lesson’s own siblings, excluding any that fills the same slot (slot_group) |
 | Numbers course | `numbers-fillTheBlank` | 8 | options come from the lesson’s own siblings, excluding any that fills the same slot (slot_group) |
 | Numbers course | `numbers-chooseCorrectExplanation` | 8 | options come from the lesson’s own siblings, excluding any that fills the same slot (slot_group) |
-| Today’s Vocabulary and Review | `cloze` | 645 | built by the same builder as the Level Test bank, so one set of rules decides both |
-| Vocabulary Level Test | `meaning` | 1,789 | one gloss per sense; a distractor sharing the answer’s meaning in any locale is rejected by collideInAnyLocale |
-| Vocabulary Level Test | `produce` | 1,789 | one gloss per sense; a distractor sharing the answer’s meaning in any locale is rejected by collideInAnyLocale |
-| Vocabulary Level Test | `context` | 613 | distractors are filtered by category, noun class, particle agreement, frame safety and the frame rules in scripts/lib/level-test-rules.mjs |
-| **Total** | | **5,204** | |
+| Today’s Vocabulary and Review | `cloze` | 608 | built by the same builder as the Level Test bank, so one set of rules decides both |
+| Vocabulary Level Test | `meaning` | 1,790 | one gloss per sense; a distractor sharing the answer’s meaning in any locale is rejected by collideInAnyLocale |
+| Vocabulary Level Test | `produce` | 1,790 | one gloss per sense; a distractor sharing the answer’s meaning in any locale is rejected by collideInAnyLocale |
+| Vocabulary Level Test | `context` | 576 | distractors are filtered by category, noun class, particle agreement, frame safety and the frame rules in scripts/lib/level-test-rules.mjs |
+| **Total** | | **5,132** | |
 
 ## 2. What the gates decide
 
@@ -45,7 +45,7 @@ above is a proxy for a judgement, which is why section 3 exists.
 
 ## 3. What a person read, and what they found
 
-Read in full: 625 contextual Level Test items, 672 gap-fills in the daily vocabulary queue, and 368 Numbers questions — each stem composed with all four of its options and read as a sentence.
+Read in full: 576 contextual Level Test items, 608 gap-fills in the daily vocabulary queue, and 368 Numbers questions — each stem composed with all four of its options and read as a sentence.
 
 | | Stem | Keyed | Also defensible | Verdict | Now | Held by |
 |:---|:---|:---|:---|:---|:---|:---|
@@ -72,6 +72,70 @@ Read in full: 625 contextual Level Test items, 672 gap-fills in the daily vocabu
 | A-21 | ____ 연습을 해요. | 사격 | 마무리 | **PAIR BANNED** | 보스 · 부동산 · 사격 · 파트너 | answer-conflicts.json |
 | A-22 | ____ 정보를 지켜요. | 개인 | 거래 | **PAIR BANNED** | 개인 · 분위기 · 사회 · 혈압 | answer-conflicts.json |
 | A-23 | ____ 한글을 써요. | 매일 | 조금 | **PAIR BANNED** | 가방 · 매일 · 방법 · 생선 | answer-conflicts.json 매일/조금 |
+| A-24 | 의사가 환자를 ____. | 살렸어요 | 보호했어요 | **PAIR BANNED** | 닿았어요 · 볶았어요 · 살렸어요 · 지나갔어요 | answer-conflicts.json 살리다/보호하다 |
+| A-25 | 결과를 ____ 주세요. | 알려 | 찾아봐 | **PAIR BANNED** | 갈아 · 돌려 · 알려 · 잘라 | answer-conflicts.json 알리다/찾아보다 |
+| A-26 | ____에서 상담을 받았어요. | 정신과 | 병실 | **PAIR BANNED** | 가동 · 목구멍 · 붕대 · 정신과 | answer-conflicts.json 정신과/병실 |
+| A-27 | ____가 한국에 왔어요. | 대사 | 사위 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (대사) |
+| A-28 | ____이 지구를 돌아요. | 위성 | 태양 | **PAIR BANNED** | 꽃잎 · 바닷물 · 위성 · 콩나물 | answer-conflicts.json 위성/태양 |
+| A-29 | 산길에서 ____을 봤어요. | 뱀 | 식물 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (뱀) |
+| A-30 | 경찰이 도둑을 ____. | 체포했어요 | 몰아냈어요 · 쫓아갔어요 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (체포하다) |
+| A-31 | ____을 서랍에 넣어요. | 속옷 | 가면 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (속옷) |
+| A-32 | ____에게 자리를 양보했어요. | 노인 | 손자 · 형제 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (노인) |
+| A-33 | 생일에 ____를 받았어요. | 목걸이 | 계산기 · 냄비 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (목걸이) |
+| A-34 | ____가 선물을 보내 주셨어요. | 고모 | 형제 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (고모) |
+| A-35 | 창가에 ____을 두었어요. | 식물 | 치킨 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (식물) |
+| A-36 | ____에 차를 세웠어요. | 주차장 | 정상 · 바깥 · 백화점 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (주차장) |
+| A-37 | ____이 우리 집에 왔어요. | 친척 | 어른 · 여동생 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (친척) |
+| A-38 | ____의 말을 잘 들으세요. | 상대방 | 어린아이 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (상대방) |
+| A-39 | ____들이 봉사를 해요. | 청년 | 선배 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (청년) |
+| A-40 | ____이 크게 박수를 쳤어요. | 관객 | 반장 · 공무원 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (관객) |
+| A-41 | ____는 안전벨트를 매야 해요. | 운전자 | 근로자 | **PAIR BANNED** | 가스 · 운전자 · 인터뷰 · 테스트 | answer-conflicts.json 운전자/근로자 |
+| A-42 | ____는 뭘로 하시겠어요? | 음료 | 메뉴 · 맥주 · 피자 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (음료) |
+| A-43 | 빵에 ____를 발라요. | 버터 | 치즈 | **PAIR BANNED** | 딸기 · 버터 · 샌드위치 · 오이 | answer-conflicts.json 버터/치즈 |
+| A-44 | 저녁에 ____을 봐요. | 텔레비전 | 휴대폰 · 인터넷 · 소설 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (텔레비전) |
+| A-45 | ____를 썰어서 샐러드를 만들었어요. | 토마토 | 고구마 | **PAIR BANNED** | 떡볶이 · 만두 · 상추 · 토마토 | answer-conflicts.json 토마토/고구마 |
+| A-46 | 냉장고에 ____를 붙였어요. | 메모 | 엽서 · 봉투 | **PAIR BANNED** | 담요 · 메모 · 식초 · 행사 | answer-conflicts.json 메모/엽서, 메모/봉투 |
+| A-47 | ____이 하늘을 날아요. | 드론 | 로켓 | **PAIR BANNED** | 드론 · 장벽 · 착륙 · 충돌 | answer-conflicts.json 드론/로켓 |
+| A-48 | 편지를 ____에 넣었어요. | 봉투 | 책가방 | **PAIR BANNED** | 봉투 · 손톱 · 태풍 · 테니스 | answer-conflicts.json 봉투/책가방 |
+| A-49 | 이번 학기에 ____을 받았어요. | 장학금 | 바이올린 | **PAIR BANNED** | 서양 · 장학금 · 출입문 · 플라스틱 | answer-conflicts.json 장학금/바이올린 |
+| A-50 | 밤에 혼자 가면 ____. | 위험해요 | 싫어요 | **PAIR BANNED; the frame then had too few distractors** | no gap-fill for this word | answer-conflicts.json 위험하다/싫다; no gap-fill built |
+| A-51 | ____이 무대를 걸어요. | 모델 | 남동생 · 청년 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (모델) |
+| A-52 | ____에게 점심을 사 줬어요. | 후배 | 담임 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (후배) |
+| A-53 | 동생과 자주 ____. | 싸워요 | 요리해요 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (싸우다) |
+| A-54 | 가방을 바닥에 ____. | 놓았어요 | 세웠어요 | **PAIR BANNED** | 그렸어요 · 놓았어요 · 대했어요 · 사랑했어요 | answer-conflicts.json 놓다/세우다 |
+| A-55 | 저 ____는 노래를 잘해요. | 가수 | 화가 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (가수) |
+| A-56 | ____이 사람으로 가득 찼어요. | 경기장 | 노래방 · 미술관 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (경기장) |
+| A-57 | ____에서 텔레비전을 봐요. | 거실 | 소파 · 아파트 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (거실) |
+| A-58 | 아이가 ____ 질문을 했어요. | 엉뚱한 | 자세한 · 현명한 · 급한 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (엉뚱하다) |
+| A-59 | ____ 상자를 받았어요. | 조그만 | 적당한 | **PAIR BANNED** | 엉뚱한 · 조그만 · 창피한 · 흐린 | answer-conflicts.json 조그맣다/적당하다 |
+| A-60 | 수업 중에 ____을 씹지 마세요. | 껌 | 식빵 · 당근 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (껌) |
+| A-61 | 아침에 ____을 구웠어요. | 식빵 | 치킨 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (식빵) |
+| A-62 | ____가 집에 도착했어요. | 소포 | 청소기 · 계산기 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (소포) |
+| A-63 | ____로 빵을 만들어요. | 밀가루 | 옥수수 · 바나나 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (밀가루) |
+| A-64 | 팬에 ____를 둘렀어요. | 식용유 | 버터 | **PAIR BANNED** | 배추 · 식용유 · 양파 · 오렌지 | answer-conflicts.json 식용유/버터 |
+| A-65 | 여행지에서 ____를 보냈어요. | 엽서 | 소포 | **PAIR BANNED** | 바퀴 · 세탁기 · 엽서 · 코트 | answer-conflicts.json 엽서/소포 |
+| A-66 | ____에서 눈을 떴어요. | 물속 | 지하실 · 마당 | **PAIR BANNED** | 마당 · 물속 · 봉지 · 화분 | answer-conflicts.json 물속/지하실, 지하실/마당 |
+| A-67 | 연못에서 ____가 울어요. | 개구리 | 독수리 · 염소 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (개구리) |
+| A-68 | ____이 사진을 찍어요. | 관광객 | 부장 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (관광객) |
+| A-69 | 가방에서 ____을 꺼냈어요. | 빗 | 명함 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (빗) |
+| A-70 | 냉장고를 ____로 샀어요. | 할부 | 대출 | **PAIR BANNED** | 맞벌이 · 수수료 · 싸구려 · 할부 | answer-conflicts.json 할부/대출 |
+| A-71 | ____가 물을 마셔요. | 코끼리 | 늑대 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (코끼리) |
+| A-72 | 운동 후에 ____이 아파요. | 근육 | 발가락 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (근육) |
+| A-73 | ____에서 우유를 샀어요. | 슈퍼 | 대도시 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (슈퍼) |
+| A-74 | ____에게 길을 물었어요. | 경찰관 | 변호사 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (경찰관) |
+| A-75 | 저는 친구를 ____. | 믿어요 | 사랑해요 · 가르쳐요 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (믿다) |
+| A-76 | 아침에 ____을 삶았어요. | 계란 | 생선 | **PAIR BANNED** | 계란 · 빵 · 잔 · 죽 | answer-conflicts.json 계란/생선 |
+| A-77 | 책에서 ____을 얻어요. | 지식 | 진실 · 의견 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (지식) |
+| A-78 | 지난 일을 ____. | 돌아봤어요 | 비교했어요 | **PAIR BANNED** | 돌아봤어요 · 뜻했어요 · 안심했어요 · 쫓겼어요 | answer-conflicts.json 돌아보다/비교하다 |
+| A-79 | 자기 생각을 ____. | 주장했어요 | 정리했어요 | **PAIR BANNED** | 닿았어요 · 섞었어요 · 조사했어요 · 주장했어요 | answer-conflicts.json 주장하다/정리하다 |
+| A-80 | ____는 눈에 보이지 않아요. | 전자 | 전기 | **PAIR BANNED** | 글씨 · 일자리 · 임무 · 전자 | answer-conflicts.json 전자/전기 |
+| A-81 | ____에서는 모자를 벗으세요. | 실내 | 복도 | **PAIR BANNED** | 건너편 · 샤워 · 실내 · 주택 | answer-conflicts.json 실내/복도 |
+| A-82 | 밥을 먹으면 ____. | 졸려요 | 행복해요 | **PAIR BANNED** | 미안해요 · 배고파요 · 빨라요 · 졸려요 | answer-conflicts.json 졸리다/행복하다 |
+| A-83 | ____에 글씨를 써요. | 칠판 | 교과서 | **PAIR BANNED** | 고등학교 · 대기업 · 업무 · 칠판 | answer-conflicts.json 칠판/교과서 |
+| A-84 | 아이가 고개를 ____. | 끄덕였어요 | 흔들었어요 | **PAIR BANNED** | 끄덕였어요 · 달려갔어요 · 비켰어요 · 의심했어요 | answer-conflicts.json 끄덕이다/흔들다 |
+| A-85 | 고기를 ____에 싸서 먹어요. | 상추 | 식빵 | **PAIR BANNED** | 도시락 · 상추 · 스튜 · 옥수수 | answer-conflicts.json 상추/식빵 |
+| A-86 | 다른 방법을 ____ 있어요. | 모색하고 | 도모하고 · 동원하고 | **WORD WITHDRAWN FROM GAP-FILLS** | no gap-fill for this word | entries ctx: 0 (모색하다) |
+| A-87 | 전통 산업이 ____의 길을 걷고 있어요. | 쇠퇴 | 침체 | **PAIR BANNED** | 새옹지마 · 쇠퇴 · 시행 · 우여곡절 | answer-conflicts.json 쇠퇴/침체 |
 
 ### Why each one was defensible
 
@@ -98,10 +162,74 @@ Read in full: 625 contextual Level Test items, 672 gap-fills in the daily vocabu
 * **A-21** — 마무리 연습 is a real compound.
 * **A-22** — 거래 정보 is an ordinary compound.
 * **A-23** — both are adverbs that fit a bare adverbial slot — writing Hangul every day and writing a little of it are both ordinary.
+* **A-24** — a doctor protecting a patient is ordinary.
+* **A-25** — 결과를 찾아봐 주세요 asks for the result to be looked up.
+* **A-26** — counselling in a hospital room is a sentence about a stay.
+* **A-27** — any person noun fits a bare arrival frame.
+* **A-28** — wrong astronomy, right Korean; the frame does not decide it.
+* **A-29** — anything seen on a path fits.
+* **A-30** — the frame accepts chasing, catching, driving out.
+* **A-31** — anything goes in a drawer.
+* **A-32** — any person noun fits.
+* **A-33** — any gift fits.
+* **A-34** — any person noun fits.
+* **A-35** — anything put by a window fits.
+* **A-36** — any place fits.
+* **A-37** — any person noun fits.
+* **A-38** — any person noun fits.
+* **A-39** — any person noun fits.
+* **A-40** — any person noun fits.
+* **A-41** — a workplace rule as much as a road one.
+* **A-42** — what a waiter asks about anything on the table.
+* **A-43** — cream cheese is spread.
+* **A-44** — anything watched or read in the evening fits.
+* **A-45** — a sweet-potato salad is a dish.
+* **A-46** — postcards go on fridges.
+* **A-47** — rockets fly.
+* **A-48** — a letter goes into a school bag.
+* **A-49** — 받다 accepts any gift.
+* **A-50** — a colloquial objection reads as Korean.
+* **A-51** — any person noun fits.
+* **A-52** — any person noun fits.
+* **A-53** — a comitative with 자주 accepts any joint activity.
+* **A-54** — standing a bag up is ordinary.
+* **A-55** — any person noun fits.
+* **A-56** — any venue fits.
+* **A-57** — any place fits.
+* **A-58** — any adjective of a question fits.
+* **A-59** — a box of a suitable size.
+* **A-60** — anything chewable fits.
+* **A-61** — anything grilled fits.
+* **A-62** — any delivery fits.
+* **A-63** — corn bread and banana bread are breads.
+* **A-64** — a pan is coated with butter.
+* **A-65** — parcels are sent from a trip.
+* **A-66** — waking anywhere is a sentence.
+* **A-67** — any animal fits.
+* **A-68** — any person noun fits.
+* **A-69** — anything in a bag fits.
+* **A-70** — bought with a loan is ordinary.
+* **A-71** — any animal fits.
+* **A-72** — any body part fits.
+* **A-73** — any place that sells fits.
+* **A-74** — any person noun fits.
+* **A-75** — any verb taking a person object fits.
+* **A-76** — fish is boiled.
+* **A-77** — anything got from a book fits.
+* **A-78** — comparing past events is ordinary.
+* **A-79** — organising one's thoughts is at least as common.
+* **A-80** — true and ordinary.
+* **A-81** — a school rule.
+* **A-82** — ordinary.
+* **A-83** — one writes in a textbook.
+* **A-84** — the other answer.
+* **A-85** — a sandwich.
+* **A-86** — any verb of seeking or using fits.
+* **A-87** — 침체의 길 is idiomatic.
 
 ## 4. The reviewed pairs
 
-25 pairs of lemmas that may never be offered against each other. They pass every automatic guard the builder has — no shared gloss word, no shared category, no recorded synonym, no shared argument in their own example sentences — and still produce two right answers, because what they share is a selectional class nothing in the pack records.
+67 pairs of lemmas that may never be offered against each other. They pass every automatic guard the builder has — no shared gloss word, no shared category, no recorded synonym, no shared argument in their own example sentences — and still produce two right answers, because what they share is a selectional class nothing in the pack records.
 
 | | | Frame it was found in | Why both fit |
 |:---|:---|:---|:---|
@@ -130,6 +258,48 @@ Read in full: 625 contextual Level Test items, 672 gap-fills in the daily vocabu
 | 사격 | 마무리 | ____ 연습을 해요. | 마무리 연습 is a real compound |
 | 개인 | 거래 | ____ 정보를 지켜요. | 거래 정보 is an ordinary compound |
 | 매일 | 조금 | ____ 한글을 써요. | both are adverbs that fit a bare adverbial slot — writing Hangul every day and writing a little of it are both ordinary |
+| 살리다 | 보호하다 | 의사가 환자를 ____. | 환자를 보호하다 is as ordinary as 환자를 살리다 |
+| 알리다 | 찾아보다 | 결과를 ____ 주세요. | 결과를 찾아봐 주세요 asks for the result to be looked up, and is ordinary |
+| 정신과 | 병실 | ____에서 상담을 받았어요. | 병실에서 상담을 받았어요 is a sentence about a hospital stay |
+| 위성 | 태양 | ____이 지구를 돌아요. | 태양이 지구를 돌아요 is wrong astronomy and right Korean; the frame does not decide it |
+| 체포하다 | 몰아내다 | 경찰이 도둑을 ____. | 경찰이 도둑을 몰아냈어요 is ordinary |
+| 주차장 | 정상 | ____에 차를 세웠어요. | 정상에 차를 세웠어요 — parked at the summit — is ordinary |
+| 운전자 | 근로자 | ____는 안전벨트를 매야 해요. | 근로자 wearing a safety belt is a workplace rule as much as a road one |
+| 음료 | 메뉴 | ____는 뭘로 하시겠어요? | 메뉴는 뭘로 하시겠어요 is what a waiter says |
+| 버터 | 치즈 | 빵에 ____를 발라요. | 크림치즈 is spread on bread |
+| 텔레비전 | 휴대폰 | 저녁에 ____을 봐요. | 저녁에 휴대폰을 봐요 is what most people do |
+| 텔레비전 | 인터넷 | 저녁에 ____을 봐요. | 인터넷을 봐요 is ordinary |
+| 토마토 | 고구마 | ____를 썰어서 샐러드를 만들었어요. | a sweet-potato salad is a dish |
+| 메모 | 엽서 | 냉장고에 ____를 붙였어요. | postcards go on fridges |
+| 드론 | 로켓 | ____이 하늘을 날아요. | 로켓이 하늘을 날아요 is ordinary |
+| 봉투 | 책가방 | 편지를 ____에 넣었어요. | 편지를 책가방에 넣었어요 is ordinary |
+| 장학금 | 바이올린 | 이번 학기에 ____을 받았어요. | 받다 accepts any gift |
+| 위험하다 | 싫다 | 밤에 혼자 가면 ____. | 밤에 혼자 가면 싫어요 is a colloquial objection and reads as Korean |
+| 모델 | 남동생 | ____이 무대를 걸어요. | a brother can walk a stage |
+| 후배 | 담임 | ____에게 점심을 사 줬어요. | one buys lunch for a teacher as readily as for a junior |
+| 놓다 | 세우다 | 가방을 바닥에 ____. | 가방을 바닥에 세웠어요 stands the bag up, and is ordinary |
+| 거실 | 소파 | ____에서 텔레비전을 봐요. | 소파에서 텔레비전을 봐요 is where most people watch it |
+| 엉뚱하다 | 자세하다 | 아이가 ____ 질문을 했어요. | a detailed question is as ordinary as an odd one |
+| 조그맣다 | 적당하다 | ____ 상자를 받았어요. | 적당한 상자 is a box of a suitable size |
+| 식용유 | 버터 | 팬에 ____를 둘렀어요. | a pan is coated with butter as readily as with oil |
+| 엽서 | 소포 | 여행지에서 ____를 보냈어요. | parcels are sent from a trip as readily as postcards |
+| 물속 | 지하실 | ____에서 눈을 떴어요. | waking up in a basement is a sentence |
+| 할부 | 대출 | 냉장고를 ____로 샀어요. | 냉장고를 대출로 샀어요 — bought with a loan — is ordinary |
+| 믿다 | 사랑하다 | 저는 친구를 ____. | 친구를 사랑해요 is ordinary |
+| 지하실 | 마당 | ____에 짐을 두었어요. | 마당에 짐을 두었어요 is ordinary |
+| 계란 | 생선 | 아침에 ____을 삶았어요. | fish is boiled as readily as eggs |
+| 지식 | 진실 | 책에서 ____을 얻어요. | 책에서 진실을 얻어요 is a sentence people write |
+| 돌아보다 | 비교하다 | 지난 일을 ____. | 지난 일을 비교했어요 is ordinary |
+| 메모 | 봉투 | 냉장고에 ____를 붙였어요. | an envelope stuck on a fridge is a sentence |
+| 주장하다 | 정리하다 | 자기 생각을 ____. | 자기 생각을 정리했어요 is at least as common |
+| 전자 | 전기 | ____는 눈에 보이지 않아요. | 전기는 눈에 보이지 않아요 is true and ordinary |
+| 실내 | 복도 | ____에서는 모자를 벗으세요. | 복도에서는 모자를 벗으세요 is a rule a school might have |
+| 졸리다 | 행복하다 | 밥을 먹으면 ____. | 밥을 먹으면 행복해요 is ordinary |
+| 칠판 | 교과서 | ____에 글씨를 써요. | one writes in a textbook |
+| 끄덕이다 | 흔들다 | 아이가 고개를 ____. | 고개를 흔들었어요 is the other answer |
+| 상추 | 식빵 | 고기를 ____에 싸서 먹어요. | meat wrapped in bread is a sandwich |
+| 모색하다 | 도모하다 | 다른 방법을 ____ 있어요. | 방법을 도모하다 is ordinary |
+| 쇠퇴 | 침체 | 전통 산업이 ____의 길을 걷고 있어요. | 침체의 길 is as idiomatic as 쇠퇴의 길 |
 
 ## 5. What this ledger does not cover
 

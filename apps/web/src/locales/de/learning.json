@@ -197,7 +197,8 @@
       "nasal": "Ein weicher, nasaler Laut",
       "lateral": "ㄴ und ㄹ zusammen",
       "palatal": "ㄷ und ㅌ vor 이",
-      "liaison": "Der Laut rutscht hinüber"
+      "liaison": "Der Laut rutscht hinüber",
+      "insertion": "Ein ㄴ kommt dazu"
     }
   },
   "mistakes": {

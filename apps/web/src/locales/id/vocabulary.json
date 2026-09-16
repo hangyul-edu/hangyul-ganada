@@ -90,7 +90,8 @@
     "nasal": "Sebelum ㄴ atau ㅁ, konsonan di depannya menjadi sengau.",
     "lateral": "ㄴ dan ㄹ yang berdampingan sama-sama menjadi ㄹ.",
     "palatal": "ㄷ atau ㅌ penutup sebelum 이 diucapkan seperti ㅈ atau ㅊ.",
-    "liaison": "Konsonan penutup bergeser ke blok berikutnya."
+    "liaison": "Konsonan penutup bergeser ke blok berikutnya.",
+    "insertion": "Dalam kata majemuk, bunyi ㄴ diucapkan sebelum 이, 야, 여, 요, atau 유 meski tidak ditulis."
   },
   "save": {
     "action": "Simpan",

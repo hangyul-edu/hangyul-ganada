@@ -93,7 +93,8 @@
     "nasal": "Vor ㄴ oder ㅁ wird der Konsonant davor nasal.",
     "lateral": "ㄴ und ㄹ nebeneinander klingen beide wie ㄹ.",
     "palatal": "Ein ㄷ oder ㅌ am Silbenende klingt vor 이 wie ㅈ oder ㅊ.",
-    "liaison": "Der Endkonsonant rutscht auf den nächsten Block."
+    "liaison": "Der Endkonsonant rutscht auf den nächsten Block.",
+    "insertion": "In einem zusammengesetzten Wort wird vor 이, 야, 여, 요 oder 유 ein ㄴ gesprochen, obwohl keines geschrieben steht."
   },
   "save": {
     "action": "Merken",

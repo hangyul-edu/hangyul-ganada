@@ -99,7 +99,8 @@
     "nasal": "Před ㄴ nebo ㅁ se souhláska před nimi změní na nosovku.",
     "lateral": "ㄴ a ㄹ vedle sebe se obě změní na ㄹ.",
     "palatal": "Koncové ㄷ nebo ㅌ před 이 se vyslovuje jako ㅈ nebo ㅊ.",
-    "liaison": "Koncová souhláska se přesune do dalšího bloku."
+    "liaison": "Koncová souhláska se přesune do dalšího bloku.",
+    "insertion": "Ve složenině se před 이, 야, 여, 요 nebo 유 vyslovuje ㄴ, i když se nepíše."
   },
   "save": {
     "action": "Uložit",

@@ -198,7 +198,8 @@
       "nasal": "Un son nasal doux",
       "lateral": "ㄴ et ㄹ ensemble",
       "palatal": "ㄷ et ㅌ devant 이",
-      "liaison": "Le son glisse"
+      "liaison": "Le son glisse",
+      "insertion": "Un ㄴ apparaît"
     }
   },
   "mistakes": {

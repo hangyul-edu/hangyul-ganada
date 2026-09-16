@@ -93,7 +93,8 @@
     "nasal": "ㄴ vagy ㅁ előtt az előtte álló mássalhangzó orrhangúvá válik.",
     "lateral": "Az egymás melletti ㄴ és ㄹ mindkettő ㄹ lesz.",
     "palatal": "A záró ㄷ vagy ㅌ 이 előtt úgy szól, mint ㅈ vagy ㅊ.",
-    "liaison": "A záró mássalhangzó átcsúszik a következő blokkba."
+    "liaison": "A záró mássalhangzó átcsúszik a következő blokkba.",
+    "insertion": "Összetett szóban 이, 야, 여, 요 vagy 유 előtt ㄴ hangzik, pedig nincs leírva."
   },
   "save": {
     "action": "Mentés",

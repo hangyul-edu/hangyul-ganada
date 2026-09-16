@@ -78,3 +78,45 @@ describe('a sitting in a language with no word pack', () => {
     expect(questions[0]!.exercise).toBeNull();
   });
 });
+
+describe('a matching grid', () => {
+  const four = VOCABULARY.slice(0, 4);
+  const grid = (): ScheduledStep => ({
+    wordId: four[0]!.id,
+    step: 'match',
+    completesWord: true,
+    source: 'new',
+    completes: four.map((word) => word.id),
+    group: four.map((word) => word.id),
+  });
+
+  it('never shows one meaning on two rows', () => {
+    /*
+     * 아빠 and 아버지 are both "baba" in Turkish. A grid with both has two
+     * right answers for each, and marks one wrong by which id was tapped.
+     * The later duplicate is left out and the grid still has three rows.
+     */
+    const collide = (word: { id: string }) => ({
+      value: word.id === four[2]!.id ? 'baba' : word.id === four[1]!.id ? 'baba' : `meaning of ${word.id}`,
+      locale: 'tr',
+    });
+    const questions = buildDailyQuestions([grid()], collide);
+    expect(questions).toHaveLength(1);
+    const pairs = questions[0]!.pairs!;
+    expect(pairs.map((pair) => pair.meaning)).toEqual([...new Set(pairs.map((pair) => pair.meaning))]);
+    expect(pairs).toHaveLength(3);
+    // The scheduled word keeps its row even when it is the one that collides.
+    const collideWithTaught = (word: { id: string }) => ({
+      value: word.id === four[0]!.id || word.id === four[3]!.id ? 'anne' : `meaning of ${word.id}`,
+      locale: 'tr',
+    });
+    const kept = buildDailyQuestions([grid()], collideWithTaught)[0]!.pairs!;
+    expect(kept.some((pair) => pair.wordId === four[0]!.id)).toBe(true);
+    expect(kept.some((pair) => pair.wordId === four[3]!.id)).toBe(false);
+  });
+
+  it('drops a grid that duplicates leave too small', () => {
+    const allSame = () => ({ value: 'same', locale: 'tr' });
+    expect(buildDailyQuestions([grid()], allSame)).toHaveLength(0);
+  });
+});
