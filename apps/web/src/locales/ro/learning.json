@@ -215,7 +215,7 @@
     "youPut": "Ai răspuns",
     "answer": "Corect",
     "times_few": "Greșit de {{count}} ori",
-    "times_one": "Greșit de {{count}} dată",
+    "times_one": "Greșit o dată",
     "times_other": "Greșit de {{count}} de ori",
     "clear": "Gata cu asta",
     "noneOfKind": "Deocamdată nu e nimic aici.",

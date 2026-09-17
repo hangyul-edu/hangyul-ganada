@@ -1,8 +1,8 @@
 {
   "letters": {
-    "title": "Učit se litery",
+    "title": "Učit se písmena",
     "alphabetTitle": "Abeceda hangul",
-    "alphabetCaption": "liter zvládnuto",
+    "alphabetCaption": "písmen zvládnuto",
     "complete": "Zvládnuto",
     "resume": "Pokračovat"
   },
@@ -12,11 +12,11 @@
     "unit-1": {
       "title": "Šest základních samohlásek",
       "goal": "Každá korejská slabika potřebuje samohlásku. Těchto šest je nejjednodušších.",
-      "body": "Hangul je abeceda, ne sada obrázků. Má 40 liter, byl navržený tak, aby se dal zvládnout rychle, a šest z nich se teď naučíte.",
+      "body": "Hangul je abeceda, ne sada obrázků. Má 40 písmen, byl navržený tak, aby se dal zvládnout rychle, a šest z nich se teď naučíte.",
       "points": [
-        "Litery se skládají do čtvercových bloků a každý blok je jedna slabika.",
+        "Písmena se skládají do čtvercových bloků a každý blok je jedna slabika.",
         "Samohláska je buď stojatá čára, nebo ležatá — podle toho se pozná, kam v bloku patří.",
-        "Vyslovujte každou literu nahlas, když ji obtahujete. Zvuk je půlka lekce."
+        "Vyslovujte každé písmeno nahlas, když ho obtahujete. Zvuk je půlka lekce."
       ]
     },
     "unit-2": {
@@ -64,10 +64,10 @@
     "unit-11": {
       "title": "Koncová souhláska: 받침",
       "goal": "Souhláska, která stojí pod slabikou.",
-      "body": "Do bloku se vejde třetí litera, pod ty dvě ostatní. Jmenuje se 받침 a slabiku uzavírá.",
+      "body": "Do bloku se vejde třetí písmeno, pod ty dvě ostatní. Jmenuje se 받침 a slabiku uzavírá.",
       "points": [
-        "Třetí litera stojí vždycky úplně dole ve čtverci.",
-        "받침 zazní jen jako jeden ze sedmi zvuků, ať je tam napsaná kterákoli litera.",
+        "Třetí písmeno stojí vždycky úplně dole ve čtverci.",
+        "받침 zazní jen jako jeden ze sedmi zvuků, ať je tam napsaná kterékoli písmeno.",
         "Nespěchejte. Koncová souhláska mění, jak slabika končí."
       ]
     },
@@ -83,13 +83,13 @@
     "reads": "Čte se"
   },
   "steps": {
-    "label": "Kroky u této litery",
+    "label": "Kroky u tohoto písmene",
     "write": "Psát",
     "read": "Číst"
   },
   "recognition": {
     "question": "Která dělá tenhle zvuk?",
-    "optionsAria": "Vyberte literu, kterou jste slyšeli",
+    "optionsAria": "Vyberte písmeno, které jste slyšeli",
     "optionAria": "Vybrat {{character}}",
     "hearAgain": "Poslechnout znovu",
     "tryAgain": "Zkusit znovu"
@@ -99,7 +99,7 @@
     "skip": "Přeskočit tuhle",
     "startWriting": "Napsat ji",
     "nowRecognise": "Zkusit otázku",
-    "next": "Další litera",
+    "next": "Další písmeno",
     "finish": "Dokončit",
     "prompt": {
       "write": "Obtáhněte ji prstem po předloze."
@@ -116,8 +116,8 @@
     "completeTitle": "Opakování hotové",
     "empty": {
       "title": "Zatím není co opakovat",
-      "body": "Všechno, co spletete, se objeví tady. Zatím — co takhle nová litera?",
-      "cta": "Naučit se literu"
+      "body": "Všechno, co spletete, se objeví tady. Zatím — co takhle nové písmeno?",
+      "cta": "Naučit se písmeno"
     },
     "forYou": "Opakování pro vás",
     "sessionLength_few": "{{count, number}} krátká cvičení",
@@ -138,8 +138,8 @@
     },
     "prompt": {
       "read": "Co znamená tohle slovo?",
-      "readLetter": "Jaký zvuk dělá tahle litera?",
-      "listenLetter": "Co je to za literu?",
+      "readLetter": "Jaký zvuk dělá tohle písmeno?",
+      "listenLetter": "Co je to za písmeno?",
       "listenLetterSoundFree": "Které písmeno zní takto?",
       "context": "Které slovo sem patří?",
       "write": "Napište tohle slovo",
@@ -158,12 +158,12 @@
     "revealedNote": "Tahle otázka se za chvíli vrátí.",
     "hint": {
       "replay": "Přehrajte znovu — kolikrát chcete.",
-      "letterFamily": "Tahle litera je {{family}}.",
-      "letterExample": "Je to první litera slova {{word}}.",
+      "letterFamily": "Tohle písmeno je {{family}}.",
+      "letterExample": "Je to první písmeno slova {{word}}.",
       "letterSound": "Zní jako „{{sound}}“.",
       "reveal": "Odpověď je {{answer}}.",
       "revealWord": "To slovo je {{answer}}.",
-      "revealLetter": "Ta litera je {{answer}}.",
+      "revealLetter": "To písmeno je {{answer}}.",
       "revealStrokes": "Podívejte se na tahy ještě jednou a pak je obtáhněte.",
       "inSentence": "Používá se takhle: {{sentence}}"
     },
@@ -189,7 +189,7 @@
   "sounds": {
     "title": "Když se zvuky potkají",
     "blurb": "Proč se 학교 nevyslovuje tak, jak se píše.",
-    "intro": "Už přečtete každou literu. Korejština zapisuje díly, ze kterých je slovo složené, a některé z nich mění tam, kde se dotknou — pár slov proto zní jinak, než vypadá. Tady jsou ta, na která narazíte první.",
+    "intro": "Už přečtete každé písmeno. Korejština zapisuje díly, ze kterých je slovo složené, a některé z nich mění tam, kde se dotknou — pár slov proto zní jinak, než vypadá. Tady jsou ta, na která narazíte první.",
     "written": "Píše se",
     "said": "Vyslovuje se",
     "note": "Nemusíte se to učit nazpaměť. Poslouchejte to a začne vám to znít samozřejmě.",
@@ -211,7 +211,7 @@
     "filterLabel": "Zobrazit",
     "filter": {
       "all": "Vše",
-      "character": "Litery",
+      "character": "Písmena",
       "word": "Slova"
     },
     "youPut": "Vaše odpověď",

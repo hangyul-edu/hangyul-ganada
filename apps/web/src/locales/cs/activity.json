@@ -1,7 +1,7 @@
 {
   "title": "Aktivita v učení",
   "streak": {
-    "caption": "Udržuje ji jakékoli cvičení — literu dokončit nemusíte.",
+    "caption": "Udržuje ji jakékoli cvičení — písmeno dokončit nemusíte.",
     "longest": "Nejdelší série",
     "totalDays": "Dnů cvičení",
     "totalTime": "Celkový čas",
@@ -36,14 +36,14 @@
     "time": "Čas učení",
     "attempts": "Pokusy o psaní",
     "correct": "Správně",
-    "charactersLearned": "Dokončené litery",
+    "charactersLearned": "Dokončená písmena",
     "wordsLearned": "Dokončená slova",
     "reviews": "Pokusy v opakování",
     "nothing": "Tenhle den bez cvičení."
   },
   "insights": {
     "title": "Co vyčnívá",
-    "mostPractisedCharacter": "Nejvíc procvičená litera",
+    "mostPractisedCharacter": "Nejvíc procvičené písmeno",
     "mostPractisedWord": "Nejvíc procvičené slovo",
     "accuracy": "Přesnost psaní",
     "thisWeek": "Tento týden",
@@ -64,7 +64,7 @@
   },
   "empty": {
     "title": "Váš příběh učení začíná dnes",
-    "body": "Procvičte pár liter a tahle stránka se zaplní: dny, kdy jste se učili, jak dlouho a na čem jste pracovali."
+    "body": "Procvičte pár písmen a tahle stránka se zaplní: dny, kdy jste se učili, jak dlouho a na čem jste pracovali."
   },
   "week": {
     "title": "Tento týden",
@@ -94,7 +94,7 @@
       "meaning_recognition": "významy",
       "sentence_comprehension": "věty",
       "sound_recognition": "zvuky",
-      "visual_recognition": "litery",
+      "visual_recognition": "písmena",
       "lookalike_discrimination": "rozlišování podobných"
     }
   }

@@ -101,13 +101,24 @@ const REGISTER = {
   // plural demonstrative, so "pod ty dvě ostatní" — "under those other two",
   // about a syllable block — counted as addressing the reader.
   cs: { polite: /(vy|vám|vás|váš|vaše)/i, familiar: /(tobě|tebe|tvůj|tvoje|tvá|tvé)/i },
-  hu: { polite: /(Ön|Önnek|Önt|Öné)/, familiar: /(te|téged|neked|tiéd)/i },
+  // Hungarian and Greek drop the pronoun and carry the register in the verb —
+  // *koppintson* / *koppints*, *πατήστε* / *πάτησε* — so a pronoun-only rule
+  // read a formal imperative as no register at all. One formal sentence in
+  // the Hungarian level test and fourteen in the Greek exercises sat under a
+  // green gate for that reason; the commonest imperatives are listed here.
+  hu: {
+    polite: /(Ön|Önnek|Önt|Öné|koppintson|válasszon|nyomjon|próbálja|kezdje|nézze|tudja\?)/,
+    familiar: /(te|téged|neked|tiéd|koppints|válassz|nyomj|próbáld|kezdd|nézd|tudod\?)/i,
+  },
   ro: { polite: /(dumneavoastr[ăa]|dvs)/i, familiar: /(tu|tău|ta|tăi|tale|ție)/i },
   tr: { polite: /(siz|sizin|size)/i, familiar: /(sen|senin|sana)/i },
   hi: { polite: /(आप|आपक[ीेा])/, familiar: /(तुम|तुम्ह[ाे]र[ीेा]|तू)/ },
   id: { polite: /(Anda)/, familiar: /(kamu|kau)/ },
   vi: { polite: /(quý\s+vị)/i, familiar: /(bạn)/i },
-  el: { polite: /(σας|εσείς)/i, familiar: /(σου|εσύ)/i },
+  el: {
+    polite: /(σας|εσείς|πατήστε|δείτε|γράψτε|ακούστε|επιλέξτε|διαλέξτε|δοκιμάστε|βάλτε|διαβάστε|είδατε|μπορείτε|ξέρετε|μάθατε)/i,
+    familiar: /(σου|εσύ|πάτησε|δες|γράψε|άκουσε|επίλεξε|διάλεξε|δοκίμασε|βάλε|διάβασε|είδες|μπορείς|ξέρεις|έμαθες)/i,
+  },
   kk: { polite: /(сіз|сізд(ің|і|ер))/i, familiar: /(сен|сен(ің|і))/i },
   ky: { polite: /(сиз|сизд(ин|и))/i, familiar: /(сен|сен(ин|и))/i },
   uz: { polite: /(siz|sizning)/i, familiar: /(sen|sening)/i },
@@ -153,6 +164,27 @@ const KOREAN_GLOSSARY = [
     why: 'a countable thing the learner studies is 단어; 어휘 is the lexicon they have',
   },
 ];
+
+/**
+ * One thing, one name — in the other languages, where a reading found two.
+ *
+ * The same rule as the Korean glossary, keyed by locale and matched as a
+ * whole word. Czech is the first entry: the pack called a Hangul letter a
+ * *litera* on thirty strings and a *písmeno* on two. Both are Czech words for
+ * a letter, but *litera* is the printer's term — a piece of type, a bookish
+ * word a beginner's textbook does not use — and *písmeno* is the one a
+ * learner has said since primary school. Whichever an editor prefers, the
+ * product may only say one of them.
+ */
+const GLOSSARY = {
+  cs: [
+    {
+      avoid: /\bliter(a|u|y|ám|ách|ami)?\b/i,
+      prefer: 'písmeno',
+      why: 'litera is the printer\'s word for a piece of type; a letter of the alphabet is a písmeno',
+    },
+  ],
+};
 
 /**
  * 글자 and 음절, told apart by what the English says.
@@ -363,6 +395,21 @@ for (const locale of locales) {
           sample: bundle.get(stray[0]),
         });
       }
+    }
+  }
+
+  // 1c. The per-locale glossary.
+  for (const term of GLOSSARY[locale] ?? []) {
+    const stray = [...bundle].filter(([, value]) => term.avoid.test(value)).map(([key]) => key);
+    if (stray.length > 0) {
+      errors.push({
+        locale,
+        id: 'two-names-for-one-thing',
+        detail:
+          `${stray.length} string(s) match ${term.avoid} where the product says ${term.prefer} — ` +
+          `${term.why}: ${stray.slice(0, 6).join(', ')}`,
+        sample: bundle.get(stray[0]),
+      });
     }
   }
 

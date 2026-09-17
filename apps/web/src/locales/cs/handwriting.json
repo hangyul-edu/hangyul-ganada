@@ -5,7 +5,7 @@
     "check": "Zkontrolovat"
   },
   "canvas": {
-    "label": "Plocha pro psaní litery {{character}}",
+    "label": "Plocha pro psaní písmene {{character}}",
     "empty": "Zatím nic napsaného.",
     "strokes_few": "Napsány {{count, number}} tahy.",
     "strokes_many": "Napsáno {{count, number}} tahu.",

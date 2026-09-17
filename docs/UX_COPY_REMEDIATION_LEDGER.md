@@ -8,7 +8,7 @@ Base commit for the *old text* column: `bec355c6`. The audit that
 produced these rows is `docs/UX_COPY_AUDIT.md`; the rules they were held to are
 `docs/UX_COPY_STYLE_GUIDE.md`.
 
-**752 rows** — 176 rewritten, 512 added, 64 removed — across 32 keys.
+**927 rows** — 228 rewritten, 635 added, 64 removed — across 82 keys.
 
 Each entry lists the key, the source path, the reason, the metric or behaviour
 the string represents, the locales affected and the verification, followed by
@@ -107,7 +107,7 @@ the old and new text per locale.
 | `bn` | শব্দটি সাজান | শব্দটি সম্পূর্ণ করতে নিচের অক্ষরগুলো ক্রমানুসারে চাপুন। |
 | `cs` | Složte slovo | Klepejte na slabiky níže v pořadí, ve kterém tvoří slovo. |
 | `de` | Setz das Wort zusammen | Tippe die Silben unten der Reihe nach an, um das Wort zu bilden. |
-| `el` | Συνάρμοσε τη λέξη | Πατήστε τις συλλαβές παρακάτω με τη σειρά για να σχηματίσετε τη λέξη. |
+| `el` | Πατήστε τις συλλαβές παρακάτω με τη σειρά για να σχηματίσετε τη λέξη. | Πάτησε τις συλλαβές παρακάτω με τη σειρά για να σχηματίσεις τη λέξη. |
 | `en` | Put the word together | Tap the syllables below in order to complete the word. |
 | `es` | Forma la palabra | Toca las sílabas de abajo en orden para formar la palabra. |
 | `fil` | Buuin ang salita | I-tap ang mga pantig sa ibaba nang sunud-sunod para mabuo ang salita. |
@@ -153,7 +153,7 @@ the old and new text per locale.
 | `bn` | প্রতিটি শব্দের সঙ্গে অর্থ মেলান | প্রথমে বাঁ দিকে একটি কোরিয়ান শব্দ চাপুন, তারপর ডান দিকে তার অর্থ বেছে নিন। |
 | `cs` | Spojte každé slovo s jeho významem | Nejprve klepněte vlevo na korejské slovo, potom vpravo vyberte jeho význam. |
 | `de` | Ordne jedem Wort seine Bedeutung zu | Tippe links ein koreanisches Wort an und dann rechts seine Bedeutung. |
-| `el` | Ταιριάξτε κάθε λέξη με τη σημασία της | Πατήστε πρώτα μια κορεατική λέξη αριστερά και μετά τη σημασία της δεξιά. |
+| `el` | Πατήστε πρώτα μια κορεατική λέξη αριστερά και μετά τη σημασία της δεξιά. | Πάτησε πρώτα μια κορεατική λέξη αριστερά και μετά τη σημασία της δεξιά. |
 | `en` | Match each word to its meaning | Tap a Korean word on the left, then tap its meaning on the right. |
 | `es` | Une cada palabra con su significado | Toca una palabra coreana a la izquierda y luego su significado a la derecha. |
 | `fil` | Itapat ang bawat salita sa kahulugan nito | I-tap muna ang isang salitang Korean sa kaliwa, saka piliin ang kahulugan nito sa kanan. |
@@ -199,7 +199,7 @@ the old and new text per locale.
 | `bn` | একটি কোরিয়ান শব্দ বেছে নিন | প্রথমে বাঁ দিকে একটি কোরিয়ান শব্দ চাপুন। |
 | `cs` | Vyberte korejské slovo | Nejprve klepněte vlevo na korejské slovo. |
 | `de` | Wähle ein koreanisches Wort | Tippe zuerst links ein koreanisches Wort an. |
-| `el` | Διαλέξτε μια κορεατική λέξη | Πατήστε πρώτα μια κορεατική λέξη αριστερά. |
+| `el` | Πατήστε πρώτα μια κορεατική λέξη αριστερά. | Πάτησε πρώτα μια κορεατική λέξη αριστερά. |
 | `en` | Pick a Korean word | First, tap a Korean word on the left. |
 | `es` | Elige una palabra coreana | Primero, toca una palabra coreana a la izquierda. |
 | `fil` | Pumili ng salitang Koreano | I-tap muna ang isang salitang Korean sa kaliwa. |
@@ -245,7 +245,7 @@ the old and new text per locale.
 | `bn` | এবার এর অর্থ বেছে নিন | এবার ডান দিকে {{word}}-এর অর্থ চাপুন। |
 | `cs` | Teď vyberte jeho význam | Teď klepněte vpravo na význam slova {{word}}. |
 | `de` | Wähle nun seine Bedeutung | Tippe jetzt rechts die Bedeutung von {{word}} an. |
-| `el` | Τώρα διαλέξτε τη σημασία της | Τώρα πατήστε τη σημασία του {{word}} δεξιά. |
+| `el` | Τώρα πατήστε τη σημασία του {{word}} δεξιά. | Τώρα πάτησε τη σημασία του {{word}} δεξιά. |
 | `en` | Now pick its meaning | Now tap the meaning of {{word}} on the right. |
 | `es` | Ahora elige su significado | Ahora toca el significado de {{word}} a la derecha. |
 | `fil` | Ngayon, piliin ang kahulugan | Ngayon, i-tap ang kahulugan ng {{word}} sa kanan. |
@@ -412,7 +412,7 @@ the old and new text per locale.
 | `bn` | — | আপনি উত্তরটি দেখেছেন। |
 | `cs` | — | Odpověď jste si zobrazili. |
 | `de` | — | Du hast die Antwort gesehen. |
-| `el` | — | Είδατε την απάντηση. |
+| `el` | Είδατε την απάντηση. | Είδες την απάντηση. |
 | `en` | — | You saw the answer. |
 | `es` | — | Has visto la respuesta. |
 | `fil` | — | Nakita mo na ang sagot. |
@@ -550,7 +550,7 @@ the old and new text per locale.
 | `bn` | — | ঘর {{index}}: {{syllable}}। ফিরিয়ে নিতে চাপুন। |
 | `cs` | — | Políčko {{index}}: {{syllable}}. Klepnutím vrátíte. |
 | `de` | — | Feld {{index}}: {{syllable}}. Antippen, um es zurückzunehmen. |
-| `el` | — | Θέση {{index}}: {{syllable}}. Πατήστε για να την αφαιρέσετε. |
+| `el` | Θέση {{index}}: {{syllable}}. Πατήστε για να την αφαιρέσετε. | Θέση {{index}}: {{syllable}}. Πάτησε για να την αφαιρέσεις. |
 | `en` | — | Slot {{index}}: {{syllable}}. Tap to take it back. |
 | `es` | — | Casilla {{index}}: {{syllable}}. Toca para quitarla. |
 | `fil` | — | Puwang {{index}}: {{syllable}}. I-tap para bawiin. |
@@ -642,7 +642,7 @@ the old and new text per locale.
 | `bn` | — | সব ঘর পূরণ হয়েছে। যাচাই চাপুন। |
 | `cs` | — | Všechna políčka jsou vyplněná. Stiskněte Zkontrolovat. |
 | `de` | — | Alle Felder gefüllt. Tippe auf Prüfen. |
-| `el` | — | Όλες οι θέσεις γέμισαν. Πατήστε Έλεγχος. |
+| `el` | Όλες οι θέσεις γέμισαν. Πατήστε Έλεγχος. | Όλες οι θέσεις γέμισαν. Πάτησε Έλεγχος. |
 | `en` | — | All slots filled. Press Check. |
 | `es` | — | Todas las casillas están llenas. Pulsa Comprobar. |
 | `fil` | — | Napuno na ang lahat ng puwang. Pindutin ang Suriin. |
@@ -964,7 +964,7 @@ the old and new text per locale.
 | `bn` | — | {{word}} ও {{meaning}} জোড়া হয়েছে। বদলাতে যেকোনো একটি চাপুন। |
 | `cs` | — | {{word}} spárováno s {{meaning}}. Klepnutím na jedno z nich to změníte. |
 | `de` | — | {{word}} mit {{meaning}} verbunden. Zum Ändern eines von beiden antippen. |
-| `el` | — | Το {{word}} ταιριάστηκε με το {{meaning}}. Πατήστε ένα από τα δύο για αλλαγή. |
+| `el` | Το {{word}} ταιριάστηκε με το {{meaning}}. Πατήστε ένα από τα δύο για αλλαγή. | Το {{word}} ταιριάστηκε με το {{meaning}}. Πάτησε ένα από τα δύο για αλλαγή. |
 | `en` | — | Paired {{word}} with {{meaning}}. Tap either to change it. |
 | `es` | — | {{word}} emparejada con {{meaning}}. Toca cualquiera para cambiarla. |
 | `fil` | — | Ipinares ang {{word}} sa {{meaning}}. I-tap ang alinman para baguhin. |
@@ -1010,7 +1010,7 @@ the old and new text per locale.
 | `bn` | — | সব জোড়া হয়েছে। যাচাই চাপুন। |
 | `cs` | — | Vše spárováno. Stiskněte Zkontrolovat. |
 | `de` | — | Alles verbunden. Tippe auf Prüfen. |
-| `el` | — | Όλα ταιριάστηκαν. Πατήστε Έλεγχος. |
+| `el` | Όλα ταιριάστηκαν. Πατήστε Έλεγχος. | Όλα ταιριάστηκαν. Πάτησε Έλεγχος. |
 | `en` | — | All paired. Press Check. |
 | `es` | — | Todo emparejado. Pulsa Comprobar. |
 | `fil` | — | Naipares na ang lahat. Pindutin ang Suriin. |
@@ -1213,3 +1213,878 @@ the old and new text per locale.
 | `uz` | {{syllable}} ni qaytarib oling | — |
 | `vi` | Lấy lại {{syllable}} | — |
 | `zh-CN` | 把 {{syllable}} 拿回来 | — |
+
+### `errors:screen.title` — added
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `errors:screen.title` |
+| Source path | `apps/web/src/locales/<locale>/errors.json` |
+| Reason | A screen whose lazy chunk fails to load used to unmount the whole app (blank page); the new error boundary needs a title, a sentence and a reload action in every locale. Register matched to the pack. |
+| Metric or behavior represented | Failed-screen panel (ScreenErrorBoundary) |
+| Locales affected | 32 — `ar`, `bn`, `cs`, `de`, `el`, `en`, `es`, `fil`, `fr`, `hi`, `hu`, `id`, `it`, `ja`, `kk`, `ko`, `ky`, `mn`, `nl`, `pl`, `pt-BR`, `ro`, `ru`, `sv`, `ta`, `te`, `th`, `tr`, `uk`, `uz`, `vi`, `zh-CN` |
+| Verification result | screenErrorBoundary.test.tsx; i18n:check; locale:editorial:check |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `ar` | — | لم يتم تحميل هذه الشاشة |
+| `bn` | — | এই স্ক্রিনটি লোড হয়নি |
+| `cs` | — | Tato obrazovka se nenačetla |
+| `de` | — | Dieser Bildschirm wurde nicht geladen |
+| `el` | — | Αυτή η οθόνη δεν φορτώθηκε |
+| `en` | — | This screen didn't load |
+| `es` | — | Esta pantalla no se cargó |
+| `fil` | — | Hindi na-load ang screen na ito |
+| `fr` | — | Cet écran ne s’est pas chargé |
+| `hi` | — | यह स्क्रीन लोड नहीं हुई |
+| `hu` | — | Ez a képernyő nem töltődött be |
+| `id` | — | Layar ini tidak termuat |
+| `it` | — | Questa schermata non si è caricata |
+| `ja` | — | 画面を読み込めませんでした |
+| `kk` | — | Бұл экран жүктелмеді |
+| `ko` | — | 화면을 불러오지 못했어요 |
+| `ky` | — | Бул экран жүктөлгөн жок |
+| `mn` | — | Энэ дэлгэц ачаалагдсангүй |
+| `nl` | — | Dit scherm is niet geladen |
+| `pl` | — | Ten ekran się nie wczytał |
+| `pt-BR` | — | Esta tela não carregou |
+| `ro` | — | Ecranul acesta nu s-a încărcat |
+| `ru` | — | Этот экран не загрузился |
+| `sv` | — | Den här skärmen laddades inte |
+| `ta` | — | இந்தத் திரை ஏறவில்லை |
+| `te` | — | ఈ స్క్రీన్ లోడ్ కాలేదు |
+| `th` | — | หน้านี้โหลดไม่ขึ้น |
+| `tr` | — | Bu ekran yüklenemedi |
+| `uk` | — | Цей екран не завантажився |
+| `uz` | — | Bu ekran yuklanmadi |
+| `vi` | — | Màn hình này chưa tải được |
+| `zh-CN` | — | 这个页面没有加载出来 |
+
+### `errors:screen.body` — added
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `errors:screen.body` |
+| Source path | `apps/web/src/locales/<locale>/errors.json` |
+| Reason | A screen whose lazy chunk fails to load used to unmount the whole app (blank page); the new error boundary needs a title, a sentence and a reload action in every locale. Register matched to the pack. |
+| Metric or behavior represented | Failed-screen panel (ScreenErrorBoundary) |
+| Locales affected | 32 — `ar`, `bn`, `cs`, `de`, `el`, `en`, `es`, `fil`, `fr`, `hi`, `hu`, `id`, `it`, `ja`, `kk`, `ko`, `ky`, `mn`, `nl`, `pl`, `pt-BR`, `ro`, `ru`, `sv`, `ta`, `te`, `th`, `tr`, `uk`, `uz`, `vi`, `zh-CN` |
+| Verification result | screenErrorBoundary.test.tsx; i18n:check; locale:editorial:check |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `ar` | — | تعذّر فتحها؛ ربما انقطع الاتصال. أعد التحميل للمحاولة مرة أخرى، أو ارجع إلى الصفحة الرئيسية. |
+| `bn` | — | এটি খোলা যায়নি — হয়তো সংযোগ বিচ্ছিন্ন হয়ে গেছে। আবার চেষ্টা করতে রিলোড করুন, অথবা হোমে ফিরে যান। |
+| `cs` | — | Nepodařilo se ji otevřít – možná vypadlo připojení. Načtěte ji znovu, nebo se vraťte na úvodní obrazovku. |
+| `de` | — | Er ließ sich nicht öffnen – vielleicht ist die Verbindung abgebrochen. Lade neu, um es noch einmal zu versuchen, oder geh zurück zum Start. |
+| `el` | — | Δεν άνοιξε — ίσως κόπηκε η σύνδεση. Φόρτωσέ την ξανά για να ξαναδοκιμάσεις, ή γύρνα στην αρχική. |
+| `en` | — | It couldn't be opened — the connection may have dropped. Reload to try again, or go back to Home. |
+| `es` | — | No se pudo abrir; puede que se haya cortado la conexión. Recarga para intentarlo de nuevo o vuelve al inicio. |
+| `fil` | — | Hindi ito mabuksan — baka naputol ang koneksyon. I-reload para subukan ulit, o bumalik sa Home. |
+| `fr` | — | Il n’a pas pu s’ouvrir : la connexion a peut-être été coupée. Rechargez pour réessayer, ou revenez à l’accueil. |
+| `hi` | — | इसे खोला नहीं जा सका — शायद कनेक्शन टूट गया। फिर से कोशिश करने के लिए रीलोड कीजिए, या होम पर लौट जाइए। |
+| `hu` | — | Nem sikerült megnyitni – talán megszakadt a kapcsolat. Töltsd újra, hogy megpróbáld még egyszer, vagy menj vissza a kezdőképernyőre. |
+| `id` | — | Layar ini tidak bisa dibuka — mungkin koneksinya terputus. Muat ulang untuk mencoba lagi, atau kembali ke Beranda. |
+| `it` | — | Non è stato possibile aprirla: forse la connessione è caduta. Ricarica per riprovare, oppure torna alla home. |
+| `ja` | — | 開けませんでした。接続が切れた可能性があります。再読み込みしてもう一度試すか、ホームに戻ってください。 |
+| `kk` | — | Оны ашу мүмкін болмады — байланыс үзілген болуы мүмкін. Қайта көру үшін қайта жүктеңіз немесе басты бетке оралыңыз. |
+| `ko` | — | 열 수 없었어요. 연결이 끊겼을 수 있어요. 새로 고침해서 다시 시도하거나 홈으로 돌아가세요. |
+| `ky` | — | Аны ачуу мүмкүн болбоду — байланыш үзүлгөн болушу мүмкүн. Кайра аракет кылуу үчүн кайра жүктөңүз же башкы бетке кайтыңыз. |
+| `mn` | — | Нээж чадсангүй — холболт тасарсан байж магадгүй. Дахин оролдохын тулд дахин ачаал, эсвэл нүүр хуудас руу буц. |
+| `nl` | — | Het kon niet worden geopend – misschien is de verbinding weggevallen. Laad opnieuw om het nog eens te proberen, of ga terug naar Home. |
+| `pl` | — | Nie udało się go otworzyć — być może zerwało połączenie. Wczytaj ponownie, aby spróbować jeszcze raz, albo wróć na ekran główny. |
+| `pt-BR` | — | Não foi possível abri-la; a conexão pode ter caído. Recarregue para tentar de novo ou volte ao início. |
+| `ro` | — | Nu a putut fi deschis — poate s-a întrerupt conexiunea. Reîncarcă pentru a încerca din nou sau întoarce-te la ecranul principal. |
+| `ru` | — | Его не удалось открыть — возможно, пропало соединение. Перезагрузите, чтобы попробовать снова, или вернитесь на главный экран. |
+| `sv` | — | Den gick inte att öppna – anslutningen kan ha brutits. Ladda om för att försöka igen, eller gå tillbaka till startsidan. |
+| `ta` | — | இதைத் திறக்க முடியவில்லை — இணைப்பு துண்டிக்கப்பட்டிருக்கலாம். மீண்டும் முயற்சிக்க மறுஏற்றம் செய்யுங்கள், அல்லது முகப்புக்குத் திரும்புங்கள். |
+| `te` | — | దీన్ని తెరవలేకపోయాం — కనెక్షన్ తెగిపోయి ఉండవచ్చు. మళ్ళీ ప్రయత్నించడానికి రీలోడ్ చేయండి, లేదా హోమ్‌కు తిరిగి వెళ్ళండి. |
+| `th` | — | เปิดไม่ได้ อาจเป็นเพราะการเชื่อมต่อหลุด โหลดใหม่เพื่อลองอีกครั้ง หรือกลับไปหน้าแรก |
+| `tr` | — | Açılamadı; bağlantı kopmuş olabilir. Yeniden yükleyip tekrar dene ya da ana sayfaya dön. |
+| `uk` | — | Його не вдалося відкрити — можливо, зникло з’єднання. Перезавантажте, щоб спробувати ще раз, або поверніться на головний екран. |
+| `uz` | — | Uni ochib bo‘lmadi — ulanish uzilgan bo‘lishi mumkin. Qayta urinish uchun qayta yuklang yoki bosh sahifaga qayting. |
+| `vi` | — | Không mở được — có thể kết nối đã bị ngắt. Tải lại để thử lần nữa, hoặc quay về trang chính. |
+| `zh-CN` | — | 无法打开，可能是网络连接中断了。请重新加载再试一次，或返回首页。 |
+
+### `errors:screen.reload` — added
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `errors:screen.reload` |
+| Source path | `apps/web/src/locales/<locale>/errors.json` |
+| Reason | A screen whose lazy chunk fails to load used to unmount the whole app (blank page); the new error boundary needs a title, a sentence and a reload action in every locale. Register matched to the pack. |
+| Metric or behavior represented | Failed-screen panel (ScreenErrorBoundary) |
+| Locales affected | 32 — `ar`, `bn`, `cs`, `de`, `el`, `en`, `es`, `fil`, `fr`, `hi`, `hu`, `id`, `it`, `ja`, `kk`, `ko`, `ky`, `mn`, `nl`, `pl`, `pt-BR`, `ro`, `ru`, `sv`, `ta`, `te`, `th`, `tr`, `uk`, `uz`, `vi`, `zh-CN` |
+| Verification result | screenErrorBoundary.test.tsx; i18n:check; locale:editorial:check |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `ar` | — | إعادة التحميل |
+| `bn` | — | রিলোড করুন |
+| `cs` | — | Načíst znovu |
+| `de` | — | Neu laden |
+| `el` | — | Φόρτωση ξανά |
+| `en` | — | Reload |
+| `es` | — | Recargar |
+| `fil` | — | I-reload |
+| `fr` | — | Recharger |
+| `hi` | — | रीलोड करें |
+| `hu` | — | Újratöltés |
+| `id` | — | Muat ulang |
+| `it` | — | Ricarica |
+| `ja` | — | 再読み込み |
+| `kk` | — | Қайта жүктеу |
+| `ko` | — | 새로 고침 |
+| `ky` | — | Кайра жүктөө |
+| `mn` | — | Дахин ачаалах |
+| `nl` | — | Opnieuw laden |
+| `pl` | — | Wczytaj ponownie |
+| `pt-BR` | — | Recarregar |
+| `ro` | — | Reîncarcă |
+| `ru` | — | Перезагрузить |
+| `sv` | — | Ladda om |
+| `ta` | — | மறுஏற்றம் |
+| `te` | — | రీలోడ్ చేయండి |
+| `th` | — | โหลดใหม่ |
+| `tr` | — | Yeniden yükle |
+| `uk` | — | Перезавантажити |
+| `uz` | — | Qayta yuklash |
+| `vi` | — | Tải lại |
+| `zh-CN` | — | 重新加载 |
+
+### `settings:storage.unreadable` — added
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `settings:storage.unreadable` |
+| Source path | `apps/web/src/locales/<locale>/settings.json` |
+| Reason | A launch that cannot read the stored profile no longer writes over it; Settings says so in its own sentence rather than blaming the browser. |
+| Metric or behavior represented | Storage warning on My Learning |
+| Locales affected | 32 — `ar`, `bn`, `cs`, `de`, `el`, `en`, `es`, `fil`, `fr`, `hi`, `hu`, `id`, `it`, `ja`, `kk`, `ko`, `ky`, `mn`, `nl`, `pl`, `pt-BR`, `ro`, `ru`, `sv`, `ta`, `te`, `th`, `tr`, `uk`, `uz`, `vi`, `zh-CN` |
+| Verification result | storageWarning.test.tsx; i18n:check; locale:editorial:check |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `ar` | — | تعذّرت قراءة تقدّمك المحفوظ هذه المرة، لذا لا يُحفظ شيء من هذه الجلسة. تقدّمك السابق ما زال على هذا الجهاز؛ أغلق التطبيق ثم افتحه من جديد. |
+| `bn` | — | এবার আপনার সংরক্ষিত অগ্রগতি পড়া যায়নি, তাই এই সেশনের কিছুই রাখা হচ্ছে না। আপনার আগের অগ্রগতি এখনও এই ডিভাইসে আছে — অ্যাপটি বন্ধ করে আবার খুলুন। |
+| `cs` | — | Uložený postup se tentokrát nepodařilo načíst, takže se z tohoto sezení nic neukládá. Dřívější postup je stále v tomto zařízení – zavřete aplikaci a znovu ji otevřete. |
+| `de` | — | Dein gespeicherter Fortschritt konnte diesmal nicht gelesen werden, deshalb wird aus dieser Sitzung nichts behalten. Dein bisheriger Fortschritt ist noch auf diesem Gerät – schließ die App und öffne sie neu. |
+| `el` | — | Η αποθηκευμένη πρόοδός σου δεν μπόρεσε να διαβαστεί αυτή τη φορά, οπότε τίποτα από αυτή τη συνεδρία δεν κρατιέται. Η προηγούμενη πρόοδός σου είναι ακόμα σε αυτή τη συσκευή — κλείσε την εφαρμογή και άνοιξέ την ξανά. |
+| `en` | — | Your saved progress could not be read this time, so nothing from this session is being kept. Your earlier progress is still on this device — close the app and open it again. |
+| `es` | — | Esta vez no se pudo leer tu progreso guardado, así que nada de esta sesión se está guardando. Tu progreso anterior sigue en este dispositivo: cierra la app y vuelve a abrirla. |
+| `fil` | — | Hindi nabasa ang naka-save mong progreso ngayong pagkakataon, kaya walang itinatago mula sa session na ito. Nasa device pa rin ang dati mong progreso — isara ang app at buksan ulit. |
+| `fr` | — | Votre progression enregistrée n’a pas pu être lue cette fois-ci, donc rien de cette session n’est conservé. Votre progression précédente est toujours sur cet appareil : fermez l’application et rouvrez-la. |
+| `hi` | — | इस बार आपकी सहेजी हुई प्रगति पढ़ी नहीं जा सकी, इसलिए इस सत्र का कुछ भी सहेजा नहीं जा रहा है। आपकी पहले की प्रगति अब भी इस डिवाइस पर है — ऐप बंद करके फिर से खोलिए। |
+| `hu` | — | A mentett haladásodat ezúttal nem sikerült beolvasni, ezért ebből a tanulásból semmi sem marad meg. A korábbi haladásod továbbra is ezen az eszközön van – zárd be az appot, és nyisd meg újra. |
+| `id` | — | Kemajuan yang tersimpan tidak bisa dibaca kali ini, jadi tidak ada apa pun dari sesi ini yang disimpan. Kemajuanmu sebelumnya masih ada di perangkat ini — tutup aplikasinya lalu buka lagi. |
+| `it` | — | Questa volta non è stato possibile leggere i tuoi progressi salvati, quindi nulla di questa sessione viene conservato. I tuoi progressi precedenti sono ancora su questo dispositivo: chiudi l’app e riaprila. |
+| `ja` | — | 今回は保存した進み具合を読み込めなかったため、このセッションの内容は保存されません。これまでの進み具合はこの端末に残っています。アプリを一度閉じて、もう一度開いてください。 |
+| `kk` | — | Бұл жолы сақталған ілгерілеуіңізді оқу мүмкін болмады, сондықтан осы сабақтан ештеңе сақталмайды. Бұрынғы ілгерілеуіңіз әлі де осы құрылғыда — қолданбаны жауып, қайта ашыңыз. |
+| `ko` | — | 이번에는 저장된 진도를 읽지 못해서 이 세션의 내용은 저장되지 않아요. 이전 진도는 이 기기에 그대로 있어요. 앱을 닫았다가 다시 열어 보세요. |
+| `ky` | — | Бул жолу сакталган жылышыңызды окуу мүмкүн болбоду, ошондуктан бул сабактан эч нерсе сакталбайт. Мурунку жылышыңыз дагы деле ушул түзмөктө — колдонмону жаап, кайра ачыңыз. |
+| `mn` | — | Энэ удаад хадгалсан ахицыг чинь уншиж чадсангүй, тиймээс энэ удаагийн хичээлээс юу ч хадгалагдахгүй. Өмнөх ахиц чинь энэ төхөөрөмж дээр хэвээрээ байгаа — аппаа хааж, дахин нээ. |
+| `nl` | — | Je opgeslagen voortgang kon deze keer niet worden gelezen, dus van deze sessie wordt niets bewaard. Je eerdere voortgang staat nog op dit apparaat – sluit de app en open hem opnieuw. |
+| `pl` | — | Tym razem nie udało się odczytać zapisanych postępów, więc nic z tej sesji nie jest zapisywane. Wcześniejsze postępy nadal są na tym urządzeniu — zamknij aplikację i otwórz ją ponownie. |
+| `pt-BR` | — | Seu progresso salvo não pôde ser lido desta vez, então nada desta sessão está sendo guardado. Seu progresso anterior continua neste aparelho: feche o app e abra de novo. |
+| `ro` | — | Progresul salvat nu a putut fi citit de data aceasta, așa că nimic din această sesiune nu se păstrează. Progresul de dinainte este încă pe acest dispozitiv — închide aplicația și deschide-o din nou. |
+| `ru` | — | На этот раз не удалось прочитать сохранённый прогресс, поэтому ничего из этого занятия не сохраняется. Прежний прогресс по-прежнему на этом устройстве — закройте приложение и откройте его снова. |
+| `sv` | — | Dina sparade framsteg gick inte att läsa den här gången, så inget från den här sessionen sparas. Dina tidigare framsteg finns kvar på enheten – stäng appen och öppna den igen. |
+| `ta` | — | இந்த முறை சேமித்த முன்னேற்றத்தைப் படிக்க முடியவில்லை, எனவே இந்த அமர்வில் எதுவும் சேமிக்கப்படவில்லை. உங்கள் முந்தைய முன்னேற்றம் இந்தச் சாதனத்தில் அப்படியே உள்ளது — செயலியை மூடிவிட்டு மீண்டும் திறங்கள். |
+| `te` | — | ఈసారి మీ సేవ్ చేసిన ప్రగతిని చదవలేకపోయాం, కాబట్టి ఈ సెషన్‌లోది ఏదీ నిల్వ కావడం లేదు. మీ మునుపటి ప్రగతి ఇంకా ఈ పరికరంలోనే ఉంది — యాప్‌ను మూసి మళ్ళీ తెరవండి. |
+| `th` | — | ครั้งนี้อ่านความคืบหน้าที่บันทึกไว้ไม่ได้ จึงไม่มีการเก็บอะไรจากรอบนี้ ความคืบหน้าก่อนหน้ายังอยู่ในเครื่องนี้ ปิดแอปแล้วเปิดใหม่อีกครั้ง |
+| `tr` | — | Kayıtlı ilerlemen bu sefer okunamadı, bu yüzden bu oturumdan hiçbir şey kaydedilmiyor. Önceki ilerlemen hâlâ bu cihazda; uygulamayı kapatıp yeniden aç. |
+| `uk` | — | Цього разу не вдалося прочитати збережений прогрес, тому нічого з цього заняття не зберігається. Попередній прогрес і далі на цьому пристрої — закрийте застосунок і відкрийте його знову. |
+| `uz` | — | Bu safar saqlangan yutuqlaringizni o‘qib bo‘lmadi, shuning uchun bu mashg‘ulotdan hech narsa saqlanmaydi. Avvalgi yutuqlaringiz hali ham shu qurilmada — ilovani yopib, qayta oching. |
+| `vi` | — | Lần này không đọc được tiến độ đã lưu, nên không có gì trong phiên này được giữ lại. Tiến độ trước đó vẫn còn trên thiết bị này — hãy đóng ứng dụng rồi mở lại. |
+| `zh-CN` | — | 这次没能读取已保存的进度，所以本次学习的内容不会被保存。之前的进度仍在这台设备上——请关闭应用后重新打开。 |
+
+### `activity:streak.caption` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `activity:streak.caption` |
+| Source path | `apps/web/src/locales/cs/activity.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Udržuje ji jakékoli cvičení — literu dokončit nemusíte. | Udržuje ji jakékoli cvičení — písmeno dokončit nemusíte. |
+
+### `activity:day.charactersLearned` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `activity:day.charactersLearned` |
+| Source path | `apps/web/src/locales/cs/activity.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Dokončené litery | Dokončená písmena |
+
+### `activity:insights.mostPractisedCharacter` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `activity:insights.mostPractisedCharacter` |
+| Source path | `apps/web/src/locales/cs/activity.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Nejvíc procvičená litera | Nejvíc procvičené písmeno |
+
+### `activity:empty.body` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `activity:empty.body` |
+| Source path | `apps/web/src/locales/cs/activity.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Procvičte pár liter a tahle stránka se zaplní: dny, kdy jste se učili, jak dlouho a na čem jste pracovali. | Procvičte pár písmen a tahle stránka se zaplní: dny, kdy jste se učili, jak dlouho a na čem jste pracovali. |
+
+### `activity:memory.skill.visual_recognition` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `activity:memory.skill.visual_recognition` |
+| Source path | `apps/web/src/locales/cs/activity.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | litery | písmena |
+
+### `common:brand.description` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `common:brand.description` |
+| Source path | `apps/web/src/locales/cs/common.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Naučte se číst a psát hangul od úplně první litery — souhlásky a samohlásky, slabičné bloky, psaní rukou a první korejská slova. | Naučte se číst a psát hangul od úplně prvního písmene — souhlásky a samohlásky, slabičné bloky, psaní rukou a první korejská slova. |
+
+### `handwriting:canvas.label` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `handwriting:canvas.label` |
+| Source path | `apps/web/src/locales/cs/handwriting.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Plocha pro psaní litery {{character}} | Plocha pro psaní písmene {{character}} |
+
+### `home:dailyGoal` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `home:dailyGoal` |
+| Source path | `apps/web/src/locales/cs/home.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Litery dnes | Písmena dnes |
+
+### `home:dailyGoalAria` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `home:dailyGoalAria` |
+| Source path | `apps/web/src/locales/cs/home.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Litery dnes: {{done, number}} ze {{total, number}} | Písmena dnes: {{done, number}} ze {{total, number}} |
+
+### `home:finished.body` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `home:finished.body` |
+| Source path | `apps/web/src/locales/cs/home.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Všech {{count, number}} liter: viděli jste je, napsali a přečetli zpátky. Odsud dál jdou slova. | Všech {{count, number}} písmen: viděli jste je, napsali a přečetli zpátky. Odsud dál jdou slova. |
+
+### `home:quick.letters` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `home:quick.letters` |
+| Source path | `apps/web/src/locales/cs/home.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Litery | Písmena |
+
+### `learning:letters.title` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:letters.title` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Učit se litery | Učit se písmena |
+
+### `learning:letters.alphabetCaption` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:letters.alphabetCaption` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | liter zvládnuto | písmen zvládnuto |
+
+### `learning:units.unit-1.body` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-1.body` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Hangul je abeceda, ne sada obrázků. Má 40 liter, byl navržený tak, aby se dal zvládnout rychle, a šest z nich se teď naučíte. | Hangul je abeceda, ne sada obrázků. Má 40 písmen, byl navržený tak, aby se dal zvládnout rychle, a šest z nich se teď naučíte. |
+
+### `learning:units.unit-1.points.0` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-1.points.0` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Litery se skládají do čtvercových bloků a každý blok je jedna slabika. | Písmena se skládají do čtvercových bloků a každý blok je jedna slabika. |
+
+### `learning:units.unit-1.points.2` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-1.points.2` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Vyslovujte každou literu nahlas, když ji obtahujete. Zvuk je půlka lekce. | Vyslovujte každé písmeno nahlas, když ho obtahujete. Zvuk je půlka lekce. |
+
+### `learning:units.unit-11.body` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-11.body` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Do bloku se vejde třetí litera, pod ty dvě ostatní. Jmenuje se 받침 a slabiku uzavírá. | Do bloku se vejde třetí písmeno, pod ty dvě ostatní. Jmenuje se 받침 a slabiku uzavírá. |
+
+### `learning:units.unit-11.points.0` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-11.points.0` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Třetí litera stojí vždycky úplně dole ve čtverci. | Třetí písmeno stojí vždycky úplně dole ve čtverci. |
+
+### `learning:units.unit-11.points.1` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-11.points.1` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | 받침 zazní jen jako jeden ze sedmi zvuků, ať je tam napsaná kterákoli litera. | 받침 zazní jen jako jeden ze sedmi zvuků, ať je tam napsaná kterékoli písmeno. |
+
+### `learning:steps.label` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:steps.label` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Kroky u této litery | Kroky u tohoto písmene |
+
+### `learning:recognition.optionsAria` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:recognition.optionsAria` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Vyberte literu, kterou jste slyšeli | Vyberte písmeno, které jste slyšeli |
+
+### `learning:session.next` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:session.next` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Další litera | Další písmeno |
+
+### `learning:review.empty.body` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:review.empty.body` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Všechno, co spletete, se objeví tady. Zatím — co takhle nová litera? | Všechno, co spletete, se objeví tady. Zatím — co takhle nové písmeno? |
+
+### `learning:review.empty.cta` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:review.empty.cta` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Naučit se literu | Naučit se písmeno |
+
+### `learning:review.prompt.readLetter` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:review.prompt.readLetter` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Jaký zvuk dělá tahle litera? | Jaký zvuk dělá tohle písmeno? |
+
+### `learning:review.prompt.listenLetter` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:review.prompt.listenLetter` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Co je to za literu? | Co je to za písmeno? |
+
+### `learning:review.hint.letterFamily` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:review.hint.letterFamily` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Tahle litera je {{family}}. | Tohle písmeno je {{family}}. |
+
+### `learning:review.hint.letterExample` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:review.hint.letterExample` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Je to první litera slova {{word}}. | Je to první písmeno slova {{word}}. |
+
+### `learning:review.hint.revealLetter` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:review.hint.revealLetter` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Ta litera je {{answer}}. | To písmeno je {{answer}}. |
+
+### `learning:sounds.intro` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:sounds.intro` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Už přečtete každou literu. Korejština zapisuje díly, ze kterých je slovo složené, a některé z nich mění tam, kde se dotknou — pár slov proto zní jinak, než vypadá. Tady jsou ta, na která narazíte první. | Už přečtete každé písmeno. Korejština zapisuje díly, ze kterých je slovo složené, a některé z nich mění tam, kde se dotknou — pár slov proto zní jinak, než vypadá. Tady jsou ta, na která narazíte první. |
+
+### `learning:mistakes.filter.character` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:mistakes.filter.character` |
+| Source path | `apps/web/src/locales/cs/learning.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Litery | Písmena |
+
+### `navigation:tabs.letters` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `navigation:tabs.letters` |
+| Source path | `apps/web/src/locales/cs/navigation.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Litery | Písmena |
+
+### `settings:stats.lettersLearned` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `settings:stats.lettersLearned` |
+| Source path | `apps/web/src/locales/cs/settings.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Zvládnuté litery | Zvládnutá písmena |
+
+### `settings:language.pickerIntro` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `settings:language.pickerIntro` |
+| Source path | `apps/web/src/locales/cs/settings.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Jazyk rozhraní. To, co se učíte — litery hangulu, slova a vzorové věty — zůstává v korejštině. | Jazyk rozhraní. To, co se učíte — písmena hangulu, slova a vzorové věty — zůstává v korejštině. |
+
+### `settings:dailyTarget.title` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `settings:dailyTarget.title` |
+| Source path | `apps/web/src/locales/cs/settings.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Liter denně | Písmen denně |
+
+### `settings:dailyTarget.description` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `settings:dailyTarget.description` |
+| Source path | `apps/web/src/locales/cs/settings.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Kolik liter hangulu chcete každý den dokončit. | Kolik písmen hangulu chcete každý den dokončit. |
+
+### `settings:reset.body` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `settings:reset.body` |
+| Source path | `apps/web/src/locales/cs/settings.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Začněte znovu, od úplně první litery. | Začněte znovu, od úplně prvního písmene. |
+
+### `settings:voice.description` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `settings:voice.description` |
+| Source path | `apps/web/src/locales/cs/settings.json` |
+| Reason | The Czech pack said litera (the printer’s word for a piece of type) for a Hangul letter on 30 strings and písmeno on two; a beginner’s word for a letter of the alphabet is písmeno, and the product may only say one. Declension and agreement rewritten with it. |
+| Metric or behavior represented | Terminology: a Hangul letter |
+| Locales affected | 1 — `cs` |
+| Verification result | locale:editorial:check (per-locale glossary, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `cs` | Kdo předčítá litery, slabiky a slova. | Kdo předčítá písmena, slabiky a slova. |
+
+### `learning:units.unit-2.goal` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-2.goal` |
+| Source path | `apps/web/src/locales/el/learning.json` |
+| Reason | Fourteen exercise instructions addressed the learner in the formal plural (Πατήστε, Είδατε, Βάλτε, Διαβάστε) while the other 110 strings use the informal singular; rewritten in the informal. |
+| Metric or behavior represented | Register: informal singular |
+| Locales affected | 1 — `el` |
+| Verification result | locale:editorial:check (verb-form register markers, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `el` | Πέντε σύμφωνα. Με τα φωνήεντα που ξέρετε, γίνονται τριάντα συλλαβές. | Πέντε σύμφωνα. Με τα φωνήεντα που ξέρεις, γίνονται τριάντα συλλαβές. |
+
+### `learning:units.unit-3.goal` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-3.goal` |
+| Source path | `apps/web/src/locales/el/learning.json` |
+| Reason | Fourteen exercise instructions addressed the learner in the formal plural (Πατήστε, Είδατε, Βάλτε, Διαβάστε) while the other 110 strings use the informal singular; rewritten in the informal. |
+| Metric or behavior represented | Register: informal singular |
+| Locales affected | 1 — `el` |
+| Verification result | locale:editorial:check (verb-form register markers, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `el` | Βάλτε ένα σύμφωνο και ένα φωνήεν σε ένα τετράγωνο και διαβάστε τη συλλαβή. | Βάλε ένα σύμφωνο και ένα φωνήεν σε ένα τετράγωνο και διάβασε τη συλλαβή. |
+
+### `learning:units.unit-5.goal` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-5.goal` |
+| Source path | `apps/web/src/locales/el/learning.json` |
+| Reason | Fourteen exercise instructions addressed the learner in the formal plural (Πατήστε, Είδατε, Βάλτε, Διαβάστε) while the other 110 strings use the informal singular; rewritten in the informal. |
+| Metric or behavior represented | Register: informal singular |
+| Locales affected | 1 — `el` |
+| Verification result | locale:editorial:check (verb-form register markers, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `el` | Διαβάστε συλλαβές με τα νέα σύμφωνα, και το ㅇ που δεν ακούγεται. | Διάβασε συλλαβές με τα νέα σύμφωνα, και το ㅇ που δεν ακούγεται. |
+
+### `learning:units.unit-12.goal` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:units.unit-12.goal` |
+| Source path | `apps/web/src/locales/el/learning.json` |
+| Reason | Fourteen exercise instructions addressed the learner in the formal plural (Πατήστε, Είδατε, Βάλτε, Διαβάστε) while the other 110 strings use the informal singular; rewritten in the informal. |
+| Metric or behavior represented | Register: informal singular |
+| Locales affected | 1 — `el` |
+| Verification result | locale:editorial:check (verb-form register markers, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `el` | Διαβάστε αληθινές κορεατικές λέξεις με όσα μάθατε. | Διάβασε αληθινές κορεατικές λέξεις με όσα έμαθες. |
+
+### `learning:review.cannotUseAudio` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:review.cannotUseAudio` |
+| Source path | `apps/web/src/locales/el/learning.json` |
+| Reason | Fourteen exercise instructions addressed the learner in the formal plural (Πατήστε, Είδατε, Βάλτε, Διαβάστε) while the other 110 strings use the informal singular; rewritten in the informal. |
+| Metric or behavior represented | Register: informal singular |
+| Locales affected | 1 — `el` |
+| Verification result | locale:editorial:check (verb-form register markers, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `el` | Δεν μπορείτε να ακούσετε; | Δεν μπορείς να ακούσεις; |
+
+### `levelTest:intro.unsure` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `levelTest:intro.unsure` |
+| Source path | `apps/web/src/locales/hu/levelTest.json` |
+| Reason | The one formal sentence (tudja, koppintson) in an informal pack; rewritten as tudod / koppints. |
+| Metric or behavior represented | Register: informal |
+| Locales affected | 1 — `hu` |
+| Verification result | locale:editorial:check (verb-form register markers, negative-tested) |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `hu` | Nem tudja? Nyugodtan koppintson a „Nem tudom” gombra. | Nem tudod? Nyugodtan koppints a „Nem tudom” gombra. |
+
+### `learning:mistakes.times_one` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:mistakes.times_one` |
+| Source path | `apps/web/src/locales/ro/learning.json` |
+| Reason | “Greșit de {{count}} dată” renders “de 1 dată”, which is ungrammatical; Romanian says “o dată”. |
+| Metric or behavior represented | Missed-once count |
+| Locales affected | 1 — `ro` |
+| Verification result | i18n:check; read |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `ro` | Greșit de {{count}} dată | Greșit o dată |
+
+### `learning:mistakes.clear` — rewritten
+
+| Field | Value |
+| --- | --- |
+| String key or content ID | `learning:mistakes.clear` |
+| Source path | `apps/web/src/locales/<locale>/learning.json` |
+| Reason | “С этим разобрался” / “З цим розібрався” is a masculine past tense that assumes a male learner; rewritten without a gendered verb. |
+| Metric or behavior represented | Button on a mistake card |
+| Locales affected | 2 — `ru`, `uk` |
+| Verification result | locale:editorial:check; read |
+
+| Locale | Old text | New text |
+| --- | --- | --- |
+| `ru` | С этим разобрался | С этим всё ясно |
+| `uk` | З цим розібрався | З цим усе зрозуміло |

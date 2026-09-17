@@ -4,8 +4,8 @@
     "start": "Začněte dnes"
   },
   "celebrate": "Dnešní cíl je splněn.",
-  "dailyGoal": "Litery dnes",
-  "dailyGoalAria": "Litery dnes: {{done, number}} ze {{total, number}}",
+  "dailyGoal": "Písmena dnes",
+  "dailyGoalAria": "Písmena dnes: {{done, number}} ze {{total, number}}",
   "cta": {
     "start": "Začít",
     "continue": "Pokračovat v učení"
@@ -13,12 +13,12 @@
   "finished": {
     "badge": "Hotovo",
     "title": "Umíte číst hangul",
-    "body": "Všech {{count, number}} liter: viděli jste je, napsali a přečetli zpátky. Odsud dál jdou slova.",
+    "body": "Všech {{count, number}} písmen: viděli jste je, napsali a přečetli zpátky. Odsud dál jdou slova.",
     "goal": "Slova dnes",
     "cta": "Začít dnešní slova"
   },
   "quick": {
-    "letters": "Litery",
+    "letters": "Písmena",
     "words": "Slova",
     "wordsCaption": "dnešní slova",
     "wordsReady": "čas na první slova"
