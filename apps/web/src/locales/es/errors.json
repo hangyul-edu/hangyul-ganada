@@ -5,5 +5,10 @@
     "lesson": "No hemos encontrado esa lección.",
     "wordLesson": "No encontramos ese conjunto de palabras."
   },
-  "generic": "Algo salió mal. Inténtalo otra vez."
+  "generic": "Algo salió mal. Inténtalo otra vez.",
+  "screen": {
+    "title": "Esta pantalla no se cargó",
+    "body": "No se pudo abrir; puede que se haya cortado la conexión. Recarga para intentarlo de nuevo o vuelve al inicio.",
+    "reload": "Recargar"
+  }
 }

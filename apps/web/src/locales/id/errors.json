@@ -5,5 +5,10 @@
     "lesson": "Pelajaran itu tidak ketemu.",
     "wordLesson": "Set kata itu tidak ketemu."
   },
-  "generic": "Ada yang tidak beres. Coba lagi, ya."
+  "generic": "Ada yang tidak beres. Coba lagi, ya.",
+  "screen": {
+    "title": "Layar ini tidak termuat",
+    "body": "Layar ini tidak bisa dibuka — mungkin koneksinya terputus. Muat ulang untuk mencoba lagi, atau kembali ke Beranda.",
+    "reload": "Muat ulang"
+  }
 }

@@ -5,5 +5,10 @@
     "lesson": "Vi hittade inte den lektionen.",
     "wordLesson": "Vi hittade inte den ordsamlingen."
   },
-  "generic": "Något gick fel. Försök igen."
+  "generic": "Något gick fel. Försök igen.",
+  "screen": {
+    "title": "Den här skärmen laddades inte",
+    "body": "Den gick inte att öppna – anslutningen kan ha brutits. Ladda om för att försöka igen, eller gå tillbaka till startsidan.",
+    "reload": "Ladda om"
+  }
 }

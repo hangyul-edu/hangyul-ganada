@@ -5,5 +5,10 @@
     "lesson": "We couldn't find that lesson.",
     "wordLesson": "We couldn't find that word set."
   },
-  "generic": "Something went wrong. Have another go."
+  "generic": "Something went wrong. Have another go.",
+  "screen": {
+    "title": "This screen didn't load",
+    "body": "It couldn't be opened — the connection may have dropped. Reload to try again, or go back to Home.",
+    "reload": "Reload"
+  }
 }

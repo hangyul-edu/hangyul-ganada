@@ -5,5 +5,10 @@
     "lesson": "Não encontramos essa lição.",
     "wordLesson": "Não encontramos esse conjunto de palavras."
   },
-  "generic": "Algo deu errado. Tente de novo."
+  "generic": "Algo deu errado. Tente de novo.",
+  "screen": {
+    "title": "Esta tela não carregou",
+    "body": "Não foi possível abri-la; a conexão pode ter caído. Recarregue para tentar de novo ou volte ao início.",
+    "reload": "Recarregar"
+  }
 }

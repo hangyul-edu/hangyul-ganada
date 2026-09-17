@@ -5,5 +5,10 @@
     "lesson": "Die les konden we niet vinden.",
     "wordLesson": "Die woordenreeks konden we niet vinden."
   },
-  "generic": "Er ging iets mis. Probeer het nog eens."
+  "generic": "Er ging iets mis. Probeer het nog eens.",
+  "screen": {
+    "title": "Dit scherm is niet geladen",
+    "body": "Het kon niet worden geopend – misschien is de verbinding weggevallen. Laad opnieuw om het nog eens te proberen, of ga terug naar Home.",
+    "reload": "Opnieuw laden"
+  }
 }

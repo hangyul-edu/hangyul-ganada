@@ -5,5 +5,10 @@
     "lesson": "Non abbiamo trovato quella lezione.",
     "wordLesson": "Non abbiamo trovato quel gruppo di parole."
   },
-  "generic": "Qualcosa è andato storto. Riprova."
+  "generic": "Qualcosa è andato storto. Riprova.",
+  "screen": {
+    "title": "Questa schermata non si è caricata",
+    "body": "Non è stato possibile aprirla: forse la connessione è caduta. Ricarica per riprovare, oppure torna alla home.",
+    "reload": "Ricarica"
+  }
 }

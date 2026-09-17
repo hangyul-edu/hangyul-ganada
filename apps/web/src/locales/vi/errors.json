@@ -5,5 +5,10 @@
     "lesson": "Không tìm thấy bài học này.",
     "wordLesson": "Không tìm thấy nhóm từ này."
   },
-  "generic": "Có gì đó chưa ổn. Bạn thử lại nhé."
+  "generic": "Có gì đó chưa ổn. Bạn thử lại nhé.",
+  "screen": {
+    "title": "Màn hình này chưa tải được",
+    "body": "Không mở được — có thể kết nối đã bị ngắt. Tải lại để thử lần nữa, hoặc quay về trang chính.",
+    "reload": "Tải lại"
+  }
 }

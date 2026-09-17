@@ -1,0 +1,48 @@
+/*
+ * The failed-screen panel. Laid out like the not-found page — mascot, one
+ * heading, one sentence, the way out — because to a learner they are the same
+ * kind of moment, and two different apologies for two different faults would
+ * only invite the question of what the difference is.
+ */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hg-space-3);
+  min-height: 100%;
+  padding: var(--hg-space-12) var(--hg-space-5);
+  background: var(--hg-bg);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--hg-text-body-lg);
+  font-weight: var(--hg-weight-bold);
+  color: var(--hg-text);
+}
+
+.body {
+  margin: 0;
+  max-width: 32ch;
+  color: var(--hg-text-secondary);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--hg-space-3);
+  margin-top: var(--hg-space-3);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hg-size-hit-target);
+  padding-inline: var(--hg-space-5);
+  border-radius: var(--hg-radius-pill);
+  background: var(--hg-bg-muted);
+  color: var(--hg-text);
+  font-weight: var(--hg-weight-bold);
+}

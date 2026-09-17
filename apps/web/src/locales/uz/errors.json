@@ -5,5 +5,10 @@
     "lesson": "U darsni topa olmadik.",
     "wordLesson": "U so‘zlar to‘plamini topa olmadik."
   },
-  "generic": "Nimadir noto‘g‘ri ketdi. Yana urinib ko‘ring."
+  "generic": "Nimadir noto‘g‘ri ketdi. Yana urinib ko‘ring.",
+  "screen": {
+    "title": "Bu ekran yuklanmadi",
+    "body": "Uni ochib bo‘lmadi — ulanish uzilgan bo‘lishi mumkin. Qayta urinish uchun qayta yuklang yoki bosh sahifaga qayting.",
+    "reload": "Qayta yuklash"
+  }
 }

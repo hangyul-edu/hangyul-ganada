@@ -5,5 +5,10 @@
     "lesson": "O dersi bulamadık.",
     "wordLesson": "O kelime setini bulamadık."
   },
-  "generic": "Bir şeyler ters gitti. Bir daha dene."
+  "generic": "Bir şeyler ters gitti. Bir daha dene.",
+  "screen": {
+    "title": "Bu ekran yüklenemedi",
+    "body": "Açılamadı; bağlantı kopmuş olabilir. Yeniden yükleyip tekrar dene ya da ana sayfaya dön.",
+    "reload": "Yeniden yükle"
+  }
 }

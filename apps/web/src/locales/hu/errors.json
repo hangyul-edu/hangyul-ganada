@@ -5,5 +5,10 @@
     "lesson": "Nem találtuk azt a leckét.",
     "wordLesson": "Nem találtuk azt a szócsomagot."
   },
-  "generic": "Valami félrement. Próbáld újra."
+  "generic": "Valami félrement. Próbáld újra.",
+  "screen": {
+    "title": "Ez a képernyő nem töltődött be",
+    "body": "Nem sikerült megnyitni – talán megszakadt a kapcsolat. Töltsd újra, hogy megpróbáld még egyszer, vagy menj vissza a kezdőképernyőre.",
+    "reload": "Újratöltés"
+  }
 }

@@ -5,5 +5,10 @@
     "lesson": "Nous n’avons pas trouvé cette leçon.",
     "wordLesson": "Nous n’avons pas trouvé cette série de mots."
   },
-  "generic": "Quelque chose s’est mal passé. Réessaie."
+  "generic": "Quelque chose s’est mal passé. Réessaie.",
+  "screen": {
+    "title": "Cet écran ne s’est pas chargé",
+    "body": "Il n’a pas pu s’ouvrir : la connexion a peut-être été coupée. Rechargez pour réessayer, ou revenez à l’accueil.",
+    "reload": "Recharger"
+  }
 }

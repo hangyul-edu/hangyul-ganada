@@ -5,5 +5,10 @@
     "lesson": "Diese Lektion konnten wir nicht finden.",
     "wordLesson": "Diesen Wortsatz konnten wir nicht finden."
   },
-  "generic": "Da ist etwas schiefgegangen. Versuch es noch einmal."
+  "generic": "Da ist etwas schiefgegangen. Versuch es noch einmal.",
+  "screen": {
+    "title": "Dieser Bildschirm wurde nicht geladen",
+    "body": "Er ließ sich nicht öffnen – vielleicht ist die Verbindung abgebrochen. Lade neu, um es noch einmal zu versuchen, oder geh zurück zum Start.",
+    "reload": "Neu laden"
+  }
 }

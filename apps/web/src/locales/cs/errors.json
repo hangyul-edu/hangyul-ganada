@@ -5,5 +5,10 @@
     "lesson": "Tuhle lekci jsme nenašli.",
     "wordLesson": "Tuhle sadu slov jsme nenašli."
   },
-  "generic": "Něco se pokazilo. Zkuste to znovu."
+  "generic": "Něco se pokazilo. Zkuste to znovu.",
+  "screen": {
+    "title": "Tato obrazovka se nenačetla",
+    "body": "Nepodařilo se ji otevřít – možná vypadlo připojení. Načtěte ji znovu, nebo se vraťte na úvodní obrazovku.",
+    "reload": "Načíst znovu"
+  }
 }

@@ -162,6 +162,25 @@ const STATES = [
     },
   },
   {
+    /*
+     * A screen whose chunk never arrives. Every screen but Home is a lazy
+     * import, and before the error boundary existed a rejected one unmounted
+     * the whole tree — a blank page at every width. The state is reached the
+     * way it happens: the network refuses the Letters chunk (the context has
+     * no worker, so the request really reaches the network).
+     */
+    name: 'screen failed',
+    async arrive(page, url) {
+      const chunk = /\/assets\/LettersPage-[^/]+$/;
+      await page.route(chunk, (route) => route.abort());
+      await page.goto(`${url}/`, { waitUntil: 'networkidle' });
+      await page.getByRole('link', { name: /Letters|글자/ }).first().click();
+      await page.getByRole('alert').waitFor({ state: 'visible', timeout: 8000 });
+      await page.waitForTimeout(400);
+      await page.unroute(chunk);
+    },
+  },
+  {
     name: 'level test question',
     async arrive(page, url) {
       await page.goto(`${url}/me/level-test`, { waitUntil: 'networkidle' });
@@ -242,6 +261,14 @@ for (const device of DEVICES) {
     isMobile: true,
     colorScheme: device.scheme,
     locale: 'en',
+    /*
+     * No worker in this context. The audit measures layout, and the preview
+     * server answers every request the worker would; what the worker does
+     * change is whether a request can be intercepted at all — a chunk it has
+     * precached never reaches the network, so the "screen failed" state could
+     * not refuse one. `routing:check` is where the worker itself is measured.
+     */
+    serviceWorkers: 'block',
   });
   const page = await context.newPage();
   page.on('pageerror', (error) =>

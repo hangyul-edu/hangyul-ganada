@@ -122,6 +122,7 @@ import { LearnerProvider } from "./store/LearnerProvider";
 import { LaunchSplash } from "./ui/LaunchSplash";
 import { AppShell } from "./ui/AppShell";
 import { SystemBack } from "./ui/SystemBack";
+import { ScreenErrorBoundary } from "./ui/ScreenErrorBoundary";
 import { BottomNavigation } from "./ui/BottomNavigation";
 import { DocumentMetadata } from "./ui/DocumentMetadata";
 import { useAppearance, useSystemBarStyle } from "./ui/appearance";
@@ -141,9 +142,11 @@ function ScreenFallback() {
 function TabLayout() {
   return (
     <AppShell footer={<BottomNavigation />}>
-      <Suspense fallback={<ScreenFallback />}>
-        <Outlet />
-      </Suspense>
+      <ScreenErrorBoundary>
+        <Suspense fallback={<ScreenFallback />}>
+          <Outlet />
+        </Suspense>
+      </ScreenErrorBoundary>
     </AppShell>
   );
 }
@@ -161,9 +164,11 @@ function TabLayout() {
 function FocusLayout() {
   return (
     <AppShell tone="session" scroll={false}>
-      <Suspense fallback={<ScreenFallback />}>
-        <Outlet />
-      </Suspense>
+      <ScreenErrorBoundary>
+        <Suspense fallback={<ScreenFallback />}>
+          <Outlet />
+        </Suspense>
+      </ScreenErrorBoundary>
     </AppShell>
   );
 }
@@ -325,7 +330,9 @@ export function App() {
                 path="*"
                 element={
                   <AppShell footer={<BottomNavigation />}>
-                    <NotFoundPage />
+                    <ScreenErrorBoundary>
+                      <NotFoundPage />
+                    </ScreenErrorBoundary>
                   </AppShell>
                 }
               />

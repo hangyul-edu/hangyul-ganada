@@ -5,5 +5,10 @@
     "lesson": "Nie znaleźliśmy tej lekcji.",
     "wordLesson": "Nie znaleźliśmy tego zestawu słów."
   },
-  "generic": "Coś poszło nie tak. Spróbuj jeszcze raz."
+  "generic": "Coś poszło nie tak. Spróbuj jeszcze raz.",
+  "screen": {
+    "title": "Ten ekran się nie wczytał",
+    "body": "Nie udało się go otworzyć — być może zerwało połączenie. Wczytaj ponownie, aby spróbować jeszcze raz, albo wróć na ekran główny.",
+    "reload": "Wczytaj ponownie"
+  }
 }

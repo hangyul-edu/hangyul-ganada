@@ -5,5 +5,10 @@
     "lesson": "N-am găsit lecția aceea.",
     "wordLesson": "N-am găsit setul acela de cuvinte."
   },
-  "generic": "Ceva n-a mers. Mai încearcă."
+  "generic": "Ceva n-a mers. Mai încearcă.",
+  "screen": {
+    "title": "Ecranul acesta nu s-a încărcat",
+    "body": "Nu a putut fi deschis — poate s-a întrerupt conexiunea. Reîncarcă pentru a încerca din nou sau întoarce-te la ecranul principal.",
+    "reload": "Reîncarcă"
+  }
 }
