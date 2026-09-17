@@ -143,6 +143,7 @@
   "storage": {
     "notSaving": "Dina framsteg sparas inte på den här enheten, så det du lär dig kan vara borta nästa gång du öppnar appen. Att låta den här sidan spara data i webbläsarens inställningar brukar lösa det.",
     "recovered_one": "{{count, number}} skadad post hoppades över vid inläsningen. Resten av dina framsteg är hel.",
-    "recovered_other": "{{count, number}} skadade poster hoppades över vid inläsningen. Resten av dina framsteg är hel."
+    "recovered_other": "{{count, number}} skadade poster hoppades över vid inläsningen. Resten av dina framsteg är hel.",
+    "unreadable": "Dina sparade framsteg gick inte att läsa den här gången, så inget från den här sessionen sparas. Dina tidigare framsteg finns kvar på enheten – stäng appen och öppna den igen."
   }
 }

@@ -146,6 +146,7 @@
     "notSaving": "Progresul nu se salvează pe dispozitivul acesta, așa că ce înveți poate dispărea data viitoare când deschizi aplicația. De obicei se rezolvă permițând acestui site să păstreze date din setările browserului.",
     "recovered_few": "La încărcare au fost sărite {{count, number}} înregistrări deteriorate. Restul progresului e intact.",
     "recovered_one": "La încărcare a fost sărită {{count, number}} înregistrare deteriorată. Restul progresului e intact.",
-    "recovered_other": "La încărcare au fost sărite {{count, number}} de înregistrări deteriorate. Restul progresului e intact."
+    "recovered_other": "La încărcare au fost sărite {{count, number}} de înregistrări deteriorate. Restul progresului e intact.",
+    "unreadable": "Progresul salvat nu a putut fi citit de data aceasta, așa că nimic din această sesiune nu se păstrează. Progresul de dinainte este încă pe acest dispozitiv — închide aplicația și deschide-o din nou."
   }
 }

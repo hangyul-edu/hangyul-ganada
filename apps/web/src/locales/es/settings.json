@@ -146,6 +146,7 @@
     "notSaving": "Tu progreso no se está guardando en este dispositivo, así que lo que aprendas ahora puede desaparecer la próxima vez que abras la app. Permitir que este sitio guarde datos en los ajustes del navegador suele solucionarlo.",
     "recovered_many": "Se han omitido {{count, number}} de registros dañados al cargar. El resto de tu progreso está intacto.",
     "recovered_one": "Se ha omitido {{count, number}} registro dañado al cargar. El resto de tu progreso está intacto.",
-    "recovered_other": "Se han omitido {{count, number}} registros dañados al cargar. El resto de tu progreso está intacto."
+    "recovered_other": "Se han omitido {{count, number}} registros dañados al cargar. El resto de tu progreso está intacto.",
+    "unreadable": "Esta vez no se pudo leer tu progreso guardado, así que nada de esta sesión se está guardando. Tu progreso anterior sigue en este dispositivo: cierra la app y vuelve a abrirla."
   }
 }

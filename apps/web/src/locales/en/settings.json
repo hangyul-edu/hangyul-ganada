@@ -143,6 +143,7 @@
   "storage": {
     "notSaving": "Your progress is not being saved on this device, so what you learn may be gone the next time you open the app. Allowing this site to keep data in your browser settings usually fixes it.",
     "recovered_one": "{{count, number}} damaged record was skipped when loading. The rest of your progress is intact.",
-    "recovered_other": "{{count, number}} damaged records were skipped when loading. The rest of your progress is intact."
+    "recovered_other": "{{count, number}} damaged records were skipped when loading. The rest of your progress is intact.",
+    "unreadable": "Your saved progress could not be read this time, so nothing from this session is being kept. Your earlier progress is still on this device — close the app and open it again."
   }
 }

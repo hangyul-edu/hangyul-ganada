@@ -143,6 +143,7 @@
   "storage": {
     "notSaving": "Hindi nase-save ang pag-usad mo sa device na ito, kaya baka mawala ang natutuhan mo sa susunod na pagbukas ng app. Kadalasang naaayos ito kapag pinayagan mo ang site na ito na mag-imbak ng data sa mga setting ng browser.",
     "recovered_one": "May {{count, number}} sirang tala na nilaktawan sa pag-load. Buo pa ang natitira mong pag-usad.",
-    "recovered_other": "May {{count, number}} na sirang tala na nilaktawan sa pag-load. Buo pa ang natitira mong pag-usad."
+    "recovered_other": "May {{count, number}} na sirang tala na nilaktawan sa pag-load. Buo pa ang natitira mong pag-usad.",
+    "unreadable": "Hindi nabasa ang naka-save mong progreso ngayong pagkakataon, kaya walang itinatago mula sa session na ito. Nasa device pa rin ang dati mong progreso — isara ang app at buksan ulit."
   }
 }

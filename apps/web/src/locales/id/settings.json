@@ -140,6 +140,7 @@
   },
   "storage": {
     "notSaving": "Kemajuanmu tidak sedang disimpan di perangkat ini, jadi yang kamu pelajari bisa hilang saat aplikasi dibuka lagi. Mengizinkan situs ini menyimpan data di pengaturan peramban biasanya membereskannya.",
-    "recovered_other": "{{count, number}} catatan rusak dilewati saat memuat. Sisa kemajuanmu utuh."
+    "recovered_other": "{{count, number}} catatan rusak dilewati saat memuat. Sisa kemajuanmu utuh.",
+    "unreadable": "Kemajuan yang tersimpan tidak bisa dibaca kali ini, jadi tidak ada apa pun dari sesi ini yang disimpan. Kemajuanmu sebelumnya masih ada di perangkat ini — tutup aplikasinya lalu buka lagi."
   }
 }

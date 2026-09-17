@@ -143,6 +143,7 @@
   "storage": {
     "notSaving": "Dein Fortschritt wird auf diesem Gerät nicht gespeichert — was du jetzt lernst, ist beim nächsten Öffnen vielleicht weg. Wenn du dieser Seite in den Browsereinstellungen erlaubst, Daten zu speichern, ist das Problem meist behoben.",
     "recovered_one": "Beim Laden wurde {{count, number}} beschädigter Eintrag übersprungen. Der Rest deines Fortschritts ist unversehrt.",
-    "recovered_other": "Beim Laden wurden {{count, number}} beschädigte Einträge übersprungen. Der Rest deines Fortschritts ist unversehrt."
+    "recovered_other": "Beim Laden wurden {{count, number}} beschädigte Einträge übersprungen. Der Rest deines Fortschritts ist unversehrt.",
+    "unreadable": "Dein gespeicherter Fortschritt konnte diesmal nicht gelesen werden, deshalb wird aus dieser Sitzung nichts behalten. Dein bisheriger Fortschritt ist noch auf diesem Gerät – schließ die App und öffne sie neu."
   }
 }

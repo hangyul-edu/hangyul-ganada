@@ -149,6 +149,7 @@
     "recovered_few": "Przy wczytywaniu pominięto {{count, number}} uszkodzone wpisy. Reszta twojego postępu jest cała.",
     "recovered_many": "Przy wczytywaniu pominięto {{count, number}} uszkodzonych wpisów. Reszta twojego postępu jest cała.",
     "recovered_one": "Przy wczytywaniu pominięto {{count, number}} uszkodzony wpis. Reszta twojego postępu jest cała.",
-    "recovered_other": "Przy wczytywaniu pominięto {{count, number}} uszkodzone wpisy. Reszta twojego postępu jest cała."
+    "recovered_other": "Przy wczytywaniu pominięto {{count, number}} uszkodzone wpisy. Reszta twojego postępu jest cała.",
+    "unreadable": "Tym razem nie udało się odczytać zapisanych postępów, więc nic z tej sesji nie jest zapisywane. Wcześniejsze postępy nadal są na tym urządzeniu — zamknij aplikację i otwórz ją ponownie."
   }
 }

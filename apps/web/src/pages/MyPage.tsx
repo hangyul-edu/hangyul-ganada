@@ -182,7 +182,12 @@ export function MyPage() {
         {state.storage.checked && !state.storage.durable && (
           <p className={styles.storageWarning} role="status">
             <AlertIcon size={16} />
-            {t('settings:storage.notSaving')}
+            {/* Two different facts, two sentences: a browser that cannot keep
+                data, or a stored profile this launch could not read and is
+                therefore leaving alone. See `LearnerProvider`'s hydrate path. */}
+            {state.storage.reason === 'unreadable'
+              ? t('settings:storage.unreadable')
+              : t('settings:storage.notSaving')}
           </p>
         )}
         {state.recovered > 0 && (

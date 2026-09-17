@@ -1,7 +1,7 @@
 {
   "title": "Moje učení",
   "stats": {
-    "lettersLearned": "Zvládnuté litery",
+    "lettersLearned": "Zvládnutá písmena",
     "wordsLearned": "Zvládnutá slova",
     "alphabetProgress": "Postup abecedou hangul",
     "studyDays": "Dnů učení"
@@ -9,7 +9,7 @@
   "language": {
     "title": "Jazyk",
     "pickerTitle": "Vyberte jazyk",
-    "pickerIntro": "Jazyk rozhraní. To, co se učíte — litery hangulu, slova a vzorové věty — zůstává v korejštině.",
+    "pickerIntro": "Jazyk rozhraní. To, co se učíte — písmena hangulu, slova a vzorové věty — zůstává v korejštině.",
     "listAria": "Dostupné jazyky",
     "searchLabel": "Hledat jazyk",
     "searchPlaceholder": "Hledat podle názvu nebo kódu",
@@ -25,8 +25,8 @@
     "description": "Použije se na korejštinu, kterou v aplikaci čtete. Písmeno, které obtahujete, se vždy kreslí stejně."
   },
   "dailyTarget": {
-    "title": "Liter denně",
-    "description": "Kolik liter hangulu chcete každý den dokončit.",
+    "title": "Písmen denně",
+    "description": "Kolik písmen hangulu chcete každý den dokončit.",
     "option_few": "{{count, number}}",
     "option_many": "{{count, number}}",
     "option_one": "{{count, number}}",
@@ -56,7 +56,7 @@
     "description": "Dokončené lekce, historie opakování a aktivita v učení se smažou. Nejde to vzít zpět.",
     "confirm": "Vynulovat",
     "cancel": "Zrušit",
-    "body": "Začněte znovu, od úplně první litery."
+    "body": "Začněte znovu, od úplně prvního písmene."
   },
   "backup": {
     "body": "Ulož si postup do souboru a obnov ho na jiném telefonu.",
@@ -78,7 +78,7 @@
   },
   "voice": {
     "title": "Hlas výslovnosti",
-    "description": "Kdo předčítá litery, slabiky a slova.",
+    "description": "Kdo předčítá písmena, slabiky a slova.",
     "female": "Ženský hlas",
     "male": "Mužský hlas",
     "preview": "Poslechnout vybraný hlas",
@@ -149,6 +149,7 @@
     "recovered_few": "Při načítání byly přeskočeny {{count, number}} poškozené záznamy. Zbytek postupu je celý.",
     "recovered_many": "Při načítání bylo přeskočeno {{count, number}} poškozeného záznamu. Zbytek postupu je celý.",
     "recovered_one": "Při načítání byl přeskočen {{count, number}} poškozený záznam. Zbytek postupu je celý.",
-    "recovered_other": "Při načítání bylo přeskočeno {{count, number}} poškozených záznamů. Zbytek postupu je celý."
+    "recovered_other": "Při načítání bylo přeskočeno {{count, number}} poškozených záznamů. Zbytek postupu je celý.",
+    "unreadable": "Uložený postup se tentokrát nepodařilo načíst, takže se z tohoto sezení nic neukládá. Dřívější postup je stále v tomto zařízení – zavřete aplikaci a znovu ji otevřete."
   }
 }

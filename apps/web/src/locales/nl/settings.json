@@ -143,6 +143,7 @@
   "storage": {
     "notSaving": "Je voortgang wordt op dit apparaat niet bewaard, dus wat je leert kan weg zijn als je de app opnieuw opent. Deze site in je browserinstellingen toestaan gegevens te bewaren lost het meestal op.",
     "recovered_one": "{{count, number}} beschadigd record is bij het laden overgeslagen. De rest van je voortgang is intact.",
-    "recovered_other": "{{count, number}} beschadigde records zijn bij het laden overgeslagen. De rest van je voortgang is intact."
+    "recovered_other": "{{count, number}} beschadigde records zijn bij het laden overgeslagen. De rest van je voortgang is intact.",
+    "unreadable": "Je opgeslagen voortgang kon deze keer niet worden gelezen, dus van deze sessie wordt niets bewaard. Je eerdere voortgang staat nog op dit apparaat – sluit de app en open hem opnieuw."
   }
 }

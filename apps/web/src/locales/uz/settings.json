@@ -143,6 +143,7 @@
   "storage": {
     "notSaving": "Jarayoningiz bu qurilmada saqlanmayapti, shu sababli o‘rganganlaringiz ilovani keyingi ochganingizda yo‘qolishi mumkin. Odatda brauzer sozlamalarida bu saytga ma’lumot saqlashga ruxsat berish yordam beradi.",
     "recovered_one": "Yuklashda {{count, number}} ta buzilgan yozuv o‘tkazib yuborildi. Qolgan jarayoningiz butun.",
-    "recovered_other": "Yuklashda {{count, number}} ta buzilgan yozuv o‘tkazib yuborildi. Qolgan jarayoningiz butun."
+    "recovered_other": "Yuklashda {{count, number}} ta buzilgan yozuv o‘tkazib yuborildi. Qolgan jarayoningiz butun.",
+    "unreadable": "Bu safar saqlangan yutuqlaringizni o‘qib bo‘lmadi, shuning uchun bu mashg‘ulotdan hech narsa saqlanmaydi. Avvalgi yutuqlaringiz hali ham shu qurilmada — ilovani yopib, qayta oching."
   }
 }

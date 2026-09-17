@@ -183,6 +183,32 @@ export function LearnerProvider({
   const mistakeRepo = useRef<MistakeRepository | null>(null);
   const numbersRepo = useRef<NumbersRepository | null>(null);
 
+  /**
+   * Points every repository at a driver — or, with `null`, at nothing, which
+   * is how a launch that could not read the stored profile is kept from
+   * writing over it (see the `hydrate` failure path).
+   */
+  const wireRepositories = useCallback((driver: PersistenceDriver | null) => {
+    settingsRepo.current = driver && new SettingsRepository(driver);
+    progressRepo.current = driver && new ProgressRepository(driver);
+    sessionRepo.current = driver && new LearningRepository(driver);
+    activityRepo.current = driver && new ActivityRepository(driver);
+    memoryRepo.current = driver && new MemoryRepository(driver);
+    attemptRepo.current = driver && new AttemptRepository(driver);
+    mistakeRepo.current = driver && new MistakeRepository(driver);
+    numbersRepo.current = driver && new NumbersRepository(driver);
+    return {
+      settings: settingsRepo.current!,
+      progress: progressRepo.current!,
+      sessions: sessionRepo.current!,
+      activity: activityRepo.current!,
+      memory: memoryRepo.current!,
+      attempts: attemptRepo.current!,
+      mistakes: mistakeRepo.current!,
+      numbers: numbersRepo.current!,
+    };
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
 
@@ -205,14 +231,7 @@ export function LearnerProvider({
       await core;
       if (cancelled) return;
       driverRef.current = driver;
-      settingsRepo.current = new SettingsRepository(driver);
-      progressRepo.current = new ProgressRepository(driver);
-      sessionRepo.current = new LearningRepository(driver);
-      activityRepo.current = new ActivityRepository(driver);
-      memoryRepo.current = new MemoryRepository(driver);
-      attemptRepo.current = new AttemptRepository(driver);
-      mistakeRepo.current = new MistakeRepository(driver);
-      numbersRepo.current = new NumbersRepository(driver);
+      const repos = wireRepositories(driver);
 
       await runMigrations({
         driver,
@@ -231,16 +250,7 @@ export function LearnerProvider({
        */
       const [durable, loaded] = await Promise.all([
         checkPersistence(driver),
-        readEverything({
-          settings: settingsRepo.current,
-          progress: progressRepo.current,
-          sessions: sessionRepo.current,
-          activity: activityRepo.current,
-          memory: memoryRepo.current,
-          attempts: attemptRepo.current,
-          mistakes: mistakeRepo.current,
-          numbers: numbersRepo.current,
-        }),
+        readEverything(repos),
       ]);
       const { settings, progress, sessions, activity, memory, attempts, mistakes, numbers } = loaded;
       if (cancelled) return;
@@ -257,7 +267,7 @@ export function LearnerProvider({
       const seeded = settings.content_seed
         ? settings
         : { ...settings, content_seed: newContentSeed() };
-      if (seeded !== settings) void settingsRepo.current.save(seeded);
+      if (seeded !== settings) void repos.settings.save(seeded);
 
       setState({
         settings: seeded,
@@ -286,10 +296,10 @@ export function LearnerProvider({
         // launch picks up the rest, and the service worker has whatever
         // arrived.
       });
-      void sessionRepo.current.prune();
-      void activityRepo.current.prune();
-      void attemptRepo.current.prune();
-      void mistakeRepo.current.prune();
+      void repos.sessions.prune();
+      void repos.activity.prune();
+      void repos.attempts.prune();
+      void repos.mistakes.prune();
     }
 
     void hydrate().catch(() => {
@@ -304,28 +314,33 @@ export function LearnerProvider({
       // progress under a browser whose IndexedDB was in perfect health. That is
       // precisely the guess the whole capability path exists to avoid.
       //
-      // So the storage question goes to the only thing entitled to answer it:
-      // another write/read/erase round trip against the driver, if one was
-      // opened at all. If there is no driver, nothing is known and the screen
-      // stays silent — the warning is for a proven failure, never for an
-      // unanswered question.
+      // And nothing below may *write*. The repositories were wired before the
+      // read failed, and every write goes through them with whatever `state`
+      // holds — which is now the fresh profile, not the learner's. The first
+      // answered question used to save default settings over the stored row:
+      // the level, the streak days, the daily plan and the placement result,
+      // gone under a launch that had merely failed to read them, and the
+      // screen said "saving" while it happened. So the repositories are
+      // detached: this launch runs in memory, the stored profile is left
+      // exactly as it was for the next launch to read, and the screen says so
+      // — `reason: 'unreadable'` is its own sentence in Settings, not the one
+      // about a browser that cannot keep data. A restore from a backup wires
+      // them again, because a restore replaces the stored rows on purpose.
       if (cancelled) return;
       setReady(true);
       const driver = driverRef.current;
       if (!driver) return;
-      void checkPersistence(driver).then((durable) => {
-        if (cancelled) return;
-        setState((current) => ({
-          ...current,
-          storage: { engine: driver.name, durable, checked: true },
-        }));
-      });
+      wireRepositories(null);
+      setState((current) => ({
+        ...current,
+        storage: { engine: driver.name, durable: false, checked: true, reason: 'unreadable' },
+      }));
     });
 
     return () => {
       cancelled = true;
     };
-  }, [injected]);
+  }, [injected, wireRepositories]);
 
   // --- Writes ---------------------------------------------------------------
 
@@ -784,6 +799,10 @@ export function LearnerProvider({
     const driver = driverRef.current;
     if (!driver) return false;
     await restoreBackup(driver, backup);
+    // A launch that failed to read the old rows detached the repositories to
+    // protect them; the backup has just replaced those rows, so there is
+    // nothing left to protect and everything to read.
+    if (settingsRepo.current === null) wireRepositories(driver);
     const repos = {
       settings: settingsRepo.current,
       progress: progressRepo.current,
@@ -812,7 +831,7 @@ export function LearnerProvider({
       recovered: loaded.progress.dropped,
     }));
     return true;
-  }, []);
+  }, [wireRepositories]);
 
   const reset = useCallback(async () => {
     const driver = driverRef.current;

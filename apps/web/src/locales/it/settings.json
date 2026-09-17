@@ -146,6 +146,7 @@
     "notSaving": "I tuoi progressi non vengono salvati su questo dispositivo, quindi quello che impari potrebbe sparire alla prossima apertura. Di solito basta permettere a questo sito di conservare dati nelle impostazioni del browser.",
     "recovered_many": "{{count, number}} record danneggiati sono stati saltati al caricamento. Il resto dei tuoi progressi è intatto.",
     "recovered_one": "{{count, number}} record danneggiato è stato saltato al caricamento. Il resto dei tuoi progressi è intatto.",
-    "recovered_other": "{{count, number}} record danneggiati sono stati saltati al caricamento. Il resto dei tuoi progressi è intatto."
+    "recovered_other": "{{count, number}} record danneggiati sono stati saltati al caricamento. Il resto dei tuoi progressi è intatto.",
+    "unreadable": "Questa volta non è stato possibile leggere i tuoi progressi salvati, quindi nulla di questa sessione viene conservato. I tuoi progressi precedenti sono ancora su questo dispositivo: chiudi l’app e riaprila."
   }
 }

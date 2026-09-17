@@ -33,7 +33,17 @@ export interface LearnerState {
    * has: the pre-hydration placeholder is an in-memory store, so a screen that
    * reads `durable` too early sees `false` on a perfectly healthy install.
    */
-  storage: { engine: string; durable: boolean; checked: boolean };
+  storage: {
+    engine: string;
+    durable: boolean;
+    checked: boolean;
+    /**
+     * Why nothing is being kept, when the cause is not the browser. Set when
+     * the stored profile could not be read on launch and the app is running
+     * in memory rather than writing a fresh profile over the stored one.
+     */
+    reason?: 'unreadable';
+  };
   /** Rows dropped on load because they were unreadable. Surfaced in Settings. */
   recovered: number;
   /** Per-item, per-skill memory. Keyed by `${kind}:${item_key}`. */
