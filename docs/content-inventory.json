@@ -731,7 +731,7 @@
  },
  "safety": {
   "policy_version": "1.0.0",
-  "fields_scanned": 1123834,
+  "fields_scanned": 1123962,
   "items_scanned": 442970,
   "findings": 0,
   "findings_by_category": {}

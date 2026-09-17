@@ -54,6 +54,45 @@ for (const { width, locale } of CASES) {
   const page = await context.newPage();
   await page.goto(baseUrl, { waitUntil: 'networkidle' });
   await page.waitForTimeout(1500);
+  /*
+    One learning day, so the chip is the numeric one.
+
+    Since the nineteenth pass a learner who has never answered a question is
+    shown *Start today* rather than "0 days" — an invitation, with no number in
+    it to rewrite — and a fresh profile is exactly what a new context holds.
+    The measurements here are of the numeric chip at every value, so the
+    profile is given the smallest thing that makes a learning day (one answered
+    question today) and the page reloaded; the digits are then substituted as
+    before. The invitation itself is measured by the header cases in
+    `AppHeader` and the screen audit.
+  */
+  await page.evaluate(async () => {
+    const db = await new Promise((resolve) => {
+      const request = indexedDB.open('hangyul-ganada');
+      request.onsuccess = () => resolve(request.result);
+    });
+    const now = new Date();
+    const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    const tx = db.transaction(['activity'], 'readwrite');
+    tx.objectStore('activity').put(
+      {
+        date,
+        first_at: now.toISOString(),
+        last_at: now.toISOString(),
+        active_ms: 60_000,
+        attempts: 1,
+        passes: 1,
+        characters_learned: 0,
+        words_learned: 0,
+        reviews: 0,
+        items: { 'character:ㅏ': 1 },
+      },
+      date,
+    );
+    await new Promise((resolve) => (tx.oncomplete = resolve));
+  });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForTimeout(1500);
 
   for (const streak of STREAKS) {
     for (const level of LEVELS) {
