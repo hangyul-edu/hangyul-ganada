@@ -230,9 +230,16 @@ const html = `<!doctype html>
   h1:first-of-type { page-break-before: avoid; }
   h2 { font-size: 12.5pt; margin: 7mm 0 2.5mm; page-break-after: avoid; }
   h3 { font-size: 10.5pt; margin: 5mm 0 2mm; color: var(--muted); page-break-after: avoid; }
-  p { margin: 0 0 3mm; }
+  /*
+   * No single line of a paragraph left behind on a page, or carried alone to
+   * the next. A chapter's last line on its own page is the tail-page class
+   * I-225 records; three lines is the smallest amount a reader takes for
+   * content rather than a printing fault. Tables cannot be helped the same way
+   * — a row is atomic — so a one-row table tail can still occur.
+   */
+  p, li { margin: 0 0 3mm; orphans: 3; widows: 3; }
   ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
-  li { margin-bottom: 1mm; }
+  li { margin: 0 0 1mm; }
   strong { color: var(--ink); }
   a { color: var(--primary); text-decoration: none; }
 
@@ -281,6 +288,15 @@ const html = `<!doctype html>
     font-size: 8.7pt;
   }
   tr { page-break-inside: avoid; }
+  /*
+   * And a table's last row travels with the row above it. A row is atomic, so
+   * a table that ends a chapter can leave its final row alone on the next
+   * page — page 66 of this edition's first render was exactly one row with
+   * "0" in it under a repeated header. Keeping the last two rows together
+   * moves that break up by one row, which a reader does not notice, and
+   * costs nothing where the table fits.
+   */
+  tbody tr:last-child { break-before: avoid; }
   thead { display: table-header-group; }
   th, td {
     border: 1px solid var(--rule);

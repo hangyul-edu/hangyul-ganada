@@ -1,6 +1,6 @@
 {
  "_comment": "Written by scripts/qa-quote-render.mjs from the rendered home screen. Read by scripts/build-quote-audit.mjs for the UI-wrapping and RTL columns of docs/QUOTE_TRANSLATION_AUDIT.md. Do not edit by hand.",
- "renderedAt": "2026-09-14T08:10:11.672Z",
+ "renderedAt": "2026-09-17T06:43:45.187Z",
  "widths": [
   320,
   360,
@@ -634,7 +634,7 @@
      "320@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 507
+      "cardHeight": 465
      },
      "360@2x": {
       "ok": true,
@@ -1944,7 +1944,7 @@
      "320@1x": {
       "ok": true,
       "fontSize": 14,
-      "cardHeight": 170
+      "cardHeight": 149
      },
      "360@1x": {
       "ok": true,
@@ -1999,7 +1999,7 @@
      "430@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 339
+      "cardHeight": 297
      }
     },
     "rtl": null,
@@ -2015,7 +2015,7 @@
      "360@1x": {
       "ok": true,
       "fontSize": 14,
-      "cardHeight": 192
+      "cardHeight": 171
      },
      "375@1x": {
       "ok": true,
@@ -2212,7 +2212,7 @@
      "320@1x": {
       "ok": true,
       "fontSize": 14,
-      "cardHeight": 170
+      "cardHeight": 149
      },
      "360@1x": {
       "ok": true,
@@ -2262,7 +2262,7 @@
      "412@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 339
+      "cardHeight": 297
      },
      "430@2x": {
       "ok": true,
@@ -2283,7 +2283,7 @@
      "360@1x": {
       "ok": true,
       "fontSize": 14,
-      "cardHeight": 192
+      "cardHeight": 171
      },
      "375@1x": {
       "ok": true,
@@ -2323,7 +2323,7 @@
      "390@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 516
+      "cardHeight": 474
      },
      "412@2x": {
       "ok": true,
@@ -2333,7 +2333,7 @@
      "430@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 474
+      "cardHeight": 432
      }
     },
     "rtl": null,
@@ -2371,7 +2371,7 @@
      "430@1x": {
       "ok": true,
       "fontSize": 14,
-      "cardHeight": 126
+      "cardHeight": 105
      },
      "320@2x": {
       "ok": true,
@@ -2391,7 +2391,7 @@
      "390@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 378
+      "cardHeight": 336
      },
      "412@2x": {
       "ok": true,
@@ -2401,7 +2401,7 @@
      "430@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 336
+      "cardHeight": 294
      }
     },
     "rtl": null,
@@ -2442,7 +2442,7 @@
      "320@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 816
+      "cardHeight": 774
      },
      "360@2x": {
       "ok": true,
@@ -2452,7 +2452,7 @@
      "375@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 600
+      "cardHeight": 558
      },
      "390@2x": {
       "ok": true,
@@ -3046,12 +3046,12 @@
      "320@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 549
+      "cardHeight": 507
      },
      "360@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 507
+      "cardHeight": 468
      },
      "375@2x": {
       "ok": true,
@@ -3061,12 +3061,12 @@
      "390@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 423
+      "cardHeight": 381
      },
      "412@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 381
+      "cardHeight": 339
      },
      "430@2x": {
       "ok": true,
@@ -3107,12 +3107,12 @@
      "430@1x": {
       "ok": true,
       "fontSize": 14,
-      "cardHeight": 170
+      "cardHeight": 149
      },
      "320@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 816
+      "cardHeight": 774
      },
      "360@2x": {
       "ok": true,
@@ -3122,7 +3122,7 @@
      "375@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 600
+      "cardHeight": 558
      },
      "390@2x": {
       "ok": true,
@@ -3850,12 +3850,12 @@
      "320@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 549
+      "cardHeight": 507
      },
      "360@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 507
+      "cardHeight": 426
      },
      "375@2x": {
       "ok": true,
@@ -3916,7 +3916,7 @@
      "320@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 816
+      "cardHeight": 774
      },
      "360@2x": {
       "ok": true,
@@ -3926,7 +3926,7 @@
      "375@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 600
+      "cardHeight": 558
      },
      "390@2x": {
       "ok": true,
@@ -3936,7 +3936,7 @@
      "412@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 558
+      "cardHeight": 516
      },
      "430@2x": {
       "ok": true,
@@ -4128,7 +4128,7 @@
      "375@2x": {
       "ok": true,
       "fontSize": 28,
-      "cardHeight": 339
+      "cardHeight": 297
      },
      "390@2x": {
       "ok": true,

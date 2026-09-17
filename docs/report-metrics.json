@@ -39,7 +39,7 @@
  "dictionary_examples": 3579,
  "audio_files": 15828,
  "audio_slots": 15948,
- "unobserved_words": 55,
+ "unobserved_words": 58,
  "more_about_it": 99,
  "level_test_items": 4156,
  "words_at_28_to_30": 436,
@@ -48,8 +48,8 @@
   "open": 6,
   "partial": 5,
   "blocked": 1,
-  "resolved": 232,
-  "tracked": 244
+  "resolved": 236,
+  "tracked": 248
  },
  "apk_mb": "86.4",
  "aab_mb": "84.6",
@@ -787,7 +787,7 @@
   },
   "safety": {
    "policy_version": "1.0.0",
-   "fields_scanned": 1123834,
+   "fields_scanned": 1123962,
    "items_scanned": 442970,
    "findings": 0,
    "findings_by_category": {}
