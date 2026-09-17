@@ -88,13 +88,6 @@ export function dilate(mask: Mask, radiusPx: number): Mask {
   return out;
 }
 
-/** Ink present in `a` but not in `b`. */
-export function countDifference(a: Mask, b: Mask): number {
-  let n = 0;
-  for (let i = 0; i < a.data.length; i += 1) if (a.data[i] && !b.data[i]) n += 1;
-  return n;
-}
-
 /**
  * Size, in pixels, of the largest 8-connected blob of ink in `mask`.
  *

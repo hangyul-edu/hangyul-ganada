@@ -268,11 +268,6 @@ export function hasVectorGlyph(character: string): boolean {
   return strokeStepsFor(character).length > 0;
 }
 
-/** The whole character as one path, for a guide or a finished still. */
-export function vectorGlyphPaths(character: string): string[] {
-  return vectorGlyph(character).strokes.map((stroke) => stroke.d);
-}
-
 /**
  * A letter, in the proportions the reference face gives it.
  *

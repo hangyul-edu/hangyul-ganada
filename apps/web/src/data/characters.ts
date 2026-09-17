@@ -1316,10 +1316,6 @@ export function getLesson(id: string): LetterLesson | undefined {
   return LETTER_LESSONS.find((lesson) => lesson.id === id);
 }
 
-export function getUnit(id: string): CurriculumUnit | undefined {
-  return CURRICULUM_UNITS.find((unit) => unit.id === id);
-}
-
 export function getLessonCharacters(lesson: LetterLesson): HangulCharacter[] {
   return lesson.character_ids.map((id) => BY_ID.get(id)).filter((x): x is HangulCharacter => !!x);
 }
@@ -1332,16 +1328,3 @@ export function getLessonCharacters(lesson: LetterLesson): HangulCharacter[] {
  * rather than typed out again, so the two cannot disagree.
  */
 export const LETTER_ORDER: string[] = ALL_LETTERS.map((c) => c.character);
-
-/** Letter-group names are interface chrome; this is the order they are taught. */
-export const LETTER_GROUPS: LetterGroup[] = [
-  'basic_vowel',
-  'basic_consonant',
-  'syllable',
-  'compound_vowel',
-  'double_consonant',
-  'final_consonant',
-];
-
-/** Every distinct syllable the curriculum teaches — used by the audio build. */
-export const CURRICULUM_SYLLABLES: string[] = ALL_SYLLABLES.map((c) => c.character);

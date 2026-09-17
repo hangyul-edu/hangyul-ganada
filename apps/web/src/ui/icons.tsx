@@ -196,52 +196,10 @@ export const EraserIcon = (p: IconProps) => (
   </Icon>
 );
 
-export const PenIcon = (p: IconProps) => (
-  <Icon {...p}>
-    <path d="M4 20l1-4L16 5l3 3L8 19z" />
-    <path d="M14.5 6.5l3 3" />
-  </Icon>
-);
-
-export const TypeIcon = (p: IconProps) => (
-  <Icon {...p}>
-    <path d="M4 7V5h16v2" />
-    <path d="M12 5v14M9 19h6" />
-  </Icon>
-);
-
-export const SparkleIcon = (p: IconProps) => (
-  <Icon {...p}>
-    <path d="M12 3l2 5.5L19.5 10 14 12l-2 5.5L10 12 4.5 10 10 8.5z" />
-  </Icon>
-);
-
 export const EyeIcon = (p: IconProps) => (
   <Icon {...p}>
     <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z" />
     <circle cx="12" cy="12" r="3" />
-  </Icon>
-);
-
-export const EyeOffIcon = (p: IconProps) => (
-  <Icon {...p}>
-    <path d="M10.6 6.1A9.7 9.7 0 0 1 12 6c6 0 9.5 6 9.5 6a17 17 0 0 1-3 3.6" />
-    <path d="M6.4 7.8A16.6 16.6 0 0 0 2.5 12S6 18 12 18c1.3 0 2.5-.3 3.6-.7" />
-    <path d="M4 4l16 16" />
-  </Icon>
-);
-
-export const GridIcon = (p: IconProps) => (
-  <Icon {...p}>
-    <rect x="4" y="4" width="16" height="16" rx="2" />
-    <path d="M4 12h16M12 4v16" />
-  </Icon>
-);
-
-export const SettingsIcon = (p: IconProps) => (
-  <Icon {...p}>
-    <circle cx="12" cy="12" r="3" />
-    <path d="M12 3v2.5M12 18.5V21M21 12h-2.5M5.5 12H3M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8M18.4 18.4l-1.8-1.8M7.4 7.4 5.6 5.6" />
   </Icon>
 );
 
@@ -329,14 +287,6 @@ export const LockIcon = (p: IconProps) => (
   <Icon {...p}>
     <rect x="4.5" y="10.5" width="15" height="9.5" rx="2.5" />
     <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" />
-  </Icon>
-);
-
-/** A closed book — the vocabulary curriculum, not a single word. */
-export const BookIcon = (p: IconProps) => (
-  <Icon {...p}>
-    <path d="M5 4.5h9a3.5 3.5 0 0 1 3.5 3.5v11.5H8.5A3.5 3.5 0 0 1 5 16z" />
-    <path d="M5 16a3.5 3.5 0 0 1 3.5-3.5h9" />
   </Icon>
 );
 

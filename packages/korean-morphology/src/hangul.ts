@@ -57,13 +57,6 @@ export function compose(initial: number, medial: number, final = 0): string {
   return String.fromCodePoint(BASE + (initial * MEDIALS + medial) * FINALS_COUNT + final);
 }
 
-/** The syllable with a different final consonant. */
-export function withFinal(char: string, final: string): string {
-  const parts = decompose(char);
-  if (!parts) return char;
-  return compose(parts.initial, parts.medial, FINALS.indexOf(final));
-}
-
 export function isHangulSyllable(char: string): boolean {
   return decompose(char) !== null;
 }

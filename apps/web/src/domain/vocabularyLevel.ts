@@ -1,6 +1,6 @@
 import type { VocabularyWord } from '@hangyul-ganada/shared-types';
 
-import { CUMULATIVE_WORDS, LEVELS } from './levelTest';
+import { LEVELS } from './levelTest';
 
 /**
  * What the learner's Vocabulary Level does to what they are taught.
@@ -94,25 +94,6 @@ export function teachingZone(level: number): { min: number; max: number } {
   if (level <= 2) return { min: 1, max: clamp(WIDTH) };
   if (level >= LEVELS - 1) return { min: clamp(LEVELS - (WIDTH - 1)), max: LEVELS };
   return { min: clamp(level - 1), max: clamp(level + 1) };
-}
-
-/**
- * The level a frequency rank falls in. **Not** a word's level any more.
- *
- * Kept because the Level Test's *dictionary* anchors have no taught level —
- * they are not taught — and a rank is the only evidence there is about them.
- * Nothing that selects a word for a learner may call this: the corpus stopped
- * at rank 3,500 while the ladder ran to 10,635, so it returned a number between
- * 1 and 14 for every word the product owns and 30 for the eight it had never
- * seen a rank for. Levels 15 to 29 were empty and everybody above 14 was taught
- * the same eighty words.
- */
-export function levelOfRank(rank: number | null): number {
-  if (rank === null) return LEVELS;
-  for (let level = 0; level < CUMULATIVE_WORDS.length; level += 1) {
-    if (rank <= CUMULATIVE_WORDS[level]!) return level + 1;
-  }
-  return LEVELS;
 }
 
 /**

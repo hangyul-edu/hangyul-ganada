@@ -1049,9 +1049,6 @@ export function numberLessonItems(lesson: NumberLesson): NumberItem[] {
   return lesson.item_ids.map((id) => BY_ID.get(id)).filter((i): i is NumberItem => i !== undefined);
 }
 
-/** Module indexes, derived, so a lesson cannot belong to a module that does not exist. */
-export const NUMBER_UNITS: number[] = NUMBER_MODULES.map((m) => m.index);
-
 /**
  * The memory-store key for a number item, for the review scheduler.
  *

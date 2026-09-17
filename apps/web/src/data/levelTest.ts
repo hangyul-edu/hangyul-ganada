@@ -214,8 +214,3 @@ export function loadLevelTestBank(locale: string): Promise<LevelTestBank> {
   bankPromises.set(locale, promise);
   return promise;
 }
-
-/** Test seam. */
-export function resetLevelTestBank(): void {
-  bankPromises.clear();
-}

@@ -131,8 +131,3 @@ export function bindSafeAreaInsets(): () => void {
 
   return () => void handle.then((listener) => void listener.remove());
 }
-
-/** The current measurement, for automated QA. Never called by the interface. */
-export function readNativeInsets(): Promise<NativeInsets> {
-  return HangyulInsets.getInsets();
-}

@@ -1338,14 +1338,3 @@ export function planKinds(): ItemKind[] {
   }
   return out;
 }
-
-/**
- * The cumulative vocabulary size each level stands for.
- *
- * Shown on the result as *about this many words*, never as a count of what the
- * learner knows: it is the size of the frequency band the estimate sits in.
- */
-export const CUMULATIVE_WORDS = [
-  147, 294, 441, 588, 735, 955, 1175, 1395, 1615, 1835, 2166, 2497, 2828, 3159, 3490, 3930,
-  4370, 4810, 5250, 5690, 6163, 6636, 7109, 7582, 8055, 8571, 9087, 9603, 10119, 10635,
-] as const;

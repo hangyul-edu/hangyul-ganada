@@ -19,12 +19,10 @@ import { isRecovered, type Mistake, type MistakeMap } from '../domain/mistakes';
 import { STORE_NAMES } from './driver';
 import type { PersistenceDriver } from './driver';
 import {
-  META_KEY,
   SETTINGS_KEY,
   blankProgress,
   defaultSettings,
   progressKey,
-  type SchemaMeta,
   type StoredSettings,
 } from './schema';
 
@@ -725,14 +723,6 @@ export interface AttemptRecord {
 }
 
 // --- Meta -------------------------------------------------------------------
-
-export class MetaRepository {
-  constructor(private readonly driver: PersistenceDriver) {}
-
-  read(): Promise<SchemaMeta | undefined> {
-    return this.driver.get<SchemaMeta>('meta', META_KEY);
-  }
-}
 
 /**
  * Wipes every store the learner fills. Behind a confirmation in Settings, and

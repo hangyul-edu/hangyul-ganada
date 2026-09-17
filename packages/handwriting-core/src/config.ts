@@ -332,4 +332,3 @@ export const DEFAULT_EVALUATION_CONFIG: EvaluationConfig = {
  * than the tracing guide.
  */
 export const TRACE_GLYPH_OPACITY = 0.32;
-export const PRACTICE_GLYPH_OPACITY = 0.15;

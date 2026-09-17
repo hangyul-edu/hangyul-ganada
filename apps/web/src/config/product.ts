@@ -83,14 +83,6 @@ export function productName(locale: string): string {
   );
 }
 
-export function familyName(locale: string): string {
-  const base = locale.split('-')[0]!.toLowerCase();
-  return PRODUCT.family.localizedName[base as BrandLocale] ?? PRODUCT.family.name;
-}
-
-/** Where the learner lands after onboarding. */
-export const HOME_ROUTE = '/';
-
 /**
  * The address a content report is sent to, or null.
  *

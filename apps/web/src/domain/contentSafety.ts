@@ -42,9 +42,6 @@ import type { DailyPlan } from './vocabularyDay';
  */
 const RETIRED: ReadonlySet<string> = new Set((retiredIds as { ids: string[] }).ids);
 
-/** The policy version the tombstones were written under. */
-export const RETIRED_POLICY_VERSION: string = (retiredIds as { policyVersion: string }).policyVersion;
-
 /** Whether a taught-word id has been retired under the content policy. */
 export function isRetiredWordId(id: string): boolean {
   return RETIRED.has(id);

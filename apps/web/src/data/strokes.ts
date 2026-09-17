@@ -860,19 +860,3 @@ export const STROKE_ORDER_UPRIGHT: Record<string, StrokeStep[]> = {
   ㅋ: [giyeok(20, 78, 18, 84, 0), stroke([[20, 49], [78, 49]])],
   ㄲ: [giyeok(10, 46, 20, 80, 0), giyeok(56, 92, 20, 80, 0)],
 };
-
-/** Every character the stroke data covers. */
-export const STROKE_ORDER_CHARACTERS = Object.keys(STROKE_ORDER);
-
-/**
- * The stroke order for a character, or the letters of a syllable in order.
- *
- * A syllable block is written by writing its letters, so 가 is ㄱ then ㅏ — the
- * data does not repeat itself for the eleven thousand blocks, and a lesson on
- * 가 shows the two letters it is made of.
- */
-export function strokesFor(character: string): StrokeStep[] | null {
-  const direct = STROKE_ORDER[character];
-  if (direct) return direct;
-  return null;
-}

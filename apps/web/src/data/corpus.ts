@@ -190,11 +190,6 @@ export function corpusCoreReady(): boolean {
   return tables !== null && loaded.size > 0;
 }
 
-/** How much of the corpus is here, for a progress affordance. */
-export function corpusProgress(): { loaded: number; total: number } {
-  return { loaded: loaded.size, total: manifest?.bands.length ?? 0 };
-}
-
 export function corpusManifest(): CorpusManifest | null {
   return manifest;
 }

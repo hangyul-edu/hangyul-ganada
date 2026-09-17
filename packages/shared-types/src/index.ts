@@ -1178,20 +1178,6 @@ export interface AttemptScore {
   reason: 'empty' | 'outside' | 'incomplete' | 'mixed' | 'scribble' | null;
 }
 
-export interface CharacterAttempt extends AttemptScore {
-  id: string;
-  session_id: string;
-  /** The character that was being practised. */
-  character: string;
-  /** Set when the attempt was one syllable of a vocabulary word. */
-  word_id: string | null;
-  font_id: string;
-  mode: PracticeMode;
-  /** Which evaluator produced this, e.g. "geometry-v1". Kept for re-scoring. */
-  evaluator_id: string;
-  created_at: string;
-}
-
 export interface LearningSession {
   id: string;
   kind: SessionKind;
@@ -1448,40 +1434,3 @@ export interface LearnerPreferences {
 }
 
 // --- API envelopes ----------------------------------------------------------
-
-export interface AppConfig {
-  product_name: string;
-  api_version: string;
-  /** Mirrors MAX_MISMATCH_RATIO so the client never hard-codes the rule. */
-  max_mismatch_ratio: number;
-  /** The source language and the end of every fallback chain. */
-  default_locale: LocaleCode;
-  /** Locales the API has content for. Advisory: any valid tag is accepted. */
-  available_locales: LocaleCode[];
-}
-
-export interface CreateSessionRequest {
-  kind: SessionKind;
-  lesson_id?: string | null;
-  target_count: number;
-}
-
-export interface RecordAttemptRequest {
-  session_id: string;
-  character: string;
-  word_id?: string | null;
-  font_id: string;
-  mode: PracticeMode;
-  evaluator_id: string;
-  passed: boolean;
-  score: number;
-  mismatch_ratio: number;
-  outside_stroke_ratio: number;
-  missing_coverage_ratio: number;
-  reason: AttemptScore['reason'];
-}
-
-export interface ApiError {
-  detail: string;
-  code?: string;
-}

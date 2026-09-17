@@ -172,12 +172,6 @@ export const VOCABULARY_PROVENANCE: { generator: string; readonly isOfficial: fa
   isOfficial: false,
 };
 
-/** How many difficulty levels this dataset was binned into. */
-export function difficultyLevels(): number {
-  return difficultyLevelCount;
-}
-let difficultyLevelCount = 0;
-
 /** The frequency bands the generator can emit, most to least common. */
 export const FREQUENCY_BANDS: string[] = [];
 
@@ -366,17 +360,6 @@ export function wordsByCategory(category: string): VocabularyWord[] {
   return [...(BY_CATEGORY.get(category) ?? [])];
 }
 
-/**
- * Every word that touches a category, including the ones filed elsewhere.
- *
- * 먹다 lives in Food & Drink and is tagged Actions. Browsing Actions does not
- * show it — one word, one place — but searching does, which is the difference
- * between a structure and an index.
- */
-export function wordsTagged(category: string): VocabularyWord[] {
-  return VOCABULARY.filter((w) => w.category === category || w.category_tags.includes(category));
-}
-
 // --- Recommendations, not permissions ----------------------------------------
 
 /**
@@ -396,11 +379,6 @@ export function wordsTagged(category: string): VocabularyWord[] {
  */
 export function usesKnownLetters(word: VocabularyWord, knownLetters: ReadonlySet<string>): boolean {
   return word.required_jamo.every((jamo) => knownLetters.has(jamo));
-}
-
-/** The words the learner's letters already cover. A shortlist, not an allowlist. */
-export function readableWords(knownLetters: ReadonlySet<string>): VocabularyWord[] {
-  return VOCABULARY.filter((w) => usesKnownLetters(w, knownLetters));
 }
 
 /**
@@ -435,10 +413,6 @@ export function newLetters(word: VocabularyWord, knownLetters: ReadonlySet<strin
 export const VOCABULARY_LESSONS: VocabularyLesson[] = [];
 
 const LESSONS_BY_CATEGORY = new Map<string, VocabularyLesson[]>();
-
-export function lessonsInCategory(category: string): VocabularyLesson[] {
-  return LESSONS_BY_CATEGORY.get(category) ?? [];
-}
 
 /** Which study set a word is in. Every word is in exactly one. */
 const LESSON_BY_WORD = new Map<string, string>();
@@ -544,7 +518,6 @@ function installTables(tables: CorpusTables): void {
   difficultyReasons = tables.difficulty_reasons;
   fieldSets = tables.field_sets;
   wordsPerLessonValue = tables.words_per_lesson;
-  difficultyLevelCount = tables.levels;
   VOCABULARY_PROVENANCE.generator = tables.generator;
   CONTENT_SOURCES.push(...(tables.sources as unknown as ContentSourceRecord[]));
   FREQUENCY_BANDS.push(...tables.frequency_bands);

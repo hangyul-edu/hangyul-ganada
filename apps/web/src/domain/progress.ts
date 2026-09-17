@@ -1,4 +1,4 @@
-import type { ItemProgress, LetterLesson, VocabularyWord } from '@hangyul-ganada/shared-types';
+import type { ItemProgress, LetterLesson } from '@hangyul-ganada/shared-types';
 
 import { ALL_LETTERS, CURRICULUM_UNITS, LETTER_LESSONS, getLessonCharacters } from '../data/characters';
 import { VOCABULARY, corpusTotal, usesKnownLetters } from '../data/vocabulary';
@@ -171,11 +171,6 @@ export function vocabularyProgress(progress: ProgressMap): VocabularyProgress {
   // fetched — see `corpusTotal`. A progress bar whose denominator grows while
   // the learner watches is worse than one that starts at its final size.
   return { ...fraction(done, corpusTotal()), readable };
-}
-
-export function levelProgress(progress: ProgressMap, words: VocabularyWord[]): Fraction {
-  const done = words.filter((w) => isLearned(progress, 'word', w.id)).length;
-  return fraction(done, words.length);
 }
 
 // --- The day -----------------------------------------------------------------
