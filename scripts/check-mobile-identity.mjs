@@ -65,8 +65,15 @@ if (ID !== 'com.talkhangyul.ganada') {
  * being discovered on a device.
  */
 const strings = read('apps/mobile/android/app/src/main/res/values/strings.xml');
+/*
+ * Attributes after the name are allowed — `package_name` and `custom_url_scheme`
+ * carry `translatable="false"` because they are identifiers, not copy, and
+ * Android lint's MissingTranslation rule stops a release build over an
+ * identifier with no `values-<locale>` copy. The value itself is still what is
+ * held here.
+ */
 const stringRes = (name) =>
-  new RegExp(`<string name="${name}">([^<]*)</string>`).exec(strings)?.[1] ?? null;
+  new RegExp(`<string name="${name}"[^>]*>([^<]*)</string>`).exec(strings)?.[1] ?? null;
 
 for (const key of ['app_name', 'title_activity_main']) {
   const value = stringRes(key);
