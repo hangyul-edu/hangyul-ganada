@@ -1,153 +1,89 @@
 # Release validation
 
 What was built, what was tested, and what was observed. Every gate reported here
-was run on this machine for this build. Two sections are explicitly *carried
-forward* from an earlier cycle and say so in their own headings — the icon
-reading from build 14 and the device walk from build 16 — because re-running
-them would have produced nothing new in the first case and could not be done on
-this machine in the second. Nothing else is inherited. Where something could not
-be verified it says so rather than being left blank or implied.
+was run on this machine for this build unless its own heading says *carried
+forward*, and three sections do: the icon reading from build 14, the cold-start
+recording from build 25 and the device walk from build 16. Nothing else is
+inherited. Where something could not be verified it says so rather than being
+left blank or implied.
 
-**Source:** commit `420a8e57` on branch `main`. `build-info.json` →
+**Source:** commit `384c245e` on branch `main`. `build-info.json` →
 `source_state` reads `"dirty": false`: no product file differed from that commit
 when the artefacts were built. `sourceState()` filters to product files, with the
 same list `release:current` keeps, so it does not hash the delivery it is in the
 middle of writing.
 
-**Built:** 12 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
+**Built:** 18 September 2026, Linux (WSL2), JDK 21, Android SDK build-tools
 36.0.0, bundletool 1.18.1, Gradle 8.14.3, Node v24.19.0.
 
-**This supersedes the versionCode 24 validation.** Codes 3 through 24 are spent,
-each by an artefact that was actually produced. This is 25 — and the marketing
-version is **1.0.4**, set *down* from the never-uploaded 1.0.6 to the number the
-release is to be published under; a store orders builds by code, not by name.
+**This supersedes the versionCode 25 validation.** Codes 3 through 25 are spent,
+each by an artefact that was actually produced. This is 26, and the marketing
+version is **1.0.5** on every platform — the number the web product has carried
+since the seventeenth pass and the native deliveries had not.
 
 ---
 
 ## Why this release happened
 
-**Four customer screenshots and a version number.** The Android launch screen
-opened on an orange brand mark the approved splash does not carry; *Show
-answer* in Today's Words printed 정답은 …예요 under four still-live options and
-counted the tap after it as a pass; four gap-fill chips wrapped three and one;
-the word-ordering tray and the matching grid named their goal and not their
-first action; and the tree said 1.0.6 on Android and 1.0.3 on iOS where the
-release is to be 1.0.4. Two requested quotations were added in 32 languages.
-Reading the report against the tree also found nine "200% text" measurements
-that had measured normal text, and a safety scan that had read 27 of 1,052
-quotation strings. The full account is §20Z of `docs/report.pdf`.
+**The downloaded native apps were 1.0.4 while the web product was 1.0.5.** The
+delivered APK and AAB were built from `420a8e57` on 12 September. Twenty-eight
+commits of product work landed after them — 3,029 product files, among them
+497 new words (the corpus went from 3,393 to 3,864), 2,089 new recordings, the
+corpus re-read for sound rules and honorifics, the content-safety gate's
+split-once and look-alike rules, the lazy-chunk failure screen, the
+profile-read guard, the exercise-string register fixes in four languages — and
+none of it reached a native package, because `cap sync` and the Gradle build
+were never run again. The version gate documented the arrangement (the web may
+lead, never lag) rather than failing on it, and three web-only passes recorded
+the lag as a state instead of closing it.
+
+The proof is one hash. Before this pass, `index.html` in
+`apps/mobile/android/app/src/main/assets/public` and in
+`apps/mobile/ios/App/App/public` both read `e4f0d6a0…` — the same file the
+1.0.4 APK carries — while `apps/web/dist` on the same disk already read
+`55b97222…`. The web moved; the copy into the native projects did not.
 
 ## What changed
 
 | | |
 | --- | --- |
-| Version | **1.0.4 / 25** on Android *and* iOS: `app.identity.json`, both Xcode configurations (adopted by `ios:project:check`), the mobile package, `config/product.ts`, three legal documents, `store/release-notes.md`, the report. The learner-facing form is `v1.0.4` from `displayVersion()`; `config/product.test.ts` and `version:check` pin the literal |
-| Launch screen | the Android 12+ system splash icon is an adaptive icon whose foreground is a feathered cut of the approved artwork's own centre, on the artwork's ground; the brand mark is referenced nowhere. `scripts/check-native-splash.py` proves it on the sources, the iOS catalogue and the delivered package (`splash:check`, `splash:bundle:check`); cold starts recorded on the API 36 emulator — clean, upgrade, force-stop — show launcher → ground and disc → artwork → Home, no mark, no white or black frame |
-| Quotations | `dream-big-pieces` (작자 미상, `authorship: "unknown"`) and `carlyle-stepping-stone` (Thomas Carlyle, `sourceStatus: "attributed"`), 32 translations and bylines each; a Korean original leads on the card; `docs/QUOTE_TRANSLATION_AUDIT.md` generated from the runtime strings, the reviewer's judgments and 768 rendering measurements — Q1 PASS 19 / CORRECTED 4 / NATIVE-SPEAKER 9 / BLOCKED 0; Q2 15 / 5 / 12 / 0 |
-| Today's Words | a reveal is an outcome: blue box on the answer, options disabled, `correct: false, revealed: true` reported once, Next, the word owed again at the back of the retry pass; the attempt row records `revealed`; the build screen reveals the same way |
-| Layout | gap-fill chips are a measured grid — four across when all four fit at the learner's type size, else two by two; never three and one |
-| Interactions | the tray says the action, marks the next slot, offers Undo, grades on Check; the grid names its columns, enables the Korean side first, badges pairs, grades all pairs on Check |
-| Copy | 881 Korean strings read, 13 rewritten; the recall sentence reworded in 32 languages to what `weeklyInsights` measures; `docs/UX_COPY_AUDIT.md`, `docs/UX_COPY_STYLE_GUIDE.md`, generated `docs/UX_COPY_REMEDIATION_LEDGER.md` (752 rows), `copy:remediation:check` |
-| Safety | retired words refused at corpus ingestion whatever supplied the band; the quotation family of the scan reads the library (22 items, 1,452 fields, 0 findings); `coverage.test.ts` sweeps every category × 32 languages × evasions |
-| QA measurements | `lib/text-scale.mjs` / `e2e/helpers/textScale.ts` scale the pixel tokens; nine sites re-run at a real 150/200% |
-| Learner data | no stored row changes shape; `revealed` is an optional field old rows lack; `upgradeCompatibility.test.ts` unchanged and green |
+| Version | **1.0.5** everywhere: `app.identity.json` (`version` 1.0.5, `buildNumber` 26), the mobile package and the lockfile's workspace entry, `MARKETING_VERSION` 1.0.5 in both Xcode configurations, three legal documents, `store/release-notes.md`, the report front matter. `config/product.ts` was already 1.0.5. `version:check` pins the literal as `RELEASE_VERSION`; `config/product.test.ts` pins the native literal the web may never fall behind |
+| Build number | Android `versionCode` **26** — 25 is spent by the delivered artefacts and no `build-info.json` in the history goes above 25; neither store is registered, so nothing higher exists anywhere. iOS `CURRENT_PROJECT_VERSION` stays **25** by requirement: the iOS build number was to be left byte-for-byte unchanged, and it was — `app.identity.json` declares `currentProjectVersion: 25` beside `buildNumber: 26` so the gate can tell the deliberate difference from a drift |
+| Xcode project | the diff of `project.pbxproj` is exactly the two `MARKETING_VERSION` lines. `DEVELOPMENT_TEAM`, `CODE_SIGN_STYLE`, `PRODUCT_BUNDLE_IDENTIFIER`, `IPHONEOS_DEPLOYMENT_TARGET` (×4), `CURRENT_PROJECT_VERSION` (×2) and the 30 `knownRegions` are what they were, asserted setting by setting by the re-adopted `project-file.lock.json`. `Info.plist` is untouched; `CFBundleShortVersionString` resolves to 1.0.5 and `CFBundleVersion` to 25 |
+| Native bundles | both `public/` directories deleted and re-synchronised from a fresh `dist` (`npm run mobile:sync`: build, `cap sync` for Android and iOS, prune). Nothing copied during the 1.0.4 release survives |
+| Android lint | `gradlew lintRelease` had two pre-existing errors — `package_name` and `custom_url_scheme` reported as untranslated in 28 languages. They are identifiers, not copy; both now carry `translatable="false"`, and `check-mobile-identity.mjs` still holds their values. 0 errors after the fix (21 warnings, all in Capacitor's generated sources) |
+| Learner data | no stored row changes shape in the native catch-up itself; the schema is 14, as it was for the web 1.0.5 release |
 
 ## The artefacts
 
 | | |
 | --- | --- |
-| `hangyul-ganada-release.apk` | signed; size and sha256 in the Checksums block below and in `build-info.json` |
-| `hangyul-ganada-release.aab` | signed; same |
-| Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file |
+| `hangyul-ganada-release.apk` | signed; 103,528,200 bytes (98.7 MB); sha256 in the Checksums block below and in `build-info.json` |
+| `hangyul-ganada-release.aab` | signed; 101,309,812 bytes (96.6 MB); same. Byte-identical across the two release builds of this cycle (the lint fix changed no resource value), which is the AAB's usual behaviour; the APK's digest moves with its signing block |
+| Signature schemes | v2 ✓ v3 ✓ (v1 off — minSdk 24), read back with `apksigner verify --print-certs` on the delivered file; the AAB's JAR signature reads the same certificate with `keytool -printcert -jarfile` |
 | Certificate | `157a2bb133f6aa3d…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` — the existing production identity, the same fingerprint every previous release carries; **no key was generated or replaced** |
-| Package | `com.talkhangyul.ganada`, version code **25**, versionName **1.0.4**, SDK 24–36 — read back with `aapt2 dump badging` on the delivered file |
-| Why 25 | 24 is spent: the previously delivered artefacts report a code of 24 and product files have changed since. `npm run version:check` said so before the build. Nothing has been uploaded to Play, so 25 is the next valid code rather than the next unused one. |
-| Why 1.0.4 | The release is to be published as 1.0.4. 1.0.5 and 1.0.6 were never uploaded to either store (`registered` is false for both, and every `build-info.json` on record says so), so the lower name is free; the code went up regardless, which is the only direction a code can go. |
-| Packaged content | `npm run content:safety:bundle -- --check --apk … --aab …` over the delivered APK and AAB unpacked, `dist/` and both native asset copies: 5 roots, 71,652 files, 2,564,941 fields, 63,456 Korean literals — **no packaged asset carries prohibited content**, and neither archive lists the policy's fixtures |
-| iOS | **not built** — macOS and Xcode are unavailable here (**IOS BUILD BLOCKED — REQUIRES MACOS/XCODE**). The project is complete, is synced with this exact web build (`cap sync` reported `update ios` and `copy web` against this `dist/`, and `ios:project:check` passed), and ships in `result/ios-project/` at **MARKETING_VERSION 1.0.4 / CURRENT_PROJECT_VERSION 25** in both configurations — nothing is pending in the project. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team, entitlement or bundle identifier was touched. The exact commands are in `BUILD_OR_SIGNING_BLOCKERS.md`. |
+| Package | `com.talkhangyul.ganada`, version code **26**, versionName **1.0.5**, SDK 24–36, label `Hangyul Ganada` — read back with `aapt2 dump badging` on the APK and `bundletool dump manifest` on the AAB |
+| Permissions | `INTERNET`, `VIBRATE`, the app's own `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` — unchanged |
+| Embedded web | the bundle under `assets/public/` in the APK and under `base/assets/public/` in the AAB hashes file for file to `apps/web/dist` — 16,436 files compared, 0 missing, 0 different; the same tree digest `ee97265d…` is read from the APK, the AAB, the Android `public/` and the iOS `public/`. The only files in the package and not in `dist` are Capacitor's own `cordova.js` and `cordova_plugins.js`; the only files in `dist` and not in the package are the four web-hosting files the prune removes (`sw.js`, `robots.txt`, `_redirects`, the Open Graph image). No entry name has a non-ASCII byte; the splash directory holds two PNGs and no video |
+| In-app version | the packaged main chunk carries `version:"1.0.5"` and `displayVersion()` renders it as `v1.0.5`; the same chunk is in the iOS `public/` |
+| Packaged content | `content:safety:bundle:check` over the APK and AAB unpacked, `dist/` and both native copies: 49,316 files, 1,690,108 fields, 40,210 Korean literals — **no packaged asset carries prohibited content** |
+| iOS | **not built** — macOS and Xcode are unavailable here (**IOS BUILD BLOCKED — REQUIRES MACOS/XCODE**). The project is complete, is synchronised with this exact web build (`cap sync` reported `copy ios` against this `dist/`, and the iOS `public/` hashes to the same tree digest as the APK's bundle), and ships in `result/ios-project/` at **MARKETING_VERSION 1.0.5 / CURRENT_PROJECT_VERSION 25** in both configurations. No `.ipa` was approximated, nothing was renamed to one, and no signing identity, team, entitlement or bundle identifier was touched. The exact commands are in `BUILD_OR_SIGNING_BLOCKERS.md` §9 |
 
 ## What was run against this tree
 
 | Suite / gate | Result |
 | --- | --- |
-| `npm run verify:quick` | green from end to end on the delivered tree — exit 0, 12 September 2026: name, route policy, identity, version, iOS project, **splash**, native locales, content freshness, runtime policy, content safety, i18n, locale content and ledger, copy audit / ledger / **remediation** / generated / fresh, editorial, letters, strokes (×5), glyph shape and structure, letter faces, hints, conjugation (×2), level test (×10), content audit, question and ambiguity ledgers, daily vocabulary and plan (×3), numbers (×4), quotes qa and **quotes audit**, stroke fixtures, vocabulary (×6), tokens, lint, typecheck, unit tests, build, bundle budget, routing, share |
-| `npm run verify:release`, the rest | run gate by gate on this tree after the single chained run was stopped by the machine for memory — every one exit 0: scroll audit (210 measurements, at a *real* 150/200% text), section alignment, legal isolation, dictionary qa / coverage / morphology / perf, content qa, **content safety** (14 families, 32 locales, 393,502 items, 1,003,188 fields, 0 findings; quotations now 22 items / 1,452 fields), korean education, examples, word detail, audio qa and pronunciation, content coverage, issues, vocabulary level and recommendation, locale practice, patent evidence, docs consistency, strokes measure, **quotes render** (768 measurements, 0 findings) |
-| `npm run test:e2e` | **628 passed, 0 failed**, exit 0, 42.9 min across the mobile and desktop projects, on the delivered commit. Two earlier full runs found four, then one, walker cases that did not know the redesigned tray grades on Check and the grid by its test id; the walkers were fixed and the artefacts rebuilt from that commit before this run |
-| Unit suites | web **1,512**, content safety **811**, Korean morphology **237**, handwriting core **96** — **2,656**, all passing |
-| `npm run native:bundle:check` | the app inside the package is the app that was built — 0 missing, 0 different, web-only files pruned |
-| `npm run splash:bundle:check` | the delivered APK packages the adaptive `splash_icon` and five wordless, mark-free layers; no brand mark under any resource name; **fails against the 1.0.6 delivery with 10 findings** |
+| Freshness before the build | `content:fresh:check` (frequency, vocabulary, corpus, level test, dictionary), `curriculum:check`, `policy:runtime:check`, `tokens:check`, `letters:copy:check`, `copy:fresh:check`, `copy:generated:check` — every generated artefact equal to its source, exit 0 each, so nothing was regenerated and nothing stale went into the bundle |
+| `npm run typecheck` · `npm run lint` · `npm run test` | exit 0 each; unit suites web **1,570**, content safety **1,298**, Korean morphology **242**, handwriting core **96** — **3,206**, all passing |
+| `npm run version:check` · `mobile:identity:check` · `ios:project:check` · `locales:native:check` | exit 0 each; the version gate prints one pending line, for a person with Xcode, and it is the archive |
+| `gradlew clean assembleRelease bundleRelease` | exit 0, 2m 16s, from `384c245e` with the production keystore exported into the shell |
+| `gradlew lintRelease` | exit 0 after the fix above (exit 1 before it, two errors) |
+| `npm run native:bundle:check` | the app inside the package is the app that was built — 16,436 compared, 0 missing, 0 different, 4 of 4 web-only files pruned |
+| `npm run splash:bundle:check` | every launch frame comes from the approved artwork; no mark, no words, one ground |
 | `npm run content:safety:bundle:check` | no packaged asset carries prohibited content |
-| `npm run release:current` | both delivery manifests built from `420a8e57`; the working tree dirty only in docs and the release directories |
-| Cold start | recorded on the API 36 emulator — see the section below and §20Z.2 of the report |
-| Negative runs this cycle | `product.ts` set to 1.0.6 → `version:check` exit 1; the retired-word ingest guard removed → `retiredIngest.test.ts` 2 of 2 fail; a Tamil row removed from Table A / one English word altered in it → the audit-consistency test fails each; `check-native-splash.py --apk` against the 1.0.6 delivery → 10 findings |
-
-Five gates were negative-tested this refresh by restoring the behaviour they
-exist to catch. Every restoration is undone by regenerating from source, never
-by editing the generated file back:
-
-```
-tr truncated to 609 words, corpus re-split      19 findings   exit 1
-  locale:practice — no meaning question at L15/20/25/30, no matching
-  grid, 90% of the session one exercise kind, 140 of 140 words taught
-  with no Turkish meaning to read
-the Kyrgyz negative class returned to two vowels  3 findings   exit 1
-the NFC composition removed from decompose/normalise
-                                                  2 tests fail  exit 1
-the particle/word separation removed from validate()
-                                                  1 test fails  exit 1
-kk 산책하다 given 공원's sentence                    1 pair       exit 1
-```
-
-**The first one failed to fail, at first, and that is the finding worth
-recording.** Truncating the Turkish pack and rebuilding only
-`content:vocabulary` produced *zero* findings, because `locale-practice-qa`
-loads word copy the way the app does — through `loadWordCopy`, which fetches the
-**bands** under `public/corpus/` — and those still held the full pack. It is the
-same sequencing trap that cost sixty word recordings this cycle: source →
-`content:vocabulary` → `content:corpus`, and a gate that reads the app's own
-loader reads the second, not the first. Re-split, the same truncation produces
-the nineteen findings above.
-
-## Two cases in the release suite were wrong, in opposite directions — carried forward from versionCode 23
-
-The e2e run is reported above as 594 passed, as it was for versionCode 23. The
-suite did not start there in that cycle, and what it took to get there is the
-part worth keeping.
-
-**One case had been failing in the release run and passing alone for four
-sessions**, written off as a flake each time — `an interrupted lesson resumes at
-the letter that is unfinished`, 9.5s green alone and 18–25s red in the suite.
-Driven at `--repeat-each=8 --workers=4` it failed **6 of 8**. A 500 ms pause
-before the navigation changed nothing, so it was not the progress write racing
-the page teardown; dumping the object store through the failure returned
-`character:ㅏ=learned` both before and after it, so the data was right and the
-**read** was early. `LetterSessionPage` computed its resume point in a `useState`
-initialiser, and the route mounts before the stored profile has been read — so a
-returning learner was put back on a letter they had finished, on exactly the slow
-phone that behaviour exists for. Fixed, and 8 of 8 under the same parallelism.
-**I-203.**
-
-**Three more were passing for the opposite reason.** They are runs of
-`toHaveCount(0)` immediately after `page.goto`, and a count of zero is satisfied
-by a document that has not rendered: the first poll succeeds and the matcher
-returns without retrying. One of them, once a loaded machine made it run late
-enough to look, found that the settings screen has shipped *Save a copy* and
-*Restore a copy* since `f731bd43` while the case still forbade them — the
-product was right and the gate was a week stale, and the race is why nobody was
-told. All three now assert something present before asserting what is absent.
-**I-202.**
-
-Sweeping for the same shape found it once more, seeding the Numbers question
-order. Recorded as **I-204** and left open: it seeds a shuffle from the wrong
-number rather than losing or miscounting anything, and believing a change there
-means re-running five Numbers suites.
-
-Sixty further failures were seen in one run and are **not** in this list, because
-they were this machine: another project on the same VM was running its own
-Playwright suite, the preview server was killed under the load, and 59 of the 60
-were `ERR_CONNECTION_REFUSED` with the sixtieth an IndexedDB open falling back to
-memory. Each was reproduced green in isolation, and the run reported above was
-taken on a quiet machine from a cold boot.
+| `npm run test:e2e` | **638 passed, 2 failed** in the full chained run (exit 1, 57.3 min, 640 cases across the mobile and desktop projects, on the delivered tree): `journey.spec.ts:453` (*every practice typeface traces the one canonical glyph*) hit its 60 s budget and `offline.spec.ts:108` (*a pronunciation that has been played once plays again offline*) got `Failed to fetch` from the preview server, both in the desktop project in the last hour of the run while the machine was at 424 MB free. **Re-run alone, both pass** — exit 0, 52.9 s and 2.7 s; the first sits just under its budget, which is what a timeout under load looks like. `dist` was hashed after the suite's own rebuilds and is byte-identical to the bundle that was packaged (tree digest `9fd59e98…`) |
+| `npm run release:current` | both delivery manifests built from `384c245e`, which is HEAD; the working tree dirty only in docs and the release directories — 0 errors |
+| `npm run verify:release`, the rest | run gate by gate on this tree (the chain built from `package.json` less `name:check` and `test:e2e`, 118 steps) — **every step exit 0** on its final run. Three were red once and are recorded as such: `quotes:review:check` (a generated evidence document a timestamp behind its source since the twentieth pass — regenerated, green), `audio:qa` (one sampled clip reported *Conversion failed!* from ffmpeg with the VM at 66 MB free; the clip decodes cleanly by hand and the gate is green on re-run) and `npm test` (one `strokeMarkers.test.ts` case over its 5 s budget — a different case each time, 2.4–3.0 s of wall clock, on a VM shared with other sessions' Playwright runs; 3,206 of 3,206 on the quiet re-run). Fourteen steps after `audio:qa` were run in a second loop because the first loop's stdin was consumed by a python gate; all fourteen green. `docs:consistency:check` and `issues:check`, which read this document, were re-run last after it was finished |
 
 ## The icons, looked at — carried forward from build 14
 
@@ -163,43 +99,41 @@ catalogue's one universal slot is 1024×1024 RGB with no alpha, which is what Ap
 Store Connect requires; `Contents.json` is unchanged, as are every Xcode-managed
 signing, team, bundle-identifier and provisioning value.
 
-## Cold start on the emulator — this build
+## Cold start on the emulator — carried forward from build 25, not re-run for 26
 
-Recorded, not reasoned about: `scripts/qa-cold-start-android.sh` installs the
-package on the API 36 emulator (`hangyul-pixel7`, headless, software
+The launch screen resources did not change between 25 and 26 —
+`splash:bundle:check` reads the same adaptive `splash_icon` and the same five
+wordless layers out of this APK — so the recording from build 25 still
+describes what this package draws. It was **not** re-run: an emulator holds
+~2.4 GB on this machine and the release verification had to run beside it.
+
+Recorded then, not reasoned about: `scripts/qa-cold-start-android.sh` installs
+the package on the API 36 emulator (`hangyul-pixel7`, headless, software
 rendering), force-stops it, starts `screenrecord`, launches the activity with
-`am start -W`, and extracts a frame every 200 ms. Three starts of **this
-build** and one of the 1.0.6 delivery for the reproduction:
+`am start -W`, and extracts a frame every 200 ms.
 
 | Start | Frames, in order | Frame means (RGB) |
 | --- | --- | --- |
-| 1.0.6 delivery, clean install | the orange brand mark on the peach ground for the whole recording | 250·236·216 with the mark |
-| 1.0.4, clean install | launcher → the system's launch cross-fade (one frame) → peach ground with the soft disc → the artwork → Home | 79·82·95 → 127·125·129 → 250·236·216 → 248·216·186 → 246·237·228 |
-| 1.0.4, force-stop then start | launcher → disc → artwork → Home; `am start -W` TotalTime 3,756 ms | 79·82·95 → 250·236·217 → 248·216·186 → 245·236·227 |
-| 1.0.4, upgrade install over 1.0.6 | disc → artwork → Home; first launch after the install took 21.8 s to display on this emulator, and about 0.6 s after the artwork appeared the disc frame recurs for three frames before Home, with `Activity transferring splash screen timeout` in logcat at that moment — not reproduced on the clean or force-stop start | 250·236·217 → 248·216·186 → 250·236·216 → Home |
+| 1.0.4 build 25, clean install | launcher → the system's launch cross-fade (one frame) → peach ground with the soft disc → the artwork → Home | 79·82·95 → 127·125·129 → 250·236·216 → 248·216·186 → 246·237·228 |
+| 1.0.4 build 25, force-stop then start | launcher → disc → artwork → Home; `am start -W` TotalTime 3,756 ms | 79·82·95 → 250·236·217 → 248·216·186 → 245·236·227 |
+| 1.0.4 build 25, upgrade install over 1.0.6 | disc → artwork → Home; first launch after the install took 21.8 s to display on this emulator, and about 0.6 s after the artwork appeared the disc frame recurs for three frames before Home, with `Activity transferring splash screen timeout` in logcat at that moment — not reproduced on the clean or force-stop start | 250·236·217 → 248·216·186 → 250·236·216 → Home |
 
 No frame is white, black, or carries the old mark. The frames are in
-`docs/report-assets/coldstart-*.png`; §20Z.2 of the report reads them. The
-emulator was shut down afterwards. Nothing else in the walk below was re-run.
+`docs/report-assets/coldstart-*.png`; §20Z.2 of the report reads them.
 
-## On a device — carried forward from build 16, not re-run for 25
+## On a device — carried forward from build 16, not re-run for 26
 
 **Read the version line below before the rest of this section.** The walk
 recorded here was driven against **versionCode 16 / 1.0.3**, which is what its
-own `dumpsys` output says, and it has not been repeated for 19. It is kept
-because every screen it describes is still in this delivery and none of them
-changed; it is *not* evidence about the bytes in this build.
-
-It was not re-run because the emulator could not be given enough memory to boot
-on this machine while the rest of the release verification still had to run.
-`hangyul-pixel7` was started for this build, reached `offline`, and took the VM
-to 693 MB of free memory — the condition that has ended sessions here before, and
-which `docs/CLAUDE_ENVIRONMENT_STABILITY.md` exists to prevent. It was shut down
-rather than fought. **The next person with a device or a machine that can hold an
-emulator should walk build 19 before it goes to a store**, and Today's Vocabulary
-is the screen to walk: the one behaviour that changed in this build is that a
-plan whose words arrive late now fills in when they land instead of reporting an
-empty day, and only a real cold start over a real network exercises it.
+own `dumpsys` output says, and it has not been repeated since. It is kept
+because every screen it describes is still in this delivery; it is *not*
+evidence about the bytes in this build, and this build carries 497 words,
+2,089 recordings and several screens the walk never saw. **The next person
+with a device or a machine that can hold an emulator should walk build 26
+before it goes to a store**: the version line under Settings (`v1.0.5`), a
+word added after 3,393 (the corpus is 3,864), and a screen whose chunk is
+refused offline are the three things that changed and can only be seen
+running.
 
 What follows is the build-16 reading, unedited.
 
@@ -238,43 +172,31 @@ viewports.
 
 ## Not claimed
 
+* **No iOS build.** No `.ipa` exists and none was approximated. The project
+  carries 1.0.5 / 25 and its `public/` is the same bundle the APK carries; the
+  archive is a Mac's to make (§9 of the blockers document), and the in-app
+  `v1.0.5` on iOS is therefore a statement about the synchronised bundle, not
+  about a running device.
 * **No native-speaker review** of the thirty-one non-Korean bundles, or of
-  Korean. This cycle wrote 752 ledger rows of interface strings and 128
-  quotation strings across the languages, read only by their author; 21
-  quotation rows are marked for a native speaker (I-222). Every rule in `sentence_demand.py` and in `leveltest:policy` is
+  Korean. Every rule in `sentence_demand.py` and in `leveltest:policy` is
   structural, and structural is a proxy for a judgement no gate here makes:
   **nothing in this repository reads Korean.** See
   `BUILD_OR_SIGNING_BLOCKERS.md` §10 and issue I-17.
 * **The difficulty scale has never been calibrated against a learner**, and it
   cannot be from here — the application opens no network connection at runtime
-  and collects nothing. The floors in the demand model are reasoned, not
-  measured, and every accuracy figure above is against a simulated learner
-  answering the way the model says someone of that ability would. A simulation
-  reports excellent behaviour for a badly calibrated bank for exactly as long as
-  the bank is wrong in the same way the simulation is.
-* **The bank is regenerated with a different distractor draw whenever the corpus
-  moves.** The rules and the 25 reviewed pairs carry forward; the reading of
-  this build's items recorded in `docs/LEVEL_TEST_CONTENT_REVIEW.md` does not.
-* **No review by anybody who needs the accessibility route.** The sound-free run
-  and the per-question escape exist, are gated, and were walked in a browser.
-* **No iOS build.** No `.ipa` exists and none was approximated.
-* **iOS carries 1.0.4 / 25 and has no archive.** The two build settings were
-  moved from here, by targeted substitution of four lines, and the lock file
-  proves every other protected setting unchanged; the archive is a Mac's to
-  make (§9 of the blockers document).
-* **The icons were reviewed as renders, not on a home screen.** The masks above
-  are drawn by a script, not by a launcher.
-* **No clip was listened to.** The twelve new recordings were checked
-  structurally — the id derives from the text, the manifest text is the Korean
-  the screen shows, `audio:qa` decoded a 600-clip sample without error — and the
-  speaker buttons were seen to be drawn on a device. Nobody heard them.
-* **The device walk is one emulator**, in English, in light mode, at one size.
+  and collects nothing.
+* **No device walk of this build.** The walk above is build 16; the cold-start
+  recording is build 25. Neither was re-run, for the memory reason given.
+* **The icons were reviewed as renders, not on a home screen.**
+* **No clip was listened to** in this pass; the 2,089 recordings added since
+  build 25 were checked structurally by `audio:qa` and `audio:pronunciation`
+  in the passes that added them.
 
 ## Checksums
 
 ```
-a68a367942841b2f22e029a888f15da23aba347a3059bb9d34a40a53d477de4c  hangyul-ganada-release.apk
-91ebe2587747f9dd67d1574730beed0baf0766adaf9e67fc693d1dfe85230107  hangyul-ganada-release.aab
-2934ef6d63b6d7c8a6f35a48a00c5a6998b6b79bafb099db979052219a167c31  docs/report.pdf
-92f103b7321818d2a05a595af4c7a4a6449fff1366f10b4e20e10775b48d5727  build-info.json
+8f1492a5f8d783c2432ac8559190e72767760f4250793fa5bfc3787f6845eeaf  hangyul-ganada-release.apk
+8e65f27cf86f538b3e6999601cacf3baa6d635d6e1d72f9da2bd880ca1c902e3  hangyul-ganada-release.aab
+42946d53665ae5acab746ed28070d85ae30d884162947e5699b0277d4a8a1d73  docs/report.pdf
+6faf354036c5502f497d9417499232b9d5b0196152a30e82e61a83fabd2db645  build-info.json
 ```

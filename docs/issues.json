@@ -2741,6 +2741,18 @@
       "evidence": "§20AD.4 lists every removal with the proof it was unreferenced: an import graph over `apps/web`, `packages` and `scripts` from every entry point, a whole-repository search for each export by name, and the report's own image references against `docs/report-assets`. `typecheck`, `lint`, `test` and `build` are green after the removals and every `verify:quick` gate re-ran.",
       "recommendedFix": "Done.",
       "effort": "SMALL"
+    },
+    {
+      "id": "I-253",
+      "area": "Release",
+      "severity": "P0",
+      "status": "RESOLVED",
+      "summary": "The downloadable native apps were 1.0.4 (versionCode 25) while the web product was 1.0.5 — the web was updated for three passes without the native bundles being re-synchronised or rebuilt",
+      "customerImpact": "A learner installing the APK or AAB got the product as it was at `420a8e57` on 12 September: 3,393 words rather than 3,864, 2,089 fewer recordings, the pre-fix lazy-chunk blank page (I-249), the profile overwrite on a failed read (I-250) and the Czech/Greek/Hungarian register slips (I-251) — everything the eighteenth to twentieth passes fixed on the web was absent from the phone, and the version under Settings read v1.0.4 on a device and v1.0.5 in a browser.",
+      "evidence": "Before the twenty-first pass, `index.html` in `apps/mobile/android/app/src/main/assets/public` and in `apps/mobile/ios/App/App/public` both hashed `e4f0d6a0…` — the file inside the 1.0.4 APK — while `apps/web/dist` on the same disk hashed `55b97222…`. `git diff --name-only 420a8e57..HEAD` outside `docs/`, `result/`, `app_result/` and `store/` listed 3,029 product files across 28 commits. `version:check` had reported the lag as a pending line on every run since the seventeenth pass; nothing failed on it, by design (§20AA), and nothing acted on it.",
+      "recommendedFix": "Done. Both native `public/` directories were deleted and re-synchronised from a fresh `dist`; Android was rebuilt clean at 1.0.5 / versionCode 26 with the production identity and the bundle inside the APK and AAB hashed file for file against `dist` and against the iOS `public/` (tree digest `ee97265d…`, 16,436 files, 0 different); the Xcode project carries `MARKETING_VERSION` 1.0.5 with `CURRENT_PROJECT_VERSION` kept at 25. The iOS archive still needs a Mac (§18.6). `release:current` had been failing on the lag all along and the web-only passes recorded its red as expected (§20AD.6); it is green again, and it is what keeps this closed.",
+      "note": "I-01 in a fourth coat. I-01 was a dirty-tree build, closed by `release:current`; this is a clean build that nobody re-ran. The gate did its job — it was red for three passes — and each pass's brief put the native rebuild out of scope and marked the red as expected. The lesson is the one §7.2 already states: a gate whose failure is accepted as a state describes the defect for as long as it is accepted.",
+      "effort": "MEDIUM"
     }
   ]
 }

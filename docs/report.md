@@ -5,9 +5,9 @@ subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, 
 document: Product Truth Report
 version: 1.0.5
 web_version: 1.0.5
-native_status: not modified or built in the twentieth pass — delivered Android versionCode 25 / iOS build 25; iOS cannot be built on this machine (no Xcode)
-date: 17 September 2026
-describes: The twentieth pass, web only — the final production-delivery audit. The Android and iOS projects were not modified or built and the delivered artefacts stay at 1.0.4, versionCode 25; the web product is v1.0.5, and this pass records that the two numbers differ rather than moving either. The nineteenth edition of this report was read page by page against the tree; every claim in its current sections was re-derived and the stale ones corrected. Two reliability defects were found by reading the code and reproduced against the built bundle: a screen whose lazy chunk failed to load unmounted the whole app into a blank page, and a launch that failed to read the stored profile went on writing a fresh profile over it while Settings said saving. Both are fixed at the source, held by tests, broken on purpose, and the failed-screen state is now one of the renders the screen audit measures. The exercise strings of all 32 interface languages were read: Czech named a letter with the printer's word on 37 strings, Greek addressed the learner formally on 14 exercise instructions and informally on 110, and four single-string slips in Hungarian, Romanian, Russian and Ukrainian were corrected; the editorial gate now reads the register in the verb for Hungarian and Greek and carries a per-locale glossary. Dead code was removed with proof: an unused dependency, 36 unreferenced exports, a comment-only stylesheet, 22 orphaned report screenshots, five Windows download stubs and an empty file. Every gate of verify:quick, the production build, the screen audit and the end-to-end suite ran green on the final tree; the iOS build could not run here and is named as the one thing this edition does not claim.
+native_status: rebuilt in the twenty-first pass — Android 1.0.5 versionCode 26 delivered; iOS synchronised at MARKETING_VERSION 1.0.5 / build 25, archive not produced (no Xcode on this machine)
+date: 18 September 2026
+describes: The twenty-first pass — the native apps catch up with the web. The downloadable Android and iOS apps were the 1.0.4 delivery (versionCode 25, built 12 September) while the web product had been v1.0.5 for three passes: the web bundle was updated without the native projects being re-synchronised or rebuilt, and 3,029 product files across 28 commits had never reached a phone. Both native projects were re-synchronised from a fresh production build, Android was rebuilt clean at 1.0.5, versionCode 26, with the existing production identity, and the bundle inside the APK and AAB was hashed file for file against the web build and the iOS project: one digest in four places. The Xcode project carries MARKETING_VERSION 1.0.5 with CURRENT_PROJECT_VERSION kept at 25; its archive still needs a Mac and is not claimed. Two pre-existing Android lint errors were fixed at the source. Every gate that can run here ran on the final tree, and the twentieth edition's current sections were re-read against it.
 mark: report-assets/mark.png
 ---
 
@@ -105,8 +105,8 @@ exactly that.
 | **iOS bundle identifier** | `com.talkhangyul.ganada` — in the Debug and the Release configuration |
 | **iOS display name** | **Hangyul Ganada** — `CFBundleDisplayName` and `CFBundleName` |
 | Signing | existing production identity, certificate `157a2bb1…3323debc` — no key generated |
-| **Web product** | **v1.0.5** — `apps/web/src/config/product.ts`, the number a learner reads on the web; the seventeenth pass (§20AA) was web-only and the native deliveries below were not rebuilt. WEB TESTED / ANDROID NOT BUILT / IOS NOT BUILT |
-| **Version (native deliveries)** | **1.0.4**, Android versionCode **25** — read from the delivered APK with `aapt2 dump badging`. iOS carries the same two values, `MARKETING_VERSION` 1.0.4 / `CURRENT_PROJECT_VERSION` 25, in both configurations: this pass moved exactly those two settings in `project.pbxproj` and nothing else in it (`ios:project:check` records the adopted file). The build number is 25 because 24 is the versionCode the previous delivery used and a store will not take a code twice; a marketing version going *down* from 1.0.6 changes nothing about that ordering, and nothing was ever uploaded under 1.0.5 or 1.0.6 (`registered` is false for both stores) |
+| **Web product** | **v1.0.5** — `apps/web/src/config/product.ts`, the number a learner reads on the web and, since the twenty-first pass (§20AE), inside both native bundles. WEB TESTED / ANDROID BUILT / IOS SYNCHRONISED, NOT BUILT |
+| **Version (native deliveries)** | **1.0.5**, Android versionCode **26** — read from the delivered APK with `aapt2 dump badging` and from the AAB with `bundletool dump manifest`. iOS carries `MARKETING_VERSION` 1.0.5 in both configurations and `CURRENT_PROJECT_VERSION` **25**, unchanged by requirement: the twenty-first pass moved exactly the two `MARKETING_VERSION` lines in `project.pbxproj` and nothing else in it (`ios:project:check` records the re-adopted file), and `app.identity.json` declares the iOS build number beside Android's so `version:check` reads the difference as deliberate. The Android build number is 26 because 25 is the versionCode the previous delivery used and a store will not take a code twice; nothing was ever uploaded under any number (`registered` is false for both stores) |
 | **Native locales** | **32**, read from the built APK: 31 explicit qualifiers plus `'--_--'` (the English default), and `android:localeConfig` resolving to `xml/locales_config` |
 
 ## 2.2 Figures for the next report to diff against
@@ -160,9 +160,9 @@ without trusting the row.
 | Unobserved words with a written reason | 58 | `content/vocabulary/unobserved.json` |
 | Levels set by hand | 28 | `level-overrides.json` |
 | Levels held to an editorial band | 235 | `lvm` in `vocabulary.json`; see I-133 |
-| Issues tracked | 248 | `docs/issues.json` |
-| Signed APK | 90,552,277 bytes (86.4 MiB) | `result/build-info.json` |
-| Signed AAB | 88,728,421 bytes (84.6 MiB) | same |
+| Issues tracked | 249 | `docs/issues.json` |
+| Signed APK | 103,528,200 bytes (98.7 MiB) | `result/build-info.json` |
+| Signed AAB | 101,309,812 bytes (96.6 MiB) | same |
 | Tests | 3,206 across 102 files | `npm test` |
 | Glyph shape, mean explained | 99.6% | `glyphshape:qa` |
 | Handwriting FRR / FAR | 0.94% / 0.00% | `handwriting:robustness` |
@@ -842,9 +842,10 @@ them was wrong to be: each answered the question it was written to ask.
 With those fixed: every engineering gate that can run here runs green — now
 including `content:safety:check` over every content family and
 `content:safety:bundle:check` over the packages — the artefacts were rebuilt
-from a committed tree at versionCode 25 (the delivered Android build, not
-rebuilt since the sixteenth pass), and `release:current` reports the web tree
-as ahead of them by design. Of the issues not marked resolved, none is a
+from a committed tree at versionCode 26 (the twenty-first pass, §20AE, which
+closed the three-pass gap between the 1.0.5 web and the 1.0.4 native
+deliveries), and `release:current` reports both delivery manifests built from
+the current product tree. Of the issues not marked resolved, none is a
 defect in this code or content: three are content authoring at a scale this
 pass could not reach (I-04, I-20, I-79), three need a speaker of each language
 (I-17, I-39, I-213), one needs a value that only the product's owner has
@@ -863,11 +864,13 @@ from this machine:**
 2. **The signed binary runs on a physical handset.** The matrix is in
    `result/RELEASE_VALIDATION.md`; everything here was measured in headless
    Chromium at phone viewports and on an emulator.
-3. **iOS is built and archived on a Mac.** The project file carries 1.0.4 build
-   25 — the same two values as Android, moved in this pass and adopted by
-   `ios:project:check` — so nothing is pending in the project; what is pending
-   is the archive itself, which needs Xcode. Nothing here should be read as a
-   claim that iOS was built or device-tested. §22.
+3. **iOS is built and archived on a Mac.** The project file carries
+   `MARKETING_VERSION` 1.0.5 and `CURRENT_PROJECT_VERSION` 25 — the marketing
+   version moved with Android in the twenty-first pass, the build number kept
+   by requirement, both adopted by `ios:project:check` — and `App/App/public`
+   is the same bundle the delivered APK carries; what is pending is the
+   archive itself, which needs Xcode. Nothing here should be read as a claim
+   that iOS was built or device-tested. §22.
 
 ---
 
@@ -2510,21 +2513,24 @@ new APK    157a2bb133f6aa3d…3323debc
 
 | | |
 | --- | --- |
-| Built from | `420a8e57`, working tree clean |
+| Built from | `384c245e`, working tree clean |
 | Signature schemes | v2 ✓ v3 ✓ (v1 off — `minSdk` 24) |
-| Package | `com.talkhangyul.ganada`, versionCode 25, versionName 1.0.4 |
+| Package | `com.talkhangyul.ganada`, versionCode 26, versionName 1.0.5 |
 | SDK | min 24, target 36 |
 | Native libraries | none, so 16 KB page-size compatibility holds by construction |
-| Release APK | 90,552,277 bytes (86.4 MiB) — sha256 in §21 |
-| Release AAB | 88,728,421 bytes (84.6 MiB) — sha256 in §21 |
+| Release APK | 103,528,200 bytes (98.7 MiB) — sha256 in §21 |
+| Release AAB | 101,309,812 bytes (96.6 MiB) — sha256 in §21 |
 
-The APK is 90,552,277 bytes — 86.4 MiB — 97,264 bytes larger than the 1.0.6
-delivery: two quotations in 32 languages, the reveal, tray and grid strings in
-32 languages, and the adaptive splash icon and its layer. The build before
-that had shrunk by the 23 retired words, their 46 recordings and the 694
-dictionary rows that no longer ship. The audio set is at 13,904 slots. The
-growth of the cycle before that was nine languages' worth of word meanings and
-example translations for the whole corpus rather than its first band.
+The APK is 103,528,200 bytes — 98.7 MiB — 12,975,923 bytes larger than the
+versionCode 25 delivery, and the difference is three web passes' worth of
+product that had never been packaged: 497 words (3,393 → 3,864) with their
+meanings and examples in 32 languages, 2,089 recordings (the audio set is at
+15,829 files), the corpus re-read for sound rules and honorifics, and the
+web fixes of the eighteenth to twentieth passes. The bundle inside the package
+is 16,438 files against the 14,330 the 1.0.4 package carried. The previous
+delivery's growth — 97,264 bytes over 1.0.6 for two quotations in 32
+languages, the reveal, tray and grid strings and the adaptive splash icon —
+is kept in the history of this paragraph rather than restated as current.
 
 The paragraph the previous cycle wrote about its own growth is kept below,
 because the shape of the answer has not changed: the corpus
@@ -2557,8 +2563,12 @@ Xcode project is delivered in `result/ios-project`;
 The twentieth pass was asked for an iOS-only build and could not produce one;
 §20AD.6 records what was run in its place (`ios:project:check`, which holds the
 project file to its adopted lock, and the version gate) and what was not
-(`cap sync ios`, an archive, a device). Nothing in this edition should be read
-as a claim that iOS was built.
+(`cap sync ios`, an archive, a device). The twenty-first pass (§20AE) did run
+`cap sync ios`: `App/App/public` is now the 1.0.5 bundle, hashed file for
+file against the delivered APK, and `MARKETING_VERSION` reads 1.0.5 with
+`CURRENT_PROJECT_VERSION` kept at 25. What it did not and could not do is
+archive, export or run it. Nothing in this edition should be read as a claim
+that iOS was built.
 
 ## 18.7 The onward hand-off — **blocked outside this repository**
 
@@ -5160,10 +5170,10 @@ untracked files, so no commit described what was in them.
 | Android `versionCode` · iOS `CURRENT_PROJECT_VERSION` | **9** — 3 through 8 are spent, each by an artefact that was actually produced |
 | `applicationId` · bundle id | `com.talkhangyul.ganada` |
 | `minSdk` · `targetSdk` · `compileSdk` | 24 · 36 · 36 |
-| APK | 90,552,277 bytes (86.4 MiB) |
-| APK sha256 | `a68a367942841b2f22e029a888f15da23aba347a3059bb9d34a40a53d477de4c` |
-| AAB | 88,728,421 bytes (84.6 MiB) |
-| AAB sha256 | `91ebe2587747f9dd67d1574730beed0baf0766adaf9e67fc693d1dfe85230107` |
+| APK | 103,528,200 bytes (98.7 MiB) |
+| APK sha256 | `8f1492a5f8d783c2432ac8559190e72767760f4250793fa5bfc3787f6845eeaf` |
+| AAB | 101,309,812 bytes (96.6 MiB) |
+| AAB sha256 | `8e65f27cf86f538b3e6999601cacf3baa6d635d6e1d72f9da2bd880ca1c902e3` |
 | Signature schemes | **v2 and v3**; v1 deliberately absent — `minSdk` 24 means no device that can install this needs JAR signing |
 | Signing identity | `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR` |
 | Certificate sha256 | `157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc` — the same identity as every previous build |
@@ -9860,6 +9870,87 @@ Pushed once, without force, after every check above; the push result and the equ
 
 ---
 
+# 20AE. The twenty-first pass — the native apps catch up with the web
+
+**WEB TESTED / ANDROID BUILT / IOS SYNCHRONISED, NOT BUILT.** The pass began from `11189dbe` on `main` with a clean tree, and it exists for one finding: the downloadable native apps were the 1.0.4 delivery (versionCode 25, built from `420a8e57` on 12 September) while the web product had been 1.0.5 since the seventeenth pass. The Android and iOS projects were re-synchronised from a fresh production build of the current tree, Android was rebuilt clean at **1.0.5, versionCode 26** with the existing production identity, and the iOS project carries **`MARKETING_VERSION` 1.0.5 with `CURRENT_PROJECT_VERSION` 25** — the build number left exactly where it was, by requirement. The iOS archive and IPA were not produced: this is a Linux machine without Xcode, and §20AE.4 says what a Mac has to do.
+
+## 20AE.1 The root cause, in one hash — **P0, fixed (I-253)**
+
+The web bundle and the native bundles are two copies, and nothing in the build relates them. `apps/web/dist` is what Vite writes; `apps/mobile/android/app/src/main/assets/public` and `apps/mobile/ios/App/App/public` are what `cap sync` copies from it, and Gradle and Xcode package whatever is in those directories, however old. `native:bundle:check` holds the *last-built APK* to `dist`, and `release:current` holds the delivered manifests to the commit — both are in `verify:release`, and both were red or skipped in passes whose brief did not include a native build.
+
+Before anything was touched, `index.html` in both native `public/` directories hashed `e4f0d6a0…`, the same bytes as `assets/public/index.html` inside the delivered 1.0.4 APK, while `dist/index.html` on the same disk hashed `55b97222…`. That is the whole defect: the web moved, the copy did not. The version gate — by the seventeenth pass's own design (§20AA) — printed the difference as a pending line for a person rather than failing on it, and `release:current`, which did fail on it, was red for three passes with each brief marking the red as expected because the native rebuild was out of its scope (§20AD.6). `git diff --name-only 420a8e57..HEAD` outside the document and delivery directories lists **3,029 product files across 28 commits**: 497 words, 2,089 recordings, the corpus re-read (§20AB), the split-once and look-alike safety rules, the failed-chunk screen (I-249), the profile-read guard (I-250) and the register fixes in four languages (I-251). None of it had reached a phone.
+
+## 20AE.2 What moved, and what did not
+
+| File | Before | After |
+| --- | --- | --- |
+| `app.identity.json` `version` / `buildNumber` | 1.0.4 / 25 | **1.0.5 / 26** |
+| `app.identity.json` `ios.xcode.marketingVersion` / `currentProjectVersion` | 1.0.4 / 25 | **1.0.5 / 25** — declared separately so the gate reads the iOS build number as deliberately kept |
+| `apps/mobile/package.json`, `package-lock.json` workspace entry | 1.0.4 | **1.0.5** |
+| `project.pbxproj` `MARKETING_VERSION` (Debug and Release) | 1.0.4 | **1.0.5** — the diff is those two lines and nothing else; `DEVELOPMENT_TEAM`, `CODE_SIGN_STYLE`, `PRODUCT_BUNDLE_IDENTIFIER`, `IPHONEOS_DEPLOYMENT_TARGET` ×4, `CURRENT_PROJECT_VERSION` ×2 and 30 `knownRegions` unchanged, re-adopted by `ios:project:check` |
+| `project.pbxproj` `CURRENT_PROJECT_VERSION` (both) | 25 | **25** — unchanged; `Info.plist` untouched, `CFBundleVersion` resolves to 25 |
+| `apps/web/src/config/product.ts` `version` | 1.0.5 | 1.0.5 — already there; only its comment moved |
+| `check-version-consistency.mjs` `RELEASE_VERSION` / `product.test.ts` native pin | 1.0.4 | **1.0.5** |
+| `docs/legal/*.md` headers, `store/release-notes.md` heading, this front matter | 1.0.4 | **1.0.5** |
+| `values/strings.xml` `package_name`, `custom_url_scheme` | translatable | **`translatable="false"`** — the two pre-existing `lintRelease` errors; they are identifiers, and the generated `values-<locale>` files rightly omit them |
+| Android `versionCode` evidence for 26 | — | every `build-info.json` in the history tops out at 25 (`git log -- result/build-info.json`, 30 entries read); `registered` is false for both stores; 26 has never been built or recorded anywhere |
+
+## 20AE.3 The build, and the bundle read back out of it
+
+Freshness first: `content:fresh:check`, `curriculum:check`, `policy:runtime:check`, `tokens:check`, `letters:copy:check`, `copy:fresh:check` and `copy:generated:check` each exit 0 on the starting tree, so every generated artefact already equalled its source and nothing was regenerated. Then `dist/`, both native `public/` directories and the Android `build/` directory were **deleted** — not overwritten — so that nothing copied during the 1.0.4 release could survive a sync that happened to skip a file. `npm run mobile:sync` built the web product, ran `cap sync` for Android and for iOS and pruned the four web-hosting files from both; `gradlew clean assembleRelease bundleRelease` ran with the production keystore exported into the shell.
+
+Read out of the artefacts, not out of the tree:
+
+| | APK (`aapt2 dump badging`, `apksigner verify`) | AAB (`bundletool dump manifest`, `keytool -printcert -jarfile`) |
+| --- | --- | --- |
+| Package · label | `com.talkhangyul.ganada` · Hangyul Ganada | `com.talkhangyul.ganada` |
+| versionName · versionCode | **1.0.5 · 26** | **1.0.5 · 26** |
+| SDK | min 24, target 36, compile 36 | min 24, target 36 |
+| Signature | v2 ✓ v3 ✓ (v1 off), `157a2bb1…3323debc`, `CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul` | JAR signature, same certificate |
+| Permissions | INTERNET, VIBRATE, the receiver guard | — |
+| Size | 103,528,200 bytes (98.7 MiB) | 101,309,812 bytes (96.6 MiB) |
+
+The bundle was hashed in four places and the four digests are one digest, `ee97265d…`: the 16,438 files under `assets/public/` in the APK, under `base/assets/public/` in the AAB, in the Android `public/` and in the iOS `public/`. Against `dist` less the four pruned files: 16,436 compared, 0 missing, 0 different; the two files in the package and not in `dist` are Capacitor's `cordova.js` and `cordova_plugins.js`. No entry name carries a non-ASCII byte (the ZIP-flag defect of §20N cannot recur), the splash directory holds two PNGs and no video, and the packaged main chunk carries `version:"1.0.5"` — the string `displayVersion()` renders as `v1.0.5` under Settings on both platforms. `native:bundle:check`, `splash:bundle:check` and `content:safety:bundle:check` (49,316 files, 1,690,108 fields, 40,210 Korean literals, no finding) each exit 0 against the built APK. The AAB's digest is identical across the two release builds of the pass (the lint fix changed no resource value); the APK's moves with its signing block, as §20Q recorded.
+
+The APK is 12,975,923 bytes larger than the versionCode 25 delivery, which is the size of three passes' worth of product that had never been packaged (§18.5).
+
+## 20AE.4 iOS — synchronised, versioned, not built
+
+`cap sync ios` ran against the same `dist/`; `App/App/public` is the bundle the APK carries, by the hash above. `MARKETING_VERSION` is 1.0.5 in both configurations and `CURRENT_PROJECT_VERSION` is 25 in both; `mobile:identity:check` holds the bundle identifier and display name, `ios:project:check` holds every other protected setting to the re-adopted lock, `locales:native:check` the 32 declared localisations. The in-app `v1.0.5` on iOS is a statement about that bundle, which is the same file Android renders it from — not about a device.
+
+Not run, and not claimed: a clean, an archive, an export, an IPA, a simulator, a device. `xcodebuild`, `xcrun` and `pod` do not exist on this machine and there is no macOS to run them on. The exact commands — `-project App.xcodeproj` rather than a workspace, because the project is SwiftPM-based and has none, and an `ExportOptions.plist` that is not committed and has to be written for the export method the signing identity permits — are in `result/BUILD_OR_SIGNING_BLOCKERS.md` §9. `result/build-info.json` says `ios.status: not built`, and `app_result/README.md` says there is no `.ipa` and none was approximated.
+
+## 20AE.5 What was run
+
+Every command below ran on the final product tree (`384c245e`), with its exit code recorded; the documents were edited afterwards and their own gates re-run last. `name:check` is the one step of `verify:quick` left out, for the reason the nineteenth and twentieth passes gave: it fails on the gitignored `patent/` directory before and after this pass and on nothing in the tree.
+
+| Step | Exit | Result |
+| --- | --- | --- |
+| Freshness (seven gates, §20AE.3) | 0 | every generated artefact equal to its source |
+| `typecheck` · `lint` · `test` | 0 · 0 · 0 | unit suites web 1,570, content safety 1,298, Korean morphology 242, handwriting core 96 — 3,206 |
+| `version:check` · `mobile:identity:check` · `ios:project:check` · `locales:native:check` | 0 | one pending line, for a person with Xcode: the archive |
+| `mobile:sync` | 0 | build, `copy android`, `copy ios`, 430 kB of web-only files pruned from both |
+| `gradlew clean assembleRelease bundleRelease` | 0 | 2m 16s; signed with the production identity |
+| `gradlew lintRelease` | 1 → 0 | two `MissingTranslation` errors on identifier strings, fixed at the source (§20AE.2); 0 errors, 21 warnings in Capacitor's generated sources after |
+| `native:bundle:check` · `splash:bundle:check` · `content:safety:bundle:check` | 0 · 0 · 0 | the app inside the package is the app that was built |
+| `test:e2e` | 1 → 0 | **638 passed, 2 failed** in the full run (57.3 min, 640 cases, mobile and desktop): a 60 s timeout on `journey.spec.ts:453` and a `Failed to fetch` on `offline.spec.ts:108`, both desktop, both in the last hour of the run at 424 MB free; re-run alone, both pass (52.9 s and 2.7 s). `dist` after the suite's own rebuilds hashes to the bundle that was packaged |
+| `result:build` · `app-result:build` | 0 · 0 | both delivery manifests from `384c245e`, `"dirty": false` |
+| `docs:consistency` · `docs:report` · `issues:check` | 0 | the derived figures rewritten from `build-info.json`; the PDF is the one in `result/docs/` |
+| `release:current` | 0 | both delivery manifests built from `384c245e`, which is HEAD; the tree dirty only in docs and the release directories |
+| `verify:release` less `name:check` and `test:e2e` (run above) | 0 | every step exit 0 on its final run; three red once and re-run green — `quotes:review:check` (a generated document a timestamp stale since the twentieth pass; regenerated), `audio:qa` (ffmpeg *Conversion failed!* on one sampled clip at 66 MB free; the clip decodes by hand), `npm test` (one `strokeMarkers` case over its 5 s budget under a shared VM's load; 3,206 of 3,206 when quiet). `docs:consistency:check` and `issues:check` re-run last, after this document was finished |
+
+## 20AE.6 The commits
+
+| Commit | What |
+| --- | --- |
+| `d841f922` | chore(release): native version 1.0.5, Android versionCode 26, iOS MARKETING_VERSION 1.0.5 with build 25 kept |
+| `384c245e` | fix(android): the package name and URL scheme strings are untranslatable, so lintRelease passes |
+| *(this document)* | chore(release): the delivery from `384c245e` — 1.0.5, versionCode 26, both native bundles synchronised, verified |
+
+Pushed once, without force, after every check above; the push result and the equality of local and remote `HEAD` are in the delivery message, because a document cannot record the hash of the commit that carries it.
+
+---
+
 # 21. Issues
 
 `docs/issues.json` is the single place in this repository that states an issue's
@@ -9897,6 +9988,7 @@ document they predate.
 | **I-116** | Numbers | **P0** | The Numbers curriculum was a table of contents: twelve units of mostly one lesson, one exercise type, fixed answer positions | Fifteen thin lessons, each a list of items and a four-option meaning quiz whose correct answer sat in the same position, with distractors drawn by list order rather than by what a beginner actually confuses. A learner could pass every lesson by position and learn nothing about which system a counter takes. | **RESOLVED** |
 | **I-210** | Content safety | **P0** | 섹스하다 was a level-12 Level Test question and a distractor in two more, and the safety gate was green | A learner — the product is used by children — sitting the placement test at levels 10–12 could be asked what 섹스하다 means, offered it as an answer to 이기다 or 돌아가가다, or shown it under 돌아가다. The same headword was searchable in the dictionary, glossed "to have sex". Reported from production and reproduced in the shipped bank (bank-8b0e5dba.json, four items) and in both native packages. | **RESOLVED** |
 | **I-23** | Strokes | **P0** | The stroke demonstration showed ownership wedges at junctions and a polygonal ㅇ | ㅂ's uprights grew triangular spurs into crossbars that had not been written yet; ㅅ's first stroke grew a chunk of the second one's shoulder; ㅈ chipped into its own fork; ㅇ read as a lumpy ring rather than a circle. A learner watching stroke one of ㅂ could see a piece of stroke three already on the paper. | **RESOLVED** — supersedes I-14 |
+| **I-253** | Release | **P0** | The downloadable native apps were 1.0.4 (versionCode 25) while the web product was 1.0.5 — the web was updated for three passes without the native bundles being re-synchronised or rebuilt | A learner installing the APK or AAB got the product as it was at `420a8e57` on 12 September: 3,393 words rather than 3,864, 2,089 fewer recordings, the pre-fix lazy-chunk blank page (I-249), the profile overwrite on a failed read (I-250) and the Czech/Greek/Hungarian register slips (I-251) — everything the eighteenth to twentieth passes fixed on the web was absent from the phone, and the version under Settings read v1.0.4 on a device and v1.0.5 in a browser. | **RESOLVED** |
 | **I-78** | Vocabulary session | **P0** | A learner measured at level 30 was taught 남자 | Sit the Vocabulary Level Test, come out at 30, open Today's Vocabulary, and be taught 남자 — a level-1 noun. The number beside Lv. was measured correctly and then ignored, which is worse than not having it: the learner has just spent eight minutes being assessed and the app teaches them *man*. | **RESOLVED** |
 | **I-85** | Hangul | **P0** | The compound vowels rendered as two and three separate letters | ㅙ and ㅞ are single vowels. On the screen the learner was shown ㅗ, then ㅏ, then ㅣ, spaced far enough apart that the right-hand upright floated away from the rest — three marks in a row rather than one letter. A learner copying that learns the wrong shape, and the previous report had recorded the defect as fixed. | **RESOLVED** |
 | **I-98** | Vocabulary session | **P0** | A correctly answered matching grid credited nothing — the photographed 9/10 | A learner whose tenth word ended on a matching grid answered it cleanly and watched the counter hold at 9/10 (90%), then met the same words again as retries. The screenshotted “stops at 9 questions” session is this defect: correct answers that did not count. | **RESOLVED** |
@@ -10132,7 +10224,7 @@ document they predate.
 
 **Open — P0: 0 · P1: 1 · P2: 5 · P3: 0**
 
-**Blocked outside this repository: 1 · Partial: 5 · Resolved: 236**
+**Blocked outside this repository: 1 · Partial: 5 · Resolved: 237**
 
 <!-- /issues:counts -->
 
@@ -10160,6 +10252,7 @@ document they predate.
 | **I-116** | Rebuilt as 6 modules and 19 lessons over 97 items (`data/numbers.ts`): the two systems, past ten, counting things, time and dates, money and identifiers, review. Every lesson has an objective, two or three explanation steps, examples with recorded audio for every word and every example phrase (no runtime synthesis; `audio:plan`/`audio:build`), guided practice from at least two of nine exercise families, a mastery check that asks every item, feedback that names the misconception behind the chosen wrong answer, a summary that lists what is still owed, and a review path that becomes due after seven days. Distractors are built from misconception classes — system swap, plain form before a counter, adjacent value, sound-alike, irregular month, wrong counter, spacing — and option order is a seeded shuffle of (lesson, item, kind, phase, attempt): stable within an attempt, different on a retake; over the mastery checks the answer lands at every index (`numbers:qa` reports the distribution). 272 keys × 32 languages, gated for missing, blank, placeholder-broken and English-identical strings. | Done. |
 | **I-210** | scratchpad reproduction before any change: `content:safety:check` exit 0 against the shipped bank. Root cause in docs/CHILD_SAFE_CONTENT_AUDIT.md §2: three unrelated lists — a whole-headword list holding 섹스, a substring list never holding it, and a gloss test looking for "sexual" in "to have sex" — and a gate that read produce options but never resolved the option ids of meaning items. The dictionary, the pool the upper levels draw from, was out of the safety layer's scope by design. | One versioned child-safe content policy (packages/content-safety, 1.0.0) with a TypeScript evaluator and a Python port held to the same 355 fixtures, read by the pack builder (import gate), the dictionary builder (publication gate), the anchor and bank builders (generation, distractor, composition and finished-item gates in 32 languages), the runtime (every bank item revalidated on load; a sitting is not resumed if the loaded bank lacks an item), the release scan (14 families, 32 locales, 1,001,715 fields) and the artefact scan (dist, native asset copies, APK, AAB). 23 taught words retired with tombstones, 694 dictionary headwords and 525 senses refused, the bank, gap-fills, audio and relations regenerated. The old gate is reproduced in legacy.test.ts and shown to pass the row. |
 | **I-23** | Reproduced by rendering the shipped assets before any change was made. Fixed by replacing the architecture — see the entry for it in §11. Now: `strokes:qa` clean on 73 items / 269 strokes; `strokes:visual` clean on 1,345 frames; the gallery read by eye at 160 px and at 96 px, which is the size the defect was reported at. | done |
+| **I-253** | Before the twenty-first pass, `index.html` in `apps/mobile/android/app/src/main/assets/public` and in `apps/mobile/ios/App/App/public` both hashed `e4f0d6a0…` — the file inside the 1.0.4 APK — while `apps/web/dist` on the same disk hashed `55b97222…`. `git diff --name-only 420a8e57..HEAD` outside `docs/`, `result/`, `app_result/` and `store/` listed 3,029 product files across 28 commits. `version:check` had reported the lag as a pending line on every run since the seventeenth pass; nothing failed on it, by design (§20AA), and nothing acted on it. | Done. Both native `public/` directories were deleted and re-synchronised from a fresh `dist`; Android was rebuilt clean at 1.0.5 / versionCode 26 with the production identity and the bundle inside the APK and AAB hashed file for file against `dist` and against the iOS `public/` (tree digest `ee97265d…`, 16,436 files, 0 different); the Xcode project carries `MARKETING_VERSION` 1.0.5 with `CURRENT_PROJECT_VERSION` kept at 25. The iOS archive still needs a Mac (§18.6). `release:current` had been failing on the lag all along and the web-only passes recorded its red as expected (§20AD.6); it is green again, and it is what keeps this closed. |
 | **I-78** | Not the level model and not `planNewWords`, both of which are correct — the search window for a learner at 30 is levels 27–30 and 남자 cannot come out of it. It was the plan cache. A `DailyPlan` was identified by its date and its goal, so the plan built when the app first opened, at the default level, was still "current" after the test. Every new learner meets this, because sitting the test is something you do just after opening the app for the first time, which is exactly when a default-level plan has been written.  `DailyPlan` now records the level it was built for and `planIsCurrent` compares it. A goal change still takes effect tomorrow — a goal is a preference — and a level change takes effect at once, because a level is a measurement. A plan stored before the field existed is kept rather than discarding somebody's day on upgrade.  `domain/vocabularyLevel.test.ts` holds four fixtures against the real corpus: a level-30 plan contains nothing below 27 and does not contain 남자, a level-1 plan contains nothing above 3, a plan built at 1 is refused for a learner at 30, and a plan with no level is kept. Negative-tested.  Read rather than counted afterwards, 30 days at seven levels: level 1 gets 차, 당신, 가다, 엄마, 오늘; level 30 gets 기울다, 물리치다, 웅크리다, 일석이조, 새옹지마. Zero words below 28 in 300 recommendations at level 30.  REOPENED AND RE-CLOSED in the level-truth pass (2026-08-26). The fix above was incomplete: `planIsCurrent` kept a mismatched plan whenever the learner had started it — one completed word was enough — so the reported journey (study three Level-1 words, retake, measure 30, return the same day) still ran the rest of the day at Level 1. The class is I-108; the rule this issue recorded ("a plan with work in it stands and the new level starts tomorrow") is retired there. | Superseded by I-108: a measured level change now takes effect immediately for started days too, preserving earned progress. The corpus limit behind it is I-79. |
 | **I-85** | Photographed on the running product after the previous pass reported PASS. Reproduced from the shipped `dist` on a local preview, so the contradiction was in the artefact and not in the photograph.  Three simultaneous defects, only one of which the previous pass had touched:  1. **The two uprights' x-positions** — corrected last pass, by a one-dimensional metric. 2. **The bars were authored too short**, so the left half of ㅙ did not reach the right half. 3. **`shapeToFace` assumed the pen widens the ink box on all four sides.** It does not: with butt caps a stroke is widened only perpendicular to its direction. Every one of the 40 jamo therefore had the wrong proportion — ㅐ and ㅒ by 12% — and the compound vowels, which are the widest, were worst.  Fixed by re-authoring the whole vowel table in face ink-box fractions and replacing `shapeToFace` with an iterative solve over a `drawnInkBox` that pads each segment by the pen only perpendicular to it. Verified against Pretendard rather than against the app's own other drawing: `docs/report-assets/compound-vowels-before.png` and `compound-vowels-after.png` are the same eleven letters overlaid on the face, before and after. | Done. The gate that would have caught it is I-86. |
 | **I-98** | `MatchExercise` reported per-word results and the crediting path read a boolean (`answeredCorrectly`) that no grid code ever set — null read as failure, so every word a grid completed was requeued. The answer state is now per-word (`{correct[], wrong[]}`), set by every exercise including the grid, and `creditsFor()` in `dailyQuestions.ts` is the one crediting rule shared by `advance` and the finish-button prediction. Pinned by eight fixtures in `wordSessionCredits.test.ts` including the exact grid-of-four case. | Done. |
@@ -10412,9 +10505,12 @@ no physical Android device has run the binary.
 * **Native confirmation of the two new quotations** — 21 of 64 rows are
   marked NATIVE-SPEAKER REVIEW REQUIRED, and the Carlyle attribution is
   conventional rather than located (I-222).
-* **An iOS build.** The project carries 1.0.4 / 25 and is synchronised; the
-  archive and IPA need macOS and Xcode, and this machine has neither — the
-  twentieth pass was asked for one and could not run it (§18.6, §20AD.6).
+* **An iOS build.** The project carries `MARKETING_VERSION` 1.0.5 with
+  `CURRENT_PROJECT_VERSION` 25 and its `public/` is the delivered 1.0.5 bundle
+  (§20AE); the archive and IPA need macOS and Xcode, and this machine has
+  neither — the twentieth pass was asked for one and could not run it, and
+  the twenty-first synchronised the project and stopped at the same wall
+  (§18.6, §20AD.6, §20AE.4).
 * **Whether the Numbers course teaches.** Its 112 items, 52 explanation steps
   and 272 strings in 32 languages were written and translated in this pass by
   the same automated process that wrote this report. What §20K proves is that
@@ -10582,10 +10678,10 @@ do: build for iOS (§20AD.6).
 
 **Why a candidate and not a release.** The commit problem stayed fixed and then
 found a second way to be wrong. This edition's artefacts are built from a clean
-checkout of a named commit, at **versionCode 25** — one past the 24 the previous
+checkout of a named commit, at **versionCode 26** — one past the 25 the previous
 delivery used, because product files have changed and Play refuses a code reused
-for different bytes (and the marketing version went *down* to the intended 1.0.4
-while the code went up, which is the only direction a code can go); `version:check` is what said so, and it said so before the
+for different bytes (the marketing version is 1.0.5 on every platform for the
+first time, three passes after the web reached it — §20AE); `version:check` is what said so, and it said so before the
 build rather than after. What the previous edition shipped was worse than a
 stale number: `result/RELEASE_VALIDATION.md` named commit `2f282d9b` while
 `result/build-info.json` recorded `33291f0c` with `"dirty": true`, and the

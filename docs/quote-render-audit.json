@@ -1,6 +1,6 @@
 {
  "_comment": "Written by scripts/qa-quote-render.mjs from the rendered home screen. Read by scripts/build-quote-audit.mjs for the UI-wrapping and RTL columns of docs/QUOTE_TRANSLATION_AUDIT.md. Do not edit by hand.",
- "renderedAt": "2026-09-17T06:43:45.187Z",
+ "renderedAt": "2026-09-18T08:29:39.749Z",
  "widths": [
   320,
   360,

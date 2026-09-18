@@ -6,13 +6,14 @@ Nothing on this list was worked around, faked, or quietly downgraded. Where a
 credential is missing the artefact is absent rather than approximated, and where
 a URL does not exist the field is empty rather than invented.
 
-Re-checked on 12 September 2026 against **v1.0.4, versionCode 25**, compiled
-from a clean checkout of commit `420a8e57`. Every item below still stands
-except §9, which is closed: the Xcode project carries 1.0.4 / 25 in both
-configurations. None of the rest is a build problem and none can be cleared
-from this machine. The Android artefacts were rebuilt at versionCode 25 and
-signed with the existing production identity this cycle — see
-`RELEASE_VALIDATION.md`.
+Re-checked on 18 September 2026 against **v1.0.5, versionCode 26**, compiled
+from a clean checkout of commit `384c245e`. Every item below still stands.
+None is a build problem and none can be cleared from this machine. The Android
+artefacts were rebuilt at versionCode 26 from the current web build and signed
+with the existing production identity this cycle — see `RELEASE_VALIDATION.md`.
+§9 is open again in the one way it can be from here: the Xcode project carries
+1.0.5 in both configurations and is synchronised with this exact web bundle,
+and its archive still needs a Mac.
 
 **§10 is still the one to read.** This cycle wrote 24 copy-pack translations
 of one rewritten example (베다: 풀을 베어요) and thirty non-Korean, non-English
@@ -222,34 +223,58 @@ the store material claims otherwise.
 
 ---
 
-## 9. iOS carries 1.0.4 build 25 — the archive still needs a Mac · **REQUIRES A MAC**
+## 9. iOS carries 1.0.5 build 25 and is synchronised — the archive still needs a Mac · **REQUIRES A MAC**
 
-**What is missing:** the archive and the IPA, not the version.
+**What is missing:** the archive and the IPA, not the version and not the
+bundle.
 
-The Xcode project's `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` read
-`1.0.4` and `25` in both the Debug and the Release configuration — the same
-two values Android ships — and `apps/mobile/app.identity.json` declares them,
-so `npm run version:check` reports nothing pending and `npm run
-ios:project:check` records the adopted file. This pass edited exactly those two
-settings in `App.xcodeproj/project.pbxproj` from Linux, by targeted substitution
-of the four lines, and nothing else in the file: `DEVELOPMENT_TEAM`,
-`CODE_SIGN_STYLE`, `PRODUCT_BUNDLE_IDENTIFIER`, `IPHONEOS_DEPLOYMENT_TARGET` and
-the `knownRegions` are byte-for-byte what they were, which the lock file's
-setting-by-setting assertions confirm.
+The Xcode project's `MARKETING_VERSION` reads `1.0.5` in both the Debug and the
+Release configuration and `CURRENT_PROJECT_VERSION` reads `25` in both — the
+build number was to stay exactly where it was, and it did; Android is at
+versionCode 26 and `apps/mobile/app.identity.json` declares the two numbers
+separately so `npm run version:check` can tell the deliberate difference from a
+drift. This pass edited exactly the two `MARKETING_VERSION` lines in
+`App.xcodeproj/project.pbxproj` from Linux and nothing else in the file:
+`DEVELOPMENT_TEAM`, `CODE_SIGN_STYLE`, `PRODUCT_BUNDLE_IDENTIFIER`,
+`IPHONEOS_DEPLOYMENT_TARGET`, `CURRENT_PROJECT_VERSION` and the `knownRegions`
+are byte-for-byte what they were, which the re-adopted lock file's
+setting-by-setting assertions confirm. `App/App/Info.plist` is untouched;
+`CFBundleShortVersionString` resolves to 1.0.5 and `CFBundleVersion` to 25.
 
-**To unblock**, on a Mac with Xcode 26, from commit `420a8e57`:
+`App/App/public` is the 1.0.5 web bundle: `cap sync ios` was run against the
+same `dist/` as Android, and the directory hashes file for file to the bundle
+inside the delivered APK and AAB (tree digest `ee97265d…`, 16,438 files). The
+in-app version on iOS will read `v1.0.5` because that string is in the bundle;
+that it renders on a device is a Mac's to confirm.
+
+**To unblock**, on a Mac with Xcode 26 (the SDK Apple requires from 28 April
+2026), from commit `384c245e`. The project is SwiftPM-based (`CapApp-SPM`);
+there is no `.xcworkspace` and no CocoaPods step, and no `ExportOptions.plist`
+is committed — write one for the export method the signing identity permits
+(`app-store-connect`, `ad-hoc` or `development`) before the last command:
 
 ```bash
-git checkout 420a8e57
-npm ci && npm run mobile:sync
+git checkout 384c245e
+npm ci && npm run mobile:sync          # re-creates App/App/public from the same dist
 cd apps/mobile/ios/App
-xcodebuild -workspace App.xcworkspace -scheme App -configuration Release \
+xcodebuild -project App.xcodeproj -scheme App -configuration Release clean
+xcodebuild -project App.xcodeproj -scheme App -configuration Release \
+  -destination 'generic/platform=iOS' \
   -archivePath build/App.xcarchive archive
 xcodebuild -exportArchive -archivePath build/App.xcarchive \
   -exportOptionsPlist ExportOptions.plist -exportPath build/ipa
-# then verify: MARKETING_VERSION 1.0.4, CURRENT_PROJECT_VERSION 25, bundle id
-# com.talkhangyul.ganada, the Splash image set, sizes and sha256 of the archive and IPA
+# then read back, from the archive's Info.plist and the exported IPA:
+#   CFBundleIdentifier          com.talkhangyul.ganada
+#   CFBundleShortVersionString  1.0.5
+#   CFBundleVersion             25        (unchanged)
+#   CFBundleDisplayName         Hangyul Ganada
+# and hash build/App.xcarchive/Products/Applications/App.app/public against
+# result/android-project/app/src/main/assets/public — they must be identical.
 ```
+
+An Apple Developer Program membership (team `A6776XC6JH` is what the project
+names), a distribution certificate and a provisioning profile for
+`com.talkhangyul.ganada` are needed for the export step to be signed.
 
 **IOS BUILD BLOCKED — REQUIRES MACOS/XCODE.** No IPA exists and none is claimed.
 

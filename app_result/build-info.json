@@ -1,31 +1,31 @@
 {
   "product": "Hangyul ganada",
-  "version": "1.0.4",
-  "commit": "420a8e5766c2d28328d7df089a291096bb5cd101",
+  "version": "1.0.5",
+  "commit": "384c245efd9e6ddb17c1347e7d3dd109fe7f295c",
   "source_state": {
     "dirty": false,
     "fingerprint": null,
     "changed_files": 0,
     "untracked_files": 0
   },
-  "built_at": "2026-09-11T22:06:44.770Z",
+  "built_at": "2026-09-18T08:38:31.636Z",
   "builder": "node v24.19.0",
   "android": {
     "application_id": "com.talkhangyul.ganada",
-    "version_code": 25,
-    "version_name": "1.0.4",
+    "version_code": 26,
+    "version_name": "1.0.5",
     "target_sdk": 36,
     "min_sdk": 24,
-    "apk_bytes": 90552277,
-    "apk_sha256": "a68a367942841b2f22e029a888f15da23aba347a3059bb9d34a40a53d477de4c",
+    "apk_bytes": 103528200,
+    "apk_sha256": "8f1492a5f8d783c2432ac8559190e72767760f4250793fa5bfc3787f6845eeaf",
     "apk_signature_schemes": [
       "v2",
       "v3"
     ],
     "apk_certificate_sha256": "157a2bb133f6aa3d34a9a7b27e4a7fb7cbfafe49544f6e6064ce713e3323debc",
     "apk_certificate_subject": "CN=Hangyul GaNaDa, OU=Mobile, O=Talk Hangyul, L=Seoul, C=KR",
-    "aab_bytes": 88728421,
-    "aab_sha256": "91ebe2587747f9dd67d1574730beed0baf0766adaf9e67fc693d1dfe85230107",
+    "aab_bytes": 101309812,
+    "aab_sha256": "8e65f27cf86f538b3e6999601cacf3baa6d635d6e1d72f9da2bd880ca1c902e3",
     "aab_signed": true,
     "permissions": [
       "android.permission.INTERNET",
@@ -37,10 +37,10 @@
   },
   "ios": {
     "bundle_id": "com.talkhangyul.ganada",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "build": 25,
     "pending_version": null,
-    "pending_build": null,
+    "pending_build": 26,
     "deployment_target": "15.0",
     "sdk": null,
     "ipa_bytes": null,
@@ -116,11 +116,11 @@
       "vi",
       "zh-CN"
     ],
-    "vocabulary_words": 3370,
+    "vocabulary_words": 3864,
     "vocabulary_categories": 18,
     "example_qa_version": "examples-qa-1",
-    "example_qa_pass": 3370,
-    "example_qa_total": 3370,
+    "example_qa_pass": 3864,
+    "example_qa_total": 3864,
     "review_algorithm_version": 1,
     "schema_version": 14
   },
