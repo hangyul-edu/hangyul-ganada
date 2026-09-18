@@ -161,7 +161,7 @@ const VERSION_SITES = [
  * the same literal here so the gate cannot go green on a wrong-but-consistent
  * tree without somebody editing both. Update both in the release commit.
  */
-const RELEASE_VERSION = '1.0.4';
+const RELEASE_VERSION = '1.0.5';
 if (VERSION !== RELEASE_VERSION) {
   fail('app.identity.json', `version is "${VERSION}"; the native release is ${RELEASE_VERSION}`);
 }

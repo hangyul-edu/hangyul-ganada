@@ -1,10 +1,18 @@
 # Web release notes — 1.0.5
 
-> Web product only. The Android and iOS projects were **not modified or built**
-> in this release; the delivered native artefacts remain at 1.0.4, versionCode
-> 25 / build 25. The web-facing marketing version is `v1.0.5`
-> (`apps/web/src/config/product.ts`), and the version gate now lets the web
-> release lead the native one while refusing to let it fall behind. See
+> **Native catch-up, 18 September 2026.** The note below was written when
+> 1.0.5 was a web-only release and the native deliveries stayed at 1.0.4,
+> versionCode 25. That lag has since been closed: both native projects were
+> re-synchronised from the 1.0.5 web build and Android was rebuilt at
+> **1.0.5, versionCode 26**; the iOS project carries `MARKETING_VERSION`
+> 1.0.5 with `CURRENT_PROJECT_VERSION` left at 25, and its archive still
+> needs a Mac. `result/RELEASE_VALIDATION.md` is the account of that build.
+>
+> Web product only, as first written. The Android and iOS projects were **not
+> modified or built** in this release; the delivered native artefacts remained
+> at 1.0.4, versionCode 25 / build 25. The web-facing marketing version is
+> `v1.0.5` (`apps/web/src/config/product.ts`), and the version gate lets the
+> web release lead the native one while refusing to let it fall behind. See
 > `docs/WEB_PRODUCT_CRITICAL_AUDIT_v1.0.5.md` for the audit this release came
 > out of, `docs/WEB_QA_EVIDENCE_v1.0.5.md` for what was run, and
 > `docs/WEB_UX_CONTENT_REMEDIATION_LEDGER_v1.0.5.md` for every finding.

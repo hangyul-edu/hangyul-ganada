@@ -36,9 +36,9 @@ export const PRODUCT = {
    * The web product's release number, shown to a learner as `v1.0.5`.
    *
    * This is the **web** release. The native deliveries carry their own number
-   * in `apps/mobile/app.identity.json` (1.0.4 at build 25, the last artefacts
-   * built), and the two are allowed to differ in exactly one direction: the
-   * web may lead, never lag. `scripts/check-version-consistency.mjs` pins both
+   * in `apps/mobile/app.identity.json` (1.0.5 at build 26 since the native
+   * rebuild of 18 September 2026), and the two are allowed to differ in
+   * exactly one direction: the web may lead, never lag. `scripts/check-version-consistency.mjs` pins both
    * literals, holds every native site to the native one, and prints the
    * pending native release as a line for a person with the store consoles —
    * the same arrangement it already used for an iOS project lagging Android.

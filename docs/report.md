@@ -3,7 +3,7 @@ title: Hangyul ganada
 title_ko: 한귤 가나다
 subtitle: A zero-beginner Korean foundation app — Hangul reading and writing, then practical vocabulary — running entirely on the learner's own device.
 document: Product Truth Report
-version: 1.0.4
+version: 1.0.5
 web_version: 1.0.5
 native_status: not modified or built in the twentieth pass — delivered Android versionCode 25 / iOS build 25; iOS cannot be built on this machine (no Xcode)
 date: 17 September 2026
